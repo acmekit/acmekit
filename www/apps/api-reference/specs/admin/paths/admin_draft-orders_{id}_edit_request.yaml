@@ -1,0 +1,48 @@
+post:
+  operationId: PostDraftOrdersIdEditRequest
+  summary: Request Edit on Draft Order
+  x-sidebar-summary: Request Edit
+  description: >-
+    Change the status of a draft order's edit to be requested. Later, the edit
+    can be confirmed or canceled.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The draft order's ID.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: >-
+          ../code_samples/JavaScript/admin_draft-orders_{id}_edit_request/post.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_draft-orders_{id}_edit_request/post.sh
+  tags:
+    - Draft Orders
+  responses:
+    '200':
+      description: OK
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: requestDraftOrderEditWorkflow
+  x-events: []

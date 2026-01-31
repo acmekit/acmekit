@@ -1,0 +1,170 @@
+---
+tags:
+  - cart
+  - storefront
+products:
+  - cart
+---
+
+import { CodeTabs, CodeTab, Prerequisites } from "docs-ui"
+
+export const metadata = {
+  title: `Create Cart in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to create and store a cart in your storefront.
+
+## Create Cart on First Access
+
+It's recommended to create a cart the first time a customer accesses a page in your storefront. Then, you can store the cart's ID in the `localStorage` and access it whenever necessary.
+
+To create a cart, send a request to the [Create Cart API route](!api!/store#carts_postcarts).
+
+For example:
+
+<Note title="Tip">
+
+Learn how to install and configure the JS SDK in the [JS SDK documentation](../../../js-sdk/page.mdx).
+
+</Note>
+
+<CodeTabs group="store-request">
+  <CodeTab label="React" value="react">
+
+export const highlights = [
+  ["9", "region", "Assuming you previously retrieved the chosen region."],
+  ["17", "cartId", "Retrieve the cart ID from `localStorage`, if exists."],
+  ["24", "create", "Send a request to create the cart."],
+  ["25", "region_id", "Associate the cart with the chosen region for accurate pricing."],
+  ["28", "setItem", "Set the cart's ID in the `localStorage`."]
+]
+
+  ```tsx highlights={highlights}
+  "use client" // include with Next.js 13+
+
+  import { useEffect } from "react"
+  import { sdk } from "@/lib/sdk"
+  // other imports...
+
+  export default function Home() {
+    // TODO assuming you have the region retrieved
+    const region = {
+      id: "reg_123",
+      // ...
+    }
+
+    // ...
+
+    useEffect(() => {
+      const cartId = localStorage.getItem("cart_id")
+      if (cartId) {
+        // customer already has a cart created
+        return
+      }
+
+      // create a cart and store it in the localStorage
+      sdk.store.cart.create({
+        region_id: region.id,
+      })
+      .then(({ cart }) => {
+        localStorage.setItem("cart_id", cart.id)
+      })
+    }, [])
+
+    // ...
+  }
+  ```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+
+export const fetchHighlights = [
+  ["2", "region_id", "Associate the cart with the chosen region for accurate pricing."],
+  ["5", "setItem", "Set the cart's ID in the `localStorage`."]
+]
+
+  ```ts highlights={fetchHighlights}
+  sdk.store.cart.create({
+    region_id: region.id,
+  })
+  .then(({ cart }) => {
+    localStorage.setItem("cart_id", cart.id)
+  })
+  ```
+
+  </CodeTab>
+</CodeTabs>
+
+In this example, you create a cart by sending a request to the [Create Cart API route](!api!/store#carts_postcarts).
+
+The response of the Create Cart API route has a `cart` field, which is a [cart object](!api!/store#carts_cart_schema).
+
+Refer to the [Create Cart API reference](!api!/store#carts_postcarts) for details on other available request parameters.
+
+### Cart's Sales Channel Scope
+
+As mentioned before, you must always pass the publishable API key in the header of the request (which is done automatically by the JS SDK, as explained in the [Publishable API Keys](../../publishable-api-keys/page.mdx) guide). So, Medusa will associate the cart with the sales channel(s) of the publishable API key.
+
+This is necessary, as only products matching the cart's sales channel(s) can be added to the cart. If you want to associate the cart with a different sales channel, or if the publishable API key is associated with multiple sales channels and you want to specify which one to use, you can pass the `sales_channel_id` parameter to the [Create Cart API route](!api!/store#carts_postcarts) with the desired sales channel's ID.
+
+For example:
+
+```ts
+sdk.store.cart.create({
+  region_id: region.id,
+  sales_channel_id: "sc_123",
+})
+.then(({ cart }) => {
+  // TODO use the cart...
+  console.log(cart)
+})
+```
+
+---
+
+## Associate Customer with Cart
+
+When the cart is created for a logged-in customer, it's automatically associated with that customer.
+
+However, if the cart is created for a guest customer, then the customer logs in, then you have to set the cart's customer as explained in the [Update Cart](../update/page.mdx#set-carts-customer) guide.
+
+---
+
+## Set Cart's Locale
+
+<Prerequisites
+  items={[
+    {
+      text: "Translation Module Configured",
+      link: "/commerce-modules/translation#configure-translation-module",
+    }
+  ]}
+/>
+
+By default, items in the cart will have their associated product's original content. If your storefront supports [localization](../../localization/page.mdx), you can set the cart's locale to ensure that the item contents are in the customer's preferred language.
+
+You can set the cart's locale by passing the `locale` request body parameter to the [Create Cart API route](!api!/store#carts_postcarts). For example:
+
+```ts
+sdk.store.cart.create({
+  region_id: region.id,
+  // you can also retrieve the locale from sdk.getLocale()
+  locale: "fr-FR",
+})
+.then(({ cart }) => {
+  // TODO use the cart...
+  console.log(cart)
+})
+```
+
+When the cart's locale is set, the cart's items will have their content in the specified locale if translations are available.
+
+You can also [update the cart's locale](../update/page.mdx#set-cart-locale) later if the customer changes their language preference.
+
+---
+
+## Store Cart Details in React Context
+
+If you're using React, it's then recommended to create a context that stores the cart details and make it available to all components in your application, as explained in the [Cart React Context in Storefront](../context/page.mdx) guide.

@@ -1,0 +1,1312 @@
+{
+	"id": 16199,
+	"name": "store-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"text": "## Relations Overview\n\n",
+				"kind": "text"
+			},
+			{
+				"text": "```mermaid\nerDiagram\n\tStore ||--|| StoreCurrency : supported_currencies\n\tStore ||--|| StoreLocale : supported_locales\n\n```",
+				"kind": "code"
+			}
+		]
+	},
+	"children": [
+		{
+			"id": 16231,
+			"name": "StoreCurrency",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "currency.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/currency.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 16232,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 16233,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the currency."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 5,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/currency.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16234,
+											"name": "currency_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ISO 3 currency code. For example, `usd`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/currency.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16235,
+											"name": "is_default",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the currency is the default in the store."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/currency.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16236,
+											"name": "store",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The store this currency belongs to."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 8,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/currency.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16200,
+														"name": "Store"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												16233,
+												16234,
+												16235,
+												16236
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "currency.ts",
+											"line": 4,
+											"character": 52,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/currency.ts#L4"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "StoreCurrency"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 16267,
+			"name": "StoreLocale",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"comment": {
+				"summary": [],
+				"blockTags": [
+					{
+						"tag": "@since",
+						"content": [
+							{
+								"kind": "text",
+								"text": "2.12.3"
+							}
+						]
+					},
+					{
+						"tag": "@since",
+						"content": [
+							{
+								"kind": "text",
+								"text": "2.12.3"
+							}
+						]
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "locale.ts",
+					"line": 7,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/locale.ts#L7"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 16268,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 16269,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the store locale."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "locale.ts",
+													"line": 8,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/locale.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16270,
+											"name": "locale_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The BCP 47 language tag code of the locale."
+													},
+													{
+														"kind": "text",
+														"text": "The locale code in BCP 47 format. For example, `en-US`."
+													}
+												],
+												"blockTags": [
+													{
+														"tag": "@example",
+														"content": [
+															{
+																"kind": "code",
+																"text": "```ts\n\"en-US\"\n```"
+															}
+														]
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "locale.ts",
+													"line": 15,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/locale.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16271,
+											"name": "store",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated store."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "locale.ts",
+													"line": 16,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/locale.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16200,
+														"name": "Store"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												16269,
+												16270,
+												16271
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "locale.ts",
+											"line": 7,
+											"character": 48,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/locale.ts#L7"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "StoreLocale"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 16200,
+			"name": "Store",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "store.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 16201,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 16202,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the store."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "store.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16203,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the store"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "store.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16204,
+											"name": "default_sales_channel_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the store's default sales channel."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "store.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16205,
+											"name": "default_region_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the store's default region."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "store.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16206,
+											"name": "default_location_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the store's default stock location."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "store.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16207,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "store.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16208,
+											"name": "supported_currencies",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The supported currencies in the store."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "store.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16231,
+														"name": "StoreCurrency"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16220,
+											"name": "supported_locales",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The supported locales of the store."
+													},
+													{
+														"kind": "text",
+														"text": "The supported locales in the store."
+													}
+												],
+												"blockTags": [
+													{
+														"tag": "@since",
+														"content": [
+															{
+																"kind": "text",
+																"text": "2.12.3"
+															}
+														]
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "store.ts",
+													"line": 21,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L21"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16267,
+														"name": "StoreLocale"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												16202,
+												16203,
+												16204,
+												16205,
+												16206,
+												16207,
+												16208,
+												16220
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "store.ts",
+											"line": 6,
+											"character": 19,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/store/src/models/store.ts#L6"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "Store"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				16231,
+				16267,
+				16200
+			]
+		}
+	],
+	"packageName": "@acmekit/store",
+	"symbolIdMap": {
+		"16199": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"16200": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "Store"
+		},
+		"16201": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object"
+		},
+		"16202": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16203": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.name"
+		},
+		"16204": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_sales_channel_id"
+		},
+		"16205": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_region_id"
+		},
+		"16206": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_location_id"
+		},
+		"16207": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16208": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_currencies"
+		},
+		"16209": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16210": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16211": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object"
+		},
+		"16212": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16213": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"16214": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object.is_default"
+		},
+		"16215": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object.store"
+		},
+		"16216": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__function"
+		},
+		"16217": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__function"
+		},
+		"16218": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__function"
+		},
+		"16219": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__function"
+		},
+		"16220": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_locales"
+		},
+		"16221": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16222": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16223": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__object"
+		},
+		"16224": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16225": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__object.locale_code"
+		},
+		"16226": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__object.store"
+		},
+		"16227": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__function"
+		},
+		"16228": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__function"
+		},
+		"16229": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__function"
+		},
+		"16230": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__function"
+		},
+		"16231": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "StoreCurrency"
+		},
+		"16232": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object"
+		},
+		"16233": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16234": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"16235": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object.is_default"
+		},
+		"16236": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__object.store"
+		},
+		"16237": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__function"
+		},
+		"16238": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__function"
+		},
+		"16239": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object"
+		},
+		"16240": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16241": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.name"
+		},
+		"16242": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_sales_channel_id"
+		},
+		"16243": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_region_id"
+		},
+		"16244": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_location_id"
+		},
+		"16245": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16246": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_currencies"
+		},
+		"16247": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16248": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16249": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_locales"
+		},
+		"16250": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16251": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16252": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__function"
+		},
+		"16253": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/currency.ts",
+			"qualifiedName": "__function"
+		},
+		"16254": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object"
+		},
+		"16255": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16256": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.name"
+		},
+		"16257": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_sales_channel_id"
+		},
+		"16258": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_region_id"
+		},
+		"16259": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_location_id"
+		},
+		"16260": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16261": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_currencies"
+		},
+		"16262": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16263": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16264": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_locales"
+		},
+		"16265": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16266": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16267": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "StoreLocale"
+		},
+		"16268": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__object"
+		},
+		"16269": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16270": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__object.locale_code"
+		},
+		"16271": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__object.store"
+		},
+		"16272": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__function"
+		},
+		"16273": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__function"
+		},
+		"16274": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object"
+		},
+		"16275": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16276": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.name"
+		},
+		"16277": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_sales_channel_id"
+		},
+		"16278": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_region_id"
+		},
+		"16279": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_location_id"
+		},
+		"16280": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16281": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_currencies"
+		},
+		"16282": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16283": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16284": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_locales"
+		},
+		"16285": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16286": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16287": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__function"
+		},
+		"16288": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/locale.ts",
+			"qualifiedName": "__function"
+		},
+		"16289": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object"
+		},
+		"16290": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16291": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.name"
+		},
+		"16292": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_sales_channel_id"
+		},
+		"16293": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_region_id"
+		},
+		"16294": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.default_location_id"
+		},
+		"16295": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16296": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_currencies"
+		},
+		"16297": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16298": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16299": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__object.supported_locales"
+		},
+		"16300": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		},
+		"16301": {
+			"sourceFileName": "../../../../packages/modules/store/src/models/store.ts",
+			"qualifiedName": "__function"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/store/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 16199
+		}
+	}
+}

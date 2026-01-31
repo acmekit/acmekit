@@ -1,0 +1,1782 @@
+---
+products:
+  - tax
+tag:
+  - tax
+  - server
+  - tutorial
+---
+
+import { Card, Prerequisites, Details, WorkflowDiagram, InlineIcon } from "docs-ui"
+import { Github, PlaySolid, EllipsisHorizontal } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Integrate Avalara (AvaTax) for Tax Calculation`,
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to integrate Avalara with Medusa to handle tax calculations.
+
+When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. Medusa's architecture supports integrating third-party services, such as tax providers, allowing you to build custom features around core commerce flows.
+
+[Avalara](https://www.avalara.com/) is a leading provider of tax compliance solutions, including sales tax calculation, filing, and remittance. By integrating Avalara with Medusa, you can calculate taxes during checkout with accurate rates based on customer location.
+
+## Summary
+
+By following this tutorial, you'll learn how to:
+
+- Install and set up Medusa.
+- Create the Avalara Tax Module Provider that calculates taxes using Avalara.
+- Create transactions in Avalara when an order is placed.
+- Sync products to Avalara to manage their tax codes and classifications.
+
+You can follow this tutorial whether you're new to Medusa or an advanced Medusa developer.
+
+![Diagram showing Avalara integration with Medusa for tax calculation during checkout](https://res.cloudinary.com/dza7lstvk/image/upload/v1760969087/Medusa%20Resources/avalara-summary_rqrkpf.jpg)
+
+<Card
+  title="Example Repository"
+  text="Find the full code of the guide in this repository."
+  href="https://github.com/medusajs/examples/tree/main/avalara-integration"
+  icon={Github}
+/>
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Start by installing the Medusa application on your machine with the following command:
+
+```bash
+npx create-medusa-app@latest
+```
+
+You'll first be asked for the project's name. Then, when asked whether you want to install the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx), choose "Yes."
+
+Afterwards, the installation process will start, which will install the Medusa application in a directory with your project's name and the Next.js Starter Storefront in a separate directory named `{project-name}-storefront`.
+
+<Note title="Why is the storefront installed separately?">
+
+The Medusa application consists of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Afterwards, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors?">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Create Avalara Tax Module Provider
+
+To integrate third-party services into Medusa, you create a custom module. A module is a reusable package with functionalities related to a single feature or domain.
+
+Medusa's [Tax Module](../../../commerce-modules/tax/page.mdx) implements concepts and functionalities related to taxes, but delegates tax calculations to external services through Tax Module Providers.
+
+In this step, you'll integrate Avalara as a Tax Module Provider. Later, you'll use it to calculate taxes in your Medusa application.
+
+<Note>
+
+Refer to the [Modules](!docs!/learn/fundamentals/modules) documentation to learn more about modules in Medusa.
+
+</Note>
+
+### a. Install AvaTax SDK
+
+First, install the AvaTax SDK package to interact with Avalara's API. Run the following command in your Medusa application's directory:
+
+```bash npm2yarn
+npm install avatax
+```
+
+### b. Create Module Directory
+
+A module is created under the `src/modules` directory of your Medusa application. So, create the directory `src/modules/avalara`.
+
+### c. Define Module Options
+
+Next, define a TypeScript type for the Avalara Module options. These options configure the module when it's registered in the Medusa application.
+
+Create the file `src/modules/avalara/types.ts` with the following content:
+
+export const moduleOptionsHighlights = [
+  ["2", "username", "The Avalara account ID."],
+  ["3", "password", "The Avalara license key."],
+  ["4", "appName", "The name of your application."],
+  ["5", "appVersion", "The version of your application."],
+  ["6", "appEnvironment", "The environment of your application, either production or sandbox."],
+  ["7", "machineName", "The name of the machine where your application is running."],
+  ["8", "timeout", "The timeout for API requests in milliseconds."],
+  ["9", "companyCode", "The Avalara company code to use for tax calculations."],
+  ["10", "companyId", "The Avalara company ID, necessary later when creating items in Avalara."],
+]
+
+```ts title="src/modules/avalara/types.ts" highlights={moduleOptionsHighlights}
+export type ModuleOptions = {
+  username?: string
+  password?: string
+  appName?: string
+  appVersion?: string
+  appEnvironment?: string
+  machineName?: string
+  timeout?: number
+  companyCode?: string
+  companyId?: number
+}
+```
+
+The module options include:
+
+- `username`: The Avalara account ID or username.
+- `password`: The Avalara license key or password.
+- `appName`: The name of your application. Defaults to `medusa`.
+- `appVersion`: The version of your application. Defaults to `1.0.0`.
+- `appEnvironment`: The environment of your application, either `production` or `sandbox`. Defaults to `sandbox`.
+- `machineName`: The name of the machine where your application is running. Defaults to `medusa`.
+- `timeout`: The timeout for API requests in milliseconds. Defaults to `3000`.
+- `companyCode`: The Avalara company code to use for tax calculations. If not provided, the default company in Avalara is used.
+- `companyId`: The Avalara company ID, which is necessary later when creating items in Avalara.
+
+You'll learn how to set these options when you [register the module](#f-add-module-provider-to-medusas-configuration).
+
+### d. Create Avalara Service
+
+A module has a service that contains its logic. For Tax Module Providers, the service implements the logic to calculate taxes using the third-party service.
+
+To create the service for the Avalara Tax Module Provider, create the file `src/modules/avalara/service.ts` with the following content:
+
+export const serviceHighlights = [
+  ["11", "identifier", "The unique identifier of the Avalara Tax Module Provider."],
+  ["15", "constructor", "Create the Avatax client instance and validate module options."],
+]
+
+```ts title="src/modules/avalara/service.ts" highlights={serviceHighlights}
+import { ITaxProvider } from "@medusajs/framework/types"
+import Avatax from "avatax"
+import { MedusaError } from "@medusajs/framework/utils"
+import { ModuleOptions } from "./types"
+
+type InjectedDependencies = {
+  // Add any dependencies you want to inject via the module container
+}
+
+class AvalaraTaxModuleProvider implements ITaxProvider {
+  static identifier = "avalara"
+  private readonly avatax: Avatax
+  private readonly options: ModuleOptions
+
+  constructor({}: InjectedDependencies, options: ModuleOptions) {
+    this.options = options
+    if (!options?.username || !options?.password || !options?.companyId) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "Avalara module options are required: username, password and companyId"
+      )
+    }
+    this.avatax = new Avatax({
+      appName: options.appName || "medusa",
+      appVersion: options.appVersion || "1.0.0",
+      machineName: options.machineName || "medusa",
+      environment: options.appEnvironment === "production" ? "production" : "sandbox",
+      timeout: options.timeout || 3000,
+    }).withSecurity({
+      username: options.username,
+      password: options.password,
+    })
+  }
+  getIdentifier(): string {
+    return AvalaraTaxModuleProvider.identifier
+  }
+}
+
+export default AvalaraTaxModuleProvider
+```
+
+A Tax Module Provider's service must implement the `ITaxProvider` interface. It must also have an `identifier` static property with the unique identifier of the provider.
+
+The constructor of a module's service receives the following parameters:
+
+1. An object with the dependencies to resolve from the [Module's container](!docs!/learn/fundamentals/modules/container).
+2. An object with the module options passed to the provider when it's registered.
+
+In the constructor, you validate that the required options are provided. Then, you create an instance of the `Avatax` client using the provided options.
+
+You also define the `getIdentifier` method required by the `ITaxProvider` interface, which returns the provider's identifier.
+
+#### getTaxLines Method
+
+Next, you'll implement the `getTaxLines` method required by the `ITaxProvider` interface. This method calculates the tax lines for line items and shipping methods. Medusa uses this method during checkout to calculate taxes.
+
+Before creating the method, you'll create a `createTransaction` method that creates a transaction in Avalara to calculate taxes.
+
+First, add the following import at the top of the file:
+
+```ts title="src/modules/avalara/service.ts"
+import { CreateTransactionModel } from "avatax/lib/models/CreateTransactionModel"
+```
+
+Then, add the following in the `AvalaraTaxModuleProvider` class:
+
+```ts title="src/modules/avalara/service.ts"
+class AvalaraTaxModuleProvider implements ITaxProvider {
+  // ...
+  async createTransaction(model: CreateTransactionModel) {
+    try {
+      const response = await this.avatax.createTransaction({
+        model,
+        include: "Details",
+      })
+
+      return response
+    } catch (error) {
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        `An error occurred while creating transaction for Avalara: ${error}`
+      )
+    }
+  }
+}
+```
+
+This method receives the details of the transaction to create in Avalara. It calls the `avatax.createTransaction` method to create the transaction. If the transaction's type ends with `Order`, Avalara will calculate and return the tax details only. If it ends with `Invoice`, Avalara will save the transaction.
+
+You return the response from Avalara, which contains the tax details.
+
+<Note title="Tip">
+
+Refer to [Avalara's documentation](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/) for details on other accepted parameters when creating a transaction.
+
+</Note>
+
+You'll now add the `getTaxLines` method to calculate tax lines using Avalara.
+
+First, add the following imports at the top of the file:
+
+```ts title="src/modules/avalara/service.ts"
+import { 
+  ItemTaxCalculationLine, 
+  ItemTaxLineDTO, 
+  ShippingTaxCalculationLine, 
+  ShippingTaxLineDTO, 
+  TaxCalculationContext,
+} from "@medusajs/framework/types"
+```
+
+Then, add the method to the `AvalaraTaxModuleProvider` class:
+
+export const getTaxLinesHighlights = [
+  ["10", "currencyCode", "Determine the currency code from the line items or shipping methods."],
+  ["13", "createTransaction", "Create a transaction in Avalara for the line items and shipping methods."],
+  ["47", "type", "Set the transaction type to SalesOrder to calculate taxes without saving the transaction."]
+]
+
+```ts title="src/modules/avalara/service.ts" highlights={getTaxLinesHighlights}
+class AvalaraTaxModuleProvider implements ITaxProvider {
+  // ...
+
+  async getTaxLines(
+    itemLines: ItemTaxCalculationLine[], 
+    shippingLines: ShippingTaxCalculationLine[],
+    context: TaxCalculationContext
+  ): Promise<(ItemTaxLineDTO | ShippingTaxLineDTO)[]> {
+    try {
+      const currencyCode = (
+        itemLines[0]?.line_item.currency_code || shippingLines[0]?.shipping_line.currency_code
+      )?.toUpperCase()
+      const response = await this.createTransaction({
+        lines: [
+          ...(itemLines.length ? itemLines.map((line) => {
+            const quantity = Number(line.line_item.quantity) ?? 0
+            return {
+              number: line.line_item.id,
+              quantity,
+              amount: quantity * (Number(line.line_item.unit_price) ?? 0),
+              taxCode: line.rates.find((rate) => rate.is_default)?.code ?? "",
+              itemCode: line.line_item.product_id,
+            }
+          }) : []),
+          ...(shippingLines.length ? shippingLines.map((line) => {
+            return {
+              number: line.shipping_line.id,
+              quantity: 1,
+              amount: Number(line.shipping_line.unit_price) ?? 0,
+              taxCode: line.rates.find((rate) => rate.is_default)?.code ?? "",
+            }
+          }) : []),
+        ],
+        date: new Date(),
+        customerCode: context.customer?.id ?? "",
+        addresses: {
+          "singleLocation": {
+            line1: context.address.address_1 ?? "",
+            line2: context.address.address_2 ?? "",
+            city: context.address.city ?? "",
+            region: context.address.province_code ?? "",
+            postalCode: context.address.postal_code ?? "",
+            country: context.address.country_code.toUpperCase() ?? "",
+          },
+        },
+        currencyCode,
+        type: DocumentType.SalesOrder,
+      })
+
+      // TODO return tax lines
+    } catch (error) {
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        `An error occurred while getting tax lines from Avalara: ${error}`
+      )
+    }
+  }
+}
+```
+
+The `getTaxLines` method receives the following parameters:
+
+- `itemLines`: An array of line items to calculate taxes for.
+- `shippingLines`: An array of shipping methods to calculate taxes for.
+- `context`: Additional context for tax calculation, such as customer and address information.
+
+In the method, you create a transaction in Avalara for both line items and shipping methods using the `avatax.createTransaction` method. Since you set the type to `DocumentType.SalesOrder`, Avalara will calculate and return the tax details for the provided items and shipping methods without saving the transaction.
+
+<Note title="Tip">
+
+Refer to [Avalara's documentation](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/) for details on other accepted parameters when creating a transaction.
+
+</Note>
+
+Next, you'll extract the tax lines from the response and return them in the expected format. Replace the `// TODO return tax lines` comment with the following:
+
+```ts title="src/modules/avalara/service.ts"
+const taxLines: (ItemTaxLineDTO | ShippingTaxLineDTO)[] = []
+response?.lines?.forEach((line) => {
+  line.details?.forEach((detail) => {
+    const isShippingLine = shippingLines.find(
+      (sLine) => sLine.shipping_line.id === line.lineNumber
+    ) !== undefined
+    const commonData = {
+      rate: (detail.rate ?? 0) * 100,
+      name: detail.taxName ?? "",
+      code: line.taxCode || detail.rateTypeCode || detail.signatureCode || "",
+      provider_id: this.getIdentifier(),
+    }
+    if (!isShippingLine) {
+      taxLines.push({
+        ...commonData,
+        line_item_id: line.lineNumber ?? "",
+      })
+    } else {
+      taxLines.push({
+        ...commonData,
+        shipping_line_id: line.lineNumber ?? "",
+      })
+    }
+  })
+})
+
+return taxLines
+```
+
+This code extracts the tax details from the Avalara response and constructs an array of tax lines in the expected format. Finally, it returns the array of tax lines.
+
+### e. Export Module Definition
+
+You've finished implementing the Avalara Tax Module Provider's service and its required method.
+
+The final piece of a module is its definition, which you export in an `index.ts` file at the module's root directory. This definition tells Medusa the module's details, including its service.
+
+To create the module's definition, create the file `src/modules/avalara/index.ts` with the following content:
+
+```ts title="src/modules/avalara/index.ts"
+import AvalaraTaxModuleProvider from "./service"
+import { 
+  ModuleProvider, 
+  Modules,
+} from "@medusajs/framework/utils"
+
+export default ModuleProvider(Modules.TAX, {
+  services: [AvalaraTaxModuleProvider],
+})
+```
+
+You use `ModuleProvider` from the Modules SDK to create the module provider's definition. It accepts two parameters:
+
+1. The name of the module that this provider belongs to, which is `Modules.TAX` in this case.
+2. An object with a required `services` property indicating the Module Provider's services.
+
+### f. Add Module Provider to Medusa's Configuration
+
+After finishing the module, add it to Medusa's configuration to start using it.
+
+In `medusa-config.ts`, add a `modules` property:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "@medusajs/medusa/tax",
+      options: {
+        providers: [
+          {
+            resolve: "./src/modules/avalara",
+            id: "avalara",
+            options: {
+              username: process.env.AVALARA_USERNAME,
+              password: process.env.AVALARA_PASSWORD,
+              appName: process.env.AVALARA_APP_NAME,
+              appVersion: process.env.AVALARA_APP_VERSION,
+              appEnvironment: process.env.AVALARA_APP_ENVIRONMENT,
+              machineName: process.env.AVALARA_MACHINE_NAME,
+              timeout: process.env.AVALARA_TIMEOUT,
+              companyCode: process.env.AVALARA_COMPANY_CODE,
+              companyId: process.env.AVALARA_COMPANY_ID,
+            },
+          },
+        ],
+      },
+    },
+  ],
+})
+```
+
+To pass a Tax Module Provider to the Tax Module, add the `modules` property to the Medusa configuration and pass the Tax Module in its value.
+
+The Tax Module accepts a `providers` option, which is an array of Tax Module Providers to register.
+
+You register the Avalara Tax Module Provider and pass it the expected options.
+
+### g. Set Environment Variables
+
+Finally, set the required environment variables in your `.env` file:
+
+```bash title=".env"
+AVALARA_USERNAME=
+AVALARA_PASSWORD=
+AVALARA_APP_ENVIRONMENT=production # or sandbox
+AVALARA_COMPANY_ID=
+```
+
+You set the following variables:
+
+1. `AVALARA_USERNAME`: Your Avalara account ID. You can retrieve it from the Avalara dashboard by clicking on "Account" at the top right. It's at the top of the dropdown.
+
+![Avalara Account ID in the account dropdown at the top right of the Avalara dashboard](https://res.cloudinary.com/dza7lstvk/image/upload/v1760967142/Medusa%20Resources/CleanShot_2025-10-20_at_16.30.55_2x_gpqi9i.png)
+
+2. `AVALARA_PASSWORD`: Your Avalara license key. To retrieve it from the Avalara dashboard:
+    1. From the sidebar, click on "Integrations."
+    2. Choose the "License Keys" tab.
+    3. Click on the "Generate new key" button.
+    4. Confirm generating the key.
+    5. Copy the generated key.
+
+![The Avalara license key tab with the "Generate new key" button](https://res.cloudinary.com/dza7lstvk/image/upload/v1760967334/Medusa%20Resources/CleanShot_2025-10-20_at_16.35.06_2x_fe7cym.png)
+
+3. `AVALARA_APP_ENVIRONMENT`: The environment of your application, which can be either `production` or `sandbox`. Set it based on your Avalara account type. Note that Avalara provides separate accounts for production and sandbox environments.
+4. `AVALARA_COMPANY_ID`: The company ID in Avalara for creating products for tax code management. To retrieve it from the Avalara dashboard:
+    1. From the sidebar, click on "Settings" → "All settings."
+    2. Find the "Companies" card and click on "Manage."
+    3. Click on the company you want to use.
+    4. Copy the company ID from the URL. It's the number at the end of the URL, after `/companies/`.
+
+You can also set other optional environment variables for further configuration. Refer to [Avalara's documentation for more details about these options](https://developer.avalara.com/avatax/client-headers/).
+
+---
+
+## Step 3: Test Tax Calculation with Avalara
+
+You'll test the Avalara integration using the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx) that you installed earlier. You'll proceed through checkout and verify that taxes are calculated using Avalara.
+
+### Prerequisite: Set Region's Provider to Avalara
+
+Before testing the integration, configure the regions you want to use Avalara for tax calculations.
+
+First, run the following command in your Medusa application's directory to start the server:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then:
+
+1. Go to `http://localhost:9000/admin` and log in to the Medusa Admin dashboard.
+2. Go to "Settings" → "Tax Regions."
+3. Select the country you want to configure Avalara for. You can repeat these steps for multiple countries.
+4. In the first section, click on the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon at the top right and choose "Edit."
+5. In the "Tax Provider" dropdown, select "Avalara (AVALARA)."
+6. Click on "Save."
+
+![Setting Avalara as the tax provider for a region in the Medusa Admin dashboard](https://res.cloudinary.com/dza7lstvk/image/upload/v1760968076/Medusa%20Resources/CleanShot_2025-10-20_at_16.47.45_2x_g96acs.png)
+
+### Test Checkout with Avalara
+
+Now you can test the checkout process in the Next.js Starter Storefront.
+
+<Note title="Reminder" forceMultiline>
+
+The Next.js Starter Storefront was installed in a separate directory from Medusa. The directory name is `{your-project}-storefront`.
+
+If your Medusa application's directory is `medusa-avalara`, find the storefront by going back to the parent directory and changing to the `medusa-avalara-storefront` directory:
+
+```bash
+cd ../medusa-avalara-storefront # change based on your project name
+```
+
+</Note>
+
+While the Medusa server is running, open another terminal window in the storefront's directory and run the following command to start the storefront:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then:
+
+1. Go to `http://localhost:8000` to open the storefront.
+2. Go to "Menu" → "Store" and click on a product.
+3. Select the product's options if any, then click on "Add to cart."
+4. Click on the cart icon at the top right to open the cart.
+5. Click on "Go to checkout."
+6. Enter the shipping information and click on "Continue to delivery." The tax amount will update in the right section.
+
+![Taxes calculated during checkout in the Next.js Starter Storefront](https://res.cloudinary.com/dza7lstvk/image/upload/v1760968357/Medusa%20Resources/CleanShot_2025-10-20_at_16.52.14_2x_bgozfz.png)
+
+7. In the Delivery step, select a shipping method. This will update the tax amount based on the shipping method's price.
+
+![Taxes updated based on the selected shipping method during checkout in the Next.js Starter Storefront](https://res.cloudinary.com/dza7lstvk/image/upload/v1760968412/Medusa%20Resources/CleanShot_2025-10-20_at_16.53.14_2x_wxcuyn.png)
+
+You can now complete the checkout with the taxes calculated by Avalara.
+
+---
+
+## Step 4: Create Transactions in Avalara on Order Placement
+
+Avalara allows you to create transactions when an order is placed. This helps you keep track of sales and tax liabilities in Avalara.
+
+In this step, you'll implement the logic to create an Avalara transaction when an order is placed in Medusa. You will:
+
+1. Add a method in the Avalara Tax Module Provider's service to uncommit a transaction. This is useful for rolling back the transaction if an error occurs or the order is canceled.
+2. Create a [workflow](!docs!/learn/fundamentals/workflows) that creates a transaction in Avalara for an order.
+3. Create a [subscriber](!docs!/learn/fundamentals/events-and-subscribers) that listens to the `order.placed` event and triggers the workflow.
+
+### a. Add Uncommit Transaction Method
+
+First, you'll add a method in the Avalara Tax Module Provider's service to uncommit a transaction.
+
+In `src/modules/avalara/service.ts`, add the following method to the `AvalaraTaxModuleProvider` class:
+
+```ts title="src/modules/avalara/service.ts"
+class AvalaraTaxModuleProvider implements ITaxProvider {
+  // ...
+  async uncommitTransaction(transactionCode: string) {
+    try {
+      const response = await this.avatax.uncommitTransaction({
+        companyCode: this.options.companyCode!,
+        transactionCode: transactionCode,
+      })
+
+      return response
+    }
+    catch (error) {
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        `An error occurred while uncommitting transaction for Avalara: ${error}`
+      )
+    }
+  }
+}
+```
+
+This method receives the code of the transaction to uncommit. It calls the `avatax.uncommitTransaction` method to uncommit the transaction in Avalara.
+
+### b. Create Order Transaction Workflow
+
+Next, you'll create a workflow that creates an order transaction. A workflow is a series of actions, called steps, that complete a task. You construct a workflow like you construct a function, but it's a special function that allows you to track execution progress, define roll-back logic, and configure other advanced features.
+
+<Note>
+
+Learn more about workflows in the [Workflows documentation](!docs!/learn/fundamentals/workflows).
+
+</Note>
+
+The workflow to create an Avalara transaction has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "createOrderTransactionWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve order's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "createTransactionStep",
+        description: "Create a transaction for order.",
+        depth: 2
+      },
+      {
+        type: "workflow",
+        name: "updateOrderWorkflow",
+        description: "Save transaction code in order metadata.",
+        link: "/references/medusa-workflows/updateOrderWorkflow",
+        depth: 3
+      }
+    ]
+  }}
+/>
+
+Medusa provides the first and last step out of the box. You only need to create the `createTransactionStep`.
+
+#### createTransactionStep
+
+The `createTransactionStep` creates a transaction in Avalara.
+
+To create the step, create the file `src/workflows/steps/create-transaction.ts` with the following content:
+
+export const createTransactionStepHighlights = [
+  ["33", "avalaraProviderService", "Retrieve the Avalara Tax Module Provider's service from the Tax Module."],
+  ["37", "createTransaction", "Create a transaction in Avalara using the provider's createTransaction method."],
+  ["50", "uncommitTransaction", "Uncommit the created transaction if an error occurs during the workflow's execution."]
+]
+
+```ts title="src/workflows/steps/create-transaction.ts" highlights={createTransactionStepHighlights}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import AvalaraTaxModuleProvider from "../../modules/avalara/service"
+import { DocumentType } from "avatax/lib/enums/DocumentType"
+
+type StepInput = {
+  lines: {
+    number: string
+    quantity: number
+    amount: number
+    taxCode: string
+    itemCode?: string
+  }[]
+  date: Date
+  customerCode: string
+  addresses: {
+    singleLocation: {
+      line1: string
+      line2: string
+      city: string
+      region: string
+      postalCode: string
+      country: string
+    }
+  }
+  currencyCode: string
+  type: DocumentType
+}
+
+export const createTransactionStep = createStep(
+  "create-transaction",
+  async (input: StepInput, { container }) => {
+    const taxModuleService = container.resolve("tax")
+    const avalaraProviderService = taxModuleService.getProvider(
+      `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+    ) as AvalaraTaxModuleProvider
+
+    const response = await avalaraProviderService.createTransaction(input)
+
+    return new StepResponse(response, response)
+  },
+  async (data, { container }) => {
+    if (!data?.code) {
+      return
+    }
+    const taxModuleService = container.resolve("tax")
+    const avalaraProviderService = taxModuleService.getProvider(
+      `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+    ) as AvalaraTaxModuleProvider
+
+    await avalaraProviderService.uncommitTransaction(data.code)
+  }
+)
+```
+
+You create a step with `createStep` from the Workflows SDK. It accepts three parameters:
+
+1. The step's unique name, which is `create-transaction`.
+2. An async function that receives two parameters:
+    - The step's input, which is an object containing the transaction's details.
+    - An object that has properties including the [Medusa container](!docs!/learn/fundamentals/medusa-container), which is a registry of Framework and commerce tools that you can access in the step.
+3. An async compensation function that runs if an error occurs during the workflow's execution. It rolls back changes made in the step.
+
+In the step function, you retrieve the Avalara Tax Module Provider's service from the Tax Module. Then, you call its `createTransaction` method to create a transaction in Avalara.
+
+A step function must return a `StepResponse` instance. The `StepResponse` constructor accepts two parameters:
+
+1. The step's output, which is the created transaction.
+2. Data to pass to the step's compensation function.
+
+In the compensation function, you uncommit the created transaction if an error occurs during the workflow's execution.
+
+#### Create Transaction Workflow
+
+You'll now create the workflow. Create the file `src/workflows/create-order-transaction.ts` with the following content:
+
+```ts title="src/workflows/create-order-transaction.ts"
+import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { updateOrderWorkflow, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createTransactionStep } from "./steps/create-transaction"
+import AvalaraTaxModuleProvider from "../modules/avalara/service"
+import { DocumentType } from "avatax/lib/enums/DocumentType"
+
+type WorkflowInput = {
+  order_id: string
+}
+
+export const createOrderTransactionWorkflow = createWorkflow(
+  "create-order-transaction-workflow",
+  (input: WorkflowInput) => {
+    const { data: orders } = useQueryGraphStep({
+      entity: "order",
+      fields: [
+        "id",
+        "currency_code",
+        "items.quantity",
+        "items.id",
+        "items.unit_price",
+        "items.product_id",
+        "items.tax_lines.id",
+        "items.tax_lines.description",
+        "items.tax_lines.code",
+        "items.tax_lines.rate",
+        "items.tax_lines.provider_id",
+        "items.variant.sku",
+        "shipping_methods.id",
+        "shipping_methods.amount",
+        "shipping_methods.tax_lines.id",
+        "shipping_methods.tax_lines.description",
+        "shipping_methods.tax_lines.code",
+        "shipping_methods.tax_lines.rate",
+        "shipping_methods.tax_lines.provider_id",
+        "shipping_methods.shipping_option_id",
+        "customer.id",
+        "customer.email",
+        "customer.metadata",
+        "customer.groups.id",
+        "shipping_address.id",
+        "shipping_address.address_1",
+        "shipping_address.address_2",
+        "shipping_address.city",
+        "shipping_address.postal_code",
+        "shipping_address.country_code",
+        "shipping_address.region_code",
+        "shipping_address.province",
+        "shipping_address.metadata",
+      ],
+      filters: {
+        id: input.order_id,
+      },
+    })
+
+    // TODO create transaction
+  }
+)
+```
+
+You create a workflow using `createWorkflow` from the Workflows SDK. It accepts the workflow's unique name as a first parameter.
+
+As a second parameter, it accepts a constructor function, which is the workflow's implementation. The function can accept input, which in this case is the order ID.
+
+So far, you retrieve the order's details using the `useQueryGraphStep`. It uses [Query](!docs!/learn/fundamentals/module-links/query) under the hood to retrieve data across modules.
+
+Next, you'll prepare the transaction input, create the transaction, and update the order with the transaction code. Replace the `// TODO create transaction` comment with the following:
+
+export const createOrderTransactionWorkflowHighlights = [
+  ["1", "transactionInput", "Prepare the transaction input using the order's details."],
+  ["40", "type", "Set the type to SalesInvoice to save the transaction in Avalara."],
+  ["44", "createTransactionStep", "Create the transaction in Avalara."],
+  ["46", "updateOrderWorkflow", "Update the order with the created transaction's code."]
+]
+
+```ts title="src/workflows/create-order-transaction.ts" highlights={createOrderTransactionWorkflowHighlights}
+const transactionInput = transform({ orders }, ({ orders }) => {
+  const providerId = `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+  return {
+    lines: [
+      ...(orders[0]?.items?.map((item) => {
+        return {
+          number: item?.id ?? "",
+          quantity: item?.quantity ?? 0,
+          amount: item?.unit_price ?? 0,
+          taxCode: item?.tax_lines?.find(
+            (taxLine) => taxLine?.provider_id === providerId
+          )?.code ?? "",
+          itemCode: item?.product_id ?? "",
+        }
+      }) ?? []),
+      ...(orders[0]?.shipping_methods?.map((shippingMethod) => {
+        return {
+          number: shippingMethod?.id ?? "",
+          quantity: 1,
+          amount: shippingMethod?.amount ?? 0,
+          taxCode: shippingMethod?.tax_lines?.find(
+            (taxLine) => taxLine?.provider_id === providerId
+          )?.code ?? "",
+        }
+      }) ?? []),
+    ],
+    date: new Date(),
+    customerCode: orders[0]?.customer?.id ?? "",
+    addresses: {
+      singleLocation: {
+        line1: orders[0]?.shipping_address?.address_1 ?? "",
+        line2: orders[0]?.shipping_address?.address_2 ?? "",
+        city: orders[0]?.shipping_address?.city ?? "",
+        region: orders[0]?.shipping_address?.province ?? "",
+        postalCode: orders[0]?.shipping_address?.postal_code ?? "",
+        country: orders[0]?.shipping_address?.country_code?.toUpperCase() ?? "",
+      },
+    },
+    currencyCode: orders[0]?.currency_code.toUpperCase() ?? "",
+    type: DocumentType.SalesInvoice,
+  }
+})
+
+const response = createTransactionStep(transactionInput)
+
+const order = updateOrderWorkflow.runAsStep({
+  input: {
+    id: input.order_id,
+    user_id: "",
+    metadata: {
+      avalara_transaction_code: response.code,
+    },
+  },
+})
+
+return new WorkflowResponse(order)
+```
+
+You prepare the transaction input using the `transform` function. You include in the input the line items and shipping methods from the order, along with the customer and address details.
+
+Notice that you set the type to `DocumentType.SalesInvoice` to save the transaction in Avalara.
+
+<Note>
+
+Refer to [Avalara's documentation](https://developer.avalara.com/avatax/client-headers/) for details on other accepted parameters when creating a transaction.
+
+</Note>
+
+Then, you call the `createTransactionStep` to create the transaction in Avalara.
+
+Finally, you use the `updateOrderWorkflow` to save the created transaction's code in the order's metadata.
+
+A workflow must return an instance of `WorkflowResponse`. The `WorkflowResponse` constructor accepts the workflow's output as a parameter, which is the updated order in this case.
+
+<Note title="Tip">
+
+`transform` allows you to access the values of data during execution. Learn more in the [Data Manipulation](!docs!/learn/fundamentals/workflows/variable-manipulation) documentation.
+
+</Note>
+
+### c. Create Order Placed Subscriber
+
+Next, you'll create a subscriber that listens to the `order.placed` event and executes the `createOrderTransactionWorkflow` when the event is emitted.
+
+A subscriber is an asynchronous function that is executed when its associated event is emitted.
+
+To create the subscriber, create the file `src/subscribers/order-placed.ts` with the following content:
+
+```ts title="src/subscribers/order-placed.ts"
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { createOrderTransactionWorkflow } from "../workflows/create-order-transaction"
+
+export default async function orderPlacedHandler({
+  event: { data },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  await createOrderTransactionWorkflow(container).run({
+    input: {
+      order_id: data.id,
+    },
+  })
+}
+
+export const config: SubscriberConfig = {
+  event: `order.placed`,
+}
+```
+
+A subscriber file must export:
+
+- An asynchronous function that is executed when its associated event is emitted.
+- An object that indicates the event that the subscriber is listening to.
+
+The subscriber receives among its parameters the data payload of the emitted event, which includes the order ID.
+
+In the subscriber, you call the `createOrderTransactionWorkflow` with the order ID to create the transaction in Avalara.
+
+### Test Order Placement with Avalara Transaction
+
+To test the order placement with Avalara transaction creation, make sure both the Medusa server and the Next.js Starter Storefront are running.
+
+Then, go to the storefront at `http://localhost:8000` and complete the checkout process you started in the [previous step](#step-3-test-tax-calculation-with-avalara).
+
+You can verify that the transaction was created in Avalara by going to your Avalara dashboard:
+
+1. From the sidebar, click on "Transactions" → "Transactions."
+2. In the filter at the top, select "This month to date."
+3. In the list, the first transaction should correspond to the order you just placed. Click on it to view its details.
+
+You can view the tax details calculated by Avalara for the order, with the line items and shipping method included in the transaction.
+
+![The transaction's details in the Avalara dashboard showing the calculated taxes for the order](https://res.cloudinary.com/dza7lstvk/image/upload/v1761122370/Medusa%20Resources/CleanShot_2025-10-22_at_11.38.09_2x_bu0jwl.png)
+
+---
+
+## Step 5: Sync Products with Avalara
+
+In Avalara, you can manage the items you sell to set classifications, tax codes, exemptions, and other tax-related settings.
+
+In this step, you'll sync Medusa's products with Avalara items. This way, you can manage tax codes and other settings for your products directly from Avalara.
+
+To do this, you will:
+
+1. Add methods to the Avalara Tax Module Provider's service to manage Avalara items.
+2. Build workflows to create, update, and delete Avalara items.
+3. Create subscribers that listen to product events and trigger the workflows.
+
+### a. Add Methods to Avalara Tax Module Provider
+
+To manage Avalara items, you'll add methods to the Avalara Tax Module Provider's service that uses the AvaTax API to create, update, and delete items.
+
+In `src/modules/avalara/service.ts`, add the following methods to the `AvalaraTaxModuleProvider` class:
+
+export const avalaraItemMethodsHighlights = [
+  ["3", "createItems", "Create multiple items in Avalara using the Create Items API."],
+  ["35", "getItem", "Retrieve an item from Avalara using the Get Item API."],
+  ["51", "updateItem", "Update an item in Avalara using the Update Item API."],
+  ["79", "deleteItem", "Delete an item in Avalara using the Delete Item API."]
+]
+
+```ts title="src/modules/avalara/service.ts" highlights={avalaraItemMethodsHighlights}
+class AvalaraTaxModuleProvider implements ITaxProvider {
+  // ...
+  async createItems(items: {
+    medusaId: string
+    itemCode: string
+    description: string
+    [key: string]: unknown
+  }[]) {
+    try {
+      const response = await this.avatax.createItems({
+        companyId: this.options.companyId!,
+        model: await Promise.all(
+          items.map(async (item) => {
+            return {
+              ...item,
+              id: 0, // Avalara will generate an ID for the item
+              itemCode: item.itemCode,
+              description: item.description,
+              source: "medusa",
+              sourceEntityId: item.medusaId,
+            }
+          })
+        ),
+      })
+
+      return response
+    } catch (error) {
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        `An error occurred while creating item classifications for Avalara: ${error}`
+      )
+    }
+  }
+
+  async getItem(id: number) {
+    try {
+      const response = await this.avatax.getItem({
+        companyId: this.options.companyId!,
+        id,
+      })
+
+      return response
+    } catch (error) {
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        `An error occurred while retrieving item classification from Avalara: ${error}`
+      )
+    }
+  }
+
+  async updateItem(item: {
+    id: number
+    itemCode: string
+    description: string
+    [key: string]: unknown
+  }) {
+    try {
+      const response = await this.avatax.updateItem({
+        companyId: this.options.companyId!,
+        id: item.id,
+        model: {
+          ...item,
+          id: item.id,
+          itemCode: item.itemCode,
+          description: item.description,
+          source: "medusa",
+        },
+      })
+
+      return response
+    } catch (error) {
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        `An error occurred while updating item classifications for Avalara: ${error}`
+      )
+    }
+  }
+
+  async deleteItem(id: number) {
+    try {
+      const response = await this.avatax.deleteItem({
+        companyId: this.options.companyId!,
+        id,
+      })
+
+      return response
+    } catch (error) {
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        `An error occurred while deleting item classifications for Avalara: ${error}`
+      )
+    }
+  }
+}
+```
+
+You add the following methods:
+
+1. `createItems`: Creates multiple items in Avalara using their [Create Items API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Items/CreateItems/).
+2. `getItem`: Retrieves an item from Avalara using their [Get Item API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Items/GetItem/).
+3. `updateItem`: Updates an item in Avalara using their [Update Item API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Items/UpdateItem/).
+4. `deleteItem`: Deletes an item in Avalara using their [Delete Item API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Items/DeleteItem/).
+
+You'll use these methods in the next sections to build workflows that sync products with Avalara items.
+
+### b. Create Avalara Item Workflow
+
+The first workflow you'll build creates an item for a product in Avalara. It has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "createProductItemWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        link: "/references/helper-steps/useQueryGraphStep",
+        description: "Retrieve product's details.",
+      },
+      {
+        type: "step",
+        name: "createItemStep",
+        description: "Create Avalara item for the product.",
+        depth: 2
+      },
+      {
+        type: "workflow",
+        name: "updateProductsWorkflow",
+        description: "Save Avalara item ID in product metadata.",
+        link: "/references/medusa-workflows/updateProductsWorkflow",
+        depth: 3
+      }
+    ]
+  }}
+/>
+
+Medusa provides the first and last step out of the box. You only need to create the `createItemStep`.
+
+#### createItemStep
+
+The `createItemStep` creates an item in Avalara.
+
+To create the step, create the file `src/workflows/steps/create-item.ts` with the following content:
+
+```ts title="src/workflows/steps/create-item.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import AvalaraTaxModuleProvider from "../../modules/avalara/service"
+
+type StepInput = {
+  item: {
+    medusaId: string
+    itemCode: string
+    description: string
+    [key: string]: unknown
+  }
+}
+
+export const createItemStep = createStep(
+  "create-item",
+  async ({ item }: StepInput, { container }) => {
+    const taxModuleService = container.resolve("tax")
+    const avalaraProviderService = taxModuleService.getProvider(
+      `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+    ) as AvalaraTaxModuleProvider
+
+    const response = await avalaraProviderService.createItems(
+      [item]
+    )
+
+    return new StepResponse(response[0], response[0].id)
+  },
+  async (data, { container }) => {
+    if (!data) {
+      return
+    }
+    const taxModuleService = container.resolve("tax")
+    const avalaraProviderService = taxModuleService.getProvider(
+      `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+    ) as AvalaraTaxModuleProvider
+
+    avalaraProviderService.deleteItem(data)
+  }
+)
+```
+
+The step receives the details of the item to create as input.
+
+In the step, you retrieve the Avalara Tax Module Provider's service from the Tax Module. Then, you call its `createItems` method to create the item in Avalara.
+
+You return the created item, and you pass its ID to the compensation function to delete the item if an error occurs during the workflow's execution.
+
+<Note>
+
+Refer to [Avalara's documentation](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Items/CreateItems/) for details on other accepted parameters when creating an item.
+
+</Note>
+
+#### Create Product Item Workflow
+
+You can now create the workflow. Create the file `src/workflows/create-product-item.ts` with the following content:
+
+export const createProductItemWorkflowHighlights = [
+  ["12", "products", "Retrieve the product's details."],
+  ["26", "createItemStep", "Create the item in Avalara."],
+  ["34", "updateProductsWorkflow", "Save the created item's ID in the product's metadata."]
+]
+
+```ts title="src/workflows/create-product-item.ts" highlights={createProductItemWorkflowHighlights}
+import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { updateProductsWorkflow, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createItemStep } from "./steps/create-item"
+
+type WorkflowInput = {
+  product_id: string
+}
+
+export const createProductItemWorkflow = createWorkflow(
+  "create-product-item",
+  (input: WorkflowInput) => {
+    const { data: products } = useQueryGraphStep({
+      entity: "product",
+      fields: [
+        "id",
+        "title",
+      ],
+      filters: {
+        id: input.product_id,
+      },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    const response = createItemStep({
+      item: {
+        medusaId: products[0].id,
+        itemCode: products[0].id,
+        description: products[0].title,
+      },
+    })
+
+    updateProductsWorkflow.runAsStep({
+      input: {
+        products: [
+          {
+            id: input.product_id,
+            metadata: {
+              avalara_item_id: response.id,
+            },
+          },
+        ],
+      },
+    })
+    
+    return new WorkflowResponse(response)
+  }
+)
+```
+
+The workflow receives the product ID as input.
+
+In the workflow, you:
+
+1. Retrieve the product's details using the `useQueryGraphStep`.
+2. Create the item in Avalara using the `createItemStep`.
+3. Save the created item's ID in the product's metadata using the `updateProductsWorkflow`. This ID is useful when you want to update or delete the item later.
+
+You return the created item as the workflow's output.
+
+### c. Create Product Created Subscriber
+
+Next, you'll create a subscriber that listens to the `product.created` event and executes the `createProductItemWorkflow`.
+
+Create the file `src/subscribers/product-created.ts` with the following content:
+
+```ts title="src/subscribers/product-created.ts"
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { createProductItemWorkflow } from "../workflows/create-product-item"
+
+export default async function productCreatedHandler({
+  event: { data },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  await createProductItemWorkflow(container).run({
+    input: {
+      product_id: data.id,
+    },
+  })
+}
+
+export const config: SubscriberConfig = {
+  event: `product.created`,
+}
+```
+
+You create a subscriber similar to the one you created for the `order.placed` event. This time, it listens to the `product.created` event and triggers the `createProductItemWorkflow` with the product ID.
+
+### d. Test Product Creation with Avalara Item
+
+To test the product creation with Avalara item creation, make sure the Medusa server is running.
+
+Then:
+
+1. Open the Medusa Admin dashboard at `http://localhost:9000/admin`.
+2. Go to "Products," and create a new product.
+3. After creating the product, go to your Avalara dashboard.
+4. From the sidebar, click on "Settings" → "What you sell and buy."
+
+This will open the Items page, where you can see the product you created as items in Avalara. You can click on an item to view it, add a classification, and more.
+
+![The list of items in the Avalara dashboard showing the item created for the product](https://res.cloudinary.com/dza7lstvk/image/upload/v1761123470/Medusa%20Resources/CleanShot_2025-10-22_at_11.57.33_2x_jbb4km.png)
+
+### e. Update Avalara Item Workflow
+
+Next, you'll create a workflow that updates a product's item in Avalara. The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "updateProductItemWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve product's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1
+      },
+      {
+        type: "when",
+        condition: "products.length > 0 && !products[0].metadata?.avalara_item_id",
+        steps: [
+          {
+            type: "workflow",
+            name: "createProductItemWorkflow",
+            description: "Create an item for the product.",
+            depth: 1
+          }
+        ],
+        depth: 2
+      },
+      {
+        type: "when",
+        condition: "products.length > 0 && !!products[0].metadata?.avalara_item_id",
+        steps: [
+          {
+            type: "step",
+            name: "updateItemStep",
+            description: "Update Avalara item for product.",
+            depth: 2
+          }
+        ],
+        depth: 3
+      }
+    ]
+  }}
+/>
+
+Medusa provides the first step out of the box, and you have already created the `createProductItemWorkflow`. You only need to create the `updateItemStep`.
+
+#### updateItemStep
+
+The `updateItemStep` updates an item in Avalara.
+
+To create the step, create the file `src/workflows/steps/update-item.ts` with the following content:
+
+export const updateItemStepHighlights = [
+  ["23", "getItem", "Retrieve the original item before updating."],
+  ["26", "updateItem", "Update the item in Avalara using the provider's updateItem method."],
+  ["43", "updateItem", "Revert the updates by restoring the original values if an error occurs during the workflow's execution."]
+]
+
+```ts title="src/workflows/steps/update-item.ts" highlights={updateItemStepHighlights}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import AvalaraTaxModuleProvider from "../../modules/avalara/service"
+
+type StepInput = {
+  item: {
+    id: number
+    medusaId: string
+    itemCode: string
+    description: string
+    [key: string]: unknown
+  }
+}
+
+export const updateItemStep = createStep(
+  "update-item",
+  async ({ item }: StepInput, { container }) => {
+    const taxModuleService = container.resolve("tax")
+    const avalaraProviderService = taxModuleService.getProvider(
+      `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+    ) as AvalaraTaxModuleProvider
+
+    // Retrieve original item before updating
+    const originalItem = await avalaraProviderService.getItem(item.id)
+
+    // Update the item
+    const response = await avalaraProviderService.updateItem(item)
+
+    return new StepResponse(response, {
+      originalItem,
+    })
+  },
+  async (data, { container }) => {
+    if (!data) {
+      return
+    }
+
+    const taxModuleService = container.resolve("tax")
+    const avalaraProviderService = taxModuleService.getProvider(
+      `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+    ) as AvalaraTaxModuleProvider
+
+    // Revert the updates by restoring original values
+    await avalaraProviderService.updateItem({
+      id: data.originalItem.id,
+      itemCode: data.originalItem.itemCode,
+      description: data.originalItem.description,
+    })
+  }
+)
+```
+
+The step receives the details of the item to update as input.
+
+In the step, you:
+
+1. Retrieve the Avalara Tax Module Provider's service from the Tax Module.
+2. Retrieve the original item from Avalara before updating it.
+3. Call the `updateItem` method to update the item in Avalara.
+4. Return the updated item and pass the original item to the compensation function.
+
+In the compensation function, you revert the updates by restoring the original values if an error occurs during the workflow's execution.
+
+#### Update Product Item Workflow
+
+You can now create the workflow. Create the file `src/workflows/update-product-item.ts` with the following content:
+
+export const updateProductItemWorkflowHighlights = [
+  ["13", "products", "Retrieve the product's details."],
+  ["28", "when", "Check whether product does not have an Avalara item ID in its metadata."],
+  ["32", "createProductItemWorkflow", "Create the item in Avalara if it doesn't exist."],
+  ["39", "when", "Check whether product has an Avalara item ID in its metadata."],
+  ["43", "updateItemStep", "Update the item in Avalara if it exists."],
+  ["53", "transform", "Return either the created or updated item as the workflow's output."]
+]
+
+```ts title="src/workflows/update-variant-item.ts" highlights={updateProductItemWorkflowHighlights}
+import { createWorkflow, WorkflowResponse, transform, when } from "@medusajs/framework/workflows-sdk"
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { updateItemStep } from "./steps/update-item"
+import { createProductItemWorkflow } from "./create-product-item"
+
+type WorkflowInput = {
+  product_id: string
+}
+
+export const updateProductItemWorkflow = createWorkflow(
+  "update-product-item",
+  (input: WorkflowInput) => {
+    const { data: products } = useQueryGraphStep({
+      entity: "product",
+      fields: [
+        "id",
+        "title",
+        "metadata",
+      ],
+      filters: {
+        id: input.product_id,
+      },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    const createResponse = when({ products }, ({ products }) => 
+      products.length > 0 && !products[0].metadata?.avalara_item_id
+    )
+      .then(() => {
+        return createProductItemWorkflow.runAsStep({
+          input: {
+            product_id: input.product_id,
+          },
+        })
+      })
+
+    const updateResponse = when({ products }, ({ products }) => 
+      products.length > 0 && !!products[0].metadata?.avalara_item_id
+    )
+      .then(() => {
+        return updateItemStep({
+          item: {
+            id: products[0].metadata?.avalara_item_id as number,
+            medusaId: products[0].id,
+            itemCode: products[0].id,
+            description: products[0].title,
+          },
+        })
+      })
+
+    const response = transform({
+      createResponse,
+      updateResponse,
+    }, (data) => {
+      return data.createResponse || data.updateResponse
+    })
+
+    return new WorkflowResponse(response)
+  }
+)
+```
+
+The workflow receives the product ID as input.
+
+In the workflow, you:
+
+1. Retrieve the product's details using the `useQueryGraphStep`.
+2. Use a `when` condition to check whether the product has an Avalara item ID in its metadata.
+    - If it doesn't, you call the `createProductItemWorkflow` to create the item in Avalara.
+    - If it does, you prepare the input and call the `updateItemStep` to update the item in Avalara.
+3. Use `transform` to return either the created or updated item as the workflow's output.
+
+<Note title="Tip">
+
+`when-then` allows you to run steps based on conditions during execution. Learn more in the [Conditions in Workflows](!docs!/learn/fundamentals/workflows/conditions) documentation.
+
+</Note>
+
+### f. Create Product Updated Subscriber
+
+Next, you'll create a subscriber that listens to the `product.updated` event and executes the `updateProductItemWorkflow`.
+
+Create the file `src/subscribers/product-updated.ts` with the following content:
+
+```ts title="src/subscribers/product-updated.ts"
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { updateProductItemWorkflow } from "../workflows/update-product-item"
+
+export default async function productUpdatedHandler({
+  event: { data },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  await updateProductItemWorkflow(container).run({
+    input: {
+      product_id: data.id,
+    },
+  })
+}
+
+export const config: SubscriberConfig = {
+  event: `product.updated`,
+}
+
+
+```
+
+You create a subscriber similar to the one you created for the `product.created` event. This time, it listens to the `product.updated` event and triggers the `updateProductItemWorkflow` with the product ID.
+
+### g. Test Product Update with Avalara Item
+
+To test the product update with Avalara item update, make sure the Medusa server is running.
+
+Then:
+
+1. Open the Medusa Admin dashboard at `http://localhost:9000/admin`.
+2. Go to "Products," and edit an existing product. For example, you can edit its title.
+3. After updating the product, go to your Avalara dashboard.
+4. From the sidebar, click on "Settings" → "What you sell and buy."
+    - If the product already had an item in Avalara, click on it to view its details and confirm that the changes were applied.
+    - If the product didn't have an item in Avalara, you should see a new item created for it.
+
+### h. Delete Avalara Item Workflow
+
+The last workflow you'll build deletes a product's item from Avalara. The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "deleteProductItemWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the product's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1,
+      },
+      {
+        type: "when",
+        condition: "products.length > 0 && !!products[0].metadata?.avalara_item_id",
+        steps: [
+          {
+            type: "step",
+            name: "deleteItemStep",
+            description: "Delete the product's item from Avalara.",
+            depth: 1
+          }
+        ],
+        depth: 2
+      }
+    ]
+  }}
+/>
+
+Medusa provides the first step out of the box. You only need to create the `deleteItemStep`.
+
+#### deleteItemStep
+
+The `deleteItemStep` deletes an item from Avalara.
+
+To create the step, create the file `src/workflows/steps/delete-item.ts` with the following content:
+
+export const deleteItemStepHighlights = [
+  ["18", "getItem", "Retrieve the original item before deleting."],
+  ["20", "deleteItem", "Delete the item in Avalara using the provider's deleteItem method."],
+  ["41", "createItems", "Recreate the item using the original values if an error occurs during the workflow's execution."]
+]
+
+```ts title="src/workflows/steps/delete-item.ts" highlights={deleteItemStepHighlights}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import AvalaraTaxModuleProvider from "../../modules/avalara/service"
+
+type StepInput = {
+  item_id: number
+}
+
+export const deleteItemStep = createStep(
+  "delete-item",
+  async ({ item_id }: StepInput, { container }) => {
+    const taxModuleService = container.resolve("tax")
+    const avalaraProviderService = taxModuleService.getProvider(
+      `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+    ) as AvalaraTaxModuleProvider
+
+    try {
+      // Retrieve original item before deleting
+      const original = await avalaraProviderService.getItem(item_id)
+      // Delete the item
+      const response = await avalaraProviderService.deleteItem(original.id)
+
+      return new StepResponse(response, {
+        originalItem: original,
+      })
+    } catch (error) {
+      console.error(error)
+      // Item does not exist in Avalara, so we can skip deletion
+      return new StepResponse(void 0)
+    }
+  },
+  async (data, { container }) => {
+    if (!data) {
+      return
+    }
+
+    const taxModuleService = container.resolve("tax")
+    const avalaraProviderService = taxModuleService.getProvider(
+      `tp_${AvalaraTaxModuleProvider.identifier}_avalara`
+    ) as AvalaraTaxModuleProvider
+
+    await avalaraProviderService.createItems(
+      [{
+        medusaId: data.originalItem.sourceEntityId ?? "",
+        description: data.originalItem.description,
+        itemCode: data.originalItem.itemCode,
+      }]
+    )
+  }
+)
+```
+
+The step receives the ID of the item to delete as input.
+
+In the step, you:
+
+1. Retrieve the Avalara Tax Module Provider's service from the Tax Module.
+2. Retrieve the original item before deleting it.
+3. Call the `deleteItem` method to delete the item in Avalara.
+4. Return the deletion response and pass the original item to the compensation function.
+
+In the compensation function, you recreate the item using the original values if an error occurs during the workflow's execution.
+
+#### Delete Product Item Workflow
+
+You can now create the workflow. Create the file `src/workflows/delete-product-item.ts` with the following content:
+
+export const deleteProductItemWorkflowHighlights = [
+  ["12", "products", "Retrieve the product's details."],
+  ["27", "when", "Check whether product has an Avalara item ID in its metadata."],
+  ["31", "deleteItemStep", "Delete the item in Avalara if it exists."]
+]
+
+```ts title="src/workflows/delete-product-item.ts" highlights={deleteProductItemWorkflowHighlights}
+import { createWorkflow, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { deleteItemStep } from "./steps/delete-item"
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+
+type WorkflowInput = {
+  product_id: string
+}
+
+export const deleteProductItemWorkflow = createWorkflow(
+  "delete-product-item",
+  (input: WorkflowInput) => {
+    const { data: products } = useQueryGraphStep({
+      entity: "product",
+      fields: [
+        "id",
+        "metadata",
+      ],
+      filters: {
+        id: input.product_id,
+      },
+      withDeleted: true,
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    when({ products }, ({ products }) =>
+      products.length > 0 && !!products[0].metadata?.avalara_item_id
+    )
+    .then(() => {
+      deleteItemStep({ item_id: products[0].metadata!.avalara_item_id as number })
+    })
+
+    return new WorkflowResponse(void 0)
+  }
+)
+```
+
+The workflow receives the product ID as input.
+
+In the workflow, you:
+
+1. Retrieve the product's details using the `useQueryGraphStep`, including deleted products.
+2. Use a `when` condition to check whether the product has an Avalara item ID in its metadata.
+    - If it does, you call the `deleteItemStep` to delete the item in Avalara.
+
+### i. Create Product Deleted Subscriber
+
+Finally, you'll create a subscriber to delete the Avalara item when a product is deleted.
+
+Create the file `src/subscribers/product-deleted.ts` with the following content:
+
+```ts title="src/subscribers/product-deleted.ts"
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { deleteProductItemWorkflow } from "../workflows/delete-product-item"
+
+export default async function productDeletedHandler({
+  event: { data },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  await deleteProductItemWorkflow(container).run({
+    input: {
+      product_id: data.id,
+    },
+    throwOnError: false,
+  })
+}
+
+export const config: SubscriberConfig = {
+  event: `product.deleted`,
+}
+
+
+```
+
+You create a subscriber similar to the previous ones. This time, the subscriber listens to the `product.deleted` event and triggers the `deleteProductItemWorkflow` with the product ID.
+
+### j. Test Product Deletion with Avalara Item
+
+To test the product deletion with Avalara item deletion, make sure the Medusa server is running.
+
+Then:
+
+1. Open the Medusa Admin dashboard at `http://localhost:9000/admin`.
+2. Go to "Products," and delete a product.
+3. After deleting the product, go to your Avalara dashboard.
+4. From the sidebar, click on "Settings" → "What you sell and buy." The product's item should no longer be listed.
+
+---
+
+## Next Steps
+
+You've successfully integrated Avalara with Medusa to handle tax calculations during checkout, create transactions when orders are placed, and sync products with Avalara items.
+
+You can expand on this integration by managing tax features in Avalara, such as exemptions. You can also handle order events like `order.canceled` to void transactions in Avalara when orders are canceled.
+
+### Learn More About Medusa
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn) for a more in-depth understanding of the concepts used in this guide.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during your development, check out the [troubleshooting guides](../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in the troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.

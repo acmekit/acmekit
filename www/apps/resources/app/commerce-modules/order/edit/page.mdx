@@ -1,0 +1,63 @@
+export const metadata = {
+  title: `Order Edit`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn about order edits.
+
+<Note title="Looking for no-code docs?">
+
+Refer to this [Medusa Admin User Guide](!user-guide!/orders/edit) to learn how to edit an order's items using the dashboard.
+
+</Note>
+
+## What is an Order Edit?
+
+A merchant can edit an order to add new items or change the quantity of existing items.
+
+An order edit is represented by the [OrderChange data model](/references/order/models/OrderChange).
+
+The `OrderChange` data model is associated with any type of change, including returns or exchanges. However, its `change_type` property distinguishes the type of change being made.
+
+For order edits, the `OrderChange`'s `change_type` is `edit`.
+
+---
+
+## Add Items in an Order Edit
+
+When a merchant adds new items to an order during editing, the item is added as an [OrderItem](/references/order/models/OrderItem).
+
+Additionally, an `OrderChangeAction` is created. The [OrderChangeAction data model](/references/order/models/OrderChangeAction) represents a change made by an `OrderChange`, such as adding an item.
+
+When an item is added, an `OrderChangeAction` is created with the type `ITEM_ADD`. Its `details` property stores the item's ID, price, and quantity.
+
+---
+
+## Update Items in an Order Edit
+
+A merchant can update an existing item's quantity or price.
+
+This change is recorded as an `OrderChangeAction` with the type `ITEM_UPDATE`. Its `details` property stores the item's ID, updated price, and updated quantity.
+
+---
+
+## Shipping Methods of New Items in the Edit
+
+Adding new items to the order requires adding shipping methods for those items.
+
+These shipping methods are represented by the [OrderShippingMethod data model](/references/order/models/OrderShippingMethod). Also, an `OrderChangeAction` is created with the type `SHIPPING_ADD`.
+
+---
+
+## How Order Edits Impact an Order’s Version
+
+When an order edit is confirmed, the order’s [version](../order-versioning/page.mdx) is incremented.
+
+---
+
+## Payments and Refunds for Order Edit Changes
+
+Once the order edit is confirmed, any additional payment or refund required can be made on the original order.
+
+This is determined by the comparison between the `OrderSummary` and the order's transactions, as mentioned in the [Transactions guide](../transactions/page.mdx#checking-outstanding-amount).

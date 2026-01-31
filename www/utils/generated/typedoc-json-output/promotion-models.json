@@ -1,0 +1,5229 @@
+{
+	"id": 14034,
+	"name": "promotion-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"text": "## Relations Overview\n\n",
+				"kind": "text"
+			},
+			{
+				"text": "```mermaid\nerDiagram\n\tApplicationMethod }|--|{ PromotionRule : target_rules\n\tCampaign ||--|| CampaignBudget : budget\n\tCampaign ||--|| Promotion : promotions\n\tCampaignBudget ||--|| CampaignBudgetUsage : usages\n\tPromotion ||--|| ApplicationMethod : application_method\n\tPromotion }|--|{ PromotionRule : rules\n\tPromotionRule ||--|| PromotionRuleValue : values\n\n```",
+				"kind": "code"
+			}
+		]
+	},
+	"children": [
+		{
+			"id": 14035,
+			"name": "ApplicationMethod",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "application-method.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14036,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14037,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the application method."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 9,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14038,
+											"name": "value",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The value of the application method"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 10,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14039,
+											"name": "currency_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The currency code of the application method.\n\n@example usd"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 11,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14040,
+											"name": "max_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The max quantity allowed in the cart for the associated promotion to be applied."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 12,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14041,
+											"name": "apply_to_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The quantity that results from matching the `buyget` promotion's condition. For example, if the promotion is a \"Buy 2 shirts get 1 free\", the value of this attribute is `1`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 13,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14042,
+											"name": "buy_rules_min_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The minimum quantity required for a `buyget` promotion to be applied. For example, if the promotion is a \"Buy 2 shirts get 1 free\", the value of this attribute is `2`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 14,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14043,
+											"name": "type",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The application method's type. If it's `fixed`, the promotion discounts a fixed amount. If it's `percentage`, the promotion discounts a percentage."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 15,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/promotion/index.ts",
+																"qualifiedName": "ApplicationMethodType"
+															},
+															"name": "ApplicationMethodType",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14044,
+											"name": "target_type",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Which item does the promotion apply to. `items` mean the promotion applies to the cart's items; `shipping_methods` means the promotion applies to the cart's shipping methods; `order` means the promotion applies on the entire order."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 18,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L18"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/promotion/index.ts",
+																"qualifiedName": "ApplicationMethodTargetType"
+															},
+															"name": "ApplicationMethodTargetType",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14045,
+											"name": "allocation",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "How is the promotion amount discounted. `each` means the discounted amount is applied on each applicable item; `across` means the discounted amount is split accross the applicable items."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 21,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L21"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/promotion/index.ts",
+																"qualifiedName": "ApplicationMethodAllocation"
+															},
+															"name": "ApplicationMethodAllocation",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14046,
+											"name": "promotion",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated promotion."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 25,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L25"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14240,
+														"name": "Promotion"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14072,
+											"name": "target_rules",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated target rules."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 28,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L28"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14362,
+														"name": "PromotionRule"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14095,
+											"name": "buy_rules",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated buy rules."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "application-method.ts",
+													"line": 32,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L32"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14362,
+														"name": "PromotionRule"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14037,
+												14038,
+												14039,
+												14040,
+												14041,
+												14042,
+												14043,
+												14044,
+												14045,
+												14046,
+												14072,
+												14095
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "application-method.ts",
+											"line": 8,
+											"character": 4,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L8"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 14118,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 14119,
+									"name": "name",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "application-method.ts",
+											"line": 7,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L7"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "ApplicationMethod"
+									},
+									"defaultValue": "\"ApplicationMethod\""
+								},
+								{
+									"id": 14120,
+									"name": "tableName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "application-method.ts",
+											"line": 7,
+											"character": 33,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L7"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "promotion_application_method"
+									},
+									"defaultValue": "\"promotion_application_method\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										14119,
+										14120
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "application-method.ts",
+									"line": 7,
+									"character": 4,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/application-method.ts#L7"
+								}
+							]
+						}
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 14489,
+			"name": "CampaignBudgetUsage",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"comment": {
+				"summary": [],
+				"blockTags": [
+					{
+						"tag": "@since",
+						"content": [
+							{
+								"kind": "text",
+								"text": "2.11.0"
+							}
+						]
+					},
+					{
+						"tag": "@since",
+						"content": [
+							{
+								"kind": "text",
+								"text": "2.11.0"
+							}
+						]
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "campaign-budget-usage.ts",
+					"line": 7,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L7"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14490,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14491,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the campaign budget usage."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget-usage.ts",
+													"line": 14,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14492,
+											"name": "attribute_value",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The attribute value of the campaign budget usage"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget-usage.ts",
+													"line": 15,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14493,
+											"name": "used",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The used of the campaign budget usage"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget-usage.ts",
+													"line": 16,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14494,
+											"name": "budget",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated budget."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget-usage.ts",
+													"line": 17,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14195,
+														"name": "CampaignBudget"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14491,
+												14492,
+												14493,
+												14494
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "campaign-budget-usage.ts",
+											"line": 13,
+											"character": 4,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L13"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 14513,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 14514,
+									"name": "name",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "campaign-budget-usage.ts",
+											"line": 10,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L10"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "CampaignBudgetUsage"
+									},
+									"defaultValue": "\"CampaignBudgetUsage\""
+								},
+								{
+									"id": 14515,
+									"name": "tableName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "campaign-budget-usage.ts",
+											"line": 11,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L11"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "promotion_campaign_budget_usage"
+									},
+									"defaultValue": "\"promotion_campaign_budget_usage\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										14514,
+										14515
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "campaign-budget-usage.ts",
+									"line": 9,
+									"character": 4,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget-usage.ts#L9"
+								}
+							]
+						}
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 14195,
+			"name": "CampaignBudget",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "campaign-budget.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14196,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14197,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the campaign budget."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget.ts",
+													"line": 9,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14198,
+											"name": "type",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The type of the campaign budget"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget.ts",
+													"line": 10,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/promotion/index.ts",
+																"qualifiedName": "CampaignBudgetType"
+															},
+															"name": "CampaignBudgetType",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14199,
+											"name": "currency_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The currency code of the campaign budget.\n\n@example usd"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget.ts",
+													"line": 13,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14200,
+											"name": "limit",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The limit of the campaign budget"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget.ts",
+													"line": 14,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14201,
+											"name": "used",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "How much of the budget has been used. if the `limit` is `spend`, this property holds the total amount discounted so far. if the `limit` is `usage`, it holds the number of times the campaign's promotions have been used so far."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget.ts",
+													"line": 15,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14202,
+											"name": "campaign",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated campaign."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget.ts",
+													"line": 16,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14121,
+														"name": "Campaign"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14223,
+											"name": "attribute",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The attribute of the campaign budget"
+													}
+												],
+												"blockTags": [
+													{
+														"tag": "@since",
+														"content": [
+															{
+																"kind": "text",
+																"text": "2.11.0"
+															}
+														]
+													},
+													{
+														"tag": "@since",
+														"content": [
+															{
+																"kind": "text",
+																"text": "2.11.0"
+															}
+														]
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget.ts",
+													"line": 23,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L23"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14224,
+											"name": "usages",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated usages."
+													}
+												],
+												"blockTags": [
+													{
+														"tag": "@since",
+														"content": [
+															{
+																"kind": "text",
+																"text": "2.11.0"
+															}
+														]
+													},
+													{
+														"tag": "@since",
+														"content": [
+															{
+																"kind": "text",
+																"text": "2.11.0"
+															}
+														]
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign-budget.ts",
+													"line": 29,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L29"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14489,
+														"name": "CampaignBudgetUsage"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14197,
+												14198,
+												14199,
+												14200,
+												14201,
+												14202,
+												14223,
+												14224
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "campaign-budget.ts",
+											"line": 8,
+											"character": 4,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L8"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 14237,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 14238,
+									"name": "name",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "campaign-budget.ts",
+											"line": 7,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L7"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "CampaignBudget"
+									},
+									"defaultValue": "\"CampaignBudget\""
+								},
+								{
+									"id": 14239,
+									"name": "tableName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "campaign-budget.ts",
+											"line": 7,
+											"character": 30,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L7"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "promotion_campaign_budget"
+									},
+									"defaultValue": "\"promotion_campaign_budget\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										14238,
+										14239
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "campaign-budget.ts",
+									"line": 7,
+									"character": 4,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign-budget.ts#L7"
+								}
+							]
+						}
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 14121,
+			"name": "Campaign",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "campaign.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14122,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14123,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the campaign."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign.ts",
+													"line": 9,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14124,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the campaign"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign.ts",
+													"line": 10,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14125,
+											"name": "description",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The description of the campaign"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign.ts",
+													"line": 11,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14126,
+											"name": "campaign_identifier",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The campaign's identifier, such as a Google Tag ID."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign.ts",
+													"line": 12,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14127,
+											"name": "starts_at",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The date that the campaign starts."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign.ts",
+													"line": 13,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/date-time.ts",
+													"qualifiedName": "DateTimeProperty"
+												},
+												"name": "DateTimeProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14128,
+											"name": "ends_at",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The date that the campaign ends."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign.ts",
+													"line": 14,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/date-time.ts",
+													"qualifiedName": "DateTimeProperty"
+												},
+												"name": "DateTimeProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14129,
+											"name": "budget",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated budget."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign.ts",
+													"line": 15,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-one.ts",
+													"qualifiedName": "HasOne"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14195,
+														"name": "CampaignBudget"
+													}
+												],
+												"name": "HasOne",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14166,
+											"name": "promotions",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated promotions."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "campaign.ts",
+													"line": 20,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L20"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14240,
+														"name": "Promotion"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14123,
+												14124,
+												14125,
+												14126,
+												14127,
+												14128,
+												14129,
+												14166
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "campaign.ts",
+											"line": 8,
+											"character": 4,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L8"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 14192,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 14193,
+									"name": "name",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "campaign.ts",
+											"line": 7,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L7"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "Campaign"
+									},
+									"defaultValue": "\"Campaign\""
+								},
+								{
+									"id": 14194,
+									"name": "tableName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "campaign.ts",
+											"line": 7,
+											"character": 24,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L7"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "promotion_campaign"
+									},
+									"defaultValue": "\"promotion_campaign\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										14193,
+										14194
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "campaign.ts",
+									"line": 7,
+									"character": 4,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/campaign.ts#L7"
+								}
+							]
+						}
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 14459,
+			"name": "PromotionRuleValue",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "promotion-rule-value.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule-value.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14460,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14461,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the promotion rule value."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule-value.ts",
+													"line": 8,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule-value.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14462,
+											"name": "value",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The value of the promotion rule."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule-value.ts",
+													"line": 9,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule-value.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14463,
+											"name": "promotion_rule",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated promotion rule."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule-value.ts",
+													"line": 10,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule-value.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14362,
+														"name": "PromotionRule"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14461,
+												14462,
+												14463
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "promotion-rule-value.ts",
+											"line": 7,
+											"character": 4,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule-value.ts#L7"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 14486,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 14487,
+									"name": "name",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "promotion-rule-value.ts",
+											"line": 6,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule-value.ts#L6"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "PromotionRuleValue"
+									},
+									"defaultValue": "\"PromotionRuleValue\""
+								},
+								{
+									"id": 14488,
+									"name": "tableName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "promotion-rule-value.ts",
+											"line": 6,
+											"character": 34,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule-value.ts#L6"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "promotion_rule_value"
+									},
+									"defaultValue": "\"promotion_rule_value\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										14487,
+										14488
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "promotion-rule-value.ts",
+									"line": 6,
+									"character": 4,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule-value.ts#L6"
+								}
+							]
+						}
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 14362,
+			"name": "PromotionRule",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "promotion-rule.ts",
+					"line": 6,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L6"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14363,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14364,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the promotion rule."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule.ts",
+													"line": 13,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14365,
+											"name": "description",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The description of the promotion rule"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule.ts",
+													"line": 14,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14366,
+											"name": "attribute",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The attribute of the promotion rule.\n\n@example customer_group_id"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule.ts",
+													"line": 15,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14367,
+											"name": "operator",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The operator of the promotion rule.\n\n@example in"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule.ts",
+													"line": 16,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/promotion/index.ts",
+																"qualifiedName": "PromotionRuleOperator"
+															},
+															"name": "PromotionRuleOperator",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14368,
+											"name": "values",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated values."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule.ts",
+													"line": 19,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14459,
+														"name": "PromotionRuleValue"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14380,
+											"name": "promotions",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated promotions."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule.ts",
+													"line": 22,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L22"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14240,
+														"name": "Promotion"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14406,
+											"name": "method_target_rules",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated method target rules."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule.ts",
+													"line": 25,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L25"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14035,
+														"name": "ApplicationMethod"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14431,
+											"name": "method_buy_rules",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated method buy rules."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion-rule.ts",
+													"line": 28,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L28"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14035,
+														"name": "ApplicationMethod"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14364,
+												14365,
+												14366,
+												14367,
+												14368,
+												14380,
+												14406,
+												14431
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "promotion-rule.ts",
+											"line": 12,
+											"character": 4,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L12"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 14456,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 14457,
+									"name": "name",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "promotion-rule.ts",
+											"line": 9,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L9"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "PromotionRule"
+									},
+									"defaultValue": "\"PromotionRule\""
+								},
+								{
+									"id": 14458,
+									"name": "tableName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "promotion-rule.ts",
+											"line": 10,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L10"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "promotion_rule"
+									},
+									"defaultValue": "\"promotion_rule\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										14457,
+										14458
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "promotion-rule.ts",
+									"line": 8,
+									"character": 4,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion-rule.ts#L8"
+								}
+							]
+						}
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 14240,
+			"name": "Promotion",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "promotion.ts",
+					"line": 6,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L6"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14241,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14242,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the promotion."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14243,
+											"name": "code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The code of the promotion"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14244,
+											"name": "is_automatic",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the promotion is applied automatic. If disabled, the customer must enter the code during checkout."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14245,
+											"name": "is_tax_inclusive",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the promotion is tax inclusive."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14246,
+											"name": "limit",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The limit of the promotion\n\n@since v2.12.0"
+													}
+												],
+												"blockTags": [
+													{
+														"tag": "@since",
+														"content": [
+															{
+																"kind": "text",
+																"text": "2.12.0"
+															}
+														]
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14247,
+											"name": "used",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "How much of the limit has been used.\n\n@since v2.12.0"
+													}
+												],
+												"blockTags": [
+													{
+														"tag": "@since",
+														"content": [
+															{
+																"kind": "text",
+																"text": "2.12.0"
+															}
+														]
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 19,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14248,
+											"name": "type",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The type of the promotion"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 20,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L20"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/promotion/index.ts",
+																"qualifiedName": "PromotionType"
+															},
+															"name": "PromotionType",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14249,
+											"name": "status",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The status of the promotion"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 21,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L21"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/promotion/index.ts",
+																"qualifiedName": "PromotionStatus"
+															},
+															"name": "PromotionStatus",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14250,
+											"name": "campaign",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated campaign."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 25,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L25"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14121,
+														"name": "Campaign"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14289,
+											"name": "application_method",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated application method."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 30,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L30"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-one.ts",
+													"qualifiedName": "HasOne"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14035,
+														"name": "ApplicationMethod"
+													}
+												],
+												"name": "HasOne",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14338,
+											"name": "rules",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated rules."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 35,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L35"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14362,
+														"name": "PromotionRule"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14361,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs.\n\n@since v2.12.0"
+													}
+												],
+												"blockTags": [
+													{
+														"tag": "@since",
+														"content": [
+															{
+																"kind": "text",
+																"text": "2.12.0"
+															}
+														]
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "promotion.ts",
+													"line": 42,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L42"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14242,
+												14243,
+												14244,
+												14245,
+												14246,
+												14247,
+												14248,
+												14249,
+												14250,
+												14289,
+												14338,
+												14361
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "promotion.ts",
+											"line": 7,
+											"character": 23,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/promotion/src/models/promotion.ts#L7"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "Promotion"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				14035,
+				14489,
+				14195,
+				14121,
+				14459,
+				14362,
+				14240
+			]
+		}
+	],
+	"packageName": "@acmekit/promotion",
+	"symbolIdMap": {
+		"14034": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"14035": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "ApplicationMethod"
+		},
+		"14036": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14037": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14038": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.value"
+		},
+		"14039": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14040": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"14041": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.apply_to_quantity"
+		},
+		"14042": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules_min_quantity"
+		},
+		"14043": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14044": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_type"
+		},
+		"14045": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.allocation"
+		},
+		"14046": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.promotion"
+		},
+		"14047": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14048": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14049": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object"
+		},
+		"14050": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14051": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.code"
+		},
+		"14052": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.is_automatic"
+		},
+		"14053": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.is_tax_inclusive"
+		},
+		"14054": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.limit"
+		},
+		"14055": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14056": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14057": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.status"
+		},
+		"14058": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.campaign"
+		},
+		"14059": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14060": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14061": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14062": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14063": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.application_method"
+		},
+		"14064": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14065": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14066": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14067": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14068": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.rules"
+		},
+		"14069": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14070": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14071": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"14072": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_rules"
+		},
+		"14073": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14074": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14075": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14076": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14077": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14078": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14079": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.operator"
+		},
+		"14080": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.values"
+		},
+		"14081": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14082": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14083": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14084": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14085": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14086": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_target_rules"
+		},
+		"14087": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14088": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14089": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_buy_rules"
+		},
+		"14090": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14091": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14092": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14093": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14094": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14095": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules"
+		},
+		"14096": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14097": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14098": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14099": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14100": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14101": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14102": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.operator"
+		},
+		"14103": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.values"
+		},
+		"14104": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14105": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14106": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14107": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14108": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14109": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_target_rules"
+		},
+		"14110": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14111": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14112": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_buy_rules"
+		},
+		"14113": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14114": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14115": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14116": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14117": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14118": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14119": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14120": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14121": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "Campaign"
+		},
+		"14122": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object"
+		},
+		"14123": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14124": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14125": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14126": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.campaign_identifier"
+		},
+		"14127": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.starts_at"
+		},
+		"14128": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.ends_at"
+		},
+		"14129": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.budget"
+		},
+		"14130": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14131": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14132": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object"
+		},
+		"14133": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14134": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14135": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14136": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.limit"
+		},
+		"14137": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14138": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.campaign"
+		},
+		"14139": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14140": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14141": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14142": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.usages"
+		},
+		"14143": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14144": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14145": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object"
+		},
+		"14146": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14147": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14148": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14149": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14150": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object"
+		},
+		"14151": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14152": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14153": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14154": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.limit"
+		},
+		"14155": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14156": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.campaign"
+		},
+		"14157": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14158": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14159": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14160": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.usages"
+		},
+		"14161": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14162": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14163": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object"
+		},
+		"14164": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14165": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14166": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14167": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__function"
+		},
+		"14168": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__function"
+		},
+		"14169": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object"
+		},
+		"14170": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14171": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.code"
+		},
+		"14172": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.is_automatic"
+		},
+		"14173": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.is_tax_inclusive"
+		},
+		"14174": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.limit"
+		},
+		"14175": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14176": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14177": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.status"
+		},
+		"14178": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.campaign"
+		},
+		"14179": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14180": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14181": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14182": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14183": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.application_method"
+		},
+		"14184": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14185": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14186": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14187": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14188": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.rules"
+		},
+		"14189": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14190": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14191": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"14192": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object"
+		},
+		"14193": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14194": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14195": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "CampaignBudget"
+		},
+		"14196": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object"
+		},
+		"14197": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14198": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14199": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14200": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.limit"
+		},
+		"14201": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14202": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.campaign"
+		},
+		"14203": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14204": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14205": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object"
+		},
+		"14206": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14207": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14208": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14209": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.campaign_identifier"
+		},
+		"14210": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.starts_at"
+		},
+		"14211": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.ends_at"
+		},
+		"14212": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.budget"
+		},
+		"14213": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14214": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14215": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14216": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14217": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14218": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__function"
+		},
+		"14219": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__function"
+		},
+		"14220": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object"
+		},
+		"14221": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14222": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14223": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14224": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.usages"
+		},
+		"14225": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14226": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14227": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object"
+		},
+		"14228": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14229": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.attribute_value"
+		},
+		"14230": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14231": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.budget"
+		},
+		"14232": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__function"
+		},
+		"14233": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__function"
+		},
+		"14234": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object"
+		},
+		"14235": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14236": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14237": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object"
+		},
+		"14238": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14239": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14240": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "Promotion"
+		},
+		"14241": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object"
+		},
+		"14242": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14243": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.code"
+		},
+		"14244": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.is_automatic"
+		},
+		"14245": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.is_tax_inclusive"
+		},
+		"14246": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.limit"
+		},
+		"14247": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14248": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14249": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.status"
+		},
+		"14250": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.campaign"
+		},
+		"14251": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14252": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14253": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object"
+		},
+		"14254": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14255": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14256": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14257": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.campaign_identifier"
+		},
+		"14258": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.starts_at"
+		},
+		"14259": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.ends_at"
+		},
+		"14260": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.budget"
+		},
+		"14261": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14262": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14263": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14264": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14265": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14266": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__function"
+		},
+		"14267": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__function"
+		},
+		"14268": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object"
+		},
+		"14269": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14270": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14271": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14272": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14273": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object"
+		},
+		"14274": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14275": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14276": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14277": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.campaign_identifier"
+		},
+		"14278": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.starts_at"
+		},
+		"14279": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.ends_at"
+		},
+		"14280": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.budget"
+		},
+		"14281": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14282": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__type"
+		},
+		"14283": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14284": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__function"
+		},
+		"14285": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__function"
+		},
+		"14286": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object"
+		},
+		"14287": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14288": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14289": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.application_method"
+		},
+		"14290": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14291": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14292": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14293": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14294": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.value"
+		},
+		"14295": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14296": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"14297": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.apply_to_quantity"
+		},
+		"14298": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules_min_quantity"
+		},
+		"14299": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14300": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_type"
+		},
+		"14301": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.allocation"
+		},
+		"14302": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.promotion"
+		},
+		"14303": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14304": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14305": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_rules"
+		},
+		"14306": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14307": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14308": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules"
+		},
+		"14309": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14310": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14311": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14312": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14313": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14314": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14315": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14316": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14317": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14318": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.value"
+		},
+		"14319": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14320": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"14321": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.apply_to_quantity"
+		},
+		"14322": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules_min_quantity"
+		},
+		"14323": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14324": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_type"
+		},
+		"14325": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.allocation"
+		},
+		"14326": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.promotion"
+		},
+		"14327": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14328": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14329": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_rules"
+		},
+		"14330": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14331": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14332": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules"
+		},
+		"14333": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14334": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14335": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14336": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14337": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14338": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.rules"
+		},
+		"14339": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14340": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14341": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14342": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14343": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14344": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14345": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.operator"
+		},
+		"14346": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.values"
+		},
+		"14347": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14348": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14349": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14350": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14351": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14352": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_target_rules"
+		},
+		"14353": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14354": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14355": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_buy_rules"
+		},
+		"14356": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14357": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14358": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14359": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14360": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14361": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"14362": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "PromotionRule"
+		},
+		"14363": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14364": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14365": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14366": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14367": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.operator"
+		},
+		"14368": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.values"
+		},
+		"14369": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14370": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14371": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object"
+		},
+		"14372": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14373": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.value"
+		},
+		"14374": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.promotion_rule"
+		},
+		"14375": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__function"
+		},
+		"14376": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__function"
+		},
+		"14377": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object"
+		},
+		"14378": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14379": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14380": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14381": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14382": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14383": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object"
+		},
+		"14384": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14385": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.code"
+		},
+		"14386": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.is_automatic"
+		},
+		"14387": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.is_tax_inclusive"
+		},
+		"14388": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.limit"
+		},
+		"14389": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14390": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14391": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.status"
+		},
+		"14392": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.campaign"
+		},
+		"14393": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14394": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14395": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14396": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__function"
+		},
+		"14397": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.application_method"
+		},
+		"14398": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14399": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14400": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14401": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14402": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.rules"
+		},
+		"14403": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14404": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__type"
+		},
+		"14405": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"14406": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_target_rules"
+		},
+		"14407": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14408": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14409": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14410": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14411": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.value"
+		},
+		"14412": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14413": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"14414": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.apply_to_quantity"
+		},
+		"14415": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules_min_quantity"
+		},
+		"14416": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14417": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_type"
+		},
+		"14418": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.allocation"
+		},
+		"14419": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.promotion"
+		},
+		"14420": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14421": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14422": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_rules"
+		},
+		"14423": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14424": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14425": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules"
+		},
+		"14426": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14427": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14428": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14429": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14430": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14431": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_buy_rules"
+		},
+		"14432": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14433": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14434": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14435": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14436": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.value"
+		},
+		"14437": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14438": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"14439": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.apply_to_quantity"
+		},
+		"14440": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules_min_quantity"
+		},
+		"14441": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14442": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_type"
+		},
+		"14443": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.allocation"
+		},
+		"14444": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.promotion"
+		},
+		"14445": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14446": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14447": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.target_rules"
+		},
+		"14448": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14449": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14450": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.buy_rules"
+		},
+		"14451": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14452": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__function"
+		},
+		"14453": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object"
+		},
+		"14454": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14455": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/application-method.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14456": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14457": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14458": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14459": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "PromotionRuleValue"
+		},
+		"14460": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object"
+		},
+		"14461": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14462": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.value"
+		},
+		"14463": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.promotion_rule"
+		},
+		"14464": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__function"
+		},
+		"14465": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__function"
+		},
+		"14466": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14467": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14468": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.description"
+		},
+		"14469": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14470": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.operator"
+		},
+		"14471": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.values"
+		},
+		"14472": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14473": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14474": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.promotions"
+		},
+		"14475": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14476": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14477": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_target_rules"
+		},
+		"14478": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14479": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14480": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.method_buy_rules"
+		},
+		"14481": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14482": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"14483": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"14484": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14485": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14486": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object"
+		},
+		"14487": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14488": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/promotion-rule-value.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14489": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "CampaignBudgetUsage"
+		},
+		"14490": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object"
+		},
+		"14491": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14492": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.attribute_value"
+		},
+		"14493": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14494": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.budget"
+		},
+		"14495": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__function"
+		},
+		"14496": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__function"
+		},
+		"14497": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object"
+		},
+		"14498": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14499": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.type"
+		},
+		"14500": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14501": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.limit"
+		},
+		"14502": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.used"
+		},
+		"14503": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.campaign"
+		},
+		"14504": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14505": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14506": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"14507": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.usages"
+		},
+		"14508": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14509": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__function"
+		},
+		"14510": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object"
+		},
+		"14511": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14512": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14513": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object"
+		},
+		"14514": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14515": {
+			"sourceFileName": "../../../../packages/modules/promotion/src/models/campaign-budget-usage.ts",
+			"qualifiedName": "__object.tableName"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/promotion/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 14034
+		}
+	}
+}

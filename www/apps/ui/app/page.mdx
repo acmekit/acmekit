@@ -1,0 +1,50 @@
+import { FigmaCard } from "@/components/FigmaCard"
+
+export const metadata = {
+  title: `Medusa UI Documentation`,
+}
+
+# {metadata.title}
+
+Welcome to Medusa UI, a React implementation of the Medusa design system.
+
+Medusa UI is a collection of components, hooks, utility functions, icons, and [Tailwind CSS](https://tailwindcss.com/) classes that can be used to build
+a consistent user interface across the Medusa Admin and client applications.
+
+## Figma Design System
+
+The Medusa UI design system is also available on [Figma](https://www.figma.com/community/file/1278648465968635936/medusa-ui). You can explore the components, icons, and design tokens used in Medusa UI.
+
+This is especially useful if you have the [Figma Dev MCP](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server) set up, allowing you to easily copy designs from the Figma Medusa UI file to your projects.
+
+<FigmaCard />
+
+---
+
+## Packages
+
+Medusa UI is split into multiple packages. Each package is published to npm
+and can be installed separately.
+
+- `@medusajs/ui` - React components, hooks, and utility functions used
+  in Medusa UI.
+- `@medusajs/ui-preset` - Tailwind CSS preset containing all the classes
+  used in Medusa UI.
+- `@medusajs/icons` - Icons used in Medusa UI.
+
+Learn how to install and use these packages either for [Medusa Admin](./installation/medusa-admin-extension/page.mdx) customizations or a [standalone project](./installation/standalone-project/page.mdx).
+
+---
+
+## How Medusa UI is Built
+
+At its core, Medusa UI is a styled and slightly opinionated implementation of [Radix Primitives](https://www.radix-ui.com/primitives).
+Our team has also referenced the fantastic [shadcn/ui](https://ui.shadcn.com/) for inspiration in certain implementations.
+
+Our team strongly believes in keeping the components simple and
+composable, much like Medusa's foundation. This allows you to build whatever you need.
+
+Our team has tried to avoid overloading
+the component API and, instead, has leveraged the native HTML API, which gets implemented
+and respected accordingly, and passed to the underlying elements.
+

@@ -1,0 +1,56 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Button`,
+}
+
+# {metadata.title}
+
+A component for rendering buttons using Medusa's design system.
+
+In this guide, you'll learn how to use the Button component.
+
+<ComponentExample name="button-demo" />
+
+---
+
+## Usage
+
+```tsx
+import { Button } from "@medusajs/ui"
+```
+
+```tsx
+<Button>Button</Button>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Button" />
+
+---
+
+## Examples
+
+### Button Variants
+
+<ComponentExample name="button-all-variants" />
+
+### Button Sizes
+
+<ComponentExample name="button-all-sizes" />
+
+### Button Loading State
+
+<ComponentExample name="button-loading" />
+
+### Button with Icon
+
+<ComponentExample name="button-with-icon" />
+
+### Button as Link
+
+<ComponentExample name="button-as-link" hideFeedback />

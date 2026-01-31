@@ -1,0 +1,1082 @@
+{
+	"id": 65419,
+	"name": "event",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 65420,
+			"name": "IEventBusModuleService",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"children": [
+				{
+					"id": 65421,
+					"name": "emit",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "event-bus-module.ts",
+							"line": 23,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L23"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65422,
+							"name": "emit",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method emits one or more events. Subscribers listening to the event(s) are executed asynchronously."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nawait eventModuleService.emit({\n  name: \"user.created\",\n  data: {\n    user_id: \"user_123\"\n  }\n})\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "event-bus-module.ts",
+									"line": 23,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L23"
+								}
+							],
+							"typeParameters": [
+								{
+									"id": 65423,
+									"name": "T",
+									"variant": "typeParam",
+									"kind": 131072,
+									"flags": {}
+								}
+							],
+							"parameters": [
+								{
+									"id": 65424,
+									"name": "data",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The details of the events to emit."
+											}
+										]
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+													"qualifiedName": "Message"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 65423,
+														"name": "T",
+														"package": "@acmekit/types",
+														"refersToTypeParameter": true
+													}
+												],
+												"name": "Message",
+												"package": "@acmekit/types"
+											},
+											{
+												"type": "array",
+												"elementType": {
+													"type": "reference",
+													"target": {
+														"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+														"qualifiedName": "Message"
+													},
+													"typeArguments": [
+														{
+															"type": "reference",
+															"target": 65423,
+															"name": "T",
+															"package": "@acmekit/types",
+															"refersToTypeParameter": true
+														}
+													],
+													"name": "Message",
+													"package": "@acmekit/types"
+												}
+											}
+										]
+									}
+								},
+								{
+									"id": 65425,
+									"name": "options",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Additional options for the event."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "unknown"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65426,
+					"name": "subscribe",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "event-bus-module.ts",
+							"line": 41,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L41"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65427,
+							"name": "subscribe",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method adds a subscriber to an event. It's mainly used internally to register subscribers."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The instance of the Event Module"
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\neventModuleService.subscribe(\"user.created\", async (data) => {\n  console.log(\"User created\", data)\n})\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "event-bus-module.ts",
+									"line": 41,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L41"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65428,
+									"name": "eventName",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The name of the event to subscribe to."
+											}
+										]
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "symbol"
+											}
+										]
+									}
+								},
+								{
+									"id": 65429,
+									"name": "subscriber",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The subscriber function to execute when the event is emitted."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+											"qualifiedName": "Subscriber"
+										},
+										"name": "Subscriber",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 65430,
+									"name": "context",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The context of the subscriber."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+											"qualifiedName": "SubscriberContext"
+										},
+										"name": "SubscriberContext",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "this"
+							}
+						}
+					]
+				},
+				{
+					"id": 65431,
+					"name": "unsubscribe",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "event-bus-module.ts",
+							"line": 60,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L60"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65432,
+							"name": "unsubscribe",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method removes a subscriber from an event. It's mainly used internally to unregister subscribers."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The instance of the Event Module"
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\neventModuleService.unsubscribe(\"user.created\", async (data) => {\n  console.log(\"User created\", data)\n})\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "event-bus-module.ts",
+									"line": 60,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L60"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65433,
+									"name": "eventName",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The name of the event to unsubscribe from."
+											}
+										]
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "symbol"
+											}
+										]
+									}
+								},
+								{
+									"id": 65434,
+									"name": "subscriber",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The subscriber function to remove."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+											"qualifiedName": "Subscriber"
+										},
+										"name": "Subscriber",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 65435,
+									"name": "context",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The context of the subscriber."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+											"qualifiedName": "SubscriberContext"
+										},
+										"name": "SubscriberContext",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "this"
+							}
+						}
+					]
+				},
+				{
+					"id": 65436,
+					"name": "releaseGroupedEvents",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "event-bus-module.ts",
+							"line": 75,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L75"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65437,
+							"name": "releaseGroupedEvents",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method emits all events in the specified group. Grouped events are useful when you have distributed transactions\nwhere you need to explicitly group, release and clear events upon lifecycle events of a transaction."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nawait eventModuleService.releaseGroupedEvents(\"group_123\")\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "event-bus-module.ts",
+									"line": 75,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L75"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65438,
+									"name": "eventGroupId",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The ID of the event group."
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65439,
+					"name": "clearGroupedEvents",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "event-bus-module.ts",
+							"line": 88,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L88"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65440,
+							"name": "clearGroupedEvents",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method removes all events in the specified group. Grouped events are useful when you have distributed transactions\nwhere you need to explicitly group, release and clear events upon lifecycle events of a transaction."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nawait eventModuleService.clearGroupedEvents(\"group_123\")\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "event-bus-module.ts",
+									"line": 88,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L88"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65441,
+									"name": "eventGroupId",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The ID of the event group."
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 65442,
+									"name": "options",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Additional options for the event."
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 65443,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 65444,
+													"name": "eventNames",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The names of the events to clear. If not provided, The group will\nbe entirely cleared."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "event-bus-module.ts",
+															"line": 91,
+															"character": 6,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L91"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														65444
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "event-bus-module.ts",
+													"line": 90,
+													"character": 14,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L90"
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65445,
+					"name": "addInterceptor",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "event-bus-module.ts",
+							"line": 107,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L107"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65446,
+							"name": "addInterceptor",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method adds an interceptor to the event bus. This means that the interceptor will be\ncalled before the event is emitted."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The instance of the Event Module"
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\neventModuleService.addInterceptor((message, context) => {\n  console.log(\"Interceptor\", message, context)\n})\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "event-bus-module.ts",
+									"line": 107,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L107"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65447,
+									"name": "interceptor",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The interceptor to add."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+											"qualifiedName": "InterceptorSubscriber"
+										},
+										"name": "InterceptorSubscriber",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "this"
+							}
+						}
+					]
+				},
+				{
+					"id": 65448,
+					"name": "removeInterceptor",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "event-bus-module.ts",
+							"line": 120,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L120"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65449,
+							"name": "removeInterceptor",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method removes an interceptor from the event bus."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The instance of the Event Module"
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\neventModuleService.removeInterceptor((message, context) => {\n  console.log(\"Interceptor\", message, context)\n})\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "event-bus-module.ts",
+									"line": 120,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L120"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65450,
+									"name": "interceptor",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The interceptor to remove."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+											"qualifiedName": "InterceptorSubscriber"
+										},
+										"name": "InterceptorSubscriber",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "this"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"children": [
+						65421,
+						65426,
+						65431,
+						65436,
+						65439,
+						65445,
+						65448
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "event-bus-module.ts",
+					"line": 8,
+					"character": 17,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/event-bus/event-bus-module.ts#L8"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Interfaces",
+			"children": [
+				65420
+			]
+		}
+	],
+	"packageName": "@acmekit/types",
+	"symbolIdMap": {
+		"65419": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": ""
+		},
+		"65420": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService"
+		},
+		"65421": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.emit"
+		},
+		"65422": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.emit"
+		},
+		"65423": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "T"
+		},
+		"65424": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "data"
+		},
+		"65425": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "options"
+		},
+		"65426": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.subscribe"
+		},
+		"65427": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.subscribe"
+		},
+		"65428": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "eventName"
+		},
+		"65429": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "subscriber"
+		},
+		"65430": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "context"
+		},
+		"65431": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.unsubscribe"
+		},
+		"65432": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.unsubscribe"
+		},
+		"65433": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "eventName"
+		},
+		"65434": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "subscriber"
+		},
+		"65435": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "context"
+		},
+		"65436": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.releaseGroupedEvents"
+		},
+		"65437": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.releaseGroupedEvents"
+		},
+		"65438": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "eventGroupId"
+		},
+		"65439": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.clearGroupedEvents"
+		},
+		"65440": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.clearGroupedEvents"
+		},
+		"65441": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "eventGroupId"
+		},
+		"65442": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "options"
+		},
+		"65443": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "__type"
+		},
+		"65444": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "__type.eventNames"
+		},
+		"65445": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.addInterceptor"
+		},
+		"65446": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.addInterceptor"
+		},
+		"65447": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "interceptor"
+		},
+		"65448": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.removeInterceptor"
+		},
+		"65449": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "IEventBusModuleService.removeInterceptor"
+		},
+		"65450": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",
+			"qualifiedName": "interceptor"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/types/src/event-bus/event-bus-module.ts"
+		},
+		"reflections": {
+			"1": 65419
+		}
+	}
+}

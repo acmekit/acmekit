@@ -1,0 +1,2299 @@
+{
+	"id": 3351,
+	"name": "customer-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"text": "## Relations Overview\n\n",
+				"kind": "text"
+			},
+			{
+				"text": "```mermaid\nerDiagram\n\tCustomer }|--|{ CustomerGroup : groups\n\tCustomer ||--|| CustomerAddress : addresses\n\n```",
+				"kind": "code"
+			}
+		]
+	},
+	"children": [
+		{
+			"id": 3352,
+			"name": "CustomerAddress",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "address.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 3353,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 3354,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the customer address."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3355,
+											"name": "address_name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3356,
+											"name": "is_default_shipping",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the customer address is used by default for shipping."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3357,
+											"name": "is_default_billing",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the customer address is used by default for billing."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3358,
+											"name": "company",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The company of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3359,
+											"name": "first_name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The first name of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3360,
+											"name": "last_name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The last name of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3361,
+											"name": "address_1",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The first line of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3362,
+											"name": "address_2",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The second line of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3363,
+											"name": "city",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The city of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3364,
+											"name": "country_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The country code of the customer address.\n\n@example us"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3365,
+											"name": "province",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The province of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 17,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3366,
+											"name": "postal_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The postal code of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 18,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L18"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3367,
+											"name": "phone",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The phone of the customer address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 19,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3368,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 20,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L20"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3369,
+											"name": "customer",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated customer."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "address.ts",
+													"line": 21,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L21"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 3388,
+														"name": "Customer"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												3354,
+												3355,
+												3356,
+												3357,
+												3358,
+												3359,
+												3360,
+												3361,
+												3362,
+												3363,
+												3364,
+												3365,
+												3366,
+												3367,
+												3368,
+												3369
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "address.ts",
+											"line": 5,
+											"character": 29,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/address.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "CustomerAddress"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 3457,
+			"name": "CustomerGroupCustomer",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "customer-group-customer.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group-customer.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 3458,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 3459,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the group-customer pairing."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group-customer.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group-customer.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3460,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the user that added the customer to the group."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group-customer.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group-customer.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3461,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group-customer.ts",
+													"line": 8,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group-customer.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3462,
+											"name": "customer",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated customer."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group-customer.ts",
+													"line": 9,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group-customer.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 3388,
+														"name": "Customer"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3481,
+											"name": "customer_group",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated customer group."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group-customer.ts",
+													"line": 12,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group-customer.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 3432,
+														"name": "CustomerGroup"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												3459,
+												3460,
+												3461,
+												3462,
+												3481
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "customer-group-customer.ts",
+											"line": 5,
+											"character": 68,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group-customer.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "CustomerGroupCustomer"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 3432,
+			"name": "CustomerGroup",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "customer-group.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 3433,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 3434,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the customer group."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3435,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the customer group"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3436,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3437,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the user that created the customer group."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3438,
+											"name": "customers",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated customers."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer-group.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 3388,
+														"name": "Customer"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												3434,
+												3435,
+												3436,
+												3437,
+												3438
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "customer-group.ts",
+											"line": 6,
+											"character": 27,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer-group.ts#L6"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "CustomerGroup"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 3388,
+			"name": "Customer",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "customer.ts",
+					"line": 6,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L6"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 3389,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 3390,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the customer."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3391,
+											"name": "company_name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The company name of the customer"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3392,
+											"name": "first_name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The first name of the customer"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3393,
+											"name": "last_name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The last name of the customer"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3394,
+											"name": "email",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The email of the customer"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3395,
+											"name": "phone",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The phone of the customer"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3396,
+											"name": "has_account",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the customer has account. Learn more in [this documentation](https://docs.acmekit.com/resources/commerce-modules/customer/customer-accounts)"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3397,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3398,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the user that created the customer."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3399,
+											"name": "groups",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated groups."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 17,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 3432,
+														"name": "CustomerGroup"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 3410,
+											"name": "addresses",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated addresses."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "customer.ts",
+													"line": 21,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L21"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 3352,
+														"name": "CustomerAddress"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												3390,
+												3391,
+												3392,
+												3393,
+												3394,
+												3395,
+												3396,
+												3397,
+												3398,
+												3399,
+												3410
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "customer.ts",
+											"line": 7,
+											"character": 22,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/customer/src/models/customer.ts#L7"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "Customer"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				3352,
+				3457,
+				3432,
+				3388
+			]
+		}
+	],
+	"packageName": "@acmekit/customer",
+	"symbolIdMap": {
+		"3351": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"3352": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "CustomerAddress"
+		},
+		"3353": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object"
+		},
+		"3354": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3355": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.address_name"
+		},
+		"3356": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.is_default_shipping"
+		},
+		"3357": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.is_default_billing"
+		},
+		"3358": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.company"
+		},
+		"3359": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.first_name"
+		},
+		"3360": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.last_name"
+		},
+		"3361": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.address_1"
+		},
+		"3362": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.address_2"
+		},
+		"3363": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.city"
+		},
+		"3364": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.country_code"
+		},
+		"3365": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.province"
+		},
+		"3366": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.postal_code"
+		},
+		"3367": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"3368": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3369": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.customer"
+		},
+		"3370": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__function"
+		},
+		"3371": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__function"
+		},
+		"3372": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object"
+		},
+		"3373": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3374": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.company_name"
+		},
+		"3375": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.first_name"
+		},
+		"3376": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.last_name"
+		},
+		"3377": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.email"
+		},
+		"3378": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"3379": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.has_account"
+		},
+		"3380": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3381": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"3382": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.groups"
+		},
+		"3383": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3384": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3385": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.addresses"
+		},
+		"3386": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3387": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3388": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "Customer"
+		},
+		"3389": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object"
+		},
+		"3390": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3391": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.company_name"
+		},
+		"3392": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.first_name"
+		},
+		"3393": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.last_name"
+		},
+		"3394": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.email"
+		},
+		"3395": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"3396": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.has_account"
+		},
+		"3397": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3398": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"3399": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.groups"
+		},
+		"3400": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3401": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3402": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object"
+		},
+		"3403": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3404": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.name"
+		},
+		"3405": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3406": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"3407": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.customers"
+		},
+		"3408": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__function"
+		},
+		"3409": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__function"
+		},
+		"3410": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.addresses"
+		},
+		"3411": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3412": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3413": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object"
+		},
+		"3414": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3415": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.address_name"
+		},
+		"3416": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.is_default_shipping"
+		},
+		"3417": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.is_default_billing"
+		},
+		"3418": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.company"
+		},
+		"3419": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.first_name"
+		},
+		"3420": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.last_name"
+		},
+		"3421": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.address_1"
+		},
+		"3422": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.address_2"
+		},
+		"3423": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.city"
+		},
+		"3424": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.country_code"
+		},
+		"3425": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.province"
+		},
+		"3426": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.postal_code"
+		},
+		"3427": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"3428": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3429": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__object.customer"
+		},
+		"3430": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__function"
+		},
+		"3431": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/address.ts",
+			"qualifiedName": "__function"
+		},
+		"3432": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "CustomerGroup"
+		},
+		"3433": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object"
+		},
+		"3434": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3435": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.name"
+		},
+		"3436": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3437": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"3438": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.customers"
+		},
+		"3439": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__function"
+		},
+		"3440": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__function"
+		},
+		"3441": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object"
+		},
+		"3442": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3443": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.company_name"
+		},
+		"3444": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.first_name"
+		},
+		"3445": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.last_name"
+		},
+		"3446": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.email"
+		},
+		"3447": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"3448": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.has_account"
+		},
+		"3449": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3450": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"3451": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.groups"
+		},
+		"3452": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3453": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3454": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.addresses"
+		},
+		"3455": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3456": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3457": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "CustomerGroupCustomer"
+		},
+		"3458": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__object"
+		},
+		"3459": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3460": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"3461": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3462": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__object.customer"
+		},
+		"3463": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3464": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3465": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object"
+		},
+		"3466": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3467": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.company_name"
+		},
+		"3468": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.first_name"
+		},
+		"3469": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.last_name"
+		},
+		"3470": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.email"
+		},
+		"3471": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"3472": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.has_account"
+		},
+		"3473": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3474": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"3475": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.groups"
+		},
+		"3476": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3477": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3478": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__object.addresses"
+		},
+		"3479": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3480": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3481": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__object.customer_group"
+		},
+		"3482": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3483": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group-customer.ts",
+			"qualifiedName": "__function"
+		},
+		"3484": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object"
+		},
+		"3485": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.id"
+		},
+		"3486": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.name"
+		},
+		"3487": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"3488": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"3489": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__object.customers"
+		},
+		"3490": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__function"
+		},
+		"3491": {
+			"sourceFileName": "../../../../packages/modules/customer/src/models/customer-group.ts",
+			"qualifiedName": "__function"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/customer/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 3351
+		}
+	}
+}

@@ -1,0 +1,247 @@
+export const metadata = {
+  title: `Caching Module Concepts`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn about the main concepts of the [Caching Module](../page.mdx), including cache keys, cache tags, and automatic cache invalidation.
+
+## Cache Keys
+
+Cache keys uniquely identify cached data in the caching service. The Caching Module automatically generates cache keys when you cache data with Query or the Index Module.
+
+### Custom Cache Keys
+
+When you cache custom data with the Caching Module's service, you can generate a cache key using the [computeKey](/references/caching-service#computeKey) method. This method generates a unique key based on the data you want to cache.
+
+For example:
+
+```ts
+const data = { id: "prod_123", title: "Product 123" }
+const key = await cachingModuleService.computeKey(data)
+await cachingModuleService.set({
+  key,
+  tags: ["Product:prod_123", "Product:list:*"],
+  data,
+})
+```
+
+The `computeKey` method takes an object as input and generates a unique key based on its properties.
+
+The generated key is a hash string that uniquely identifies the data. The has doesn't change based on the order of properties in the object.
+
+For example, the following two objects generate the same cache key:
+
+```ts
+const key1 = await cachingModuleService.computeKey({ id: "prod_123", title: "Product 123" })
+const key2 = await cachingModuleService.computeKey({ title: "Product 123", id: "prod_123" })
+
+console.log(key1 === key2) // true
+```
+
+### When to Use Custom Cache Keys?
+
+Use custom cache keys when you're caching custom data with the Caching Module's service. This ensures that the cached data is uniquely identified and can be retrieved or invalidated correctly.
+
+You can also pass a custom key to Query or the Index Module when caching data. This is useful when you want to use the key for custom invalidation or retrieval.
+
+Learn more about passing custom keys in the [Query guide](!docs!/learn/fundamentals/module-links/query#set-cache-key).
+
+---
+
+## Cache Tags
+
+Cache tags are useful for grouping cached data, making it easier to invalidate or retrieve related cached entries.
+
+When you cache data with the Query or Index Module, the Caching Module automatically generates cache tags based on the entity being queried and its retrieved relations.
+
+When you cache custom data with the Caching Module's service, you can pass custom tags to the `set` and `get` methods.
+
+### Caching Tags Convention
+
+The Caching Module generates cache tags in the following format:
+
+- `Entity:id`: Cache tag for a single record of an entity. For example, `Product:prod_123` for caching a single product with the ID `prod_123`.
+- `Entity:list:*`: Cache tag for a list of records of an entity. For example, `Product:list:*` for caching a list of products.
+
+<Note>
+
+`Entity` is the pascal-cased name of the data model, which you pass as the first parameter to `model.define` when defining the model.
+
+</Note>
+
+When you use custom tags, ensure they adhere to the above convention. Otherwise, the Caching Module cannot automatically invalidate your cached data. You'll have to [invalidate](/references/caching-service#clear) the cached data manually.
+
+For example:
+
+```ts
+const key = await cachingModuleService.computeKey(data)
+await cachingModuleService.set({
+  key,
+  tags: ["Product:list:*", "Product:prod_123"],
+  data,
+})
+```
+
+### When to Use Custom Tags?
+
+Use custom tags when you want to group cached data for custom invalidation or retrieval.
+
+Note that if your custom tags do not follow the [Caching Tags Convention](#caching-tags-convention), the Caching Module cannot automatically invalidate your cached data. You must manually [invalidate](/references/caching-service#clear) the cached data when it changes.
+
+---
+
+## Automatic Cache Invalidation
+
+### When is Cache Automatically Invalidated?
+
+The Caching Module automatically invalidates cached data when the underlying data changes through database operations such as create, update, or delete.
+
+For example, if you cache a list of products with the tag `Product:list:*` and a new product is created, the Caching Module automatically invalidates the cached list of products.
+
+This ensures that your application always serves fresh data and avoids serving stale or outdated information.
+
+The following table shows when the Caching Module invalidates cached data based on different database operations:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Database Operation
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Invalidated Cache Tags
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        Create
+      </Table.Cell>
+      <Table.Cell>
+        `Entity:list:*` (`Product:list:*`)
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Update
+      </Table.Cell>
+      <Table.Cell>
+        `Entity:{id}`, `Entity:list:*` if the list includes the updated record. (`Product:prod_123`, `Product:list:*`)
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Delete
+      </Table.Cell>
+      <Table.Cell>
+        `Entity:list:*` (`Product:list:*`)
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+### Which Data is Automatically Invalidated?
+
+The Caching Module automatically invalidates your cached data when:
+
+1. The data includes an `id` field. This is used internally to map the data to the corresponding cache tags.
+    - When retrieving data with Query or the Index Module, ensure the `id` field is included in the `fields` option.
+
+```ts
+const { data: products } = useQueryGraphStep({
+  entity: "product",
+  fields: ["id", "title"], // Ensure 'id' is included, or pass '*'
+  options: {
+    cache: {
+      enable: true,
+    },
+  },
+})
+```
+
+    - When caching custom data with the Caching Module's service, ensure the data object includes an `id` property.
+2. Custom tags follow the [Caching Tags Convention](#caching-tags-convention).
+
+```ts
+const data = { id: "prod_123", title: "Product 123" }
+const key = await cachingModuleService.computeKey(data)
+await cachingModuleService.set({
+  key,
+  tags: ["Product:prod_123", "Product:list:*"],
+  data,
+})
+```
+
+3. The `autoInvalidate` option is not set or is set to `true`. This option is enabled by default.
+
+```ts
+const { data: products } = useQueryGraphStep({
+  entity: "product",
+  fields: ["id", "title"],
+  options: {
+    cache: {
+      enable: true,
+      // This is enabled by default
+      // autoInvalidate: true,
+    },
+  },
+})
+```
+
+### Invalidation of Related Entities
+
+If the cached data includes relations, and the relation is updated, the Caching Module also invalidates the cache tags for the related entity.
+
+For example, consider the following Query usage:
+
+```ts
+const { data: products } = useQueryGraphStep({
+  entity: "product",
+  fields: ["id", "title", "variants.*"],
+  options: {
+    cache: {
+      enable: true,
+    },
+  },
+})
+```
+
+If the product's variant is updated, the Caching Module invalidates the cache tags for both the `Product` and `ProductVariant` entities.
+
+### When to Disable Automatic Invalidation?
+
+Disabling automatic invalidation means the data remains in the cache until it expires (based on the TTL) or is manually invalidated.
+
+Consider disabling automatic invalidation in the following cases:
+
+1. You're caching data that rarely changes, such as a list of countries.
+2. You want to manage cache invalidation manually, such as when caching data as part of a custom workflow where you want to control when the cache is invalidated.
+3. You're caching data that does not belong to a Medusa data model, such as data from an external API or computed values. This data is not automatically invalidated by default.
+
+Disable automatic invalidation by setting the `autoInvalidate` option to `false` when caching data with Query, the Index Module, or the Caching Module's service.
+
+When you disable automatic invalidation, manually [invalidate](/references/caching-service#clear) the cached data when it changes.
+
+---
+
+## Caching Best Practices
+
+### Cache Rarely-Changing Data
+
+Cache data that is read frequently but changes infrequently, such as product information, categories, or static content.
+
+Caching such data can significantly improve performance and reduce database load.
+
+### Do Not Cache Dynamic Data
+
+Avoid caching data that changes frequently or is user-specific, such as shopping cart contents, user sessions, or product pricing. 
+
+Caching such data can lead to inconsistencies and stale information being served to users. It also increases bandwidth and memory usage, as the cache is updated frequently.
+
+### Do Not Cache Frequently Updated Data
+
+Avoid caching data that is updated frequently, such as inventory levels or order statuses.
+
+Caching such data increases the overhead of cache invalidation and may lead to performance degradation.

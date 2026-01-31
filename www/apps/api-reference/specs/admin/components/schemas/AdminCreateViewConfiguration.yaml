@@ -1,0 +1,64 @@
+type: object
+description: The details of a view configuration to create.
+x-schemaName: AdminCreateViewConfiguration
+properties:
+  is_system_default:
+    type: boolean
+    title: is_system_default
+    description: >-
+      Whether the view is the system default. If so, it will be used as the
+      default view for all users that don't have a custom active view set.
+  set_active:
+    type: boolean
+    title: set_active
+    description: Whether the view is set as active.
+  configuration:
+    type: object
+    description: The view's configuration.
+    required:
+      - visible_columns
+      - column_order
+    properties:
+      visible_columns:
+        type: array
+        description: The configuration's visible columns.
+        items:
+          type: string
+          title: visible_columns
+          description: The visible column's name.
+      column_order:
+        type: array
+        description: The columns in the order they should be displayed.
+        items:
+          type: string
+          title: column_order
+          description: The column's name.
+      search:
+        type: string
+        title: search
+        description: The search query used in the view.
+      column_widths:
+        type: object
+        description: The column widths in the view.
+      filters:
+        type: object
+        description: The filters applied to the view.
+      sorting:
+        type: object
+        description: The sorting applied to the view.
+        required:
+          - id
+          - desc
+        properties:
+          id:
+            type: string
+            title: id
+            description: The ID of the sorting column.
+          desc:
+            type: boolean
+            title: desc
+            description: Whether the sorting is descending.
+  name:
+    type: string
+    title: name
+    description: The view's name.

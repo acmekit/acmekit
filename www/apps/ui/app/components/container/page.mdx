@@ -1,0 +1,38 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Container`,
+}
+
+# {metadata.title}
+
+A component that wraps content in a card-like container. The container is useful to create sections in the Medusa Admin dashboard.
+
+In this guide, you'll learn how to use the Container component.
+
+<ComponentExample name="container-demo" />
+
+## Usage
+
+```tsx
+import { Container } from "@medusajs/ui"
+```
+
+```tsx
+<Container>Container</Container>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Container" />
+
+---
+
+## Examples
+
+### In a Layout
+
+<ComponentExample name="container-layout" hideFeedback />

@@ -1,0 +1,59 @@
+import { HookValues } from "@/components/HookValues"
+import { ComponentReference } from "@/components/ComponentReference"
+import { ComponentExample } from "@/components/ComponentExample"
+
+export const metadata = {
+  title: `usePrompt`,
+}
+
+# {metadata.title}
+
+
+
+This hook returns a function that prompts the user to confirm an action.
+
+In this guide, you'll learn how to use the `usePrompt` hook.
+
+<ComponentExample name="use-prompt-demo" />
+
+## Usage
+
+```tsx
+import { usePrompt } from "@medusajs/ui"
+```
+
+```tsx
+const dialog = usePrompt()
+const actionFunction = async () => {
+  const confirmed = await dialog({
+    title: "Are you sure?",
+    description: "Please confirm this action",
+  })
+}
+```
+
+---
+
+## API Reference
+
+### usePrompt Return Value
+
+<HookValues hook="usePromptReturn" />
+
+### Returned Dialog Parameters
+
+The dialog function returned by `usePrompt` accepts an object having the following properties:
+
+<ComponentReference mainComponent="RenderPrompt" />
+
+### Dialog Return Value
+
+The dialog function returns a Promise that resolves to a boolean indicating whether the user confirmed the action.
+
+---
+
+## Examples
+
+### Prompt with Verification Text
+
+<ComponentExample name="use-prompt-verification" hideFeedback />

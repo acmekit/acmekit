@@ -1,0 +1,332 @@
+import { Table } from "docs-ui"
+
+export const metadata = {
+  title: `Medusa and Module Container Resources`,
+}
+
+# {metadata.title}
+
+This reference provides the list of resources registered in the Medusa container and module containers.
+
+## Medusa Container Resources
+
+The following table lists all resources that you can resolve in your customizations outside a module (such as API routes, workflows, subscribers, and scheduled jobs).
+
+<Note>
+
+Refer to the [Medusa Container](!docs!/learn/fundamentals/medusa-container) documentation for more information on how to use these resources.
+
+</Note>
+
+<Note title="Tip">
+
+You can use the `ContainerRegistrationKeys` enum imported from `@medusajs/framework/utils` where specified.
+
+</Note>
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+
+      Resource
+
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+
+      Description
+
+      </Table.HeaderCell>
+
+      <Table.HeaderCell>
+
+      Registration Name
+
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+
+      [Medusa Configurations](!docs!/learn/configurations/medusa-config)
+
+      </Table.Cell>
+      <Table.Cell>
+
+      The configurations defined in `medusa-config.ts`.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `configModule` or `ContainerRegistrationKeys.CONFIG_MODULE`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      [Logger](!docs!/learn/debugging-and-testing/logging)
+
+      </Table.Cell>
+      <Table.Cell>
+
+      Utility to log messages to the terminal.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `logger` or `ContainerRegistrationKeys.LOGGER`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      [Query](!docs!/learn/fundamentals/module-links/query)
+
+      </Table.Cell>
+      <Table.Cell>
+
+      Query to retrieve data across modules.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `query` or `ContainerRegistrationKeys.QUERY`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      [Link](!docs!/learn/fundamentals/module-links/link)
+
+      </Table.Cell>
+      <Table.Cell>
+
+      Manage links between records of two modules' data models.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `link` or `ContainerRegistrationKeys.LINK`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      Knex
+
+      </Table.Cell>
+      <Table.Cell>
+
+      [Knex query builder](https://knexjs.org/) connected to your application's database. Avoid performing database operations with this query builder and instead use [services](!docs!/learn/fundamentals/modules#2-create-service). This is only available for general database connectivity purposes.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `__pg_connection__` or `ContainerRegistrationKeys.PG_CONNECTION`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      Modules' main services
+
+      </Table.Cell>
+      <Table.Cell>
+
+      The main service of every module added in `medusa-config.ts`.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      - For custom modules, the registration name is the first parameter of `Module` exported in the `index.ts` file of the module.
+      - For Medusa's Commerce and Infrastructural Modules, use the `Modules` enum imported from `@medusajs/framework/utils`.
+
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+---
+
+## Module Container Resources
+
+The following table lists all resources that you can resolve in a module's services or loaders.
+
+<Note>
+
+Refer to the [Module Container](!docs!/learn/fundamentals/modules/container) documentation for more information on how to use these resources.
+
+</Note>
+
+<Note>
+
+Use the `ContainerRegistrationKeys` and `Modules` enums imported from `@medusajs/framework/utils` where specified.
+
+</Note>
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+
+      Resource
+
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+
+      Description
+
+      </Table.HeaderCell>
+
+      <Table.HeaderCell>
+
+      Registration Name
+
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+
+      [Logger](!docs!/learn/debugging-and-testing/logging)
+
+      </Table.Cell>
+      <Table.Cell>
+
+      Utility to log messages to the terminal.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `logger` or `ContainerRegistrationKeys.LOGGER`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      Entity Manager
+
+      </Table.Cell>
+      <Table.Cell>
+
+      An instance of [MikroORM's entity manager](https://mikro-orm.io/api/knex/class/EntityManager).
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `manager` or `ContainerRegistrationKeys.MANAGER`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      [Base Repository](!docs!/learn/fundamentals/modules/db-operations#configure-transactions-with-the-base-repository)
+
+      </Table.Cell>
+      <Table.Cell>
+
+      An instance of the base repository, used to run transactions and perform database operations.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `baseRepository`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      [Medusa Configurations](!docs!/learn/configurations/medusa-config)
+
+      </Table.Cell>
+      <Table.Cell>
+
+      The configurations defined in `medusa-config.ts`.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `configModule` or `ContainerRegistrationKeys.CONFIG_MODULE`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      [Event Module](../infrastructure-modules/event/page.mdx)'s service
+
+      </Table.Cell>
+      <Table.Cell>
+
+      The service of the Event Module, used to emit events.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `event_bus` or `Modules.EVENT_MODULE`
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      Services generated by the [service factory](../service-factory-reference/page.mdx)
+
+      </Table.Cell>
+      <Table.Cell>
+
+      The service of every data model passed to the `MedusaService` function that your module's service extends. The service has the methods described in the [service factory reference](../service-factory-reference/page.mdx).
+
+      </Table.Cell>
+      <Table.Cell>
+
+      Each service is registered as the camel-cased name of the data model. For example:
+
+      - `Brand` data model's service is registered as `brandService`.
+      - `DigitalProduct` data model's service is registered as `digitalProductService`.
+
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row>
+      <Table.Cell>
+
+      Module services
+
+      </Table.Cell>
+      <Table.Cell>
+
+      You can resolve the module's services from one another, but not in loaders. Learn more in the [Module Container](!docs!/learn/fundamentals/modules/container) documentation.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      Each service is registered as the camel-cased name of the service. For example:
+
+      - `BrandModuleService` is registered as `brandModuleService`.
+      - `CmsService` is registered as `cmsService`.
+
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>

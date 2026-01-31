@@ -1,0 +1,64 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Radio Group`,
+}
+
+# {metadata.title}
+
+A component that renders a group of radio buttons using Medusa's design system.
+
+In this guide, you'll learn how to use the Radio Group component.
+
+<ComponentExample name="radio-group-demo" />
+
+## Usage
+
+```tsx
+import { RadioGroup } from "@medusajs/ui"
+```
+
+```tsx
+<RadioGroup>
+  <RadioGroup.Item value="1" id="radio_1" />
+  <RadioGroup.Item value="2" id="radio_2" />
+  <RadioGroup.Item value="3" id="radio_3" />
+</RadioGroup>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="RadioGroup" />
+
+---
+
+## Examples
+
+### Radio Group with Descriptions
+
+<ComponentExample name="radio-group-descriptions" />
+
+### Controlled Radio Group
+
+<ComponentExample name="radio-group-controlled" />
+
+### Radio Group with a Disabled Item
+
+<ComponentExample name="radio-group-disabled" />
+
+---
+
+## Radio Choice Box
+
+The `RadioGroup.ChoiceBox` component allows you to show a group of radio buttons, each in a box with a label and description.
+
+<ComponentExample name="radio-group-choicebox" />
+
+### Choice Box API Reference
+
+<ComponentReference mainComponent="RadioGroup" componentsToShow={[
+  "RadioGroup.ChoiceBox"
+]} hideFeedback />

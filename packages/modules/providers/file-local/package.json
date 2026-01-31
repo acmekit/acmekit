@@ -1,0 +1,38 @@
+{
+  "name": "@acmekit/file-local",
+  "version": "2.13.2",
+  "description": "Local filesystem file storage for AcmeKit",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/modules/providers/file-local"
+  },
+  "files": [
+    "dist",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "AcmeKit",
+  "license": "MIT",
+  "scripts": {
+    "test": "../../../../node_modules/.bin/jest --passWithNoTests src",
+    "test:integration": "../../../../node_modules/.bin/jest --passWithNoTests --forceExit --testPathPattern=\"integration-tests/__tests__/[^/]*\\.spec\\.ts\"",
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build ./tsconfig.json",
+    "watch": "yarn run -T tsc --watch"
+  },
+  "devDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "peerDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "keywords": [
+    "acmekit-plugin",
+    "acmekit-plugin-file"
+  ]
+}

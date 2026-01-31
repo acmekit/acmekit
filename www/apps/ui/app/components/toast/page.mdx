@@ -1,0 +1,119 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Toaster and Toast Messages`,
+}
+
+# {metadata.title}
+
+
+A component and utility for displaying brief messages to users, typically used for notifications or alerts. Toast messages appear momentarily on top of the application UI.
+
+You can display multiple toast messages at once, and they will be stacked neatly.
+
+In this guide, you'll learn how to use the Toaster component.
+
+<ComponentExample name="toaster-demo" />
+
+## Usage
+
+First, import the `toast` utility and `Toaster` component from `@medusajs/ui`:
+
+```tsx
+import { Toaster, toast } from "@medusajs/ui"
+```
+
+Then, add the `Toaster` component somewhere in your tree hierarchy. For example, in your main application layout:
+
+```tsx highlights={[["6"]]}
+export default function AppLayout({ children }) {
+  return (
+    <html>
+      <body>
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  )
+}
+```
+
+Finally, use the `toast` utility in your components to display a toast message:
+
+```tsx highlights={[["5", "info", "Display an informational message"]]}
+export default function MyComponent() {
+  return (
+    <Button 
+      onClick={() => 
+        toast.info("Toast title", {
+          description: "Toast body",
+        })
+      }
+    >
+      Trigger
+    </Button>
+  )
+}
+```
+
+---
+
+## API Reference
+
+### Toast Utility Functions
+
+The `toast` utility has the following functions to display different variants of toast messages:
+
+- `info`: Display a toast message with an informational style.
+- `error`: Display a toast message with an error style.
+- `success`: Display a toast message with a success style.
+- `warning`: Display a toast message with a warning style.
+- `loading`: Display a toast message with a loading style.
+
+Each of these functions accept two parameters:
+
+1. A string indicating the title of the toast.
+2. An object of [Toast component props](#toast-props).
+
+### Toast Props
+
+<ComponentReference mainComponent="Toast" />
+
+### Toaster Props
+
+<ComponentReference mainComponent="Toaster" />
+
+---
+
+## Examples
+
+### Toast Variants
+
+<Note>
+
+The following example assumes you already have the `Toaster` component in [your application's tree](#usage).
+
+</Note>
+
+<ComponentExample name="toaster-all-variants" />
+
+### Dismissable Toast
+
+<Note>
+
+The following example assumes you already have the `Toaster` component in [your application's tree](#usage).
+
+</Note>
+
+<ComponentExample name="toaster-dismiss" />
+
+### Toast with Action
+
+<Note>
+
+The following example assumes you already have the `Toaster` component in [your application's tree](#usage).
+
+</Note>
+
+<ComponentExample name="toaster-with-action" hideFeedback />

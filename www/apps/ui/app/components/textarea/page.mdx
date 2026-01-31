@@ -1,0 +1,42 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Textarea`,
+}
+
+# {metadata.title}
+
+A component that displays a textarea field using Medusa's design system.
+
+In this guide, you'll learn how to use the Textarea component.
+
+<ComponentExample name="textarea-demo" />
+
+## Usage
+
+```tsx
+import { Textarea } from "@medusajs/ui"
+```
+
+```tsx
+<Textarea />
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Textarea" />
+
+---
+
+## Examples
+
+### Controlled Textarea
+
+<ComponentExample name="textarea-controlled" />
+
+### Disabled Textarea
+
+<ComponentExample name="textarea-disabled" hideFeedback />

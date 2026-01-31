@@ -1,0 +1,19 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["!node_modules/**", "!src/**", "*/**"]
+    },
+    "test": {
+      "outputs": []
+    },
+    "test:integration": {
+      "outputs": []
+    },
+    "test:integration:chunk": {
+      "outputs": []
+    }
+  },
+  "globalDependencies": ["turbo.json"]
+}

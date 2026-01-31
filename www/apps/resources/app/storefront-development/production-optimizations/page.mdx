@@ -1,0 +1,1217 @@
+---
+tags:
+  - storefront
+---
+
+import { Table, CodeTabs } from "docs-ui"
+
+export const metadata = {
+  title: `Storefront Production Optimization Tips`,
+}
+
+# {metadata.title}
+
+In this guide, you’ll find tips useful when optimizing a storefront for production.
+
+## Summary
+
+When building a storefront, you want to ensure that it loads quickly and efficiently for your users. You can achieve this by implementing many optimizations, including:
+
+1. [Implement appropriate rendering strategies](#choose-the-right-rendering-strategy).
+2. [Use fetching libraries optimized for performance and caching like TanStack Query](#use-tanstack-query).
+3. [Optimize queries to fetch only the necessary data](#optimize-fetched-data).
+4. [Implement optimistic UI updates for cart operations](#implement-optimistic-ui-updates).
+
+This guide explains how to implement these optimizations. You can follow it regardless of the frontend framework you use.
+
+<Note>
+
+There are other important optimizations like lazy-loading images, code-splitting, and using CDNs. These optimizations depend on the frontend framework you use and your setup. This guide focuses on Medusa-specific optimizations in your storefront.
+
+</Note>
+
+---
+
+## Choose the Right Rendering Strategy
+
+A rendering strategy defines how your frontend framework renders pages. The most common strategies are:
+
+1. **Server-Side Rendering (SSR)**: Pages are rendered on the server for each request. Ideal for dynamic content that changes frequently.
+2. **Static Site Generation (SSG)**: Pages are pre-rendered at build time. Best suited for content that doesn't change often.
+3. **Incremental Static Regeneration (ISR)**: A hybrid approach where pages are pre-rendered at build time but can be updated at runtime. Perfect for content that changes occasionally.
+4. **Client-Side Rendering (CSR)**: Pages are rendered in the browser using JavaScript. Optimal for highly interactive applications.
+
+For your storefront, we recommend using different strategies for different pages:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Page Type
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Recommended Strategy
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        Homepage
+      </Table.Cell>
+      <Table.Cell>
+        SSG above the fold, CSR below the fold. For example, render the hero section at build time and load product recommendations client-side.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Product Listing Page (PLP)
+      </Table.Cell>
+      <Table.Cell>
+        ISR or CSR.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Product Detail Page (PDP)
+      </Table.Cell>
+      <Table.Cell>
+        SSG for product content that doesn't change often, such as descriptions and images. Use CSR for dynamic content like stock availability and prices.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Cart and Checkout Pages
+      </Table.Cell>
+      <Table.Cell>
+        CSR.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Blog or Content Pages (About Us, Privacy Policy, etc...)
+      </Table.Cell>
+      <Table.Cell>
+        SSG or ISR.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        User Account Pages
+      </Table.Cell>
+      <Table.Cell>
+        CSR.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+How you implement these strategies depends on the frontend framework you use. Refer to the documentation of your framework for guidance.
+
+---
+
+## Use TanStack Query
+
+When fetching data from your Medusa backend, consider using a fetching library optimized for performance and caching. There are many options available, but one of the most popular is [TanStack Query](https://tanstack.com/query/latest).
+
+TanStack Query is a powerful data-fetching library that provides features like caching, background updates, and optimistic updates.
+
+By using TanStack Query, you can significantly improve your storefront's performance by reducing the number of network requests and ensuring that your UI is always up-to-date.
+
+Learn how to get started with TanStack Query in their [official documentation](https://tanstack.com/query/latest/docs/framework/react/installation). Their documentation also has guidance on advanced usage and best practices.
+
+### Stale Time Configuration
+
+When configuring TanStack Query, you can set the `staleTime` option to control how long data is considered fresh. However, avoid setting `staleTime` for highly dynamic data like product prices and stock levels.
+
+Set the `staleTime` globally, then override it to `0` for specific queries that fetch dynamic data.
+
+For example:
+
+```ts
+// queryClient.ts
+import { QueryClient } from "@tanstack/react-query"
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+  },
+})
+
+export default queryClient
+
+// product.ts
+// Used in components that are children of QueryClientProvider
+import { useQuery } from "@tanstack/react-query"
+import { sdk } from "../lib/sdk"
+
+export const useProduct = (id: string) => {
+  return useQuery(["product", id], async () => {
+    const response = await sdk.store.products.retrieve(id)
+    return response.data
+  })
+}
+
+export const useProductPrice = (id: string) => {
+  return useQuery(
+    ["product-price", id],
+    async () => {
+      const response = await sdk.store.products.retrieve(id, {
+        fields: "*variants.calculated_price",
+      })
+      return response.data.variants[0].price
+    },
+    {
+      staleTime: 0, // Always fetch fresh data
+    }
+  )
+}
+```
+
+### Invalidate Queries
+
+When performing mutations that change cached data, invalidate the relevant queries to ensure that the UI reflects the latest data.
+
+For example, when adding an item to the cart, you should invalidate the cart query:
+
+```ts
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { sdk } from "../lib/sdk"
+
+export const useAddToCart = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation(
+    async (item) => {
+      await sdk.store.cart.createLineItem("cart_id", item)
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["cart"])
+      },
+    }
+  )
+}
+```
+
+---
+
+## Optimize Fetched Data
+
+When fetching data from your Medusa backend, optimize your queries to fetch only the necessary data in the context of a component or page. This reduces the response size and time, improving your storefront's performance.
+
+Medusa's API routes accept a `fields` parameter that allows you to specify which fields and relations to include in the response.
+
+For example, if you only need the product's `id`, `title`, and `variants.calculated_price`, you can specify this in the `fields` parameter:
+
+```ts
+const response = await sdk.store.products.retrieve("product_id", {
+  fields: "*variants.calculated_price, id, title",
+})
+```
+
+This query will return only the specified fields, reducing the response size and improving performance.
+
+If you're using TanStack Query, make sure to include the `fields` parameter in the query key to ensure that different field selections are cached separately:
+
+```ts
+const useProduct = (id: string, fields?: string) => {
+  return useQuery({
+    queryKey: ["product", id, fields],
+    queryFn: async () => {
+      const response = await sdk.store.products.retrieve(id, { fields })
+      return response.data
+    },
+  })
+}
+```
+
+Learn more about the `fields` parameter in the [Store API reference](!api!/store#select-fields-and-relations).
+
+---
+
+## Implement Optimistic UI Updates
+
+When performing mutations that may take some time, you can implement optimistic UI updates to provide a better user experience. This means updating the UI immediately, assuming the mutation will succeed, then rolling back if it fails.
+
+For example, if you're using TanStack Query, you can implement the following optimistic cart-update utilities and then use them in cart mutations:
+
+<Note forceMultiline>
+
+The following code snippets are not complete implementations. They are simplified for clarity. They assume that:
+
+- You defined separate cart data functions that use the [JS SDK](../../js-sdk/page.mdx) to call the Medusa backend.
+- You have a `query-keys.ts` utility that defines consistent query keys for TanStack Query.
+
+You can make changes as needed based on your implementation.
+
+</Note>
+
+<CodeTabs>
+  <CodeTab label="optimistic-cart.ts" value="optimistic-cart.ts">
+
+```ts title="optimistic-cart.ts" collapsibleLines="60-383" expandButtonLabel="Show all code"
+import { HttpTypes } from "@medusajs/types"
+import { QueryClient } from "@tanstack/react-query"
+import { queryKeys } from "@/lib/utils/common/query-keys"
+
+/**
+ * Utility functions for optimistic cart updates
+ */
+
+export interface OptimisticCartItem {
+  id: string;
+  variant_id: string;
+  quantity: number;
+  title: string;
+  thumbnail?: string | null;
+  product_title?: string;
+  variant_title?: string;
+  product?: {
+    id: string;
+    title: string;
+  };
+  variant?: {
+    id: string;
+    title: string;
+  };
+  unit_price: number;
+  total: number;
+  isOptimistic?: boolean;
+}
+
+export interface OptimisticCart extends HttpTypes.StoreCart {
+  isOptimistic?: boolean;
+}
+
+/**
+ * Creates an optimistic cart item for immediate UI updates during add to cart operations.
+ * Generates a temporary item with calculated pricing before the server response.
+ * 
+ * @param variant - The product variant being added to cart
+ * @param product - The product object containing title and thumbnail
+ * @param quantity - The quantity to add (defaults to 1)
+ * @returns Optimistic cart item with temporary ID and calculated totals
+ * 
+ * @example
+ * ```typescript
+ * const optimisticItem = createOptimisticCartItem(variant, product, 2);
+ * // Returns item with temporary ID and calculated price for immediate UI update
+ * ```
+ */
+export const createOptimisticCartItem = (
+  variant: HttpTypes.StoreProductVariant,
+  product: HttpTypes.StoreProduct,
+  quantity: number = 1
+): OptimisticCartItem => {
+  const unitPrice = variant.calculated_price?.calculated_amount || 0
+  
+  return {
+    id: `optimistic-${variant.id}-${Date.now()}`, // Temporary ID
+    variant_id: variant.id,
+    quantity,
+    title: product.title,
+    thumbnail: product.thumbnail,
+    product: {
+      id: product.id,
+      title: product.title,
+    },
+    product_title: product.title,
+    variant: {
+      id: variant.id,
+      title: variant.title || "Default Variant",
+    },
+    variant_title: variant.title || "Default Variant",
+    unit_price: unitPrice,
+    total: unitPrice * quantity,
+    isOptimistic: true,
+  }
+}
+
+/**
+ * Adds an item to the cart optimistically by updating the query cache immediately.
+ * This provides instant UI feedback while the actual API call is in progress.
+ * 
+ * @param queryClient - TanStack Query client for cache management
+ * @param newItem - The optimistic cart item to add
+ * @param fields - Optional fields parameter for query key
+ * @returns Updated cart object or null if no current cart exists
+ * 
+ * @example
+ * ```typescript
+ * const updatedCart = addItemOptimistically(queryClient, optimisticItem);
+ * if (updatedCart) {
+ *   // UI immediately shows the new item
+ *   // Real API call happens in background
+ * }
+ * ```
+ */
+export const addItemOptimistically = (
+  queryClient: QueryClient,
+  newItem: OptimisticCartItem,
+  optimisticCart?: OptimisticCart,
+  fields?: string
+): HttpTypes.StoreCart | null => {
+  const currentCart = optimisticCart || queryClient.getQueryData<HttpTypes.StoreCart | null>(
+    queryKeys.cart.current(fields)
+  )
+
+  if (!currentCart) {
+    // If no cart exists, we can't add optimistically
+    // The mutation will handle creating a new cart
+    return null
+  }
+
+  // Check if item already exists in cart
+  const existingItemIndex = currentCart.items?.findIndex(
+    (item) => item.variant_id === newItem.variant_id
+  )
+
+  let updatedItems: HttpTypes.StoreCartLineItem[]
+
+  if (existingItemIndex !== undefined && existingItemIndex >= 0) {
+    // Update existing item quantity
+    updatedItems = [...(currentCart.items || [])]
+    const existingItem = updatedItems[existingItemIndex]
+    updatedItems[existingItemIndex] = {
+      ...existingItem,
+      quantity: existingItem.quantity + newItem.quantity,
+      total: (existingItem.unit_price || 0) * (existingItem.quantity + newItem.quantity),
+    }
+  } else {
+    // Add new item - cast to StoreCartLineItem for compatibility
+    const optimisticLineItem = {
+      ...newItem,
+      cart_id: currentCart.id,
+      cart: currentCart,
+      item_total: newItem.total,
+      item_subtotal: newItem.total,
+      item_tax_total: 0,
+      original_total: newItem.total,
+      original_tax_total: 0,
+      original_subtotal: newItem.total,
+      discount_total: 0,
+      discount_tax_total: 0,
+      gift_card_total: 0,
+      subtotal: newItem.total,
+      tax_total: 0,
+      total: newItem.total,
+      created_at: new Date(),
+      updated_at: new Date(),
+      metadata: {},
+      adjustments: [],
+      tax_lines: [],
+      unit_tax_amount: 0,
+      requires_shipping: true,
+      is_discountable: true,
+      is_tax_inclusive: false,
+    } as HttpTypes.StoreCartLineItem
+    
+    updatedItems = [...(currentCart.items || []), optimisticLineItem]
+  }
+
+  const newItemSubtotal = updatedItems.reduce((sum, item) => sum + (item.total || 0), 0)
+
+  const newOptimisticCart: OptimisticCart = {
+    ...currentCart,
+    items: updatedItems,
+    item_subtotal: newItemSubtotal,
+    isOptimistic: true,
+  }
+
+  // Update the cache optimistically
+  queryClient.setQueryData(queryKeys.cart.current(fields), newOptimisticCart)
+
+  return newOptimisticCart
+}
+
+/**
+ * Updates a cart line item quantity optimistically in the query cache.
+ * Provides immediate UI feedback for quantity changes.
+ * 
+ * @param queryClient - TanStack Query client for cache management
+ * @param lineId - The ID of the line item to update
+ * @param quantity - The new quantity for the line item
+ * @param fields - Optional fields parameter for query key
+ * @returns Updated cart object or null if no current cart exists
+ * 
+ * @example
+ * ```typescript
+ * const updatedCart = updateLineItemOptimistically(queryClient, "line_123", 3);
+ * if (updatedCart) {
+ *   // UI immediately shows updated quantity and totals
+ * }
+ * ```
+ */
+export const updateLineItemOptimistically = (
+  queryClient: QueryClient,
+  lineId: string,
+  quantity: number,
+  fields?: string
+): HttpTypes.StoreCart | null => {
+  const currentCart = queryClient.getQueryData<HttpTypes.StoreCart | null>(
+    queryKeys.cart.current(fields)
+  )
+
+  if (!currentCart) {
+    return null
+  }
+
+  const updatedItems = (currentCart.items || []).map((item) => {
+    if (item.id === lineId) {
+      return {
+        ...item,
+        quantity,
+        total: (item.unit_price || 0) * quantity,
+        original_total: (item.unit_price || 0) * quantity,
+      }
+    }
+    return item
+  })
+
+  const optimisticCart: OptimisticCart = {
+    ...currentCart,
+    items: updatedItems,
+    item_subtotal: updatedItems.reduce((sum, item) => sum + (item.total || 0), 0),
+    isOptimistic: true,
+  }
+
+  queryClient.setQueryData(queryKeys.cart.current(fields), optimisticCart)
+
+  return optimisticCart
+}
+
+/**
+ * Removes a cart line item optimistically from the query cache.
+ * Provides immediate UI feedback for item removal.
+ * 
+ * @param queryClient - TanStack Query client for cache management
+ * @param lineId - The ID of the line item to remove
+ * @param fields - Optional fields parameter for query key
+ * @returns Updated cart object or null if no current cart exists
+ * 
+ * @example
+ * ```typescript
+ * const updatedCart = removeLineItemOptimistically(queryClient, "line_123");
+ * if (updatedCart) {
+ *   // UI immediately shows item removed and updated totals
+ * }
+ * ```
+ */
+export const removeLineItemOptimistically = (
+  queryClient: QueryClient,
+  lineId: string,
+  fields?: string
+): HttpTypes.StoreCart | null => {
+  const currentCart = queryClient.getQueryData<HttpTypes.StoreCart | null>(
+    queryKeys.cart.current(fields)
+  )
+
+  if (!currentCart) {
+    return null
+  }
+
+  const updatedItems = (currentCart.items || []).filter((item) => item.id !== lineId)
+
+  const optimisticCart: OptimisticCart = {
+    ...currentCart,
+    items: updatedItems,
+    item_subtotal: updatedItems.reduce((sum, item) => sum + (item.total || 0), 0),
+    isOptimistic: true,
+  }
+
+  queryClient.setQueryData(queryKeys.cart.current(fields), optimisticCart)
+
+  return optimisticCart
+}
+
+/**
+ * Rolls back optimistic cart changes when an API call fails.
+ * Restores the cart to its previous state before the optimistic update.
+ * 
+ * @param queryClient - TanStack Query client for cache management
+ * @param previousCart - The cart state to restore to
+ * @param fields - Optional fields parameter for query key
+ * 
+ * @example
+ * ```typescript
+ * try {
+ *   await addToCart(variant);
+ * } catch (error) {
+ *   // Rollback optimistic changes on error
+ *   rollbackOptimisticCart(queryClient, previousCart);
+ *   showErrorMessage("Failed to add item to cart");
+ * }
+ * ```
+ */
+export const rollbackOptimisticCart = (
+  queryClient: QueryClient,
+  previousCart: HttpTypes.StoreCart | null,
+  fields?: string
+) => {
+  queryClient.setQueryData(queryKeys.cart.current(fields), previousCart)
+}
+
+/**
+ * Creates an optimistic cart for immediate UI updates during cart creation operations.
+ * Generates a temporary cart with basic structure before the server response.
+ * 
+ * @param region_id - The region ID for the cart
+ * @param fields - Optional fields parameter for query key
+ * @returns Optimistic cart with temporary ID and basic structure
+ * 
+ * @example
+ * ```typescript
+ * const optimisticCart = createOptimisticCart('reg_us');
+ * // Returns cart with temporary ID for immediate UI update
+ * ```
+ */
+export const createOptimisticCart = (region: HttpTypes.StoreRegion): OptimisticCart => {
+  const tempId = `optimistic-cart-${Date.now()}`
+  
+  return {
+    id: tempId,
+    region_id: region.id,
+    items: [],
+    item_subtotal: 0,
+    item_tax_total: 0,
+    item_total: 0,
+    original_item_total: 0,
+    original_item_tax_total: 0,
+    original_item_subtotal: 0,
+    original_total: 0,
+    original_tax_total: 0,
+    original_subtotal: 0,
+    subtotal: 0,
+    tax_total: 0,
+    total: 0,
+    discount_total: 0,
+    discount_tax_total: 0,
+    gift_card_total: 0,
+    gift_card_tax_total: 0,
+    shipping_total: 0,
+    shipping_tax_total: 0,
+    shipping_subtotal: 0,
+    original_shipping_total: 0,
+    original_shipping_subtotal: 0,
+    original_shipping_tax_total: 0,
+    shipping_address: undefined,
+    billing_address: undefined,
+    shipping_methods: [],
+    payment_collection: undefined,
+    region: undefined,
+    customer_id: undefined,
+    sales_channel_id: undefined,
+    promotions: [],
+    currency_code: region.currency_code,
+    metadata: {},
+    created_at: new Date(),
+    updated_at: new Date(),
+    isOptimistic: true,
+  }
+}
+
+/**
+ * Gets the current cart state from the query cache.
+ * First tries to get the cart with specific fields, then falls back to any cart query.
+ * 
+ * @param queryClient - TanStack Query client for cache management
+ * @param fields - Optional fields parameter for query key
+ * @returns Current cart object or null if no cart found in cache
+ * 
+ * @example
+ * ```typescript
+ * const currentCart = getCurrentCart(queryClient);
+ * if (currentCart) {
+ *   // Use current cart state
+ *   console.log(`Cart has ${currentCart.items?.length} items`);
+ * }
+ * ```
+ */
+export const getCurrentCart = (queryClient: QueryClient, fields?: string): HttpTypes.StoreCart | null => {
+  return queryClient.getQueryData<HttpTypes.StoreCart | null>(queryKeys.cart.current(fields)) || 
+    queryClient.getQueriesData<HttpTypes.StoreCart | null>({
+      predicate: queryKeys.cart.predicate,
+    })[0]?.[1] || null
+}
+```
+
+  </CodeTab>
+  <CodeTab label="use-cart.ts" value="use-cart.ts">
+
+```ts title="use-cart.ts" collapsibleLines="60-567" expandButtonLabel="Show all code"
+import {
+  addToCart,
+  applyPromoCode,
+  createCart,
+  deleteLineItem,
+  removePromoCode,
+  retrieveCart,
+  updateCart,
+  updateLineItem,
+} from "@/lib/data/cart"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { queryKeys } from "@/lib/utils/common/query-keys"
+import {
+  addItemOptimistically,
+  createOptimisticCartItem,
+  getCurrentCart,
+  rollbackOptimisticCart,
+  updateLineItemOptimistically,
+  removeLineItemOptimistically,
+  createOptimisticCart,
+} from "@/lib/utils/cart/optimistic-cart"
+import { HttpTypes } from "@medusajs/types"
+
+/**
+ * React hook to fetch the current cart with optimistic updates and caching.
+ * Uses Tanstack Query with no stale time to ensure fresh data.
+ * 
+ * @param fields - Optional fields to include in the cart response
+ * @returns Tanstack Query result object with cart data, loading, and error states
+ * 
+ * @example
+ * ```typescript
+ * // Basic usage
+ * const { data: cart, isLoading, error } = useCart();
+ * 
+ * // With specific fields
+ * const { data: cart } = useCart({ 
+ *   fields: '*items, *items.variant, *items.variant.product, shipping_methods'
+ * });
+ * 
+ * // In a component
+ * function CartSummary() {
+ *   const { data: cart, isLoading } = useCart();
+ *   
+ *   if (isLoading) return <div>Loading cart...</div>;
+ *   if (!cart) return <div>No cart found</div>;
+ *   
+ *   return (
+ *     <div>
+ *       <h2>Cart ({cart.items.length} items)</h2>
+ *       <p>Total: {cart.total}</p>
+ *     </div>
+ *   );
+ * }
+ * ```
+ */
+export const useCart = ({ fields }: { fields?: string } = {}) => {
+  return useQuery({
+    queryKey: queryKeys.cart.current(fields),
+    queryFn: () => retrieveCart({ fields }),
+    staleTime: 0,
+  })
+}
+
+/**
+ * React hook to update the cart with automatic cache invalidation.
+ * Uses Tanstack Query's useMutation for handling cart updates.
+ * 
+ * @returns Tanstack Query mutation object with mutate function and state
+ * 
+ * @example
+ * ```typescript
+ * // Basic usage
+ * const updateCartMutation = useUpdateCart();
+ * 
+ * // Usage in component
+ * function UpdateCartButton() {
+ *   const updateCartMutation = useUpdateCart();
+ *   
+ *   const handleUpdateCart = () => {
+ *     updateCartMutation.mutate({
+ *       region_id: 'reg_us'
+ *     }, {
+ *       onSuccess: (cart) => {
+ *         console.log('Cart updated:', cart);
+ *       },
+ *       onError: (error) => {
+ *         console.error('Failed to update cart:', error);
+ *       }
+ *     });
+ *   };
+ *   
+ *   return (
+ *     <button 
+ *       onClick={handleUpdateCart}
+ *       disabled={updateCartMutation.isPending}
+ *     >
+ *       {updateCartMutation.isPending ? 'Updating...' : 'Update Cart'}
+ *     </button>
+ *   );
+ * }
+ * ```
+ */
+export const useUpdateCart = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: updateCart,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ predicate: queryKeys.cart.predicate })
+    },
+  })
+}
+
+/**
+ * React hook to create a new cart with automatic cache invalidation.
+ * Uses Tanstack Query's useMutation for handling cart creation.
+ * 
+ * @returns Tanstack Query mutation object with mutate function and state
+ * 
+ * @example
+ * ```typescript
+ * // Basic usage
+ * const createCartMutation = useCreateCart();
+ * 
+ * // Usage in component
+ * function CreateCartButton() {
+ *   const createCartMutation = useCreateCart();
+ *   
+ *   const handleCreateCart = () => {
+ *     createCartMutation.mutate(
+ *       { region_id: 'reg_us' },
+ *       {
+ *         onSuccess: (cart) => {
+ *           console.log('Cart created:', cart.id);
+ *           // Redirect to cart page
+ *         },
+ *         onError: (error) => {
+ *           console.error('Failed to create cart:', error);
+ *         }
+ *       }
+ *     );
+ *   };
+ *   
+ *   return (
+ *     <button 
+ *       onClick={handleCreateCart}
+ *       disabled={createCartMutation.isPending}
+ *     >
+ *       {createCartMutation.isPending ? 'Creating...' : 'Create Cart'}
+ *     </button>
+ *   );
+ * }
+ * ```
+ */
+export const useCreateCart = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: createCart,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ predicate: queryKeys.cart.predicate })
+    },
+  })
+}
+
+/**
+ * React hook to add items to cart with optimistic updates.
+ * Provides immediate UI feedback while the request is in progress.
+ * 
+ * @param fields - Optional fields to include in the cart response
+ * @returns Tanstack Query mutation object with mutate function and state
+ * 
+ * @example
+ * ```typescript
+ * // Basic usage
+ * const addToCartMutation = useAddToCart();
+ * 
+ * // Usage in component
+ * function AddToCartButton({ variant, product }) {
+ *   const addToCartMutation = useAddToCart();
+ *   
+ *   const handleAddToCart = () => {
+ *     addToCartMutation.mutate({
+ *       variant_id: variant.id,
+ *       quantity: 1,
+ *       country_code: 'us',
+ *       product,
+ *       variant
+ *     }, {
+ *       onSuccess: (cart) => {
+ *         console.log('Added to cart:', cart);
+ *         // Show success message
+ *       },
+ *       onError: (error) => {
+ *         console.error('Failed to add to cart:', error);
+ *         // Show error message
+ *       }
+ *     });
+ *   };
+ *   
+ *   return (
+ *     <button 
+ *       onClick={handleAddToCart}
+ *       disabled={addToCartMutation.isPending}
+ *     >
+ *       {addToCartMutation.isPending ? 'Adding...' : 'Add to Cart'}
+ *     </button>
+ *   );
+ * }
+ * 
+ * // With custom fields
+ * const addToCartWithFields = useAddToCart({ 
+ *   fields: '*items, *items.variant, shipping_methods'
+ * });
+ * ```
+ */
+export const useAddToCart = ({ fields }: { fields?: string } = {}) => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: (variables) => addToCart({ ...variables, fields }),
+    onMutate: async (variables: {
+      variant_id: string;
+      quantity: number;
+      country_code: string;
+      product?: HttpTypes.StoreProduct;
+      variant?: HttpTypes.StoreProductVariant;
+      region?: HttpTypes.StoreRegion;
+    }) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({ predicate: queryKeys.cart.predicate })
+
+      // Snapshot the previous value
+      let previousCart = getCurrentCart(queryClient, fields)
+      let didCartExist = true
+
+      if (!previousCart && variables.region) {
+        previousCart = createOptimisticCart(variables.region)
+        didCartExist = false
+      }
+
+      // If we have a cart and product/variant data, we can add optimistically
+      if (previousCart && variables.product !== undefined && variables.variant !== undefined) {
+        const optimisticItem = createOptimisticCartItem(
+          variables.variant,
+          variables.product,
+          variables.quantity
+        )
+
+        addItemOptimistically(queryClient, optimisticItem, previousCart, fields)
+      }
+
+      // Return a context object with the snapshotted value
+      return { previousCart: didCartExist ? previousCart : undefined }
+    },
+    onError: (err, variables, context) => {
+      // If the mutation fails, use the context returned from onMutate to roll back
+      if (context?.previousCart) {
+        rollbackOptimisticCart(queryClient, context.previousCart, fields)
+      }
+    },
+    onSettled: (data) => {
+      // Always refetch after error or success to ensure we have the latest data
+      queryClient.invalidateQueries({ predicate: 
+        (query) => queryKeys.cart.predicate(query, fields && data ? [fields] : undefined),
+      })
+      if (data) {
+        queryClient.setQueryData(queryKeys.cart.current(fields), data)
+      }
+    },
+  })
+}
+
+/**
+ * React hook to update line item quantities with optimistic updates.
+ * Provides immediate UI feedback while the request is in progress.
+ * 
+ * @param fields - Optional fields to include in the cart response
+ * @returns Tanstack Query mutation object with mutate function and state
+ * 
+ * @example
+ * ```typescript
+ * // Basic usage
+ * const updateLineItemMutation = useUpdateLineItem();
+ * 
+ * // Usage in component
+ * function QuantitySelector({ lineItem }) {
+ *   const updateLineItemMutation = useUpdateLineItem();
+ *   
+ *   const handleQuantityChange = (newQuantity: number) => {
+ *     updateLineItemMutation.mutate({
+ *       line_id: lineItem.id,
+ *       quantity: newQuantity
+ *     }, {
+ *       onSuccess: (cart) => {
+ *         console.log('Quantity updated:', cart);
+ *       },
+ *       onError: (error) => {
+ *         console.error('Failed to update quantity:', error);
+ *       }
+ *     });
+ *   };
+ *   
+ *   return (
+ *     <select 
+ *       value={lineItem.quantity}
+ *       onChange={(e) => handleQuantityChange(Number(e.target.value))}
+ *       disabled={updateLineItemMutation.isPending}
+ *     >
+ *       {[1, 2, 3, 4, 5].map(num => (
+ *         <option key={num} value={num}>{num}</option>
+ *       ))}
+ *     </select>
+ *   );
+ * }
+ * ```
+ */
+export const useUpdateLineItem = ({ fields }: { fields?: string } = {}) => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: (variables: {
+      line_id: string;
+      quantity: number;
+    }) => updateLineItem({ ...variables, fields }),
+    onMutate: async (variables) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({ 
+        predicate: (query) => queryKeys.cart.predicate(query, fields ? [fields] : undefined),
+      })
+
+      // Snapshot the previous value
+      const previousCart = getCurrentCart(queryClient, fields)
+
+      // Update optimistically
+      if (previousCart) {
+        updateLineItemOptimistically(queryClient, variables.line_id, variables.quantity, fields)
+      }
+
+      // Return a context object with the snapshotted value
+      return { previousCart }
+    },
+    onError: (err, variables, context) => {
+      // If the mutation fails, use the context returned from onMutate to roll back
+      if (context?.previousCart) {
+        rollbackOptimisticCart(queryClient, context.previousCart, fields)
+      }
+    },
+    onSettled: (data) => {
+      // Always refetch after error or success to ensure we have the latest data
+      queryClient.invalidateQueries({ predicate: 
+        (query) => queryKeys.cart.predicate(query, fields && data ? [fields] : undefined),
+      })
+      if (data) {
+        queryClient.setQueryData(queryKeys.cart.current(fields), data)
+      }
+    },
+  })
+}
+
+/**
+ * React hook to delete line items with optimistic updates.
+ * Provides immediate UI feedback while the request is in progress.
+ * 
+ * @param fields - Optional fields to include in the cart response
+ * @returns Tanstack Query mutation object with mutate function and state
+ * 
+ * @example
+ * ```typescript
+ * // Basic usage
+ * const deleteLineItemMutation = useDeleteLineItem();
+ * 
+ * // Usage in component
+ * function CartItem({ lineItem }) {
+ *   const deleteLineItemMutation = useDeleteLineItem();
+ *   
+ *   const handleRemoveItem = () => {
+ *     deleteLineItemMutation.mutate({
+ *       line_id: lineItem.id
+ *     }, {
+ *       onSuccess: (cart) => {
+ *         console.log('Item removed:', cart);
+ *         // Show success message
+ *       },
+ *       onError: (error) => {
+ *         console.error('Failed to remove item:', error);
+ *         // Show error message
+ *       }
+ *     });
+ *   };
+ *   
+ *   return (
+ *     <div>
+ *       <span>{lineItem.title}</span>
+ *       <button 
+ *         onClick={handleRemoveItem}
+ *         disabled={deleteLineItemMutation.isPending}
+ *       >
+ *         {deleteLineItemMutation.isPending ? 'Removing...' : 'Remove'}
+ *       </button>
+ *     </div>
+ *   );
+ * }
+ * ```
+ */
+export const useDeleteLineItem = ({ fields }: { fields?: string } = {}) => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: (variables: {
+      line_id: string;
+    }) => deleteLineItem({ ...variables, fields }),
+    onMutate: async (variables) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({ predicate: 
+        (query) => queryKeys.cart.predicate(query, fields ? [fields] : undefined),
+      })
+
+      // Snapshot the previous value
+      const previousCart = getCurrentCart(queryClient, fields)
+
+      // Remove optimistically
+      if (previousCart) {
+        removeLineItemOptimistically(queryClient, variables.line_id, fields)
+      }
+
+      // Return a context object with the snapshotted value
+      return { previousCart }
+    },
+    onError: (err, variables, context) => {
+      // If the mutation fails, use the context returned from onMutate to roll back
+      if (context?.previousCart) {
+        rollbackOptimisticCart(queryClient, context.previousCart, fields)
+      }
+    },
+    onSettled: (data) => {
+      // Always refetch after error or success to ensure we have the latest data
+      queryClient.invalidateQueries({ predicate: 
+        (query) => queryKeys.cart.predicate(query, fields && data ? [fields] : undefined),
+      })
+      if (data) {
+        queryClient.setQueryData(queryKeys.cart.current(fields), data)
+      }
+    },
+  })
+}
+
+/**
+ * React hook to apply promotion codes to the cart.
+ * Automatically invalidates cart cache on success.
+ * 
+ * @returns Tanstack Query mutation object with mutate function and state
+ * 
+ * @example
+ * ```typescript
+ * // Basic usage
+ * const applyPromoCodeMutation = useApplyPromoCode();
+ * 
+ * // Usage in component
+ * function PromoCodeForm() {
+ *   const [code, setCode] = useState('');
+ *   const applyPromoCodeMutation = useApplyPromoCode();
+ *   
+ *   const handleApplyCode = (e: FormEvent) => {
+ *     e.preventDefault();
+ *     
+ *     applyPromoCodeMutation.mutate(
+ *       { code },
+ *       {
+ *         onSuccess: (cart) => {
+ *           console.log('Promo code applied:', cart);
+ *           setCode('');
+ *           // Show success message
+ *         },
+ *         onError: (error) => {
+ *           console.error('Failed to apply promo code:', error);
+ *           // Show error message
+ *         }
+ *       }
+ *     );
+ *   };
+ *   
+ *   return (
+ *     <form onSubmit={handleApplyCode}>
+ *       <input 
+ *         type="text"
+ *         value={code}
+ *         onChange={(e) => setCode(e.target.value)}
+ *         placeholder="Enter promo code"
+ *         disabled={applyPromoCodeMutation.isPending}
+ *       />
+ *       <button type="submit" disabled={applyPromoCodeMutation.isPending}>
+ *         {applyPromoCodeMutation.isPending ? 'Applying...' : 'Apply'}
+ *       </button>
+ *     </form>
+ *   );
+ * }
+ * ```
+ */
+export const useApplyPromoCode = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: applyPromoCode,
+    onSuccess: () => {
+      // Update the cache with the fresh data from the server
+      queryClient.invalidateQueries({ predicate: queryKeys.cart.predicate })
+    },
+  })
+}
+
+/**
+ * React hook to remove promotion codes from the cart.
+ * Automatically invalidates cart cache on success.
+ * 
+ * @returns Tanstack Query mutation object with mutate function and state
+ * 
+ * @example
+ * ```typescript
+ * // Basic usage
+ * const removePromoCodeMutation = useRemovePromoCode();
+ * 
+ * // Usage in component
+ * function AppliedPromoCode({ promoCode }) {
+ *   const removePromoCodeMutation = useRemovePromoCode();
+ *   
+ *   const handleRemoveCode = () => {
+ *     removePromoCodeMutation.mutate(
+ *       { code: promoCode.code },
+ *       {
+ *         onSuccess: (cart) => {
+ *           console.log('Promo code removed:', cart);
+ *           // Show success message
+ *         },
+ *         onError: (error) => {
+ *           console.error('Failed to remove promo code:', error);
+ *           // Show error message
+ *         }
+ *       }
+ *     );
+ *   };
+ *   
+ *   return (
+ *     <div>
+ *       <span>{promoCode.code} - {promoCode.amount} off</span>
+ *       <button 
+ *         onClick={handleRemoveCode}
+ *         disabled={removePromoCodeMutation.isPending}
+ *       >
+ *         {removePromoCodeMutation.isPending ? 'Removing...' : 'Remove'}
+ *       </button>
+ *     </div>
+ *   );
+ * }
+ * ```
+ */
+export const useRemovePromoCode = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: removePromoCode,
+    onSuccess: () => {
+      // Update the cache with the fresh data from the server
+      queryClient.invalidateQueries({ predicate: queryKeys.cart.predicate })
+    },
+  })
+}
+```
+
+  </CodeTab>
+</CodeTabs>
+
+With this setup, your cart mutations will provide immediate UI feedback with optimistic updates, while ensuring that the cart data is always fresh and consistent with the backend.

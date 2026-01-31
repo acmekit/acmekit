@@ -1,0 +1,52 @@
+{
+  "name": "integration-tests-modules",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test:integration": "jest --no-cache --bail --detectOpenHandles --forceExit --logHeapUsage",
+    "test:integration:chunk": "jest --silent --no-cache --bail --forceExit",
+    "build": "tsc --allowJs --outDir ./dist"
+  },
+  "dependencies": {
+    "@acmekit/acmekit": "workspace:*",
+    "@acmekit/api-key": "workspace:^",
+    "@acmekit/auth": "workspace:*",
+    "@acmekit/cache-inmemory": "workspace:*",
+    "@acmekit/caching": "workspace:*",
+    "@acmekit/core-flows": "workspace:^",
+    "@acmekit/currency": "workspace:^",
+    "@acmekit/customer": "workspace:^",
+    "@acmekit/event-bus-local": "workspace:*",
+    "@acmekit/framework": "workspace:*",
+    "@acmekit/fulfillment": "workspace:^",
+    "@acmekit/fulfillment-manual": "workspace:^",
+    "@acmekit/inventory": "workspace:^",
+    "@acmekit/link-modules": "workspace:^",
+    "@acmekit/modules-sdk": "workspace:^",
+    "@acmekit/payment": "workspace:^",
+    "@acmekit/pricing": "workspace:^",
+    "@acmekit/product": "workspace:^",
+    "@acmekit/promotion": "workspace:^",
+    "@acmekit/region": "workspace:^",
+    "@acmekit/stock-location": "workspace:^",
+    "@acmekit/store": "workspace:^",
+    "@acmekit/tax": "workspace:^",
+    "@acmekit/test-utils": "workspace:*",
+    "@acmekit/user": "workspace:^",
+    "@acmekit/utils": "workspace:^",
+    "@acmekit/workflow-engine-inmemory": "workspace:*",
+    "faker": "^5.5.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3",
+    "scrypt-kdf": "^2.0.1"
+  },
+  "devDependencies": {
+    "@acmekit/types": "workspace:^",
+    "@swc/core": "^1.7.28",
+    "@swc/jest": "^0.2.36",
+    "jest": "^29.7.0",
+    "typescript": "^5.6.2"
+  }
+}

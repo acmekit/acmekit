@@ -1,0 +1,64 @@
+post:
+  operationId: PostProductsIdImagesImage_idVariantsBatch
+  summary: Manage Variants of Product Image
+  description: >-
+    Manage the association between product variants and a product image. You can
+    add or remove associations between variants and the image.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The product's ID.
+      required: true
+      schema:
+        type: string
+    - name: image_id
+      in: path
+      description: The product image's ID.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AdminBatchImageVariantRequest.yaml
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: >-
+          ../code_samples/JavaScript/admin_products_{id}_images_{image_id}_variants_batch/post.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: >-
+          ../code_samples/Shell/admin_products_{id}_images_{image_id}_variants_batch/post.sh
+  tags:
+    - Products
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AdminBatchImageVariantResponse.yaml
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: batchImageVariantsWorkflow
+  x-events: []
+  x-since: 2.11.2

@@ -1,0 +1,4503 @@
+{
+	"id": 10092,
+	"name": "payment-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"text": "## Relations Overview\n\n",
+				"kind": "text"
+			},
+			{
+				"text": "```mermaid\nerDiagram\n\tPayment ||--|| Refund : refunds\n\tPayment ||--|| Capture : captures\n\tPaymentCollection }|--|{ PaymentProvider : payment_providers\n\tPaymentCollection ||--|| PaymentSession : payment_sessions\n\tPaymentCollection ||--|| Payment : payments\n\tPaymentSession ||--|| Payment : payment\n\tRefundReason ||--|| Refund : refunds\n\n```",
+				"kind": "code"
+			}
+		]
+	},
+	"children": [
+		{
+			"id": 10453,
+			"name": "AccountHolder",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "account-holder.ts",
+					"line": 3,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/account-holder.ts#L3"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 10454,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 10455,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the account holder."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "account-holder.ts",
+													"line": 5,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/account-holder.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10456,
+											"name": "provider_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the payment provider storing the account holder's saved payment methods."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "account-holder.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/account-holder.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10457,
+											"name": "external_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the account holder in the payment provider's system."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "account-holder.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/account-holder.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10458,
+											"name": "email",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The email of the account holder"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "account-holder.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/account-holder.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10459,
+											"name": "data",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The data returned by the payment provider when the account holder is created."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "account-holder.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/account-holder.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10460,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "account-holder.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/account-holder.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												10455,
+												10456,
+												10457,
+												10458,
+												10459,
+												10460
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "account-holder.ts",
+											"line": 4,
+											"character": 27,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/account-holder.ts#L4"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "AccountHolder"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 10093,
+			"name": "Capture",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "capture.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/capture.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 10094,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 10095,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the capture."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "capture.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/capture.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10096,
+											"name": "amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The captured amount."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "capture.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/capture.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10097,
+											"name": "payment",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "capture.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/capture.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10123,
+														"name": "Payment"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10121,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "capture.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/capture.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10122,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The created by of the capture"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "capture.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/capture.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												10095,
+												10096,
+												10097,
+												10121,
+												10122
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "capture.ts",
+											"line": 5,
+											"character": 21,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/capture.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "Capture"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 10204,
+			"name": "PaymentCollection",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "payment-collection.ts",
+					"line": 6,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L6"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 10205,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 10206,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the payment collection."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10207,
+											"name": "currency_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The currency code of the payment collection.\n\n@example usd"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10208,
+											"name": "amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The amount of the payment collection"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10209,
+											"name": "authorized_amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The authorized amount of the payment collection"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10210,
+											"name": "captured_amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The captured amount of the payment collection"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10211,
+											"name": "refunded_amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The refunded amount of the payment collection"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10212,
+											"name": "completed_at",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The date the payment collection was completed"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/date-time.ts",
+													"qualifiedName": "DateTimeProperty"
+												},
+												"name": "DateTimeProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10213,
+											"name": "status",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The status of the payment collection"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/payment/payment-collection.ts",
+																"qualifiedName": "PaymentCollectionStatus"
+															},
+															"name": "PaymentCollectionStatus",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10214,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 18,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L18"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10215,
+											"name": "payment_providers",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment providers."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 19,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10269,
+														"name": "PaymentProvider"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10224,
+											"name": "payment_sessions",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment sessions."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 22,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L22"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10295,
+														"name": "PaymentSession"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10245,
+											"name": "payments",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payments."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-collection.ts",
+													"line": 25,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L25"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10123,
+														"name": "Payment"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												10206,
+												10207,
+												10208,
+												10209,
+												10210,
+												10211,
+												10212,
+												10213,
+												10214,
+												10215,
+												10224,
+												10245
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "payment-collection.ts",
+											"line": 7,
+											"character": 31,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-collection.ts#L7"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "PaymentCollection"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 10269,
+			"name": "PaymentProvider",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "payment-provider.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-provider.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 10270,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 10271,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the payment provider."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-provider.ts",
+													"line": 5,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-provider.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10272,
+											"name": "is_enabled",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the payment provider is enabled."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-provider.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-provider.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10273,
+											"name": "payment_collections",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment collections."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-provider.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-provider.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/many-to-many.ts",
+													"qualifiedName": "ManyToMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10204,
+														"name": "PaymentCollection"
+													}
+												],
+												"name": "ManyToMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												10271,
+												10272,
+												10273
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "payment-provider.ts",
+											"line": 4,
+											"character": 56,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-provider.ts#L4"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "PaymentProvider"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 10295,
+			"name": "PaymentSession",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "payment-session.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 10296,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 10297,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the payment session."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10298,
+											"name": "currency_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The currency code of the payment session.\n\n@example usd"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10299,
+											"name": "amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The authorized amount."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10300,
+											"name": "provider_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the Payment Module Provider used to process the payment."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10301,
+											"name": "data",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The data of the payment session that's useful for processing with third-party services. Learn more in [this documentation](https://docs.acmekit.com/resources/commerce-modules/payment/payment-session#data-property)"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10302,
+											"name": "context",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The context of the payment session, such as the billing address or the customer's email."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10303,
+											"name": "status",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The status of the payment session"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/payment/payment-session.ts",
+																"qualifiedName": "PaymentSessionStatus"
+															},
+															"name": "PaymentSessionStatus",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10304,
+											"name": "authorized_at",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The date the payment session was authorized."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/date-time.ts",
+													"qualifiedName": "DateTimeProperty"
+												},
+												"name": "DateTimeProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10305,
+											"name": "payment_collection",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment collection."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 17,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10204,
+														"name": "PaymentCollection"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10327,
+											"name": "payment",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 23,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L23"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-one.ts",
+													"qualifiedName": "HasOne"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10123,
+														"name": "Payment"
+													}
+												],
+												"name": "HasOne",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10374,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment-session.ts",
+													"line": 28,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L28"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												10297,
+												10298,
+												10299,
+												10300,
+												10301,
+												10302,
+												10303,
+												10304,
+												10305,
+												10327,
+												10374
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "payment-session.ts",
+											"line": 6,
+											"character": 28,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment-session.ts#L6"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "PaymentSession"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 10123,
+			"name": "Payment",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "payment.ts",
+					"line": 9,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L9"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 10124,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 10125,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the payment."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10126,
+											"name": "amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The amount of the payment"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10127,
+											"name": "currency_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The currency code of the payment.\n\n@example usd"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10128,
+											"name": "provider_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the Payment Module Provider used to process the payment."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10129,
+											"name": "data",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The data of the payment that's useful for processing with third-party services. Learn more in [this documentation](https://docs.acmekit.com/resources/commerce-modules/payment/payment-session#data-property)"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10130,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10131,
+											"name": "captured_at",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The date that the payment was captured."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 17,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/date-time.ts",
+													"qualifiedName": "DateTimeProperty"
+												},
+												"name": "DateTimeProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10132,
+											"name": "canceled_at",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The date that the payment was canceled."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 18,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L18"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/date-time.ts",
+													"qualifiedName": "DateTimeProperty"
+												},
+												"name": "DateTimeProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10133,
+											"name": "payment_collection",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment collection."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 19,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10204,
+														"name": "PaymentCollection"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10155,
+											"name": "payment_session",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment session."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 22,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L22"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10295,
+														"name": "PaymentSession"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10176,
+											"name": "refunds",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated refunds."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 25,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L25"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10375,
+														"name": "Refund"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10193,
+											"name": "captures",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated captures."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "payment.ts",
+													"line": 28,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L28"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10093,
+														"name": "Capture"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												10125,
+												10126,
+												10127,
+												10128,
+												10129,
+												10130,
+												10131,
+												10132,
+												10133,
+												10155,
+												10176,
+												10193
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "payment.ts",
+											"line": 10,
+											"character": 21,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/payment.ts#L10"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "Payment"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 10429,
+			"name": "RefundReason",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "refund-reason.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund-reason.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 10430,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 10431,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the refund reason."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund-reason.ts",
+													"line": 5,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund-reason.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10432,
+											"name": "label",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The label of the refund reason"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund-reason.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund-reason.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10433,
+											"name": "code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The code of the refund reason"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund-reason.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund-reason.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10434,
+											"name": "description",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The description of the refund reason"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund-reason.ts",
+													"line": 8,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund-reason.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10435,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund-reason.ts",
+													"line": 9,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund-reason.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10436,
+											"name": "refunds",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated refunds."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund-reason.ts",
+													"line": 10,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund-reason.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10375,
+														"name": "Refund"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												10431,
+												10432,
+												10433,
+												10434,
+												10435,
+												10436
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "refund-reason.ts",
+											"line": 4,
+											"character": 50,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund-reason.ts#L4"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "RefundReason"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 10375,
+			"name": "Refund",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "refund.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 10376,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 10377,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the refund."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10378,
+											"name": "amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The refunded amount."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10379,
+											"name": "payment",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated payment."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10123,
+														"name": "Payment"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10403,
+											"name": "refund_reason",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated refund reason."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 10429,
+														"name": "RefundReason"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10426,
+											"name": "note",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "A note with more explanation about the refund"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund.ts",
+													"line": 17,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10427,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the user that created the refund."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund.ts",
+													"line": 18,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L18"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 10428,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "refund.ts",
+													"line": 19,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												10377,
+												10378,
+												10379,
+												10403,
+												10426,
+												10427,
+												10428
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "refund.ts",
+											"line": 6,
+											"character": 20,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/payment/src/models/refund.ts#L6"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "Refund"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				10453,
+				10093,
+				10204,
+				10269,
+				10295,
+				10123,
+				10429,
+				10375
+			]
+		}
+	],
+	"packageName": "@acmekit/payment",
+	"symbolIdMap": {
+		"10092": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"10093": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "Capture"
+		},
+		"10094": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object"
+		},
+		"10095": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10096": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10097": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.payment"
+		},
+		"10098": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__function"
+		},
+		"10099": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__function"
+		},
+		"10100": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object"
+		},
+		"10101": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10102": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10103": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10104": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10105": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10106": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10107": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captured_at"
+		},
+		"10108": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.canceled_at"
+		},
+		"10109": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10110": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10111": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10112": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_session"
+		},
+		"10113": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10114": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10115": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10116": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10117": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10118": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captures"
+		},
+		"10119": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10120": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10121": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10122": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"10123": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "Payment"
+		},
+		"10124": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object"
+		},
+		"10125": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10126": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10127": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10128": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10129": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10130": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10131": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captured_at"
+		},
+		"10132": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.canceled_at"
+		},
+		"10133": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10134": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10135": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10136": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object"
+		},
+		"10137": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10138": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10139": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10140": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.authorized_amount"
+		},
+		"10141": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.captured_amount"
+		},
+		"10142": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.refunded_amount"
+		},
+		"10143": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.completed_at"
+		},
+		"10144": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.status"
+		},
+		"10145": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10146": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payment_providers"
+		},
+		"10147": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10148": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10149": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payment_sessions"
+		},
+		"10150": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10151": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10152": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payments"
+		},
+		"10153": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10154": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10155": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_session"
+		},
+		"10156": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10157": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10158": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object"
+		},
+		"10159": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10160": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10161": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10162": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10163": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10164": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.context"
+		},
+		"10165": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.status"
+		},
+		"10166": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.authorized_at"
+		},
+		"10167": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10168": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__type"
+		},
+		"10169": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__type"
+		},
+		"10170": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.payment"
+		},
+		"10171": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10172": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10173": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10174": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10175": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10176": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10177": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10178": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10179": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object"
+		},
+		"10180": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10181": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10182": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.payment"
+		},
+		"10183": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10184": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10185": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.refund_reason"
+		},
+		"10186": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10187": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10188": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10189": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10190": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.note"
+		},
+		"10191": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"10192": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10193": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captures"
+		},
+		"10194": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10195": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10196": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object"
+		},
+		"10197": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10198": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10199": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.payment"
+		},
+		"10200": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__function"
+		},
+		"10201": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__function"
+		},
+		"10202": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10203": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/capture.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"10204": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "PaymentCollection"
+		},
+		"10205": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object"
+		},
+		"10206": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10207": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10208": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10209": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.authorized_amount"
+		},
+		"10210": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.captured_amount"
+		},
+		"10211": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.refunded_amount"
+		},
+		"10212": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.completed_at"
+		},
+		"10213": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.status"
+		},
+		"10214": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10215": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payment_providers"
+		},
+		"10216": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10217": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10218": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__object"
+		},
+		"10219": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10220": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__object.is_enabled"
+		},
+		"10221": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__object.payment_collections"
+		},
+		"10222": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"10223": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"10224": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payment_sessions"
+		},
+		"10225": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10226": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10227": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object"
+		},
+		"10228": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10229": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10230": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10231": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10232": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10233": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.context"
+		},
+		"10234": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.status"
+		},
+		"10235": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.authorized_at"
+		},
+		"10236": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10237": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__type"
+		},
+		"10238": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__type"
+		},
+		"10239": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.payment"
+		},
+		"10240": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10241": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10242": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10243": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10244": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10245": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payments"
+		},
+		"10246": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10247": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10248": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object"
+		},
+		"10249": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10250": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10251": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10252": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10253": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10254": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10255": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captured_at"
+		},
+		"10256": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.canceled_at"
+		},
+		"10257": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10258": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10259": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10260": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_session"
+		},
+		"10261": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10262": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10263": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10264": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10265": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10266": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captures"
+		},
+		"10267": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10268": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10269": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "PaymentProvider"
+		},
+		"10270": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__object"
+		},
+		"10271": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10272": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__object.is_enabled"
+		},
+		"10273": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__object.payment_collections"
+		},
+		"10274": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"10275": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"10276": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object"
+		},
+		"10277": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10278": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10279": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10280": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.authorized_amount"
+		},
+		"10281": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.captured_amount"
+		},
+		"10282": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.refunded_amount"
+		},
+		"10283": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.completed_at"
+		},
+		"10284": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.status"
+		},
+		"10285": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10286": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payment_providers"
+		},
+		"10287": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10288": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10289": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payment_sessions"
+		},
+		"10290": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10291": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10292": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payments"
+		},
+		"10293": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10294": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10295": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "PaymentSession"
+		},
+		"10296": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object"
+		},
+		"10297": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10298": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10299": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10300": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10301": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10302": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.context"
+		},
+		"10303": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.status"
+		},
+		"10304": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.authorized_at"
+		},
+		"10305": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10306": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__type"
+		},
+		"10307": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__type"
+		},
+		"10308": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object"
+		},
+		"10309": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10310": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10311": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10312": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.authorized_amount"
+		},
+		"10313": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.captured_amount"
+		},
+		"10314": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.refunded_amount"
+		},
+		"10315": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.completed_at"
+		},
+		"10316": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.status"
+		},
+		"10317": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10318": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payment_providers"
+		},
+		"10319": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10320": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10321": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payment_sessions"
+		},
+		"10322": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10323": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10324": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__object.payments"
+		},
+		"10325": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10326": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-collection.ts",
+			"qualifiedName": "__function"
+		},
+		"10327": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.payment"
+		},
+		"10328": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10329": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10330": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object"
+		},
+		"10331": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10332": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10333": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10334": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10335": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10336": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10337": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captured_at"
+		},
+		"10338": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.canceled_at"
+		},
+		"10339": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10340": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10341": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10342": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_session"
+		},
+		"10343": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10344": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10345": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10346": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10347": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10348": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captures"
+		},
+		"10349": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10350": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10351": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10352": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__function"
+		},
+		"10353": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object"
+		},
+		"10354": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10355": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10356": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10357": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10358": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10359": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10360": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captured_at"
+		},
+		"10361": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.canceled_at"
+		},
+		"10362": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10363": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10364": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10365": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_session"
+		},
+		"10366": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10367": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10368": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10369": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10370": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10371": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captures"
+		},
+		"10372": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10373": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10374": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment-session.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10375": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "Refund"
+		},
+		"10376": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object"
+		},
+		"10377": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10378": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10379": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.payment"
+		},
+		"10380": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10381": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10382": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object"
+		},
+		"10383": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10384": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10385": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"10386": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10387": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10388": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10389": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captured_at"
+		},
+		"10390": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.canceled_at"
+		},
+		"10391": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_collection"
+		},
+		"10392": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10393": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10394": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.payment_session"
+		},
+		"10395": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10396": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10397": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10398": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10399": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10400": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__object.captures"
+		},
+		"10401": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10402": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/payment.ts",
+			"qualifiedName": "__function"
+		},
+		"10403": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.refund_reason"
+		},
+		"10404": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10405": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10406": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object"
+		},
+		"10407": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10408": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.label"
+		},
+		"10409": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.code"
+		},
+		"10410": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.description"
+		},
+		"10411": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10412": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10413": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__function"
+		},
+		"10414": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__function"
+		},
+		"10415": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10416": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10417": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object"
+		},
+		"10418": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10419": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.label"
+		},
+		"10420": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.code"
+		},
+		"10421": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.description"
+		},
+		"10422": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10423": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10424": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__function"
+		},
+		"10425": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__function"
+		},
+		"10426": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.note"
+		},
+		"10427": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"10428": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10429": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "RefundReason"
+		},
+		"10430": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object"
+		},
+		"10431": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10432": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.label"
+		},
+		"10433": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.code"
+		},
+		"10434": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.description"
+		},
+		"10435": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10436": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__object.refunds"
+		},
+		"10437": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__function"
+		},
+		"10438": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund-reason.ts",
+			"qualifiedName": "__function"
+		},
+		"10439": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object"
+		},
+		"10440": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10441": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"10442": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.payment"
+		},
+		"10443": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10444": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10445": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.refund_reason"
+		},
+		"10446": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10447": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10448": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10449": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__function"
+		},
+		"10450": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.note"
+		},
+		"10451": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"10452": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/refund.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"10453": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/account-holder.ts",
+			"qualifiedName": "AccountHolder"
+		},
+		"10454": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/account-holder.ts",
+			"qualifiedName": "__object"
+		},
+		"10455": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/account-holder.ts",
+			"qualifiedName": "__object.id"
+		},
+		"10456": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/account-holder.ts",
+			"qualifiedName": "__object.provider_id"
+		},
+		"10457": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/account-holder.ts",
+			"qualifiedName": "__object.external_id"
+		},
+		"10458": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/account-holder.ts",
+			"qualifiedName": "__object.email"
+		},
+		"10459": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/account-holder.ts",
+			"qualifiedName": "__object.data"
+		},
+		"10460": {
+			"sourceFileName": "../../../../packages/modules/payment/src/models/account-holder.ts",
+			"qualifiedName": "__object.metadata"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/payment/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 10092
+		}
+	}
+}

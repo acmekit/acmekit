@@ -1,0 +1,13 @@
+type: object
+description: The details of a view configuration to set as active for the given entity.
+x-schemaName: AdminSetActiveViewConfiguration
+required:
+  - view_configuration_id
+properties:
+  view_configuration_id:
+    type: string
+    title: view_configuration_id
+    description: >-
+      The ID of the view configuration to set as active. If `null`, the active
+      view configuration will be cleared, and the `code` or system default view
+      configuration will be used as the active view.

@@ -1,0 +1,222 @@
+import { MetadataStorage } from "@acmekit/deps/mikro-orm/core"
+import { join } from "path"
+import { setTimeout } from "timers/promises"
+
+import { FileSystem } from "../../../common"
+import { DmlEntity, mikroORMEntityBuilder, model } from "../../../dml"
+import { defineMikroOrmCliConfig } from "../../../modules-sdk"
+import { BigNumber } from "../../../totals/big-number"
+import { Migrations } from "../../index"
+
+jest.setTimeout(30000)
+
+const DB_HOST = process.env.DB_HOST ?? "localhost"
+const DB_USERNAME = process.env.DB_USERNAME ?? ""
+const DB_PASSWORD = process.env.DB_PASSWORD ?? " "
+
+const dbName = "my-test-service-generate"
+const moduleName = "myTestServiceGenerate"
+const fs = new FileSystem(join(__dirname, "./migrations-generate"))
+
+const pgGodCredentials = {
+  user: DB_USERNAME,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+}
+
+describe("Generate migrations", () => {
+  beforeEach(async () => {
+    await fs.cleanup()
+  })
+
+  afterEach(async () => {
+    await fs.cleanup()
+    MetadataStorage.clear()
+    mikroORMEntityBuilder.clear()
+  })
+
+  test("generate migrations for a single entity", async () => {
+    const User = model.define("User", {
+      id: model.id().primaryKey(),
+      email: model.text().unique(),
+      fullName: model.text().nullable(),
+      numericFieldNoDefault: model.number(),
+      numericField: model.number().default(0),
+      numericFieldNullable: model.number().default(1).nullable(),
+      bigNumberFieldNoDefault: model.bigNumber(),
+      bigNumberField: model
+        .bigNumber()
+        .default(
+          new BigNumber(
+            "892.87896454789798987789789789541354687681246874956165789639",
+            { precision: 50 }
+          )
+        ),
+      bigNumberFieldNullable: model.bigNumber().default(3).nullable(),
+      bigNumberWithString: model.bigNumber().default("5789.6547899").nullable(),
+    })
+
+    const config = defineMikroOrmCliConfig(moduleName, {
+      entities: [User],
+      dbName: dbName,
+      migrations: {
+        path: fs.basePath,
+      },
+      ...pgGodCredentials,
+    })
+
+    const migrations = new Migrations(config)
+    const results = await migrations.generate()
+
+    expect(await fs.exists(results.fileName))
+    const migrationFile = await fs.contents(results.fileName)
+
+    expect(migrationFile).toMatch(/create table if not exists "user"/)
+    expect(migrationFile).toMatch(/"numericFieldNoDefault" integer not null/)
+    expect(migrationFile).toMatch(/"numericField" integer not null default 0/)
+    expect(migrationFile).toMatch(
+      /"numericFieldNullable" integer null default 1/
+    )
+    expect(migrationFile).toMatch(
+      /"bigNumberWithString" numeric null default '5789\.6547899'/
+    )
+    expect(migrationFile).toMatch(
+      /"bigNumberField" numeric not null default 892\.878964547898/
+    )
+    expect(migrationFile).toMatch(
+      /"bigNumberFieldNullable" numeric null default 3/
+    )
+    expect(migrationFile).toMatch(/"bigNumberFieldNoDefault" numeric not null/)
+    expect(migrationFile).toMatch(
+      /"raw_bigNumberField" jsonb not null default '{"value":"892\.87896454789798987789789789541354687681246874956","precision":50}'/
+    )
+    expect(migrationFile).toMatch(
+      /"raw_bigNumberFieldNullable" jsonb null default '{"value":"3","precision":20}'/
+    )
+    expect(migrationFile).toMatch(
+      /"raw_bigNumberWithString" jsonb null default '{"value":"5789\.6547899","precision":20}'/
+    )
+  })
+
+  test("generate migrations for multiple entities", async () => {
+    const User = model
+      .define("User", {
+        id: model.id().primaryKey(),
+        email: model.text().unique(),
+        fullName: model.text().nullable(),
+        cars: model.hasMany(() => Car),
+      })
+      .cascades({
+        delete: ["cars"],
+      })
+
+    const Car = model.define("Car", {
+      id: model.id().primaryKey(),
+      name: model.text(),
+      user: model.belongsTo(() => User, { mappedBy: "cars" }),
+    })
+
+    const config = defineMikroOrmCliConfig(moduleName, {
+      entities: [User, Car],
+      dbName: dbName,
+      migrations: {
+        path: fs.basePath,
+      },
+      ...pgGodCredentials,
+    })
+
+    const migrations = new Migrations(config)
+    const results = await migrations.generate()
+
+    expect(await fs.exists(results.fileName))
+    expect(await fs.contents(results.fileName)).toMatch(
+      /create table if not exists "user"/
+    )
+    expect(await fs.contents(results.fileName)).toMatch(
+      /create table if not exists "car"/
+    )
+  })
+
+  test("generate new file when entities are added", async () => {
+    function run(entities: DmlEntity<any, any>[]) {
+      const config = defineMikroOrmCliConfig(moduleName, {
+        entities,
+        dbName: dbName,
+        migrations: {
+          path: fs.basePath,
+        },
+        ...pgGodCredentials,
+      })
+
+      const migrations = new Migrations(config)
+      return migrations.generate()
+    }
+
+    const User = model.define("User", {
+      id: model.id().primaryKey(),
+      email: model.text().unique(),
+      fullName: model.text().nullable(),
+    })
+
+    const run1 = await run([User])
+    expect(await fs.exists(run1.fileName))
+
+    const Car = model.define("Car", {
+      id: model.id().primaryKey(),
+      name: model.text(),
+    })
+
+    await setTimeout(1000)
+
+    const run2 = await run([User, Car])
+    expect(await fs.exists(run2.fileName))
+
+    expect(run1.fileName).not.toEqual(run2.fileName)
+  })
+
+  test("rename existing snapshot file to the new filename", async () => {
+    await fs.createJson(".snapshot-foo.json", {
+      tables: [],
+      namespaces: [],
+    })
+
+    function run(entities: DmlEntity<any, any>[]) {
+      const config = defineMikroOrmCliConfig(moduleName, {
+        entities,
+        dbName: dbName,
+        migrations: {
+          path: fs.basePath,
+        },
+        ...pgGodCredentials,
+      })
+
+      const migrations = new Migrations(config)
+      return migrations.generate()
+    }
+
+    const User = model.define("User", {
+      id: model.id().primaryKey(),
+      email: model.text().unique(),
+      fullName: model.text().nullable(),
+    })
+
+    const run1 = await run([User])
+    expect(await fs.exists(run1.fileName))
+    expect(await fs.exists(".snapshot-foo.json")).toBeFalsy()
+    expect(
+      await fs.exists(".snapshot-acmekit-my-test-generate.json")
+    ).toBeTruthy()
+
+    const Car = model.define("Car", {
+      id: model.id().primaryKey(),
+      name: model.text(),
+    })
+
+    await setTimeout(1000)
+
+    const run2 = await run([User, Car])
+    expect(await fs.exists(run2.fileName))
+
+    expect(run1.fileName).not.toEqual(run2.fileName)
+  })
+})

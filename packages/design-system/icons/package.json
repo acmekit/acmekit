@@ -1,0 +1,41 @@
+{
+  "name": "@acmekit/icons",
+  "version": "2.13.2",
+  "description": "AcmeKit UI React icon library",
+  "author": "Kasper Kristensen <kasper@acmekit.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit.git",
+    "directory": "packages/design-system/icons"
+  },
+  "main": "dist/cjs/acmekit-icons.js",
+  "main:umd": "dist/umd/acmekit-icons.js",
+  "module": "dist/esm/index.js",
+  "unpkg": "dist/umd/acmekit-icons.min.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn build:bundles && yarn build:types",
+    "build:bundles": "rollup -c ./rollup.config.mjs",
+    "build:types": "yarn run -T tsc --emitDeclarationOnly",
+    "test": "../../../node_modules/.bin/vitest --run",
+    "test:watch": "../../../node_modules/.bin/vitest",
+    "test:coverage": "../../../node_modules/.bin/vitest --run --coverage",
+    "generate": "yarn run -T rimraf ./src/components && toolbox icons -o './src/components'"
+  },
+  "devDependencies": {
+    "@acmekit/toolbox": "2.13.2",
+    "react": "^18.3.1"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
+  "packageManager": "yarn@3.2.1",
+  "publishConfig": {
+    "access": "public"
+  }
+}

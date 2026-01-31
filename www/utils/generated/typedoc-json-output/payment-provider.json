@@ -1,0 +1,2490 @@
+{
+	"id": 49271,
+	"name": "payment-provider",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 49272,
+			"name": "AbstractPaymentProvider",
+			"variant": "declaration",
+			"kind": 128,
+			"flags": {
+				"isAbstract": true
+			},
+			"children": [
+				{
+					"id": 49273,
+					"name": "validateOptions",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isStatic": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 53,
+							"character": 9,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L53"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49274,
+							"name": "validateOptions",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method validates the options of the provider set in "
+									},
+									{
+										"kind": "code",
+										"text": "`acmekit-config.ts`"
+									},
+									{
+										"kind": "text",
+										"text": ".\nImplementing this method is optional, but it's useful to ensure that the required\noptions are passed to the provider, or if you have any custom validation logic.\n\nIf the options aren't valid, throw an error."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyPaymentProviderService extends AbstractPaymentProvider<Options> {\n  static validateOptions(options: Record<any, any>) {\n    if (!options.apiKey) {\n      throw new AcmeKitError(\n        AcmeKitError.Types.INVALID_DATA,\n        \"API key is required in the provider's options.\"\n      )\n    }\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 53,
+									"character": 9,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L53"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49275,
+									"name": "options",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The provider's options passed in "
+											},
+											{
+												"kind": "code",
+												"text": "`acmekit-config.ts`"
+											},
+											{
+												"kind": "text",
+												"text": "."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "any"
+											},
+											{
+												"type": "intrinsic",
+												"name": "any"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 49281,
+					"name": "constructor",
+					"variant": "declaration",
+					"kind": 512,
+					"flags": {
+						"isProtected": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 105,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L105"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49282,
+							"name": "AbstractPaymentProvider",
+							"variant": "signature",
+							"kind": 16384,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The constructor allows you to access resources from the [module's container](https://docs.acmekit.com/learn/fundamentals/modules/container)\nusing the first parameter, and the module's options using the second parameter.\n\nIf you're creating a client or establishing a connection with a third-party service, do it in the constructor.\n\n:::note\n\nA module's options are passed when you register it in the AcmeKit application.\n\n:::"
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nimport { AbstractPaymentProvider } from \"@acmekit/framework/utils\"\nimport { Logger } from \"@acmekit/framework/types\"\n\ntype Options = {\n  apiKey: string\n}\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<Options> {\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor(\n    container: InjectedDependencies,\n    options: Options\n  ) {\n    super(container, options)\n\n    this.logger_ = container.logger\n    this.options_ = options\n\n    // TODO initialize your client\n  }\n  // ...\n}\n\nexport default MyPaymentProviderService\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 105,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L105"
+								}
+							],
+							"typeParameters": [
+								{
+									"id": 49283,
+									"name": "TConfig",
+									"variant": "typeParam",
+									"kind": 131072,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The type of the provider's options passed as a second parameter."
+											}
+										]
+									},
+									"default": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "unknown"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"parameters": [
+								{
+									"id": 49284,
+									"name": "cradle",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The module's container used to resolve resources."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "unknown"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 49272,
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": 49283,
+										"name": "TConfig",
+										"package": "@acmekit/utils",
+										"qualifiedName": "AbstractPaymentProvider.TConfig",
+										"refersToTypeParameter": true
+									}
+								],
+								"name": "AbstractPaymentProvider",
+								"package": "@acmekit/utils"
+							}
+						}
+					]
+				},
+				{
+					"id": 49280,
+					"name": "identifier",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isPublic": true,
+						"isStatic": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Each payment provider has a unique identifier defined in its class. The provider's ID\nwill be stored as "
+							},
+							{
+								"kind": "code",
+								"text": "`pp_{identifier}_{id}`"
+							},
+							{
+								"kind": "text",
+								"text": ", where "
+							},
+							{
+								"kind": "code",
+								"text": "`{id}`"
+							},
+							{
+								"kind": "text",
+								"text": " is the provider's "
+							},
+							{
+								"kind": "code",
+								"text": "`id`"
+							},
+							{
+								"kind": "text",
+								"text": "\nproperty in the "
+							},
+							{
+								"kind": "code",
+								"text": "`acmekit-config.ts`"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  static identifier = \"my-payment\"\n  // ...\n}\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 140,
+							"character": 16,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L140"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 49290,
+					"name": "capturePayment",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 207,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L207"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49291,
+							"name": "capturePayment",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method captures a payment using the third-party provider. In this method, use the third-party provider to capture the payment.\n\nWhen an order is placed, the payment is authorized using the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "authorizePayment",
+										"target": 49293
+									},
+									{
+										"kind": "text",
+										"text": " method. Then, the admin\nuser can capture the payment, which triggers this method.\n\n![Diagram showcasing capture payment flow](https://res.cloudinary.com/dza7lstvk/image/upload/v1747307414/AcmeKit%20Resources/Klarna_Payment_Graphic_2025_1_lii7bw.jpg)\n\nThis method can also be triggered by a webhook event if the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "getWebhookActionAndData",
+										"target": 49317
+									},
+									{
+										"kind": "text",
+										"text": " method returns the action "
+									},
+									{
+										"kind": "code",
+										"text": "`captured`"
+									},
+									{
+										"kind": "text",
+										"text": ".\n\n#### Understanding "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property of the input parameter contains data that was previously stored in the Payment record's "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property, which was\nreturned by the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "authorizePayment",
+										"target": 49293
+									},
+									{
+										"kind": "text",
+										"text": " method.\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property returned by this method is then stored in the "
+									},
+									{
+										"kind": "code",
+										"text": "`Payment`"
+									},
+									{
+										"kind": "text",
+										"text": " record. You can store data relevant to later refund or process the payment.\nFor example, you can store the ID of the payment in the third-party provider to reference it later.\n\n![Diagram showcasing data flow between methods](https://res.cloudinary.com/dza7lstvk/image/upload/v1747309870/AcmeKit%20Resources/capture-data_acgdhf.jpg)"
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The new data to store in the payment's "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " property. Throws in case of an error."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  CapturePaymentInput,\n  CapturePaymentOutput,\n} from \"@acmekit/framework/types\"\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async capturePayment(\n    input: CapturePaymentInput\n  ): Promise<CapturePaymentOutput> {\n    const externalId = input.data?.id\n\n      // assuming you have a client that captures the payment\n    const newData = await this.client.capturePayment(externalId)\n    return {\n      data: {\n        ...newData,\n        id: externalId,\n      }\n    }\n  }\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 207,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L207"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49292,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to capture the payment. The "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field should contain the data from the payment provider. when the payment was created."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "CapturePaymentInput"
+										},
+										"name": "CapturePaymentInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "CapturePaymentOutput"
+										},
+										"name": "CapturePaymentOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.capturePayment"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.capturePayment"
+					}
+				},
+				{
+					"id": 49293,
+					"name": "authorizePayment",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 269,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L269"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49294,
+							"name": "authorizePayment",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method authorizes a payment session using the third-party payment provider.\n\nDuring checkout, the customer may need to perform actions required by the payment provider,\nsuch as entering their card details or confirming the payment. Once that is done,\nthe customer can place their order.\n\nDuring cart-completion before placing the order, this method is used to authorize the cart's payment session with the \nthird-party payment provider. The payment can later be captured\nusing the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "capturePayment",
+										"target": 49290
+									},
+									{
+										"kind": "text",
+										"text": " method.\n\n![Diagram showcasing authorize payment flow](https://res.cloudinary.com/dza7lstvk/image/upload/v1747307795/AcmeKit%20Resources/authorize-payment_qzpy6e.jpg)\n\nWhen authorized successfully, a "
+									},
+									{
+										"kind": "code",
+										"text": "`Payment`"
+									},
+									{
+										"kind": "text",
+										"text": " is created by the Payment\nModule, and it's associated with the order.\n\n#### Understanding "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property of the method's parameter contains the "
+									},
+									{
+										"kind": "code",
+										"text": "`PaymentSession`"
+									},
+									{
+										"kind": "text",
+										"text": " record's "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property, which was\nreturned by the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "initiatePayment",
+										"target": 49299
+									},
+									{
+										"kind": "text",
+										"text": " method.\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property returned by this method is then stored in the created "
+									},
+									{
+										"kind": "code",
+										"text": "`Payment`"
+									},
+									{
+										"kind": "text",
+										"text": " record. You can store data relevant to later capture or process the payment.\nFor example, you can store the ID of the payment in the third-party provider to reference it later.\n\n![Diagram showcasing data flow between methods](https://res.cloudinary.com/dza7lstvk/image/upload/v1747309278/AcmeKit%20Resources/authorize-data_erjg7r.jpg)"
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The status of the authorization, along with the "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field about the payment. Throws in case of an error."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  AuthorizePaymentInput,\n  AuthorizePaymentOutput,\n  PaymentSessionStatus\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async authorizePayment(\n    input: AuthorizePaymentInput\n  ): Promise<AuthorizePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that authorizes the payment\n    const paymentData = await this.client.authorizePayment(externalId)\n\n    return {\n      data: paymentData,\n      status: \"authorized\"\n    }\n  }\n\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 269,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L269"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49295,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to authorize the payment. The "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field should contain the data from the payment provider. when the payment was created."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "AuthorizePaymentInput"
+										},
+										"name": "AuthorizePaymentInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "AuthorizePaymentOutput"
+										},
+										"name": "AuthorizePaymentOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.authorizePayment"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.authorizePayment"
+					}
+				},
+				{
+					"id": 49296,
+					"name": "cancelPayment",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 314,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L314"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49297,
+							"name": "cancelPayment",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method cancels a payment in the third-party payment provider. It's used when\nthe admin user cancels an order. The order can only be canceled if the payment\nis not captured yet.\n\n#### Understanding "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property of the method's parameter contains the "
+									},
+									{
+										"kind": "code",
+										"text": "`Payment`"
+									},
+									{
+										"kind": "text",
+										"text": " record's "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property, which was\nreturned by the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "authorizePayment",
+										"target": 49293
+									},
+									{
+										"kind": "text",
+										"text": " method.\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property returned by this method is then stored in the "
+									},
+									{
+										"kind": "code",
+										"text": "`Payment`"
+									},
+									{
+										"kind": "text",
+										"text": " record. You can store data relevant for any further processing of the payment.\n\n![Diagram showcasing data flow between methods](https://res.cloudinary.com/dza7lstvk/image/upload/v1747310189/AcmeKit%20Resources/cancel-data_gzcgbc.jpg)"
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The new data to store in the payment's "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " property, if any. Throws in case of an error."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  PaymentProviderError,\n  PaymentProviderSessionResponse,\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async cancelPayment(\n    input: CancelPaymentInput\n  ): Promise<CancelPaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that cancels the payment\n    const paymentData = await this.client.cancelPayment(externalId)\n    return { data: paymentData }\n  }\n\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 314,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L314"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49298,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to cancel the payment. The "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field should contain the data from the payment provider. when the payment was created."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "CancelPaymentInput"
+										},
+										"name": "CancelPaymentInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "CancelPaymentOutput"
+										},
+										"name": "CancelPaymentOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.cancelPayment"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.cancelPayment"
+					}
+				},
+				{
+					"id": 49299,
+					"name": "initiatePayment",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 379,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L379"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49300,
+							"name": "initiatePayment",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method initializes a payment session with the third-party payment provider.\n\nWhen a customer chooses a payment method during checkout, this method is triggered to\nperform any initialization action with the third-party provider, such as creating a payment session.\n\n![Diagram showcasing initiate payment flow](https://res.cloudinary.com/dza7lstvk/image/upload/v1747310624/AcmeKit%20Resources/initiate-payment_dpoa2g.jpg)\n\n#### Understanding "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property returned by this method will be stored in the created "
+									},
+									{
+										"kind": "code",
+										"text": "`PaymentSession`"
+									},
+									{
+										"kind": "text",
+										"text": " record. You can store data relevant to later authorize or process the payment.\nFor example, you can store the ID of the payment session in the third-party provider to reference it later.\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property is also available to storefronts, allowing you to store data necessary for the storefront to integrate\nthe payment provider in the checkout flow. For example, you can store the client token to use with the payment provider's SDK.\n\n:::note\n\nThis also means you shouldn't store sensitive data and tokens in the "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property, as it's publicly accessible.\n\n:::\n\n![Diagram showcasing data flow between methods](https://res.cloudinary.com/dza7lstvk/image/upload/v1747310699/AcmeKit%20Resources/initiate-data_ikc05t.jpg)"
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The new data to store in the payment's "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " property. Throws in case of an error."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  InitiatePaymentInput,\n  InitiatePaymentOutput,\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async initiatePayment(\n    input: InitiatePaymentInput\n  ): Promise<InitiatePaymentOutput> {\n    const {\n      amount,\n      currency_code,\n      context: customerDetails\n    } = input\n\n    // assuming you have a client that initializes the payment\n    const response = await this.client.init(\n      amount, currency_code, customerDetails\n    )\n\n    return {\n      id: response.id,\n      data: response,\n    }\n  }\n\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 379,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L379"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49301,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to create the payment session."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "InitiatePaymentInput"
+										},
+										"name": "InitiatePaymentInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "InitiatePaymentOutput"
+										},
+										"name": "InitiatePaymentOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.initiatePayment"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.initiatePayment"
+					}
+				},
+				{
+					"id": 49302,
+					"name": "deletePayment",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 430,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L430"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49303,
+							"name": "deletePayment",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method deletes a payment session in the third-party payment provider.\n\nWhen a customer chooses a payment method during checkout, then chooses a different one,\nthis method is triggered to delete the previous payment session.\n\nIf your provider doesn't support deleting a payment session, you can just return an empty object or\nan object that contains the same received "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property.\n\n![Diagram showcasing delete payment flow](https://res.cloudinary.com/dza7lstvk/image/upload/v1747311084/AcmeKit%20Resources/delete-payment_smxsiq.jpg)\n\n#### Understanding "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property of the method's parameter contains the "
+									},
+									{
+										"kind": "code",
+										"text": "`PaymentSession`"
+									},
+									{
+										"kind": "text",
+										"text": " record's "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property, which was\nreturned by the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "initiatePayment",
+										"target": 49299
+									},
+									{
+										"kind": "text",
+										"text": " method.\n\n![Diagram showcasing data flow between methods](https://res.cloudinary.com/dza7lstvk/image/upload/v1747311084/AcmeKit%20Resources/delete-data_xg65ck.jpg)"
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The new data to store in the payment's "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " property, if any. Throws in case of an error."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  DeletePaymentInput,\n  DeletePaymentOutput,\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async deletePayment(\n    input: DeletePaymentInput\n  ): Promise<DeletePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that cancels the payment\n    await this.client.cancelPayment(externalId)\n    return {\n      data: input.data\n    }\n  }\n\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 430,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L430"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49304,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to delete the payment session. The "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field should contain the data from the payment provider. when the payment was created."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "DeletePaymentInput"
+										},
+										"name": "DeletePaymentInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "DeletePaymentOutput"
+										},
+										"name": "DeletePaymentOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.deletePayment"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.deletePayment"
+					}
+				},
+				{
+					"id": 49305,
+					"name": "getPaymentStatus",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 475,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L475"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49306,
+							"name": "getPaymentStatus",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method gets the status of a payment session based on the status in the third-party integration."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The payment session's status. It can also return additional "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " from the payment provider."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  GetPaymentStatusInput,\n  GetPaymentStatusOutput,\n  PaymentSessionStatus\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async getPaymentStatus(\n    input: GetPaymentStatusInput\n  ): Promise<GetPaymentStatusOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that retrieves the payment status\n    const status = await this.client.getStatus(externalId)\n\n    switch (status) {\n      case \"requires_capture\":\n          return {status: \"authorized\"}\n        case \"success\":\n          return {status: \"captured\"}\n        case \"canceled\":\n          return {status: \"canceled\"}\n        default:\n          return {status: \"pending\"}\n     }\n  }\n\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 475,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L475"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49307,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to get the payment status. The "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field should contain the data from the payment provider. when the payment was created."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "GetPaymentStatusInput"
+										},
+										"name": "GetPaymentStatusInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "GetPaymentStatusOutput"
+										},
+										"name": "GetPaymentStatusOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.getPaymentStatus"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.getPaymentStatus"
+					}
+				},
+				{
+					"id": 49308,
+					"name": "refundPayment",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 532,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L532"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49309,
+							"name": "refundPayment",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method refunds an amount using the third-party payment provider. This method\nis triggered when the admin user refunds a payment of an order.\n\n#### Understanding "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property of the method's parameter contains the "
+									},
+									{
+										"kind": "code",
+										"text": "`Payment`"
+									},
+									{
+										"kind": "text",
+										"text": " record's "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property, which was\nreturned by the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "capturePayment",
+										"target": 49290
+									},
+									{
+										"kind": "text",
+										"text": " or "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "refundPayment",
+										"target": 49308
+									},
+									{
+										"kind": "text",
+										"text": " method.\n\nThe "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property returned by this method is then stored in the "
+									},
+									{
+										"kind": "code",
+										"text": "`Payment`"
+									},
+									{
+										"kind": "text",
+										"text": " record. You can store data relevant to later refund or process the payment.\nFor example, you can store the ID of the payment in the third-party provider to reference it later.\n\n:::note\n\nA payment may be refunded multiple times with different amounts. In this case, the "
+									},
+									{
+										"kind": "code",
+										"text": "`data`"
+									},
+									{
+										"kind": "text",
+										"text": " property\nof the input parameter contains the data from the last refund.\n\n:::\n\n![Diagram showcasing data flow between methods](https://res.cloudinary.com/dza7lstvk/image/upload/v1747311296/AcmeKit%20Resources/refund-data_plcjl0.jpg)"
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The new data to store in the payment's "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " property, or an error object."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  RefundPaymentInput,\n  RefundPaymentOutput,\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async refundPayment(\n    input: RefundPaymentInput\n  ): Promise<RefundPaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that refunds the payment\n    const newData = await this.client.refund(\n        externalId,\n        input.amount\n      )\n\n    return {\n      data: input.data,\n    }\n  }\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 532,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L532"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49310,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to refund the payment. The "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field should contain the data from the payment provider. when the payment was created."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "RefundPaymentInput"
+										},
+										"name": "RefundPaymentInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "RefundPaymentOutput"
+										},
+										"name": "RefundPaymentOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.refundPayment"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.refundPayment"
+					}
+				},
+				{
+					"id": 49311,
+					"name": "retrievePayment",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 564,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L564"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49312,
+							"name": "retrievePayment",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method retrieves the payment's data from the third-party payment provider."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The payment's data as found in the payment provider."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  RetrievePaymentInput,\n  RetrievePaymentOutput,\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async retrievePayment(\n    input: RetrievePaymentInput\n  ): Promise<RetrievePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that retrieves the payment\n    return await this.client.retrieve(externalId)\n  }\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 564,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L564"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49313,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to retrieve the payment. The "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field should contain the data from the payment provider when the payment was created."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "RetrievePaymentInput"
+										},
+										"name": "RetrievePaymentInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "RetrievePaymentOutput"
+										},
+										"name": "RetrievePaymentOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.retrievePayment"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.retrievePayment"
+					}
+				},
+				{
+					"id": 49314,
+					"name": "updatePayment",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 612,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L612"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49315,
+							"name": "updatePayment",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method updates a payment in the third-party service that was previously initiated with the "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "initiatePayment",
+										"target": 49299
+									},
+									{
+										"kind": "text",
+										"text": " method."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The new data to store in the payment's "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " property. Throws in case of an error."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  UpdatePaymentInput,\n  UpdatePaymentOutput,\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async updatePayment(\n    input: UpdatePaymentInput\n  ): Promise<UpdatePaymentOutput> {\n    const { amount, currency_code, context } = input\n    const externalId = input.data?.id\n\n    // Validate context.customer\n    if (!context || !context.customer) {\n      throw new Error(\"Context must include a valid customer.\");\n    }\n\n    // assuming you have a client that updates the payment\n    const response = await this.client.update(\n      externalId,\n        {\n          amount,\n          currency_code,\n          customer: context.customer\n        }\n      )\n\n    return response\n  }\n\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 612,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L612"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49316,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input to update the payment. The "
+											},
+											{
+												"kind": "code",
+												"text": "`data`"
+											},
+											{
+												"kind": "text",
+												"text": " field should contain the data from the payment provider. when the payment was created."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "UpdatePaymentInput"
+										},
+										"name": "UpdatePaymentInput",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "UpdatePaymentOutput"
+										},
+										"name": "UpdatePaymentOutput",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.updatePayment"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.updatePayment"
+					}
+				},
+				{
+					"id": 49317,
+					"name": "getWebhookActionAndData",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isAbstract": true
+					},
+					"sources": [
+						{
+							"fileName": "utils/src/payment/abstract-payment-provider.ts",
+							"line": 698,
+							"character": 11,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L698"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49318,
+							"name": "getWebhookActionAndData",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is executed when a webhook event is received from the third-party payment provider. AcmeKit uses\nthe data returned by this method to perform actions in the AcmeKit application, such as completing the associated cart\nif the payment was authorized successfully.\n\nLearn more in the [Webhook Events](https://docs.acmekit.com/resources/commerce-modules/payment/webhook-events) documentation."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The webhook result. If the "
+											},
+											{
+												"kind": "code",
+												"text": "`action`"
+											},
+											{
+												"kind": "text",
+												"text": "'s value is "
+											},
+											{
+												"kind": "code",
+												"text": "`captured`"
+											},
+											{
+												"kind": "text",
+												"text": ", the payment is captured within AcmeKit as well.\nIf the "
+											},
+											{
+												"kind": "code",
+												"text": "`action`"
+											},
+											{
+												"kind": "text",
+												"text": "'s value is "
+											},
+											{
+												"kind": "code",
+												"text": "`authorized`"
+											},
+											{
+												"kind": "text",
+												"text": ", the associated payment session is authorized within AcmeKit and the associated cart\nwill be completed to create an order."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\n// other imports...\nimport {\n  BigNumber\n} from \"@acmekit/framework/utils\"\nimport {\n  ProviderWebhookPayload,\n  WebhookActionResult\n} from \"@acmekit/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async getWebhookActionAndData(\n    payload: ProviderWebhookPayload[\"payload\"]\n  ): Promise<WebhookActionResult> {\n    const {\n      data,\n      rawData,\n      headers\n    } = payload\n\n    try {\n      switch(data.event_type) {\n        case \"authorized_amount\":\n          return {\n            action: \"authorized\",\n            data: {\n              // assuming the session_id is stored in the metadata of the payment\n              // in the third-party provider\n              session_id: (data.metadata as Record<string, any>).session_id,\n              amount: new BigNumber(data.amount as number)\n            }\n          }\n        case \"success\":\n          return {\n            action: \"captured\",\n            data: {\n              // assuming the session_id is stored in the metadata of the payment\n              // in the third-party provider\n              session_id: (data.metadata as Record<string, any>).session_id,\n              amount: new BigNumber(data.amount as number)\n            }\n          }\n        default:\n          return {\n            action: \"not_supported\",\n            data: {\n              session_id: \"\",\n              amount: new BigNumber(0)\n            }\n          }\n      }\n    } catch (e) {\n      return {\n        action: \"failed\",\n        data: {\n          // assuming the session_id is stored in the metadata of the payment\n          // in the third-party provider\n          session_id: (data.metadata as Record<string, any>).session_id,\n          amount: new BigNumber(data.amount as number)\n        }\n      }\n    }\n  }\n\n  // ...\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "utils/src/payment/abstract-payment-provider.ts",
+									"line": 698,
+									"character": 11,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L698"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49319,
+									"name": "data",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The webhook event's data"
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 49320,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 49321,
+													"name": "data",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The parsed webhook body."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "types/dist/payment/mutations.d.ts",
+															"line": 289,
+															"character": 8
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+															"qualifiedName": "Record"
+														},
+														"typeArguments": [
+															{
+																"type": "intrinsic",
+																"name": "string"
+															},
+															{
+																"type": "intrinsic",
+																"name": "unknown"
+															}
+														],
+														"name": "Record",
+														"package": "typescript"
+													}
+												},
+												{
+													"id": 49322,
+													"name": "rawData",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The raw webhook request body."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "types/dist/payment/mutations.d.ts",
+															"line": 293,
+															"character": 8
+														}
+													],
+													"type": {
+														"type": "union",
+														"types": [
+															{
+																"type": "intrinsic",
+																"name": "string"
+															},
+															{
+																"type": "reference",
+																"target": {
+																	"sourceFileName": "../../node_modules/@types/node/buffer.d.ts",
+																	"qualifiedName": "__global.Buffer"
+																},
+																"name": "Buffer",
+																"package": "@types/node",
+																"qualifiedName": "__global.Buffer"
+															}
+														]
+													}
+												},
+												{
+													"id": 49323,
+													"name": "headers",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The headers of the webhook request."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "types/dist/payment/mutations.d.ts",
+															"line": 297,
+															"character": 8
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+															"qualifiedName": "Record"
+														},
+														"typeArguments": [
+															{
+																"type": "intrinsic",
+																"name": "string"
+															},
+															{
+																"type": "intrinsic",
+																"name": "unknown"
+															}
+														],
+														"name": "Record",
+														"package": "typescript"
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														49321,
+														49322,
+														49323
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "types/dist/payment/mutations.d.ts",
+													"line": 285,
+													"character": 13
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+											"qualifiedName": "WebhookActionResult"
+										},
+										"name": "WebhookActionResult",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IPaymentProvider.getWebhookActionAndData"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IPaymentProvider.getWebhookActionAndData"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"children": [
+						49281
+					]
+				},
+				{
+					"title": "Properties",
+					"children": [
+						49280
+					]
+				},
+				{
+					"title": "Methods",
+					"children": [
+						49273,
+						49290,
+						49293,
+						49296,
+						49299,
+						49302,
+						49305,
+						49308,
+						49311,
+						49314,
+						49317
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "utils/src/payment/abstract-payment-provider.ts",
+					"line": 25,
+					"character": 22,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/payment/abstract-payment-provider.ts#L25"
+				}
+			],
+			"typeParameters": [
+				{
+					"id": 49324,
+					"name": "TConfig",
+					"variant": "typeParam",
+					"kind": 131072,
+					"flags": {},
+					"default": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Record"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "intrinsic",
+								"name": "unknown"
+							}
+						],
+						"name": "Record",
+						"package": "typescript"
+					}
+				}
+			],
+			"implementedTypes": [
+				{
+					"type": "reference",
+					"target": {
+						"sourceFileName": "../../../../packages/core/types/src/payment/provider.ts",
+						"qualifiedName": "IPaymentProvider"
+					},
+					"name": "IPaymentProvider",
+					"package": "@acmekit/types"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Classes",
+			"children": [
+				49272
+			]
+		}
+	],
+	"packageName": "@acmekit/utils",
+	"symbolIdMap": {
+		"49271": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": ""
+		},
+		"49272": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider"
+		},
+		"49273": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.validateOptions"
+		},
+		"49274": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.validateOptions"
+		},
+		"49275": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "options"
+		},
+		"49280": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.identifier"
+		},
+		"49281": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.__constructor"
+		},
+		"49282": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider"
+		},
+		"49283": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.TConfig"
+		},
+		"49284": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "cradle"
+		},
+		"49290": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.capturePayment"
+		},
+		"49291": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.capturePayment"
+		},
+		"49292": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49293": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.authorizePayment"
+		},
+		"49294": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.authorizePayment"
+		},
+		"49295": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49296": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.cancelPayment"
+		},
+		"49297": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.cancelPayment"
+		},
+		"49298": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49299": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.initiatePayment"
+		},
+		"49300": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.initiatePayment"
+		},
+		"49301": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49302": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.deletePayment"
+		},
+		"49303": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.deletePayment"
+		},
+		"49304": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49305": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.getPaymentStatus"
+		},
+		"49306": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.getPaymentStatus"
+		},
+		"49307": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49308": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.refundPayment"
+		},
+		"49309": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.refundPayment"
+		},
+		"49310": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49311": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.retrievePayment"
+		},
+		"49312": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.retrievePayment"
+		},
+		"49313": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49314": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.updatePayment"
+		},
+		"49315": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.updatePayment"
+		},
+		"49316": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "input"
+		},
+		"49317": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.getWebhookActionAndData"
+		},
+		"49318": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.getWebhookActionAndData"
+		},
+		"49319": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "data"
+		},
+		"49320": {
+			"sourceFileName": "../../../../packages/core/types/src/payment/mutations.ts",
+			"qualifiedName": "__type"
+		},
+		"49321": {
+			"sourceFileName": "../../../../packages/core/types/src/payment/mutations.ts",
+			"qualifiedName": "__type.data"
+		},
+		"49322": {
+			"sourceFileName": "../../../../packages/core/types/src/payment/mutations.ts",
+			"qualifiedName": "__type.rawData"
+		},
+		"49323": {
+			"sourceFileName": "../../../../packages/core/types/src/payment/mutations.ts",
+			"qualifiedName": "__type.headers"
+		},
+		"49324": {
+			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",
+			"qualifiedName": "AbstractPaymentProvider.TConfig"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts"
+		},
+		"reflections": {
+			"1": 49271
+		}
+	}
+}

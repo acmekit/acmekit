@@ -1,0 +1,993 @@
+{
+	"id": 15770,
+	"name": "stock-location-next-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 15809,
+			"name": "StockLocationAddress",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "stock-location-address.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 15810,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 15811,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the stock location address."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15812,
+											"name": "address_1",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The first line of the stock location address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15813,
+											"name": "address_2",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The second line of the stock location address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15814,
+											"name": "company",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The company of the stock location address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15815,
+											"name": "city",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The city of the stock location address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15816,
+											"name": "country_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The country code of the stock location address.\n\n@example us"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15817,
+											"name": "phone",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The phone of the stock location address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15818,
+											"name": "province",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The province of the stock location address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15819,
+											"name": "postal_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The postal code of the stock location address"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15820,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15821,
+											"name": "stock_locations",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated stock locations."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location-address.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-one.ts",
+													"qualifiedName": "HasOne"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 15771,
+														"name": "StockLocation"
+													}
+												],
+												"name": "HasOne",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												15811,
+												15812,
+												15813,
+												15814,
+												15815,
+												15816,
+												15817,
+												15818,
+												15819,
+												15820,
+												15821
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "stock-location-address.ts",
+											"line": 5,
+											"character": 34,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location-address.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "StockLocationAddress"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 15771,
+			"name": "StockLocation",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "stock-location.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 15772,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 15773,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the stock location."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location.ts",
+													"line": 5,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15774,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the stock location"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15775,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15776,
+											"name": "address",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated address."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "stock-location.ts",
+													"line": 8,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 15809,
+														"name": "StockLocationAddress"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												15773,
+												15774,
+												15775,
+												15776
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "stock-location.ts",
+											"line": 4,
+											"character": 52,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/stock-location/src/models/stock-location.ts#L4"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "StockLocation"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				15809,
+				15771
+			]
+		}
+	],
+	"packageName": "@acmekit/stock-location",
+	"symbolIdMap": {
+		"15770": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"15771": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "StockLocation"
+		},
+		"15772": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object"
+		},
+		"15773": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object.id"
+		},
+		"15774": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object.name"
+		},
+		"15775": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"15776": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object.address"
+		},
+		"15777": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__function"
+		},
+		"15778": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__function"
+		},
+		"15779": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object"
+		},
+		"15780": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.id"
+		},
+		"15781": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.address_1"
+		},
+		"15782": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.address_2"
+		},
+		"15783": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.company"
+		},
+		"15784": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.city"
+		},
+		"15785": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.country_code"
+		},
+		"15786": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"15787": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.province"
+		},
+		"15788": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.postal_code"
+		},
+		"15789": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"15790": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.stock_locations"
+		},
+		"15791": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__function"
+		},
+		"15792": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__function"
+		},
+		"15793": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__function"
+		},
+		"15794": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__function"
+		},
+		"15795": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object"
+		},
+		"15796": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.id"
+		},
+		"15797": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.address_1"
+		},
+		"15798": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.address_2"
+		},
+		"15799": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.company"
+		},
+		"15800": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.city"
+		},
+		"15801": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.country_code"
+		},
+		"15802": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"15803": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.province"
+		},
+		"15804": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.postal_code"
+		},
+		"15805": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"15806": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.stock_locations"
+		},
+		"15807": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__function"
+		},
+		"15808": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__function"
+		},
+		"15809": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "StockLocationAddress"
+		},
+		"15810": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object"
+		},
+		"15811": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.id"
+		},
+		"15812": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.address_1"
+		},
+		"15813": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.address_2"
+		},
+		"15814": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.company"
+		},
+		"15815": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.city"
+		},
+		"15816": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.country_code"
+		},
+		"15817": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.phone"
+		},
+		"15818": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.province"
+		},
+		"15819": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.postal_code"
+		},
+		"15820": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"15821": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__object.stock_locations"
+		},
+		"15822": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__function"
+		},
+		"15823": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location-address.ts",
+			"qualifiedName": "__function"
+		},
+		"15824": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object"
+		},
+		"15825": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object.id"
+		},
+		"15826": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object.name"
+		},
+		"15827": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"15828": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__object.address"
+		},
+		"15829": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__function"
+		},
+		"15830": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__function"
+		},
+		"15831": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__function"
+		},
+		"15832": {
+			"sourceFileName": "../../../../packages/modules/stock-location/src/models/stock-location.ts",
+			"qualifiedName": "__function"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/stock-location/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 15770
+		}
+	}
+}

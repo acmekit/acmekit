@@ -1,0 +1,21 @@
+{
+  "name": "tailwind",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "tailwind.config.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "tailwind.config.js",
+    "postcss.config.js"
+  ],
+  "dependencies": {
+    "@acmekit/ui-preset": "2.13.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "peerDependencies": {
+    "docs-ui": "*"
+  }
+}

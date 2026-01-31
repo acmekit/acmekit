@@ -1,0 +1,2666 @@
+{
+	"id": 11209,
+	"name": "pricing-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"text": "## Relations Overview\n\n",
+				"kind": "text"
+			},
+			{
+				"text": "```mermaid\nerDiagram\n\tPrice ||--|| PriceRule : price_rules\n\tPriceList ||--|| Price : prices\n\tPriceList ||--|| PriceListRule : price_list_rules\n\tPriceSet ||--|| Price : prices\n\n```",
+				"kind": "code"
+			}
+		]
+	},
+	"children": [
+		{
+			"id": 11316,
+			"name": "PriceListRule",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "price-list-rule.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list-rule.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 11317,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 11318,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the price list rule."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list-rule.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list-rule.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11319,
+											"name": "attribute",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The attribute of the price list rule. For example, `region_id`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list-rule.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list-rule.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11320,
+											"name": "value",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The value of the price list rule. For example, `reg_123`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list-rule.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list-rule.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11321,
+											"name": "price_list",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `PriceList`."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list-rule.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list-rule.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 11274,
+														"name": "PriceList"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												11318,
+												11319,
+												11320,
+												11321
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "price-list-rule.ts",
+											"line": 5,
+											"character": 27,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list-rule.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "PriceListRule"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 11274,
+			"name": "PriceList",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "price-list.ts",
+					"line": 9,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L9"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 11275,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 11276,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the price list."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11277,
+											"name": "title",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The title of the price list."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11278,
+											"name": "description",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The description of the price list."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11279,
+											"name": "status",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The status of the price list."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/pricing/price-list.ts",
+																"qualifiedName": "PriceListStatus"
+															},
+															"name": "PriceListStatus",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11280,
+											"name": "type",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The type of the price list."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/pricing/price-list.ts",
+																"qualifiedName": "PriceListType"
+															},
+															"name": "PriceListType",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11281,
+											"name": "starts_at",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The date the price list starts."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/date-time.ts",
+													"qualifiedName": "DateTimeProperty"
+												},
+												"name": "DateTimeProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11282,
+											"name": "ends_at",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The date the price list ends."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 17,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/date-time.ts",
+													"qualifiedName": "DateTimeProperty"
+												},
+												"name": "DateTimeProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11283,
+											"name": "rules_count",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The total number of rules of the price list."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 18,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L18"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11284,
+											"name": "prices",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `Price` records."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 19,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 11210,
+														"name": "Price"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11306,
+											"name": "price_list_rules",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `PriceListRule` records."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-list.ts",
+													"line": 22,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L22"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 11316,
+														"name": "PriceListRule"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												11276,
+												11277,
+												11278,
+												11279,
+												11280,
+												11281,
+												11282,
+												11283,
+												11284,
+												11306
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "price-list.ts",
+											"line": 10,
+											"character": 23,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-list.ts#L10"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "PriceList"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 11393,
+			"name": "PricePreference",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "price-preference.ts",
+					"line": 3,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-preference.ts#L3"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 11394,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 11395,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the price preference."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-preference.ts",
+													"line": 5,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-preference.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11396,
+											"name": "attribute",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The attribute of the price preference. For example, `region_id`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-preference.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-preference.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11397,
+											"name": "value",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The value of the price preference. For example, `reg_123`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-preference.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-preference.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11398,
+											"name": "is_tax_inclusive",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether prices matching this preference include taxes."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-preference.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-preference.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												11395,
+												11396,
+												11397,
+												11398
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "price-preference.ts",
+											"line": 4,
+											"character": 29,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-preference.ts#L4"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "PricePreference"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 11339,
+			"name": "PriceRule",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "price-rule.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-rule.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 11340,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 11341,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the price rule."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-rule.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-rule.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11342,
+											"name": "attribute",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The attribute of the price rule. For example, `region_id`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-rule.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-rule.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11343,
+											"name": "value",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The value of the price rule. For example, `reg_123`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-rule.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-rule.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11344,
+											"name": "operator",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The operator of the price rule. For example, `eq`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-rule.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-rule.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/enum.ts",
+													"qualifiedName": "EnumProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "query",
+														"queryType": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../../../packages/core/utils/src/pricing/enums.ts",
+																"qualifiedName": "PricingRuleOperator"
+															},
+															"name": "PricingRuleOperator",
+															"package": "@acmekit/utils",
+															"preferValues": true
+														}
+													}
+												],
+												"name": "EnumProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11345,
+											"name": "priority",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The priority of the price rule."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-rule.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-rule.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11346,
+											"name": "price",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `Price`."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-rule.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-rule.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 11210,
+														"name": "Price"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												11341,
+												11342,
+												11343,
+												11344,
+												11345,
+												11346
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "price-rule.ts",
+											"line": 5,
+											"character": 23,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-rule.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "PriceRule"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 11368,
+			"name": "PriceSet",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "price-set.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-set.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 11369,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 11370,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the price set."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-set.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-set.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11371,
+											"name": "prices",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `Price` records."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price-set.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-set.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 11210,
+														"name": "Price"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												11370,
+												11371
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "price-set.ts",
+											"line": 5,
+											"character": 22,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price-set.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "PriceSet"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 11210,
+			"name": "Price",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "price.ts",
+					"line": 6,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L6"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 11211,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 11212,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the price."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11213,
+											"name": "title",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The title of the price"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11214,
+											"name": "currency_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The currency code of the price. For example, `usd`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11215,
+											"name": "amount",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The amount of the price."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11216,
+											"name": "min_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The minimum quantity that must be available in the cart for the price to be applied."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11217,
+											"name": "max_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The maximum quantity allowed to be available in the cart for the price to be applied."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11218,
+											"name": "rules_count",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The total number of rules of the price."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11219,
+											"name": "price_set",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `PriceSet`."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 11368,
+														"name": "PriceSet"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11227,
+											"name": "price_rules",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `PriceRule` records."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 18,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L18"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 11339,
+														"name": "PriceRule"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 11239,
+											"name": "price_list",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `PriceList`."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "price.ts",
+													"line": 21,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L21"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 11274,
+														"name": "PriceList"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												11212,
+												11213,
+												11214,
+												11215,
+												11216,
+												11217,
+												11218,
+												11219,
+												11227,
+												11239
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "price.ts",
+											"line": 7,
+											"character": 19,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/pricing/src/models/price.ts#L7"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "Price"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				11316,
+				11274,
+				11393,
+				11339,
+				11368,
+				11210
+			]
+		}
+	],
+	"packageName": "@acmekit/pricing",
+	"symbolIdMap": {
+		"11209": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"11210": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "Price"
+		},
+		"11211": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object"
+		},
+		"11212": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11213": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.title"
+		},
+		"11214": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"11215": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"11216": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.min_quantity"
+		},
+		"11217": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"11218": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.rules_count"
+		},
+		"11219": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_set"
+		},
+		"11220": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11221": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11222": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__object"
+		},
+		"11223": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11224": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__object.prices"
+		},
+		"11225": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__function"
+		},
+		"11226": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__function"
+		},
+		"11227": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_rules"
+		},
+		"11228": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11229": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11230": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"11231": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11232": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"11233": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.value"
+		},
+		"11234": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.operator"
+		},
+		"11235": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.priority"
+		},
+		"11236": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.price"
+		},
+		"11237": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"11238": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"11239": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_list"
+		},
+		"11240": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11241": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11242": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object"
+		},
+		"11243": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11244": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.title"
+		},
+		"11245": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.description"
+		},
+		"11246": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.status"
+		},
+		"11247": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.type"
+		},
+		"11248": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.starts_at"
+		},
+		"11249": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.ends_at"
+		},
+		"11250": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.rules_count"
+		},
+		"11251": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.prices"
+		},
+		"11252": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11253": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11254": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.price_list_rules"
+		},
+		"11255": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11256": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11257": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11258": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11259": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object"
+		},
+		"11260": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11261": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.title"
+		},
+		"11262": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.description"
+		},
+		"11263": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.status"
+		},
+		"11264": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.type"
+		},
+		"11265": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.starts_at"
+		},
+		"11266": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.ends_at"
+		},
+		"11267": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.rules_count"
+		},
+		"11268": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.prices"
+		},
+		"11269": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11270": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11271": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.price_list_rules"
+		},
+		"11272": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11273": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11274": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "PriceList"
+		},
+		"11275": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object"
+		},
+		"11276": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11277": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.title"
+		},
+		"11278": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.description"
+		},
+		"11279": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.status"
+		},
+		"11280": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.type"
+		},
+		"11281": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.starts_at"
+		},
+		"11282": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.ends_at"
+		},
+		"11283": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.rules_count"
+		},
+		"11284": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.prices"
+		},
+		"11285": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11286": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11287": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object"
+		},
+		"11288": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11289": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.title"
+		},
+		"11290": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"11291": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"11292": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.min_quantity"
+		},
+		"11293": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"11294": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.rules_count"
+		},
+		"11295": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_set"
+		},
+		"11296": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11297": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11298": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_rules"
+		},
+		"11299": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11300": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11301": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_list"
+		},
+		"11302": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11303": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11304": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11305": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11306": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.price_list_rules"
+		},
+		"11307": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11308": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11309": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"11310": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11311": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"11312": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object.value"
+		},
+		"11313": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object.price_list"
+		},
+		"11314": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"11315": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"11316": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "PriceListRule"
+		},
+		"11317": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"11318": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11319": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"11320": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object.value"
+		},
+		"11321": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__object.price_list"
+		},
+		"11322": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"11323": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"11324": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object"
+		},
+		"11325": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11326": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.title"
+		},
+		"11327": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.description"
+		},
+		"11328": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.status"
+		},
+		"11329": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.type"
+		},
+		"11330": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.starts_at"
+		},
+		"11331": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.ends_at"
+		},
+		"11332": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.rules_count"
+		},
+		"11333": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.prices"
+		},
+		"11334": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11335": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11336": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__object.price_list_rules"
+		},
+		"11337": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11338": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-list.ts",
+			"qualifiedName": "__function"
+		},
+		"11339": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "PriceRule"
+		},
+		"11340": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"11341": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11342": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"11343": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.value"
+		},
+		"11344": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.operator"
+		},
+		"11345": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.priority"
+		},
+		"11346": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__object.price"
+		},
+		"11347": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"11348": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"11349": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object"
+		},
+		"11350": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11351": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.title"
+		},
+		"11352": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"11353": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"11354": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.min_quantity"
+		},
+		"11355": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"11356": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.rules_count"
+		},
+		"11357": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_set"
+		},
+		"11358": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11359": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11360": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_rules"
+		},
+		"11361": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11362": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11363": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_list"
+		},
+		"11364": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11365": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11366": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11367": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11368": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "PriceSet"
+		},
+		"11369": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__object"
+		},
+		"11370": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11371": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__object.prices"
+		},
+		"11372": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__function"
+		},
+		"11373": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-set.ts",
+			"qualifiedName": "__function"
+		},
+		"11374": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object"
+		},
+		"11375": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11376": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.title"
+		},
+		"11377": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"11378": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.amount"
+		},
+		"11379": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.min_quantity"
+		},
+		"11380": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.max_quantity"
+		},
+		"11381": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.rules_count"
+		},
+		"11382": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_set"
+		},
+		"11383": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11384": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11385": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_rules"
+		},
+		"11386": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11387": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11388": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__object.price_list"
+		},
+		"11389": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11390": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11391": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11392": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price.ts",
+			"qualifiedName": "__function"
+		},
+		"11393": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-preference.ts",
+			"qualifiedName": "PricePreference"
+		},
+		"11394": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-preference.ts",
+			"qualifiedName": "__object"
+		},
+		"11395": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-preference.ts",
+			"qualifiedName": "__object.id"
+		},
+		"11396": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-preference.ts",
+			"qualifiedName": "__object.attribute"
+		},
+		"11397": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-preference.ts",
+			"qualifiedName": "__object.value"
+		},
+		"11398": {
+			"sourceFileName": "../../../../packages/modules/pricing/src/models/price-preference.ts",
+			"qualifiedName": "__object.is_tax_inclusive"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/pricing/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 11209
+		}
+	}
+}

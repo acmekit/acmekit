@@ -1,0 +1,57 @@
+---
+generate_toc: true
+---
+
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Command Bar`,
+}
+
+# {metadata.title}
+
+A component that displays a command bar with a list of commands to perform on a bulk selection of items.
+
+In this guide, you'll learn how to use the Command Bar component.
+
+<ComponentExample name="command-bar-demo" />
+
+## Usage
+
+```tsx
+import { CommandBar } from "@medusajs/ui"
+```
+
+```tsx
+<CommandBar open={open}>
+  <CommandBar.Bar>
+    <CommandBar.Value>{count} selected</CommandBar.Value>
+    <CommandBar.Seperator />
+    <CommandBar.Command
+      action={onDelete}
+      label="Delete"
+      shortcut="d"
+    />
+    <CommandBar.Seperator />
+    <CommandBar.Command
+      action={onEdit}
+      label="Edit"
+      shortcut="e"
+    />
+  </CommandBar.Bar>
+</CommandBar>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="CommandBar" componentsToShow={[
+  "CommandBar",
+  "CommandBar.Bar",
+  "CommandBar.Value",
+  "CommandBar.Seperator",
+  "CommandBar.Command"
+]} hideFeedback />
+

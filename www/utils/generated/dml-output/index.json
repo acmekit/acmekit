@@ -1,0 +1,53 @@
+{
+	"IndexRelation": {
+		"filePath": "packages/modules/index/src/models/index-relation.ts",
+		"properties": {
+			"id": "The ID of the index relation.",
+			"pivot": "The name of the index relation's pivot table.",
+			"parent_name": "The parent name of the index relation",
+			"child_name": "The child name of the index relation",
+			"parent_id": "The ID of the parent index relation.",
+			"child_id": "The ID of the child index relation.",
+			"staled_at": "The date the index relation was staled."
+		},
+		"deprecated": {
+			"is_deprecated": false
+		}
+	},
+	"IndexData": {
+		"filePath": "packages/modules/index/src/models/index-data.ts",
+		"properties": {
+			"id": "The ID of the index data.",
+			"name": "The name of the index data",
+			"data": "The data of the index",
+			"staled_at": "The date the index data was staled."
+		},
+		"deprecated": {
+			"is_deprecated": false
+		}
+	},
+	"IndexMetadata": {
+		"filePath": "packages/modules/index/src/models/index-metadata.ts",
+		"properties": {
+			"id": "The ID of the index metadata.",
+			"entity": "The entity of the index metadata",
+			"fields": "The fields of the index metadata",
+			"fields_hash": "The fields hash of the index metadata",
+			"status": "The status of the index metadata"
+		},
+		"deprecated": {
+			"is_deprecated": false
+		}
+	},
+	"IndexSync": {
+		"filePath": "packages/modules/index/src/models/index-sync.ts",
+		"properties": {
+			"id": "The ID of the index sync.",
+			"entity": "The entity of the index sync",
+			"last_key": "The last key of the index sync"
+		},
+		"deprecated": {
+			"is_deprecated": false
+		}
+	}
+}

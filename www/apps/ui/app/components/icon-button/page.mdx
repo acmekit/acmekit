@@ -1,0 +1,55 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Icon Button`,
+}
+
+# {metadata.title}
+
+A component that displays an icon in a button.
+
+In this guide, you'll learn how to use the Icon Button component.
+
+<ComponentExample name="icon-button-demo" />
+
+## Usage
+
+```tsx
+import { IconButton } from "@medusajs/ui"
+import { Plus } from "@medusajs/icons"
+```
+
+```tsx
+<IconButton>
+  <Plus />
+</IconButton>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="IconButton" />
+
+---
+
+## Examples
+
+
+### Icon Button Variants
+
+<ComponentExample name="icon-button-all-variants" />
+
+
+### Icon Button Sizes
+
+<ComponentExample name="icon-button-all-sizes" />
+
+### Icon Button Loading State
+
+<ComponentExample name="icon-button-loading" />
+
+### Disabled Icon Button
+
+<ComponentExample name="icon-button-disabled" hideFeedback />

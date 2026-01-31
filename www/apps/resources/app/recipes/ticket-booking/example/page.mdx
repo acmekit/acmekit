@@ -1,0 +1,4912 @@
+---
+sidebar_label: "Example"
+tags:
+  - name: product
+    label: "Implement Ticket Booking"
+  - server
+  - tutorial
+products:
+  - product
+  - cart
+  - order
+---
+
+import { Github, PlaySolid } from "@medusajs/icons"
+import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
+
+export const metadata = {
+  title: `Implement a Ticket Booking System with Medusa`,
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to implement a ticket booking system using Medusa.
+
+<Note>
+
+This tutorial is divided into two parts: this part that covers the backend and admin customizations, and a [storefront part](./storefront/page.mdx) that covers the Next.js Starter Storefront customizations.
+
+</Note>
+
+When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](../../../commerce-modules/page.mdx) that are available out-of-the-box.
+
+Medusa's [Framework](!docs!/learn/fundamentals/framework) facilitates customizing Medusa's core features for your specific use case, such as ticket booking.
+
+<Note>
+
+This tutorial provides an approach to implement a ticket booking system using Medusa. Depending on your specific requirements, you might need to adjust the implementation details or explore a different approach.
+
+</Note>
+
+## Summary
+
+By following this tutorial, you will learn how to:
+
+- Install and set up Medusa with the Next.js Starter Storefront.
+- Create data models for venues and tickets, and link them to Medusa's data models.
+- Customize the Medusa Admin to manage venues and shows or events.
+- Implement custom validation and flows for ticket booking.
+- Generate QR codes for tickets and verify them at the venue.
+- [Extend the Next.js Starter Storefront to allow booking tickets and choosing seats](./storefront/page.mdx): This part of the tutorial is covered separately.
+
+![Diagram showing the architecture of the ticket booking system with Medusa](https://res.cloudinary.com/dza7lstvk/image/upload/v1757512301/Medusa%20Resources/ticket-booking-diagram_egbpye.jpg)
+
+<CardList items={[
+  {
+    href: "https://github.com/medusajs/examples/tree/main/ticket-booking",
+    title: "Full Code",
+    text: "Find the full code for this tutorial in this repository.",
+    icon: Github,
+  },
+  {
+    href: "https://res.cloudinary.com/dza7lstvk/raw/upload/v1757423563/OpenApi/Ticket_Booking_System_iqq1k6.yaml",
+    title: "OpenApi Specs for Postman",
+    text: "Import this OpenApi Specs file into tools like Postman.",
+    icon: PlaySolid,
+  },
+]} />
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Start by installing the Medusa application on your machine with the following command:
+
+```bash npx2yarnExec
+npx create-medusa-app@latest
+```
+
+You'll first be asked for the project's name. Then, when asked whether you want to install the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx), choose Yes.
+
+Afterward, the installation process will start, which will install the Medusa application in a directory with your project's name, and the Next.js Starter Storefront in a separate directory with the `{project-name}-storefront` name.
+
+<Note title="Why is the storefront installed separately?">
+
+The Medusa application is composed of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Afterward, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors?">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Create Ticket Booking Module
+
+In Medusa, you can build custom features in a [module](!docs!/learn/fundamentals/modules). A module is a reusable package with the data models and functionality related to a single feature or domain. Medusa integrates the module into your application without implications or side effects on your setup.
+
+In this step, you'll build a Ticket Booking Module that defines the data models and logic to manage venues and tickets. Later, you'll build commerce flows related to ticket booking around the module.
+
+<Note>
+
+Refer to the [Modules documentation](!docs!/learn/fundamentals/modules) to learn more.
+
+</Note>
+
+### a. Create Module Directory
+
+Create the directory `src/modules/ticket-booking` that will hold the Ticket Booking Module's code.
+
+### b. Define Data Models
+
+A data model represents a table in the database. You create data models using Medusa's Data Model Language (DML). It simplifies defining a table's columns, relations, and indexes with straightforward methods and configurations.
+
+<Note>
+
+Refer to the [Data Models documentation](!docs!/learn/fundamentals/modules#1-create-data-model) to learn more.
+
+</Note>
+
+You'll define data models to represent venues, tickets, and purchases. Later, you'll link these data models to Medusa's data models, such as products and orders.
+
+#### Venue Model
+
+The `Venue` data model represents a venue where shows or events take place.
+
+To create the `Venue` data model, create the file `src/modules/ticket-booking/models/venue.ts` with the following content:
+
+```ts title="src/modules/ticket-booking/models/venue.ts"
+import { model } from "@medusajs/framework/utils"
+import { VenueRow } from "./venue-row"
+
+export const Venue = model.define("venue", {
+  id: model.id().primaryKey(),
+  name: model.text(),
+  address: model.text().nullable(),
+  rows: model.hasMany(() => VenueRow, {
+    mappedBy: "venue",
+  }),
+})
+.cascades({
+  delete: ["rows"],
+})
+
+export default Venue
+```
+
+The `Venue` data model has the following properties:
+
+- `id`: The primary key of the table.
+- `name`: The name of the venue.
+- `address`: The address of the venue.
+- `rows`: A one-to-many relation with the `VenueRow` data model, which you'll create next.
+
+<Note>
+
+Learn more about defining data model properties in the [Property Types documentation](!docs!/learn/fundamentals/data-models/properties).
+
+</Note>
+
+#### VenueRow Model
+
+The `VenueRow` data model represents a row in a venue, each with a specific type and number of seats.
+
+To create the `VenueRow` data model, create the file `src/modules/ticket-booking/models/venue-row.ts` with the following content:
+
+```ts title="src/modules/ticket-booking/models/venue-row.ts"
+import { model } from "@medusajs/framework/utils"
+import { Venue } from "./venue"
+
+export enum RowType {
+  PREMIUM = "premium",
+  BALCONY = "balcony",
+  STANDARD = "standard",
+  VIP = "vip"
+}
+
+export const VenueRow = model.define("venue_row", {
+  id: model.id().primaryKey(),
+  row_number: model.text(),
+  row_type: model.enum(RowType),
+  seat_count: model.number(),
+  venue: model.belongsTo(() => Venue, {
+    mappedBy: "rows",
+  }),
+})
+.indexes([
+  {
+    on: ["venue_id", "row_number"],
+    unique: true,
+  },
+])
+
+export default VenueRow
+```
+
+The `VenueRow` data model has the following properties:
+
+- `id`: The primary key of the table.
+- `row_number`: The identifier of the row, such as "A" and "B", or "1" and "2".
+- `row_type`: The type of the row, which can be "premium", "balcony", "standard", or "vip".
+- `seat_count`: The number of seats in the row.
+- `venue`: A many-to-one relation with the `Venue` data model, which represents the venue that the row belongs to.
+
+You also add a unique index on the combination of `venue_id` and `row_number` to ensure that each row number is unique within a venue.
+
+#### TicketProduct Model
+
+The `TicketProduct` data model represents a product purchased as a ticket, such as a show or event. It will be linked to Medusa's `Product` data model.
+
+To create the `TicketProduct` data model, create the file `src/modules/ticket-booking/models/ticket-product.ts` with the following content:
+
+```ts title="src/modules/ticket-booking/models/ticket-product.ts"
+import { model } from "@medusajs/framework/utils"
+import { Venue } from "./venue"
+import { TicketProductVariant } from "./ticket-product-variant"
+import { TicketPurchase } from "./ticket-purchase"
+
+export const TicketProduct = model.define("ticket_product", {
+  id: model.id().primaryKey(),
+  product_id: model.text().unique(),
+  venue: model.belongsTo(() => Venue),
+  dates: model.array(),
+  variants: model.hasMany(() => TicketProductVariant, {
+    mappedBy: "ticket_product",
+  }),
+  purchases: model.hasMany(() => TicketPurchase, {
+    mappedBy: "ticket_product",
+  }),
+})
+.indexes([
+  {
+    on: ["venue_id", "dates"],
+  },
+])
+
+export default TicketProduct
+```
+
+The `TicketProduct` data model has the following properties:
+
+- `id`: The primary key of the table.
+- `product_id`: The ID of the linked product in Medusa's `Product` data model.
+- `venue`: A many-to-one relation with the `Venue` data model, which represents the venue where the show takes place.
+- `dates`: An array of dates when the show takes place.
+- `variants`: A one-to-many relation with the `TicketProductVariant` data model, which you'll create next.
+- `purchases`: A one-to-many relation with the `TicketPurchase` data model, which you'll create next.
+
+You also add an index on the combination of `venue_id` and `dates` to optimize queries that filter by these fields.
+
+<Note title="Tip">
+
+Data relevant for ticket sales like price, inventory, etc., are all either included in the `Product` and `ProductVariant` data models or their linked records. So, you don't need to duplicate this information in the `TicketProduct` data model.
+
+</Note>
+
+#### TicketProductVariant Model
+
+The `TicketProductVariant` data model represents a variant of a ticket product, such as a specific row type. It will be linked to Medusa's `ProductVariant` data model.
+
+To create the `TicketProductVariant` data model, create the file `src/modules/ticket-booking/models/ticket-product-variant.ts` with the following content:
+
+```ts title="src/modules/ticket-booking/models/ticket-product-variant.ts"
+import { model } from "@medusajs/framework/utils"
+import { TicketProduct } from "./ticket-product"
+import { RowType } from "./venue-row"
+import { TicketPurchase } from "./ticket-purchase"
+
+export const TicketProductVariant = model.define("ticket_product_variant", {
+  id: model.id().primaryKey(),
+  product_variant_id: model.text().unique(),
+  ticket_product: model.belongsTo(() => TicketProduct, {
+    mappedBy: "variants",
+  }),
+  row_type: model.enum(RowType),
+  purchases: model.hasMany(() => TicketPurchase, {
+    mappedBy: "ticket_variant",
+  }),
+})
+.indexes([
+  {
+    on: ["ticket_product_id", "row_type"],
+  },
+])
+
+export default TicketProductVariant
+```
+
+The `TicketProductVariant` data model has the following properties:
+
+- `id`: The primary key of the table.
+- `product_variant_id`: The ID of the linked product variant in Medusa's `ProductVariant` data model.
+- `ticket_product`: A many-to-one relation with the `TicketProduct` data model, which represents the ticket product the variant belongs to.
+- `row_type`: The type of the row associated with the variant, which can be "premium", "balcony", "standard", or "vip".
+- `purchases`: A one-to-many relation with the `TicketPurchase` data model, which you'll create next.
+
+#### TicketPurchase Model
+
+The `TicketPurchase` data model represents the purchase of a seat for a specific `TicketProduct`. It will be linked to Medusa's `Order` data model.
+
+To create the `TicketPurchase` data model, create the file `src/modules/ticket-booking/models/ticket-purchase.ts` with the following content:
+
+```ts title="src/modules/ticket-booking/models/ticket-purchase.ts"
+import { model } from "@medusajs/framework/utils"
+import { TicketProduct } from "./ticket-product"
+import { TicketProductVariant } from "./ticket-product-variant"
+import { VenueRow } from "./venue-row"
+
+export const TicketPurchase = model.define("ticket_purchase", {
+  id: model.id().primaryKey(),
+  order_id: model.text(),
+  ticket_product: model.belongsTo(() => TicketProduct),
+  ticket_variant: model.belongsTo(() => TicketProductVariant),
+  venue_row: model.belongsTo(() => VenueRow),
+  seat_number: model.text(),
+  show_date: model.dateTime(),
+  status: model.enum(["pending", "scanned"]).default("pending"),
+})
+.indexes([
+  {
+    on: ["order_id"],
+  },
+  {
+    on: ["ticket_product_id", "venue_row_id", "seat_number", "show_date"],
+    unique: true,
+  },
+])
+
+export default TicketPurchase
+```
+
+The `TicketPurchase` data model has the following properties:
+
+- `id`: The primary key of the table.
+- `order_id`: The ID of the linked order in Medusa's `Order` data model.
+- `ticket_product`: A many-to-one relation with the `TicketProduct` data model, which represents the ticket product purchased.
+- `ticket_variant`: A many-to-one relation with the `TicketProductVariant` data model, which represents the variant (row type) of the ticket product purchased.
+- `venue_row`: A many-to-one relation with the `VenueRow` data model, which represents the row of the seat purchased.
+- `seat_number`: The number of the seat purchased.
+- `show_date`: The date of the show for which the ticket was purchased.
+- `status`: The status of the ticket purchase, which can be "pending" or "scanned". This is useful later when you add QR scanning functionality.
+
+You also add two indexes:
+
+- An index on the `order_id` field to optimize queries that filter by this field.
+- A unique index on the combination of `ticket_product_id`, `venue_row_id`, `seat_number`, and `show_date` to ensure that a specific seat for a specific show date can only be purchased once.
+
+### c. Create Module's Service
+
+You can manage your module's data models in a service.
+
+A service is a TypeScript class that the module exports. In the service's methods, you can connect to the database, allowing you to manage your data models, or connect to third-party services, which is useful if you're integrating with external services.
+
+<Note>
+
+Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-create-service) to learn more.
+
+</Note>
+
+To create the Ticket Booking Module's service, create the file `src/modules/ticket-booking/service.ts` with the following content:
+
+```ts title="src/modules/ticket-booking/service.ts"
+import { MedusaService } from "@medusajs/framework/utils"
+import Venue from "./models/venue"
+import VenueRow from "./models/venue-row"
+import TicketProduct from "./models/ticket-product"
+import TicketProductVariant from "./models/ticket-product-variant"
+import TicketPurchase from "./models/ticket-purchase"
+
+export class TicketBookingModuleService extends MedusaService({
+  Venue,
+  VenueRow,
+  TicketProduct,
+  TicketProductVariant,
+  TicketPurchase,
+}) { }
+
+export default TicketBookingModuleService
+```
+
+The `TicketBookingModuleService` extends `MedusaService`, which generates a class with data-management methods for your module's data models. This saves you time on implementing Create, Read, Update, and Delete (CRUD) methods.
+
+The `TicketBookingModuleService` class now has methods like `createTicketProducts` and `retrieveVenue`.
+
+<Note>
+
+Find all methods generated by the `MedusaService` in [the Service Factory reference](../../../service-factory-reference/page.mdx).
+
+</Note>
+
+### d. Export Module Definition
+
+The final piece of a module is its definition, which you export in an `index.ts` file at its root directory. This definition tells Medusa the name of the module and its service.
+
+So, create the file `src/modules/ticket-booking/index.ts` with the following content:
+
+```ts title="src/modules/ticket-booking/index.ts"
+import TicketBookingModuleService from "./service"
+import { Module } from "@medusajs/framework/utils"
+
+export const TICKET_BOOKING_MODULE = "ticketBooking"
+
+export default Module(TICKET_BOOKING_MODULE, {
+  service: TicketBookingModuleService,
+})
+```
+
+You use the `Module` function to create the module's definition. It accepts two parameters:
+
+1. The module's name, which is `ticketBooking`.
+2. An object with a required property `service` indicating the module's service.
+
+You also export the module's name as `TICKET_BOOKING_MODULE` so you can reference it later.
+
+### e. Add Module to Medusa's Configurations
+
+Once you finish building the module, add it to Medusa's configurations to start using it.
+
+In `medusa-config.ts`, add a `modules` property and pass an array with your custom module:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "./src/modules/ticket-booking",
+    },
+  ],
+})
+```
+
+Each object in the `modules` array has a `resolve` property, whose value is either a path to the module's directory, or an `npm` package’s name.
+
+### f. Generate Migrations
+
+Since data models represent tables in the database, you define how they're created in the database with migrations. A migration is a TypeScript class that defines database changes made by a module.
+
+<Note>
+
+Refer to the [Migrations documentation](!docs!/learn/fundamentals/modules#5-generate-migrations) to learn more.
+
+</Note>
+
+Medusa's CLI tool can generate the migrations for you. To generate a migration for the Ticket Booking Module, run the following command in your Medusa application's directory:
+
+```bash npx2yarn
+npx medusa db:generate ticketBooking
+```
+
+The `db:generate` command of the Medusa CLI accepts the name of the module to generate the migration for. You'll now have a `migrations` directory under `src/modules/ticket-booking` that holds the generated migration.
+
+Then, to reflect these migrations on the database, run the following command:
+
+```bash npx2yarn
+npx medusa db:migrate
+```
+
+The tables for the Ticket Booking Module's data models are now created in the database.
+
+---
+
+## Step 3: Link Ticket Booking to Medusa Data Models
+
+Since Medusa isolates modules to integrate them into your application without side effects, you can't directly create relationships between data models of different modules.
+
+Instead, Medusa provides a mechanism to define links between data models and retrieve and manage linked records while maintaining module isolation.
+
+<Note>
+
+Refer to the [Module Isolation documentation](!docs!/learn/fundamentals/modules/isolation) to learn more.
+
+</Note>
+
+In this step, you'll define a link between the data models in the Ticket Booking Module and Medusa's Commerce Modules.
+
+### a. TicketProduct \<\> Product Link
+
+To define a link between the `TicketProduct` data model and Medusa's `Product` data model, create the file `src/links/ticket-product.ts` with the following content:
+
+```ts title="src/links/ticket-product.ts"
+import TicketingModule from "../modules/ticket-booking"
+import ProductModule from "@medusajs/medusa/product"
+import { defineLink } from "@medusajs/framework/utils"
+
+export default defineLink(
+  {
+    linkable: TicketingModule.linkable.ticketProduct,
+    deleteCascade: true,
+  },
+  ProductModule.linkable.product
+)
+
+```
+
+You define a link using the `defineLink` function. It accepts two parameters:
+
+1. An object indicating the first data model part of the link. A module has a special `linkable` property that contains link configurations for its data models. You pass the linkable configurations of the Ticket Booking Module's `TicketProduct` data model. You also set the `deleteCascade` property to `true`, indicating that a ticket product should be deleted if its linked product is deleted.
+2. An object indicating the second data model part of the link. You pass the linkable configurations of the Product Module's `Product` data model.
+
+In later steps, you'll learn how this link allows you to retrieve and manage ticket products and their related Medusa products.
+
+<Note title="Tip">
+
+Refer to the [Module Links](!docs!/learn/fundamentals/module-links) documentation to learn more about defining links.
+
+</Note>
+
+### b. TicketProductVariant \<\> ProductVariant Link
+
+To define a link between the `TicketProductVariant` data model and Medusa's `ProductVariant` data model, create the file `src/links/ticket-product-variant.ts` with the following content:
+
+```ts title="src/links/ticket-product-variant.ts"
+import TicketingModule from "../modules/ticket-booking"
+import ProductModule from "@medusajs/medusa/product"
+import { defineLink } from "@medusajs/framework/utils"
+
+export default defineLink(
+  {
+    linkable: TicketingModule.linkable.ticketProductVariant,
+    deleteCascade: true,
+  },
+  ProductModule.linkable.productVariant
+)
+```
+
+You define a link in a similar way as the previous link, but this time between the `TicketProductVariant` and `ProductVariant` data models.
+
+### c. TicketPurchase \<\> Order Link
+
+Finally, to define a link between the `TicketPurchase` data model and Medusa's `Order` data model, create the file `src/links/ticket-purchase-order.ts` with the following content:
+
+```ts title="src/links/ticket-purchase-order.ts"
+import TicketingModule from "../modules/ticket-booking"
+import OrderModule from "@medusajs/medusa/order"
+import { defineLink } from "@medusajs/framework/utils"
+
+export default defineLink(
+  {
+    linkable: TicketingModule.linkable.ticketPurchase,
+    deleteCascade: true,
+    isList: true,
+  },
+  OrderModule.linkable.order
+)
+
+```
+
+You define a link in a similar way as the previous links, but this time between the `TicketPurchase` and `Order` data models. You also set the `isList` property to `true` for the `TicketPurchase` data model, indicating that an order can have multiple ticket purchases.
+
+### d. Sync Links to Database
+
+After defining links, you need to sync them to the database. This creates the necessary tables to manage the links.
+
+To sync the links to the database, run the migrations command again in the Medusa application's directory:
+
+```bash npx2yarn
+npx medusa db:migrate
+```
+
+This command will create the necessary tables to manage the links between the Ticket Booking Module's data models and Medusa's data models.
+
+---
+
+## Step 4: Create Venue
+
+In this step, you'll implement the logic to create a venue.
+
+When you build commerce features in Medusa that can be consumed by client applications, such as the Medusa Admin dashboard or storefront, you need to implement:
+
+1. A [workflow](!docs!/learn/fundamentals/workflows) with steps that define the business logic of the feature.
+2. An [API route](!docs!/learn/fundamentals/api-routes) that exposes the workflow's functionality to client applications.
+
+In this step, you'll implement the workflow and API route for creating a venue.
+
+### a. Create Venue Workflow
+
+A workflow is a series of queries and actions, called steps, that complete a task. A workflow is similar to a function, but it allows you to track its executions' progress, define roll-back logic, and configure other advanced features.
+
+<Note>
+
+Refer to the [Workflows documentation](!docs!/learn/fundamentals/workflows) to learn more.
+
+</Note>
+
+The workflow to create a venue will have the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "createVenueWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "createVenueStep",
+        description: "Creates a venue.",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "createVenueRowsStep",
+        description: "Creates the venue's rows.",
+        depth: 2
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieves the created venue with its rows.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 3
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+The `useQueryGraphStep` is available through Medusa's `@medusajs/medusa/core-flows` package. You'll implement other steps in the workflow.
+
+#### createVenueStep
+
+The `createVenueStep` creates a venue.
+
+To create the step, create the file `src/workflows/steps/create-venue.ts` with the following content:
+
+```ts title="src/workflows/steps/create-venue.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { TICKET_BOOKING_MODULE } from "../../modules/ticket-booking"
+
+export type CreateVenueStepInput = {
+  name: string
+  address?: string
+}
+
+export const createVenueStep = createStep(
+  "create-venue",
+  async (input: CreateVenueStepInput, { container }) => {
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+
+    const venue = await ticketBookingModuleService.createVenues(input)
+
+    return new StepResponse(venue, venue)
+  },
+  async (venue, { container }) => {
+    if (!venue) {return}
+
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+    
+    await ticketBookingModuleService.deleteVenues(venue.id)
+  }
+)
+```
+
+You create a step with the `createStep` function. It accepts three parameters:
+
+1. The step's unique name.
+2. An async function that receives two parameters:
+    - The step's input, which is an object with the `name` and `address` properties of the venue to create.
+    - An object that has properties including the [Medusa container](!docs!/learn/fundamentals/medusa-container), which is a registry of Framework and commerce tools that you can access in the step.
+3. An async compensation function that undoes the actions performed by the step function. This function is only executed if an error occurs during the workflow's execution.
+
+In the step function, you resolve the Ticket Booking Module's service from the Medusa container using its `resolve` method, passing it the module's name as a parameter.
+
+Then, you use the generated `createVenues` method of the Ticket Booking Module's service to create a venue with the provided input.
+
+Finally, a step function must return a `StepResponse` instance. The `StepResponse` constructor accepts two parameters:
+
+1. The step's output, which is the venue created.
+2. Data to pass to the step's compensation function.
+
+In the compensation function, you undo creating the venue by deleting it using the generated `deleteVenues` method of the Ticket Booking Module's service.
+
+#### createVenueRowsStep
+
+The `createVenueRowsStep` creates rows in a venue.
+
+To create the step, create the file `src/workflows/steps/create-venue-rows.ts` with the following content:
+
+```ts title="src/workflows/steps/create-venue-rows.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { TICKET_BOOKING_MODULE } from "../../modules/ticket-booking"
+import { RowType } from "../../modules/ticket-booking/models/venue-row"
+
+export type CreateVenueRowsStepInput = {
+  rows: {
+    venue_id: string
+    row_number: string
+    row_type: RowType
+    seat_count: number
+  }[]
+}
+
+export const createVenueRowsStep = createStep(
+  "create-venue-rows",
+  async (input: CreateVenueRowsStepInput, { container }) => {
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+
+    const venueRows = await ticketBookingModuleService.createVenueRows(
+      input.rows
+    )
+
+    return new StepResponse(venueRows, venueRows)
+  },
+  async (venueRows, { container }) => {
+    if (!venueRows) {return}
+
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+    
+    await ticketBookingModuleService.deleteVenueRows(
+      venueRows.map((row) => row.id)
+    )
+  }
+)
+```
+
+This step receives the rows to create as an input.
+
+In the step function, you create the rows and return them.
+
+In the compensation function, you undo creating the rows by deleting them.
+
+#### Create Venue Workflow
+
+You can now create the workflow that uses the steps you implemented.
+
+To create the workflow, create the file `src/workflows/create-venue.ts` with the following content:
+
+```ts title="src/workflows/create-venue.ts"
+import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createVenueStep } from "./steps/create-venue"
+import { createVenueRowsStep } from "./steps/create-venue-rows"
+import { RowType } from "../modules/ticket-booking/models/venue-row"
+import { useQueryGraphStep } from "@medusajs/core-flows"
+
+export type CreateVenueWorkflowInput = {
+  name: string
+  address?: string
+  rows: Array<{
+    row_number: string
+    row_type: RowType
+    seat_count: number
+  }>
+}
+
+export const createVenueWorkflow = createWorkflow(
+  "create-venue",
+  (input: CreateVenueWorkflowInput) => {
+    const venue = createVenueStep({
+      name: input.name,
+      address: input.address,
+    })
+
+    const venueRowsData = transform({
+      venue,
+      input,
+    }, (data) => {
+      return data.input.rows.map((row) => ({
+        venue_id: data.venue.id,
+        row_number: row.row_number,
+        row_type: row.row_type,
+        seat_count: row.seat_count,
+      }))
+    })
+
+    createVenueRowsStep({
+      rows: venueRowsData,
+    })
+
+    const { data: venues } = useQueryGraphStep({
+      entity: "venue",
+      fields: ["id", "name", "address", "rows.*"],
+      filters: {
+        id: venue.id,
+      },
+    })
+
+    return new WorkflowResponse({
+      venue: venues[0],
+    })
+  }
+)
+```
+
+You create a workflow using the `createWorkflow` function. It accepts the workflow's unique name as a first parameter.
+
+It accepts as a second parameter a constructor function that holds the workflow's implementation. The function accepts an input object containing the details of the venue and its rows.
+
+In the workflow, you:
+
+1. Create a venue using the `createVenueStep`.
+2. Prepare the data to create the venue's rows.
+3. Create the venue's rows using the `createVenueRowsStep`.
+4. Retrieve the created venue with its rows using the `useQueryGraphStep`.
+    - This step uses [Query](!docs!/learn/fundamentals/module-links/query) under the hood. It allows you to retrieve data across modules.
+
+A workflow must return an instance of `WorkflowResponse` that accepts the data to return to the workflow's executor. You return the created venue with its rows.
+
+<Note title="Tip">
+
+`transform` allows you to access the values of data during execution. Learn more in the [Data Manipulation](!docs!/learn/fundamentals/workflows/variable-manipulation) documentation.
+
+</Note>
+
+### b. Create Venue API Route
+
+Next, you'll create an API route that exposes the functionality of the `createVenueWorkflow` to client applications.
+
+An API route is created in a `route.ts` file under a sub-directory of the `src/api` directory. The path of the API route is the file's path relative to `src/api`.
+
+<Note>
+
+Refer to the [API routes](!docs!/learn/fundamentals/api-routes) documentation to learn more about them.
+
+</Note>
+
+Create the file `src/api/admin/venues/route.ts` with the following content:
+
+<Note>
+
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+
+</Note>
+
+```ts title="src/api/admin/venues/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { createVenueWorkflow } from "../../../workflows/create-venue"
+import { RowType } from "../../../modules/ticket-booking/models/venue-row"
+import { z } from "@medusajs/framework/zod"
+
+export const CreateVenueSchema = z.object({
+  name: z.string(),
+  address: z.string().optional(),
+  rows: z.array(z.object({
+    row_number: z.string(),
+    row_type: z.nativeEnum(RowType),
+    seat_count: z.number(),
+  })),
+})
+
+type CreateVenueSchema = z.infer<typeof CreateVenueSchema>
+
+export async function POST(
+  req: MedusaRequest<CreateVenueSchema>,
+  res: MedusaResponse
+) {
+  const { result } = await createVenueWorkflow(req.scope).run({
+    input: req.validatedBody,
+  })
+
+  res.json(result)
+}
+```
+
+You use [Zod](https://zod.dev/) to create the `CreateVenueSchema` that is used to validate request bodies sent to this API route.
+
+Then, you export a `POST` route handler function, which will expose a `POST` API route at `/admin/venues`.
+
+In the route handler, you execute the `createVenueWorkflow`, passing it the request body as an input.
+
+Finally, you return the created venue with its rows in the response.
+
+You'll test this API route later when you customize the Medusa Admin.
+
+#### Add Validation Middleware for Create Venue API Route
+
+To validate the body parameters of requests sent to the API route, you need to apply a [middleware](!docs!/learn/fundamentals/api-routes/middlewares).
+
+To apply a middleware to a route, create the file `src/api/middlewares.ts` with the following content:
+
+```ts title="src/api/middlewares.ts"
+import { 
+  defineMiddlewares, 
+  validateAndTransformBody,
+} from "@medusajs/framework/http"
+import { CreateTicketProductSchema } from "./admin/ticket-products/route"
+
+export default defineMiddlewares({
+  routes: [
+    {
+      matcher: "/admin/venues",
+      methods: ["POST"],
+      middlewares: [
+        validateAndTransformBody(CreateVenueSchema),
+      ],
+    },
+  ],
+})
+```
+
+You apply Medusa's `validateAndTransformBody` middleware to `POST` requests sent to the `/admin/venues` route.
+
+The middleware function accepts a Zod schema, which you created in the API route's file.
+
+<Note title="Tip">
+
+Refer to the [Middlewares](!docs!/learn/fundamentals/api-routes/middlewares) documentation to learn more.
+
+</Note>
+
+---
+
+## Step 5: List Venues API Route
+
+In this step, you'll add an API route to retrieve a list of venues. You'll use this API route later to display a list of venues in the Medusa Admin.
+
+To create the API route, add the following to the `src/api/admin/venues/route.ts` file:
+
+```ts title="src/api/admin/venues/route.ts"
+export async function GET(
+  req: MedusaRequest,
+  res: MedusaResponse
+) {
+  const query = req.scope.resolve("query")
+
+  const { 
+    data: venues,
+    metadata,
+  } = await query.graph({
+    entity: "venue",
+    ...req.queryConfig,
+  })
+
+  res.json({ 
+    venues,
+    count: metadata?.count,
+    limit: metadata?.take,
+    offset: metadata?.skip,
+  })
+}
+```
+
+You export a `GET` route handler function, which will expose a `GET` API route at `/admin/venues`.
+
+In the route handler, you resolve Query from the Medusa container and use it to retrieve a list of venues.
+
+Notice that you spread the `req.queryConfig` object into the `query.graph` method. This allows clients to pass query parameters for pagination and configure returned fields. You'll learn how to set these configurations in a bit.
+
+Finally, you return the list of venues and pagination details in the response.
+
+You'll test out this API route later when you customize the Medusa Admin.
+
+### Add Validation Middleware for List Venues API Route
+
+To validate the query parameters of requests sent to the API route, and to allow clients to configure pagination and returned fields, you need to apply a middleware.
+
+To apply a middleware to the route, add the following imports at the top of the `src/api/middlewares.ts` file:
+
+```ts title="src/api/middlewares.ts"
+import { validateAndTransformQuery } from "@medusajs/framework/http"
+import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+```
+
+Then, add the following object to the `routes` array passed to `defineMiddlewares`:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/admin/venues",
+      methods: ["GET"],
+      middlewares: [
+        validateAndTransformQuery(createFindParams(), {
+          isList: true,
+          defaults: ["id", "name", "address", "rows.*"],
+        }),
+      ],
+    },
+  ],
+})
+```
+
+You apply the `validateAndTransformQuery` middleware to `GET` requests sent to the `/admin/venues` route. This allows you to validate query parameters and set configurations for pagination and returned fields.
+
+The middleware function accepts two parameters:
+
+1. A Zod schema to validate the query parameters. You use Medusa's `createFindParams` utility function to create a schema that validates common query parameters like `limit`, `offset`, `fields`, and `order`.
+2. Query configurations that you use in the API route using the `req.queryConfig` object. You set the following configurations:
+    - `isList`: Set to `true` to indicate that the API route returns a list of records.
+    - `defaults`: An array of fields to return by default if the client doesn't specify any fields in the request.
+
+<Note title="Tip">
+
+Refer to the [Query](!docs!/learn/fundamentals/module-links/query#request-query-configurations) documentation to learn more about query request configurations.
+
+</Note>
+
+---
+
+## Step 6: Manage Venues in Medusa Admin
+
+In this step, you'll customize the Medusa Admin to allow admin users to manage venues.
+
+The Medusa Admin dashboard is customizable, allowing you to insert widgets into existing pages, or create new pages.
+
+<Note title="Tip">
+
+Refer to the [Admin Development](!docs!/learn/fundamentals/admin) documentation to learn more.
+
+</Note>
+
+In this step, you'll create a new page or UI route in the Medusa Admin to view a list of venues and create new venues.
+
+### a. Initialize JS SDK
+
+To send requests to the Medusa server, you'll use the [JS SDK](../../../js-sdk/page.mdx). It's already installed in your Medusa project, but you need to initialize it before using it in your customizations.
+
+Create the file `src/admin/lib/sdk.ts` with the following content:
+
+```ts title="src/admin/lib/sdk.ts"
+import Medusa from "@medusajs/js-sdk"
+
+export const sdk = new Medusa({
+  baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
+  debug: import.meta.env.DEV,
+  auth: {
+    type: "session",
+  },
+})
+```
+
+Learn more about the initialization options in the [JS SDK](../../../js-sdk/page.mdx) reference.
+
+### b. Define Types
+
+Next, you'll define types that you'll use in your admin customizations.
+
+Create the file `src/admin/types.ts` with the following content:
+
+```ts title="src/admin/types.ts"
+export enum RowType {
+  PREMIUM = "premium",
+  BALCONY = "balcony",
+  STANDARD = "standard",
+  VIP = "vip"
+}
+
+export interface VenueRow {
+  id: string
+  row_number: string
+  row_type: RowType
+  seat_count: number
+  venue_id: string
+  created_at: string
+  updated_at: string
+}
+
+export interface Venue {
+  id: string
+  name: string
+  address?: string
+  rows: VenueRow[]
+  created_at: string
+  updated_at: string
+}
+
+export interface CreateVenueRequest {
+  name: string
+  address?: string
+  rows: {
+    row_number: string
+    row_type: RowType
+    seat_count: number
+  }[]
+}
+
+export interface VenuesResponse {
+  venues: Venue[]
+  count: number
+  limit: number
+  offset: number
+}
+```
+
+You define types for the `RowType` enum, `VenueRow` and `Venue` data models, as well as types for API request and response bodies.
+
+### c. Create Venues Page
+
+You can now create a page that shows a list of venues in a table.
+
+You create a page by creating a UI route. A UI route is a React component defined under the `src/admin/routes` directory in a `page.tsx` file. The path of the UI route is the file's path relative to `src/admin/routes`.
+
+To create the venues page, create the file `src/admin/routes/venues/page.tsx` with the following content:
+
+```tsx title="src/admin/routes/venues/page.tsx" collapsibleLines="1-15" expandButtonLabel="Show Imports"
+import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { Buildings } from "@medusajs/icons"
+import { 
+  createDataTableColumnHelper, 
+  Container, 
+  DataTable, 
+  useDataTable, 
+  Heading, 
+  DataTablePaginationState,
+} from "@medusajs/ui"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useState, useMemo } from "react"
+import { sdk } from "../../lib/sdk"
+import { Venue, CreateVenueRequest } from "../../types"
+
+const VenuesPage = () => {
+  // TODO implement component
+}
+
+export const config = defineRouteConfig({
+  label: "Venues",
+  icon: Buildings,
+})
+
+export default VenuesPage
+```
+
+A UI route file must export:
+
+- A React component as the default export. This component is rendered when the user navigates to the UI route.
+- A route configuration object defined using the `defineRouteConfig` function. This object configures the UI route's label and icon in the sidebar.
+
+In the `VenuesPage` component, you'll display the list of venues in a [Data Table](!ui!/components/data-table) component.
+
+To define the columns of the data table, add the following before the `VenuesPage` component:
+
+```tsx title="src/admin/routes/venues/page.tsx"
+const columnHelper = createDataTableColumnHelper<Venue>()
+
+const columns = [
+  columnHelper.accessor("name", {
+    header: "Name",
+    cell: ({ row }) => (
+      <div>
+        <div className="txt-small-plus">{row.original.name}</div>
+        {row.original.address && (
+          <div className="txt-small text-gray-500">{row.original.address}</div>
+        )}
+      </div>
+    ),
+  }),
+  columnHelper.accessor("rows", {
+    header: "Total Capacity",
+    cell: ({ row }) => {
+      const totalCapacity = row.original.rows.reduce(
+        (sum, rowItem) => sum + rowItem.seat_count,
+        0
+      )
+      return <span className="txt-small-plus">{totalCapacity} seats</span>
+    },
+  }),
+  columnHelper.accessor("address", {
+    header: "Address",
+    cell: ({ row }) => (
+      <span>{row.original.address || "-"}</span>
+    ),
+  }),
+]
+```
+
+You define three columns: `Name`, `Total Capacity`, and `Address`.
+
+Next, to show the data table, replace the `VenuesPage` component with the following:
+
+```tsx title="src/admin/routes/venues/page.tsx"
+const VenuesPage = () => {
+  const limit = 15
+  const [pagination, setPagination] = useState<DataTablePaginationState>({
+    pageSize: limit,
+    pageIndex: 0,
+  })
+
+  const queryClient = useQueryClient()
+
+  const offset = useMemo(() => {
+    return pagination.pageIndex * limit
+  }, [pagination])
+
+  const { data, isLoading } = useQuery<{
+    venues: Venue[]
+    count: number
+    limit: number
+    offset: number
+  }>({
+    queryKey: ["venues", offset, limit],
+    queryFn: () => sdk.client.fetch("/admin/venues", {
+      query: {
+        offset: pagination.pageIndex * pagination.pageSize,
+        limit: pagination.pageSize,
+        order: "-created_at",
+      },
+    }),
+  })
+
+  const table = useDataTable({
+    columns,
+    data: data?.venues || [],
+    rowCount: data?.count || 0,
+    isLoading,
+    pagination: {
+      state: pagination,
+      onPaginationChange: setPagination,
+    },
+    getRowId: (row) => row.id,
+  })
+
+  return (
+    <Container className="divide-y p-0">
+      <DataTable instance={table}>
+        <DataTable.Toolbar className="flex flex-col items-start justify-between gap-2 md:flex-row md:items-center">
+          <Heading>
+            Venues
+          </Heading>
+        </DataTable.Toolbar>
+        <DataTable.Table />
+        <DataTable.Pagination />
+      </DataTable>
+    </Container>
+  )
+}
+```
+
+In the component, you use React Query's `useQuery` hook to fetch the list of venues from the `GET /admin/venues` API route you created earlier. You pass the `offset` and `limit` query parameters to paginate the results.
+
+Then, you use the `useDataTable` hook from Medusa UI to create a data table instance with the fetched venues and the columns you defined earlier.
+
+Finally, you render the data table.
+
+### d. Create Venue Modal
+
+Next, you'll add a component that shows a form in a modal to create a new venue. You'll open this modal when the user clicks a button on the venues page.
+
+Before adding the modal, you'll add a component that visualizes the venue rows in a seat chart. You'll use this component in the modal to help admin users visualize the rows they're adding to the venue.
+
+To create the seat chart component, create the file `src/admin/components/seat-chart.tsx` with the following content:
+
+```tsx title="src/admin/components/seat-chart.tsx"
+import React from "react"
+import { Heading } from "@medusajs/ui"
+import { RowType, VenueRow } from "../types"
+
+interface ChartVenueRow extends Pick<VenueRow, "row_number" | "row_type" | "seat_count"> {}
+
+interface SeatChartProps {
+  rows: ChartVenueRow[]
+  className?: string
+}
+
+const getRowTypeColor = (rowType: RowType): string => {
+  switch (rowType) {
+    case RowType.VIP:
+      return "bg-purple-500"
+    case RowType.PREMIUM:
+      return "bg-orange-500"
+    case RowType.BALCONY:
+      return "bg-blue-500"
+    case RowType.STANDARD:
+      return "bg-gray-500"
+    default:
+      return "bg-gray-300"
+  }
+}
+
+const getRowTypeLabel = (rowType: RowType): string => {
+  switch (rowType) {
+    case RowType.VIP:
+      return "VIP"
+    case RowType.PREMIUM:
+      return "Premium"
+    case RowType.BALCONY:
+      return "Balcony"
+    case RowType.STANDARD:
+      return "Standard"
+    default:
+      return "Unknown"
+  }
+}
+
+export const SeatChart = ({ rows, className = "" }: SeatChartProps) => {
+  if (rows.length === 0) {
+    return (
+      <div className={`p-8 text-center text-gray-500 ${className}`}>
+        <p>No rows added yet. Add rows to see the seat chart.</p>
+      </div>
+    )
+  }
+
+  // Sort rows by row_number for consistent display
+  const sortedRows = [...rows].sort((a, b) => a.row_number.localeCompare(b.row_number))
+
+  return (
+    <div className={`space-y-4 ${className}`}>
+      <div className="flex items-center justify-between">
+        <Heading level="h3">Seat Chart Preview</Heading>
+        <div className="flex items-center gap-4 txt-small">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-purple-500 rounded"></div>
+            <span>VIP</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-orange-500 rounded"></div>
+            <span>Premium</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-blue-500 rounded"></div>
+            <span>Balcony</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-gray-500 rounded"></div>
+            <span>Standard</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="border rounded-lg p-4 bg-gray-50">
+        <div className="grid grid-cols-[auto_auto_1fr_auto] gap-4 items-center">
+          {/* Header row */}
+          <div className="txt-small-plus text-gray-700 text-center">Row</div>
+          <div className="txt-small-plus text-gray-700 text-center">Type</div>
+          <div className="txt-small-plus text-gray-700 text-center">Seats</div>
+          <div className="txt-small-plus text-gray-700 text-center">Count</div>
+          
+          {/* Data rows */}
+          {sortedRows.map((row) => (
+            <React.Fragment key={row.row_number}>
+              <div className="txt-small-plus text-gray-700 text-center">
+                {row.row_number}
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <div className={`w-4 h-4 rounded ${getRowTypeColor(row.row_type)}`}></div>
+                <span className="txt-small text-ui-fg-subtle">
+                  {getRowTypeLabel(row.row_type)}
+                </span>
+              </div>
+              <div className="flex justify-center gap-1 flex-wrap">
+                {Array.from({ length: row.seat_count }, (_, i) => (
+                  <div
+                    key={i}
+                    className={`w-3 h-3 rounded-sm ${getRowTypeColor(row.row_type)} opacity-70`}
+                  />
+                ))}
+              </div>
+              <div className="txt-small text-gray-500 text-center">
+                {row.seat_count}
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      <div className="txt-small text-gray-500">
+        Total capacity: {rows.reduce((sum, row) => sum + row.seat_count, 0)} seats
+      </div>
+    </div>
+  )
+}
+```
+
+This component accepts a list of venue rows and visualizes them in a seat chart.
+
+Then, to create the component for the modal, create the file `src/admin/components/create-venue-modal.tsx` with the following content:
+
+```tsx title="src/admin/components/create-venue-modal.tsx" collapsibleLines="1-14" expandButtonLabel="Show Imports"
+import { useState } from "react"
+import {
+  FocusModal,
+  Heading,
+  Input,
+  Select,
+  Textarea,
+  Label,
+  Button,
+  toast,
+} from "@medusajs/ui"
+import { CreateVenueRequest, RowType, VenueRow } from "../types"
+import { SeatChart } from "./seat-chart"
+
+interface NewVenueRow extends Pick<VenueRow, "row_number" | "row_type" | "seat_count"> {}
+
+interface CreateVenueModalProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  onSubmit: (data: CreateVenueRequest) => Promise<void>
+}
+
+export const CreateVenueModal = ({
+  open,
+  onOpenChange,
+  onSubmit,
+}: CreateVenueModalProps) => {
+  const [name, setName] = useState("")
+  const [address, setAddress] = useState("")
+  const [rows, setRows] = useState<NewVenueRow[]>([])
+  const [newRow, setNewRow] = useState({
+    row_number: "",
+    row_type: RowType.VIP,
+    seat_count: 10,
+  })
+  const [isLoading, setIsLoading] = useState(false)
+
+  // TODO add functions to manage venue rows
+}
+```
+
+You create a `CreateVenueModal` component that accepts three props:
+
+- `open`: A boolean indicating whether the modal is open or closed.
+- `onOpenChange`: A function called when the modal's open state changes.
+- `onSubmit`: A function called when the user submits the form to create a venue.
+
+In the component, you define state variables to hold the venue's name, address, rows, a new row being added, and a loading state.
+
+In the form, admin users should be able to add multiple rows to the venue. So, you'll add methods to manage rows, such as adding and removing rows.
+
+Replace the `TODO` in the `CreateVenueModal` component with the following:
+
+```tsx title="src/admin/components/create-venue-modal.tsx"
+const addRow = () => {
+  if (!newRow.row_number.trim()) {
+    toast.error("Row number is required")
+    return
+  }
+
+  if (rows.some((row) => row.row_number === newRow.row_number)) {
+    toast.error("Row number already exists")
+    return
+  }
+
+  if (newRow.seat_count <= 0) {
+    toast.error("Seat count must be greater than 0")
+    return
+  }
+
+  setRows([...rows, {
+    row_number: newRow.row_number,
+    row_type: newRow.row_type,
+    seat_count: newRow.seat_count,
+  }])
+  setNewRow({
+    row_number: "",
+    row_type: RowType.VIP,
+    seat_count: 10,
+  })
+}
+
+const removeRow = (rowNumber: string) => {
+  setRows(rows.filter((row) => row.row_number !== rowNumber))
+}
+
+const formatRowType = (rowType: RowType) => {
+  switch (rowType) {
+    case RowType.VIP:
+      return "VIP"
+    default:
+      return rowType.charAt(0).toUpperCase() + rowType.slice(1).toLowerCase()
+  }
+}
+
+// TODO handle form submission and modal close
+```
+
+You add the `addRow` function to add a new row to the venue, and the `removeRow` function to remove a row by its row number. You also add the `formatRowType` function to format the row type for display.
+
+Next, you'll implement the logic to submit the form to create a venue and to close the modal and reset the form when the user closes it.
+
+Replace the `TODO` in the `CreateVenueModal` component with the following:
+
+```tsx title="src/admin/components/create-venue-modal.tsx"
+const handleClose = () => {
+  setName("")
+  setAddress("")
+  setRows([])
+  setNewRow({
+    row_number: "",
+    row_type: RowType.VIP,
+    seat_count: 10,
+  })
+  onOpenChange(false)
+}
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  
+  if (!name.trim()) {
+    toast.error("Venue name is required")
+    return
+  }
+
+  if (rows.length === 0) {
+    toast.error("At least one row is required")
+    return
+  }
+
+  setIsLoading(true)
+  try {
+    await onSubmit({
+      name: name.trim(),
+      address: address.trim() || undefined,
+      rows: rows.map((row) => ({
+        row_number: row.row_number,
+        row_type: row.row_type,
+        seat_count: row.seat_count,
+      })),
+    })
+    handleClose()
+  } catch (error: any) {
+    toast.error(error.message)
+  } finally {
+    setIsLoading(false)
+  }
+}
+
+// TODO render modal
+```
+
+You add the `handleClose` function to reset the form and call the `onOpenChange` prop to close the modal. You'll trigger this function when users close the modal or after successfully creating a venue.
+
+You also add the `handleSubmit` function to validate the form data, call the `onSubmit` prop with the venue data, and handle loading and error states.
+
+Finally, you'll render the modal with the form. Replace the `TODO` in the `CreateVenueModal` component with the following:
+
+```tsx title="src/admin/components/create-venue-modal.tsx"
+return (
+  <FocusModal open={open} onOpenChange={handleClose}>
+    <FocusModal.Content>
+      <form onSubmit={handleSubmit} className="flex h-full flex-col overflow-hidden">
+        <FocusModal.Header>
+          <Heading level="h1">Create New Venue</Heading>
+        </FocusModal.Header>
+        <FocusModal.Body className="p-6 overflow-auto">
+          <div className="max-w-[720px] mx-auto">
+            <div className="space-y-4 w-fit mx-auto">
+              <div>
+                <Label htmlFor="name">Venue Name</Label>
+                <Input
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter venue name"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="address">
+                  Address
+                  <span className="text-ui-fg-muted txt-compact-small"> (Optional)</span>
+                </Label>
+                <Textarea
+                  id="address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Enter venue address"
+                  rows={3}
+                />
+              </div>
+
+              <div className="border-t pt-4">
+                <Heading level="h3" className="mb-2">Add Rows</Heading>
+                
+                <div className="space-y-3">
+                  <div className="grid grid-cols-3 gap-3">
+                    <div>
+                      <Label htmlFor="row_number">Row Number</Label>
+                      <Input
+                        id="row_number"
+                        value={newRow.row_number}
+                        onChange={(e) => setNewRow({ ...newRow, row_number: e.target.value })}
+                        placeholder="A, B, 1, 2..."
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="row_type">Row Type</Label>
+                      <Select
+                        value={newRow.row_type}
+                        onValueChange={(value) => setNewRow({ ...newRow, row_type: value as RowType })}
+                      >
+                        <Select.Trigger>
+                          <Select.Value />
+                        </Select.Trigger>
+                        <Select.Content>
+                          <Select.Item value={RowType.VIP}>VIP</Select.Item>
+                          <Select.Item value={RowType.PREMIUM}>Premium</Select.Item>
+                          <Select.Item value={RowType.BALCONY}>Balcony</Select.Item>
+                          <Select.Item value={RowType.STANDARD}>Standard</Select.Item>
+                        </Select.Content>
+                      </Select>
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="seat_count">Seat Count</Label>
+                      <Input
+                        id="seat_count"
+                        type="number"
+                        min="1"
+                        value={newRow.seat_count}
+                        onChange={(e) => setNewRow({ ...newRow, seat_count: parseInt(e.target.value) || 0 })}
+                      />
+                    </div>
+                  </div>
+                  
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={addRow}
+                    disabled={!newRow.row_number.trim()}
+                  >
+                    Add Row
+                  </Button>
+                </div>
+
+                {rows.length > 0 && (
+                  <div className="mt-4">
+                    <h4 className="txt-small-plus mb-2">Added Rows</h4>
+                    <div className="space-y-2">
+                      {rows.map((row) => (
+                        <div key={row.row_number} className="flex items-center justify-between p-2 bg-ui-bg-subtle rounded">
+                          <span className="txt-small">
+                            Row {row.row_number} - {formatRowType(row.row_type)} ({row.seat_count} seats)
+                          </span>
+                          <Button
+                            type="button"
+                            variant="danger"
+                            size="small"
+                            onClick={() => removeRow(row.row_number)}
+                          >
+                            Remove
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <hr className="my-10" />
+
+            <div>
+              <SeatChart rows={rows} />
+            </div>
+          </div>
+        </FocusModal.Body>
+        <FocusModal.Footer>
+
+          <Button
+            type="submit"
+            variant="primary"
+            isLoading={isLoading}
+            disabled={!name.trim() || rows.length === 0}
+          >
+            Create Venue
+          </Button>
+        </FocusModal.Footer>
+      </form>
+    </FocusModal.Content>
+  </FocusModal>
+)
+```
+
+You use Medusa UI's `FocusModal` component to render the modal. Inside the modal, you render a form with input fields for the venue's name and address, and fields to add rows.
+
+You also render the `SeatChart` component to visualize the added rows.
+
+Now that the `CreateVenueModal` component is ready, you'll use it in the `VenuesPage` component.
+
+In `src/admin/routes/venues/page.tsx`, add the following imports at the top of the file:
+
+```tsx title="src/admin/routes/venues/page.tsx"
+import { 
+  Button,
+} from "@medusajs/ui"
+import { CreateVenueModal } from "../../components/create-venue-modal"
+```
+
+Then, in the `VenuesPage` component, add the following state variable to manage the modal's open state:
+
+```tsx title="src/admin/routes/venues/page.tsx"
+const VenuesPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  // ...
+}
+```
+
+Next, add the following functions before the `return` statement to handle opening and closing the modal, and to handle creating a venue:
+
+```tsx title="src/admin/routes/venues/page.tsx"
+const VenuesPage = () => {
+  // ...
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleCreateVenue = async (data: CreateVenueRequest) => {
+    try {
+      await sdk.client.fetch("/admin/venues", {
+        method: "POST",
+        body: data,
+      })
+      queryClient.invalidateQueries({ queryKey: ["venues"] })
+      handleCloseModal()
+    } catch (error: any) {
+      throw new Error(`Failed to create venue: ${error.message}`)
+    }
+  }
+  // ...
+}
+```
+
+You add the `handleCloseModal` function to close the modal by setting the `isModalOpen` state to `false`.
+
+You also add the `handleCreateVenue` function to send a `POST` request to the `/admin/venues` API route you created earlier.
+
+Then, to trigger opening the modal, add the following button as the last child of `<DataTable.Toolbar>` in the `return` statement:
+
+```tsx title="src/admin/routes/venues/page.tsx"
+return (
+  <Container className="divide-y p-0">
+    {/* ... */}
+      <Button
+        variant="secondary"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Create Venue
+      </Button>
+    {/* ... */}
+  </Container>
+)
+```
+
+Finally, render the `CreateVenueModal` component as the last child of the `<Container>` component in the `return` statement:
+
+```tsx title="src/admin/routes/venues/page.tsx"
+return (
+  <Container className="divide-y p-0">
+    {/* ... */}
+    <CreateVenueModal
+      open={isModalOpen}
+      onOpenChange={handleCloseModal}
+      onSubmit={handleCreateVenue}
+    />
+  </Container>
+)
+```
+
+You render the `CreateVenueModal` component, passing it the `isModalOpen` state, and the `handleCloseModal` and `handleCreateVenue` functions as props.
+
+### Test the Venues Page
+
+You can now test the venues page in the Medusa Admin.
+
+Run the following command to start the Medusa server:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, open `http://localhost:9000/app` in your browser to access the Medusa Admin. Log in with the admin user you created earlier.
+
+You should see a new "Venues" item in the sidebar. Click on it to navigate to the venues page. You'll see an empty table with a "Create Venue" button.
+
+![Venues Page in the Medusa Admin with an empty table](https://res.cloudinary.com/dza7lstvk/image/upload/v1757430925/Medusa%20Resources/CleanShot_2025-09-09_at_18.15.02_2x_o0pf16.png)
+
+To create a venue:
+
+1. Click the "Create Venue" button to open the modal.
+2. In the modal, enter a name for the venue, and optionally an address.
+3. Add rows and visualize them in the seat chart.
+4. Once you're done, click the "Create Venue" button to create the venue.
+
+![Create Venue Modal in the Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1757431196/Medusa%20Resources/CleanShot_2025-09-09_at_18.19.45_2x_qyov67.png)
+
+After creating the venue, you can see it listed in the table.
+
+---
+
+## Step 7: Create Ticket Product
+
+In this step, you'll add functionality to create a ticket product for a show. You'll create a workflow and an API route to handle ticket product creation.
+
+### a. Create Create Ticket Product Workflow
+
+The workflow that creates a ticket product will also create the Medusa product and its variants. It will create a variant for each show date and row type. For example, if a show has two dates and three row types, the workflow will create six variants for the Medusa product.
+
+The workflow will also create inventory items for each variant, ensuring that customers can't purchase more tickets than the venue's capacity.
+
+{/* TODO add diagram */}
+
+The workflow will have the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "createTicketProductWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "validateVenueAvailabilityStep",
+        description: "Validates that the selected venue is available for the show date and time.",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve default store configuration that are useful for creating the Medusa product.",
+        depth: 2,
+        link: "/references/helper-steps/useQueryGraphStep",
+      },
+      {
+        type: "step",
+        name: "createInventoryItemsWorkflow",
+        description: "Creates inventory items for the Medusa product.",
+        depth: 3,
+        link: "/references/medusa-workflows/createInventoryItemsWorkflow"
+      },
+      {
+        type: "step",
+        name: "createProductsWorkflow",
+        description: "Creates the Medusa product and its variants.",
+        depth: 4,
+        link: "/references/medusa-workflows/createProductsWorkflow"
+      },
+      {
+        type: "step",
+        name: "createTicketProductsStep",
+        description: "Creates the ticket product.",
+        depth: 5
+      },
+      {
+        type: "step",
+        name: "createTicketProductVariantsStep",
+        description: "Creates the ticket product variants.",
+        depth: 6
+      },
+      {
+        type: "step",
+        name: "createRemoteLinkStep",
+        description: "Create links between the ticket product and variants and the Medusa product and variants.",
+        depth: 7
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the created ticket product with its relations.",
+        depth: 8,
+        link: "/references/helper-steps/useQueryGraphStep",
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+You only need to implement the `validateVenueAvailabilityStep`, `createTicketProductsStep`, and `createTicketProductVariantsStep` steps. The other steps are provided by Medusa.
+
+#### validateVenueAvailabilityStep
+
+The `validateVenueAvailabilityStep` validates that the selected venue is available for the show's date and time.
+
+To create the step, create the file `src/workflows/steps/validate-venue-availability.ts` with the following content:
+
+```ts title="src/workflows/steps/validate-venue-availability.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { TICKET_BOOKING_MODULE } from "../../modules/ticket-booking"
+import { MedusaError } from "@medusajs/framework/utils"
+
+export type ValidateVenueAvailabilityStepInput = {
+  venue_id: string
+  dates: string[]
+}
+
+export const validateVenueAvailabilityStep = createStep(
+  "validate-venue-availability",
+  async (input: ValidateVenueAvailabilityStepInput, { container }) => {
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+
+    // Get all existing ticket products for this venue
+    const existingTicketProducts = await ticketBookingModuleService
+      .listTicketProducts({
+        venue_id: input.venue_id,
+      })
+
+    const hasConflict = existingTicketProducts.some((ticketProduct) => 
+      ticketProduct.dates.some((date) => input.dates.includes(date))
+    )
+
+    if (hasConflict) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA, 
+        `Venue has conflicting shows on dates: ${input.dates.join(", ")}`
+      )
+    }
+
+    return new StepResponse({ valid: true })
+  }
+)
+```
+
+In the step, you retrieve all existing ticket products for the selected venue and throw an error if any of the existing ticket products has a date that conflicts with the new show's dates.
+
+#### createTicketProductsStep
+
+The `createTicketProductsStep` creates ticket products.
+
+To create the step, create the file `src/workflows/steps/create-ticket-products.ts` with the following content:
+
+```ts title="src/workflows/steps/create-ticket-products.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { TICKET_BOOKING_MODULE } from "../../modules/ticket-booking"
+
+export type CreateTicketProductsStepInput = {
+  ticket_products: {
+    product_id: string
+    venue_id: string
+    dates: string[]
+  }[]
+}
+
+export const createTicketProductsStep = createStep(
+  "create-ticket-products",
+  async (input: CreateTicketProductsStepInput, { container }) => {
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+
+    // Create the main ticket product
+    const ticketProducts = await ticketBookingModuleService
+      .createTicketProducts(
+        input.ticket_products
+      )
+
+    return new StepResponse(
+      { 
+        ticket_products: ticketProducts,
+      },
+      { 
+        ticket_products: ticketProducts,
+      }
+    )
+  },
+  async (compensationData, { container }) => {
+    if (!compensationData?.ticket_products) {return}
+
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+    
+    // Delete the ticket product
+    await ticketBookingModuleService.deleteTicketProducts(
+      compensationData.ticket_products.map((tp) => tp.id)
+    )
+  }
+)
+```
+
+This step receives an array of ticket products to create. It creates the ticket products and returns them.
+
+In the compensation function, you delete the created ticket products if an error occurs in the workflow.
+
+#### createTicketProductVariantsStep
+
+The `createTicketProductVariantsStep` creates ticket product variants.
+
+To create the step, create the file `src/workflows/steps/create-ticket-product-variants.ts` with the following content:
+
+```ts title="src/workflows/steps/create-ticket-product-variants.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { TICKET_BOOKING_MODULE } from "../../modules/ticket-booking"
+import { RowType } from "../../modules/ticket-booking/models/venue-row"
+
+export type CreateTicketProductVariantsStepInput = {
+  variants: {
+    ticket_product_id: string
+    product_variant_id: string
+    row_type: RowType
+  }[]
+}
+
+export const createTicketProductVariantsStep = createStep(
+  "create-ticket-product-variants",
+  async (input: CreateTicketProductVariantsStepInput, { container }) => {
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+
+    // Create ticket product variants for each Medusa variant
+    const ticketVariants = await ticketBookingModuleService
+      .createTicketProductVariants(
+        input.variants
+      )
+
+    return new StepResponse(
+      {
+        ticket_product_variants: ticketVariants,
+      },
+      {
+        ticket_product_variants: ticketVariants,
+      }
+    )
+  },
+  async (compensationData, { container }) => {
+    if (!compensationData?.ticket_product_variants) {return}
+
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+    
+    await ticketBookingModuleService.deleteTicketProductVariants(
+      compensationData.ticket_product_variants.map((v) => v.id)
+    )
+  }
+)
+```
+
+This step receives an array of ticket product variants to create. It creates the ticket product variants and returns them.
+
+In the compensation function, you delete the created ticket product variants if an error occurs in the workflow.
+
+#### Create Ticket Product Workflow
+
+You can now create the workflow that creates a ticket product.
+
+To create the workflow, create the file `src/workflows/create-ticket-product.ts` with the following content:
+
+```ts title="src/workflows/create-ticket-product.ts" collapsibleLines="1-10" expandButtonLabel="Show Imports"
+import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { validateVenueAvailabilityStep } from "./steps/validate-venue-availability"
+import { createTicketProductsStep } from "./steps/create-ticket-products"
+import { useQueryGraphStep, createProductsWorkflow, createRemoteLinkStep, createInventoryItemsWorkflow } from "@medusajs/medusa/core-flows"
+import { CreateProductWorkflowInputDTO, CreateMoneyAmountDTO } from "@medusajs/framework/types"
+import { Modules } from "@medusajs/framework/utils"
+import { TICKET_BOOKING_MODULE } from "../modules/ticket-booking"
+import { RowType } from "../modules/ticket-booking/models/venue-row"
+import { createTicketProductVariantsStep } from "./steps/create-ticket-product-variants"
+
+export type CreateTicketProductWorkflowInput = {
+  name: string
+  venue_id: string
+  dates: string[]
+  variants: Array<{
+    row_type: RowType
+    seat_count: number
+    prices: CreateMoneyAmountDTO[]
+  }>
+}
+
+export const createTicketProductWorkflow = createWorkflow(
+  "create-ticket-product",
+  (input: CreateTicketProductWorkflowInput) => {
+    validateVenueAvailabilityStep({
+      venue_id: input.venue_id,
+      dates: input.dates,
+    })
+
+    const { data: stores } = useQueryGraphStep({
+      entity: "store",
+      fields: ["id", "default_location_id", "default_sales_channel_id"],
+    })
+
+    // TODO create inventory items for each variant
+  }
+)
+```
+
+You create the `createTicketProductWorkflow` workflow that accepts the details of the ticket product and its variants.
+
+In the workflow, you validate the venue's availability using the `validateVenueAvailabilityStep`.
+
+Then, you retrieve the default store configuration using the `useQueryGraphStep`. These configurations are useful when creating the Medusa inventory items and product.
+
+<Note>
+
+Make sure you have [default location and sales channel set up in your Medusa store](!user-guide!/settings/store).
+
+</Note>
+
+Next, you'll create inventory items for each variant before creating the Medusa product. Replace the `TODO` with the following:
+
+```ts title="src/workflows/create-ticket-product.ts"
+const inventoryItemsData = transform({
+  input,
+  stores,
+}, (data) => {
+  const inventoryItems: any[] = []
+  
+  for (const date of data.input.dates) {
+    for (const variant of data.input.variants) {
+      inventoryItems.push({
+        sku: `${data.input.name}-${date}-${variant.row_type}`,
+        title: `${data.input.name} - ${date} - ${variant.row_type}`,
+        description: `Ticket for ${data.input.name} on ${date} in ${variant.row_type} seating`,
+        location_levels: [{
+          location_id: data.stores[0].default_location_id,
+          stocked_quantity: variant.seat_count,
+        }],
+        requires_shipping: false,
+      })
+    }
+  }
+  
+  return inventoryItems
+})
+
+const inventoryItems = createInventoryItemsWorkflow.runAsStep({
+  input: {
+    items: inventoryItemsData,
+  },
+})
+
+// TODO create the Medusa product
+```
+
+You prepare the inventory items to be created using the `transform` function. You create an inventory item for each combination of show date and variant.
+
+Notice that for each inventory item, you set the `stocked_quantity` to the `seat_count` of the variant, ensuring that the inventory reflects the venue's seating capacity. You also set `requires_shipping` to `false`, allowing you to skip the shipping step during checkout.
+
+Then, you create the inventory items using the `createInventoryItemsWorkflow`.
+
+Next, you'll create the Medusa product and variants. Replace the `TODO` with the following:
+
+```ts title="src/workflows/create-ticket-product.ts"
+const productData = transform({
+  input,
+  inventoryItems,
+  stores,
+}, (data) => {
+  const rowTypes = [...new Set(
+    data.input.variants.map((variant: any) => variant.row_type)
+  )]
+  
+  const product: CreateProductWorkflowInputDTO = {
+    title: data.input.name,
+    status: "published",
+    options: [
+      {
+        title: "Date",
+        values: data.input.dates,
+      },
+      {
+        title: "Row Type", 
+        values: rowTypes,
+      },
+    ],
+    variants: [] as any[],
+  }
+
+  if (data.stores[0].default_sales_channel_id) {
+    product.sales_channels = [
+      {
+        id: data.stores[0].default_sales_channel_id,
+      },
+    ]
+  }
+
+  // Create variants for each date and row type combination
+  let inventoryIndex = 0
+  for (const date of data.input.dates) {
+    for (const variant of data.input.variants) {
+      product.variants!.push({
+        title: `${data.input.name} - ${date} - ${variant.row_type}`,
+        options: {
+          Date: date,
+          "Row Type": variant.row_type,
+        },
+        manage_inventory: true,
+        inventory_items: [{
+          inventory_item_id: data.inventoryItems[inventoryIndex].id,
+        }],
+        prices: variant.prices,
+      })
+      inventoryIndex++
+    }
+  }
+
+  return [product]
+})
+
+const medusaProduct = createProductsWorkflow.runAsStep({
+  input: {
+    products: productData,
+  },
+})
+
+// TODO create the ticket product and variants
+```
+
+You prepare the Medusa product data using the `transform` function. You create options for "Date" and "Row Type" and create a variant for each combination of show date and row type.
+
+You associate each variant with the corresponding inventory item created earlier, ensuring that the inventory is correctly linked to the product variants.
+
+Then, you create the Medusa product using the `createProductsWorkflow`.
+
+Next, you'll create the ticket product and its variants. Replace the `TODO` with the following:
+
+```ts title="src/workflows/create-ticket-product.ts"
+const ticketProductData = transform({
+  medusaProduct,
+  input,
+}, (data) => {
+  return {
+    ticket_products: data.medusaProduct.map((product: any) => ({
+      product_id: product.id,
+      venue_id: data.input.venue_id,
+      dates: data.input.dates,
+    })),
+  }
+})
+
+const { ticket_products } = createTicketProductsStep(
+  ticketProductData
+)
+
+const ticketVariantsData = transform({
+  medusaProduct,
+  ticket_products,
+  input,
+}, (data) => {
+  return {
+    variants: data.medusaProduct[0].variants.map((variant: any) => {
+      const rowType = variant.options.find(
+        (opt: any) => opt.option?.title === "Row Type"
+      )?.value
+      return {
+        ticket_product_id: data.ticket_products[0].id,
+        product_variant_id: variant.id,
+        row_type: rowType,
+      }
+    }),
+  }
+})
+
+const { ticket_product_variants } = createTicketProductVariantsStep(
+  ticketVariantsData
+)
+
+// TODO create links and retrieve the created ticket product
+```
+
+You prepare the ticket product data using the `transform` function, then create the ticket product using the `createTicketProductsStep`.
+
+You also prepare the ticket product variants data, then create the ticket product variants using the `createTicketProductVariantsStep`.
+
+Finally, you'll create links between the ticket product and variants and the Medusa product and variants, and retrieve the created ticket product with its relations. Replace the `TODO` with the following:
+
+```ts title="src/workflows/create-ticket-product.ts"
+const linksData = transform({
+  medusaProduct,
+  ticket_products,
+  ticket_product_variants,
+}, (data) => {
+  // Create links between ticket product and Medusa product
+  const productLinks = [{
+    [TICKET_BOOKING_MODULE]: {
+      ticket_product_id: data.ticket_products[0].id,
+    },
+    [Modules.PRODUCT]: {
+      product_id: data.medusaProduct[0].id,
+    },
+  }]
+
+  // Create links between ticket variants and Medusa variants
+  const variantLinks = data.ticket_product_variants.map((variant) => ({
+    [TICKET_BOOKING_MODULE]: {
+      ticket_product_variant_id: variant.id,
+    },
+    [Modules.PRODUCT]: {
+      product_variant_id: variant.product_variant_id,
+    },
+  }))
+
+  return [...productLinks, ...variantLinks]
+})
+
+createRemoteLinkStep(linksData)
+
+const { data: finalTicketProduct } = useQueryGraphStep({
+  entity: "ticket_product",
+  fields: [
+    "id",
+    "product_id",
+    "venue_id",
+    "dates",
+    "venue.*",
+    "product.*",
+    "variants.*",
+  ],
+  filters: {
+    id: ticket_products[0].id,
+  },
+}).config({ name: "retrieve-ticket-product" })
+
+return new WorkflowResponse({
+  ticket_product: finalTicketProduct[0],
+})
+```
+
+You create links between the ticket product and the Medusa product, and between the ticket product variants and the Medusa product variants using the `createRemoteLinkStep`.
+
+Then, you retrieve the created ticket product with its relations using the `useQueryGraphStep`.
+
+Finally, you return the created ticket product in the workflow response.
+
+### b. Create Ticket Product API Route
+
+Next, you'll create an API route that allows admin users to create a ticket product.
+
+To create the API route, create the file `src/api/admin/ticket-products/route.ts` with the following content:
+
+```ts title="src/api/admin/ticket-products/route.ts" collapsibleLines="1-7" expandButtonLabel="Show Imports"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import {
+  createTicketProductWorkflow,
+} from "../../../workflows/create-ticket-product"
+import { RowType } from "../../../modules/ticket-booking/models/venue-row"
+import { z } from "@medusajs/framework/zod"
+
+export const CreateTicketProductSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  venue_id: z.string().min(1, "Venue ID is required"),
+  dates: z.array(z.string()).min(1, "At least one date is required"),
+  variants: z.array(z.object({
+    row_type: z.nativeEnum(RowType),
+    seat_count: z.number().min(1, "Seat count must be at least 1"),
+    prices: z.array(z.object({
+      currency_code: z.string().min(1, "Currency code is required"),
+      amount: z.number().min(0, "Amount must be non-negative"),
+      min_quantity: z.number().optional(),
+      max_quantity: z.number().optional(),
+    })).min(1, "At least one price is required"),
+  })).min(1, "At least one variant is required"),
+})
+
+type CreateTicketProductSchema = z.infer<typeof CreateTicketProductSchema>
+
+export async function POST(
+  req: MedusaRequest<CreateTicketProductSchema>,
+  res: MedusaResponse
+) {
+  const { result } = await createTicketProductWorkflow(req.scope).run({
+    input: req.validatedBody,
+  })
+
+  res.json(result)
+}
+```
+
+You define the validation schema `CreateTicketProductSchema` that will be used to validate the request body.
+
+Then, you export a `POST` route handler function, which will expose a `POST` API route at `/admin/ticket-products`.
+
+In the route handler, you execute the `createTicketProductWorkflow` and return the created ticket product in the response.
+
+You'll test the API route when you customize the Medusa Admin later.
+
+### c. Create Ticket Product Validation Middleware
+
+To validate the request body against the schema you defined for creating ticket products, you'll apply a validation middleware to the API route.
+
+In `src/api/middlewares.ts`, add the following import at the top of the file:
+
+```ts title="src/api/middlewares.ts"
+import { CreateTicketProductSchema } from "./admin/ticket-products/route"
+```
+
+Then, add a new object to the `routes` array passed to the `defineMiddlewares` function:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/admin/ticket-products",
+      methods: ["POST"],
+      middlewares: [
+        validateAndTransformBody(CreateTicketProductSchema),
+      ],
+    },
+  ],
+})
+```
+
+You apply the `validateAndTransformBody` middleware to the `POST /admin/ticket-products` route, passing it the `CreateTicketProductSchema` for validation.
+
+---
+
+## Step 8: List Ticket Products API Route
+
+In this step, you'll add an API route to list ticket products. This will be useful when you customize the Medusa Admin to display ticket products.
+
+To create the API route, add the following to the `src/api/admin/ticket-products/route.ts` file:
+
+```ts title="src/api/admin/ticket-products/route.ts"
+export async function GET(
+  req: MedusaRequest,
+  res: MedusaResponse
+) {
+  const query = req.scope.resolve("query")
+
+  const {
+    data: ticketProducts,
+    metadata,
+  } = await query.graph({
+    entity: "ticket_product",
+    ...req.queryConfig,
+  })
+
+  res.json({
+    ticket_products: ticketProducts,
+    count: metadata?.count,
+    limit: metadata?.take,
+    offset: metadata?.skip,
+  })
+}
+```
+
+You export a `GET` route handler function, which will expose a `GET` API route at `/admin/ticket-products`.
+
+In the route handler, you use Query to retrieve ticket products. You pass the `req.queryConfig` object to support pagination and field selection based on query configurations and parameters.
+
+Finally, you return the ticket products along with pagination metadata in the response.
+
+You'll test the API route when you customize the Medusa Admin later.
+
+### Add Validation Middleware for List Ticket Products API Route
+
+To validate the query parameters of requests sent to the API route, and to allow clients to configure pagination and returned fields, you need to apply a query validation middleware.
+
+To apply a middleware to the route, in `src/api/middlewares.ts`, add the following object to the `routes` array passed to the `defineMiddlewares` function:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/admin/ticket-products",
+      methods: ["GET"],
+      middlewares: [
+        validateAndTransformQuery(createFindParams(), {
+          isList: true,
+          defaults: [
+            "id", 
+            "product_id", 
+            "venue_id", 
+            "dates", 
+            "venue.*", 
+            "variants.*", 
+            "product.*",
+          ],
+        }),
+      ],
+    },
+  ],
+})
+```
+
+You apply the `validateAndTransformQuery` middleware to `GET` requests sent to the `/admin/ticket-products` route. You pass it the `createFindParams` function to allow passing pagination and field selection parameters.
+
+You also define the default fields of a ticket product to be returned in the response.
+
+---
+
+## Step 9: Manage Ticket Products in Medusa Admin
+
+In this step, you'll customize the Medusa Admin to add a new page that shows a list of ticket products and allows creating new ticket products.
+
+### a. Define Ticket Product Type
+
+Before you customize the Medusa Admin, you'll define a type for the ticket product to use in your customizations.
+
+In `src/admin/types.ts`, add the following interface at the end of the file:
+
+```ts title="src/admin/types.ts"
+export interface TicketProduct {
+  id: string
+  product_id: string
+  venue_id: string
+  dates: string[]
+  venue: {
+    id: string
+    name: string
+    address?: string
+  }
+  product: {
+    id: string
+    title: string
+  }
+  variants: Array<{
+    id: string
+    row_type: string
+  }>
+  created_at: string
+  updated_at: string
+}
+```
+
+You define the `TicketProduct` interface that describes the shape of a ticket product object.
+
+### b. Create Ticket Products Page
+
+Next, you'll create the UI route for the ticket products page.
+
+Create the file `src/admin/routes/ticket-products/page.tsx` with the following content:
+
+```tsx title="src/admin/routes/ticket-products/page.tsx" collapsibleLines="1-20" expandButtonLabel="Show Imports"
+import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { ReceiptPercent } from "@medusajs/icons"
+import {
+  createDataTableColumnHelper,
+  Container,
+  DataTable,
+  useDataTable,
+  Heading,
+  DataTablePaginationState,
+  Badge,
+  toast,
+} from "@medusajs/ui"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { Link } from "react-router-dom"
+import React, { useState, useMemo } from "react"
+import { sdk } from "../../lib/sdk"
+import { TicketProduct } from "../../types"
+
+const columnHelper = createDataTableColumnHelper<TicketProduct>()
+
+const columns = [
+  columnHelper.accessor("product.title", {
+    header: "Name",
+  }),
+  columnHelper.accessor("venue.name", {
+    header: "Venue",
+  }),
+  columnHelper.accessor("dates", {
+    header: "Dates",
+    cell: ({ row }) => {
+      const dates = row.original.dates || []
+      // Show first and last dates
+      const displayDates = [dates[0], dates[dates.length - 1]]
+      return (
+        <div className="flex flex-wrap gap-1 items-center">
+          {displayDates.map((date, index) => (
+            <React.Fragment key={date}>
+              <Badge color="grey" size="small">
+                {new Date(date).toLocaleDateString()}
+              </Badge>
+              {index < displayDates.length - 1 && (
+                <span className="text-gray-500 txt-small">
+                  -
+                </span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )
+    },
+  }),
+  columnHelper.accessor("product_id", {
+    header: "Product",
+    cell: ({ row }) => {
+      return (
+        <Link to={`/products/${row.original.product_id}`}>
+          View Product Details
+        </Link>
+      )
+    },
+  }),
+]
+
+const TicketProductsPage = () => {
+  // TODO show table
+}
+
+export const config = defineRouteConfig({
+  label: "Shows",
+  icon: ReceiptPercent,
+})
+
+export default TicketProductsPage
+```
+
+First, you define the columns for the data table that will display ticket products. You create columns for the ticket product's name, venue, dates, and a link to view the associated Medusa product.
+
+Then, you create the `TicketProductsPage` component and export a configuration object that defines the route's sidebar label and icon.
+
+Next, you'll implement the `TicketProductsPage` component to show the table of ticket products. Replace the `TicketProductsPage` component with the following:
+
+```tsx title="src/admin/routes/ticket-products/page.tsx"
+const TicketProductsPage = () => {
+  const limit = 15
+  const [pagination, setPagination] = useState<DataTablePaginationState>({
+    pageSize: limit,
+    pageIndex: 0,
+  })
+
+  const queryClient = useQueryClient()
+
+  const offset = useMemo(() => {
+    return pagination.pageIndex * limit
+  }, [pagination])
+
+  const { data, isLoading } = useQuery<{
+    ticket_products: TicketProduct[]
+    count: number
+    limit: number
+    offset: number
+  }>({
+    queryKey: ["ticket-products", offset, limit],
+    queryFn: () => sdk.client.fetch("/admin/ticket-products", {
+      query: {
+        offset: pagination.pageIndex * pagination.pageSize,
+        limit: pagination.pageSize,
+        order: "-created_at",
+      },
+    }),
+  })
+
+  const table = useDataTable({
+    columns,
+    data: data?.ticket_products || [],
+    rowCount: data?.count || 0,
+    isLoading,
+    pagination: {
+      state: pagination,
+      onPaginationChange: setPagination,
+    },
+    getRowId: (row) => row.id,
+  })
+
+  return (
+    <Container className="divide-y p-0">
+      <DataTable instance={table}>
+        <DataTable.Toolbar className="flex flex-col items-start justify-between gap-2 md:flex-row md:items-center">
+          <Heading>
+            Shows
+          </Heading>
+        </DataTable.Toolbar>
+        <DataTable.Table />
+        <DataTable.Pagination />
+      </DataTable>
+    </Container>
+  )
+}
+```
+
+In the component, you define variables to manage pagination in the data table. You also use Tanstack Query and the JS SDK to retrieve the ticket products from the `GET /admin/ticket-products` API route you created earlier.
+
+Then, you use Medusa UI's `DataTable` component to render the table of ticket products.
+
+### c. Create Ticket Product Modal
+
+Next, you'll create a modal component that allows creating a new ticket product. You'll show the modal when a button is clicked on the ticket products page.
+
+The modal form is made up of two steps: one to select the venue and show dates, and another to set the prices of each row type. So, you'll create the components for each step first.
+
+#### Create Product Details Step
+
+To create the first step component, create the file `src/admin/components/product-details-step.tsx` with the following content:
+
+```tsx title="src/admin/components/product-details-step.tsx" collapsibleLines="1-13" expandButtonLabel="Show Imports"
+import { useState } from "react"
+import {
+  Input,
+  Label,
+  Select,
+  DatePicker,
+  Button,
+  Text,
+  Heading,
+  Badge,
+} from "@medusajs/ui"
+import { XMark } from "@medusajs/icons"
+import { Venue } from "../types"
+
+interface ProductDetailsStepProps {
+  name: string
+  setName: (name: string) => void
+  selectedVenueId: string
+  setSelectedVenueId: (venueId: string) => void
+  selectedDates: string[]
+  setSelectedDates: (dates: string[]) => void
+  venues: Venue[]
+}
+
+export const ProductDetailsStep = ({
+  name,
+  setName,
+  selectedVenueId,
+  setSelectedVenueId,
+  selectedDates,
+  setSelectedDates,
+  venues,
+}: ProductDetailsStepProps) => {
+  const selectedVenue = venues.find((v) => v.id === selectedVenueId)
+  
+  // Local state for start and end dates
+  const [startDate, setStartDate] = useState<Date | undefined>(
+    selectedDates.length > 0 ? new Date(selectedDates[0] + "T00:00:00") : undefined
+  )
+  const [endDate, setEndDate] = useState<Date | undefined>(
+    selectedDates.length > 1 ? new Date(selectedDates[selectedDates.length - 1] + "T00:00:00") : undefined
+  )
+
+  // TODO handle date selection
+}
+```
+
+You define the `ProductDetailsStep` component that accepts props for managing the form state, including the ticket product name, selected venue, and selected dates.
+
+In the component, you also define local state for the start and end dates used in the date picker.
+
+Next, you'll add functions that handle selecting dates. Admins can select a start and end date, which will select the range of dates in between. Admins can also delete any date from the range.
+
+Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/product-details-step.tsx"
+const generateDateRange = (start: Date, end?: Date) => {
+  const dates: string[] = []
+  const currentDate = new Date(start)
+  
+  do {
+    // Use local date formatting to avoid timezone issues
+    const year = currentDate.getFullYear()
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0")
+    const day = String(currentDate.getDate()).padStart(2, "0")
+    dates.push(`${year}-${month}-${day}`)
+    currentDate.setDate(currentDate.getDate() + 1)
+  } while (end && currentDate <= end)
+  
+  return dates
+}
+
+const handleStartDateChange = (date: Date | null) => {
+  const dateValue = date || undefined
+  setStartDate(dateValue)
+  setSelectedDates(
+    dateValue ? generateDateRange(dateValue, endDate) : []
+  )
+}
+
+const handleEndDateChange = (date: Date | null) => {
+  const dateValue = date || undefined
+  setEndDate(dateValue)
+  if (startDate && dateValue) {
+    setSelectedDates(generateDateRange(startDate, dateValue))
+  } else if (dateValue) {
+    setSelectedDates(generateDateRange(dateValue))
+  } else {
+    setSelectedDates([])
+  }
+}
+
+const removeDate = (dateToRemove: string) => {
+  setSelectedDates(selectedDates.filter((d) => d !== dateToRemove))
+}
+
+// TODO render form
+```
+
+You define the following functions:
+
+- `generateDateRange`: Generates an array of date strings between a start and optional end date.
+- `handleStartDateChange`: Handles changes to the start date, updating the selected dates accordingly.
+- `handleEndDateChange`: Handles changes to the end date, updating the selected dates accordingly.
+- `removeDate`: Removes a specific date from the selected dates.
+
+Finally, you'll render the form for the product details step. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/product-details-step.tsx"
+return (
+  <div className="space-y-6">
+    <Heading level="h2">Show Details</Heading>
+    <div>
+      <Label htmlFor="name">Name</Label>
+      <Input
+        id="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Enter name"
+      />
+    </div>
+
+    <div>
+      <Label htmlFor="venue">Venue</Label>
+      <Select
+        value={selectedVenueId}
+        onValueChange={setSelectedVenueId}
+      >
+        <Select.Trigger>
+          <Select.Value placeholder="Select a venue" />
+        </Select.Trigger>
+        <Select.Content>
+          {venues.map((venue) => (
+            <Select.Item key={venue.id} value={venue.id}>
+              {venue.name}
+            </Select.Item>
+          ))}
+        </Select.Content>
+      </Select>
+    </div>
+
+    {selectedVenue && (
+      <div className="p-4 bg-gray-50 rounded-lg">
+        <Text className="txt-small-plus mb-2">Selected Venue: {selectedVenue.name}</Text>
+        {selectedVenue.address && (
+          <Text className="txt-small text-ui-fg-subtle mb-2">{selectedVenue.address}</Text>
+        )}
+        <Text className="txt-small text-ui-fg-subtle">
+          Rows: {[...new Set(selectedVenue.rows.map((row) => row.row_type))].join(", ")}<br/>
+          Total Seats: {selectedVenue.rows.reduce((acc, row) => acc + row.seat_count, 0)}
+        </Text>
+      </div>
+    )}
+
+    <hr className="my-6" />
+
+    <div>
+      <Heading level="h2">Dates</Heading>
+      <div className="mt-2 space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <Label htmlFor="start-date">Start Date</Label>
+            <DatePicker
+              value={startDate}
+              onChange={handleStartDateChange}
+              maxValue={endDate}
+            />
+          </div>
+          <div>
+            <Label htmlFor="end-date">End Date</Label>
+            <DatePicker
+              value={endDate}
+              onChange={handleEndDateChange}
+              minValue={startDate}
+            />
+          </div>
+        </div>
+        
+        {selectedDates.length > 0 && (
+          <div className="space-y-2">
+            <Text className="txt-small-plus">
+              Selected Dates ({selectedDates.length} day{selectedDates.length !== 1 ? "s" : ""}):
+            </Text>
+            <div className="flex flex-wrap gap-2">
+              {selectedDates.map((date) => (
+                <Badge
+                  key={date}
+                  color="blue"
+                >
+                  <span>{new Date(date).toLocaleDateString()}</span>
+                  <Button
+                    variant="transparent"
+                    size="small"
+                    onClick={() => removeDate(date)}
+                    className="p-1 hover:bg-transparent"
+                  >
+                    <XMark />
+                  </Button>
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+)
+```
+
+You render the form for the product details step, including inputs for the ticket product name, venue selection, and date selection.
+
+#### Pricing Step
+
+Next, you'll create the second step component for setting prices for each row type.
+
+To create the step component, create the file `src/admin/components/pricing-step.tsx` with the following content:
+
+```tsx title="src/admin/components/pricing-step.tsx" collapsibleLines="1-10" expandButtonLabel="Show Imports"
+import {
+  Input,
+  Label,
+  Text,
+  Heading,
+  Container,
+  Badge,
+} from "@medusajs/ui"
+import { RowType, Venue } from "../types"
+
+export interface CurrencyRegionCombination {
+  currency: string
+  region_id?: string
+  region_name?: string
+  is_store_currency: boolean
+}
+
+interface PricingStepProps {
+  selectedVenue: Venue | undefined
+  currencyRegionCombinations: CurrencyRegionCombination[]
+  prices: Record<string, Record<string, number>>
+  setPrices: (prices: Record<string, Record<string, number>>) => void
+}
+
+export const PricingStep = ({
+  selectedVenue,
+  currencyRegionCombinations,
+  prices,
+  setPrices,
+}: PricingStepProps) => {
+  if (!selectedVenue) {
+    return (
+      <div className="text-center py-8">
+        <Text>Please select a venue in the previous step</Text>
+      </div>
+    )
+  }
+
+  // TODO add price and row type functions
+}
+```
+
+You define the `PricingStep` component that accepts props for the selected venue, currency-region combinations, and prices.
+
+<Note title="Tip">
+
+In Medusa, you can set the price of a product variant in multiple currencies and regions. This allows you to sell products in different markets with localized pricing. Learn more in the [Pricing documentation](../../../commerce-modules/pricing/concepts/page.mdx).
+
+</Note>
+
+In the component, if no venue is selected, you display a message prompting the user to select a venue in the previous step.
+
+Next, you'll add functions for formatting and to handle price changes. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/pricing-step.tsx"
+const updatePrice = (
+  rowType: string, 
+  currency: string, 
+  regionId: string | undefined, 
+  amount: number
+) => {
+  const key = regionId ? `${currency}_${regionId}` : `${currency}_store`
+  setPrices({
+    ...prices,
+    [rowType]: {
+      ...prices[rowType],
+      [key]: amount,
+    },
+  })
+}
+
+const getRowTypeColor = (
+  type: RowType
+): "purple" | "orange" | "blue" | "grey" => {
+  switch (type) {
+    case RowType.VIP:
+      return "purple"
+    case RowType.PREMIUM:
+      return "orange"
+    case RowType.BALCONY:
+      return "blue"
+    default:
+      return "grey"
+  }
+}
+
+const getRowTypeLabel = (type: RowType) => {
+  switch (type) {
+    case RowType.VIP:
+      return "VIP"
+    default:
+      return type.charAt(0).toUpperCase() + type.slice(1)
+  }
+}
+
+// Get unique row types from venue
+const rowTypes = [...new Set(selectedVenue.rows.map((row) => row.row_type))]
+
+// TODO render form
+```
+
+You define the following functions:
+
+- `updatePrice`: Updates the price for a specific row type and currency-region combination.
+- `getRowTypeColor`: Returns a color based on the row type for styling purposes.
+- `getRowTypeLabel`: Returns a formatted label for the row type.
+
+You also extract the unique row types from the selected venue to use in the form.
+
+Finally, you'll render the form for the pricing step. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/pricing-step.tsx"
+return (
+  <div className="space-y-6">
+    <div>
+      <Heading level="h3">Set Prices for Each Row Type</Heading>
+      <Text className="text-ui-fg-subtle">
+        Enter prices for each row type by region and currency. All prices are optional.
+      </Text>
+    </div>
+
+    <div className="space-y-4">
+      {rowTypes.map((rowType) => {
+        const totalSeats = selectedVenue.rows
+          .filter((row) => row.row_type === rowType)
+          .reduce((sum, row) => sum + row.seat_count, 0)
+
+        return (
+          <Container key={rowType} className="p-4">
+            <div className="flex items-center gap-3 mb-4">
+              <Badge color={getRowTypeColor(rowType as RowType)} size="small">
+                {getRowTypeLabel(rowType)}
+              </Badge>
+              <Text className="txt-small text-ui-fg-subtle">
+                {totalSeats} seats total
+              </Text>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {currencyRegionCombinations.map((combo) => {
+                const key = combo.region_id ? `${combo.currency}_${combo.region_id}` : `${combo.currency}_store`
+                return (
+                  <div key={key}>
+                    <Label htmlFor={`${rowType}-${key}`}>
+                      {combo.currency.toUpperCase()} - {combo.region_name || "Store"}
+                    </Label>
+                    <Input
+                      id={`${rowType}-${key}`}
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={prices[rowType]?.[key] || ""}
+                      onChange={(e) => {
+                        const amount = parseFloat(e.target.value) || 0
+                        updatePrice(rowType, combo.currency, combo.region_id, amount)
+                      }}
+                      placeholder="0.00"
+                    />
+                  </div>
+                )
+              })}
+            </div>
+          </Container>
+        )
+      })}
+    </div>
+  </div>
+)
+```
+
+You render the form for the pricing step, including sections for each row type with inputs for setting prices in different currencies and regions.
+
+#### Create Ticket Product Modal
+
+You can now create the modal component that shows a multi-step form to create a ticket product.
+
+Create the file `src/admin/components/create-ticket-product-modal.tsx` with the following content:
+
+```tsx title="src/admin/components/create-ticket-product-modal.tsx" collapsibleLines="1-13" expandButtonLabel="Show Imports"
+import React, { useState } from "react"
+import {
+  Button,
+  FocusModal,
+  ProgressTabs,
+  toast,
+} from "@medusajs/ui"
+import { useQuery } from "@tanstack/react-query"
+import { sdk } from "../lib/sdk"
+import { RowType, Venue } from "../types"
+import { ProductDetailsStep } from "./product-details-step"
+import { CurrencyRegionCombination, PricingStep } from "./pricing-step"
+
+interface CreateTicketProductModalProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  onSubmit: (data: any) => Promise<void>
+}
+
+export const CreateTicketProductModal = ({
+  open,
+  onOpenChange,
+  onSubmit,
+}: CreateTicketProductModalProps) => {
+  const [currentStep, setCurrentStep] = useState("0")
+  const [isLoading, setIsLoading] = useState(false)
+
+  // Step 1 data
+  const [name, setName] = useState("")
+  const [selectedVenueId, setSelectedVenueId] = useState("")
+  const [selectedDates, setSelectedDates] = useState<string[]>([])
+
+  // Step 2 data - prices[rowType][currency_region] = amount
+  const [prices, setPrices] = useState<Record<string, Record<string, number>>>({})
+
+  // TODO fetch venues and currency-region combinations
+}
+```
+
+You define the `CreateTicketProductModal` component that accepts props for managing the modal's open state and handling form submission.
+
+In the component, you define state variables to manage the current step, loading state, and form data for both steps.
+
+Next, you'll fetch the list of venues, regions, and store currencies from the Medusa backend. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/create-ticket-product-modal.tsx"
+// Fetch venues
+const { data: venuesData } = useQuery<{
+  venues: Venue[]
+  count: number
+}>({
+  queryKey: ["venues"],
+  queryFn: () => sdk.client.fetch("/admin/venues"),
+})
+
+// Fetch regions
+const { data: regionsData } = useQuery({
+  queryKey: ["regions"],
+  queryFn: () => sdk.admin.region.list(),
+})
+
+// Fetch stores
+const { data: storesData } = useQuery({
+  queryKey: ["stores"],
+  queryFn: () => sdk.admin.store.list(),
+})
+
+const venues = venuesData?.venues || []
+const regions = regionsData?.regions || []
+const stores = storesData?.stores || []
+const selectedVenue = venues?.find((v) => v.id === selectedVenueId)
+
+// TODO prepare currency-region combinations
+```
+
+You use Tanstack Query and the JS SDK to fetch the list of venues from the `GET /admin/venues` API route, and the list of regions and stores from admin API routes.
+
+Next, you'll prepare the currency-region combinations based on the store and region data fetched. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/create-ticket-product-modal.tsx"
+const currencyRegionCombinations = React.useMemo(() => {
+  const combinations: Array<CurrencyRegionCombination> = []
+  
+  // Add combinations from regions
+  regions.forEach((region: any) => {
+    combinations.push({
+      currency: region.currency_code,
+      region_id: region.id,
+      region_name: region.name,
+      is_store_currency: false,
+    })
+  })
+  
+  // Add combinations from stores (all supported currencies)
+  stores.forEach((store) => {      
+    // Add all supported currencies
+    store.supported_currencies.forEach((currency) => {
+      combinations.push({
+        currency: currency.currency_code,
+        region_id: undefined, // No region for store currencies
+        is_store_currency: true,
+      })
+    })
+  })
+  
+  return combinations
+}, [regions, stores])
+
+// TODO handle form actions
+```
+
+You create a memoized array of currency-region combinations by iterating over the fetched regions and stores. You add combinations for each region's currency and each store's supported currencies.
+
+Next, you'll add functions to handle form actions like resetting the form or moving between steps. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/create-ticket-product-modal.tsx"
+const resetForm = () => {
+  setName("")
+  setSelectedVenueId("")
+  setSelectedDates([])
+  setPrices({})
+  setCurrentStep("0")
+}
+
+const handleCloseModal = (open: boolean) => {
+  if (!open) {
+    resetForm()
+  }
+  onOpenChange(open)
+}
+
+const handleStep1Next = () => {
+  if (!name.trim()) {
+    toast.error("Name is required")
+    return
+  }
+  if (!selectedVenueId) {
+    toast.error("Please select a venue")
+    return
+  }
+  if (selectedDates.length === 0) {
+    toast.error("Please select at least one date")
+    return
+  }
+  setCurrentStep("1")
+}
+
+const handleStep2Submit = async () => {
+  if (!selectedVenue) {
+    toast.error("Venue not found")
+    return
+  }
+
+  // Prepare variants data
+  // combine rows with the same row_type
+  const combinedRows: Record<RowType, { seat_count: number }> = {
+    premium: { seat_count: 0 },
+    balcony: { seat_count: 0 },
+    standard: { seat_count: 0 },
+    vip: { seat_count: 0 },
+  }
+  selectedVenue.rows.forEach((row) => {
+    if (!combinedRows[row.row_type]) {
+      combinedRows[row.row_type] = { seat_count: 0 }
+    }
+    combinedRows[row.row_type].seat_count += row.seat_count
+  })
+  const variants = Object.keys(combinedRows).map((rowType) => ({
+    row_type: rowType as RowType,
+    seat_count: combinedRows[rowType as RowType].seat_count,
+    prices: currencyRegionCombinations.map((combo) => {
+      const key = combo.region_id ? `${combo.currency}_${combo.region_id}` : `${combo.currency}_store`
+      const amount = prices[rowType as RowType]?.[key] || 0
+      
+      const price: any = {
+        currency_code: combo.currency,
+        amount: amount,
+      }
+      
+      // Only add rules for region-based currencies
+      if (combo.region_id && !combo.is_store_currency) {
+        price.rules = {
+          region_id: combo.region_id,
+        }
+      }
+      
+      return price
+    }).filter((price) => price.amount > 0), // Only include prices > 0
+  })).filter((variant) => variant.seat_count > 0) // Only create variants for row types with seats
+
+  setIsLoading(true)
+  try {
+    await onSubmit({
+      name,
+      venue_id: selectedVenueId,
+      dates: selectedDates,
+      variants,
+    })
+    toast.success("Show created successfully")
+    handleCloseModal(false)
+  } catch (error: any) {
+    toast.error(error.message || "Failed to create show")
+  } finally {
+    setIsLoading(false)
+  }
+}
+
+// TODO define steps
+```
+
+You define the following functions:
+
+- `resetForm`: Resets the form state to its initial values.
+- `handleCloseModal`: Handles closing the modal and resets the form if it's being closed.
+- `handleStep1Next`: Validates the inputs in the first step before moving to the next step.
+- `handleStep2Submit`: Prepares the data from both steps and calls the `onSubmit` prop to create the ticket product.
+
+Before submitting the form, you combine rows with the same `row_type` to create variants and prepare the prices for each variant based on the selected currency-region combinations.
+
+Next, you'll define step variables useful to render the multi-step form. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/create-ticket-product-modal.tsx"
+// Check if step 1 (Product Details) is completed
+const isStep1Completed = name.trim() && selectedVenueId && selectedDates.length > 0
+
+// Check if step 2 (Pricing) is completed
+const hasAnyPrices = Object.values(prices).some((rowPrices) => 
+  Object.values(rowPrices).some((amount) => amount > 0)
+)
+const isStep2Completed = isStep1Completed && hasAnyPrices
+
+const steps = [
+  {
+    label: "Product Details",
+    value: "0",
+    status: isStep1Completed ? "completed" as const : undefined,
+    content: (
+      <ProductDetailsStep
+        name={name}
+        setName={setName}
+        selectedVenueId={selectedVenueId}
+        setSelectedVenueId={setSelectedVenueId}
+        selectedDates={selectedDates}
+        setSelectedDates={setSelectedDates}
+        venues={venues}
+      />
+    ),
+  },
+  {
+    label: "Pricing",
+    value: "1",
+    status: isStep2Completed ? "completed" as const : undefined,
+    content: (
+      <PricingStep
+        selectedVenue={selectedVenue}
+        currencyRegionCombinations={currencyRegionCombinations}
+        prices={prices}
+        setPrices={setPrices}
+      />
+    ),
+  },
+]
+
+// TODO render modal
+```
+
+You define variables to check if each step is completed based on the form inputs. You also define an array of step objects, each containing a label, value, status, and content component.
+
+Finally, you'll render the modal with the multi-step form. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/create-ticket-product-modal.tsx"
+return (
+  <FocusModal open={open} onOpenChange={handleCloseModal}>
+    <FocusModal.Content>
+      <FocusModal.Header className="justify-start py-0">
+        <div className="flex flex-col gap-4 w-full">
+          <ProgressTabs
+            value={currentStep}
+            onValueChange={setCurrentStep}
+            className="w-full"
+          >
+            <ProgressTabs.List className="w-full">
+              {steps.map((step) => (
+                <ProgressTabs.Trigger 
+                  key={step.value} 
+                  value={step.value}
+                  status={step.status}
+                >
+                  {step.label}
+                </ProgressTabs.Trigger>
+              ))}
+            </ProgressTabs.List>
+          </ProgressTabs>
+        </div>
+      </FocusModal.Header>
+      <FocusModal.Body className="flex flex-1 flex-col p-6">
+        <ProgressTabs
+          value={currentStep}
+          onValueChange={setCurrentStep}
+          className="flex-1 w-full mx-auto"
+        >
+          {steps.map((step) => (
+            <ProgressTabs.Content key={step.value} value={step.value} className="flex-1">
+              <div className="max-w-[720px] mx-auto">
+                {step.content}
+              </div>
+            </ProgressTabs.Content>
+          ))}
+        </ProgressTabs>
+      </FocusModal.Body>
+      <FocusModal.Footer>
+        <Button
+          variant="secondary"
+          onClick={() => setCurrentStep(currentStep === "1" ? "0" : "0")}
+          disabled={currentStep === "0"}
+        >
+          Previous
+        </Button>
+        
+        {currentStep === "0" ? (
+          <Button
+            variant="primary"
+            onClick={handleStep1Next}
+          >
+            Next
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            onClick={handleStep2Submit}
+            isLoading={isLoading}
+          >
+            Create Show
+          </Button>
+        )}
+      </FocusModal.Footer>
+    </FocusModal.Content>
+  </FocusModal>
+)
+```
+
+You render the `FocusModal` component with a header containing progress tabs for navigation between steps, a body displaying the content of the current step, and a footer with buttons to navigate between steps or submit the form.
+
+### d. Add Modal to Ticket Products Page
+
+You can now render the `CreateTicketProductModal` component in the `TicketProductsPage` component.
+
+In `src/admin/routes/ticket-products/page.tsx`, add the following imports at the top of the file:
+
+```tsx title="src/admin/routes/ticket-products/page.tsx"
+import {
+  Button,
+} from "@medusajs/ui"
+import { CreateTicketProductModal } from "../../components/create-ticket-product-modal"
+```
+
+Then, in the `TicketProductsPage` component, add the following state variable to manage the modal's open state:
+
+```tsx title="src/admin/routes/ticket-products/page.tsx"
+const TicketProductsPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  // ...
+}
+```
+
+Next, before the return statement, add the following functions to handle closing the modal and submitting the form:
+
+```tsx title="src/admin/routes/ticket-products/page.tsx"
+const TicketProductsPage = () => {
+  // ...
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleCreateTicketProduct = async (data: any) => {
+    try {
+      await sdk.client.fetch("/admin/ticket-products", {
+        method: "POST",
+        body: data,
+      })
+      queryClient.invalidateQueries({ queryKey: ["ticket-products"] })
+      handleCloseModal()
+    } catch (error: any) {
+      toast.error(`Failed to create show: ${error.message}`)
+    }
+  }
+  // ...
+}
+```
+
+You define the `handleCloseModal` function to close the modal, and the `handleCreateTicketProduct` function to submit the form data to the `POST /admin/ticket-products` API route you created earlier.
+
+Finally, in the return statement, add a button to open the modal as the last child of `DataTable.Toolbar`:
+
+```tsx title="src/admin/routes/ticket-products/page.tsx"
+return (
+  <Container className="divide-y p-0">
+    {/* ... */}
+      <Button
+        variant="secondary"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Create Show
+      </Button>
+    {/* ... */}
+  </Container>
+)
+```
+
+And add the `CreateTicketProductModal` component as the last child of the `Container` component:
+
+```tsx title="src/admin/routes/ticket-products/page.tsx"
+return (
+  <Container className="divide-y p-0">
+    {/* ... */}
+    <CreateTicketProductModal
+      open={isModalOpen}
+      onOpenChange={handleCloseModal}
+      onSubmit={handleCreateTicketProduct}
+    />
+  </Container>
+)
+```
+
+### Test the Ticket Products Page
+
+You can now test the ticket products page in the Medusa Admin.
+
+Start the Medusa server if it isn't already running. If you open the Medusa Admin and log in, you should see a new "Shows" item in the sidebar. If you click on it, you can see a table of ticket products with a button to create a new show.
+
+![Shows page with the table of ticket products and a button to create a new show](https://res.cloudinary.com/dza7lstvk/image/upload/v1757490157/Medusa%20Resources/CleanShot_2025-09-10_at_10.42.00_2x_jsaq7v.png)
+
+To create a new show (or ticket product):
+
+1. Click the "Create Show" button to open the modal.
+2. In the "Product Details" step, enter a name for the show, select a venue, and select one or more dates using the date pickers.
+3. Click "Next" to go to the "Pricing" step.
+
+![Create Show modal with the Product Details step](https://res.cloudinary.com/dza7lstvk/image/upload/v1757490395/Medusa%20Resources/CleanShot_2025-09-10_at_10.46.23_2x_v2pbuo.png)
+
+4. In the "Pricing" step, set prices for each row type. You can set prices in different currencies and regions. All prices are optional.
+5. Once you're done, click "Create Show" to submit the form.
+
+![Create Show modal with the Pricing step](https://res.cloudinary.com/dza7lstvk/image/upload/v1757490725/Medusa%20Resources/CleanShot_2025-09-10_at_10.51.55_2x_bijkab.png)
+
+This will create a new ticket product with a Medusa product. You can view the ticket product in the table, and you can click the link to view the associated Medusa product.
+
+You can edit the associated Medusa product to add images, descriptions, and other details for the show.
+
+---
+
+## Step 10: Validate Ticket on Add to Cart
+
+In this step, you'll add custom validation to the core add-to-cart operation that ensures a seat isn't purchased more than once for the same date.
+
+Medusa implements cart operations in workflows. Specifically, you'll focus on the `addToCartWorkflow`. Medusa allows you to inject custom logic into workflows using [hooks](!docs!/learn/fundamentals/workflows/workflow-hooks).
+
+A workflow hook is a point in a workflow where you can inject custom functionality as a step function.
+
+To consume the `validate` hook of the `addToCartWorkflow` that holds the add-to-cart logic, create the file `src/workflows/hooks/add-to-cart-validation.ts` with the following content:
+
+```ts title="src/workflows/hooks/add-to-cart-validation.ts"
+import { addToCartWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaError } from "@medusajs/framework/utils"
+
+// Hook for addToCartWorkflow to validate seat availability
+addToCartWorkflow.hooks.validate(
+  async ({ input }, { container }) => {
+    const items = input.items
+    const query = container.resolve("query")
+
+    // Get the product variant to check if it's a ticket product variant
+    const { data: productVariants } = await query.graph({
+      entity: "product_variant",
+      fields: ["id", "product_id", "ticket_product_variant.purchases.*"],
+      filters: {
+        id: items.map((item) => item.variant_id).filter(Boolean) as string[],
+      },
+    })
+
+    // Get existing cart items to check for conflicts
+    const { data: [cart] } = await query.graph({
+      entity: "cart",
+      fields: ["items.*"],
+      filters: {
+        id: input.cart_id,
+      },
+    }, {
+      throwIfKeyNotFound: true,
+    })
+
+    // Check each item being added to cart
+    for (const item of items) {
+      if (item.quantity !== 1) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA, 
+          "You can only purchase one ticket for a seat."
+        )
+      }
+      const productVariant = productVariants.find(
+        (variant) => variant.id === item.variant_id
+      )
+
+      if (!productVariant || !item.metadata?.seat_number) {continue}
+
+      if (!item.metadata?.show_date) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
+          `Show date is required for seat ${item.metadata?.seat_number} in product ${productVariant.product_id}`
+        )
+      }
+
+      // Check if seat has already been purchased
+      const existingPurchase = productVariant.ticket_product_variant?.purchases.find(
+        (purchase) => purchase?.seat_number === item.metadata?.seat_number 
+          && purchase?.show_date === item.metadata?.show_date
+      )
+
+      if (existingPurchase) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
+          `Seat ${item.metadata?.seat_number} has already been purchased for show date ${item.metadata?.show_date}`
+        )
+      }
+
+      // Check if seat is already in the cart
+      const existingCartItem = cart.items.find(
+        (cartItem) => cartItem?.metadata?.seat_number === item.metadata?.seat_number 
+          && cartItem?.metadata?.show_date === item.metadata?.show_date
+      )
+
+      if (existingCartItem) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
+          `Seat ${item.metadata?.seat_number} is already in your cart for show date ${item.metadata?.show_date}`
+        )
+      }
+    }
+  }
+)
+```
+
+You consume the hook by calling `addToCartWorkflow.hooks.validate`, passing it a step function.
+
+In the step function, you:
+
+- Retrieve the product variants being added to the cart with their associated ticket product variant purchases.
+- Retrieve the existing cart items to check for conflicts.
+- Throw an error if:
+    - The quantity of any item being added is more than 1 (you can only purchase one ticket for a seat).
+    - The show date is missing in the item metadata.
+    - The seat has already been purchased for the same show date.
+    - The seat is already in the cart for the same show date.
+
+If the hook throws an error, the add-to-cart operation will be aborted and the error message will be returned to the client.
+
+You can test out the hook when you [customize the storefront](./storefront/page.mdx).
+
+---
+
+## Step 11: Custom Complete Cart
+
+In this step, you'll create a custom complete cart workflow that wraps the default `completeCartWorkflow` to add logic that creates ticket purchases for each ticket product variant in the cart. Then, you'll execute that workflow in a custom API route.
+
+### a. Custom Complete Cart Workflow
+
+The custom workflow that completes the cart has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "completeCartWithTicketsWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "acquireLockStep",
+        description: "Acquire a lock on the cart to prevent concurrent modifications",
+        link: "/references/medusa-workflows/steps/acquireLockStep",
+        depth: 1,
+      },
+      {
+        type: "workflow",
+        name: "completeCartWorkflow",
+        description: "Complete the cart using Medusa's default completeCartWorkflow",
+        depth: 2,
+        link: "/references/medusa-workflows/completeCartWorkflow"
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the cart details",
+        depth: 3,
+        link: "/references/helper-steps/useQueryGraphStep"
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve existing ticket purchases to ensure idempotency",
+        depth: 4,
+        link: "/references/helper-steps/useQueryGraphStep"
+      },
+      {
+        type: "when",
+        condition: "existingLinks.length === 0",
+        steps: [
+          {
+            type: "step",
+            name: "validateTicketOrderStep",
+            description: "Validate that the ticket order can be processed",
+            depth: 1,
+          },
+          {
+            type: "step",
+            name: "createTicketPurchasesStep",
+            description: "Create ticket purchases for each ticket product variant in the cart",
+            depth: 2,
+          },
+          {
+            type: "step",
+            name: "createRemoteLinkStep",
+            description: "Create links between the order and ticket purchases",
+            depth: 3,
+            link: "/references/helper-steps/createRemoteLinkStep"
+          },
+        ],
+        depth: 5
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the order details",
+        depth: 6,
+        link: "/references/helper-steps/useQueryGraphStep"
+      },
+      {
+        type: "step",
+        name: "releaseLockStep",
+        description: "Release the lock on the cart",
+        depth: 7,
+        link: "/references/medusa-workflows/steps/releaseLockStep"
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+You only need to implement the `createTicketPurchasesStep` and `validateTicketOrderStep` steps, as the other steps and workflows are provided by Medusa.
+
+#### createTicketPurchasesStep
+
+The `createTicketPurchasesStep` creates ticket purchases for each ticket product variant in a cart.
+
+To create the step, create the file `src/workflows/steps/create-ticket-purchases.ts` with the following content:
+
+```ts title="src/workflows/steps/create-ticket-purchases.ts" collapsibleLines="1-10" expandButtonLabel="Show Imports"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { 
+  CartDTO, 
+  CartLineItemDTO, 
+  ProductVariantDTO,
+  InferTypeOf,
+} from "@medusajs/framework/types"
+import { TICKET_BOOKING_MODULE } from "../../modules/ticket-booking"
+import TicketProductVariant from "../../modules/ticket-booking/models/ticket-product-variant"
+
+export type CreateTicketPurchasesStepInput = {
+  order_id: string
+  cart: CartDTO & {
+    items: CartLineItemDTO & {
+      variant?: ProductVariantDTO & {
+        ticket_product_variant?: InferTypeOf<typeof TicketProductVariant>
+      }
+    }[]
+  }
+}
+
+export const createTicketPurchasesStep = createStep(
+  "create-ticket-purchases",
+  async (input: CreateTicketPurchasesStepInput, { container }) => {
+    const { order_id, cart } = input
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+
+    const ticketPurchasesToCreate: {
+      order_id: string
+      ticket_product_id: string
+      ticket_variant_id: string
+      venue_row_id: string
+      seat_number: string
+      show_date: Date
+    }[] = []
+
+    // Process each item in the cart
+    for (const item of cart.items) {
+      if (
+        !item?.variant?.ticket_product_variant || 
+        !item?.metadata?.venue_row_id || 
+        !item?.metadata?.seat_number
+      ) {continue}
+
+      ticketPurchasesToCreate.push({
+        order_id,
+        ticket_product_id: item.variant.ticket_product_variant.ticket_product_id,
+        ticket_variant_id: item.variant.ticket_product_variant.id,
+        venue_row_id: item?.metadata.venue_row_id as string,
+        seat_number: item?.metadata.seat_number as string,
+        show_date: new Date(
+          item?.variant.options.find(
+            (option: any) => option.option.title === "Date"
+          )?.value as string
+        ),
+      })
+    }
+
+    const ticketPurchases = await ticketBookingModuleService.createTicketPurchases(
+      ticketPurchasesToCreate
+    )
+    
+    return new StepResponse(
+      ticketPurchases,
+      ticketPurchases
+    )
+  },
+  async (ticketPurchases, { container }) => {
+    if (!ticketPurchases) {return}
+
+    const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+
+    // Delete the created ticket purchases
+    await ticketBookingModuleService.deleteTicketPurchases(
+      ticketPurchases.map((ticketPurchase) => ticketPurchase.id)
+    )
+  }
+)
+```
+
+The `createTicketPurchasesStep` accepts the cart and order ID as input.
+
+In the step function, you prepare the ticket purchases to be created, create the ticket purchases, and return them.
+
+In the compensation function, you delete the created ticket purchases if an error occurs in the workflow.
+
+#### validateTicketOrderStep
+
+The `validateTicketOrderStep` validates that the tickets can be purchased based on their availability.
+
+To create the step, create the file `src/workflows/steps/validate-ticket-order.ts` with the following content:
+
+```ts title="src/workflows/steps/validate-ticket-order.ts"
+import { MedusaError } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { cancelOrderWorkflow } from "@medusajs/medusa/core-flows"
+
+export type ValidateTicketOrderStepInput = {
+  items: {
+    id: string
+    variant_id: string
+    metadata: Record<string, unknown>
+    quantity: number
+    variant?: {
+      id: string
+      product_id: string
+      ticket_product_variant?: {
+        purchases?: {
+          seat_number: string
+          show_date: Date
+        }[]
+      }
+    }
+  }[]
+  order_id: string
+}
+
+export const validateTicketOrderStep = createStep(
+  "validate-ticket-order",
+  async ({ items, order_id }: ValidateTicketOrderStepInput, { container }) => {
+    // Check for duplicate seats within the cart
+    const seatDateCombinations = new Set<string>()
+    
+    for (const item of items) {
+      if (item.quantity !== 1) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA, 
+          "You can only purchase one ticket for a seat."
+        )
+      }
+
+      if (!item.variant || !item.metadata?.seat_number) {continue}
+
+      if (!item.metadata?.show_date) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA, 
+          `Show date is required for seat ${item.metadata?.seat_number} in product ${item.variant.product_id}`
+        )
+      }
+
+      // Create a unique key for seat and date combination
+      const seatDateKey = `${item.metadata?.seat_number}-${item.metadata?.show_date}`
+      
+      // Check if this seat-date combination already exists in the cart
+      if (seatDateCombinations.has(seatDateKey)) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA, 
+          `Duplicate seat ${item.metadata?.seat_number} found for show date ${item.metadata?.show_date} in cart`
+        )
+      }
+      
+      // Add to the set to track this combination
+      seatDateCombinations.add(seatDateKey)
+
+      // Check if seat has already been purchased
+      const existingPurchase = item.variant.ticket_product_variant?.purchases?.find(
+        (purchase) => purchase?.seat_number === item.metadata?.seat_number 
+          && purchase?.show_date === item.metadata?.show_date
+      )
+
+      if (existingPurchase) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA, 
+          `Seat ${item.metadata?.seat_number} has already been purchased for show date ${item.metadata?.show_date}`
+        )
+      }
+    }
+
+    return new StepResponse({ validated: true }, order_id)
+  },
+  async (order_id, { container, context }) => {
+    if (!order_id) {return}
+
+    cancelOrderWorkflow(container).run({
+      input: {
+        order_id,
+      },
+      context,
+      container,
+    })
+  }
+)
+```
+
+The `validateTicketOrderStep` accepts the cart items and order ID as input.
+
+In the step function, you validate that:
+
+1. No seat is purchased more than once for the same date within the cart.
+2. No seat has already been purchased for the same date.
+
+If any validation fails, you throw an error to abort the workflow.
+
+The step also has a compensation function that cancels the order if an error occurs later in the workflow. This is important to ensure that if ticket purchase creation fails, the order is not left in a completed state.
+
+#### Custom Complete Cart Workflow
+
+You can now create the custom workflow that completes the cart and creates ticket purchases.
+
+Create the file `src/workflows/complete-cart-with-tickets.ts` with the following content:
+
+```ts title="src/workflows/complete-cart-with-tickets.ts" collapsibleLines="1-14" expandButtonLabel="Show Imports"
+import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { 
+  completeCartWorkflow, 
+  createRemoteLinkStep, 
+  acquireLockStep, 
+  releaseLockStep, 
+  useQueryGraphStep,
+} from "@medusajs/medusa/core-flows"
+import { createTicketPurchasesStep, CreateTicketPurchasesStepInput } from "./steps/create-ticket-purchases"
+import { TICKET_BOOKING_MODULE } from "../modules/ticket-booking"
+import { Modules } from "@medusajs/framework/utils"
+import ticketPurchaseOrderLink from "../links/ticket-purchase-order"
+import { validateTicketOrderStep, ValidateTicketOrderStepInput } from "./steps/validate-ticket-order"
+
+export type CompleteCartWithTicketsWorkflowInput = {
+  cart_id: string
+}
+
+export const completeCartWithTicketsWorkflow = createWorkflow(
+  "complete-cart-with-tickets",
+  (input: CompleteCartWithTicketsWorkflowInput) => {
+    acquireLockStep({
+      key: input.cart_id,
+      timeout: 2,
+      ttl: 10,
+    })
+    const order = completeCartWorkflow.runAsStep({
+      input: {
+        id: input.cart_id,
+      },
+    })
+
+    const { data: carts } = useQueryGraphStep({
+      entity: "cart",
+      fields: [
+        "id", 
+        "items.variant.*",
+        "items.variant.options.*",
+        "items.variant.options.option.*",
+        "items.variant.ticket_product_variant.*",
+        "items.variant.ticket_product_variant.ticket_product.*",
+        "items.variant.ticket_product_variant.purchases.*",
+        "items.metadata",
+        "items.quantity",
+      ],
+      filters: {
+        id: input.cart_id,
+      },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    const { data: existingLinks } = useQueryGraphStep({
+      entity: ticketPurchaseOrderLink.entryPoint,
+      fields: ["ticket_purchase.id"],
+      filters: { order_id: order.id },
+    }).config({ name: "retrieve-existing-links" })
+
+    when({ existingLinks }, (data) => data.existingLinks.length === 0)
+    .then(() => {
+      validateTicketOrderStep({
+        items: carts[0].items,
+        order_id: order.id,
+      } as unknown as ValidateTicketOrderStepInput)
+      const ticketPurchases = createTicketPurchasesStep({
+        order_id: order.id,
+        cart: carts[0],
+      } as unknown as CreateTicketPurchasesStepInput)
+  
+      const linkData = transform({
+        order,
+        ticketPurchases,
+      }, (data) => {
+        return data.ticketPurchases.map((purchase) => ({
+          [TICKET_BOOKING_MODULE]: {
+            ticket_purchase_id: purchase.id,
+          },
+          [Modules.ORDER]: {
+            order_id: data.order.id,
+          },
+        }))
+      })
+  
+      createRemoteLinkStep(linkData)
+    })
+
+    const { data: refetchedOrder } = useQueryGraphStep({
+      entity: "order",
+      fields: [
+        "id",
+        "currency_code",
+        "email",
+        "customer.*",
+        "billing_address.*",
+        "payment_collections.*",
+        "items.*",
+        "total",
+        "subtotal",
+        "tax_total",
+        "shipping_total",
+        "discount_total",
+        "created_at",
+        "updated_at",
+      ],
+      filters: {
+        id: order.id,
+      },
+    }).config({ name: "refetch-order" })
+
+    releaseLockStep({
+      key: input.cart_id,
+    })
+
+    return new WorkflowResponse({
+      order: refetchedOrder[0],
+    })
+  }
+)
+```
+
+The `completeCartWithTicketsWorkflow` accepts the cart ID as input.
+
+In the workflow function, you:
+
+1. Acquire a lock on the cart to prevent concurrent modifications using the `acquireLockStep`.
+2. Complete the cart using Medusa's `completeCartWorkflow`.
+3. Retrieve the cart details using the `useQueryGraphStep`.
+4. Retrieve existing ticket purchases linked to the order to ensure idempotency using the `useQueryGraphStep`.
+    - This is important because if the workflow is retried, you don't want to create duplicate ticket purchases.
+5. Use `when` to check that there are no existing links between the order and ticket purchases. If so, you:
+    1. Validate that the ticket order can be processed using the `validateTicketOrderStep`.
+    2. Create ticket purchases for each ticket product variant in the cart using the `createTicketPurchasesStep`.
+    3. Create links between the order and the created ticket purchases using the `createRemoteLinkStep`.
+6. Retrieve the order details using the `useQueryGraphStep`.
+7. Release the lock on the cart using the `releaseLockStep`.
+
+Finally, you return the order details.
+
+### b. Custom Complete Cart API Route
+
+Next, you'll create a custom API route that executes the `completeCartWithTicketsWorkflow` to complete the cart and create ticket purchases.
+
+Create the file `src/api/store/carts/[id]/complete-tickets/route.ts` with the following content:
+
+```ts title="src/api/store/carts/[id]/complete-tickets/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { completeCartWithTicketsWorkflow } from "../../../../../workflows/complete-cart-with-tickets"
+
+export async function POST(
+  req: MedusaRequest,
+  res: MedusaResponse
+) {
+  const { result } = await completeCartWithTicketsWorkflow(req.scope).run({
+    input: {
+      cart_id: req.params.id,
+    },
+  })
+
+  res.json({
+    type: "order",
+    order: result.order,
+  })
+}
+```
+
+Since you export a `POST` route handler function, you expose a `POST` API route at `/store/carts/{id}/complete-tickets`.
+
+In the route handler, you execute the `completeCartWithTicketsWorkflow` and return the created order in the response.
+
+You'll test out this API route when you [customize the storefront](./storefront/page.mdx#update-cart-functions).
+
+---
+
+## Step 12: Storefront API Routes
+
+To [customize the storefront](./storefront/page.mdx) in the next part, you need two API routes that the storefront will consume:
+
+1. An API route to fetch the available dates for a ticket product.
+2. An API route to fetch the seating layout for a venue, including details on which seats are already booked for a specific date.
+
+You'll test these API routes when you customize the storefront.
+
+### a. Available Dates API Route
+
+The first API route you'll create fetches the available dates for a ticket product.
+
+Create the file `src/api/store/ticket-products/[id]/availability/route.ts` with the following content:
+
+```ts title="src/api/store/ticket-products/[id]/availability/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaError } from "@medusajs/framework/utils"
+
+export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+  const { id } = req.params
+  const query = req.scope.resolve("query")
+
+  const { data: [ticketProduct] } = await query.graph({
+    entity: "ticket_product",
+    fields: [
+      "id",
+      "product_id",
+      "dates",
+      "venue.*",
+      "venue.rows.*",
+      "variants.*",
+      "variants.product_variant.*",
+      "variants.product_variant.options.*",
+      "variants.product_variant.options.option.*",
+      "variants.product_variant.ticket_product_variant.*",
+      "variants.product_variant.ticket_product_variant.purchases.*",
+    ],
+    filters: {
+      product_id: id,
+    },
+  })
+
+  if (!ticketProduct) {
+    throw new MedusaError(MedusaError.Types.NOT_FOUND, "Ticket product not found")
+  }
+
+  // Calculate availability for each date and row type
+  const availability = ticketProduct.dates.map((date: string) => {
+    // Group rows by row_type to get total seats per row type
+    const rowTypeGroups = ticketProduct.venue.rows.reduce((groups: any, row: any) => {
+      if (!groups[row.row_type]) {
+        groups[row.row_type] = {
+          row_type: row.row_type,
+          total_seats: 0,
+          rows: [],
+        }
+      }
+      groups[row.row_type].total_seats += row.seat_count
+      groups[row.row_type].rows.push(row)
+      return groups
+    }, {})
+
+    const dateAvailability = {
+      date,
+      row_types: Object.values(rowTypeGroups).map((group: any) => {
+        // Find the variant for this date and row type
+        const variant = ticketProduct.variants.find((v: any) => {
+          const variantDate = v.product_variant.options.find((opt: any) => 
+            opt.option?.title === "Date"
+          )?.value
+          const variantRowType = v.product_variant.options.find((opt: any) => 
+            opt.option?.title === "Row Type"
+          )?.value
+          
+          return variantDate === date && variantRowType === group.row_type
+        })
+
+        if (!variant) {
+          return {
+            row_type: group.row_type,
+            total_seats: group.totalSeats,
+            available_seats: 0,
+            soldOut: true,
+          }
+        }
+
+        // Count purchased seats for this variant
+        const purchasedSeats = variant.product_variant?.ticket_product_variant?.purchases?.length || 0
+        const availableSeats = Math.max(0, group.total_seats - purchasedSeats)
+        const soldOut = availableSeats === 0
+
+        return {
+          row_type: group.row_type,
+          total_seats: group.total_seats,
+          available_seats: availableSeats,
+          sold_out: soldOut,
+        }
+      }),
+    }
+
+    // Check if the entire date is sold out
+    const totalAvailableSeats = dateAvailability.row_types.reduce(
+      (sum, rowType) => sum + rowType.available_seats, 0
+    )
+    const dateSoldOut = totalAvailableSeats === 0
+
+    return {
+      ...dateAvailability,
+      sold_out: dateSoldOut,
+    }
+  })
+
+  return res.json({
+    ticket_product: ticketProduct,
+    availability,
+  })
+}
+```
+
+You expose a `GET` API route at `/store/ticket-products/{id}/availability`.
+
+In the route handler, you:
+
+1. Retrieve the ticket product by its associated Medusa product ID, including its dates, venue, variants, and purchases.
+2. For each show date, you group the venue rows by `row_type` to calculate the total seats per row type.
+3. For each row type, you find the corresponding variant for the date and row type, count the purchased seats, and calculate the available seats.
+4. You also determine if a row type or an entire date is sold out.
+5. Finally, you return the ticket product and its availability in the response.
+
+### b. Seating Layout API Route
+
+The second API route you'll create fetches the seating layout for a venue, including details on which seats are already booked for a specific date.
+
+Create the file `src/api/store/ticket-products/[id]/seats/route.ts` with the following content:
+
+```ts title="src/api/store/ticket-products/[id]/seats/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaError } from "@medusajs/framework/utils"
+import { z } from "@medusajs/framework/zod"
+
+export const GetTicketProductSeatsSchema = z.object({
+  date: z.string(),
+})
+
+export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+  const { id } = req.params
+  const { date } = req.validatedQuery
+  const query = req.scope.resolve("query")
+
+  const { data: [ticketProduct] } = await query.graph({
+    entity: "ticket_product",
+    fields: [
+      "id",
+      "product_id",
+      "venue.*",
+      "venue.rows.*",
+      "variants.*",
+      "variants.product_variant.*",
+      "variants.product_variant.options.*",
+      "variants.product_variant.options.option.*",
+      "variants.product_variant.ticket_product_variant.*",
+      "variants.product_variant.ticket_product_variant.purchases.*",
+    ],
+    filters: {
+      product_id: id,
+    },
+  })
+
+  if (!ticketProduct) {
+    throw new MedusaError(MedusaError.Types.NOT_FOUND, "Ticket product not found")
+  }
+
+  // Build seat map for the specified date
+  const seatMap = ticketProduct.venue.rows.map((row: any) => {
+    // Find the variant for this date and row type
+    const variant = ticketProduct.variants.find((v: any) => {
+      const variantDate = v.product_variant.options.find((opt: any) => 
+        opt.option?.title === "Date"
+      )?.value
+      const variantRowType = v.product_variant.options.find((opt: any) => 
+        opt.option?.title === "Row Type"
+      )?.value
+      
+      return variantDate === date && variantRowType === row.row_type
+    })
+
+    // Get purchased seats for this variant
+    const purchasedSeats = variant?.product_variant?.ticket_product_variant?.purchases?.map(
+      (purchase) => purchase?.seat_number
+    ).filter(Boolean) || []
+
+    // Generate seat numbers for this row
+    const seats = Array.from({ length: row.seat_count }, (_, index) => {
+      const seatNumber = (index + 1).toString()
+      const isPurchased = purchasedSeats.includes(seatNumber)
+      
+      return {
+        number: seatNumber,
+        is_purchased: isPurchased,
+        variant_id: variant?.product_variant?.id || null,
+      }
+    })
+
+    return {
+      row_number: row.row_number,
+      row_type: row.row_type,
+      seats,
+    }
+  })
+
+  return res.json({
+    venue: ticketProduct.venue,
+    date,
+    seat_map: seatMap,
+  })
+}
+```
+
+You expose a `GET` API route at `/store/ticket-products/{id}/seats`. You also define a Zod schema to validate the `date` query parameter.
+
+In the route handler, you:
+
+1. Retrieve the ticket product by its associated Medusa product ID, including its venue, rows, variants, and purchases.
+2. For each venue row, you find the corresponding variant for the specified date and row type.
+3. You get the purchased seats for that variant and generate a list of seats for the row, marking which seats are already purchased.
+4. Finally, you return the venue details, the specified date, and the seat map in the response.
+
+You also need to apply a middleware to validate the query parameters using the Zod schema you defined. So, in `src/api/middlewares.ts`, add the following import at the top of the file:
+
+```ts title="src/api/middlewares.ts"
+import { GetTicketProductSeatsSchema } from "./store/ticket-products/[id]/seats/route"
+```
+
+Then, pass a new object to the `routes` array passed to the `defineMiddlewares` function:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/store/ticket-products/:id/seats",
+      methods: ["GET"],
+      middlewares: [validateAndTransformQuery(GetTicketProductSeatsSchema, {})],
+    },
+  ],
+})
+```
+
+You apply the `validateAndTransformQuery` middleware to the `/store/ticket-products/:id/seats` route for `GET` requests. You pass the `GetTicketProductSeatsSchema` to validate the query parameters.
+
+---
+
+## Step 13: Send Order Confirmation Email with Tickets
+
+The last step is to send order confirmation emails to customers with their tickets as QR codes.
+
+To send an email in Medusa when an order is placed, you'll need:
+
+- A [Notification Module Provider](../../../infrastructure-modules/notification/page.mdx) to handle sending emails. For example, [SendGrid](../../../infrastructure-modules/notification/sendgrid/page.mdx) or [Resend](../../../integrations/guides/resend/page.mdx).
+    - You also need to define an email template for the order confirmation email in the provider.
+- A method in the Ticket Booking Module's service that generates the ticket QR codes.
+- A [Subscriber](!docs!/learn/fundamentals/events-and-subscribers) that listens to the `order.placed` event and sends an email with the order details.
+- A workflow and API route to handle verifying scanned QR codes at the event entrance.
+
+### a. Set Up Notification Module
+
+First, set up a Notification Module Provider in your Medusa application.
+
+For example, to set up the SendGrid Notification Module Provider, add it to `medusa-config.ts`:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    // ...
+    {
+      resolve: "@medusajs/medusa/notification",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/medusa/notification-sendgrid",
+            id: "sendgrid",
+            options: {
+              channels: ["email"],
+              api_key: process.env.SENDGRID_API_KEY,
+              from: process.env.SENDGRID_FROM,
+            },
+          },
+        ],
+      },
+    },
+  ],
+})
+```
+
+Make sure to set the `SENDGRID_API_KEY` and `SENDGRID_FROM` environment variables in your `.env` file, as explained in the [SendGrid Notification Module Provider guide](../../../infrastructure-modules/notification/sendgrid/page.mdx).
+
+You also need to define an email template for the order confirmation email in SendGrid. The following is a dynamic template you can use:
+
+```html
+<!doctype html>
+<html lang="en" style="margin:0;padding:0;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Confirmation – {{brand_name}}</title>
+  <style>
+    /* Dark mode friendly neutrals, safe for most clients */
+    :root { color-scheme: light dark; supported-color-schemes: light dark; }
+    body { margin:0; padding:0; background:#f6f7f9; -webkit-text-size-adjust:100%; }
+    .wrapper { width:100%; table-layout:fixed; background:#f6f7f9; padding:24px 0; }
+    .container { margin:0 auto; width:100%; max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; }
+    .header { padding:24px; text-align:left; background:#0e1116; color:#ffffff; }
+    .brand { font: 600 20px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; }
+    .content { padding:24px; color:#0e1116; font: 400 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; }
+    .muted { color:#6b7280; font-size:14px; }
+    .section-title { font-weight:600; margin:24px 0 8px; }
+    .card { border:1px solid #e5e7eb; border-radius:12px; padding:16px; }
+    .divider { height:1px; background:#e5e7eb; margin:24px 0; }
+    .btn {
+      display:inline-block; text-decoration:none; background:#0e1116; color:#ffffff !important;
+      padding:12px 18px; border-radius:10px; font-weight:600;
+    }
+    /* QR grid */
+    .qr-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:16px; }
+    @media (max-width:480px) { .qr-grid { grid-template-columns: 1fr; } }
+    .qr-item { border:1px solid #e5e7eb; border-radius:10px; padding:14px; text-align:center; }
+    .qr-item img { display:block; margin:0 auto 10px; width:220px; height:220px; object-fit:contain; }
+    .qr-label { font-weight:600; margin-bottom:2px; }
+    .qr-meta { font-size:13px; color:#6b7280; }
+    .ticket-note { font-size:13px; color:#374151; margin-top:8px; }
+    /* Small print */
+    .footer { padding:18px 24px 28px; text-align:center; color:#6b7280; font-size:12px; }
+    .nowrap { white-space:nowrap; }
+    a { color:#0e63ff; }
+  </style>
+</head>
+<body>
+  <table role="presentation" class="wrapper" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td align="center">
+        <table role="presentation" class="container" cellpadding="0" cellspacing="0" width="100%">
+          <!-- Header -->
+          <tr>
+            <td class="header">
+              <div class="brand">Medusa</div>
+            </td>
+          </tr>
+
+          <!-- Greeting & Summary -->
+          <tr>
+            <td class="content">
+              <p>Hi {{customer.first_name}},</p>
+              <p>Thanks for your order! Your tickets for <strong>{{show.name}}</strong> are confirmed.</p>
+
+              <div class="card">
+                <div><strong>Order #:</strong> {{order.display_id}}</div>
+                <div><strong>Date:</strong> {{order.created_at}}</div>
+                {{#if order.email}}
+                  <div><strong>Sent to:</strong> {{order.email}}</div>
+                {{/if}}
+                {{#if show.date}}
+                  <div><strong>Event:</strong> {{show.date}}</div>
+                {{/if}}
+                {{#if show.venue}}
+                  <div><strong>Venue:</strong> {{show.venue}}</div>
+                {{/if}}
+              </div>
+
+              <div class="divider"></div>
+
+              <!-- QR Codes -->
+              <h3 class="section-title">Your Tickets (QR Codes)</h3>
+              <p class="muted" style="margin-top:0;">Show each QR code at the entrance. Each QR admits one person unless noted otherwise.</p>
+
+              <div class="qr-grid">
+                {{#each tickets}}
+                  <div class="qr-item">
+                    <!-- `qr` can be a full https URL or a data URI (e.g. data:image/png;base64,...) -->
+                    <img src="{{this.qr}}" alt="QR code for {{this.label}}" width="220" height="220" />
+                    <div class="qr-label">{{this.label}}</div>
+                    {{#if this.seat}}
+                      <div class="qr-meta">Seat: {{this.seat}}</div>
+                    {{/if}}
+                    {{#if this.row}}
+                      <div class="qr-meta">Row: {{this.row}}</div>
+                    {{/if}}
+                  </div>
+                {{/each}}
+              </div>
+
+              <p class="muted" style="margin-top:18px;">Please arrive at least 15 minutes before showtime and have your tickets ready.</p>
+
+              <div class="divider"></div>
+
+              <!-- Billing snippet -->
+              <h3 class="section-title">Billing</h3>
+                <div class="card">
+                  {{#if billing_address}}
+                    <div><strong>Billing address</strong><br/>
+                      {{billing_address.first_name}} {{billing_address.last_name}}<br/>
+                      {{billing_address.address_1}}{{#if billing_address.address_2}}, {{billing_address.address_2}}{{/if}}<br/>
+                      {{billing_address.city}}, {{billing_address.province}} {{billing_address.postal_code}}<br/>
+                      {{billing_address.country_code}}
+                    </div>
+                  {{/if}}
+                </div>
+
+              <p style="margin-top:24px;">Enjoy the show!</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+```
+
+You can customize the template to fit your brand and requirements. If you change any variable names or add new variables, make sure to update the code in the next sections accordingly.
+
+### b. Generate Ticket QR Codes
+
+Next, you'll add a method in the Ticket Booking Module's service that generates the ticket QR codes.
+
+Start by installing the `qrcode` package in your Medusa application with the following command:
+
+```bash npm2yarn
+npm install qrcode
+npm install --save-dev @types/qrcode
+```
+
+Then, in `src/modules/ticket-booking/service.ts`, add the following imports at the top of the file:
+
+```ts title="src/modules/ticket-booking/service.ts"
+import { promiseAll } from "@medusajs/framework/utils"
+import QRCode from "qrcode"
+```
+
+And add the following method to `TicketBookingModuleService`:
+
+```ts title="src/modules/ticket-booking/service.ts"
+export class TicketBookingModuleService extends MedusaService({
+  Venue,
+  VenueRow,
+  TicketProduct,
+  TicketProductVariant,
+  TicketPurchase,
+}) {
+  async generateTicketQRCodes(
+    ticketPurchaseIds: string[]
+  ): Promise<Record<string, string>> {
+    const ticketPurchases = await this.listTicketPurchases({
+      id: ticketPurchaseIds,
+    })
+    const qrCodeData: Record<string, string> = {}
+
+    await promiseAll(
+      ticketPurchases.map(async (ticketPurchase) => {
+        qrCodeData[ticketPurchase.id] = await QRCode.toDataURL(
+          ticketPurchase.id
+        )
+      })
+    )
+
+    return qrCodeData
+  }
+}
+```
+
+The `generateTicketQRCodes` method takes an array of ticket purchase IDs. It retrieves the ticket purchases and generates a QR code for each ticket purchase using the `qrcode` package.
+
+The QR code encodes the ticket purchase ID, which can be used later for verification at the event entrance.
+
+### c. Create Order Placed Subscriber
+
+Next, you'll create a subscriber that listens to the `order.placed` event and sends an order confirmation email with the tickets.
+
+A subscriber is an asynchronous function that is executed when its associated event is emitted.
+
+To create a subscriber that sends a notification to the customer when an order is placed, create the file `src/subscribers/order-placed.ts` with the following content:
+
+```ts title="src/subscribers/order-placed.ts"
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/medusa"
+import { TICKET_BOOKING_MODULE } from "../modules/ticket-booking"
+
+export default async function handleOrderPlaced({
+  event: { data },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  const query = container.resolve("query")
+  const notificationModuleService = container.resolve("notification")
+  const ticketBookingModuleService = container.resolve(TICKET_BOOKING_MODULE)
+
+  const { data: [order] } = await query.graph({
+    entity: "order",
+    fields: [
+      "id", 
+      "email", 
+      "created_at",
+      "items.*",
+      "ticket_purchases.*",
+      "ticket_purchases.ticket_product.*",
+      "ticket_purchases.ticket_product.product.*",
+      "ticket_purchases.ticket_product.venue.*",
+      "ticket_purchases.venue_row.*",
+      "customer.*",
+      "billing_address.*",
+    ],
+    filters: {
+      id: data.id,
+    },
+  })
+
+  const ticketPurchaseIds: string[] = order.ticket_purchases?.
+    map((purchase) => purchase?.id).filter(Boolean) as string[] || []
+
+  const qrCodes = await ticketBookingModuleService.generateTicketQRCodes(
+    ticketPurchaseIds
+  )
+  const firstTicketPurchase = order.ticket_purchases?.[0]
+
+  await notificationModuleService.createNotifications({
+    to: order.email || "",
+    channel: "feed",
+    // TODO replace with a proper template
+    template: "order.placed",
+    data: {
+      customer: {
+        first_name: order.customer?.first_name || 
+          order.billing_address?.first_name,
+        last_name: order.customer?.last_name || 
+          order.billing_address?.last_name,
+      },
+      order: {
+        display_id: order.id,
+        created_at: order.created_at,
+        email: order.email,
+      },
+      show: {
+        name: firstTicketPurchase?.ticket_product?.product?.title || 
+          "Your Event",
+        date: firstTicketPurchase?.show_date.toLocaleString(),
+        venue: firstTicketPurchase?.ticket_product?.venue?.name || 
+          "Venue Name",
+      },
+      tickets: order.ticket_purchases?.map((purchase) => ({
+        label: purchase?.venue_row.row_type.toUpperCase(),
+        seat: purchase?.seat_number,
+        row: purchase?.venue_row.row_number,
+        qr: qrCodes[purchase?.id || ""] || "",
+      })),
+      billing_address: order.billing_address,
+    },
+  })
+}
+
+export const config: SubscriberConfig = {
+  event: "order.placed",
+}
+```
+
+A subscriber file must export:
+
+- An asynchronous function that is executed when its associated event is emitted.
+- An object that indicates the event that the subscriber is listening to.
+
+The subscriber receives among its parameters the data payload of the emitted event, which includes the order ID.
+
+In the subscriber, you:
+
+- Retrieve the order details, including ticket purchases, customer information, and billing address.
+- Extract the ticket purchase IDs from the order.
+- Generate QR codes for the ticket purchases.
+- Use the Notification Module's service to send an email to the customer with the order details and tickets.
+    - The `data` object contains the variables used in the email template you defined earlier.
+    - Make sure to change the `template` property to match the template ID you created in your Notification Module Provider. For example, the ID of the dynamic template in SendGrid.
+
+### Test Order Confirmation Email
+
+To test the order confirmation email, [customize the storefront](./storefront/page.mdx) first. Then, start the Medusa application and the Next.js Starter Storefront.
+
+Place an order with at least one ticket product. After placing the order, you'll see the following message in your Medusa application's terminal:
+
+```bash
+info:    Processing order.placed which has 1 subscribers
+```
+
+If no errors occur, you should receive an order confirmation email at the email address you used when placing the order. The email should contain the order details and the tickets with QR codes.
+
+### d. Verify Ticket QR Code Workflow
+
+In this section, you'll implement functionality to verify QR codes, which is useful for checking tickets at event entrances.
+
+To implement this functionality, you'll create a workflow and then execute it in an API route.
+
+The workflow that verifies a ticket QR code has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "verifyTicketPurchaseWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "verifyTicketPurchaseStep",
+        description: "Verifies a ticket purchase by its ID",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "updateTicketPurchaseStatusStep",
+        description: "Updates the status of a ticket purchase",
+        depth: 1
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+You need to implement both steps.
+
+#### verifyTicketPurchaseStep
+
+The `verifyTicketPurchaseStep` verifies that a ticket purchase is valid and has not been used yet.
+
+To create the step, create the file `src/workflows/steps/verify-ticket-purchase-step.ts` with the following content:
+
+```ts title="src/workflows/steps/verify-ticket-purchase-step.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { TICKET_BOOKING_MODULE } from "../../modules/ticket-booking"
+import { MedusaError } from "@medusajs/framework/utils"
+
+export type VerifyTicketPurchaseStepInput = {
+  ticket_purchase_id: string
+}
+
+export const verifyTicketPurchaseStep = createStep(
+  "verify-ticket-purchase",
+  async (input: VerifyTicketPurchaseStepInput, { container }) => {
+    const ticketBookingService = container.resolve(TICKET_BOOKING_MODULE)
+    
+    const ticketPurchase = await ticketBookingService.retrieveTicketPurchase(
+      input.ticket_purchase_id
+    )
+
+    if (ticketPurchase.status !== "pending") {
+      throw new MedusaError(
+        MedusaError.Types.NOT_ALLOWED,
+        "Ticket has already been scanned"
+      )
+    }
+
+    if (ticketPurchase.show_date < new Date()) {
+      throw new MedusaError(
+        MedusaError.Types.NOT_ALLOWED,
+        "Ticket is expired or show date has passed"
+      )
+    }
+
+    return new StepResponse(true)
+  }
+)
+```
+
+The step takes the ticket purchase ID as input. In the step, you throw an error if the ticket has already been scanned or if the show date has passed.
+
+#### updateTicketPurchaseStatusStep
+
+The `updateTicketPurchaseStatusStep` updates the status of a ticket purchase.
+
+To create the step, create the file `src/workflows/steps/update-ticket-purchase-status-step.ts` with the following content:
+
+```ts title="src/workflows/steps/update-ticket-purchase-status-step.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { TICKET_BOOKING_MODULE } from "../../modules/ticket-booking"
+
+export type UpdateTicketPurchaseStatusStepInput = {
+  ticket_purchase_id: string
+  status: "pending" | "scanned"
+}
+
+export const updateTicketPurchaseStatusStep = createStep(
+  "update-ticket-purchase-status",
+  async (input: UpdateTicketPurchaseStatusStepInput, { container }) => {
+    const ticketBookingService = container.resolve(TICKET_BOOKING_MODULE)
+    
+    const currentTicket = await ticketBookingService.retrieveTicketPurchase(
+      input.ticket_purchase_id
+    )
+    
+    const updatedTicket = await ticketBookingService.updateTicketPurchases({
+      id: input.ticket_purchase_id,
+      status: input.status,
+    })
+
+    return new StepResponse(updatedTicket, {
+      id: input.ticket_purchase_id,
+      previousStatus: currentTicket.status,
+    })
+  },
+  async (compensationData, { container }) => {
+    if (!compensationData) {return}
+    
+    const ticketBookingService = container.resolve(TICKET_BOOKING_MODULE)
+    await ticketBookingService.updateTicketPurchases({
+      id: compensationData.id,
+      status: compensationData.previousStatus,
+    })
+  }
+)
+```
+
+The step receives the ticket purchase ID and the new status as input.
+
+In the step, you update the ticket purchase status. In the compensation function, you undo the update if an error occurs in the workflow.
+
+#### Verify Ticket QR Code Workflow
+
+You can now create the workflow that verifies a ticket QR code.
+
+Create the file `src/workflows/verify-ticket-purchase.ts` with the following content:
+
+```ts title="src/workflows/verify-ticket-purchase.ts"
+import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { verifyTicketPurchaseStep } from "./steps/verify-ticket-purchase-step"
+import { updateTicketPurchaseStatusStep } from "./steps/update-ticket-purchase-status-step"
+
+export type VerifyTicketPurchaseWorkflowInput = {
+  ticket_purchase_id: string
+}
+
+export const verifyTicketPurchaseWorkflow = createWorkflow(
+  "verify-ticket-purchase",
+  function (input: VerifyTicketPurchaseWorkflowInput) {
+    verifyTicketPurchaseStep(input)
+    
+    const ticketPurchase = updateTicketPurchaseStatusStep({
+      ticket_purchase_id: input.ticket_purchase_id,
+      status: "scanned",
+    })
+
+    return new WorkflowResponse(ticketPurchase)
+  }
+)
+```
+
+The workflow receives the ticket purchase ID as input.
+
+In the workflow, you verify the ticket purchase and then update its status to `scanned`.
+
+### e. Verify Ticket API Route
+
+Finally, you'll create an API route that executes the `verifyTicketPurchaseWorkflow` workflow to verify a ticket QR code. A QR scanner can call this API route when scanning a ticket at the event entrance.
+
+To create the API route, create the file `src/api/tickets/[id]/verify/route.ts` with the following content:
+
+```ts title="src/api/tickets/[id]/verify/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { verifyTicketPurchaseWorkflow } from "../../../../workflows/verify-ticket-purchase"
+
+export async function POST(req: MedusaRequest, res: MedusaResponse) {
+  const { id } = req.params
+
+  await verifyTicketPurchaseWorkflow(req.scope).run({
+    input: {
+      ticket_purchase_id: id,
+    },
+  })
+  
+  res.json({
+    success: true,
+  })
+}
+```
+
+You expose a `POST` API route at `/tickets/:id/verify`. In the route handler, you execute the `verifyTicketPurchaseWorkflow` workflow with the ticket purchase ID from the URL parameters.
+
+If the ticket is valid, the route returns a success response with `200` status code. If the ticket is invalid, an error is thrown with `400` status code.
+
+### Test Ticket Verification
+
+To test the ticket verification functionality, start the Medusa application.
+
+Then, place an order with at least one ticket product. After placing the order, check your email for the order confirmation email containing the tickets with QR codes.
+
+Next, decode the QR code to get the ticket purchase ID. You can use an online QR code decoder or a QR code scanner app on your phone.
+
+Finally, make a `POST` request to the `/tickets/:id/verify` API route with the ticket purchase ID:
+
+```bash
+curl -X POST http://localhost:9000/tickets/{ticket_purchase_id}/verify
+```
+
+Replace `{ticket_purchase_id}` with the actual ticket purchase ID you obtained from the QR code.
+
+If the ticket is valid, you'll receive a success response. Otherwise, you'll receive an error response indicating the ticket is invalid or has already been scanned.
+
+---
+
+## Next Steps
+
+You've now implemented the ticket booking functionality in the backend. Follow the [Ticket Booking Storefront](./storefront/page.mdx) tutorial to customize the Next.js Starter Storefront for ticket booking.
+
+You can expand on this tutorial by adding more features, such as:
+
+- Provide more management features for venues and ticket products, such as updating and deleting them.
+- Allow purchasing tickets for specific times in a day.
+- Handle [order events](/references/events#order-events), such as `order.canceled`, to make changes to ticket purchases.
+
+### Learn More about Medusa
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get a more in-depth understanding of all the concepts you've used in this guide and more.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during your development, check out the [troubleshooting guides](../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in the troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.

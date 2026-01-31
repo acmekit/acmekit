@@ -1,0 +1,500 @@
+import { CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `${pageNumber} Translate Admin Customizations`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn how to add translations to your Medusa Admin widgets and UI routes.
+
+<Note>
+
+Translations for admin customizations are available from [Medusa v2.11.1](https://github.com/medusajs/medusa/releases/tag/v2.11.1).
+
+</Note>
+
+## Translations in the Medusa Admin
+
+The Medusa Admin dashboard supports [multiple languages](!user-guide!/tips/languages) for its interface. Medusa uses [react-i18next](https://react.i18next.com/) to manage translations in the admin dashboard.
+
+<Note>
+
+Medusa Admin translations apply to the interface only. To translate content like product data, check out the [Translations user guide](!user-guide!/settings/translations).
+
+</Note>
+
+When you create [Widgets](../widgets/page.mdx) or [UI Routes](../ui-routes/page.mdx) to customize the Medusa Admin, you can provide translations for the text content in your customizations, allowing users to view your customizations in their preferred language.
+
+You can add translations for your admin customizations within your Medusa project or as part of a plugin.
+
+---
+
+## How to Add Translations to Admin Customizations
+
+### Step 1: Create Translation Files
+
+Translation files are JSON files containing key-value pairs, where the key identifies a text string and the value is the translated text or a nested object of translations.
+
+For example, to add English translations, create the file `src/admin/i18n/json/en.json` with the following content:
+
+<Note>
+
+English is the default language for Medusa Admin, so it's recommended to always include an English translation file.
+
+</Note>
+
+![Directory structure showing where to place translation files](https://res.cloudinary.com/dza7lstvk/image/upload/v1761555573/Medusa%20Book/translations-json_m2pvet.jpg)
+
+```json title="src/admin/i18n/json/en.json"
+{
+  "brands": {
+    "title": "Brands",
+    "description": "Manage your product brands"
+  },
+  "done": "Done"
+}
+```
+
+You can create additional translation files for other languages by following the same structure. For example, for Spanish, create `src/admin/i18n/json/es.json`:
+
+![Directory structure showing where to place translation files](https://res.cloudinary.com/dza7lstvk/image/upload/v1761555573/Medusa%20Book/translations-json-es_s1etna.jpg)
+
+```json title="src/admin/i18n/json/es.json"
+{
+  "brands": {
+    "title": "Marcas",
+    "description": "Gestiona las marcas de tus productos"
+  },
+  "done": "Hecho"
+}
+```
+
+### Step 2: Load Translation Files
+
+Next, to load the translation files, create the file `src/admin/i18n/index.ts` with the following content:
+
+![Directory structure showing i18n index file](https://res.cloudinary.com/dza7lstvk/image/upload/v1761555573/Medusa%20Book/translations-index_cgrj0t.jpg)
+
+```ts title="src/admin/i18n/index.ts"
+import en from "./json/en.json" with { type: "json" }
+import es from "./json/es.json" with { type: "json" }
+
+export default {
+  en: {
+    translation: en,
+  },
+  es: {
+    translation: es,
+  },
+}
+```
+
+The `src/admin/i18n/index.ts` file imports the JSON translation files. You must include the `with { type: "json" }` directive to ensure the JSON files load correctly.
+
+The file exports an object that maps two-character language codes (like `en` and `es`) to their respective translation data.
+
+### Step 3: Use Translations in Admin Customizations
+
+Finally, you can use the translations in your admin customizations by using the `useTranslation` hook from `react-i18next`.
+
+<Note>
+
+The `react-i18next` package is already included in the Medusa Admin's dependencies, so you don't need to install it separately. However, `pnpm` users may need to install it manually due to package resolution issues.
+
+</Note>
+
+For example, create the file `src/admin/widgets/product-brand.tsx` with the following content:
+
+export const translationHighlights = [
+  ["3", "useTranslation", "Import `useTranslation` hook."],
+  ["6", "t", "Access translation function."],
+  ["10", "t", "Get translated text using keys."]
+]
+
+```tsx title="src/admin/widgets/product-brand.tsx" highlights={translationHighlights}
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { Button, Container, Heading } from "@medusajs/ui"
+import { useTranslation } from "react-i18next"
+
+const ProductWidget = () => {
+  const { t } = useTranslation()
+  return (
+    <Container className="p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        <Heading level="h2">{t("brands.title")}</Heading>
+        <p>{t("brands.description")}</p>
+      </div>
+      <div className="flex justify-end px-6 py-4">
+        <Button variant="primary">{t("done")}</Button>
+      </div>
+    </Container>
+  )
+}
+
+export const config = defineWidgetConfig({
+  zone: "product.details.before",
+})
+
+export default ProductWidget
+```
+
+In the above example, you retrieve the `t` function from the `useTranslation` hook. You then use this function to get the translated text by providing the appropriate keys defined in your translation JSON files.
+
+Nested keys are joined using dot notation. For example, `brands.title` refers to the `title` key inside the `brands` object in the translation files.
+
+### Test Translations
+
+To test the translations, start the Medusa application with the following command:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, go to a product details page in the Medusa Admin dashboard. If your default language is set to English, you'll see the widget displaying text in English.
+
+Next, [change the admin language](!user-guide!/settings/profile#edit-profile-details) to Spanish. The widget will now display the text in Spanish.
+
+---
+
+## Translation Auto-Completion
+
+<Note>
+
+Translation auto-completion is available from [Medusa v2.11.2](https://github.com/medusajs/medusa/releases/tag/v2.11.2).
+
+</Note>
+
+To enhance your development experience, you can set up auto-completion for translation keys. This will allow you to auto-complete translation keys from Medusa's default translations as well as your custom translations.
+
+To set up auto-completion, create the file `src/admin/i18next.d.ts` with the following content:
+
+```ts title="src/admin/i18n/i18next.d.ts"
+// Import Medusa keys
+import type { Resources } from "@medusajs/dashboard"
+// Import your custom translation keys
+// For example, import the English translation file
+import type enTranslation from "./i18n/en.json"
+// add other imports for different languages if needed...
+// import type esTranslation from "./i18n/es.json"
+
+declare module "i18next" {
+    interface CustomTypeOptions {
+        fallbackNS: "translation"
+        resources: {
+            translation: Resources["translation"]                     
+            // Optional: add custom namespaces here
+            // For example, if you have a custom namespace called 'brands':
+            brands: typeof enTranslation & Resources["translation"]
+        }
+    }
+}
+```
+
+---
+
+## How Translations are Loaded
+
+When you load the translations with the `translation` key in `src/admin/i18n/index.ts`, your custom Medusa Admin translations are merged with the default Medusa Admin translations:
+
+- Translation keys in your custom translations override the default Medusa Admin translations.
+- The default Medusa Admin translations are used as a fallback when a key is not defined in your custom translations.
+
+For example, consider the following widget and translation file:
+
+<CodeTabs group="widget-translation">
+  <CodeTab label="Widget" value="widget">
+
+```tsx title="src/admin/widgets/product-brand.tsx"
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { Button, Container, Heading } from "@medusajs/ui"
+import { useTranslation } from "react-i18next"
+
+const ProductWidget = () => {
+  const { t } = useTranslation()
+  return (
+    <Container className="p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        {/* Output: Custom Brands Title */}
+        <Heading level="h2">{t("brands.title")}</Heading>
+        {/* Output: brands.description */}
+        <p>{t("brands.description")}</p>
+      </div>
+      <div className="flex justify-end px-6 py-4">
+        {/* Output: Custom Save */}
+        <Button variant="primary">{t("actions.save")}</Button>
+        {/* Output: Delete */}
+        <Button variant="primary">{t("actions.delete")}</Button>
+      </div>
+    </Container>
+  )
+}
+
+export const config = defineWidgetConfig({
+  zone: "product.details.before",
+})
+
+export default ProductWidget
+```
+
+  </CodeTab>
+  <CodeTab label="Translation File" value="translation-file">
+
+```json title="src/admin/i18n/json/en.json"
+{
+  "brands": {
+    "title": "Custom Brands Title"
+  },
+  "actions": {
+    "save": "Custom Save"
+  }
+}
+```
+
+  </CodeTab>
+  <CodeTab label="Loaded Translations" value="loaded-translations">
+
+```ts title="src/admin/i18n/index.ts"
+import en from "./json/en.json" with { type: "json" }
+
+export default {
+  en: {
+    translation: en,
+  },
+  // other languages...
+}
+```
+
+  </CodeTab>
+</CodeTabs>
+
+The widget will render the following for each translation key:
+
+- `brands.title`: Defined in your custom translation file, so it outputs `Custom Brands Title`.
+- `brands.description`: Not defined in your custom translation file or the default Medusa Admin translations, so it outputs the key itself: `brands.description`.
+- `actions.save`: Defined in your custom translation file, so it outputs `Custom Save`.
+- `actions.delete`: Not defined in your custom translation file, so it falls back to the default Medusa Admin translation and outputs `Delete`.
+
+### Custom Translation Namespaces
+
+To avoid potential key conflicts between your custom translations and the default Medusa Admin translations, you can use custom namespaces. This is particularly useful when developing plugins that add admin customizations, as it prevents naming collisions with other plugins or the default Medusa Admin translations.
+
+To add translations under a custom namespace, change the `[language].translation` key in the `src/admin/i18n/index.ts` file to your desired namespace:
+
+export const namespacesHighlights = [
+  ["6", "brands", "Use `brands` as custom namespace."],
+  ["9", "brands", "Use `brands` as custom namespace."]
+]
+
+```ts title="src/admin/i18n/index.ts" highlights={namespacesHighlights}
+import en from "./json/en.json" with { type: "json" }
+import es from "./json/es.json" with { type: "json" }
+
+export default {
+  en: {
+    brands: en,
+  },
+  es: {
+    brands: es,
+  },
+}
+```
+
+The translation files will now be loaded under the `brands` namespace.
+
+Then, in your admin customizations, specify the namespace when using the `useTranslation` hook:
+
+```tsx title="src/admin/widgets/product-brand.tsx" highlights={[["7"]]}
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { Button, Container, Heading } from "@medusajs/ui"
+import { useTranslation } from "react-i18next"
+
+// The widget
+const ProductWidget = () => {
+  const { t } = useTranslation("brands")
+  return (
+    <Container className="p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        <Heading level="h2">{t("brands.title")}</Heading>
+        <p>{t("brands.description")}</p>
+      </div>
+      <div className="flex justify-end px-6 py-4">
+        <Button variant="primary">{t("done")}</Button>
+      </div>
+    </Container>
+  )
+}
+
+// The widget's configurations
+export const config = defineWidgetConfig({
+  zone: "product.details.before",
+})
+
+export default ProductWidget
+```
+
+Translations are now loaded only from the `brands` namespace without conflicting with other translation keys in the Medusa Admin.
+
+---
+
+## Translation Tips
+
+### Translation Organization
+
+To keep your translation files organized, especially as they grow, consider grouping related translation keys into nested objects. This helps maintain clarity and structure.
+
+It's recommended to create a nested object for each domain (for example, `brands`, `products`, etc...) and place related translation keys within those objects. This makes it easier to manage and locate specific translations.
+
+For example:
+
+```json title="src/admin/i18n/json/en.json"
+{
+  "brands": {
+    "title": "Brands",
+    "description": "Manage your product brands",
+    "actions": {
+      "add": "Add Brand",
+      "edit": "Edit Brand"
+    }
+  }
+}
+```
+
+You can then access these nested translations using dot notation, such as `brands.title` or `brands.actions.add`.
+
+### Variables in Translations
+
+Translation values can include variables that are dynamically replaced at runtime. Variables are defined using double curly braces `{{variableName}}` in the translation files.
+
+For example, in your translation file `src/admin/i18n/json/en.json`, define a translation with a variable:
+
+```json title="src/admin/i18n/json/en.json"
+{
+  "welcome_message": "Welcome, {{username}}!"
+}
+```
+
+Then, in your admin customization, pass the variable value in the second object parameter of the `t` function:
+
+```tsx title="src/admin/widgets/welcome-widget.tsx"
+t("welcome_message", { username: "John" })
+```
+
+This will output: `Welcome, John!`
+
+### Pluralization
+
+The `t` function supports pluralization based on a count value. You can define singular and plural forms in your translation files using the `_one`, `_other`, and `_zero` suffixes.
+
+For example, in your translation file `src/admin/i18n/json/en.json`, define the following translations:
+
+```json title="src/admin/i18n/json/en.json"
+{
+  "item_count_one": "You have {{count}} item.",
+  "item_count_other": "You have {{count}} items.",
+  "item_count_zero": "You have no items."
+}
+```
+
+Then, in your admin customization, use the key without the suffix and provide the `count` variable:
+
+```tsx title="src/admin/widgets/item-count-widget.tsx"
+t("item_count", { count: itemCount })
+```
+
+This will render one of the following based on the value of `itemCount`:
+
+1. If `itemCount` is `0`, `item_count_zero` is used: `You have no items.`
+2. If `itemCount` is `1`, `item_count_one` is used: `You have 1 item.`
+3. If `itemCount` is greater than `1`, `item_count_other` is used: `You have X items.`
+
+### Element Interpolation
+
+Your translation strings can include HTML or React element placeholders that are replaced with actual elements at runtime. This is useful for adding links, bold text, or other formatting within translated strings.
+
+Elements to be interpolated are defined using angle brackets `<index></index>` in the translation files, where `index` is a zero-based index representing the element's position.
+
+For example, in your translation file `src/admin/i18n/json/en.json`, define a translation with element placeholders:
+
+```json title="src/admin/i18n/json/en.json"
+{
+  "terms_and_conditions": "Please read our <0>Terms and Conditions</0>."
+}
+```
+
+Then, in your admin customization, import the `Trans` component from `react-i18next` that allows you to interpolate elements:
+
+```tsx title="src/admin/widgets/terms-widget.tsx"
+import { Trans } from "react-i18next"
+```
+
+Finally, use the `Trans` component in the `return` statement to render the translation with the interpolated elements:
+
+```tsx title="src/admin/widgets/terms-widget.tsx"
+<Trans
+  i18nKey="terms_and_conditions"
+  components={[
+    <a href="https://example.com/terms" className="text-blue-600 underline" />,
+  ]}
+/>
+```
+
+The `components` prop is an array of React elements that correspond to the placeholders defined in the translation string. In this case, the `<0></0>` placeholder is replaced with the anchor `<a>` element.
+
+#### Passing Variables with Element Interpolation
+
+You can also pass translation variables to the `Trans` component as props. For example, to include a username variable:
+
+```tsx title="src/admin/widgets/welcome-widget.tsx"
+<Trans
+  i18nKey="welcome_message"
+  username="John"
+  components={[
+    <strong />,
+  ]}
+/>
+```
+
+The `username` prop replaces the `{{username}}` variable in the translation string, and the `<0></0>` placeholder is replaced with the `<strong>` element.
+
+#### Using Namespaces with Element Interpolation
+
+If you're loading translations from a custom namespace, specify the namespace in the `Trans` component using the `ns` prop:
+
+```tsx title="src/admin/widgets/product-brand.tsx"
+<Trans
+  i18nKey="brands.count"
+  ns="brands"
+  count={5}
+  components={[<strong />]}
+/>
+```
+
+The `ns` prop indicates that the translation should be loaded from the `brands` namespace.
+
+#### Multiple Element Interpolation
+
+You can interpolate multiple elements by defining multiple placeholders in the translation string and providing corresponding elements in the `components` array.
+
+For example, define the following translation string:
+
+```json title="src/admin/i18n/json/en.json"
+{
+  "welcome_message": "Hello, <0>{{username}}</0>! Please read our <1>Terms and Conditions</1>."
+}
+```
+
+Then, in your admin customization, you can use the `Trans` component with multiple elements:
+
+```tsx title="src/admin/widgets/welcome-widget.tsx"
+<Trans
+  i18nKey="welcome_message"
+  username="John"
+  components={[
+    <strong />,
+    <a href="https://example.com/terms" className="text-blue-600 underline" />,
+  ]}
+/>
+```
+
+The first placeholder `<0></0>` is replaced with the `<strong>` element, and the second placeholder `<1></1>` is replaced with the anchor `<a>` element.

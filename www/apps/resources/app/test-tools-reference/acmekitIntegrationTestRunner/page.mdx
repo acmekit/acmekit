@@ -1,0 +1,198 @@
+import { TypeList } from "docs-ui"
+
+export const metadata = {
+  title: `medusaIntegrationTestRunner Reference`,
+}
+
+# {metadata.title}
+
+This is a reference to the `medusaIntegrationTestRunner` function provided by the `@medusajs/test-utils` package.
+
+## Example
+
+```ts
+import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+
+medusaIntegrationTestRunner({
+  testSuite: ({ api, getContainer }) => {
+    // TODO write tests...
+  },
+})
+```
+
+## Parameters
+
+<TypeList
+  types={[
+    {
+      type: "`object`",
+      name: "Input",
+      description: "Object parameter of test options.",
+      children: [
+        {
+          type: "`(options: MedusaSuiteOptions) => void`",
+          name: "testSuite",
+          description: "The Jest tests to run. It accepts [Test Suite Parameters](#test-suite-parameters)",
+        },
+        {
+          type: "`string`",
+          name: "dbName",
+          description: "A name to use for the database. If not specified, the database name will be of the format `medusa-<moduleName>-integration-<randomNumber>`.",
+          optional: true
+        },
+        {
+          type: "`string`",
+          name: "schema",
+          description: "The PostgreSQL schema that the database is created in.",
+          defaultValue: "public",
+          optional: true
+        },
+        {
+          type: "`Record<string, any>`",
+          name: "env",
+          description: "Environment variables to pass to the test suite.",
+          optional: true
+        },
+        {
+          type: "`boolean`",
+          name: "debug",
+          description: "Whether to show database log messages.",
+          defaultValue: "false",
+          optional: true
+        },
+        {
+          type: "`string`",
+          name: "moduleName",
+          description: "The name of the module being tested. If not specified, a random name will be generated.",
+          optional: true
+        },
+        {
+          type: "`string`",
+          name: "medusaConfigFile",
+          description: "The path to the `medusa-config.ts` file, excluding `medusa-config.ts`. This path is used as the current working directory as well.",
+          defaultValue: "cwd (current working directory)",
+          optional: true
+        },
+        {
+          type: "`object`",
+          name: "hooks",
+          description: "An object containing hooks to run at different points in the test lifecycle.",
+          optional: true,
+          children: [
+            {
+              type: "`(container: MedusaContainer) => Promise<void>`",
+              name: "beforeServerStart",
+              description: "A hook that runs before the Medusa server starts.",
+          optional: true
+            }
+          ]
+        }
+      ]
+    }
+  ]}
+  openedLevel={2}
+  sectionTitle="Parameters"
+  
+/>
+
+## Test Suite Parameters
+
+The function passed to `testSuite` accepts the following parameters:
+
+<TypeList
+  types={[
+    {
+      type: "`object`",
+      name: "Input",
+      description: "Object parameter of test utilities.",
+      children: [
+        {
+          type: "Record<string, Function>",
+          name: "api",
+          description: "A set of methods used to send requests to the Medusa application.",
+          optional: false,
+          children: [
+            {
+              type: "(path: string) => Promise<any>",
+              name: "get",
+              description: "Send a GET request to the specified path."
+            },
+            {
+              type: "(path: string, data?: any) => Promise<any>",
+              name: "post",
+              description: "Send a POST request to the specified path."
+            },
+            {
+              type: "(path: string) => Promise<any>",
+              name: "delete",
+              description: "Send a DELETE request to the specified path."
+            },
+          ]
+        },
+        {
+          type: "`() => MedusaContainer`",
+          name: "getContainer",
+          description: "A function that returns the Medusa container.",
+        },
+        {
+          type: "`Record<string, string>`",
+          name: "dbConfig",
+          description: "The created database's configurations",
+          children: [
+            {
+              type: "`string`",
+              name: "dbName",
+              description: "The database's name."
+            },
+            {
+              type: "`string`",
+              name: "schema",
+              description: "The PostgreSQL schema the database is created in."
+            },
+            {
+              type: "`string`",
+              name: "clientUrl",
+              description: "The connection URL to the database."
+            },
+          ]
+        },
+        {
+          type: "`Record<string, Function>`",
+          name: "dbUtils",
+          description: "A set of methods to manage the database",
+          children: [
+            {
+              type: "`(dbName: string) => Promise<void>`",
+              name: "create",
+              description: "Creates a database."
+            },
+            {
+              type: "`(options: { schema?: string }) => Promise<void>`",
+              name: "teardown",
+              description: "Deletes all data in a database's tables."
+            },
+            {
+              type: "`(dbName: string) => Promise<void>`",
+              name: "shutdown",
+              description: "Drops a database."
+            },
+          ]
+        },
+        {
+          type: "`object`",
+          name: "utils",
+          description: "A set of utility functions for the test suite.",
+          children: [
+            {
+              type: "`() => Promise<void>`",
+              name: "waitWorkflowExecutions",
+              description: "Waits for all workflow executions to complete."
+            }
+          ]
+        }
+      ]
+    }
+  ]}
+  sectionTitle="Test Suite Parameters"
+  openedLevel={2}
+/>

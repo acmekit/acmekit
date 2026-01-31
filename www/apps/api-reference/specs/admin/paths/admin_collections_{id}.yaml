@@ -1,0 +1,227 @@
+get:
+  operationId: GetCollectionsId
+  summary: Get a Collection
+  description: >-
+    Retrieve a collection by its ID. You can expand the collection's relations
+    or select the fields that should be returned using the query parameters.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The collection's ID.
+      required: true
+      schema:
+        type: string
+    - name: fields
+      in: query
+      description: >-
+        Comma-separated fields that should be included in the returned data. if
+        a field is prefixed with `+` it will be added to the default fields,
+        using `-` will remove it from the default fields. without prefix it will
+        replace the entire default fields.
+      required: false
+      schema:
+        type: string
+        title: fields
+        description: >-
+          Comma-separated fields that should be included in the returned data.
+          if a field is prefixed with `+` it will be added to the default
+          fields, using `-` will remove it from the default fields. without
+          prefix it will replace the entire default fields.
+        externalDocs:
+          url: '#select-fields-and-relations'
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: ../code_samples/JavaScript/admin_collections_{id}/get.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_collections_{id}/get.sh
+  tags:
+    - Collections
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AdminCollectionResponse.yaml
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+post:
+  operationId: PostCollectionsId
+  summary: Update a Collection
+  description: Update a collection's details.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The collection's ID.
+      required: true
+      schema:
+        type: string
+    - name: fields
+      in: query
+      description: >-
+        Comma-separated fields that should be included in the returned data. if
+        a field is prefixed with `+` it will be added to the default fields,
+        using `-` will remove it from the default fields. without prefix it will
+        replace the entire default fields.
+      required: false
+      schema:
+        type: string
+        title: fields
+        description: >-
+          Comma-separated fields that should be included in the returned data.
+          if a field is prefixed with `+` it will be added to the default
+          fields, using `-` will remove it from the default fields. without
+          prefix it will replace the entire default fields.
+        externalDocs:
+          url: '#select-fields-and-relations'
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+            - type: object
+              description: The details to update in a collection.
+              properties:
+                title:
+                  type: string
+                  title: title
+                  description: The collection's title.
+                handle:
+                  type: string
+                  title: handle
+                  description: The collection's handle.
+                metadata:
+                  type: object
+                  description: The collection's metadata.
+            - type: object
+              description: The details to update in a collection.
+              properties:
+                additional_data:
+                  type: object
+                  description: >-
+                    Pass additional custom data to the API route. This data is
+                    passed to the underlying workflow under the
+                    `additional_data` parameter.
+          description: The details to update in a collection.
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: ../code_samples/JavaScript/admin_collections_{id}/post.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_collections_{id}/post.sh
+  tags:
+    - Collections
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AdminCollectionResponse.yaml
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: updateCollectionsWorkflow
+  x-events:
+    - name: product-collection.updated
+      payload: |-
+        ```ts
+        {
+          id, // The ID of the product collection
+        }
+        ```
+      description: Emitted when product collections are updated.
+      deprecated: false
+delete:
+  operationId: DeleteCollectionsId
+  summary: Delete a Collection
+  description: Delete a product collection.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The collection's ID.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: ../code_samples/JavaScript/admin_collections_{id}/delete.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_collections_{id}/delete.sh
+  tags:
+    - Collections
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AdminCollectionDeleteResponse.yaml
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: deleteCollectionsWorkflow
+  x-events:
+    - name: product-collection.deleted
+      payload: |-
+        ```ts
+        {
+          id, // The ID of the product collection
+        }
+        ```
+      description: Emitted when product collections are deleted.
+      deprecated: false

@@ -1,0 +1,3599 @@
+---
+sidebar_label: "Agentic Commerce"
+tags:
+    - cart
+    - order
+    - server
+    - tutorial
+products:
+  - cart
+  - customer
+  - order
+  - fulfillment
+  - payment
+---
+
+import { Github, PlaySolid } from "@medusajs/icons"
+import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
+
+export const metadata = {
+  title: `Implement Agentic Commerce (ChatGPT Instant Checkout) Specifications`,
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to implement [Agentic Commerce](https://developers.openai.com/commerce) specifications in Medusa that allow you to sell through ChatGPT.
+
+When you install a Medusa application, you get a fully-fledged commerce platform with the Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](../../../commerce-modules/page.mdx), which are available out-of-the-box.
+
+The [Agentic Commerce Protocol](https://developers.openai.com/commerce) supports instant checkout experiences within AI agents. By implementing Agentic Commerce specifications in your Medusa application, customers can purchase products through ChatGPT and other AI agents.
+
+<Note>
+
+Instant Checkout in ChatGPT is currently available in select regions and for select businesses. The implementation in this guide is based on OpenAI's [Agentic Commerce documentation](https://developers.openai.com/commerce) and may require some adjustments when you apply for [Instant Checkout](https://chatgpt.com/merchants).
+
+</Note>
+
+## Summary
+
+By following this tutorial, you will learn how to:
+
+- Build a product feed matching the [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/feed).
+- Create [Agentic Checkout APIs](https://developers.openai.com/commerce/specs/checkout) that handle checkout requests from AI agents.
+- Send webhook events to AI agents matching the [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/webhooks).
+
+By the end of this tutorial, you'll have all necessary resources to apply for [Instant Checkout](https://chatgpt.com/merchants) and start selling in ChatGPT. You can also sell through other AI agents that support the Agentic Commerce Protocol.
+
+You can follow this tutorial whether you're new to Medusa or an advanced Medusa developer.
+
+![Diagram showing the Agentic Commerce integration between user, ChatGPT, and Medusa application](https://res.cloudinary.com/dza7lstvk/image/upload/v1759333742/Medusa%20Resources/agentic-commerce_jqr5wn.jpg)
+
+<CardList items={[
+  {
+    href: "https://github.com/medusajs/examples/tree/main/agentic-commerce",
+    title: "Full Code",
+    text: "Find the full code for this guide in this repository.",
+    icon: Github,
+  },
+  {
+    href: "https://res.cloudinary.com/dza7lstvk/raw/upload/v1759332538/OpenApi/agentic-commerce-openapi_hvsioq.yaml",
+    title: "OpenApi Specs for Postman",
+    text: "Import this OpenApi Specs file into tools like Postman.",
+    icon: PlaySolid,
+  },
+]} />
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Begin by installing the Medusa application on your machine with the following command:
+
+```bash npx2yarnExec
+npx create-medusa-app@latest
+```
+
+You'll first be asked for the project's name. You can optionally choose to install the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx) as well.
+
+After that, the installation process will begin. This will install the Medusa application in a directory with your project's name and the Next.js Starter Storefront in a separate directory named `{project-name}-storefront`.
+
+<Note title="Why is the storefront installed separately">
+
+The Medusa application is composed of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Then, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Create Agentic Commerce Module
+
+To integrate third-party services into Medusa, you create a custom module. A module is a reusable package with functionalities related to a single feature or domain. Medusa integrates the module into your application without implications or side effects on your setup.
+
+In this step, you'll create a module that integrates with an AI agent through the Agentic Commerce Protocol. This module is useful to send the product feed and webhook events to the AI agent.
+
+<Note>
+
+Refer to the [Modules documentation](!docs!/learn/fundamentals/modules) to learn more.
+
+</Note>
+
+### a. Create Module Directory
+
+A module is created under the `src/modules` directory of your Medusa application. So, create the directory `src/modules/agentic-commerce`.
+
+### b. Create Module Service
+
+You define a module's functionalities in a service. A service is a TypeScript or JavaScript class that the module exports. In the service's methods, you can connect to the database (useful if your module defines database tables) or connect to third-party services.
+
+In this section, you'll create the Agentic Commerce Module's service and the methods necessary to interact with the Agentic Commerce Protocol.
+
+To create the service, create the file `src/modules/agentic-commerce/service.ts` with the following content:
+
+```ts title="src/modules/agentic-commerce/service.ts"
+type ModuleOptions = {
+  // TODO add module options like API key, etc.
+  signatureKey: string
+}
+
+export default class AgenticCommerceService {
+  options: ModuleOptions
+  constructor({}, options: ModuleOptions) {
+    this.options = options
+    // TODO initialize client
+  }
+}
+```
+
+The service's constructor receives two parameters:
+
+- The [Module's container](!docs!/learn/fundamentals/modules/container) that allows you to resolve Framework tools.
+- The module's options that you'll later pass when registering the module in the Medusa application. You can add more options based on your integration.
+
+If you're connecting to AI agents through an SDK or API client, you can initialize it in the constructor.
+
+#### sendProductFeed Method
+
+Next, you'll add the `sendProductFeed` method to the service. This method sends the [product feed](https://developers.openai.com/commerce/specs/feed) to AI agents, allowing them to search and display your products.
+
+Add the following method to the `AgenticCommerceService` class:
+
+```ts title="src/modules/agentic-commerce/service.ts"
+export default class AgenticCommerceService {
+  // ...
+  async sendProductFeed(productFeed: string) {
+    // TODO send product feed
+    console.log(`Synced product feed ${productFeed}`)
+  }
+}
+```
+
+OpenAI hasn't publicly published the endpoint for sending product feeds. So, in this method, you'll just log the product feed URL to the console.
+
+When you apply for [Instant Checkout](https://chatgpt.com/merchants), you'll get access to the endpoint and can implement the logic to send the product feed in this method.
+
+<Note>
+
+You'll implement the logic to create product feeds later.
+
+</Note>
+
+#### verifySignature Method
+
+Next, you'll add the `verifySignature` method to the service. This method verifies signatures of requests sent by AI agents to Agentic Checkout APIs that you'll create later.
+
+Add the following import at the top of the `src/modules/agentic-commerce/service.ts` file:
+
+```ts title="src/modules/agentic-commerce/service.ts"
+import crypto from "crypto"
+```
+
+Then, add the following method to the `AgenticCommerceService` class:
+
+```ts title="src/modules/agentic-commerce/service.ts"
+export default class AgenticCommerceService {
+  // ...
+  async verifySignature({
+    signature,
+    payload,
+  }: {
+    // base64 encoded signature
+    signature: string
+    payload: any
+  }) {
+    try {
+      // Decode the base64 signature
+      const receivedSignature = Buffer.from(signature, "base64")
+      
+      // Create HMAC-SHA256 signature using your signing key
+      const expectedSignature = crypto
+        .createHmac("sha256", this.options.signatureKey)
+        .update(JSON.stringify(payload), "utf8")
+        .digest()
+      
+      // Compare signatures using constant-time comparison to prevent timing attacks
+      return crypto.timingSafeEqual(receivedSignature, expectedSignature)
+    } catch (error) {
+      console.error("Signature verification failed:", error)
+      return false
+    }
+  }
+}
+```
+
+This method receives request signatures and payloads, then verifies signatures using HMAC-SHA256 with the module's `signatureKey` option.
+
+When you apply for [Instant Checkout](https://chatgpt.com/merchants), you'll receive a signature key for verifying request signatures. You can set this key in the module's options.
+
+#### getSignature Method
+
+Next, you'll add the `getSignature` method to the service. This method generates signatures for use in request headers when sending webhook events to AI agents.
+
+Add the following method to the `AgenticCommerceService` class:
+
+```ts title="src/modules/agentic-commerce/service.ts"
+export default class AgenticCommerceService {
+  // ...
+  async getSignature(data: any) {
+    return Buffer.from(crypto.createHmac("sha256", this.options.signatureKey)
+      .update(JSON.stringify(data), "utf8").digest()).toString("base64")
+  }
+}
+```
+
+This method receives webhook event data and generates signatures using HMAC-SHA256 with the module's `signatureKey` option.
+
+#### sendWebhookEvent Method
+
+Finally, you'll add the `sendWebhookEvent` method to the service. This method sends webhook events to AI agents.
+
+First, add the following type at the top of the `src/modules/agentic-commerce/service.ts` file:
+
+```ts title="src/modules/agentic-commerce/service.ts"
+export type AgenticCommerceWebhookEvent = {
+  type: "order.created" | "order.updated"
+  data: {
+    type: "order"
+    checkout_session_id: string
+    permalink_url: string
+    status: "created" | "manual_review" | "confirmed" | "canceled" | "shipping" | "fulfilled"
+    refunds: {
+      type: "store_credit" | "original_payment"
+      amount: number
+    }[]
+  }
+}
+```
+
+This type defines the structure of webhook events that you can send to AI agents based on [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/webhooks).
+
+Then, add the following method to the `AgenticCommerceService` class:
+
+```ts title="src/modules/agentic-commerce/service.ts"
+export default class AgenticCommerceService {
+  // ...
+  async sendWebhookEvent({
+    type,
+    data,
+  }: AgenticCommerceWebhookEvent) {
+    // Create signature
+    const signature = this.getSignature(data)
+    // TODO send order webhook event
+    console.log(`Sent order webhook event ${type} with signature ${signature} and data ${JSON.stringify(data)}`)
+  }
+}
+```
+
+This method receives webhook event types and data, generates signatures using the `getSignature` method, and logs events to the console.
+
+When you apply for [Instant Checkout](https://chatgpt.com/merchants), you'll get access to endpoints for sending webhook events and can implement the logic in this method.
+
+### c. Export Module Definition
+
+The final piece of a module is its definition, which you export in an `index.ts` file at the root directory. This definition tells Medusa the module name and its service.
+
+So, create the file `src/modules/agentic-commerce/index.ts` with the following content:
+
+```ts title="src/modules/agentic-commerce/index.ts"
+import AgenticCommerceService from "./service"
+import { Module } from "@medusajs/framework/utils"
+
+export const AGENTIC_COMMERCE_MODULE = "agenticCommerce"
+
+export default Module(AGENTIC_COMMERCE_MODULE, {
+  service: AgenticCommerceService,
+})
+```
+
+You use the `Module` function from the Modules SDK to create module definitions. It accepts two parameters:
+
+1. The module name, which is `agenticCommerce`.
+2. An object with a required `service` property indicating the module's service.
+
+You also export the module name as `AGENTIC_COMMERCE_MODULE` for later reference.
+
+### d. Add Module to Medusa's Configurations
+
+Once you finish building the module, add it to Medusa's configurations to start using it.
+
+In `medusa-config.ts`, add a `modules` property and pass an array with your custom module:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "./src/modules/agentic-commerce",
+      options: {
+        signatureKey: process.env.AGENTIC_COMMERCE_SIGNATURE_KEY || "supersecret",
+      },
+    },
+  ],
+})
+```
+
+Each object in the `modules` array has a `resolve` property, whose value is either a path to the module's directory, or an `npm` package’s name.
+
+You also pass an `options` property with module options, including the signature key. Once you receive a signature key from OpenAI, you can set it in the `AGENTIC_COMMERCE_SIGNATURE_KEY` environment variable.
+
+Your module is now ready for use. You'll build workflows around it in the following steps.
+
+---
+
+## Step 3: Send Product Feed
+
+In this step, you'll create logic to generate and send product feeds matching [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/feed). These feeds provide AI agents with product information, allowing them to search and display products to customers. Customers can then purchase products through AI agents.
+
+You'll implement:
+
+- A [workflow](!docs!/learn/fundamentals/workflows) that generates and sends the product feed.
+- A [scheduled job](!docs!/learn/fundamentals/scheduled-jobs) that executes the workflow every fifteen minutes. This is the maximum frequency OpenAI allows for product feed updates.
+
+### a. Send Product Feed Workflow
+
+A workflow is a series of actions called steps that complete a task. You construct workflows like functions, but they're special functions that allow you to track execution progress, define rollback logic, and configure advanced features.
+
+<Note>
+
+Learn more about workflows in the [Workflows documentation](!docs!/learn/fundamentals/workflows).
+
+</Note>
+
+The workflow for sending product feeds will have the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "sendProductFeedWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "getProductFeedItemsStep",
+        description: "Get items to include in the product feed",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "buildProductFeedXmlStep",
+        description: "Generate product feed XML",
+        depth: 2
+      },
+      {
+        type: "step",
+        name: "sendProductFeedStep",
+        description: "Send product feed to AI agent",
+        depth: 3
+      }
+    ]
+  }}
+/>
+
+#### getProductFeedItemsStep
+
+The `getProductFeedItemsStep` step retrieves product variants to include in the product feed.
+
+To create the step, create the file `src/workflows/steps/get-product-feed-items.ts` with the following content:
+
+export const getProductFeedItemsStepHighlights1 = [
+  ["5", "FeedItem", "The structure of a product feed item."],
+  ["39", "formatPrice", "Utility function to format a price in a given currency."],
+]
+
+```ts title="src/workflows/steps/get-product-feed-items.ts" highlights={getProductFeedItemsStepHighlights1}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { getVariantAvailability, QueryContext } from "@medusajs/framework/utils"
+import { CalculatedPriceSet, ShippingOptionDTO } from "@medusajs/framework/types"
+
+export type FeedItem = {
+  id: string
+  title: string
+  description: string
+  link: string
+  image_link?: string
+  additional_image_link?: string
+  availability: string
+  inventory_quantity: number
+  price: string
+  sale_price?: string
+  item_group_id: string
+  item_group_title: string
+  gtin?: string
+  condition?: string
+  brand?: string
+  product_category?: string
+  material?: string
+  weight?: string
+  color?: string
+  size?: string
+  seller_name: string
+  seller_url: string
+  seller_privacy_policy: string
+  seller_tos: string
+  return_policy: string
+  return_window?: number
+}
+
+type StepInput = {
+  currency_code: string
+  country_code: string
+}
+
+const formatPrice = (price: number, currency_code: string) => {
+  return `${new Intl.NumberFormat("en-US", {
+    currency: currency_code,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price)} ${currency_code.toUpperCase()}`
+}
+
+export const getProductFeedItemsStep = createStep(
+  "get-product-feed-items", 
+  async (input: StepInput, { container }) => {
+    // TODO implement step
+  }
+)
+```
+
+You define the `FeedItem` type that matches the structure of an item in the product feed. You also define the `StepInput` type that includes the input parameters for the step, which are the currency and country codes.
+
+Then, you define the `formatPrice` utility function that formats a price in a given currency. This is the format required by the Agentic Commerce specifications.
+
+Finally, you create a step with `createStep` from the Workflows SDK. It accepts two parameters:
+
+1. The step's unique name, which is `get-product-feed-items`.
+2. An async function that receives two parameters:
+    - The step's input.
+    - An object that has properties including the [Medusa container](!docs!/learn/fundamentals/medusa-container), which is a registry of Framework and commerce tools that you can access in the step.
+
+Next, you'll implement the step's logic. Replace the step implementation with the following:
+
+```ts title="src/workflows/steps/get-product-feed-items.ts"
+export const getProductFeedItemsStep = createStep(
+  "get-product-feed-items", 
+  async (input: StepInput, { container }) => {
+  const feedItems: FeedItem[] = []
+  const query = container.resolve("query")
+  const configModule = container.resolve("configModule")
+  const storefrontUrl = configModule.admin.storefrontUrl || 
+    process.env.STOREFRONT_URL
+
+  const limit = 100
+  let offset = 0
+  let count = 0
+  const countryCode = input.country_code.toLowerCase()
+  const currencyCode = input.currency_code.toLowerCase()
+
+  do {
+    const {
+      data: products,
+      metadata,
+    } = await query.graph({
+      entity: "product",
+      fields: [
+        "id",
+        "title",
+        "description",
+        "handle",
+        "thumbnail",
+        "images.*",
+        "status",
+        "variants.*",
+        "variants.calculated_price.*",
+        "sales_channels.*",
+        "sales_channels.stock_locations.*",
+        "sales_channels.stock_locations.address.*",
+        "categories.*",
+      ],
+      filters: {
+        status: "published",
+      },
+      context: {
+        variants: {
+          calculated_price: QueryContext({
+            currency_code: currencyCode,
+          }),
+        },
+      },
+      pagination: {
+        take: limit,
+        skip: offset,
+      },
+    })
+    
+    count = metadata?.count ?? 0
+    offset += limit
+
+    for (const product of products) {
+      if (!product.variants.length) {continue}
+      const salesChannel = product.sales_channels?.find((channel) => {
+        return channel?.stock_locations?.some((location) => {
+          return location?.address?.country_code.toLowerCase() === countryCode
+        })
+      })
+
+      const availability = salesChannel?.id ? await getVariantAvailability(query, {
+        variant_ids: product.variants.map((variant) => variant.id),
+        sales_channel_id: salesChannel?.id,
+      }) : undefined
+
+      const categories = product.categories?.map((cat) => cat?.name)
+      .filter((name): name is string => !!name).join(">")
+
+      for (const variant of product.variants) {
+        // @ts-ignore
+        const calculatedPrice = variant.calculated_price as CalculatedPriceSet
+        const hasOriginalPrice = 
+          calculatedPrice?.original_amount !== calculatedPrice?.calculated_amount
+        const originalPrice = hasOriginalPrice ? 
+          calculatedPrice.original_amount : calculatedPrice.calculated_amount
+        const salePrice = hasOriginalPrice ? 
+          calculatedPrice.calculated_amount : undefined
+        const stockStatus = !variant.manage_inventory ? "in stock" : 
+          !availability?.[variant.id]?.availability ? "out of stock" : "in stock"
+        const inventoryQuantity = !variant.manage_inventory ? 
+          100000 : availability?.[variant.id]?.availability || 0
+        const color = variant.options?.find(
+          (o) => o.option?.title.toLowerCase() === "color"
+        )?.value
+        const size = variant.options?.find(
+          (o) => o.option?.title.toLowerCase() === "size"
+        )?.value
+
+        feedItems.push({
+          id: variant.id,
+          title: product.title,
+          description: product.description ?? "",
+          link: `${storefrontUrl || ""}/${input.country_code}/${product.handle}`,
+          image_link: product.thumbnail ?? "",
+          additional_image_link: product.images?.map(
+            (image) => image.url
+          )?.join(","),
+          availability: stockStatus,
+          inventory_quantity: inventoryQuantity,
+          price: formatPrice(originalPrice as number, currencyCode),
+          sale_price: salePrice ? 
+            formatPrice(salePrice as number, currencyCode) : undefined,
+          item_group_id: product.id,
+          item_group_title: product.title,
+          gtin: variant.upc || undefined,
+          condition: "new", // TODO add condition if supported
+          product_category: categories,
+          material: variant.material || undefined,
+          weight: `${variant.weight || 0} kg`,
+          brand: "", // TODO add brands if supported
+          color: color || undefined,
+          size: size || undefined,
+          seller_name: "Medusa", // TODO add seller name if supported
+          seller_url: storefrontUrl || "",
+          seller_privacy_policy: `${storefrontUrl}/privacy-policy`, // TODO update
+          seller_tos: `${storefrontUrl}/terms-of-service`, // TODO update
+          return_policy: `${storefrontUrl}/return-policy`, // TODO update
+          return_window: 0, // TODO update
+        })
+      }
+    }
+  } while (count > offset)
+
+  return new StepResponse({ items: feedItems })
+})
+```
+
+In the step, you:
+
+1. Retrieve products with pagination using [Query](!docs!/learn/fundamentals/module-links/query). Query allows you to retrieve data across modules. You retrieve the fields necessary for the product field.
+2. For each product, you loop over its variants to add them to the product feed. You add information related to pricing, availability, and other attributes.
+    - Some of the fields are hardcoded or left empty. You can update them based on your setup.
+    - For more information on the fields, refer to the [Product Feed specifications](https://developers.openai.com/commerce/specs/feed).
+
+Finally, a step function must return a `StepResponse` instance. You return the list of feed items in the response.
+
+#### buildProductFeedXmlStep
+
+Next, you'll create the step that generates the product feed XML from the feed items.
+
+To create the step, create the file `src/workflows/steps/build-product-feed-xml.ts` with the following content:
+
+```ts title="src/workflows/steps/build-product-feed-xml.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { FeedItem } from "./get-product-feed-items"
+
+type StepInput = {
+  items: FeedItem[]
+}
+
+export const buildProductFeedXmlStep = createStep(
+  "build-product-feed-xml",
+  async (input: StepInput) => {
+    const escape = (str: string) =>
+      str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&apos;")
+
+    const itemsXml = input.items.map((item) => {
+      return (
+        `<item>` +
+          // Flags 
+          `<enable_search>true</enable_search>` +
+          `<enable_checkout>true</enable_checkout>` +
+          // Product Variant Fields
+          `<id>${escape(item.id)}</id>` +
+          `<title>${escape(item.title)}</title>` +
+          `<description>${escape(item.description)}</description>` +
+          `<link>${escape(item.link)}</link>` +
+          `<gtin>${escape(item.gtin || "")}</gtin>` +
+          (item.image_link ? `<image_link>${escape(item.image_link)}</image_link>` : "") +
+          (item.additional_image_link ? `<additional_image_link>${escape(item.additional_image_link)}</additional_image_link>` : "") +
+          `<availability>${escape(item.availability)}</availability>` +
+          `<inventory_quantity>${item.inventory_quantity}</inventory_quantity>` +
+          `<price>${escape(item.price)}</price>` +
+          (item.sale_price ? `<sale_price>${escape(item.sale_price)}</sale_price>` : "") +
+          `<condition>${escape(item.condition || "new")}</condition>` +
+          `<product_category>${escape(item.product_category || "")}</product_category>` +
+          `<brand>${escape(item.brand || "Medusa")}</brand>` +
+          `<material>${escape(item.material || "")}</material>` +
+          `<weight>${escape(item.weight || "")}</weight>` +
+          `<item_group_id>${escape(item.item_group_id)}</item_group_id>` +
+          `<item_group_title>${escape(item.item_group_title)}</item_group_title>` +
+          `<size>${escape(item.size || "")}</size>` +
+          `<color>${escape(item.color || "")}</color>` +
+          `<seller_name>${escape(item.seller_name)}</seller_name>` +
+          `<seller_url>${escape(item.seller_url)}</seller_url>` +
+          `<seller_privacy_policy>${escape(item.seller_privacy_policy)}</seller_privacy_policy>` +
+          `<seller_tos>${escape(item.seller_tos)}</seller_tos>` +
+          `<return_policy>${escape(item.return_policy)}</return_policy>` +
+          `<return_window>${item.return_window}</return_window>` +
+        `</item>`
+      )
+    }).join("")
+
+    const xml =
+      `<?xml version="1.0" encoding="UTF-8"?>` +
+      `<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">` +
+        `<channel>` +
+          `<title>Product Feed</title>` +
+          `<description>Product Feed for Agentic Commerce</description>` +
+          itemsXml +
+        `</channel>` +
+      `</rss>`
+
+    return new StepResponse(xml)
+  }
+)
+```
+
+This step receives the list of feed items as input.
+
+In the step, you loop over the feed items and generate an XML string matching the [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/feed). You escape special characters in the fields to ensure the XML is valid.
+
+Finally, you return the XML string in a `StepResponse` instance.
+
+#### sendProductFeedStep
+
+The final step is `sendProductFeedStep`, which sends product feed XML to AI agents.
+
+Create the file `src/workflows/steps/send-product-feed.ts` with the following content:
+
+<Note>
+
+If you get a type error on resolving the Agentic Commerce Module, run the Medusa application once with the `npm run dev` or `yarn dev` command to generate the necessary type definitions, as explained in the [Automatically Generated Types guide](!docs!/learn/fundamentals/generated-types).
+
+</Note>
+
+```ts title="src/workflows/steps/send-product-feed.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { AGENTIC_COMMERCE_MODULE } from "../../modules/agentic-commerce"
+
+type StepInput = {
+  productFeed: string
+}
+
+export const sendProductFeedStep = createStep(
+  "send-product-feed",
+  async (input: StepInput, { container }) => {
+    const agenticCommerceModuleService = container.resolve(
+      AGENTIC_COMMERCE_MODULE
+    )
+
+    await agenticCommerceModuleService.sendProductFeed(input.productFeed)
+
+    return new StepResponse(void 0)
+  }
+)
+```
+
+This step receives the product feed XML as input.
+
+In the step, you resolve the Agentic Commerce Module's service from the Medusa container and call its `sendProductFeed` method to send the product feed to the AI agent.
+
+#### Create Workflow
+
+You can now create the workflow that uses the steps you created.
+
+Create the file `src/workflows/send-product-feed.ts` with the following content:
+
+```ts title="src/workflows/send-product-feed.ts"
+import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { getProductFeedItemsStep } from "./steps/get-product-feed-items"
+import { buildProductFeedXmlStep } from "./steps/build-product-feed-xml"
+import { sendProductFeedStep } from "./steps/send-product-feed"
+
+type GenerateProductFeedWorkflowInput = {
+  currency_code: string
+  country_code: string
+}
+
+export const sendProductFeedWorkflow = createWorkflow(
+  "send-product-feed",
+  (input: GenerateProductFeedWorkflowInput) => {
+    const { items: feedItems } = getProductFeedItemsStep(input)
+
+    const xml = buildProductFeedXmlStep({ 
+      items: feedItems,
+    })
+
+    sendProductFeedStep({
+      productFeed: xml,
+    })
+
+    return new WorkflowResponse({ xml })
+  }
+)
+
+export default sendProductFeedWorkflow
+```
+
+You create a workflow using `createWorkflow` from the Workflows SDK. It accepts the workflow's unique name as a first parameter.
+
+It accepts as a second parameter a constructor function, which is the workflow's implementation. The function can accept input, which in this case is the currency and country codes.
+
+In the workflow, you:
+
+1. Retrieve feed items using `getProductFeedItemsStep`.
+2. Generate product feed XML using `buildProductFeedXmlStep`.
+3. Send product feed to AI agents using `sendProductFeedStep`.
+
+Finally, a workflow function must return a `WorkflowResponse` instance. You return the product feed XML in the response.
+
+### b. Schedule Job to Send Product Feed
+
+Next, you'll create a [scheduled job](!docs!/learn/fundamentals/scheduled-jobs) that executes the `sendProductFeedWorkflow` every fifteen minutes. A scheduled job is an asynchronous function that the Medusa application runs at the interval you specify during the Medusa application's runtime.
+
+Create the file `src/jobs/sync-product-feed.ts` with the following content:
+
+```ts title="src/jobs/sync-product-feed.ts"
+import {
+  MedusaContainer,
+} from "@medusajs/framework/types"
+import sendProductFeedWorkflow from "../workflows/send-product-feed"
+
+export default async function syncProductFeed(container: MedusaContainer) {
+  const logger = container.resolve("logger")
+  const query = container.resolve("query")
+
+  const { data: regions } = await query.graph({
+    entity: "region",
+    fields: ["id", "currency_code", "countries.*"],
+  })
+
+  for (const region of regions) {
+    for (const country of region.countries) {
+      await sendProductFeedWorkflow(container).run({
+        input: {
+          currency_code: region.currency_code,
+          country_code: country!.iso_2,
+        },
+      })
+    }
+  }
+
+  logger.info("Product feed synced for all regions and countries")
+}
+
+export const config = {
+  name: "sync-product-feed",
+  schedule: "*/15 * * * *", // Every 15 minutes
+}
+```
+
+In a scheduled job file, you must export:
+
+1. An asynchronous function that holds the job's logic. The function receives the [Medusa container](!docs!/learn/fundamentals/medusa-container) as a parameter.
+2. A `config` object that specifies the job name and schedule. The schedule is a [cron expression](https://crontab.guru/) that defines the interval at which the job runs.
+
+In the scheduled job function, you use Query to retrieve regions in your Medusa application, including their countries and currency codes.
+
+Then, for each country in each region, you execute `sendProductFeedWorkflow`, passing the region's currency code and the country's ISO 2 code as input.
+
+### Use the Scheduled Job
+
+To use the scheduled job, start the Medusa application with the following command:
+
+```bash npm2yarn
+npm run dev
+```
+
+This job runs every fifteen minutes. The current implementation only logs product feeds to the console. Once you apply for [Instant Checkout](https://chatgpt.com/merchants), you can implement logic to send product feeds in the `sendProductFeed` method of the Agentic Commerce Module's service.
+
+---
+
+## Step 4: Create Checkout Session API
+
+In this step, you'll start creating [Agentic Checkout APIs](https://developers.openai.com/commerce/specs/checkout#rest-endpoints) to handle checkout requests from AI agents.
+
+You'll implement the `POST /checkout_sessions` API route for creating checkout sessions. AI agents call this endpoint when customers want to purchase products. This is equivalent to creating a new cart in Medusa.
+
+To implement this API route, you'll create:
+
+1. A workflow that prepares checkout session responses based on [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/checkout#rest-endpoints). You'll use this workflow in other checkout-related workflows.
+2. A workflow that creates checkout sessions.
+3. An API route at `POST /checkout_sessions` that executes the workflow to create checkout sessions.
+4. A middleware to authenticate AI agent requests to checkout APIs.
+5. A custom error handler to return errors in the format required by [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/checkout#object-definitions).
+
+### a. Prepare Checkout Session Response Workflow
+
+First, you'll create a workflow that prepares checkout session responses. This workflow will be used in other checkout-related workflows to return checkout sessions in the format required by [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/checkout#rest-endpoints).
+
+The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "prepareCheckoutSessionResponseWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the cart details",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1,
+      },
+      {
+        type: "workflow",
+        name: "listShippingOptionsForCartWithPricingWorkflow",
+        description: "Retrieve shipping options for cart",
+        link: "/references/medusa-workflows/listShippingOptionsForCartWithPricingWorkflow",
+        depth: 2
+      }
+    ]
+  }}
+/>
+
+These steps and workflows are available in Medusa out-of-the-box. So, you can implement the workflow without creating custom steps.
+
+To create the workflow, create the file `src/workflows/prepare-checkout-session-data.ts` with the following content:
+
+```ts title="src/workflows/prepare-checkout-session-data.ts" collapsibleLines="1-10" expandButtonLabel="Show Imports"
+import { 
+  createWorkflow, 
+  transform, 
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { 
+  listShippingOptionsForCartWithPricingWorkflow, 
+  useQueryGraphStep,
+} from "@medusajs/medusa/core-flows"
+
+export type PrepareCheckoutSessionDataWorkflowInput = {
+  buyer?: {
+    first_name: string
+    email: string
+    phone_number?: string
+  }
+  fulfillment_address?: {
+    name: string
+    line_one: string
+    line_two?: string
+    city: string
+    state: string
+    postal_code: string
+    phone_number?: string
+    country: string
+  }
+  cart_id: string
+  messages?: {
+    type: "error" | "info"
+    code: "missing" | "invalid" | "out_of_stock" | "payment_declined" | "required_sign_in" | "requires_3d"
+    content_type: "plain" | "markdown"
+    content: string
+  }[]
+}
+
+export const prepareCheckoutSessionDataWorkflow = createWorkflow(
+  "prepare-checkout-session-data",
+  (input: PrepareCheckoutSessionDataWorkflowInput) => {
+    // TODO add steps
+  }
+)
+```
+
+The `prepareCheckoutSessionDataWorkflow` accepts input with the following properties:
+
+- `buyer`: Buyer information received from AI agents.
+- `fulfillment_address`: Fulfillment address information received from AI agents.
+- `cart_id`: Cart ID in Medusa, which is also the checkout session ID.
+- `messages`: Messages to include in checkout session responses. This is useful for sending error or info messages to AI agents.
+
+Next, you'll implement the workflow's logic. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/prepare-checkout-session-data.ts"
+const { data: carts } = useQueryGraphStep({
+  entity: "cart",
+  fields: [
+    "id", 
+    "items.*", 
+    "shipping_address.*", 
+    "shipping_methods.*",
+    "region.*",
+    "region.payment_providers.*", 
+    "currency_code", 
+    "email", 
+    "phone", 
+    "payment_collection.*",
+    "total",
+    "subtotal",
+    "tax_total",
+    "discount_total",
+    "original_item_total",
+    "shipping_total",
+    "metadata",
+    "order.id",
+  ],
+  filters: {
+    id: input.cart_id,
+  },
+  options: {
+    throwIfKeyNotFound: true,
+  },
+})
+
+// Retrieve shipping options
+const shippingOptions = listShippingOptionsForCartWithPricingWorkflow.runAsStep({
+  input: {
+    cart_id: carts[0].id,
+  },
+})
+
+// TODO prepare response
+```
+
+You first retrieve the cart using `useQueryGraphStep`, including fields necessary to prepare checkout session responses.
+
+Then, you retrieve shipping options that can be used for the cart using `listShippingOptionsForCartWithPricingWorkflow`.
+
+Next, you'll prepare checkout session response data. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/prepare-checkout-session-data.ts"
+const responseData = transform({
+  input,
+  carts,
+  shippingOptions,
+}, (data) => {
+  // @ts-ignore
+  const hasStripePaymentProvider = data.carts[0].region?.payment_providers?.some((provider) => provider?.id.includes("stripe"))
+  const hasPaymentSession = data.carts[0].payment_collection?.payment_sessions?.some((session) => session?.status === "pending")
+  return {
+    id: data.carts[0].id,
+    buyer: data.input.buyer,
+    payment_provider: {
+      provider: hasStripePaymentProvider ? "stripe" : undefined,
+      supported_payment_methods: hasStripePaymentProvider ? ["card"] : undefined,
+    },
+    status: hasPaymentSession ? "ready_for_payment" : 
+      data.carts[0].metadata?.checkout_session_canceled ? "canceled" : 
+      data.carts[0].order?.id ? "completed" : "not_ready_for_payment",
+    currency: data.carts[0].currency_code,
+    line_items: data.carts[0].items.map((item) => ({
+      id: item?.id,
+      title: item?.title,
+      // @ts-ignore
+      base_amount: item?.original_total,
+      // @ts-ignore
+      discount: item?.discount_total,
+      // @ts-ignore
+      subtotal: item?.subtotal,
+      // @ts-ignore
+      tax: item?.tax_total,
+      // @ts-ignore
+      total: item?.total,
+      item: {
+        id: item?.variant_id,
+        quantity: item?.quantity,
+      },
+    })),
+    fulfillment_address: data.input.fulfillment_address,
+    fulfillment_options: data.shippingOptions?.map((option) => ({
+      type: "shipping",
+      id: option?.id,
+      title: option?.name,
+      subtitle: "",
+      carrier_info: option?.provider?.id,
+      earliest_delivery_time: option?.type.code === "express" ? 
+        new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString() :  // RFC 3339 string - 24 hours
+        new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(), // RFC 3339 string - 48 hours
+      latest_delivery_time: option?.type.code === "express" ? 
+        new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString() :  // RFC 3339 string - 24 hours
+        new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(), // RFC 3339 string - 48 hours
+      subtotal: option?.calculated_price.calculated_amount,
+      // @ts-ignore
+      tax: data.carts[0].shipping_methods?.[0]?.tax_total || 0,
+      // @ts-ignore
+      total: data.carts[0].shipping_methods?.[0]?.total || option?.calculated_price.calculated_amount,
+    })),
+    fulfillment_option_id: data.carts[0].shipping_methods?.[0]?.shipping_option_id,
+    totals: [
+      {
+        type: "item_base_amount",
+        display_name: "Item Base Amount",
+        // @ts-ignore
+        amount: data.carts[0].original_item_total,
+      },
+      {
+        type: "subtotal",
+        display_name: "Subtotal",
+        // @ts-ignore
+        amount: data.carts[0].subtotal,
+      },
+      {
+        type: "discount",
+        display_name: "Discount",
+        // @ts-ignore
+        amount: data.carts[0].discount_total,
+      },
+      {
+        type: "fulfillment",
+        display_name: "Fulfillment",
+        // @ts-ignore
+        amount: data.carts[0].shipping_total,
+      },
+      {
+        type: "tax",
+        display_name: "Tax",
+        // @ts-ignore
+        amount: data.carts[0].tax_total,
+      },
+      {
+        type: "total",
+        display_name: "Total",
+        // @ts-ignore
+        amount: data.carts[0].total,
+      },
+    ],
+    messages: data.input.messages || [],
+    links: [
+      {
+        type: "terms_of_use",
+        value: "https://www.medusa-commerce.com/terms-of-use", // TODO: replace with actual terms of use
+      },
+      {
+        type: "privacy_policy",
+        value: "https://www.medusa-commerce.com/privacy-policy", // TODO: replace with actual privacy policy
+      },
+      {
+        type: "seller_shop_policy",
+        value: "https://www.medusa-commerce.com/seller-shop-policy", // TODO: replace with actual seller shop policy
+      },
+    ],
+  }
+})
+
+return new WorkflowResponse(responseData)
+```
+
+To create variables in workflows, you must use the [transform](!docs!/learn/fundamentals/workflows/variable-manipulation) function. This function accepts data to manipulate as the first parameter and a transformation function as the second parameter.
+
+In the transformation function, you prepare checkout session responses matching [Agentic Commerce response specifications](https://developers.openai.com/commerce/specs/checkout#rest-endpoints). You can replace hardcoded values with dynamic values based on your setup.
+
+Finally, you return response data in a `WorkflowResponse` instance.
+
+### b. Create Checkout Session Workflow
+
+Next, you'll create a workflow that creates carts for checkout sessions. The `POST /checkout_sessions` API route will execute this workflow.
+
+The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "createCheckoutSessionWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the cart details",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1,
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve variant details to validate existence",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 2,
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve region details",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 3
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve sales channel details",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 4
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve customer if it exists.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 5
+      },
+      {
+        type: "when",
+        condition: "customers.length === 0 && !!input.buyer?.email",
+        steps: [
+          {
+            type: "workflow",
+            name: "createCustomersWorkflow",
+            description: "Create customer if it does not exist",
+            link: "/references/medusa-workflows/createCustomersWorkflow",
+            depth: 1
+          }
+        ],
+        depth: 6
+      },
+      {
+        type: "step",
+        name: "createCartWorkflow",
+        description: "Create cart for checkout session",
+        link: "/references/medusa-workflows/createCartWorkflow",
+        depth: 7
+      },
+      {
+        type: "when",
+        condition: "!!input.fulfillment_address",
+        steps: [
+          {
+            type: "step",
+            name: "listShippingOptionsForCartWithPricingWorkflow",
+            description: "Retrieve shipping options for the cart",
+            link: "/references/medusa-workflows/listShippingOptionsForCartWithPricingWorkflow",
+            depth: 1
+          },
+          {
+            type: "step",
+            name: "acquireLockStep",
+            description: "Acquire lock on the cart to avoid race conditions",
+            link: "/references/medusa-workflows/steps/acquireLockStep",
+            depth: 2,
+          },
+          {
+            type: "workflow",
+            name: "addShippingMethodToCartWorkflow",
+            description: "Add shipping method to the cart",
+            link: "/references/medusa-workflows/addShippingMethodToCartWorkflow",
+            depth: 3
+          },
+          {
+            type: "step",
+            name: "releaseLockStep",
+            description: "Release the lock on the cart.",
+            link: "/references/medusa-workflows/steps/releaseLockStep",
+            depth: 4,
+          }
+        ],
+        depth: 8
+      },
+      {
+        type: "workflow",
+        name: "prepareCheckoutSessionDataWorkflow",
+        description: "Prepare the checkout session response",
+        depth: 9
+      }
+    ]
+  }}
+/>
+
+These steps and workflows are available in Medusa out-of-the-box. So, you can implement the workflow without creating custom steps.
+
+Create the file `src/workflows/create-checkout-session.ts` with the following content:
+
+```ts title="src/workflows/create-checkout-session.ts" collapsibleLines="1-20" expandButtonLabel="Show Imports"
+import { 
+  createWorkflow, 
+  transform, 
+  when, 
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { 
+  acquireLockStep,
+  addShippingMethodToCartWorkflow, 
+  createCartWorkflow, 
+  CreateCartWorkflowInput, 
+  createCustomersWorkflow, 
+  listShippingOptionsForCartWithPricingWorkflow, 
+  releaseLockStep, 
+  useQueryGraphStep,
+} from "@medusajs/medusa/core-flows"
+import { 
+  prepareCheckoutSessionDataWorkflow,
+} from "./prepare-checkout-session-data"
+
+type WorkflowInput = {
+  items: {
+    id: string
+    quantity: number
+  }[]
+  buyer?: {
+    first_name: string
+    email: string
+    phone_number?: string
+  }
+  fulfillment_address?: {
+    name: string
+    line_one: string
+    line_two?: string
+    city: string
+    state: string
+    postal_code: string
+    phone_number?: string
+    country: string
+  }
+}
+
+export const createCheckoutSessionWorkflow = createWorkflow(
+  "create-checkout-session",
+  (input: WorkflowInput) => {
+    // TODO add steps
+  }
+)
+```
+
+The `createCheckoutSessionWorkflow` accepts an input with the [request body of the Create Checkout Session API](https://developers.openai.com/commerce/specs/checkout#rest-endpoints).
+
+#### Retrieve and Validate Variants
+
+Next, you'll start implementing the workflow's logic. You'll first validate that the variants in the input exist.
+
+Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/create-checkout-session.ts"
+// validate item IDs
+const variantIds = transform({
+  input,
+}, (data) => {
+  return data.input.items.map((item) => item.id)
+})
+
+// Will fail if any variant IDs are not found
+useQueryGraphStep({
+  entity: "variant",
+  fields: ["id"],
+  filters: {
+    id: variantIds,
+  },
+  options: {
+    throwIfKeyNotFound: true,
+  },
+})
+
+// TODO retrieve region and sales channel
+```
+
+You first create a variable with the variant IDs in the input using the `transform` function.
+
+Then, you use the `useQueryGraphStep` to retrieve the variants with the IDs. You set the `throwIfKeyNotFound` option to `true` to make the step fail if any of the variant IDs are not found.
+
+#### Retrieve Region and Sales Channel
+
+Next, you'll retrieve the region and sales channel. These are necessary to associate the cart with the correct region and sales channel. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/create-checkout-session.ts"
+// Find the region ID for US
+const { data: regions } = useQueryGraphStep({
+  entity: "region",
+  fields: ["id"],
+  filters: {
+    countries: {
+      iso_2: "us",
+    },
+  },
+}).config({ name: "find-region" })
+
+// get sales channel
+const { data: salesChannels } = useQueryGraphStep({
+  entity: "sales_channel",
+  fields: ["id"],
+  // You can filter by name for a specific sales channel
+  // filters: {
+  //   name: "Agentic Commerce"
+  // }
+}).config({ name: "find-sales-channel" })
+
+// TODO retrieve or create customer
+```
+
+You retrieve the region for the US using the `useQueryGraphStep` step. Instant Checkout in ChatGPT currently only supports the US region.
+
+You also retrieve the sales channels. You can filter the sales channels by name if you want to use a specific sales channel.
+
+#### Retrieve or Create Customer
+
+Next, if the AI agent provides buyer information, you'll try to retrieve or create the customer. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/create-checkout-session.ts"
+// check if customer already exists
+const { data: customers } = useQueryGraphStep({
+  entity: "customer",
+  fields: ["id"],
+  filters: {
+    email: input.buyer?.email,
+  },
+}).config({ name: "find-customer" })
+
+// create customer if it does not exist
+const createdCustomers = when ({ customers }, ({ customers }) => 
+  customers.length === 0 && !!input.buyer?.email
+)
+.then(() => {
+  return createCustomersWorkflow.runAsStep({
+    input: {
+      customersData: [
+        {
+          email: input.buyer?.email,
+          first_name: input.buyer?.first_name,
+          phone: input.buyer?.phone_number,
+          has_account: false,
+        },
+      ],
+    },
+  })
+})
+
+// set customer ID based on existing or created customer
+const customerId = transform({
+  customers,
+  createdCustomers,
+}, (data) => {
+  return data.customers.length > 0 ? 
+    data.customers[0].id : data.createdCustomers?.[0].id
+})
+
+// TODO prepare cart input and create cart
+```
+
+You first try to retrieve the customer using the `useQueryGraphStep` step, filtering by the buyer's email.
+
+Then, to perform an action based on a condition, you use [when-then](!docs!/learn/fundamentals/workflows/conditions) functions. The `when` function accepts as a first parameter the data to evaluate, and as a second parameter a function that returns a boolean.
+
+If the `when` function returns `true`, the `then` function is executed, which also accepts a function that performs steps and returns their result.
+
+In this case, if the customer does not exist, you create it using the `createCustomersWorkflow` workflow.
+
+Finally, you create a variable with the customer ID, which is either the existing customer's ID or the newly created customer's ID.
+
+#### Prepare Cart Input and Create Cart
+
+Next, you'll prepare the input for the cart creation, then create the cart. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/create-checkout-session.ts"
+const cartInput = transform({
+  input,
+  regions,
+  salesChannels,
+  customerId,
+}, (data) => {
+  const splitAddressName = data.input.fulfillment_address?.name.split(" ") || []
+  return {
+    items: data.input.items.map((item) => ({
+      variant_id: item.id,
+      quantity: item.quantity,
+    })),
+    region_id: data.regions[0]?.id,
+    email: data.input.buyer?.email,
+    customer_id: data.customerId,
+    shipping_address: data.input.fulfillment_address ? {
+      first_name: splitAddressName[0],
+      last_name: splitAddressName.slice(1).join(" "),
+      address_1: data.input.fulfillment_address?.line_one,
+      address_2: data.input.fulfillment_address?.line_two,
+      city: data.input.fulfillment_address?.city,
+      province: data.input.fulfillment_address?.state,
+      postal_code: data.input.fulfillment_address?.postal_code,
+      country_code: data.input.fulfillment_address?.country,
+    } : undefined,
+    currency_code: data.regions[0]?.currency_code,
+    sales_channel_id: data.salesChannels[0]?.id,
+    metadata: {
+      is_checkout_session: true,
+    },
+  } as CreateCartWorkflowInput
+})
+
+const createdCart = createCartWorkflow.runAsStep({
+  input: cartInput,
+})
+
+// TODO retrieve shipping options
+```
+
+You use the `transform` function to prepare the input for the `createCartWorkflow` workflow. You map the input properties to the cart properties.
+
+Then, you create the cart using the `createCartWorkflow` workflow.
+
+#### Retrieve Shipping Options and Add Shipping Method
+
+If the AI agent provides a fulfillment address in the request body, you must select the cheapest shipping option and add it to the cart.
+
+Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/create-checkout-session.ts"
+// Select the cheapest shipping option if a fulfillment address is provided
+when(input, (input) => !!input.fulfillment_address)
+.then(() => {
+  // Retrieve shipping options
+  const shippingOptions = listShippingOptionsForCartWithPricingWorkflow.runAsStep({
+    input: {
+      cart_id: createdCart.id,
+    },
+  })
+
+  const shippingMethodData = transform({
+    createdCart,
+    shippingOptions,
+  }, (data) => {
+    // get the cheapest shipping option
+    const cheapestShippingOption = data.shippingOptions.sort(
+      (a, b) => a.price - b.price
+    )[0]
+    return {
+      cart_id: data.createdCart.id,
+      options: [{
+        id: cheapestShippingOption.id,
+      }],
+    }
+  })
+  acquireLockStep({
+    key: createdCart.id,
+    timeout: 2,
+    ttl: 10,
+  })
+  addShippingMethodToCartWorkflow.runAsStep({
+    input: shippingMethodData,
+  })
+  releaseLockStep({
+    key: createdCart.id,
+  })
+})
+
+// TODO prepare checkout session response
+```
+
+You use the `when` function to check if a fulfillment address is provided in the input. If so, you:
+
+- Retrieve the shipping options using the [listShippingOptionsForCartWithPricingWorkflow](/references/medusa-workflows/listShippingOptionsForCartWithPricingWorkflow).
+- Create a variable with the cheapest shipping option using the `transform` function.
+- Acquire a lock on the cart to avoid race conditions.
+- Add the cheapest shipping option to the cart using the [addShippingMethodToCartWorkflow](/references/medusa-workflows/addShippingMethodToCartWorkflow).
+- Release the lock on the cart.
+
+#### Prepare Checkout Session Response
+
+Finally, you'll prepare and return the checkout session response. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/create-checkout-session.ts"
+// Prepare response data
+const responseData = prepareCheckoutSessionDataWorkflow.runAsStep({
+  input: {
+    buyer: input.buyer,
+    fulfillment_address: input.fulfillment_address,
+    cart_id: createdCart.id,
+  },
+})
+
+return new WorkflowResponse(responseData)
+```
+
+You prepare the checkout session response using the `prepareCheckoutSessionDataWorkflow` workflow you created earlier. You return it as the workflow's response.
+
+### c. Create Checkout Session API Route
+
+Next, you'll create the [API route](!docs!/learn/fundamentals/api-routes) at `POST /checkout_sessions` that executes the `createCheckoutSessionWorkflow`.
+
+An API route is created in a `route.ts` file under a sub-directory of the `src/api` directory. The path of the API route is the file's path relative to `src/api`.
+
+<Note>
+
+Refer to the [API routes](!docs!/learn/fundamentals/api-routes) to learn more about them.
+
+</Note>
+
+So, to create an API route, create the file `src/api/checkout_sessions/route.ts` with the following content:
+
+<Note>
+
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+
+</Note>
+
+```ts title="src/api/checkout_sessions/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { z } from "@medusajs/framework/zod"
+import { createCheckoutSessionWorkflow } from "../../workflows/create-checkout-session"
+import { MedusaError } from "@medusajs/framework/utils"
+
+export const PostCreateSessionSchema = z.object({
+  items: z.array(z.object({
+    id: z.string(), // variant ID
+    quantity: z.number(),
+  })),
+  buyer: z.object({
+    first_name: z.string(),
+    email: z.string(),
+    phone_number: z.string().optional(),
+  }).optional(),
+  fulfillment_address: z.object({
+    name: z.string(),
+    line_one: z.string(),
+    line_two: z.string().optional(),
+    city: z.string(),
+    state: z.string(),
+    country: z.string(),
+    postal_code: z.string(),
+    phone_number: z.string().optional(),
+  }).optional(),
+})
+
+export const POST = async (
+  req: MedusaRequest<
+    z.infer<typeof PostCreateSessionSchema>
+  >,
+  res: MedusaResponse
+) => {
+  const logger = req.scope.resolve("logger")
+  const responseHeaders = {
+    "Idempotency-Key": req.headers["idempotency-key"] as string,
+    "Request-Id": req.headers["request-id"] as string,
+  }
+  try {
+    const { result } = await createCheckoutSessionWorkflow(req.scope)
+      .run({
+        input: req.validatedBody,
+        context: {
+          idempotencyKey: req.headers["idempotency-key"] as string,
+        },
+      })
+
+    res.set(responseHeaders).json(result)
+  } catch (error) {
+    const medusaError = error as MedusaError
+    logger.error(medusaError)
+    res.set(responseHeaders).json({
+      messages: [
+        {
+          type: "error",
+          code: "invalid",
+          content_type: "plain",
+          content: medusaError.message,
+        },
+      ],
+    })
+  }
+}
+```
+
+You first define a validation schema with [Zod](https://zod.dev/) for the request body. The schema matches the [Agentic Commerce request specifications](https://developers.openai.com/commerce/specs/checkout#rest-endpoints).
+
+Then, you export a `POST` route handler function, which exposes a `POST` API route at `/checkout_sessions`.
+
+In the route handler, you execute the `createCheckoutSessionWorkflow`, passing the validated request body as input. You return the workflow's response as the API response.
+
+If an error occurs, you catch it and return it in the format required by the Agentic Commerce specifications.
+
+You also return the `Idempotency-Key` and `Request-Id` headers in the response if they are provided in the request. These headers are required by the [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/checkout#rest-endpoints).
+
+### d. Create Authentication Middleware
+
+Next, you'll create a [middleware](!docs!/learn/fundamentals/api-routes/middlewares) to authenticate requests to checkout APIs. The middleware will run before API route handlers and verify that requests contain valid API keys and signatures before allowing access to route handlers.
+
+Create the file `src/api/middlewares/validate-agentic-request.ts` with the following content:
+
+```ts title="src/api/middlewares/validate-agentic-request.ts"
+import { MedusaNextFunction, MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { AGENTIC_COMMERCE_MODULE } from "../../modules/agentic-commerce"
+
+export async function validateAgenticRequest(
+  req: MedusaRequest, 
+  res: MedusaResponse, 
+  next: MedusaNextFunction
+) {
+  const agenticCommerceModuleService = req.scope.resolve(AGENTIC_COMMERCE_MODULE)
+  const apiKeyModuleService = req.scope.resolve("api_key")
+  const signature = req.headers["signature"] as string
+  const apiKey = req.headers["authorization"]?.replaceAll("Bearer ", "")
+
+  const isTokenValid = await apiKeyModuleService.authenticate(apiKey || "")
+  const isSignatureValid = !!req.body || await agenticCommerceModuleService.verifySignature({
+    signature,
+    payload: req.body,
+  })
+
+  if (!isTokenValid || !isSignatureValid) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    })
+  }
+
+  next()
+}
+```
+
+You create the `validateAgenticRequest` middleware function that accepts request, response, and next function as parameters.
+
+In this middleware, you:
+
+1. Resolve services of the Agentic Commerce and [API Key](../../../commerce-modules/api-key/page.mdx) modules.
+2. Validate that the API key in the `Authorization` header is valid using the API Key Module's service.
+3. Validate that the signature in the `Signature` header is valid using the Agentic Commerce Module's service. If the request has no body, you skip signature validation.
+4. If either the API key or signature is invalid, you return a `401 Unauthorized` response.
+5. Otherwise, you call the `next` function to proceed to the next middleware or route handler.
+
+The headers are expected based on [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/checkout#rest-endpoints). You can create an API key that AI agents can use in the [Secret API Key Settings](!user-guide!/settings/developer/secret-api-keys) of the Medusa Admin dashboard.
+
+To use this middleware, you need to apply it to checkout API routes.
+
+You apply middlewares in the `src/api/middlewares.ts` file. Create this file with the following content:
+
+```ts title="src/api/middlewares.ts"
+import { 
+  defineMiddlewares, 
+  validateAndTransformBody,
+} from "@medusajs/framework/http"
+import { validateAgenticRequest } from "./middlewares/validate-agentic-request"
+import { PostCreateSessionSchema } from "./checkout_sessions/route"
+
+export default defineMiddlewares({
+  routes: [
+    {
+      matcher: "/checkout_sessions*",
+      middlewares: [
+        validateAgenticRequest,
+      ],
+    },
+    {
+      matcher: "/checkout_sessions",
+      method: ["POST"],
+      middlewares: [validateAndTransformBody(PostCreateSessionSchema)],
+    },
+  ],
+})
+```
+
+You apply the `validateAgenticRequest` middleware to all routes starting with `/checkout_sessions`.
+
+You also apply the `validateAndTransformBody` middleware to the `POST /checkout_sessions` route to ensure request bodies include required fields.
+
+### e. Create Custom Error Handler
+
+Finally, you'll add a custom error handler to return errors in the format required by [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/checkout#object-definitions).
+
+To override the default error handler, you can pass the `errorHandler` property to `defineMiddlewares`. It accepts an error handler function.
+
+In `src/api/middlewares.ts`, add the following import at the top of the file:
+
+```ts title="src/api/middlewares.ts"
+import { 
+  errorHandler,
+} from "@medusajs/framework/http"
+
+const originalErrorHandler = errorHandler()
+```
+
+You import the default error handler and store it in a variable to use in your custom error handler.
+
+Then, add the `errorHandler` property to the `defineMiddlewares` function:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  // ...
+  errorHandler: (error, req, res, next) => {
+    if (!req.path.startsWith("/checkout_sessions")) {
+      return originalErrorHandler(error, req, res, next)
+    }
+
+    res.json({
+      messages: [
+        {
+          type: "error",
+          code: "invalid",
+          content_type: "plain",
+          content: error.message,
+        },
+      ],
+    })
+  },
+})
+```
+
+If the request path does not start with `/checkout_sessions`, you call the original error handler to handle errors.
+
+Otherwise, you return errors in the format required by Agentic Commerce specifications.
+
+### Use the Checkout Session API
+
+To use the `POST /checkout_sessions` API:
+
+- Apply to ChatGPT's [Instant Checkout](https://chatgpt.com/merchants) and access a signature key.
+- Create an API key in the [Secret API Key Settings](!user-guide!/settings/developer/secret-api-keys) of the Medusa Admin dashboard.
+- Setup the API key in the Instant Checkout settings.
+
+ChatGPT will then use these to create checkout sessions.
+
+### Test the Create Checkout Session API Locally
+
+To test the `POST /checkout_sessions` API locally, you'll add an API route to retrieve signatures based on payloads. This allows you to simulate signature generation that ChatGPT performs.
+
+Create the file `src/api/signature/route.ts` with the following content:
+
+```ts title="src/api/signature/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { AGENTIC_COMMERCE_MODULE } from "../../modules/agentic-commerce"
+
+export const POST = async (
+  req: MedusaRequest,
+  res: MedusaResponse
+) => {
+  const agenticCommerceModuleService = req.scope.resolve(AGENTIC_COMMERCE_MODULE)
+  const signature = await agenticCommerceModuleService.getSignature(req.body)
+  res.json({ signature })
+}
+```
+
+This API route accepts payloads in request bodies and returns signatures generated using the Agentic Commerce Module's service.
+
+Then, start the Medusa application with the following command:
+
+```bash npm2yarn
+npm run dev
+```
+
+After that, send a `POST` request to `http://localhost:9000/signature` with the JSON body to create checkout sessions. For example:
+
+<Note title="Tip">
+
+Make sure you [have a region with the US added to its countries](!user-guide!/settings/regions#create-region) in your Medusa store.
+
+</Note>
+
+```bash
+curl -X POST 'http://localhost:9000/signature' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "items": [
+        {
+            "id": "variant_01K6CQ43RA0RSWW1BXM8C63YT6",
+            "quantity": 1
+        }
+    ],
+    "fulfillment_address": {
+        "name": "John Smith",
+        "line_one": "US",
+        "city": "New York",
+        "state": "NY",
+        "country": "us",
+        "postal_code": "12345"
+    },
+    "buyer": {
+        "email": "johnsmith@gmail.com",
+        "first_name": "John",
+        "phone_number": "123"
+    }
+}'
+```
+
+Make sure to replace the variant ID with an actual variant ID from your store.
+
+Copy the signature from the response.
+
+Finally, send a `POST` request to `http://localhost:9000/checkout_sessions` with the same JSON body and include the `Authorization` and `Signature` headers:
+
+```bash
+curl -X POST 'http://localhost:9000/checkout_sessions' \
+-H 'Signature: {your_signature}' \
+-H 'Idempotency-Key: idp_123' \
+-H 'Request-Id: req_123' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer {your_api_key}' \
+--data-raw '{
+    "items": [
+        {
+            "id": "variant_01K6CQ43RA0RSWW1BXM8C63YT6",
+            "quantity": 1
+        }
+    ],
+    "fulfillment_address": {
+        "name": "John Smith",
+        "line_one": "US",
+        "city": "New York",
+        "state": "NY",
+        "country": "us",
+        "postal_code": "12345"
+    },
+    "buyer": {
+        "email": "johnsmith@gmail.com",
+        "first_name": "John",
+        "phone_number": "123"
+    }
+}'
+```
+
+Make sure to replace:
+
+- `{your_signature}` with the signature you copied from the previous request.
+- `{your_api_key}` with the API key you created in the Medusa Admin dashboard.
+- The variant ID with an actual variant ID from your store.
+
+You'll receive in the response the checkout session based on the Agentic Commerce specifications.
+
+---
+
+## Step 5: Update Checkout Session API
+
+Next, you'll implement the `POST /checkout_sessions/{id}` API to update a checkout session.
+
+This API is called by the AI agent to update the checkout session's details, such as when the buyer changes the fulfillment address. Whenever the checkout session is updated, you must also reset the cart's payment sessions, as instructed in the [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/checkout#checkout-session).
+
+Similar to before, you'll create:
+
+- A workflow that updates the checkout session.
+- An API route that executes the workflow.
+    - You'll also apply a validation middleware to the API route.
+
+### a. Update Checkout Session Workflow
+
+First, you'll create the workflow that updates a checkout session. This workflow will be executed by the `POST /checkout_sessions/{id}` API route.
+
+The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "updateCheckoutSessionWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the cart details",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1,
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve customer if it exists.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 2
+      },
+      {
+        type: "when",
+        condition: "customers.length === 0 && !!input.buyer?.email",
+        steps: [
+          {
+            type: "workflow",
+            name: "createCustomersWorkflow",
+            description: "Create customer if it does not exist",
+            link: "/references/medusa-workflows/createCustomersWorkflow",
+            depth: 1
+          }
+        ],
+        depth: 3
+      },
+      {
+        type: "when",
+        condition: "!!input.items",
+        steps: [
+          {
+            type: "step",
+            name: "useQueryGraphStep",
+            description: "Retrieve the variants to validate that they exist",
+            link: "/references/helper-steps/useQueryGraphStep",
+            depth: 1,
+          }
+        ],
+        depth: 4
+      },
+      {
+        type: "step",
+        name: "acquireLockStep",
+        description: "Acquire a lock on the cart to avoid concurrent modifications.",
+        link: "/references/medusa-workflows/steps/acquireLockStep",
+        depth: 5,
+      },
+      {
+        type: "workflow",
+        name: "updateCartWorkflow",
+        description: "Update the cart with the new data",
+        link: "/references/medusa-workflows/updateCartWorkflow",
+        depth: 6
+      },
+      {
+        type: "when",
+        condition: "!!input.fulfillment_option_id",
+        steps: [
+          {
+            type: "workflow",
+            name: "addShippingMethodToCartWorkflow",
+            description: "Add shipping method to the cart",
+            link: "/references/medusa-workflows/addShippingMethodToCartWorkflow",
+            depth: 1
+          }
+        ],
+        depth: 7
+      },
+      {
+        type: "workflow",
+        name: "prepareCheckoutSessionDataWorkflow",
+        description: "Prepare the checkout session response",
+        depth: 8
+      },
+      {
+        type: "step",
+        name: "releaseLockStep",
+        description: "Release lock on the cart",
+        link: "/references/medusa-workflows/steps/releaseLockStep",
+        depth: 9
+      }
+    ]
+  }}
+/>
+
+These steps and workflows are available in Medusa out-of-the-box. So, you can implement the workflow without creating custom steps.
+
+Create the file `src/workflows/update-checkout-session.ts` with the following content:
+
+```ts title="src/workflows/update-checkout-session.ts" collapsibleLines="1-18" expandButtonLabel="Show Imports"
+import { 
+  createWorkflow, 
+  transform, 
+  when, 
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { 
+  acquireLockStep,
+  addShippingMethodToCartWorkflow, 
+  createCustomersWorkflow, 
+  releaseLockStep, 
+  updateCartWorkflow, 
+  useQueryGraphStep,
+} from "@medusajs/medusa/core-flows"
+import { 
+  prepareCheckoutSessionDataWorkflow,
+} from "./prepare-checkout-session-data"
+
+type WorkflowInput = {
+  cart_id: string
+  buyer?: {
+    first_name: string
+    email: string
+    phone_number?: string
+  }
+  items?: {
+    id: string
+    quantity: number
+  }[]
+  fulfillment_address?: {
+    name: string
+    line_one: string
+    line_two?: string
+    city: string
+    state: string
+    postal_code: string
+    phone_number?: string
+    country: string
+  }
+  fulfillment_option_id?: string
+}
+
+export const updateCheckoutSessionWorkflow = createWorkflow(
+  "update-checkout-session",
+  (input: WorkflowInput) => {
+    // Retrieve cart
+    const { data: carts } = useQueryGraphStep({
+      entity: "cart",
+      fields: ["id", "customer.*", "email"],
+      filters: {
+        id: input.cart_id,
+      },
+    })
+
+    // TODO retrieve or create customer
+  }
+)
+```
+
+The `updateCheckoutSessionWorkflow` accepts an input with the [request body of the Update Checkout Session API](https://developers.openai.com/commerce/specs/checkout#rest-endpoints) along with the cart ID.
+
+So far, you retrieve the cart using the `useQueryGraphStep` step.
+
+#### Retrieve or Create Customer (Update)
+
+Next, you'll retrieve the customer if it exists or create it if it doesn't. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/update-checkout-session.ts"
+// check if customer already exists
+const { data: customers } = useQueryGraphStep({
+  entity: "customer",
+  fields: ["id"],
+  filters: {
+    email: input.buyer?.email,
+  },
+}).config({ name: "find-customer" })
+
+const createdCustomers = when({ customers }, ({ customers }) => 
+  customers.length === 0 && !!input.buyer?.email
+)
+.then(() => {
+  return createCustomersWorkflow.runAsStep({
+    input: {
+      customersData: [
+        {
+          email: input.buyer?.email,
+          first_name: input.buyer?.first_name,
+          phone: input.buyer?.phone_number,
+        },
+      ],
+    },
+  })
+})
+
+const customerId = transform({
+  customers,
+  createdCustomers,
+}, (data) => {
+  return data.customers.length > 0 ? 
+    data.customers[0].id : data.createdCustomers?.[0].id
+})
+
+// TODO validate variants if items are provided
+```
+
+You first try to retrieve the customer using the `useQueryGraphStep` step, filtering by the buyer's email.
+
+Then, if the customer does not exist, you create it using the `createCustomersWorkflow` workflow.
+
+Finally, you create a variable with the customer ID, which is either the existing customer's ID or the newly created customer's ID.
+
+#### Validate Variants if Items are Provided
+
+Next, you'll validate that the variants in the input exist if items are provided. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/update-checkout-session.ts"
+// validate items
+when(input, (input) => !!input.items)
+.then(() => {
+  const variantIds = transform(input, (input) => input.items?.map((item) => item.id))
+  return useQueryGraphStep({
+    entity: "variant",
+    fields: ["id"],
+    filters: {
+      id: variantIds,
+    },
+    options: {
+      throwIfKeyNotFound: true,
+    },
+  }).config({ name: "find-variant" })
+})
+
+// TODO update cart
+```
+
+You use the `when` function to check if items are provided in the input. If so, you retrieve the variants with the IDs using the `useQueryGraphStep` step. You set the `throwIfKeyNotFound` option to `true` to make the step fail if any of the variant IDs are not found.
+
+#### Update Cart
+
+Next, you'll update the cart based on the input. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/update-checkout-session.ts"
+acquireLockStep({
+  key: input.cart_id,
+  timeout: 2,
+  ttl: 10,
+})
+// Prepare update data
+const updateData = transform({
+  input,
+  carts,
+  customerId,
+}, (data) => {
+  return {
+    id: data.carts[0].id,
+    email: data.input.buyer?.email || data.carts[0].email,
+    customer_id: data.customerId || data.carts[0].customer?.id,
+    items: data.input.items?.map((item) => ({
+      variant_id: item.id,
+      quantity: item.quantity,
+    })),
+    shipping_address: data.input.fulfillment_address ? {
+      first_name: data.input.fulfillment_address.name.split(" ")[0],
+      last_name: data.input.fulfillment_address.name.split(" ")[1],
+      address_1: data.input.fulfillment_address.line_one,
+      address_2: data.input.fulfillment_address.line_two,
+      city: data.input.fulfillment_address.city,
+      province: data.input.fulfillment_address.state,
+      postal_code: data.input.fulfillment_address.postal_code,
+      country_code: data.input.fulfillment_address.country,
+      phone: data.input.fulfillment_address.phone_number,
+    } : undefined,
+  }
+})
+
+updateCartWorkflow.runAsStep({
+  input: updateData,
+})
+
+// TODO add shipping method if fulfillment option ID is provided
+```
+
+First, you acquire a lock on the cart to avoid concurrent modifications.
+
+Then, you use the `transform` function to prepare the input for the `updateCartWorkflow` workflow. You map the input properties to the cart properties.
+
+After that, you update the cart using the `updateCartWorkflow`. This workflow will also clear the cart's payment sessions.
+
+#### Add Shipping Method if Fulfillment Option ID is Provided
+
+Finally, you'll add the shipping method to the cart if a fulfillment option ID is provided, and prepare and return the checkout session response. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/update-checkout-session.ts"
+// try to update shipping method
+when(input, (input) => !!input.fulfillment_option_id)
+.then(() => {
+  addShippingMethodToCartWorkflow.runAsStep({
+    input: {
+      cart_id: updateData.id,
+      options: [{
+        id: input.fulfillment_option_id!,
+      }],
+    },
+  })
+})
+
+const responseData = prepareCheckoutSessionDataWorkflow.runAsStep({
+  input: {
+    cart_id: updateData.id,
+    buyer: input.buyer,
+    fulfillment_address: input.fulfillment_address,
+  },
+})
+
+releaseLockStep({
+  key: input.cart_id,
+})
+
+return new WorkflowResponse(responseData)
+```
+
+You use the `when` function to check if a fulfillment option ID is provided in the input. If it is, you add it to the cart using the `addShippingMethodToCartWorkflow` workflow.
+
+Then, you prepare the checkout session response using the `prepareCheckoutSessionDataWorkflow` workflow you created earlier.
+
+Finally, you release the lock on the cart and return the prepared response as the workflow's response.
+
+### b. Update Checkout Session API Route
+
+Next, you'll create an API route that executes the `updateCheckoutSessionWorkflow`.
+
+Create the file `src/api/checkout_sessions/[id]/route.ts` with the following content:
+
+```ts title="src/api/checkout_sessions/[id]/route.ts" collapsibleLines="1-7" expandButtonLabel="Show Imports"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { updateCheckoutSessionWorkflow } from "../../../workflows/update-checkout-session"
+import { z } from "@medusajs/framework/zod"
+import { MedusaError } from "@medusajs/framework/utils"
+import { prepareCheckoutSessionDataWorkflow } from "../../../workflows/prepare-checkout-session-data"
+import { refreshPaymentCollectionForCartWorkflow } from "@medusajs/medusa/core-flows"
+
+export const PostUpdateSessionSchema = z.object({
+  buyer: z.object({
+    first_name: z.string(),
+    email: z.string(),
+    phone_number: z.string().optional(),
+  }).optional(),
+  items: z.array(z.object({
+    id: z.string(),
+    quantity: z.number(),
+  })).optional(),
+  fulfillment_address: z.object({
+    name: z.string(),
+    line_one: z.string(),
+    line_two: z.string().optional(),
+    city: z.string(),
+    state: z.string(),
+    country: z.string(),
+    postal_code: z.string(),
+    phone_number: z.string().optional(),
+  }).optional(),
+  fulfillment_option_id: z.string().optional(),
+})
+
+export const POST = async (
+  req: MedusaRequest<
+    z.infer<typeof PostUpdateSessionSchema>
+  >,
+  res: MedusaResponse
+) => {
+  const responseHeaders = {
+    "Idempotency-Key": req.headers["idempotency-key"] as string,
+    "Request-Id": req.headers["request-id"] as string,
+  }
+  try {
+    const { result } = await updateCheckoutSessionWorkflow(req.scope)
+      .run({
+        input: {
+          cart_id: req.params.id,
+          ...req.validatedBody,
+        },
+        context: {
+          idempotencyKey: req.headers["idempotency-key"] as string,
+        },
+      })
+
+    res.set(responseHeaders).json(result)
+  } catch (error) {
+    const medusaError = error as MedusaError
+
+    await refreshPaymentCollectionForCartWorkflow(req.scope).run({
+      input: {
+        cart_id: req.params.id,
+      },
+    })
+    
+    const { result } = await prepareCheckoutSessionDataWorkflow(req.scope)
+      .run({
+        input: {
+          cart_id: req.params.id,
+          ...req.validatedBody,
+          messages: [
+            {
+              type: "error",
+              code: medusaError.type === MedusaError.Types.PAYMENT_AUTHORIZATION_ERROR ? 
+                "payment_declined" : "invalid",
+              content_type: "plain",
+              content: medusaError.message,
+            },
+          ],
+        },
+      })
+
+    res.set(responseHeaders).json(result)
+  }
+}
+```
+
+You first define a validation schema with [Zod](https://zod.dev/) for the request body. The schema matches the [Agentic Commerce request specifications](https://developers.openai.com/commerce/specs/checkout#rest-endpoints).
+
+Then, you export a `POST` route handler function, which exposes a `POST` API route at `/checkout_sessions/{id}`.
+
+In the route handler, you execute the `updateCheckoutSessionWorkflow`, passing the cart ID from the URL parameters and the validated request body as input. You return the workflow's response as the API response.
+
+If an error occurs, you refresh the cart's payment sessions using the `refreshPaymentCollectionForCartWorkflow`, and prepare the checkout session response with an error message using the `prepareCheckoutSessionDataWorkflow` workflow. You return this response.
+
+### c. Apply Validation Middleware
+
+Finally, you'll apply the validation middleware to the `POST /checkout_sessions/{id}` API route.
+
+In `src/api/middlewares.ts`, add the following import at the top of the file:
+
+```ts title="src/api/middlewares.ts"
+import { PostUpdateSessionSchema } from "./checkout_sessions/[id]/route"
+```
+
+Then, add a new route configuration in `defineMiddlewares`:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/checkout_sessions/:id",
+      method: ["POST"],
+      middlewares: [validateAndTransformBody(PostUpdateSessionSchema)],
+    },
+  ],
+  // ...
+})
+```
+
+You apply the `validateAndTransformBody` middleware to the `POST /checkout_sessions/{id}` route to ensure the request body includes the required fields.
+
+### Use the Update Checkout Session API
+
+To use the `POST /checkout_sessions/:id` API, you need to:
+
+- Apply to ChatGPT's [Instant Checkout](https://chatgpt.com/merchants) and access a signature key.
+- Create an API key in the [Secret API Key Settings](!user-guide!/settings/developer/secret-api-keys) of the Medusa Admin dashboard.
+- Setup the API key in the Instant Checkout settings.
+
+ChatGPT will then use it to update a checkout session.
+
+### Test the Update Checkout Session API Locally
+
+To test out the `POST /checkout_sessions/:id` API locally, you need to use the same signature generation API route you created earlier.
+
+First, assuming you already [created a checkout session](#test-the-create-checkout-session-api-locally) and have the cart ID, send a `POST` request to `http://localhost:9000/signature` with the JSON body to update the checkout session. For example:
+
+```bash
+curl -X POST 'http://localhost:9000/signature' \
+-H 'Content-Type: application/json' \
+--data '{
+    "fulfillment_option_id": "so_01K6FCGVFMNNC5H43SB9NNNAJ3"
+}'
+```
+
+Make sure to replace the fulfillment option ID with an actual shipping option ID from your store.
+
+Then, send a `POST` request to `http://localhost:9000/checkout_sessions/{cart_id}` with the same JSON body, and include the `Authorization` and `Signature` headers:
+
+```bash
+curl -X POST 'http://localhost:9000/checkout_sessions/{cart_id}' \
+-H 'Signature: {signature}' \
+-H 'Idempotency-Key: idp_123' \
+-H 'Request-Id: req_123' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer {api_key}' \
+--data '{
+    "fulfillment_option_id": "so_01K6FCGVFMNNC5H43SB9NNNAJ3"
+}'
+```
+
+Make sure to replace:
+
+- `{cart_id}` with the cart ID of the checkout session you created earlier.
+- `{signature}` with the signature you copied from the previous request.
+- `{api_key}` with the API key you created in the Medusa Admin dashboard.
+- The fulfillment option ID with an actual shipping option ID from your store.
+
+You'll receive in the response the updated checkout session based on the Agentic Commerce specifications.
+
+---
+
+## Step 6: Get Checkout Session API
+
+Next, you'll implement the `GET /checkout_sessions/{id}` API to retrieve a checkout session. This API is called by the AI agent to get the current state of the checkout session.
+
+This API route will use the `prepareCheckoutSessionDataWorkflow` workflow you created earlier to prepare the checkout session response.
+
+To create the API route, add the following function to `src/api/checkout_sessions/[id]/route.ts`:
+
+```ts title="src/api/checkout_sessions/[id]/route.ts"
+export const GET = async (
+  req: MedusaRequest,
+  res: MedusaResponse
+) => {
+  const responseHeaders = {
+    "Idempotency-Key": req.headers["idempotency-key"] as string,
+    "Request-Id": req.headers["request-id"] as string,
+  }
+  try {
+    const { result } = await prepareCheckoutSessionDataWorkflow(req.scope)
+      .run({
+        input: {
+          cart_id: req.params.id,
+        },
+        context: {
+          idempotencyKey: req.headers["idempotency-key"] as string,
+        },
+      })
+
+    res.set(responseHeaders).status(200).json(result)
+  } catch (error) {
+    const medusaError = error as MedusaError
+    const statusCode = medusaError.type === MedusaError.Types.NOT_FOUND ? 404 : 500
+    res.set(responseHeaders).status(statusCode).json({
+      type: "invalid_request",
+      code: "request_not_idempotent",
+      message: statusCode === 404 ? "Checkout session not found" : "Internal server error",
+    })
+  }
+}
+```
+
+You export a `GET` route handler function, which exposes a `GET` API route at `/checkout_sessions/{id}`.
+
+In the route handler, you execute the `prepareCheckoutSessionDataWorkflow`, passing the cart ID from the URL parameters as input. You return the workflow's response as the API response.
+
+### Use the Get Checkout Session API
+
+To use the `GET /checkout_sessions/:id` API, you need to:
+
+- Apply to ChatGPT's [Instant Checkout](https://chatgpt.com/merchants) and access a signature key.
+- Create an API key in the [Secret API Key Settings](!user-guide!/settings/developer/secret-api-keys) of the Medusa Admin dashboard.
+- Setup the API key in the Instant Checkout settings.
+
+ChatGPT will then use it to get a checkout session.
+
+### Test the Get Checkout Session API Locally
+
+To test out the `GET /checkout_sessions/:id` API locally, send a `GET` request to `/checkout_sessions/{cart_id}`:
+
+```bash
+curl 'http://localhost:9000/checkout_sessions/{cart_id}' \
+-H 'Idempotency-Key: idp_123' \
+-H 'Request-Id: req_123' \
+-H 'Authorization: Bearer {api_key}'
+```
+
+Make sure to replace:
+
+- `{cart_id}` with the cart ID of the checkout session you created earlier.
+- `{api_key}` with the API key you created in the Medusa Admin dashboard.
+
+You'll receive in the response the checkout session based on the Agentic Commerce specifications.
+
+---
+
+## Step 7: Complete Checkout Session API
+
+Next, you'll implement the `POST /checkout_sessions/{id}/complete` API to complete a checkout session.
+
+The AI agent calls this API route to finalize the checkout process and create an order. This API route will complete the cart, process the payment, and return the final checkout session details. If an error occurs, it resets the cart's payment sessions and returns the checkout session with an error message.
+
+To implement this API route, you'll create:
+
+- A workflow that completes the checkout session.
+- An API route that executes the workflow.
+    - You'll also apply a validation middleware to the API route.
+
+You'll also set up the [Stripe Payment Module Provider](../../../commerce-modules/payment/payment-provider/stripe/page.mdx). ChatGPT currently supports only Stripe as a payment provider.
+
+### a. Complete Checkout Session Workflow
+
+The workflow that completes a checkout session has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "completeCheckoutSessionWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the cart details",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1,
+      },
+      {
+        type: "step",
+        name: "acquireLockStep",
+        description: "Acquire a lock on the cart to prevent concurrent modifications",
+        link: "/references/medusa-workflows/steps/acquireLockStep",
+        depth: 2,
+      },
+      {
+        type: "when",
+        condition: "!!input.payment_data.billing_address",
+        steps: [
+          {
+            type: "workflow",
+            name: "updateCartWorkflow",
+            description: "Update the cart with the billing address",
+            link: "/references/medusa-workflows/updateCartWorkflow",
+            depth: 1
+          }
+        ],
+        depth: 3
+      },
+      {
+        type: "when",
+        condition: "!!data.carts[0].region?.payment_providers?.find((provider) => provider?.id === data.paymentProviderId)",
+        steps: [
+          {
+            type: "workflow",
+            name: "createPaymentCollectionForCartWorkflow",
+            description: "Create payment collection for the cart",
+            link: "/references/medusa-workflows/createPaymentCollectionForCartWorkflow",
+            depth: 1
+          },
+          {
+            type: "workflow",
+            name: "createPaymentSessionsWorkflow",
+            description: "Create payment sessions in the payment collection",
+            link: "/references/medusa-workflows/createPaymentSessionsWorkflow",
+            depth: 2
+          },
+          {
+            type: "workflow",
+            name: "completeCartWorkflow",
+            description: "Complete the cart",
+            link: "/references/medusa-workflows/completeCartWorkflow",
+            depth: 3
+          },
+          {
+            type: "workflow",
+            name: "prepareCheckoutSessionDataWorkflow",
+            description: "Prepare the checkout session response",
+            depth: 4
+          }
+        ],
+        depth: 4
+      },
+      {
+        type: "when",
+        condition: "!data.carts[0].region?.payment_providers?.find((provider) => provider?.id === data.paymentProviderId)",
+        steps: [
+          {
+            type: "workflow",
+            name: "prepareCheckoutSessionDataWorkflow",
+            description: "Prepare the checkout session response with an error message",
+            depth: 1
+          }
+        ],
+        depth: 5
+      },
+      {
+        type: "step",
+        name: "releaseLockStep",
+        description: "Release the lock on the cart",
+        link: "/references/medusa-workflows/steps/releaseLockStep",
+        depth: 6,
+      }
+    ]
+  }}
+/>
+
+These steps and workflows are available in Medusa out-of-the-box. So, you can implement the workflow without creating custom steps.
+
+To create the workflow, create the file `src/workflows/complete-checkout-session.ts` with the following content:
+
+```ts title="src/workflows/complete-checkout-session.ts" collapsibleLines="1-21" expandButtonLabel="Show Imports"
+import { 
+  createWorkflow, 
+  transform, 
+  when, 
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { 
+  acquireLockStep,
+  completeCartWorkflow, 
+  createPaymentCollectionForCartWorkflow, 
+  createPaymentSessionsWorkflow, 
+  refreshPaymentCollectionForCartWorkflow, 
+  releaseLockStep, 
+  updateCartWorkflow, 
+  useQueryGraphStep,
+} from "@medusajs/medusa/core-flows"
+import { 
+  prepareCheckoutSessionDataWorkflow, 
+  PrepareCheckoutSessionDataWorkflowInput,
+} from "./prepare-checkout-session-data"
+
+type WorkflowInput = {
+  cart_id: string
+  buyer?: {
+    first_name: string
+    email: string
+    phone_number?: string
+  }
+  payment_data: {
+    token: string
+    provider: string
+    billing_address?: {
+      name: string
+      line_one: string
+      line_two?: string
+      city: string
+      state: string
+      postal_code: string
+      country: string
+      phone_number?: string
+    }
+  }
+}
+
+export const completeCheckoutSessionWorkflow = createWorkflow(
+  "complete-checkout-session",
+  (input: WorkflowInput) => {
+    // Retrieve cart details
+    const { data: carts } = useQueryGraphStep({
+      entity: "cart",
+      fields: [
+        "id", 
+        "region.*", 
+        "region.payment_providers.*", 
+        "shipping_address.*",
+      ],
+      filters: {
+        id: input.cart_id,
+      },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+    acquireLockStep({
+      key: input.cart_id,
+      timeout: 2,
+      ttl: 10,
+    })
+
+    // TODO update cart with billing address if provided
+  }
+)
+```
+
+The `completeCheckoutSessionWorkflow` accepts an input with the properties received from the AI agent to complete the checkout session.
+
+So far, you retrieve the cart using the `useQueryGraphStep`, and you acquire a lock on the cart using the `acquireLockStep` to prevent concurrent modifications.
+
+#### Update Cart with Billing Address
+
+Next, you'll update the cart with the billing address if it's provided. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/complete-checkout-session.ts"
+when(input, (input) => !!input.payment_data.billing_address)
+.then(() => {
+  const updateData = transform({
+    input,
+    carts,
+  }, (data) => {
+    return {
+      id: data.carts[0].id,
+      billing_address: {
+        first_name: data.input.payment_data.billing_address!.name.split(" ")[0],
+        last_name: data.input.payment_data.billing_address!.name.split(" ")[1],
+        address_1: data.input.payment_data.billing_address!.line_one,
+        address_2: data.input.payment_data.billing_address!.line_two,
+        city: data.input.payment_data.billing_address!.city,
+        province: data.input.payment_data.billing_address!.state,
+        postal_code: data.input.payment_data.billing_address!.postal_code,
+        country_code: data.input.payment_data.billing_address!.country,
+        phone: data.input.payment_data.billing_address!.phone_number,
+      },
+    }
+  })
+  return updateCartWorkflow.runAsStep({
+    input: updateData,
+  })
+})
+
+// TODO complete cart if payment provider is valid
+```
+
+You use the `when` function to check if a billing address is provided in the input. If it is, you prepare the input for the `updateCartWorkflow` workflow using the `transform` function, and then you update the cart using the `updateCartWorkflow` workflow.
+
+#### Complete Cart if Payment Provider is Valid
+
+Next, you'll complete the cart if the payment provider is valid. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/complete-checkout-session.ts"
+const preparationInput = transform({
+  carts,
+  input,
+}, (data) => {
+  return {
+    cart_id: data.carts[0].id,
+    buyer: data.input.buyer,
+    fulfillment_address: data.carts[0].shipping_address ? {
+      name: data.carts[0].shipping_address.first_name + " " + data.carts[0].shipping_address.last_name,
+      line_one: data.carts[0].shipping_address.address_1 || "",
+      line_two: data.carts[0].shipping_address.address_2 || "",
+      city: data.carts[0].shipping_address.city || "",
+      state: data.carts[0].shipping_address.province || "",
+      postal_code: data.carts[0].shipping_address.postal_code || "",
+      country: data.carts[0].shipping_address.country_code || "",
+      phone_number: data.carts[0].shipping_address.phone || "",
+    } : undefined,
+  }
+})
+
+const paymentProviderId = transform({
+  input,
+}, (data) => {
+  switch (data.input.payment_data.provider) {
+    case "stripe":
+      return "pp_stripe_stripe"
+    default:
+      return data.input.payment_data.provider
+  }
+})
+
+const completeCartResponse = when({
+  carts,
+  paymentProviderId,      
+}, (data) => {
+  // @ts-ignore
+  return !!data.carts[0].region?.payment_providers?.find((provider) => provider?.id === data.paymentProviderId)
+})
+.then(() => {
+  const paymentCollection = createPaymentCollectionForCartWorkflow.runAsStep({
+    input: {
+      cart_id: carts[0].id,
+    },
+  })
+
+  createPaymentSessionsWorkflow.runAsStep({
+    input: {
+      payment_collection_id: paymentCollection.id,
+      provider_id: paymentProviderId,
+      data: {
+        shared_payment_token: input.payment_data.token,
+      },
+    },
+  })
+
+  completeCartWorkflow.runAsStep({
+    input: {
+      id: carts[0].id,
+    },
+  })
+
+  return prepareCheckoutSessionDataWorkflow.runAsStep({
+    input: preparationInput,
+  })
+})
+
+// TODO handle invalid payment provider
+```
+
+You use `transform` to prepare the input for the `prepareCheckoutSessionDataWorkflow` workflow and to map the payment provider from the input to the payment provider ID used in your Medusa store.
+
+Then, you use the `when` function to check if the payment provider is valid for the cart's region. If so, you:
+
+- Create a payment collection for the cart using the [createPaymentCollectionForCartWorkflow](/references/medusa-workflows/createPaymentCollectionForCartWorkflow).
+- Create payment sessions in the payment collection using the [createPaymentSessionsWorkflow](/references/medusa-workflows/createPaymentSessionsWorkflow).
+- Complete the cart using the [completeCartWorkflow](/references/medusa-workflows/completeCartWorkflow).
+
+Finally, you prepare the checkout session response using the `prepareCheckoutSessionDataWorkflow`.
+
+#### Handle Invalid Payment Provider
+
+Next, you'll handle the case where the payment provider is invalid. You'll prepare an error response to return to the AI agent.
+
+Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/complete-checkout-session.ts"
+const invalidPaymentResponse = when({
+  carts,
+  paymentProviderId,
+}, (data) => {
+  return !data.carts[0].region?.payment_providers?.find((provider) => provider?.id === data.paymentProviderId)
+})
+.then(() => {
+  refreshPaymentCollectionForCartWorkflow.runAsStep({
+    input: {
+      cart_id: carts[0].id,
+    },
+  })
+  const prepareDataWithMessages = transform({
+    prepareData: preparationInput,
+  }, (data) => {
+    return {
+      ...data.prepareData,
+      messages: [
+        {
+          type: "error",
+          code: "invalid",
+          content_type: "plain",
+          content: "Invalid payment provider",
+        },
+      ],
+    } as PrepareCheckoutSessionDataWorkflowInput
+  })
+  return prepareCheckoutSessionDataWorkflow.runAsStep({
+    input: prepareDataWithMessages,
+  }).config({ name: "prepare-checkout-session-data-with-messages" })
+})
+
+// Return response
+```
+
+You use the `when` function to check if the payment provider is invalid for the cart's region.
+
+If so, you refresh the cart's payment sessions using the `refreshPaymentCollectionForCartWorkflow`, then you prepare the input for the `prepareCheckoutSessionDataWorkflow` workflow. You add an error message indicating that the payment provider is invalid.
+
+#### Return Response
+
+Finally, you'll return the appropriate response based on whether the cart was completed or if there was an error. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/complete-checkout-session.ts"
+const responseData = transform({
+  completeCartResponse,
+  invalidPaymentResponse,
+}, (data) => {
+  return data.completeCartResponse || data.invalidPaymentResponse
+})
+
+releaseLockStep({
+  key: input.cart_id,
+})
+
+return new WorkflowResponse(responseData)
+```
+
+You use `transform` to pick either the response from completing the cart or the error response for an invalid payment provider.
+
+Then, you release the lock on the cart using the `releaseLockStep` step, and return the response as the workflow's response.
+
+### b. Complete Checkout Session API Route
+
+Next, you'll create an API route at `POST /checkout_sessions/{id}/complete` that executes the `completeCheckoutSessionWorkflow`.
+
+Create the file `src/api/checkout_sessions/[id]/complete/route.ts` with the following content:
+
+```ts title="src/api/checkout_sessions/[id]/complete/route.ts" collapsibleLines="1-7" expandButtonLabel="Show Imports"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { z } from "@medusajs/framework/zod"
+import { completeCheckoutSessionWorkflow } from "../../../../workflows/complete-checkout-session"
+import { MedusaError } from "@medusajs/framework/utils"
+import { refreshPaymentCollectionForCartWorkflow } from "@medusajs/medusa/core-flows"
+import { prepareCheckoutSessionDataWorkflow } from "../../../../workflows/prepare-checkout-session-data"
+
+export const PostCompleteSessionSchema = z.object({
+  buyer: z.object({
+    first_name: z.string(),
+    email: z.string(),
+    phone_number: z.string().optional(),
+  }).optional(),
+  payment_data: z.object({
+    token: z.string(),
+    provider: z.string(),
+    billing_address: z.object({
+      name: z.string(),
+      line_one: z.string(),
+      line_two: z.string().optional(),
+      city: z.string(),
+      state: z.string(),
+      postal_code: z.string(),
+      country: z.string(),
+      phone_number: z.string().optional(),
+    }).optional(),
+  }),
+})
+
+export const POST = async (
+  req: MedusaRequest<
+    z.infer<typeof PostCompleteSessionSchema>
+  >,
+  res: MedusaResponse
+) => {
+  const responseHeaders = {
+    "Idempotency-Key": req.headers["idempotency-key"] as string,
+    "Request-Id": req.headers["request-id"] as string,
+  }
+  try {
+    const { result } = await completeCheckoutSessionWorkflow(req.scope)
+      .run({
+        input: {
+          cart_id: req.params.id,
+          ...req.validatedBody,
+        },
+        context: {
+          idempotencyKey: req.headers["idempotency-key"] as string,
+        },
+      })
+
+    res.set(responseHeaders).json(result)
+  } catch (error) {
+    const medusaError = error as MedusaError
+
+    await refreshPaymentCollectionForCartWorkflow(req.scope).run({
+      input: {
+        cart_id: req.params.id,
+      },
+    })    
+    const { result } = await prepareCheckoutSessionDataWorkflow(req.scope)
+      .run({
+        input: {
+          cart_id: req.params.id,
+          ...req.validatedBody,
+          messages: [
+            {
+              type: "error",
+              code: medusaError.type === MedusaError.Types.PAYMENT_AUTHORIZATION_ERROR ? 
+                "payment_declined" : "invalid",
+              content_type: "plain",
+              content: medusaError.message,
+            },
+          ],
+        },
+      })
+
+    res.set(responseHeaders).json(result)
+  }
+}
+```
+
+You first define a validation schema with [Zod](https://zod.dev/) for the request body. The schema matches the [Agentic Commerce request specifications](https://developers.openai.com/commerce/specs/checkout#rest-endpoints).
+
+Then, you export a `POST` route handler function, which exposes a `POST` API route at `/checkout_sessions/{id}/complete`.
+
+In the route handler, you execute the `completeCheckoutSessionWorkflow`, passing the cart ID from the URL parameters and the validated request body as input. You return the workflow's response as the API response.
+
+If an error occurs, you refresh the cart's payment sessions using the `refreshPaymentCollectionForCartWorkflow`, and prepare the checkout session response with an error message using the `prepareCheckoutSessionDataWorkflow`. You return this response.
+
+### c. Apply Validation Middleware
+
+Finally, you'll apply the validation middleware to the `POST /checkout_sessions/{id}/complete` API route.
+
+In `src/api/middlewares.ts`, add the following import at the top of the file:
+
+```ts title="src/api/middlewares.ts"
+import { PostCompleteSessionSchema } from "./checkout_sessions/[id]/complete/route"
+```
+
+Then, add a new route configuration in `defineMiddlewares`:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/checkout_sessions/:id/complete",
+      method: ["POST"],
+      middlewares: [validateAndTransformBody(PostCompleteSessionSchema)],
+    },
+  ],
+  // ...
+})
+```
+
+You apply the `validateAndTransformBody` middleware to the `POST /checkout_sessions/{id}/complete` route to ensure the request body includes the required fields.
+
+### d. Setup Stripe Payment Module Provider
+
+To support payments with Stripe, you'll need to set up the [Stripe Payment Module Provider](../../../commerce-modules/payment/payment-provider/stripe/page.mdx) in your Medusa store.
+
+In `medusa-config.ts`, add a new entry to the `modules` array:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    // ...
+    {
+      resolve: "@medusajs/medusa/payment",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/medusa/payment-stripe",
+            id: "stripe",
+            options: {
+              apiKey: process.env.STRIPE_API_KEY,
+              // other options...
+            },
+          },
+        ],
+      },
+    },
+  ],
+})
+```
+
+This will add Stripe as a payment provider in your Medusa store.
+
+Make sure to set the `STRIPE_API_KEY` environment variable with your Stripe secret key, which you can retrieve from the [Stripe Dashboard](https://support.stripe.com/questions/locate-api-keys-in-the-dashboard):
+
+```env title=".env"
+STRIPE_API_KEY=sk_test_...
+```
+
+Finally, you must enable Stripe as a payment provider in the US region. Learn how to do that in the [Regions user guide](!user-guide!/settings/regions#edit-region-details).
+
+### Use the Complete Checkout Session API
+
+To use the `POST /checkout_sessions/:id/complete` API, you need to:
+
+- Apply to ChatGPT's [Instant Checkout](https://chatgpt.com/merchants) and access a signature key.
+- Create an API key in the [Secret API Key Settings](!user-guide!/settings/developer/secret-api-keys) of the Medusa Admin dashboard.
+- Setup the API key in the Instant Checkout settings.
+
+ChatGPT will then use it to complete a checkout session.
+
+### Test the Complete Checkout Session API Locally
+
+To test out the `POST /checkout_sessions/:id/complete` API locally, you need to [generate a shared payment token with Stripe](https://docs.stripe.com/agentic-commerce/testing).
+
+Then, send a `POST` request to `http://localhost:9000/signature` with the JSON body to complete the checkout session. For example:
+
+```bash
+curl -X POST 'http://localhost:9000/signature' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "buyer": {
+        "first_name": "John",
+        "email": "johnsmith@gmail.com",
+        "phone_number": "123"
+    },
+    "payment_data": {
+        "provider": "stripe",
+        "token": "{token}"
+    }
+}'
+```
+
+Make sure to replace `{token}` with the shared payment token you generated with Stripe.
+
+Then, send a `POST` request to `http://localhost:9000/checkout_sessions/{cart_id}/complete` with the same JSON body, and include the `Authorization` and `Signature` headers:
+
+```bash
+curl -X POST 'http://localhost:9000/checkout_sessions/{cart_id}/complete' \
+-H 'Signature: {signature}' \
+-H 'Idempotency-Key: idp_123' \
+-H 'Request-Id: req_123' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer {api_key}' \
+--data-raw '{
+    "buyer": {
+        "first_name": "John",
+        "email": "johnsmith@gmail.com",
+        "phone_number": "123"
+    },
+    "payment_data": {
+        "provider": "stripe",
+        "token": "{token}"
+    }
+}'
+```
+
+Make sure to replace:
+
+- `{cart_id}` with the cart ID of the checkout session you created earlier.
+- `{signature}` with the signature you copied from the previous request.
+- `{token}` with the shared payment token you generated with Stripe.
+- `{api_key}` with the API key you created in the Medusa Admin dashboard.
+
+You'll receive in the response the completed checkout session based on the Agentic Commerce specifications.
+
+---
+
+## Step 8: Cancel Checkout Session API
+
+The last Checkout Session API you'll implement is the `POST /checkout_sessions/{id}/cancel` API to cancel a checkout session.
+
+The AI agent calls this API route to cancel the checkout process. This API route will cancel any authorized payment sessions associated with the cart, update the cart status to canceled, and return the updated checkout session details.
+
+To implement this API route, you'll create:
+
+- A workflow that cancels the checkout session.
+- An API route that executes the workflow.
+
+### a. Cancel Checkout Session Workflow
+
+The workflow that cancels a checkout session has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "cancelCheckoutSessionWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the cart details",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1,
+      },
+     {
+      type: "step",
+      name: "validateCartCancelationStep",
+      description: "Validate if the cart can be canceled",
+      depth: 2
+     },
+     {
+      type: "step",
+      name: "acquireLockStep",
+      description: "Acquire a lock on the cart to prevent concurrent modifications",
+      link: "/references/medusa-workflows/steps/acquireLockStep",
+      depth: 3,
+     },
+     {
+      type: "when",
+      condition: "!!data.carts[0].payment_collection?.payment_sessions?.length",
+      steps: [
+        {
+          type: "workflow",
+          name: "cancelPaymentSessionsStep",
+          description: "Cancel payment sessions associated with the cart",
+          depth: 1
+        }
+      ],
+      depth: 4
+     },
+     {
+      type: "workflow",
+      name: "updateCartWorkflow",
+      description: "Update the cart status to canceled",
+      link: "/references/medusa-workflows/updateCartWorkflow",
+      depth: 5
+     },
+     {
+      type: "workflow",
+      name: "prepareCheckoutSessionDataWorkflow",
+      description: "Prepare the checkout session response",
+      depth: 6
+     },
+     {
+      type: "step",
+      name: "releaseLockStep",
+      description: "Release the lock on the cart",
+      link: "/references/medusa-workflows/steps/releaseLockStep",
+      depth: 7
+     }
+    ]
+  }}
+/>
+
+You only need to implement the `validateCartCancelationStep` and `cancelPaymentSessionsStep` steps. The other steps and workflows are available in Medusa out-of-the-box.
+
+#### validateCartCancelationStep
+
+The `validateCartCancelationStep` step throws an error if the cart cannot be canceled.
+
+To create the step, create the file `src/workflows/steps/validate-cart-cancelation.ts` with the following content:
+
+```ts title="src/workflows/steps/validate-cart-cancelation.ts"
+import { CartDTO, OrderDTO, PaymentCollectionDTO } from "@medusajs/framework/types"
+import { MedusaError } from "@medusajs/framework/utils"
+import { createStep } from "@medusajs/framework/workflows-sdk"
+
+export type ValidateCartCancelationStepInput = {
+  cart: CartDTO & {
+    payment_collection?: PaymentCollectionDTO
+    order?: OrderDTO
+  }
+}
+
+export const validateCartCancelationStep = createStep(
+  "validate-cart-cancelation",
+  async ({ cart }: ValidateCartCancelationStepInput) => {
+    if (cart.metadata?.checkout_session_canceled) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "Cart is already canceled"
+      )
+    }
+    if (!!cart.order) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "Cart is already associated with an order"
+      )
+    }
+    const invalidPaymentSessions = cart.payment_collection?.payment_sessions
+      ?.some((session) => session.status === "authorized" || session.status === "canceled")
+
+    if (!!cart.completed_at || !!invalidPaymentSessions) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "Cart cannot be canceled"
+      )
+    }
+  }
+)
+```
+
+The `validateCartCancelationStep` accepts a cart as input.
+
+In the step, you throw an error if:
+
+- The cart has a `checkout_session_canceled` metadata field set to `true`, indicating it was already canceled.
+- The cart is already associated with an order.
+- The cart has a `completed_at` date, indicating it was already completed.
+- The cart has any payment sessions with a status of `authorized` or `canceled`.
+
+#### cancelPaymentSessionsStep
+
+The `cancelPaymentSessionsStep` step cancels payment sessions associated with the cart.
+
+To create the step, create the file `src/workflows/steps/cancel-payment-sessions.ts` with the following content:
+
+```ts title="src/workflows/steps/cancel-payment-sessions.ts"
+import { promiseAll } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+
+type StepInput = {
+  payment_session_ids: string[]
+}
+
+export const cancelPaymentSessionsStep = createStep(
+  "cancel-payment-session",
+  async ({ payment_session_ids }: StepInput, { container }) => {
+    const paymentModuleService = container.resolve("payment")
+
+    const paymentSessions = await paymentModuleService.listPaymentSessions({
+      id: payment_session_ids,
+    })
+
+    const updatedPaymentSessions = await promiseAll(
+      paymentSessions.map((session) => {
+        return paymentModuleService.updatePaymentSession({
+          id: session.id,
+          status: "canceled",
+          currency_code: session.currency_code,
+          amount: session.amount,
+          data: session.data,
+        })
+      })
+    )
+
+    return new StepResponse(updatedPaymentSessions, paymentSessions)
+  },
+  async (paymentSessions, { container }) => {
+    if (!paymentSessions) {
+      return
+    }
+    const paymentModuleService = container.resolve("payment")
+
+    await promiseAll(
+      paymentSessions.map((session) => {
+        return paymentModuleService.updatePaymentSession({
+          id: session.id,
+          status: session.status,
+          currency_code: session.currency_code,
+          amount: session.amount,
+          data: session.data,
+        })
+      })
+    )
+  }
+)
+```
+
+The `cancelPaymentSessionsStep` accepts an array of payment session IDs as input.
+
+In the step, you retrieve the payment sessions using the `listPaymentSessions` method of the [Payment Module](../../../commerce-modules/payment/page.mdx)'s service. Then, you update their status to `canceled` using the `updatePaymentSession` method.
+
+You also pass a third argument to the `createStep` function, which is the [compensation function](!docs!/learn/fundamentals/workflows/compensation-function). This function is executed if the workflow execution fails, allowing you to revert any changes made by the step. In this case, you revert the payment sessions to their original status.
+
+#### Cancel Checkout Session Workflow
+
+You can now implement the `cancelCheckoutSessionWorkflow`.
+
+Create the file `src/workflows/cancel-checkout-session.ts` with the following content:
+
+```ts title="src/workflows/cancel-checkout-session.ts" collapsibleLines="1-6" expandButtonLabel="Show Imports"
+import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { validateCartCancelationStep, ValidateCartCancelationStepInput } from "./steps/validate-cart-cancelation"
+import { acquireLockStep, releaseLockStep, updateCartWorkflow, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { cancelPaymentSessionsStep } from "./steps/cancel-payment-sessions"
+import { prepareCheckoutSessionDataWorkflow } from "./prepare-checkout-session-data"
+
+type WorkflowInput = {
+  cart_id: string
+}
+
+export const cancelCheckoutSessionWorkflow = createWorkflow(
+  "cancel-checkout-session",
+  (input: WorkflowInput) => {
+    const { data: carts } = useQueryGraphStep({
+      entity: "cart",
+      fields: [
+        "id", 
+        "payment_collection.*", 
+        "payment_collection.payment_sessions.*",
+        "order.id",
+      ],
+      filters: {
+        id: input.cart_id,
+      },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    validateCartCancelationStep({
+      cart: carts[0],
+    } as unknown as ValidateCartCancelationStepInput)
+
+    acquireLockStep({
+      key: input.cart_id,
+      timeout: 2,
+      ttl: 10,
+    })
+
+    // TODO cancel payment sessions if any
+  }
+)
+```
+
+The `cancelCheckoutSessionWorkflow` accepts an input with the cart ID of the checkout session to cancel.
+
+So far, you:
+
+1. Retrieve the cart using the `useQueryGraphStep` step.
+2. Validate that the cart can be canceled using the `validateCartCancelationStep`.
+3. Acquire a lock on the cart using the `acquireLockStep` to prevent concurrent modifications.
+
+Next, you'll cancel the payment sessions if there are any. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/cancel-checkout-session.ts"
+when({
+  carts,
+}, (data) => !!data.carts[0].payment_collection?.payment_sessions?.length)
+.then(() => {
+  const paymentSessionIds = transform({
+    carts,
+  }, (data) => {
+    return data.carts[0].payment_collection?.payment_sessions?.map((session) => session!.id)
+  })
+  cancelPaymentSessionsStep({
+    payment_session_ids: paymentSessionIds,
+  })
+})
+
+updateCartWorkflow.runAsStep({
+  input: {
+    id: carts[0].id,
+    metadata: {
+      checkout_session_canceled: true,
+    },
+  },
+})
+
+// TODO prepare and return response
+```
+
+You use the `when` function to check if the cart has any payment sessions. If so, you prepare an array with the payment session IDs using the `transform` function and then you cancel the payment sessions using the `cancelPaymentSessionsStep`.
+
+You also update the cart using the `updateCartWorkflow` workflow to add a `checkout_session_canceled` metadata field to the cart. This is useful to detect canceled checkout sessions in the future.
+
+Finally, you'll prepare the checkout session response, release the lock, and return the response. Replace the `TODO` in the workflow with the following:
+
+```ts title="src/workflows/cancel-checkout-session.ts"
+const responseData = prepareCheckoutSessionDataWorkflow.runAsStep({
+  input: {
+    cart_id: carts[0].id,
+  },
+})
+
+releaseLockStep({
+  key: input.cart_id,
+})
+
+return new WorkflowResponse(responseData)
+```
+
+You prepare the checkout session response using the `prepareCheckoutSessionDataWorkflow` workflow, then you release the lock on the cart using the `releaseLockStep`. Finally, you return the response.
+
+### b. Cancel Checkout Session API Route
+
+Next, you'll create a `POST` API route at `/checkout_sessions/{id}/cancel` that executes the `cancelCheckoutSessionWorkflow`.
+
+Create the file `src/api/checkout_sessions/[id]/cancel/route.ts` with the following content:
+
+```ts title="src/api/checkout_sessions/[id]/cancel/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { cancelCheckoutSessionWorkflow } from "../../../../workflows/cancel-checkout-session"
+import { MedusaError } from "@medusajs/framework/utils"
+
+export const POST = async (
+  req: MedusaRequest,
+  res: MedusaResponse
+) => {
+  const responseHeaders = {
+    "Idempotency-Key": req.headers["idempotency-key"] as string,
+    "Request-Id": req.headers["request-id"] as string,
+  }
+  try {
+    const { result } = await cancelCheckoutSessionWorkflow(req.scope)
+      .run({
+        input: {
+          cart_id: req.params.id,
+        },
+        context: {
+          idempotencyKey: req.headers["idempotency-key"] as string,
+        },
+      })
+    
+    res.set(responseHeaders).json(result)
+  } catch (error) {
+    const medusaError = error as MedusaError
+    res.set(responseHeaders).status(405).json({
+      messages: [
+        {
+          type: "error",
+          code: "invalid",
+          content_type: "plain",
+          content: medusaError.message,
+        },
+      ],
+    })
+  }
+}
+```
+
+You export a `POST` route handler function, which exposes a `POST` API route at `/checkout_sessions/{id}/cancel`.
+
+In the route handler, you execute the `cancelCheckoutSessionWorkflow`, passing the cart ID from the URL parameters as input. You return the workflow's response as the API response.
+
+### Use the Cancel Checkout Session API
+
+To use the `POST /checkout_sessions/:id/cancel` API, you need to:
+
+- Apply to ChatGPT's [Instant Checkout](https://chatgpt.com/merchants) and access a signature key.
+- Create an API key in the [Secret API Key Settings](!user-guide!/settings/developer/secret-api-keys) of the Medusa Admin dashboard.
+- Setup the API key in the Instant Checkout settings.
+
+ChatGPT will then use it to cancel a checkout session.
+
+### Test the Cancel Checkout Session API Locally
+
+To test out the `POST /checkout_sessions/:id/cancel` API locally, send a `POST` request to `/checkout_sessions/{cart_id}/cancel`:
+
+```bash
+curl -X POST 'http://localhost:9000/checkout_sessions/{cart_id}/cancel' \
+-H 'Idempotency-Key: idp_123' \
+-H 'Request-Id: req_123' \
+-H 'Authorization: Bearer {api_key}'
+```
+
+Make sure to replace:
+
+- `{cart_id}` with the cart ID of the checkout session you created earlier.
+- `{api_key}` with the API key you created in the Medusa Admin dashboard.
+
+You'll receive in the response the canceled checkout session based on the Agentic Commerce specifications.
+
+---
+
+## Step 9: Send Webhook Events to AI Agent
+
+In the last step, you'll send webhook events to AI agents when orders are placed or updated. This informs AI agents about order updates, as specified in [Agentic Commerce specifications](https://developers.openai.com/commerce/specs/checkout#webhooks).
+
+To send webhook events to AI agents on order updates, you'll create a [subscriber](!docs!/learn/fundamentals/events-and-subscribers). A subscriber is an asynchronous function that listens to events to perform tasks.
+
+In this case, you'll create a subscriber that listens to `order.placed` and `order.updated` events to send webhook events to AI agents.
+
+Create the file `src/subscribers/order-webhooks.ts` with the following content:
+
+```ts title="src/subscribers/order-webhooks.ts"
+import type {
+  SubscriberArgs,
+  SubscriberConfig,
+} from "@medusajs/framework"
+import { AGENTIC_COMMERCE_MODULE } from "../modules/agentic-commerce"
+import { AgenticCommerceWebhookEvent } from "../modules/agentic-commerce/service"
+
+export default async function orderWebhookHandler({
+  event: { data, name },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  const orderId = data.id
+  const query = container.resolve("query")
+  const agenticCommerceModuleService = container.resolve(AGENTIC_COMMERCE_MODULE)
+  const configModule = container.resolve("configModule")
+  const storefrontUrl = configModule.admin.storefrontUrl || process.env.STOREFRONT_URL
+
+  // retrieve order
+  const { data: [order] } = await query.graph({
+    entity: "order",
+    fields: [
+      "id",
+      "cart.id",
+      "cart.metadata",
+      "status",
+      "fulfillments.*",
+      "transactions.*",
+    ],
+    filters: {
+      id: orderId,
+    },
+  })
+
+  // only send webhook if order is associated with a checkout session
+  if (!order || !order.cart?.metadata?.is_checkout_session) {
+    return
+  }
+
+  // prepare webhook event
+  const webhookEvent: AgenticCommerceWebhookEvent = {
+    type: name === "order.placed" ? "order.created" : "order.updated",
+    data: {
+      type: "order",
+      checkout_session_id: order.cart.id,
+      permalink_url: `${storefrontUrl}/orders/${order.id}`,
+      status: "confirmed",
+      refunds: order.transactions?.filter(
+        (transaction) => transaction?.reference === "refund"
+      ).map((transaction) => ({
+        type: "original_payment",
+        amount: transaction!.amount * -1,
+      })) || [],
+    },
+  }
+
+  // set status based on order, fulfillments and transactions
+  if (order.status === "canceled") {
+    webhookEvent.data.status = "canceled"
+  } else {
+    const allFulfillmentsShipped = order.fulfillments?.every((fulfillment) => !!fulfillment?.shipped_at)
+    const allFulfillmentsDelivered = order.fulfillments?.every((fulfillment) => !!fulfillment?.delivered_at)
+    if (allFulfillmentsShipped) {
+      webhookEvent.data.status = "shipping"
+    } else if (allFulfillmentsDelivered) {
+      webhookEvent.data.status = "fulfilled"
+    }
+  }
+
+  // send webhook event
+  await agenticCommerceModuleService.sendWebhookEvent(webhookEvent)
+}
+
+export const config: SubscriberConfig = {
+  event: ["order.placed", "order.updated"],
+}
+```
+
+A subscriber file must export:
+
+1. An asynchronous function, which is the subscriber that executes when events are emitted.
+2. A configuration object that holds names of events the subscriber listens to, which are `order.placed` and `order.updated` in this case.
+
+The subscriber function receives an object as a parameter that has a `container` property, which is the [Medusa container](!docs!/learn/fundamentals/medusa-container).
+
+In the subscriber function, you:
+
+- Retrieve orders using Query. You filter by order IDs received in event data.
+- If orders don't exist or if order carts don't have the `is_checkout_session` metadata field, you return early since orders are not associated with checkout sessions.
+- Prepare webhook event payloads based on order data, following [Agentic Commerce webhook specifications](https://developers.openai.com/commerce/specs/checkout#webhooks).
+- Send webhook events to AI agents using the `sendWebhookEvent` method of the Agentic Commerce Module's service.
+
+### Use Order Webhook Events in ChatGPT
+
+To use order webhook events in ChatGPT:
+
+- Apply to ChatGPT's [Instant Checkout](https://chatgpt.com/merchants) and access a signature key.
+- Set up webhook URLs in Instant Checkout settings and update `sendWebhookEvent` to use webhook URLs from the settings.
+
+ChatGPT will then receive webhook events when orders are placed or updated.
+
+### Test Order Webhook Events Locally
+
+To test order webhook events locally and ensure they're being sent correctly:
+
+1. Start the Medusa server.
+2. [Create a checkout session](#test-the-create-checkout-session-api-locally).
+3. [Complete the checkout session](#test-the-complete-checkout-session-api-locally).
+4. Check the logs of your Medusa server to see that `order.placed` events were emitted and webhook events were sent to AI agents.
+
+---
+
+## Next Steps
+
+You've now built Agentic Commerce integration in your Medusa store. You can use it once you apply to ChatGPT's [Instant Checkout](https://chatgpt.com/merchants) and set up the integration in Instant Checkout settings.
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get more in-depth understanding of all concepts used in this guide and more.
+
+To learn more about commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during development, check out the [troubleshooting guides](../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.

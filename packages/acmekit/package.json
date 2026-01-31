@@ -1,0 +1,145 @@
+{
+  "name": "@acmekit/acmekit",
+  "version": "2.13.2",
+  "description": "Building blocks for digital commerce",
+  "main": "dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./types": "./dist/types/index.js",
+    "./utils": "./dist/utils/index.js",
+    "./api/*": "./dist/api/*.js",
+    "./subscribers/*": "./dist/subscribers/*.js",
+    "./jobs/*": "./dist/jobs/*.js",
+    "./core-flows": "./dist/core-flows/index.js",
+    "./loaders/*": "./dist/loaders/*.js",
+    "./commands/*": "./dist/commands/*.js",
+    "./feature-flags/*": "./dist/feature-flags/*.js",
+    "./*": "./dist/modules/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/acmekit"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "oas",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "Sebastian Rindom",
+  "license": "MIT",
+  "homepage": "https://acmekit.com",
+  "llms": "https://docs.acmekit.com/llms.txt",
+  "llmsFull": "https://docs.acmekit.com/llms-full.txt",
+  "mcpServer": "https://docs.acmekit.com/mcp",
+  "scripts": {
+    "watch": "yarn run -T tsc --build --watch",
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build",
+    "serve": "node dist/app.js",
+    "test": "../../node_modules/.bin/jest --bail --forceExit --testPathIgnorePatterns='/integration-tests/' --testPathPattern=src",
+    "test:integration": "../../node_modules/.bin/jest --passWithNoTests --forceExit --testPathPattern=\"src/.*/integration-tests/__tests__/.*\\.ts\""
+  },
+  "devDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "dependencies": {
+    "@acmekit/admin-bundler": "2.13.2",
+    "@acmekit/analytics": "2.13.2",
+    "@acmekit/analytics-local": "2.13.2",
+    "@acmekit/analytics-posthog": "2.13.2",
+    "@acmekit/api-key": "2.13.2",
+    "@acmekit/auth": "2.13.2",
+    "@acmekit/auth-emailpass": "2.13.2",
+    "@acmekit/auth-github": "2.13.2",
+    "@acmekit/auth-google": "2.13.2",
+    "@acmekit/cache-inmemory": "2.13.2",
+    "@acmekit/cache-redis": "2.13.2",
+    "@acmekit/caching": "2.13.2",
+    "@acmekit/caching-redis": "2.13.2",
+    "@acmekit/cart": "2.13.2",
+    "@acmekit/core-flows": "2.13.2",
+    "@acmekit/currency": "2.13.2",
+    "@acmekit/customer": "2.13.2",
+    "@acmekit/draft-order": "2.13.2",
+    "@acmekit/event-bus-local": "2.13.2",
+    "@acmekit/event-bus-redis": "2.13.2",
+    "@acmekit/file": "2.13.2",
+    "@acmekit/file-local": "2.13.2",
+    "@acmekit/file-s3": "2.13.2",
+    "@acmekit/fulfillment": "2.13.2",
+    "@acmekit/fulfillment-manual": "2.13.2",
+    "@acmekit/index": "2.13.2",
+    "@acmekit/inventory": "2.13.2",
+    "@acmekit/link-modules": "2.13.2",
+    "@acmekit/locking": "2.13.2",
+    "@acmekit/locking-postgres": "2.13.2",
+    "@acmekit/locking-redis": "2.13.2",
+    "@acmekit/notification": "2.13.2",
+    "@acmekit/notification-local": "2.13.2",
+    "@acmekit/notification-sendgrid": "2.13.2",
+    "@acmekit/order": "2.13.2",
+    "@acmekit/payment": "2.13.2",
+    "@acmekit/payment-stripe": "2.13.2",
+    "@acmekit/pricing": "2.13.2",
+    "@acmekit/product": "2.13.2",
+    "@acmekit/promotion": "2.13.2",
+    "@acmekit/rbac": "2.13.2",
+    "@acmekit/region": "2.13.2",
+    "@acmekit/sales-channel": "2.13.2",
+    "@acmekit/settings": "2.13.2",
+    "@acmekit/stock-location": "2.13.2",
+    "@acmekit/store": "2.13.2",
+    "@acmekit/tax": "2.13.2",
+    "@acmekit/telemetry": "2.13.2",
+    "@acmekit/translation": "2.13.2",
+    "@acmekit/user": "2.13.2",
+    "@acmekit/workflow-engine-inmemory": "2.13.2",
+    "@acmekit/workflow-engine-redis": "2.13.2",
+    "@inquirer/checkbox": "^2.3.11",
+    "@inquirer/input": "^2.2.9",
+    "boxen": "^5.0.1",
+    "chalk": "^4.1.2",
+    "chokidar": "^4.0.3",
+    "compression": "^1.8.0",
+    "express": "^4.21.0",
+    "fs-exists-cached": "^1.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "node-schedule": "^2.1.1",
+    "qs": "^6.12.1",
+    "request-ip": "^3.3.0",
+    "slugify": "^1.6.6",
+    "uuid": "^9.0.0"
+  },
+  "peerDependencies": {
+    "@acmekit/framework": "2.13.2",
+    "@swc/core": "^1.7.28",
+    "posthog-node": "^5.11.0",
+    "react-dom": "^18.3.1",
+    "yalc": "^1.0.0-pre.53"
+  },
+  "peerDependenciesMeta": {
+    "@swc/core": {
+      "optional": true
+    },
+    "posthog-node": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "yalc": {
+      "optional": true
+    }
+  },
+  "gitHead": "cd1f5afa5aa8c0b15ea957008ee19f1d695cbd2e"
+}

@@ -1,0 +1,42 @@
+{
+	"StoreCurrency": {
+		"filePath": "packages/modules/store/src/models/currency.ts",
+		"properties": {
+			"id": "The ID of the currency.",
+			"currency_code": "The ISO 3 currency code. For example, `usd`.",
+			"is_default": "Whether the currency is the default in the store.",
+			"store": "The store this currency belongs to."
+		},
+		"deprecated": {
+			"is_deprecated": false
+		}
+	},
+	"Store": {
+		"filePath": "packages/modules/store/src/models/store.ts",
+		"properties": {
+			"id": "The ID of the store.",
+			"name": "The name of the store",
+			"default_sales_channel_id": "The ID of the store's default sales channel.",
+			"default_region_id": "The ID of the store's default region.",
+			"default_location_id": "The ID of the store's default stock location.",
+			"metadata": "Holds custom data in key-value pairs.",
+			"supported_currencies": "The supported currencies in the store.\n\n@expandable",
+			"supported_locales": "The supported locales in the store.\n\n@expandable"
+		},
+		"deprecated": {
+			"is_deprecated": false
+		}
+	},
+	"StoreLocale": {
+		"filePath": "packages/modules/store/src/models/locale.ts",
+		"properties": {
+			"id": "The ID of the store locale.",
+			"locale_code": "The locale code in BCP 47 format. For example, `en-US`.",
+			"store": "The associated store.\n\n@expandable"
+		},
+		"since": "2.12.3",
+		"deprecated": {
+			"is_deprecated": false
+		}
+	}
+}

@@ -1,0 +1,16 @@
+type: object
+description: The properties to update in the shipping option type.
+properties:
+  code:
+    type: string
+    title: code
+    description: The shipping option type's code.
+  description:
+    type: string
+    title: description
+    description: The shipping option type's description.
+  label:
+    type: string
+    title: label
+    description: The shipping option type's label.
+x-schemaName: AdminUpdateShippingOptionType

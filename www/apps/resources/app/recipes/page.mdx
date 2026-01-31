@@ -1,0 +1,97 @@
+import { CardList } from "docs-ui"
+import { 
+  BuildingStorefront,
+  CalendarSolid,
+  PhotoSolid,
+  ChannelsSolid,
+  BuildingsSolid,
+  GiftSolid,
+  ClockSolid,
+  ShoppingCartSolid,
+  GlobeEuropeSolid,
+  Phone,
+  HandTruck,
+  PenPlus,
+  Receipt
+} from "@medusajs/icons"
+
+export const metadata = {
+  title: `Recipes`,
+}
+
+# {metadata.title}
+
+This section of the documentation provides recipes for common use cases with example implementations.
+
+## Recipes
+
+<CardList
+  itemsPerRow={2}
+  items={[
+    {
+      href: "/recipes/marketplace",
+      title: "Marketplace",
+      icon: BuildingStorefront,
+    },
+    {
+      href: "/recipes/subscriptions",
+      title: "Subscriptions",
+      icon: CalendarSolid,
+    },
+    {
+      href: "/recipes/digital-products",
+      title: "Digital Products",
+      icon: PhotoSolid,
+    },
+    {
+      href: "/recipes/erp",
+      title: "Integrate ERP",
+      icon: ChannelsSolid,
+    },
+    {
+      href: "/recipes/b2b",
+      title: "B2B",
+      icon: BuildingsSolid,
+    },
+    {
+      href: "/recipes/bundled-products",
+      title: "Bundled Products",
+      icon: GiftSolid,
+    },
+    {
+      href: "/recipes/commerce-automation",
+      title: "Commerce Automation",
+      icon: ClockSolid,
+    },
+    {
+      href: "/recipes/ecommerce",
+      title: "Ecommerce",
+      icon: ShoppingCartSolid,
+    },
+    {
+      href: "/recipes/multi-region-store",
+      title: "Multi-Region Store",
+      icon: GlobeEuropeSolid,
+    },
+    {
+      href: "/recipes/omnichannel",
+      title: "Omnichannel Store",
+      icon: Phone,
+    },
+    {
+      href: "/recipes/oms",
+      title: "OMS",
+      icon: HandTruck,
+    },
+    {
+      href: "/recipes/personalized-products",
+      title: "Personalized Products",
+      icon: PenPlus,
+    },
+    {
+      href: "/recipes/pos",
+      title: "POS",
+      icon: Receipt,
+    }
+  ]}
+/>

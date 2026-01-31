@@ -1,0 +1,43 @@
+{
+  "name": "@acmekit/locking-redis",
+  "version": "2.13.2",
+  "description": "Redis Lock for AcmeKit",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/modules/providers/locking-redis"
+  },
+  "files": [
+    "dist",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "AcmeKit",
+  "license": "MIT",
+  "devDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "peerDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "dependencies": {
+    "ioredis": "^5.4.1"
+  },
+  "scripts": {
+    "watch": "yarn run -T tsc --build --watch",
+    "watch:test": "yarn run -T tsc --build tsconfig.spec.json --watch",
+    "resolve:aliases": "yarn run -T tsc --showConfig -p tsconfig.json > tsconfig.resolved.json && yarn run -T tsc-alias -p tsconfig.resolved.json && yarn run -T rimraf tsconfig.resolved.json",
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build && npm run resolve:aliases",
+    "test": "../../../../node_modules/.bin/jest --passWithNoTests src",
+    "test:integration": "../../../../node_modules/.bin/jest --passWithNoTests --forceExit --testPathPattern=\"integration-tests/__tests__/.*\\.spec\\.ts\""
+  },
+  "keywords": [
+    "acmekit-providers",
+    "acmekit-providers-locking"
+  ]
+}

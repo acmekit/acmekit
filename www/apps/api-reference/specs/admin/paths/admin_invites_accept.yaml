@@ -1,0 +1,85 @@
+post:
+  operationId: PostInvitesAccept
+  summary: Accept Invite
+  description: >
+    Accept an invite and create a new user.
+
+    Since the user isn't created yet, the JWT token used in the authorization
+    header is retrieved from the `/auth/user/emailpass/register` API route (or a
+    provider other than `emailpass`). The user can then authenticate using the
+    `/auth/user/emailpass` API route.
+  x-authenticated: true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AdminInviteAccept.yaml
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: ../code_samples/JavaScript/admin_invites_accept/post.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_invites_accept/post.sh
+  tags:
+    - Invites
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - type: object
+                description: The created user's details.
+                required:
+                  - user
+                properties:
+                  user:
+                    $ref: ../components/schemas/AdminUser.yaml
+              - type: object
+                description: An error's details.
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                    title: message
+                    description: The error message.
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: acceptInviteWorkflow
+  security:
+    - cookie_auth: []
+    - jwt_token: []
+  x-events:
+    - name: user.created
+      payload: |-
+        ```ts
+        {
+          id, // The ID of the user
+        }
+        ```
+      description: Emitted when users are created.
+      deprecated: false
+    - name: invite.accepted
+      payload: |-
+        ```ts
+        {
+          id, // The ID of the invite
+        }
+        ```
+      description: Emitted when an invite is accepted.
+      deprecated: false

@@ -1,0 +1,691 @@
+import { CodeTabs, CodeTab, TypeList } from "docs-ui"
+
+export const metadata = {
+  title: `${pageNumber} Perform Database Operations in a Service`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn how to perform database operations in a module's service.
+
+<Note>
+
+This chapter is intended for more advanced database use-cases where you need more control over queries and operations. For basic database operations, such as creating or retrieving data of a model, use the [Service Factory](../service-factory/page.mdx) instead.
+
+</Note>
+
+## Run Queries
+
+[MikroORM's entity manager](https://mikro-orm.io/docs/entity-manager) is a class that has methods to run queries on the database and perform operations.
+
+Medusa provides an `InjectManager` decorator from the Modules SDK that injects a service's method with a [forked entity manager](https://mikro-orm.io/docs/identity-map#forking-entity-manager).
+
+So, to run database queries in a service:
+
+1. Add the `InjectManager` decorator to the method.
+2. Add as a last parameter an optional `sharedContext` parameter that has the `MedusaContext` decorator from the Modules SDK. This context holds database-related context, including the manager injected by `InjectManager`
+
+For example, in your service, add the following methods:
+
+<Note>
+
+As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), MikroORM dependencies are included in the `@medusajs/framework` package. If you're using an older version of Medusa, change the import statement to `@mikro-orm/knex`.
+
+</Note>
+
+export const methodsHighlight = [
+  ["13", "getCount", "Retrieves the number of records in `my_custom` using the `count` method."],
+  ["20", "getCountSql", "Retrieves the number of records in `my_custom` using the `execute` method."]
+]
+
+```ts highlights={methodsHighlight}
+// other imports...
+import { 
+  InjectManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+
+class BlogModuleService {
+  // ...
+
+  @InjectManager()
+  async getCount(
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<number | undefined> {
+    return await sharedContext?.manager?.count("my_custom")
+  }
+  
+  @InjectManager()
+  async getCountSql(
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<number> {
+    const data = await sharedContext?.manager?.execute(
+      "SELECT COUNT(*) as num FROM my_custom"
+    ) 
+    
+    return parseInt(data?.[0].num || 0)
+  }
+}
+```
+
+You add two methods `getCount` and `getCountSql` that have the `InjectManager` decorator. Each of the methods also accept the `sharedContext` parameter which has the `MedusaContext` decorator.
+
+The entity manager is injected to the `sharedContext.manager` property, which is an instance of [EntityManager from the `@medusajs/framework/mikro-orm/knex` package](https://mikro-orm.io/api/knex/class/EntityManager).
+
+You use the manager in the `getCount` method to retrieve the number of records in a table, and in the `getCountSql` to run a PostgreSQL query that retrieves the count.
+
+<Note>
+
+Refer to [MikroORM's reference](https://mikro-orm.io/api/knex/class/EntityManager) for a full list of the entity manager's methods.
+
+</Note>
+
+---
+
+## Perform Database Operations
+
+There are two ways to perform database operations in transactional methods:
+
+1. Using the [data model repositories](#perform-database-operations-with-data-model-repositories) in your module.
+2. Using the [transactional entity manager](#perform-database-operations-with-the-transactional-entity-manager) injected into the method's shared context.
+
+For both approaches, you must wrap the method performing the database operations in a transaction.
+
+### Wrap Database Operations in Transactions
+
+When performing database operations without using the [Service Factory](../service-factory/page.mdx), you must wrap the method performing the database operations in a transaction.
+
+To wrap database operations in a transaction, you create two methods:
+
+1. A private or protected method that's wrapped in a transaction. To wrap it in a transaction, you use the `InjectTransactionManager` decorator from the Modules SDK.
+2. A public method that calls the transactional method. You use on it the `InjectManager` decorator as explained in the previous section.
+
+Both methods must accept as a last parameter an optional `sharedContext` parameter that has the `MedusaContext` decorator from the Modules SDK. It holds database-related contexts passed through the Medusa application.
+
+For example:
+
+export const opHighlights = [
+  ["11", "InjectTransactionManager", "A decorator that injects the a transactional entity manager into the `sharedContext` parameter."],
+  ["17", "MedusaContext", "A decorator to use Medusa's shared context."],
+  ["24", "InjectManager", "A decorator that injects a forked entity manager into the context."],
+]
+
+```ts highlights={opHighlights}
+import { 
+  InjectManager,
+  InjectTransactionManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+
+class BlogModuleService {
+  // ...
+  @InjectTransactionManager()
+  protected async update_(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<any> {
+    const transactionManager = sharedContext?.transactionManager
+    
+    // TODO: update the record
+  }
+
+  @InjectManager()
+  async update(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ) {
+    return await this.update_(input, sharedContext)
+  }
+}
+```
+
+The `BlogModuleService` has two methods:
+
+- A protected `update_` that performs the database operations inside a transaction.
+- A public `update` that executes the transactional protected method.
+
+You can then perform in the transactional method the database operations either using the [data model repository](#perform-database-operations-with-data-model-repositories) or the [transactional entity manager](#perform-database-operations-with-the-transactional-entity-manager).
+
+#### Why Wrap a Transactional Method
+
+The variables in the transactional method (such as `update_`) hold values that are uncommitted to the database. They're only committed once the method finishes execution.
+
+So, if in your method you perform database operations, then use their result to perform other actions, such as connecting to a third-party service, you'll be working with uncommitted data.
+
+By placing only the database operations in a method that has the `InjectTransactionManager` and using it in a wrapper method, the wrapper method receives the committed result of the transactional method.
+
+<Note title="Optimization Tip">
+
+This is also useful if you perform heavy data normalization outside of the database operations. In that case, you don't hold the transaction for a longer time than needed.
+
+</Note>
+
+For example, the `update` method may call other methods than `update_` to perform other actions:
+
+```ts
+// other imports...
+import { 
+  InjectManager,
+  InjectTransactionManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+
+class BlogModuleService {
+  // ...
+  @InjectTransactionManager()
+  protected async update_(
+    // ...
+  ): Promise<any> {
+    // ...
+  }
+  @InjectManager()
+  async update(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ) {
+    const newData = await this.update_(input, sharedContext)
+
+    // example method that sends data to another system
+    await this.sendNewDataToSystem(newData)
+
+    return newData
+  }
+}
+```
+
+In this case, only the `update_` method is wrapped in a transaction. The returned value `newData` holds the committed result, which can be used for other operations, such as passed to a `sendNewDataToSystem` method.
+
+#### Using Methods in Transactional Methods
+
+If your protected transactional method uses other methods that accept a Medusa context, pass the shared context to those methods.
+
+For example:
+
+export const anotherMethodHighlights = [
+  ["26", "sharedContext", "Pass the context to the other transactional method."]
+]
+
+```ts highlights={anotherMethodHighlights}
+// other imports...
+import { 
+  InjectTransactionManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+
+class BlogModuleService {
+  // ...
+  @InjectTransactionManager()
+  protected async anotherMethod(
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ) {
+    // ...
+  }
+  
+  @InjectTransactionManager()
+  protected async update_(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<any> {
+    this.anotherMethod(sharedContext)
+  }
+}
+```
+
+You use the `anotherMethod` transactional method in the `update_` transactional method, so you pass it the shared context.
+
+The `anotherMethod` now runs in the same transaction as the `update_` method.
+
+### Perform Database Operations with Data Model Repositories
+
+For every data model in your module, Medusa generates a data model repository that has methods to perform database operations.
+
+For example, if your module has a `Post` model, it has a `postRepository` in the container.
+
+The data model repository is a wrapper around the [entity manager](https://mikro-orm.io/api/knex/class/EntityManager) that provides a higher-level API for performing database operations.
+
+<Note>
+
+To use the low-level entity manager, use the [transactional entity manager](#perform-database-operations-with-the-transactional-entity-manager) instead.
+
+</Note>
+
+#### Resolve Data Model Repository
+
+When the Medusa application injects a data model repository into a module's container, it formats the registration name by:
+
+- Taking the data model's name that's passed as the first parameter of `model.define`
+- Lower-casing the first character
+- Suffixing the result with `Repository`.
+
+For example:
+
+- `Post` model: `postRepository`
+- `My_Custom` model: `my_CustomRepository`
+
+So, to resolve a data model repository from a module's container, pass the expected registration name of the repository in the first parameter of the module's constructor (the container).
+
+For example:
+
+<CodeTabs group="service-type">
+  <CodeTab label="Extending Service Factory" value="service-factory">
+
+export const serviceFactoryRepoHighlights = [
+  ["20", "postRepository", "Resolve the data model repository of the `Post` model."],
+]
+
+```ts highlights={serviceFactoryRepoHighlights}
+import { MedusaService } from "@medusajs/framework/utils"
+import { InferTypeOf, DAL } from "@medusajs/framework/types"
+import Post from "./models/post"
+
+type Post = InferTypeOf<typeof Post>
+
+type InjectedDependencies = {
+  postRepository: DAL.RepositoryService<Post>
+}
+
+class BlogModuleService extends MedusaService({
+  Post,
+}){
+  protected postRepository_: DAL.RepositoryService<Post>
+
+  constructor({ 
+    postRepository, 
+  }: InjectedDependencies) {
+    super(...arguments)
+    this.postRepository_ = postRepository
+  }
+}
+
+export default BlogModuleService
+```
+  </CodeTab>
+  <CodeTab label="Without Service Factory" value="no-service-factory">
+
+export const noServiceFactoryRepoHighlights = [
+  ["17", "postRepository", "Resolve the data model repository of the `Post` model."],
+]
+
+```ts highlights={noServiceFactoryRepoHighlights}
+import { InferTypeOf, DAL } from "@medusajs/framework/types"
+import Post from "./models/post"
+
+type Post = InferTypeOf<typeof Post>
+
+type InjectedDependencies = {
+  postRepository: DAL.RepositoryService<Post>
+}
+
+class BlogModuleService {
+  protected postRepository_: DAL.RepositoryService<Post>
+
+  constructor({ 
+    postRepository, 
+  }: InjectedDependencies) {
+    super(...arguments)
+    this.postRepository_ = postRepository
+  }
+}
+
+export default BlogModuleService
+```
+
+  </CodeTab>
+</CodeTabs>
+
+You can then use the data model repository in your service to perform database operations.
+
+#### Data Model Repository Methods
+
+A data model repository has methods that allows you to create, update, and delete records, among other operations.
+
+To learn about the methods available in a data model repository, refer to the [Data Model Repository](!resources!/data-model-repository-reference) reference.
+
+### Perform Database Operations with the Transactional Entity Manager
+
+Your transactional method can use the transactional entity manager injected into the method's shared context to perform database operations. It's an instance of the [MikroORM EntityManager](https://mikro-orm.io/api/knex/class/EntityManager) class.
+
+<Note>
+
+To use an easier higher-level API focused on each data model, use the [data model repository](#perform-database-operations-with-data-model-repositories) instead.
+
+</Note>
+
+For example:
+
+export const transactionalEntityManagerHighlights = [
+  ["19", "transactionManager", "Use the transactional entity manager injected\ninto the `sharedContext` parameter."],
+  ["20", "nativeUpdate", "Perform a native update operation."],
+  ["31", "execute", "Perform a native query operation."],
+]
+
+```ts highlights={transactionalEntityManagerHighlights}
+import { 
+  InjectManager,
+  InjectTransactionManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+
+class BlogModuleService {
+  // ...
+  @InjectTransactionManager()
+  protected async update_(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<any> {
+    const transactionManager = sharedContext?.transactionManager
+    await transactionManager?.nativeUpdate(
+      "my_custom",
+      {
+        id: input.id,
+      },
+      {
+        name: input.name,
+      }
+    )
+
+    // retrieve again
+    const updatedRecord = await transactionManager?.execute(
+      `SELECT * FROM my_custom WHERE id = '${input.id}'`
+    )
+
+    return updatedRecord
+  }
+
+  @InjectManager()
+  async update(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ) {
+    return await this.update_(input, sharedContext)
+  }
+}
+```
+
+The `update_` method uses the transactional entity manager injected into the `sharedContext.transactionManager` property to perform the database operations.
+
+Find all available methods in the [MikroORM EntityManager](https://mikro-orm.io/api/knex/class/EntityManager) reference.
+
+---
+
+## Configure Transactions with the Base Repository
+
+To configure the transaction, such as its [isolation level](https://www.postgresql.org/docs/current/transaction-iso.html), use the `baseRepository` class registered in your module's container.
+
+The `baseRepository` is an instance of a repository class that provides methods to create transactions, run database operations, and more.
+
+The `baseRepository` has a `transaction` method that allows you to run a function within a transaction and configure that transaction.
+
+For example, resolve the `baseRepository` in your service's constructor:
+
+<CodeTabs group="service-type">
+  <CodeTab label="Extending Service Factory" value="service-factory">
+
+export const baseRepoHighlights = [
+  ["16", "baseRepository", "Resolve the base repository."],
+]
+
+```ts highlights={baseRepoHighlights}
+import { MedusaService } from "@medusajs/framework/utils"
+import Post from "./models/post"
+import { DAL } from "@medusajs/framework/types"
+
+type InjectedDependencies = {
+  baseRepository: DAL.RepositoryService
+}
+
+class BlogModuleService extends MedusaService({
+  Post,
+}){
+  protected baseRepository_: DAL.RepositoryService
+
+  constructor({ baseRepository }: InjectedDependencies) {
+    super(...arguments)
+    this.baseRepository_ = baseRepository
+  }
+}
+
+export default BlogModuleService
+```
+
+  </CodeTab>
+  <CodeTab label="Without Service Factory" value="no-service-factory">
+
+export const noServiceFactoryBaseRepoHighlights = [
+  ["11", "baseRepository", "Resolve the base repository."],
+]
+
+```ts highlights={noServiceFactoryBaseRepoHighlights}
+import { DAL } from "@medusajs/framework/types"
+
+type InjectedDependencies = {
+  baseRepository: DAL.RepositoryService
+}
+
+class BlogModuleService {
+  protected baseRepository_: DAL.RepositoryService
+
+  constructor({ baseRepository }: InjectedDependencies) {
+    this.baseRepository_ = baseRepository
+  }
+}
+
+export default BlogModuleService
+```
+
+  </CodeTab>
+</CodeTabs>
+
+Then, use it in the service's transactional methods:
+
+export const repoHighlights = [
+  ["20", "transaction", "Wrap the function parameter in a transaction."]
+]
+
+```ts highlights={repoHighlights}
+// ...
+import { 
+  InjectManager,
+  InjectTransactionManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+
+class BlogModuleService {
+  // ...
+  @InjectTransactionManager()
+  protected async update_(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<any> {
+    return await this.baseRepository_.transaction(
+      async (transactionManager) => {
+        await transactionManager.nativeUpdate(
+          "my_custom",
+          {
+            id: input.id,
+          },
+          {
+            name: input.name,
+          }
+        )
+
+        // retrieve again
+        const updatedRecord = await transactionManager.execute(
+          `SELECT * FROM my_custom WHERE id = '${input.id}'`
+        )
+
+        return updatedRecord
+      },
+      {
+        transaction: sharedContext?.transactionManager,
+      }
+    )
+  }
+
+  @InjectManager()
+  async update(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ) {
+    return await this.update_(input, sharedContext)
+  }
+}
+```
+
+The `update_` method uses the `baseRepository_.transaction` method to wrap a function in a transaction.
+
+The function parameter receives a transactional entity manager as a parameter. Use it to perform the database operations.
+
+The `baseRepository_.transaction` method also receives as a second parameter an object of options. You must pass in it the `transaction` property and set its value to the `sharedContext.transactionManager` property so that the function wrapped in the transaction uses the injected transaction manager.
+
+<Note>
+
+Refer to [MikroORM's reference](https://mikro-orm.io/api/knex/class/EntityManager) for a full list of the entity manager's methods.
+
+</Note>
+
+### Transaction Options
+
+The second parameter of the `baseRepository_.transaction` method is an object of options that accepts the following properties:
+
+1. `transaction`: Set the transactional entity manager passed to the function. You must provide this option as explained in the previous section.
+
+```ts highlights={[["24"]]}
+// other imports...
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+import { 
+  InjectTransactionManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+
+class BlogModuleService {
+  // ...
+  @InjectTransactionManager()
+  async update_(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<any> {
+    return await this.baseRepository_.transaction<EntityManager>(
+      async (transactionManager) => {
+        // ...
+      },
+      {
+        transaction: sharedContext?.transactionManager,
+      }
+    )
+  }
+}
+```
+
+2. `isolationLevel`: Sets the transaction's [isolation level](https://www.postgresql.org/docs/current/transaction-iso.html). Its values can be:
+    - `read committed`
+    - `read uncommitted`
+    - `snapshot`
+    - `repeatable read`
+    - `serializable`
+
+```ts highlights={[["25"]]}
+// other imports...
+import { 
+  InjectTransactionManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+import { IsolationLevel } from "@medusajs/framework/mikro-orm/core"
+
+class BlogModuleService {
+  // ...
+  @InjectTransactionManager()
+  async update_(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<any> {
+    return await this.baseRepository_.transaction<EntityManager>(
+      async (transactionManager) => {
+        // ...
+      },
+      {
+        isolationLevel: IsolationLevel.READ_COMMITTED,
+      }
+    )
+  }
+}
+```
+
+3. `enableNestedTransactions`: (default: `false`) whether to allow using nested transactions.
+    - If `transaction` is provided and this is disabled, the manager in `transaction` is re-used.
+
+```ts highlights={[["24"]]}
+// other imports...
+import { 
+  InjectTransactionManager,
+  MedusaContext,
+} from "@medusajs/framework/utils"
+import { Context } from "@medusajs/framework/types"
+import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+
+class BlogModuleService {
+  // ...
+  @InjectTransactionManager()
+  async update_(
+    input: {
+      id: string,
+      name: string
+    },
+    @MedusaContext() sharedContext?: Context<EntityManager>
+  ): Promise<any> {
+    return await this.baseRepository_.transaction<EntityManager>(
+      async (transactionManager) => {
+        // ...
+      },
+      {
+        enableNestedTransactions: false,
+      }
+    )
+  }
+}
+```

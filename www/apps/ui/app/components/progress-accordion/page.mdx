@@ -1,0 +1,78 @@
+---
+generate_toc: true
+---
+
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Progress Accordion`,
+}
+
+# {metadata.title}
+
+A component that renders a set of expandable content, specifically designed for implementing multi-step tasks.
+
+In this guide, you'll learn how to use the Progress Accordion component.
+
+<ComponentExample name="progress-accordion-demo" />
+
+## Usage
+
+```tsx
+import { ProgressAccordion } from "@medusajs/ui"
+```
+
+```tsx
+<ProgressAccordion type="single">
+  <ProgressAccordion.Item value="general">
+    <ProgressAccordion.Header>
+      General
+    </ProgressAccordion.Header>
+    <ProgressAccordion.Content>
+       {/* Content */}
+    </ProgressAccordion.Content>
+  </ProgressAccordion.Item>
+  <ProgressAccordion.Item value="shipping">
+    <ProgressAccordion.Header>
+      Shipping
+    </ProgressAccordion.Header>
+    <ProgressAccordion.Content>
+        {/* Content */}
+    </ProgressAccordion.Content>
+  </ProgressAccordion.Item>
+</ProgressAccordion>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="ProgressAccordion" componentsToShow={[
+  "ProgressAccordion",
+  "ProgressAccordion.Header"
+]} />
+
+---
+
+## Examples
+
+### Only One Accordion Open
+
+<ComponentExample name="progress-accordion-single" />
+
+### Allow Multiple Accordions to Open
+
+<ComponentExample name="progress-accordion-multiple" />
+
+### Set Status Indicator
+
+<ComponentExample name="progress-accordion-status" />
+
+### Controlled Accordion Open State
+
+<ComponentExample name="progress-accordion-controlled" />
+
+### Disabled Accordion Item
+
+<ComponentExample name="progress-accordion-disabled" hideFeedback />

@@ -1,0 +1,274 @@
+---
+products:
+  - payment
+  - cart
+  - order
+---
+
+import { CodeTabs, CodeTab, Table } from "docs-ui"
+
+export const metadata = {
+  title: `Links between Customer Module and Other Modules`,
+}
+
+# {metadata.title}
+
+This document showcases the module links defined between the Customer Module and other Commerce Modules.
+
+## Summary
+
+The Customer Module has the following links to other modules:
+
+<Note title="Tip">
+
+Read-only links are used to query data across modules, but the relations aren't stored in a pivot table in the database.
+
+</Note>
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        First Data Model
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Second Data Model
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Type
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Description
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        [Customer](/references/customer/models/Customer)
+      </Table.Cell>
+      <Table.Cell>
+        [AccountHolder](/references/payment/models/AccountHolder) in [Payment Module](../../payment/page.mdx)
+      </Table.Cell>
+      <Table.Cell>
+        Stored - many-to-many
+      </Table.Cell>
+      <Table.Cell>
+        [Learn more](#payment-module)
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Cart](/references/cart/models/Cart) in [Cart Module](../../cart/page.mdx)
+      </Table.Cell>
+      <Table.Cell>
+        [Customer](/references/customer/models/Customer)
+      </Table.Cell>
+      <Table.Cell>
+        Read-only - has one
+      </Table.Cell>
+      <Table.Cell>
+        [Learn more](#cart-module)
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Order](/references/order/models/Order) in [Order Module](../../order/page.mdx)
+      </Table.Cell>
+      <Table.Cell>
+        [Customer](/references/customer/models/Customer)
+      </Table.Cell>
+      <Table.Cell>
+        Read-only - has one
+      </Table.Cell>
+      <Table.Cell>
+        [Learn more](#order-module)
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+
+---
+
+## Payment Module
+
+Medusa defines a link between the `Customer` and `AccountHolder` data models, allowing payment providers to save payment methods for a customer, if the payment provider supports it.
+
+<Note>
+
+This link is available starting from Medusa `v2.5.0`.
+
+</Note>
+
+### Retrieve with Query
+
+To retrieve the account holder associated with a customer with [Query](!docs!/learn/fundamentals/module-links/query), pass `customer.*` in `fields`:
+
+<CodeTabs group="relation-query">
+  <CodeTab label="query.graph" value="method">
+
+```ts
+const { data: customers } = await query.graph({
+  entity: "customer",
+  fields: [
+    "account_holder_link.account_holder.*",
+  ],
+})
+
+// customers[0].account_holder_link?.[0]?.account_holder
+```
+
+  </CodeTab>
+  <CodeTab label="useQueryGraphStep" value="step">
+
+```ts
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+
+// ...
+
+const { data: customers } = useQueryGraphStep({
+  entity: "customer",
+  fields: [
+    "account_holder_link.account_holder.*",
+  ],
+})
+
+// customers[0].account_holder_link?.[0]?.account_holder
+```
+
+  </CodeTab>
+</CodeTabs>
+
+### Manage with Link
+
+To manage the account holders of a customer, use [Link](!docs!/learn/fundamentals/module-links/link):
+
+<CodeTabs group="relation-link">
+  <CodeTab label="link.create" value="method">
+
+```ts
+import { Modules } from "@medusajs/framework/utils"
+
+// ...
+
+await link.create({
+  [Modules.CUSTOMER]: {
+    customer_id: "cus_123",
+  },
+  [Modules.PAYMENT]: {
+    account_holder_id: "acchld_123",
+  },
+})
+```
+
+  </CodeTab>
+  <CodeTab label="createRemoteLinkStep" value="step">
+
+```ts
+import { createRemoteLinkStep } from "@medusajs/medusa/core-flows"
+
+// ...
+
+createRemoteLinkStep({
+  [Modules.CUSTOMER]: {
+    customer_id: "cus_123",
+  },
+  [Modules.PAYMENT]: {
+    account_holder_id: "acchld_123",
+  },
+})
+```
+
+  </CodeTab>
+</CodeTabs>
+
+---
+
+## Cart Module
+
+Medusa defines a read-only link between the [Cart Module](../../cart/page.mdx)'s `Cart` data model and the `Customer` data model. Because the link is read-only from the `Cart`'s side, you can only retrieve the customer of a cart, and not the other way around.
+
+### Retrieve with Query
+
+To retrieve the customer of a cart with [Query](!docs!/learn/fundamentals/module-links/query), pass `customer.*` in `fields`:
+
+<CodeTabs group="relation-query">
+  <CodeTab label="query.graph" value="method">
+
+```ts
+const { data: carts } = await query.graph({
+  entity: "cart",
+  fields: [
+    "customer.*",
+  ],
+})
+
+// carts.customer
+```
+
+  </CodeTab>
+  <CodeTab label="useQueryGraphStep" value="step">
+
+```ts
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+
+// ...
+
+const { data: carts } = useQueryGraphStep({
+  entity: "cart",
+  fields: [
+    "customer.*",
+  ],
+})
+
+// carts.customer
+```
+
+  </CodeTab>
+</CodeTabs>
+
+---
+
+## Order Module
+
+Medusa defines a read-only link between the [Order Module](../../order/page.mdx)'s `Order` data model and the `Customer` data model. Because the link is read-only from the `Order`'s side, you can only retrieve the customer of an order, and not the other way around.
+
+### Retrieve with Query
+
+To retrieve the customer of an order with [Query](!docs!/learn/fundamentals/module-links/query), pass `customer.*` in `fields`:
+
+<CodeTabs group="relation-query">
+  <CodeTab label="query.graph" value="method">
+
+```ts
+const { data: orders } = await query.graph({
+  entity: "order",
+  fields: [
+    "customer.*",
+  ],
+})
+
+// orders.customer
+```
+
+  </CodeTab>
+  <CodeTab label="useQueryGraphStep" value="step">
+
+```ts
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+
+// ...
+
+const { data: orders } = useQueryGraphStep({
+  entity: "order",
+  fields: [
+    "customer.*",
+  ],
+})
+
+// orders.customer
+```
+
+  </CodeTab>
+</CodeTabs>

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "extends": [
+    "../../../../packages/acmekit/tsconfig.json"
+  ],
+  "include": ["../../../../packages/acmekit/src"],
+  "exclude": [
+    "../../../../packages/acmekit/dist", 
+    "../../../../packages/acmekit/node_modules"
+  ],
+  "compilerOptions": {
+    "rootDir": "../../../../packages/acmekit/src"
+  }
+}

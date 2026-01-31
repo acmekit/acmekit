@@ -1,0 +1,33 @@
+export const metadata = {
+  title: `Order Versioning`,
+}
+
+# {metadata.title}
+
+
+In this document, you’ll learn how orders and their details are versioned.
+
+## What is Order Versioning?
+
+Versioning means assigning a version number to a record, such as an order and its items. This is useful for viewing the different versions of an order following changes throughout its lifetime.
+
+When changes are confirmed on an order, such as when an item is added or returned, the order's version changes.
+
+---
+
+## version Property
+
+The `Order` and `OrderSummary` data models have a `version` property that indicates the current version. By default, its value is `1`.
+
+Other order-related data models, such as `OrderItem`, also have a `version` property, but it indicates the version to which the record belongs.
+
+---
+
+## How the Version Changes
+
+When the order is changed, such as when an item is exchanged, Medusa updates the order's version and its related data:
+
+1. The version of the order and its summary is incremented.
+2. Related order data that have a `version` property, such as `OrderItem`, are duplicated. The duplicated item has the new version, while the original item retains the previous version.
+
+When the order is retrieved, only the related data with the same version is returned.

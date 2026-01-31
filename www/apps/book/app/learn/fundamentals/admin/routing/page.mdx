@@ -1,0 +1,193 @@
+export const metadata = {
+  title: `${pageNumber} Admin Routing Customizations`,
+}
+
+# {metadata.title}
+
+The Medusa Admin dashboard uses [React Router](https://reactrouter.com) under the hood to manage routing. This gives you more flexibility in routing-related customizations using React Router's utilities, hooks, and components.
+
+In this chapter, you'll learn about routing-related customizations that you can use in your widgets, UI routes, and settings pages using React Router.
+
+<Note>
+
+`react-router-dom` is available in your project by default through the Medusa packages. You don't need to install it separately.
+
+</Note>
+
+## Link to a Page
+
+To link to a page in your admin customizations, you can use the `Link` component from `react-router-dom`. For example:
+
+export const highlights = [
+  ["9", "Link", "Add a link to the orders page"],
+  ["9", '"/orders', "Add the path without the `/app` prefix."]
+]
+
+```tsx title="src/admin/widgets/product-widget.tsx" highlights={highlights}
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { Container } from "@medusajs/ui"
+import { Link } from "react-router-dom"
+
+// The widget
+const ProductWidget = () => {
+  return (
+    <Container className="divide-y p-0">
+      <Link to={"/orders"}>View Orders</Link>
+    </Container>
+  )
+}
+
+// The widget's configurations
+export const config = defineWidgetConfig({
+  zone: "product.details.before",
+})
+
+export default ProductWidget
+```
+
+This adds a widget to a product's details page with a link to the Orders page. The link's path must be without the `/app` prefix.
+
+---
+
+## Fetch Data with Route Loaders
+
+<Note>
+
+Route loaders are available starting from Medusa v2.5.1.
+
+</Note>
+
+In your UI routes and settings pages, you may need to retrieve data to use in your route component. For example, you may want to fetch a list of products to display on a custom page.
+
+The recommended approach is to fetch data within the UI route component asynchronously using the JS SDK with Tanstack (React) Query as explained in [this chapter](../tips/page.mdx#send-requests-to-api-routes).
+
+However, if you need the data to be fetched before the route is rendered, such as if you're [setting breadcrumbs dynamically](../ui-routes/page.mdx#set-breadcrumbs-dynamically), you can use a route loader.
+
+To fetch data with a route loader:
+
+1. Define and export a [React Router loader](https://reactrouter.com/6.29.0/route/loader#loader) function in the UI route's file. In this function, you can fetch and return data asynchronously.
+2. In your UI route's component, you can use the [useLoaderData hook from React Router](https://reactrouter.com/6.29.0/hooks/use-loader-data#useloaderdata) to access the data returned by the `loader` function.
+
+For example, consider the following UI route created at `src/admin/routes/custom/page.tsx`:
+
+export const loaderHighlights = [
+  ["7", "loader", "Export a loader function to fetch products."],
+  ["16", "useLoaderData", "Access the data returned by the loader function in the route component."],
+]
+
+```tsx title="src/admin/routes/custom/page.tsx" highlights={loaderHighlights}
+import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { Container, Heading } from "@medusajs/ui"
+import {
+  useLoaderData,
+} from "react-router-dom"
+
+export async function loader() {
+  // TODO fetch products
+
+  return {
+    products: [],
+  }
+}
+
+const CustomPage = () => {
+  const { products } = useLoaderData() as Awaited<ReturnType<typeof loader>>
+
+  return (
+    <div>
+      <Container className="divide-y p-0">
+        <div className="flex items-center justify-between px-6 py-4">
+          <Heading level="h2">Products count: {products.length}</Heading>
+        </div>
+      </Container>
+    </div>
+  )
+}
+
+export default CustomPage
+```
+
+In this example, you first export a `loader` function that can be used to fetch data, such as products. The function returns an object with a `products` property.
+
+Then, in the `CustomPage` route component, you use the `useLoaderData` hook from React Router to access the data returned by the `loader` function. You can then use the data in your component.
+
+### Route Loaders Block Rendering
+
+Route loaders block the rendering of your UI route until the data is fetched, which may negatively impact the user experience. So, only use route loaders when the route component needs essential data before rendering, or if you're preparing data that doesn't require sending API requests.
+
+Otherwise, use the JS SDK with Tanstack (React) Query in the UI route component as explained in the [Tips](../tips/page.mdx#send-requests-to-api-routes) chapter to fetch data asynchronously and update the UI when the data is available.
+
+![Timeline comparison of a UI route with and without a route loader](https://res.cloudinary.com/dza7lstvk/image/upload/v1753428567/Medusa%20Book/ui-route-loading_vycev8.jpg)
+
+### Access Route Parameters in Loader
+
+You can access route parameters in the loader function. For example, consider the following UI route created at `src/admin/routes/custom/[id]/page.tsx`:
+
+export const loaderParamHighlights = [
+  ["7", "params", "Access route parameters in the loader."]
+]
+
+```tsx title="src/admin/routes/custom/[id]/page.tsx" highlights={loaderParamHighlights}
+import { Container, Heading } from "@medusajs/ui"
+import {
+  useLoaderData,
+  LoaderFunctionArgs,
+} from "react-router-dom"
+
+export async function loader({ params }: LoaderFunctionArgs) {
+  const { id } = params
+  // TODO fetch product by id
+
+  return {
+    id,
+  }
+}
+
+const CustomPage = () => {
+  const { id } = useLoaderData() as Awaited<ReturnType<typeof loader>>
+
+  return (
+    <div>
+      <Container className="divide-y p-0">
+        <div className="flex items-center justify-between px-6 py-4">
+          <Heading level="h2">Product ID: {id}</Heading>
+        </div>
+      </Container>
+    </div>
+  )
+}
+
+export default CustomPage
+```
+
+Because the UI route has a route parameter `[id]`, you can access the `id` parameter in the `loader` function. The loader function accepts as a parameter an object that has a `params` property containing the route parameters.
+
+In the loader, you can fetch data asynchronously using the route parameter and return it. Then, in the route component, you can access the data using the `useLoaderData` hook.
+
+---
+
+## Other React Router Utilities
+
+### Route Handles
+
+<Note>
+
+Route handles are available starting from Medusa v2.5.1.
+
+</Note>
+
+In your UI route or any route file, you can export a `handle` object to define [route handles](https://reactrouter.com/start/framework/route-module#handle). The object is passed to the loader and route contexts.
+
+For example:
+
+```tsx title="src/admin/routes/custom/page.tsx"
+export const handle = {
+  sandbox: true,
+}
+```
+
+You can also use the `handle` object to define a breadcrumb for the route. Learn more in the [UI Route](../ui-routes/page.mdx) chapter.
+
+### React Router Components and Hooks
+
+Refer to [react-router-dom’s documentation](https://reactrouter.com/en/6.29.0) for components and hooks that you can use in your admin customizations.

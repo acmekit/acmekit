@@ -1,0 +1,6365 @@
+{
+	"id": 2539,
+	"name": "currency",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 2647,
+			"name": "FindConfigOrder",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Temporary type fixing to allow any level of orders until we get to properly clean all the types"
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+					"line": 55,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 2648,
+					"name": "__type",
+					"variant": "declaration",
+					"kind": 65536,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 55,
+							"character": 30
+						}
+					],
+					"indexSignatures": [
+						{
+							"id": 2649,
+							"name": "__index",
+							"variant": "signature",
+							"kind": 8192,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+									"line": 56,
+									"character": 2
+								}
+							],
+							"parameters": [
+								{
+									"id": 2650,
+									"name": "Key",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intersection",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "reflection",
+												"declaration": {
+													"id": 2651,
+													"name": "__type",
+													"variant": "declaration",
+													"kind": 65536,
+													"flags": {}
+												}
+											}
+										]
+									},
+									{
+										"type": "reference",
+										"target": 2647,
+										"name": "FindConfigOrder",
+										"package": "@acmekit/types"
+									},
+									{
+										"type": "literal",
+										"value": "ASC"
+									},
+									{
+										"type": "literal",
+										"value": "DESC"
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 2583,
+			"name": "FindConfig",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "An object that is used to configure how an entity is retrieved from the database. It accepts as a typed parameter an "
+					},
+					{
+						"kind": "code",
+						"text": "`Entity`"
+					},
+					{
+						"kind": "text",
+						"text": " class,\nwhich provides correct typing of field names in its properties."
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 2584,
+					"name": "select",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An array of strings, each being attribute names of the entity to retrieve in the result."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 69,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "union",
+							"types": [
+								{
+									"type": "intersection",
+									"types": [
+										{
+											"type": "intrinsic",
+											"name": "string"
+										},
+										{
+											"type": "reflection",
+											"declaration": {
+												"id": 2585,
+												"name": "__type",
+												"variant": "declaration",
+												"kind": 65536,
+												"flags": {}
+											}
+										}
+									]
+								},
+								{
+									"type": "typeOperator",
+									"operator": "keyof",
+									"target": {
+										"type": "reference",
+										"target": 2593,
+										"name": "Entity",
+										"package": "@acmekit/types",
+										"qualifiedName": "FindConfig.Entity",
+										"refersToTypeParameter": true
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 2586,
+					"name": "skip",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A number indicating the number of records to skip before retrieving the results."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 74,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": null
+							},
+							{
+								"type": "intrinsic",
+								"name": "number"
+							}
+						]
+					}
+				},
+				{
+					"id": 2587,
+					"name": "take",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A number indicating the number of records to return in the result."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 79,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": null
+							},
+							{
+								"type": "intrinsic",
+								"name": "number"
+							}
+						]
+					}
+				},
+				{
+					"id": 2588,
+					"name": "relations",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An array of strings, each being relation names of the entity to retrieve in the result.\n\nYou can only retrieve data models defined in the same module. To retrieve linked data models\nfrom other modules, use [Query](https://docs.acmekit.com/learn/fundamentals/module-links/query) instead."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 87,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				},
+				{
+					"id": 2589,
+					"name": "order",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An object used to specify how to sort the returned records. Its keys are the names of attributes of the entity, and a key's value can either be "
+							},
+							{
+								"kind": "code",
+								"text": "`ASC`"
+							},
+							{
+								"kind": "text",
+								"text": "\nto sort retrieved records in an ascending order, or "
+							},
+							{
+								"kind": "code",
+								"text": "`DESC`"
+							},
+							{
+								"kind": "text",
+								"text": " to sort retrieved records in a descending order."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 93,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": 2647,
+						"name": "FindConfigOrder",
+						"package": "@acmekit/types"
+					}
+				},
+				{
+					"id": 2590,
+					"name": "withDeleted",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A boolean indicating whether deleted records should also be retrieved as part of the result. This only works if the entity extends the\n"
+							},
+							{
+								"kind": "code",
+								"text": "`SoftDeletableEntity`"
+							},
+							{
+								"kind": "text",
+								"text": " class."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 99,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 2591,
+					"name": "filters",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Enable ORM specific defined filters"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 104,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Record"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "intrinsic",
+								"name": "any"
+							}
+						],
+						"name": "Record",
+						"package": "typescript"
+					}
+				},
+				{
+					"id": 2592,
+					"name": "options",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Enable ORM specific defined options"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+							"line": 109,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Record"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "intrinsic",
+								"name": "any"
+							}
+						],
+						"name": "Record",
+						"package": "typescript"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2584,
+						2586,
+						2587,
+						2588,
+						2589,
+						2590,
+						2591,
+						2592
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/common/common.ts",
+					"line": 65,
+					"character": 17
+				}
+			],
+			"typeParameters": [
+				{
+					"id": 2593,
+					"name": "Entity",
+					"variant": "typeParam",
+					"kind": 131072,
+					"flags": {}
+				}
+			]
+		},
+		{
+			"id": 2594,
+			"name": "CurrencyDTO",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "A currency's data."
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 2595,
+					"name": "code",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The ISO 3 character code of the currency."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nusd\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/currency/common/currency.ts",
+							"line": 15,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2596,
+					"name": "symbol",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The symbol of the currency."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\n$\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/currency/common/currency.ts",
+							"line": 22,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2597,
+					"name": "symbol_native",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The symbol of the currecy in its native form. This is typically the symbol used when displaying a price."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\n$\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/currency/common/currency.ts",
+							"line": 29,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2598,
+					"name": "name",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The name of the currency."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nUS Dollar\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/currency/common/currency.ts",
+							"line": 36,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2595,
+						2596,
+						2597,
+						2598
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/currency/common/currency.ts",
+					"line": 8,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 2616,
+			"name": "FilterableCurrencyProps",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Filters to apply on a currency."
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 2617,
+					"name": "q",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Search through currencies using this search term."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/currency/common/currency.ts",
+							"line": 49,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2618,
+					"name": "code",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The codes to filter the currencies by."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/currency/common/currency.ts",
+							"line": 53,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				},
+				{
+					"id": 2619,
+					"name": "$and",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true,
+						"isInherited": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An array of filters to apply on the entity, where each item in the array is joined with an \"and\" condition."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/dal/index.ts",
+							"line": 15,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "union",
+							"types": [
+								{
+									"type": "reference",
+									"target": 2616,
+									"name": "FilterableCurrencyProps",
+									"package": "@acmekit/types"
+								},
+								{
+									"type": "reference",
+									"target": 2666,
+									"typeArguments": [
+										{
+											"type": "reference",
+											"target": 2616,
+											"name": "FilterableCurrencyProps",
+											"package": "@acmekit/types"
+										}
+									],
+									"name": "BaseFilterable",
+									"package": "@acmekit/types"
+								}
+							]
+						}
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"target": 2667,
+						"name": "BaseFilterable.$and"
+					}
+				},
+				{
+					"id": 2620,
+					"name": "$or",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true,
+						"isInherited": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An array of filters to apply on the entity, where each item in the array is joined with an \"or\" condition."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/dal/index.ts",
+							"line": 20,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "union",
+							"types": [
+								{
+									"type": "reference",
+									"target": 2616,
+									"name": "FilterableCurrencyProps",
+									"package": "@acmekit/types"
+								},
+								{
+									"type": "reference",
+									"target": 2666,
+									"typeArguments": [
+										{
+											"type": "reference",
+											"target": 2616,
+											"name": "FilterableCurrencyProps",
+											"package": "@acmekit/types"
+										}
+									],
+									"name": "BaseFilterable",
+									"package": "@acmekit/types"
+								}
+							]
+						}
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"target": 2668,
+						"name": "BaseFilterable.$or"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2617,
+						2618,
+						2619,
+						2620
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/currency/common/currency.ts",
+					"line": 44,
+					"character": 17
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"target": 2666,
+					"typeArguments": [
+						{
+							"type": "reference",
+							"target": 2616,
+							"name": "FilterableCurrencyProps",
+							"package": "@acmekit/types"
+						}
+					],
+					"name": "BaseFilterable",
+					"package": "@acmekit/types"
+				}
+			]
+		},
+		{
+			"id": 2540,
+			"name": "ICurrencyModuleService",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "The main service interface for the Currency Module."
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 2541,
+					"name": "retrieveCurrency",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "currency/service.ts",
+							"line": 23,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/currency/service.ts#L23"
+						}
+					],
+					"signatures": [
+						{
+							"id": 2542,
+							"name": "retrieveCurrency",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method retrieves a currency by its code and and optionally based on the provided configurations."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The retrieved currency."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nconst currency = await currencyModuleService.retrieveCurrency(\"usd\")\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "currency/service.ts",
+									"line": 23,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/currency/service.ts#L23"
+								}
+							],
+							"parameters": [
+								{
+									"id": 2543,
+									"name": "code",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The code of the currency to retrieve."
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 2544,
+									"name": "config",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The configurations determining how the currency is retrieved. Its properties, such as "
+											},
+											{
+												"kind": "code",
+												"text": "`select`"
+											},
+											{
+												"kind": "text",
+												"text": " or "
+											},
+											{
+												"kind": "code",
+												"text": "`relations`"
+											},
+											{
+												"kind": "text",
+												"text": ", accept the\nattributes or relations associated with a currency."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": 2583,
+										"typeArguments": [
+											{
+												"type": "reference",
+												"target": 2594,
+												"name": "CurrencyDTO",
+												"package": "@acmekit/types"
+											}
+										],
+										"name": "FindConfig",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 2545,
+									"name": "sharedContext",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "A context used to share resources, such as transaction manager, between the application and the module."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": 2599,
+										"name": "Context",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": 2594,
+										"name": "CurrencyDTO",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 2546,
+					"name": "listCurrencies",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "currency/service.ts",
+							"line": 63,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/currency/service.ts#L63"
+						}
+					],
+					"signatures": [
+						{
+							"id": 2547,
+							"name": "listCurrencies",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to retrieve a paginated list of currencies based on optional filters and configuration."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The list of currencies."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "To retrieve a list of currencies using their codes:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst currencies = await currencyModuleService.listCurrencies({\n  code: [\"usd\", \"eur\"],\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nBy default, only the first "
+											},
+											{
+												"kind": "code",
+												"text": "`15`"
+											},
+											{
+												"kind": "text",
+												"text": " records are retrieved. You can control pagination by specifying the "
+											},
+											{
+												"kind": "code",
+												"text": "`skip`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`take`"
+											},
+											{
+												"kind": "text",
+												"text": " properties of the "
+											},
+											{
+												"kind": "code",
+												"text": "`config`"
+											},
+											{
+												"kind": "text",
+												"text": " parameter:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst currencies = await currencyModuleService.listCurrencies(\n  {\n    code: [\"usd\", \"eur\"],\n  },\n  {\n    take: 20,\n    skip: 2,\n  }\n)\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "currency/service.ts",
+									"line": 63,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/currency/service.ts#L63"
+								}
+							],
+							"parameters": [
+								{
+									"id": 2548,
+									"name": "filters",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The filters to apply on the retrieved currencies."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": 2616,
+										"name": "FilterableCurrencyProps",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 2549,
+									"name": "config",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The configurations determining how the currencies are retrieved. Its properties, such as "
+											},
+											{
+												"kind": "code",
+												"text": "`select`"
+											},
+											{
+												"kind": "text",
+												"text": " or "
+											},
+											{
+												"kind": "code",
+												"text": "`relations`"
+											},
+											{
+												"kind": "text",
+												"text": ", accept the\nattributes or relations associated with a currency."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": 2583,
+										"typeArguments": [
+											{
+												"type": "reference",
+												"target": 2594,
+												"name": "CurrencyDTO",
+												"package": "@acmekit/types"
+											}
+										],
+										"name": "FindConfig",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 2550,
+									"name": "sharedContext",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "A context used to share resources, such as transaction manager, between the application and the module."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": 2599,
+										"name": "Context",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": 2594,
+											"name": "CurrencyDTO",
+											"package": "@acmekit/types"
+										}
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 2551,
+					"name": "listAndCountCurrencies",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "currency/service.ts",
+							"line": 105,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/currency/service.ts#L105"
+						}
+					],
+					"signatures": [
+						{
+							"id": 2552,
+							"name": "listAndCountCurrencies",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to retrieve a paginated list of currencies along with the total count of available currencies satisfying the provided filters."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The list of currencies along with the total count."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "To retrieve a list of currencies using their codes:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst [currencies, count] =\n  await currencyModuleService.listAndCountCurrencies({\n    code: [\"usd\", \"eur\"],\n  })\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nBy default, only the first "
+											},
+											{
+												"kind": "code",
+												"text": "`15`"
+											},
+											{
+												"kind": "text",
+												"text": " records are retrieved. You can control pagination by specifying the "
+											},
+											{
+												"kind": "code",
+												"text": "`skip`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`take`"
+											},
+											{
+												"kind": "text",
+												"text": " properties of the "
+											},
+											{
+												"kind": "code",
+												"text": "`config`"
+											},
+											{
+												"kind": "text",
+												"text": " parameter:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst [currencies, count] =\n  await currencyModuleService.listAndCountCurrencies(\n    {\n      code: [\"usd\", \"eur\"],\n    },\n    {\n      take: 20,\n      skip: 2,\n    }\n  )\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "currency/service.ts",
+									"line": 105,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/currency/service.ts#L105"
+								}
+							],
+							"parameters": [
+								{
+									"id": 2553,
+									"name": "filters",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The filters to apply on the retrieved currencies."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": 2616,
+										"name": "FilterableCurrencyProps",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 2554,
+									"name": "config",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The configurations determining how the currencies are retrieved. Its properties, such as "
+											},
+											{
+												"kind": "code",
+												"text": "`select`"
+											},
+											{
+												"kind": "text",
+												"text": " or "
+											},
+											{
+												"kind": "code",
+												"text": "`relations`"
+											},
+											{
+												"kind": "text",
+												"text": ", accept the\nattributes or relations associated with a currency."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": 2583,
+										"typeArguments": [
+											{
+												"type": "reference",
+												"target": 2594,
+												"name": "CurrencyDTO",
+												"package": "@acmekit/types"
+											}
+										],
+										"name": "FindConfig",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 2555,
+									"name": "sharedContext",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "A context used to share resources, such as transaction manager, between the application and the module."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": 2599,
+										"name": "Context",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "tuple",
+										"elements": [
+											{
+												"type": "array",
+												"elementType": {
+													"type": "reference",
+													"target": 2594,
+													"name": "CurrencyDTO",
+													"package": "@acmekit/types"
+												}
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"children": [
+						2541,
+						2546,
+						2551
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "currency/service.ts",
+					"line": 9,
+					"character": 17,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/currency/service.ts#L9"
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"target": 2569,
+					"name": "IModuleService",
+					"package": "@acmekit/types"
+				}
+			]
+		},
+		{
+			"id": 2666,
+			"name": "BaseFilterable",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "An object used to allow specifying flexible queries with and/or conditions."
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 2667,
+					"name": "$and",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An array of filters to apply on the entity, where each item in the array is joined with an \"and\" condition."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/dal/index.ts",
+							"line": 15,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "union",
+							"types": [
+								{
+									"type": "reference",
+									"target": 2666,
+									"typeArguments": [
+										{
+											"type": "reference",
+											"target": 2669,
+											"name": "T",
+											"package": "@acmekit/types",
+											"qualifiedName": "BaseFilterable.T",
+											"refersToTypeParameter": true
+										}
+									],
+									"name": "BaseFilterable",
+									"package": "@acmekit/types"
+								},
+								{
+									"type": "reference",
+									"target": 2669,
+									"name": "T",
+									"package": "@acmekit/types",
+									"qualifiedName": "BaseFilterable.T",
+									"refersToTypeParameter": true
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 2668,
+					"name": "$or",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An array of filters to apply on the entity, where each item in the array is joined with an \"or\" condition."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/dal/index.ts",
+							"line": 20,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "union",
+							"types": [
+								{
+									"type": "reference",
+									"target": 2666,
+									"typeArguments": [
+										{
+											"type": "reference",
+											"target": 2669,
+											"name": "T",
+											"package": "@acmekit/types",
+											"qualifiedName": "BaseFilterable.T",
+											"refersToTypeParameter": true
+										}
+									],
+									"name": "BaseFilterable",
+									"package": "@acmekit/types"
+								},
+								{
+									"type": "reference",
+									"target": 2669,
+									"name": "T",
+									"package": "@acmekit/types",
+									"qualifiedName": "BaseFilterable.T",
+									"refersToTypeParameter": true
+								}
+							]
+						}
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2667,
+						2668
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/dal/index.ts",
+					"line": 11,
+					"character": 17
+				}
+			],
+			"typeParameters": [
+				{
+					"id": 2669,
+					"name": "T",
+					"variant": "typeParam",
+					"kind": 131072,
+					"flags": {}
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"target": 2616,
+					"name": "FilterableCurrencyProps"
+				}
+			]
+		},
+		{
+			"id": 2738,
+			"name": "EventMetadata",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+					"line": 39,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "intersection",
+				"types": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Record"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "intrinsic",
+								"name": "unknown"
+							}
+						],
+						"name": "Record",
+						"package": "typescript"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 2739,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 2740,
+									"name": "eventGroupId",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The ID of the event's group. Grouped events are useful when you have distributed transactions\nwhere you need to explicitly group, release and clear events upon lifecycle events of a transaction.\n\nWhen set, you must release the grouped events using the Event Module's "
+											},
+											{
+												"kind": "code",
+												"text": "`releaseGroupedEvents`"
+											},
+											{
+												"kind": "text",
+												"text": " method to emit the events."
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+											"line": 46,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										2740
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 39,
+									"character": 54
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": 2732,
+			"name": "Event",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+					"line": 49,
+					"character": 12
+				}
+			],
+			"typeParameters": [
+				{
+					"id": 2737,
+					"name": "TData",
+					"variant": "typeParam",
+					"kind": 131072,
+					"flags": {},
+					"default": {
+						"type": "intrinsic",
+						"name": "unknown"
+					}
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 2733,
+					"name": "__type",
+					"variant": "declaration",
+					"kind": 65536,
+					"flags": {},
+					"children": [
+						{
+							"id": 2734,
+							"name": "name",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The event's name."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nuser.created\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 56,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2735,
+							"name": "metadata",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {
+								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Additional meadata to pass with the event."
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 60,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 2738,
+								"name": "EventMetadata",
+								"package": "@acmekit/types"
+							}
+						},
+						{
+							"id": 2736,
+							"name": "data",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The data payload that subscribers receive. For example, the ID or IDs of the created user. (e.g. { id: \"123\" } or { ids: [\"123\", \"456\"] })"
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 64,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 2737,
+								"name": "TData",
+								"package": "@acmekit/types",
+								"refersToTypeParameter": true
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"children": [
+								2734,
+								2735,
+								2736
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+							"line": 49,
+							"character": 37
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 2696,
+			"name": "Message",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "The details of an event to emit."
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+					"line": 70,
+					"character": 12
+				}
+			],
+			"typeParameters": [
+				{
+					"id": 2699,
+					"name": "TData",
+					"variant": "typeParam",
+					"kind": 131072,
+					"flags": {},
+					"default": {
+						"type": "intrinsic",
+						"name": "unknown"
+					}
+				}
+			],
+			"type": {
+				"type": "intersection",
+				"types": [
+					{
+						"type": "reference",
+						"target": 2732,
+						"typeArguments": [
+							{
+								"type": "reference",
+								"target": 2699,
+								"name": "TData",
+								"package": "@acmekit/types",
+								"refersToTypeParameter": true
+							}
+						],
+						"name": "Event",
+						"package": "@acmekit/types"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 2697,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 2698,
+									"name": "options",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+											"line": 71,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "unknown"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										2698
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 70,
+									"character": 54
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": 2707,
+			"name": "RawMessageFormat",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+					"line": 74,
+					"character": 12
+				}
+			],
+			"typeParameters": [
+				{
+					"id": 2716,
+					"name": "TData",
+					"variant": "typeParam",
+					"kind": 131072,
+					"flags": {},
+					"default": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 2708,
+					"name": "__type",
+					"variant": "declaration",
+					"kind": 65536,
+					"flags": {},
+					"children": [
+						{
+							"id": 2709,
+							"name": "eventName",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 75,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2710,
+							"name": "data",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 76,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 2716,
+								"name": "TData",
+								"package": "@acmekit/types",
+								"refersToTypeParameter": true
+							}
+						},
+						{
+							"id": 2711,
+							"name": "source",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 77,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2712,
+							"name": "object",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 78,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2713,
+							"name": "action",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 79,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2714,
+							"name": "context",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 80,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Pick"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": 2599,
+										"name": "Context",
+										"package": "@acmekit/types"
+									},
+									{
+										"type": "literal",
+										"value": "eventGroupId"
+									}
+								],
+								"name": "Pick",
+								"package": "typescript"
+							}
+						},
+						{
+							"id": 2715,
+							"name": "options",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+									"line": 81,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Record"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								],
+								"name": "Record",
+								"package": "typescript"
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"children": [
+								2709,
+								2710,
+								2711,
+								2712,
+								2713,
+								2714,
+								2715
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/event-bus/common.ts",
+							"line": 74,
+							"character": 44
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 2722,
+			"name": "JoinerRelationship",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+					"line": 3,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 2723,
+					"name": "__type",
+					"variant": "declaration",
+					"kind": 65536,
+					"flags": {},
+					"children": [
+						{
+							"id": 2724,
+							"name": "alias",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+									"line": 4,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2725,
+							"name": "foreignKey",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+									"line": 5,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2726,
+							"name": "primaryKey",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+									"line": 6,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2727,
+							"name": "serviceName",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+									"line": 7,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2728,
+							"name": "entity",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+									"line": 8,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 2729,
+							"name": "inverse",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {
+								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "In an inverted relationship the foreign key is on the other service and the primary key is on the current service"
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+									"line": 12,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						},
+						{
+							"id": 2730,
+							"name": "isList",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {
+								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Force the relationship to return a list"
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+									"line": 16,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						},
+						{
+							"id": 2731,
+							"name": "args",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {
+								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Extra arguments to pass to the remoteFetchData callback"
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+									"line": 20,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Record"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								],
+								"name": "Record",
+								"package": "typescript"
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"children": [
+								2724,
+								2725,
+								2726,
+								2727,
+								2728,
+								2729,
+								2730,
+								2731
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 3,
+							"character": 33
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 2717,
+			"name": "JoinerServiceConfigAlias",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"children": [
+				{
+					"id": 2718,
+					"name": "name",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 29,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
+							}
+						]
+					}
+				},
+				{
+					"id": 2719,
+					"name": "entity",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 30,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2720,
+					"name": "filterable",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 31,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				},
+				{
+					"id": 2721,
+					"name": "args",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Extra arguments to pass to the remoteFetchData callback"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 35,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Record"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "intrinsic",
+								"name": "any"
+							}
+						],
+						"name": "Record",
+						"package": "typescript"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2718,
+						2719,
+						2720,
+						2721
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+					"line": 28,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 2670,
+			"name": "JoinerServiceConfig",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"children": [
+				{
+					"id": 2671,
+					"name": "serviceName",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 39,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2672,
+					"name": "alias",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Property name to use as entrypoint to the service"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 43,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "reference",
+								"target": 2717,
+								"name": "JoinerServiceConfigAlias",
+								"package": "@acmekit/types"
+							},
+							{
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": 2717,
+									"name": "JoinerServiceConfigAlias",
+									"package": "@acmekit/types"
+								}
+							}
+						]
+					}
+				},
+				{
+					"id": 2673,
+					"name": "fieldAlias",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "alias for deeper nested relationships (e.g. { 'price': 'prices.calculated_price_set.amount' })"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 47,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Record"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "reflection",
+										"declaration": {
+											"id": 2674,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 2675,
+													"name": "path",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+															"line": 51,
+															"character": 8
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 2676,
+													"name": "forwardArgumentsOnPath",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+															"line": 52,
+															"character": 8
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														2675,
+														2676
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+													"line": 50,
+													"character": 6
+												}
+											]
+										}
+									}
+								]
+							}
+						],
+						"name": "Record",
+						"package": "typescript"
+					}
+				},
+				{
+					"id": 2677,
+					"name": "primaryKeys",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 55,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				},
+				{
+					"id": 2678,
+					"name": "relationships",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 56,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": 2722,
+							"name": "JoinerRelationship",
+							"package": "@acmekit/types"
+						}
+					}
+				},
+				{
+					"id": 2679,
+					"name": "extends",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 57,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reflection",
+							"declaration": {
+								"id": 2680,
+								"name": "__type",
+								"variant": "declaration",
+								"kind": 65536,
+								"flags": {},
+								"children": [
+									{
+										"id": 2681,
+										"name": "serviceName",
+										"variant": "declaration",
+										"kind": 1024,
+										"flags": {},
+										"sources": [
+											{
+												"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+												"line": 58,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									},
+									{
+										"id": 2682,
+										"name": "entity",
+										"variant": "declaration",
+										"kind": 1024,
+										"flags": {
+											"isOptional": true
+										},
+										"sources": [
+											{
+												"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+												"line": 59,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									},
+									{
+										"id": 2683,
+										"name": "relationship",
+										"variant": "declaration",
+										"kind": 1024,
+										"flags": {},
+										"sources": [
+											{
+												"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+												"line": 60,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "reference",
+											"target": 2722,
+											"name": "JoinerRelationship",
+											"package": "@acmekit/types"
+										}
+									}
+								],
+								"groups": [
+									{
+										"title": "Properties",
+										"children": [
+											2681,
+											2682,
+											2683
+										]
+									}
+								],
+								"sources": [
+									{
+										"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+										"line": 57,
+										"character": 12
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"id": 2684,
+					"name": "args",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Extra arguments to pass to the remoteFetchData callback"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+							"line": 65,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Record"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "intrinsic",
+								"name": "any"
+							}
+						],
+						"name": "Record",
+						"package": "typescript"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2671,
+						2672,
+						2673,
+						2677,
+						2678,
+						2679,
+						2684
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/joiner/index.ts",
+					"line": 38,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 2690,
+			"name": "LinkModulesExtraFields",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+					"line": 143,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+					"qualifiedName": "Record"
+				},
+				"typeArguments": [
+					{
+						"type": "intrinsic",
+						"name": "string"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 2691,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 2692,
+									"name": "type",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 146,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "literal",
+												"value": "date"
+											},
+											{
+												"type": "literal",
+												"value": "time"
+											},
+											{
+												"type": "literal",
+												"value": "datetime"
+											},
+											{
+												"type": "literal",
+												"value": "bigint"
+											},
+											{
+												"type": "literal",
+												"value": "blob"
+											},
+											{
+												"type": "literal",
+												"value": "uint8array"
+											},
+											{
+												"type": "literal",
+												"value": "array"
+											},
+											{
+												"type": "literal",
+												"value": "enumArray"
+											},
+											{
+												"type": "literal",
+												"value": "enum"
+											},
+											{
+												"type": "literal",
+												"value": "json"
+											},
+											{
+												"type": "literal",
+												"value": "integer"
+											},
+											{
+												"type": "literal",
+												"value": "smallint"
+											},
+											{
+												"type": "literal",
+												"value": "tinyint"
+											},
+											{
+												"type": "literal",
+												"value": "mediumint"
+											},
+											{
+												"type": "literal",
+												"value": "float"
+											},
+											{
+												"type": "literal",
+												"value": "double"
+											},
+											{
+												"type": "literal",
+												"value": "boolean"
+											},
+											{
+												"type": "literal",
+												"value": "decimal"
+											},
+											{
+												"type": "literal",
+												"value": "string"
+											},
+											{
+												"type": "literal",
+												"value": "uuid"
+											},
+											{
+												"type": "literal",
+												"value": "text"
+											}
+										]
+									}
+								},
+								{
+									"id": 2693,
+									"name": "defaultValue",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 168,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 2694,
+									"name": "nullable",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 169,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								},
+								{
+									"id": 2695,
+									"name": "options",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mikro-orm options for the column"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 173,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "unknown"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										2692,
+										2693,
+										2694,
+										2695
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+									"line": 145,
+									"character": 2
+								}
+							]
+						}
+					}
+				],
+				"name": "Record",
+				"package": "typescript"
+			}
+		},
+		{
+			"id": 2621,
+			"name": "ModuleJoinerConfig",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+					"line": 191,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "intersection",
+				"types": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Omit"
+						},
+						"typeArguments": [
+							{
+								"type": "reference",
+								"target": 2670,
+								"name": "JoinerServiceConfig",
+								"package": "@acmekit/types"
+							},
+							{
+								"type": "union",
+								"types": [
+									{
+										"type": "literal",
+										"value": "serviceName"
+									},
+									{
+										"type": "literal",
+										"value": "primaryKeys"
+									},
+									{
+										"type": "literal",
+										"value": "relationships"
+									},
+									{
+										"type": "literal",
+										"value": "extends"
+									}
+								]
+							}
+						],
+						"name": "Omit",
+						"package": "typescript"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 2622,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 2623,
+									"name": "schema",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "GraphQL schema for the all module's available entities and fields"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 198,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 2624,
+									"name": "idPrefixToEntityName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 199,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								},
+								{
+									"id": 2625,
+									"name": "relationships",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 200,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": 2685,
+											"name": "ModuleJoinerRelationship",
+											"package": "@acmekit/types"
+										}
+									}
+								},
+								{
+									"id": 2626,
+									"name": "extends",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 201,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reflection",
+											"declaration": {
+												"id": 2627,
+												"name": "__type",
+												"variant": "declaration",
+												"kind": 65536,
+												"flags": {},
+												"children": [
+													{
+														"id": 2628,
+														"name": "serviceName",
+														"variant": "declaration",
+														"kind": 1024,
+														"flags": {},
+														"sources": [
+															{
+																"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+																"line": 202,
+																"character": 4
+															}
+														],
+														"type": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													},
+													{
+														"id": 2629,
+														"name": "entity",
+														"variant": "declaration",
+														"kind": 1024,
+														"flags": {
+															"isOptional": true
+														},
+														"sources": [
+															{
+																"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+																"line": 203,
+																"character": 4
+															}
+														],
+														"type": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													},
+													{
+														"id": 2630,
+														"name": "fieldAlias",
+														"variant": "declaration",
+														"kind": 1024,
+														"flags": {
+															"isOptional": true
+														},
+														"sources": [
+															{
+																"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+																"line": 204,
+																"character": 4
+															}
+														],
+														"type": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+																"qualifiedName": "Record"
+															},
+															"typeArguments": [
+																{
+																	"type": "intrinsic",
+																	"name": "string"
+																},
+																{
+																	"type": "union",
+																	"types": [
+																		{
+																			"type": "intrinsic",
+																			"name": "string"
+																		},
+																		{
+																			"type": "reflection",
+																			"declaration": {
+																				"id": 2631,
+																				"name": "__type",
+																				"variant": "declaration",
+																				"kind": 65536,
+																				"flags": {},
+																				"children": [
+																					{
+																						"id": 2632,
+																						"name": "path",
+																						"variant": "declaration",
+																						"kind": 1024,
+																						"flags": {},
+																						"sources": [
+																							{
+																								"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+																								"line": 208,
+																								"character": 10
+																							}
+																						],
+																						"type": {
+																							"type": "intrinsic",
+																							"name": "string"
+																						}
+																					},
+																					{
+																						"id": 2633,
+																						"name": "forwardArgumentsOnPath",
+																						"variant": "declaration",
+																						"kind": 1024,
+																						"flags": {
+																							"isOptional": true
+																						},
+																						"sources": [
+																							{
+																								"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+																								"line": 209,
+																								"character": 10
+																							}
+																						],
+																						"type": {
+																							"type": "array",
+																							"elementType": {
+																								"type": "intrinsic",
+																								"name": "string"
+																							}
+																						}
+																					},
+																					{
+																						"id": 2634,
+																						"name": "isList",
+																						"variant": "declaration",
+																						"kind": 1024,
+																						"flags": {
+																							"isOptional": true
+																						},
+																						"sources": [
+																							{
+																								"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+																								"line": 210,
+																								"character": 10
+																							}
+																						],
+																						"type": {
+																							"type": "intrinsic",
+																							"name": "boolean"
+																						}
+																					}
+																				],
+																				"groups": [
+																					{
+																						"title": "Properties",
+																						"children": [
+																							2632,
+																							2633,
+																							2634
+																						]
+																					}
+																				],
+																				"sources": [
+																					{
+																						"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+																						"line": 207,
+																						"character": 8
+																					}
+																				]
+																			}
+																		}
+																	]
+																}
+															],
+															"name": "Record",
+															"package": "typescript"
+														}
+													},
+													{
+														"id": 2635,
+														"name": "relationship",
+														"variant": "declaration",
+														"kind": 1024,
+														"flags": {},
+														"sources": [
+															{
+																"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+																"line": 213,
+																"character": 4
+															}
+														],
+														"type": {
+															"type": "reference",
+															"target": {
+																"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+																"qualifiedName": "Omit"
+															},
+															"typeArguments": [
+																{
+																	"type": "reference",
+																	"target": 2685,
+																	"name": "ModuleJoinerRelationship",
+																	"package": "@acmekit/types"
+																},
+																{
+																	"type": "literal",
+																	"value": "hasMany"
+																}
+															],
+															"name": "Omit",
+															"package": "typescript"
+														}
+													}
+												],
+												"groups": [
+													{
+														"title": "Properties",
+														"children": [
+															2628,
+															2629,
+															2630,
+															2635
+														]
+													}
+												],
+												"sources": [
+													{
+														"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+														"line": 201,
+														"character": 12
+													}
+												]
+											}
+										}
+									}
+								},
+								{
+									"id": 2636,
+									"name": "serviceName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 215,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 2637,
+									"name": "primaryKeys",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 216,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								},
+								{
+									"id": 2638,
+									"name": "isLink",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "If the module is a link module"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 220,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								},
+								{
+									"id": 2639,
+									"name": "linkableKeys",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Keys that can be used to link to other modules. e.g { product_id: \"Product\" } \"Product\" being the entity it refers to"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 224,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								},
+								{
+									"id": 2640,
+									"name": "isReadOnlyLink",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "If true it expands a RemoteQuery property but doesn't create a pivot table"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 228,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								},
+								{
+									"id": 2641,
+									"name": "extraDataFields",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Fields that will be part of the link record aside from the primary keys that can be updated\nIf not explicitly defined, this array will be populated by databaseConfig.extraFields"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 233,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								},
+								{
+									"id": 2642,
+									"name": "databaseConfig",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 234,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 2643,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 2644,
+													"name": "tableName",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "Name of the pivot table. If not provided it is auto generated"
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+															"line": 238,
+															"character": 4
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 2645,
+													"name": "idPrefix",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "Prefix for the id column. If not provided it is \"link\""
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+															"line": 242,
+															"character": 4
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 2646,
+													"name": "extraFields",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"sources": [
+														{
+															"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+															"line": 243,
+															"character": 4
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": 2690,
+														"name": "LinkModulesExtraFields",
+														"package": "@acmekit/types"
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														2644,
+														2645,
+														2646
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+													"line": 234,
+													"character": 19
+												}
+											]
+										}
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										2623,
+										2624,
+										2625,
+										2626,
+										2636,
+										2637,
+										2638,
+										2639,
+										2640,
+										2641,
+										2642
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+									"line": 194,
+									"character": 4
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": 2685,
+			"name": "ModuleJoinerRelationship",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+					"line": 247,
+					"character": 20
+				}
+			],
+			"type": {
+				"type": "intersection",
+				"types": [
+					{
+						"type": "reference",
+						"target": 2722,
+						"name": "JoinerRelationship",
+						"package": "@acmekit/types"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 2686,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 2687,
+									"name": "deleteCascade",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "If true, the link joiner will cascade deleting the relationship"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 251,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								},
+								{
+									"id": 2688,
+									"name": "filterable",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The fields to be filterable by the Index module using query.index"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 256,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								},
+								{
+									"id": 2689,
+									"name": "hasMany",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Allow multiple relationships to exist for this\nentity"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 261,
+											"character": 2
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										2687,
+										2688,
+										2689
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+									"line": 247,
+									"character": 68
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": 2569,
+			"name": "IModuleService",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"children": [
+				{
+					"id": 2570,
+					"name": "__joinerConfig",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+							"line": 326,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 2571,
+							"name": "__joinerConfig",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [],
+								"modifierTags": [
+									"@ignore"
+								]
+							},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+									"line": 326,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 2621,
+								"name": "ModuleJoinerConfig",
+								"package": "@acmekit/types"
+							}
+						}
+					]
+				},
+				{
+					"id": 2572,
+					"name": "__hooks",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [],
+						"modifierTags": [
+							"@ignore"
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+							"line": 331,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 2573,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 2574,
+									"name": "onApplicationStart",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 332,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 2575,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+													"line": 332,
+													"character": 25
+												}
+											],
+											"signatures": [
+												{
+													"id": 2576,
+													"name": "__type",
+													"variant": "signature",
+													"kind": 4096,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+															"line": 332,
+															"character": 25
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+															"qualifiedName": "Promise"
+														},
+														"typeArguments": [
+															{
+																"type": "intrinsic",
+																"name": "void"
+															}
+														],
+														"name": "Promise",
+														"package": "typescript"
+													}
+												}
+											]
+										}
+									}
+								},
+								{
+									"id": 2577,
+									"name": "onApplicationShutdown",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 333,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 2578,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+													"line": 333,
+													"character": 28
+												}
+											],
+											"signatures": [
+												{
+													"id": 2579,
+													"name": "__type",
+													"variant": "signature",
+													"kind": 4096,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+															"line": 333,
+															"character": 28
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+															"qualifiedName": "Promise"
+														},
+														"typeArguments": [
+															{
+																"type": "intrinsic",
+																"name": "void"
+															}
+														],
+														"name": "Promise",
+														"package": "typescript"
+													}
+												}
+											]
+										}
+									}
+								},
+								{
+									"id": 2580,
+									"name": "onApplicationPrepareShutdown",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+											"line": 334,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 2581,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+													"line": 334,
+													"character": 35
+												}
+											],
+											"signatures": [
+												{
+													"id": 2582,
+													"name": "__type",
+													"variant": "signature",
+													"kind": 4096,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+															"line": 334,
+															"character": 35
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+															"qualifiedName": "Promise"
+														},
+														"typeArguments": [
+															{
+																"type": "intrinsic",
+																"name": "void"
+															}
+														],
+														"name": "Promise",
+														"package": "typescript"
+													}
+												}
+											]
+										}
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										2574,
+										2577,
+										2580
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+									"line": 331,
+									"character": 12
+								}
+							]
+						}
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2572
+					]
+				},
+				{
+					"title": "Methods",
+					"children": [
+						2570
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/modules-sdk/index.ts",
+					"line": 322,
+					"character": 17
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"target": 2540,
+					"name": "ICurrencyModuleService"
+				}
+			]
+		},
+		{
+			"id": 2700,
+			"name": "MessageAggregatorFormat",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"children": [
+				{
+					"id": 2701,
+					"name": "groupBy",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 5,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				},
+				{
+					"id": 2702,
+					"name": "sortBy",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 6,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 2703,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+									"line": 6,
+									"character": 11
+								}
+							],
+							"indexSignatures": [
+								{
+									"id": 2704,
+									"name": "__index",
+									"variant": "signature",
+									"kind": 8192,
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+											"line": 6,
+											"character": 13
+										}
+									],
+									"parameters": [
+										{
+											"id": 2705,
+											"name": "key",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										}
+									],
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											},
+											{
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "string"
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 2706,
+					"name": "internal",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "will prevent the info log to be displayed about those events"
+							}
+						],
+						"modifierTags": [
+							"@internal"
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 11,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2701,
+						2702,
+						2706
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+					"line": 4,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 2652,
+			"name": "IMessageAggregator",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"children": [
+				{
+					"id": 2653,
+					"name": "save",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 15,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 2654,
+							"name": "save",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+									"line": 15,
+									"character": 2
+								}
+							],
+							"parameters": [
+								{
+									"id": 2655,
+									"name": "msg",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "reference",
+												"target": 2696,
+												"name": "Message",
+												"package": "@acmekit/types"
+											},
+											{
+												"type": "array",
+												"elementType": {
+													"type": "reference",
+													"target": 2696,
+													"name": "Message",
+													"package": "@acmekit/types"
+												}
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 2656,
+					"name": "getMessages",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 16,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 2657,
+							"name": "getMessages",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+									"line": 16,
+									"character": 2
+								}
+							],
+							"parameters": [
+								{
+									"id": 2658,
+									"name": "format",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reference",
+										"target": 2700,
+										"name": "MessageAggregatorFormat",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Record"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": 2696,
+											"name": "Message",
+											"package": "@acmekit/types"
+										}
+									}
+								],
+								"name": "Record",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 2659,
+					"name": "clearMessages",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 17,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 2660,
+							"name": "clearMessages",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+									"line": 17,
+									"character": 2
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 2661,
+					"name": "saveRawMessageData",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 18,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 2662,
+							"name": "saveRawMessageData",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+									"line": 18,
+									"character": 2
+								}
+							],
+							"typeParameters": [
+								{
+									"id": 2663,
+									"name": "T",
+									"variant": "typeParam",
+									"kind": 131072,
+									"flags": {}
+								}
+							],
+							"parameters": [
+								{
+									"id": 2664,
+									"name": "messageData",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "reference",
+												"target": 2707,
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 2663,
+														"name": "T",
+														"package": "@acmekit/types",
+														"refersToTypeParameter": true
+													}
+												],
+												"name": "RawMessageFormat",
+												"package": "@acmekit/types"
+											},
+											{
+												"type": "array",
+												"elementType": {
+													"type": "reference",
+													"target": 2707,
+													"typeArguments": [
+														{
+															"type": "reference",
+															"target": 2663,
+															"name": "T",
+															"package": "@acmekit/types",
+															"refersToTypeParameter": true
+														}
+													],
+													"name": "RawMessageFormat",
+													"package": "@acmekit/types"
+												}
+											}
+										]
+									}
+								},
+								{
+									"id": 2665,
+									"name": "options",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "unknown"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"children": [
+						2653,
+						2656,
+						2659,
+						2661
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+					"line": 14,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 2599,
+			"name": "Context",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "A context used to share resources, such as transaction manager, between the application and the module."
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 2600,
+					"name": "__type",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 31,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": "AcmeKitContext"
+					}
+				},
+				{
+					"id": 2601,
+					"name": "transactionManager",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An instance of a transaction manager of type "
+							},
+							{
+								"kind": "code",
+								"text": "`TManager`"
+							},
+							{
+								"kind": "text",
+								"text": ", which is a typed parameter passed to the context to specify the type of the "
+							},
+							{
+								"kind": "code",
+								"text": "`transactionManager`"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 35,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": 2615,
+						"name": "TManager",
+						"package": "@acmekit/types",
+						"refersToTypeParameter": true
+					}
+				},
+				{
+					"id": 2602,
+					"name": "manager",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An instance of a manager, typically an entity manager, of type "
+							},
+							{
+								"kind": "code",
+								"text": "`TManager`"
+							},
+							{
+								"kind": "text",
+								"text": ", which is a typed parameter passed to the context to specify the type of the "
+							},
+							{
+								"kind": "code",
+								"text": "`manager`"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 39,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": 2615,
+						"name": "TManager",
+						"package": "@acmekit/types",
+						"refersToTypeParameter": true
+					}
+				},
+				{
+					"id": 2603,
+					"name": "isolationLevel",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A string indicating the isolation level of the context. Possible values are "
+							},
+							{
+								"kind": "code",
+								"text": "`READ UNCOMMITTED`"
+							},
+							{
+								"kind": "text",
+								"text": ", "
+							},
+							{
+								"kind": "code",
+								"text": "`READ COMMITTED`"
+							},
+							{
+								"kind": "text",
+								"text": ", "
+							},
+							{
+								"kind": "code",
+								"text": "`REPEATABLE READ`"
+							},
+							{
+								"kind": "text",
+								"text": ", or "
+							},
+							{
+								"kind": "code",
+								"text": "`SERIALIZABLE`"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 43,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2604,
+					"name": "enableNestedTransactions",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A boolean value indicating whether nested transactions are enabled."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 47,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 2605,
+					"name": "eventGroupId",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A string indicating the ID of the group to aggregate the events to be emitted at a later point."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 51,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2606,
+					"name": "transactionId",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A string indicating the ID of the current transaction."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 55,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2607,
+					"name": "runId",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A string indicating the ID of the current run."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 60,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2608,
+					"name": "messageAggregator",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "An instance of a message aggregator, which is used to aggregate messages to be emitted at a later point."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 65,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": 2652,
+						"name": "IMessageAggregator",
+						"package": "@acmekit/types"
+					}
+				},
+				{
+					"id": 2609,
+					"name": "requestId",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A string indicating the ID of the current request."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 70,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2610,
+					"name": "idempotencyKey",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A string indicating the idempotencyKey of the current workflow execution."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 75,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2611,
+					"name": "parentStepIdempotencyKey",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A string indicating the idempotencyKey of the parent workflow execution."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 80,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 2612,
+					"name": "preventReleaseEvents",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "preventReleaseEvents"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 85,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 2613,
+					"name": "isCancelling",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A boolean value indicating whether the current workflow execution is being cancelled."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 90,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 2614,
+					"name": "cancelingFromParentStep",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Weither or not a sub workflow cancellation is being triggered from a parent step.\nIf true, the parent step will not be triggered by the sub workflow."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+							"line": 96,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						2600,
+						2601,
+						2602,
+						2603,
+						2604,
+						2605,
+						2606,
+						2607,
+						2608,
+						2609,
+						2610,
+						2611,
+						2612,
+						2613,
+						2614
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "/Users/shahednasser/acmekit/packages/core/types/src/shared-context.ts",
+					"line": 30,
+					"character": 12
+				}
+			],
+			"typeParameters": [
+				{
+					"id": 2615,
+					"name": "TManager",
+					"variant": "typeParam",
+					"kind": 131072,
+					"flags": {},
+					"default": {
+						"type": "intrinsic",
+						"name": "unknown"
+					}
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Interfaces",
+			"children": [
+				2583,
+				2594,
+				2616,
+				2540,
+				2666,
+				2717,
+				2670,
+				2569,
+				2700,
+				2652,
+				2599
+			]
+		},
+		{
+			"title": "Type Aliases",
+			"children": [
+				2647,
+				2738,
+				2732,
+				2696,
+				2707,
+				2722,
+				2690,
+				2621,
+				2685
+			]
+		}
+	],
+	"packageName": "@acmekit/types",
+	"symbolIdMap": {
+		"2539": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": ""
+		},
+		"2540": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "ICurrencyModuleService"
+		},
+		"2541": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "ICurrencyModuleService.retrieveCurrency"
+		},
+		"2542": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "ICurrencyModuleService.retrieveCurrency"
+		},
+		"2543": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "code"
+		},
+		"2544": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "config"
+		},
+		"2545": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "sharedContext"
+		},
+		"2546": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "ICurrencyModuleService.listCurrencies"
+		},
+		"2547": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "ICurrencyModuleService.listCurrencies"
+		},
+		"2548": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "filters"
+		},
+		"2549": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "config"
+		},
+		"2550": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "sharedContext"
+		},
+		"2551": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "ICurrencyModuleService.listAndCountCurrencies"
+		},
+		"2552": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "ICurrencyModuleService.listAndCountCurrencies"
+		},
+		"2553": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "filters"
+		},
+		"2554": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "config"
+		},
+		"2555": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/service.ts",
+			"qualifiedName": "sharedContext"
+		},
+		"2569": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "IModuleService"
+		},
+		"2570": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "IModuleService.__joinerConfig"
+		},
+		"2571": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "IModuleService.__joinerConfig"
+		},
+		"2572": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "IModuleService.__hooks"
+		},
+		"2573": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2574": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.onApplicationStart"
+		},
+		"2575": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2576": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2577": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.onApplicationShutdown"
+		},
+		"2578": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2579": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2580": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.onApplicationPrepareShutdown"
+		},
+		"2581": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2582": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2583": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig"
+		},
+		"2584": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.select"
+		},
+		"2585": {
+			"sourceFileName": "",
+			"qualifiedName": "__type"
+		},
+		"2586": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.skip"
+		},
+		"2587": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.take"
+		},
+		"2588": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.relations"
+		},
+		"2589": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.order"
+		},
+		"2590": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.withDeleted"
+		},
+		"2591": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.filters"
+		},
+		"2592": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.options"
+		},
+		"2593": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfig.Entity"
+		},
+		"2594": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/common/currency.ts",
+			"qualifiedName": "CurrencyDTO"
+		},
+		"2595": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/common/currency.ts",
+			"qualifiedName": "CurrencyDTO.code"
+		},
+		"2596": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/common/currency.ts",
+			"qualifiedName": "CurrencyDTO.symbol"
+		},
+		"2597": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/common/currency.ts",
+			"qualifiedName": "CurrencyDTO.symbol_native"
+		},
+		"2598": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/common/currency.ts",
+			"qualifiedName": "CurrencyDTO.name"
+		},
+		"2599": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "Context"
+		},
+		"2600": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.__type"
+		},
+		"2601": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.transactionManager"
+		},
+		"2602": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.manager"
+		},
+		"2603": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.isolationLevel"
+		},
+		"2604": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.enableNestedTransactions"
+		},
+		"2605": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.eventGroupId"
+		},
+		"2606": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.transactionId"
+		},
+		"2607": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.runId"
+		},
+		"2608": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.messageAggregator"
+		},
+		"2609": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.requestId"
+		},
+		"2610": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.idempotencyKey"
+		},
+		"2611": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.parentStepIdempotencyKey"
+		},
+		"2612": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.preventReleaseEvents"
+		},
+		"2613": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.isCancelling"
+		},
+		"2614": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.cancelingFromParentStep"
+		},
+		"2615": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "TManager"
+		},
+		"2616": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/common/currency.ts",
+			"qualifiedName": "FilterableCurrencyProps"
+		},
+		"2617": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/common/currency.ts",
+			"qualifiedName": "FilterableCurrencyProps.q"
+		},
+		"2618": {
+			"sourceFileName": "../../../../packages/core/types/src/currency/common/currency.ts",
+			"qualifiedName": "FilterableCurrencyProps.code"
+		},
+		"2619": {
+			"sourceFileName": "../../../../packages/core/types/src/dal/index.ts",
+			"qualifiedName": "BaseFilterable.$and"
+		},
+		"2620": {
+			"sourceFileName": "../../../../packages/core/types/src/dal/index.ts",
+			"qualifiedName": "BaseFilterable.$or"
+		},
+		"2621": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "ModuleJoinerConfig"
+		},
+		"2622": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2623": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.schema"
+		},
+		"2624": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.idPrefixToEntityName"
+		},
+		"2625": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.relationships"
+		},
+		"2626": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.extends"
+		},
+		"2627": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2628": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.serviceName"
+		},
+		"2629": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.entity"
+		},
+		"2630": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.fieldAlias"
+		},
+		"2631": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2632": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.path"
+		},
+		"2633": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.forwardArgumentsOnPath"
+		},
+		"2634": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.isList"
+		},
+		"2635": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.relationship"
+		},
+		"2636": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.serviceName"
+		},
+		"2637": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.primaryKeys"
+		},
+		"2638": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.isLink"
+		},
+		"2639": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.linkableKeys"
+		},
+		"2640": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.isReadOnlyLink"
+		},
+		"2641": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.extraDataFields"
+		},
+		"2642": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.databaseConfig"
+		},
+		"2643": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2644": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.tableName"
+		},
+		"2645": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.idPrefix"
+		},
+		"2646": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.extraFields"
+		},
+		"2647": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "FindConfigOrder"
+		},
+		"2648": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "__type"
+		},
+		"2649": {
+			"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+			"qualifiedName": "__type.__index"
+		},
+		"2651": {
+			"sourceFileName": "",
+			"qualifiedName": "__type"
+		},
+		"2652": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator"
+		},
+		"2653": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator.save"
+		},
+		"2654": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator.save"
+		},
+		"2655": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "msg"
+		},
+		"2656": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator.getMessages"
+		},
+		"2657": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator.getMessages"
+		},
+		"2658": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "format"
+		},
+		"2659": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator.clearMessages"
+		},
+		"2660": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator.clearMessages"
+		},
+		"2661": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator.saveRawMessageData"
+		},
+		"2662": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "IMessageAggregator.saveRawMessageData"
+		},
+		"2663": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "T"
+		},
+		"2664": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "messageData"
+		},
+		"2665": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "options"
+		},
+		"2666": {
+			"sourceFileName": "../../../../packages/core/types/src/dal/index.ts",
+			"qualifiedName": "BaseFilterable"
+		},
+		"2667": {
+			"sourceFileName": "../../../../packages/core/types/src/dal/index.ts",
+			"qualifiedName": "BaseFilterable.$and"
+		},
+		"2668": {
+			"sourceFileName": "../../../../packages/core/types/src/dal/index.ts",
+			"qualifiedName": "BaseFilterable.$or"
+		},
+		"2669": {
+			"sourceFileName": "../../../../packages/core/types/src/dal/index.ts",
+			"qualifiedName": "BaseFilterable.T"
+		},
+		"2670": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfig"
+		},
+		"2671": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfig.serviceName"
+		},
+		"2672": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfig.alias"
+		},
+		"2673": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfig.fieldAlias"
+		},
+		"2674": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2675": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.path"
+		},
+		"2676": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.forwardArgumentsOnPath"
+		},
+		"2677": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfig.primaryKeys"
+		},
+		"2678": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfig.relationships"
+		},
+		"2679": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfig.extends"
+		},
+		"2680": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2681": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.serviceName"
+		},
+		"2682": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.entity"
+		},
+		"2683": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.relationship"
+		},
+		"2684": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfig.args"
+		},
+		"2685": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "ModuleJoinerRelationship"
+		},
+		"2686": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2687": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.deleteCascade"
+		},
+		"2688": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.filterable"
+		},
+		"2689": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.hasMany"
+		},
+		"2690": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "LinkModulesExtraFields"
+		},
+		"2691": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2692": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.type"
+		},
+		"2693": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.defaultValue"
+		},
+		"2694": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.nullable"
+		},
+		"2695": {
+			"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+			"qualifiedName": "__type.options"
+		},
+		"2696": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "Message"
+		},
+		"2697": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type"
+		},
+		"2698": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.options"
+		},
+		"2699": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "TData"
+		},
+		"2700": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "MessageAggregatorFormat"
+		},
+		"2701": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "MessageAggregatorFormat.groupBy"
+		},
+		"2702": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "MessageAggregatorFormat.sortBy"
+		},
+		"2703": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type"
+		},
+		"2704": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "__type.__index"
+		},
+		"2706": {
+			"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+			"qualifiedName": "MessageAggregatorFormat.internal"
+		},
+		"2707": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "RawMessageFormat"
+		},
+		"2708": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type"
+		},
+		"2709": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.eventName"
+		},
+		"2710": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.data"
+		},
+		"2711": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.source"
+		},
+		"2712": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.object"
+		},
+		"2713": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.action"
+		},
+		"2714": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.context"
+		},
+		"2715": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.options"
+		},
+		"2716": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "TData"
+		},
+		"2717": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfigAlias"
+		},
+		"2718": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfigAlias.name"
+		},
+		"2719": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfigAlias.entity"
+		},
+		"2720": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfigAlias.filterable"
+		},
+		"2721": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerServiceConfigAlias.args"
+		},
+		"2722": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "JoinerRelationship"
+		},
+		"2723": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type"
+		},
+		"2724": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.alias"
+		},
+		"2725": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.foreignKey"
+		},
+		"2726": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.primaryKey"
+		},
+		"2727": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.serviceName"
+		},
+		"2728": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.entity"
+		},
+		"2729": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.inverse"
+		},
+		"2730": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.isList"
+		},
+		"2731": {
+			"sourceFileName": "../../../../packages/core/types/src/joiner/index.ts",
+			"qualifiedName": "__type.args"
+		},
+		"2732": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "Event"
+		},
+		"2733": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type"
+		},
+		"2734": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.name"
+		},
+		"2735": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.metadata"
+		},
+		"2736": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.data"
+		},
+		"2737": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "TData"
+		},
+		"2738": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "EventMetadata"
+		},
+		"2739": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type"
+		},
+		"2740": {
+			"sourceFileName": "../../../../packages/core/types/src/event-bus/common.ts",
+			"qualifiedName": "__type.eventGroupId"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/types/src/currency/service.ts"
+		},
+		"reflections": {
+			"1": 2539
+		}
+	}
+}

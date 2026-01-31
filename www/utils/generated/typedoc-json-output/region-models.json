@@ -1,0 +1,976 @@
+{
+	"id": 14894,
+	"name": "region-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"text": "## Relations Overview\n\n",
+				"kind": "text"
+			},
+			{
+				"text": "```mermaid\nerDiagram\n\tRegion ||--|| Country : countries\n\n```",
+				"kind": "code"
+			}
+		]
+	},
+	"children": [
+		{
+			"id": 14895,
+			"name": "Country",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "country.ts",
+					"line": 4,
+					"character": 0,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14896,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14897,
+											"name": "iso_2",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ISO 2-character code of the country"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "country.ts",
+													"line": 8,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+															"qualifiedName": "TextProperty"
+														},
+														"name": "TextProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14898,
+											"name": "iso_3",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ISO 3-character code of the country"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "country.ts",
+													"line": 9,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14899,
+											"name": "num_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ISO numeric code of the country"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "country.ts",
+													"line": 10,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14900,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the country"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "country.ts",
+													"line": 11,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14901,
+											"name": "display_name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The display name of the country"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "country.ts",
+													"line": 12,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14902,
+											"name": "region",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The region it belongs to."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "country.ts",
+													"line": 13,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14929,
+														"name": "Region"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14925,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "country.ts",
+													"line": 16,
+													"character": 6,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14897,
+												14898,
+												14899,
+												14900,
+												14901,
+												14902,
+												14925
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "country.ts",
+											"line": 7,
+											"character": 4,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L7"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 14926,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 14927,
+									"name": "name",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "country.ts",
+											"line": 6,
+											"character": 6,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L6"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "Country"
+									},
+									"defaultValue": "\"Country\""
+								},
+								{
+									"id": 14928,
+									"name": "tableName",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"sources": [
+										{
+											"fileName": "country.ts",
+											"line": 6,
+											"character": 23,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L6"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "region_country"
+									},
+									"defaultValue": "\"region_country\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										14927,
+										14928
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "country.ts",
+									"line": 6,
+									"character": 4,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/country.ts#L6"
+								}
+							]
+						}
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			}
+		},
+		{
+			"id": 14929,
+			"name": "Region",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "region.ts",
+					"line": 4,
+					"character": 0,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/region.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 14930,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 14931,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the region."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "region.ts",
+													"line": 5,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/region.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14932,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the region"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "region.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/region.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14933,
+											"name": "currency_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ISO 3-character currency code of the region"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "region.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/region.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14934,
+											"name": "automatic_taxes",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether taxes are calculated automatically during checkout in the region."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "region.ts",
+													"line": 8,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/region.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14935,
+											"name": "countries",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The countries that belong to the region."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "region.ts",
+													"line": 9,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/region.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 14895,
+														"name": "Country"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 14953,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "region.ts",
+													"line": 10,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/region.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												14931,
+												14932,
+												14933,
+												14934,
+												14935,
+												14953
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "region.ts",
+											"line": 4,
+											"character": 38,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/region/src/models/region.ts#L4"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "region"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			}
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				14895,
+				14929
+			]
+		}
+	],
+	"packageName": "@acmekit/region",
+	"symbolIdMap": {
+		"14894": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"14895": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "default"
+		},
+		"14896": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object"
+		},
+		"14897": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.iso_2"
+		},
+		"14898": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.iso_3"
+		},
+		"14899": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.num_code"
+		},
+		"14900": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14901": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.display_name"
+		},
+		"14902": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.region"
+		},
+		"14903": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__function"
+		},
+		"14904": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__function"
+		},
+		"14905": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object"
+		},
+		"14906": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14907": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14908": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14909": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.automatic_taxes"
+		},
+		"14910": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.countries"
+		},
+		"14911": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__function"
+		},
+		"14912": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__function"
+		},
+		"14913": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"14914": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__function"
+		},
+		"14915": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__function"
+		},
+		"14916": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object"
+		},
+		"14917": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14918": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14919": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14920": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.automatic_taxes"
+		},
+		"14921": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.countries"
+		},
+		"14922": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__function"
+		},
+		"14923": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__function"
+		},
+		"14924": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"14925": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"14926": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object"
+		},
+		"14927": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14928": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14929": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "default"
+		},
+		"14930": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object"
+		},
+		"14931": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.id"
+		},
+		"14932": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14933": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.currency_code"
+		},
+		"14934": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.automatic_taxes"
+		},
+		"14935": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.countries"
+		},
+		"14936": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__function"
+		},
+		"14937": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__function"
+		},
+		"14938": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object"
+		},
+		"14939": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.iso_2"
+		},
+		"14940": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.iso_3"
+		},
+		"14941": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.num_code"
+		},
+		"14942": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14943": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.display_name"
+		},
+		"14944": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.region"
+		},
+		"14945": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__function"
+		},
+		"14946": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__function"
+		},
+		"14947": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__function"
+		},
+		"14948": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__function"
+		},
+		"14949": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"14950": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object"
+		},
+		"14951": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.name"
+		},
+		"14952": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/country.ts",
+			"qualifiedName": "__object.tableName"
+		},
+		"14953": {
+			"sourceFileName": "../../../../packages/modules/region/src/models/region.ts",
+			"qualifiedName": "__object.metadata"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/region/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 14894
+		}
+	}
+}

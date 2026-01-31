@@ -1,0 +1,775 @@
+---
+sidebar_label: "Integrate Segment"
+tags:
+    - server
+    - tutorial
+    - analytics
+products:
+  - order
+---
+
+import { Card, Prerequisites, Details, WorkflowDiagram } from "docs-ui"
+import { Github, PlaySolid } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Integrate Segment (Analytics) with Medusa`,
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to integrate Segment with Medusa to track events and analytics.
+
+When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. Medusa's architecture facilitates integrating third-party services to customize Medusa's infrastructure for your business needs.
+
+To track analytics in your Medusa application, you can integrate [Segment](https://segment.com/), a service that collects analytics from multiple sources and sends them to various destinations. This tutorial will help you set up Segment in your Medusa application and track common events.
+
+## Summary
+
+By following this tutorial, you'll learn how to:
+
+- Install and set up Medusa.
+- Integrate Segment with your Medusa application.
+- Handle Medusa's `order.placed` event to track order placements.
+- Track custom events in your Medusa application with Segment.
+
+You can follow this tutorial whether you're new to Medusa or an advanced Medusa developer.
+
+![Diagram showcasing the integration of Segment with Medusa](https://res.cloudinary.com/dza7lstvk/image/upload/v1748264333/Medusa%20Book/segment-overview_apkrtp.jpg)
+
+<Card
+  title="Example Repository"
+  text="Find the full code of the guide in this repository."
+  href="https://github.com/medusajs/examples/tree/main/segment-integration"
+  icon={Github}
+/>
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Start by installing the Medusa application on your machine with the following command:
+
+```bash
+npx create-medusa-app@latest
+```
+
+First, you'll be asked for the project's name. Then, when prompted about installing the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx), choose "Yes."
+
+Afterwards, the installation process will start, which will install the Medusa application in a directory with your project's name and the Next.js Starter Storefront in a separate directory named `{project-name}-storefront`.
+
+<Note title="Why is the storefront installed separately?">
+
+The Medusa application is composed of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Afterwards, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors?">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Create Segment Module Provider
+
+To integrate third-party services into Medusa, you create a custom module. A module is a reusable package with functionalities related to a single feature or domain.
+
+Medusa's [Analytics Module](../../../infrastructure-modules/analytics/page.mdx) provides an interface to track events in your Medusa application. It delegates the actual tracking to the configured Analytics Module Provider.
+
+In this step, you'll integrate Segment as an Analytics Module Provider. Later, you'll use it to track events in your Medusa application.
+
+<Note>
+
+Refer to the [Modules](!docs!/learn/fundamentals/modules) documentation to learn more about modules in Medusa.
+
+</Note>
+
+### a. Install Segment Node SDK
+
+Before you create the Segment Module Provider, you'll install the Segment Node SDK to interact with Segment's API.
+
+Run the following command in your Medusa application's directory:
+
+```bash npm2yarn
+npm install @segment/analytics-node
+```
+
+You'll use the SDK in the next steps.
+
+### b. Create Module Directory
+
+A module is created under the `src/modules` directory of your Medusa application. So, create the directory `src/modules/segment`.
+
+### c. Create Segment Module's Service
+
+A module has a service that contains its logic. For Analytics Module Providers, the service implements the logic to track events in the third-party service.
+
+To create the service of the Segment Analytics Module Provider, create the file `src/modules/segment/service.ts` with the following content:
+
+export const serviceHighlights = [
+  ["7", "Options", "Options passed to the module provider."],
+  ["13", "AbstractAnalyticsProviderService", "Analytics Module Provider must extend this class."],
+  ["15", "identifier", "Unique identifier of the module provider."],
+  ["25", "client", "Initialize Segment client with the write key."]
+]
+
+```ts title="src/modules/segment/service.ts" highlights={serviceHighlights}
+import { 
+  AbstractAnalyticsProviderService,
+  MedusaError,
+} from "@medusajs/framework/utils"
+import { Analytics } from "@segment/analytics-node"
+
+type Options = {
+  writeKey: string
+}
+
+type InjectedDependencies = {}
+
+class SegmentAnalyticsProviderService extends AbstractAnalyticsProviderService {
+  private client: Analytics
+  static identifier = "segment"
+
+  constructor(container: InjectedDependencies, options: Options) {
+    super()
+    if (!options.writeKey) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "Segment write key is required"
+      )
+    }
+    this.client = new Analytics({ writeKey: options.writeKey })
+  }
+}
+
+export default SegmentAnalyticsProviderService
+```
+
+An Analytics Module Provider's service must extend the `AbstractAnalyticsProviderService` class. It must also have an `identifier` static property with the unique identifier of the provider.
+
+A module provider's constructor receives two parameters:
+
+- `container`: The [module's container](!docs!/learn/fundamentals/modules/container) that contains Framework resources available to the module. In this tutorial, you don't need to resolve any resources.
+- `options`: Options that are passed to the module provider when it's registered in Medusa's configurations. You define the following option:
+    - `writeKey`: The Segment write key. You'll learn how to retrieve and set this option in the [Add Module Provider to Medusa's Configurations](#h-add-module-provider-to-medusas-configurations) section.
+
+In the constructor, you create a Segment client using the Segment Node SDK. You pass the `writeKey` option to the client.
+
+You'll use this client to implement the service's methods in the next sections.
+
+<Note>
+
+Refer to the [Create Analytics Module Provider](/references/analytics/provider) guide for detailed information about the methods.
+
+</Note>
+
+### d. Implement identify Method
+
+The `identify` method is used to identify a user in Segment. It associates the user's ID with their profile information, such as name and email.
+
+Add the `identify` method to the `SegmentAnalyticsProviderService` class:
+
+```ts title="src/modules/segment/service.ts"
+// other imports...
+import { ProviderIdentifyAnalyticsEventDTO } from "@medusajs/types"
+
+class SegmentAnalyticsProviderService extends AbstractAnalyticsProviderService {
+  // ...
+  async identify(data: ProviderIdentifyAnalyticsEventDTO): Promise<void> {
+    const anonymousId = data.properties && "anonymousId" in data.properties ? 
+      data.properties.anonymousId : undefined
+    const traits = data.properties && "traits" in data.properties ? 
+        data.properties.traits : undefined
+
+    if ("group" in data) {
+      this.client.group({
+        groupId: data.group.id,
+        userId: data.actor_id,
+        anonymousId,
+        traits,
+        context: data.properties,
+      })
+    } else {
+      this.client.identify({
+        userId: data.actor_id,
+        anonymousId,
+        traits,
+        context: data.properties,
+      })
+    }
+  }
+}
+```
+
+#### Parameters
+
+The `identify` method receives an object with the following properties:
+
+- `actor_id`: The ID of the user being identified.
+- `group`: Alternatively, the group being identified. If this property is present, the `actor_id` is ignored.
+- `properties`: Additional properties to associate with the user or group. This can include traits like name, email, and so on.
+
+<Note>
+
+The method receives other parameters, which you can find in the [Create Analytics Module Provider](/references/analytics/provider#identify) guide.
+
+</Note>
+
+#### Method Logic
+
+In the method, if the `group` property is present, you call the `group` method of the Segment client to identify a group. Otherwise, you call the `identify` method to identify a user.
+
+For both methods, you extract the `anonymousId` and `traits` from the `properties` object if they are present. You also pass the `actor_id` as the `userId`, and `group.id` for groups.
+
+### e. Implement track Method
+
+The `track` method is used to track events in Segment. It can track events like order placements, cart updates, and more.
+
+Add the `track` method to the `SegmentAnalyticsProviderService` class:
+
+```ts title="src/modules/segment/service.ts"
+// other imports...
+import { ProviderTrackAnalyticsEventDTO } from "@medusajs/types"
+
+class SegmentAnalyticsProviderService extends AbstractAnalyticsProviderService {
+  // ...
+  async track(data: ProviderTrackAnalyticsEventDTO): Promise<void> {
+    const userId = "group" in data ? 
+      data.actor_id || data.group?.id : data.actor_id
+    const anonymousId = data.properties && "anonymousId" in data.properties ? 
+      data.properties.anonymousId : undefined
+
+    if (!userId && !anonymousId) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA, 
+        `Actor or group ID is required for event ${data.event}`
+      )
+    }
+
+    this.client.track({
+      userId,
+      anonymousId,
+      event: data.event,
+      properties: data.properties,
+      timestamp: data.properties && "timestamp" in data.properties ? 
+        new Date(data.properties.timestamp) : undefined,
+    })
+  }
+}
+```
+
+#### Parameters
+
+The `track` method receives an object with the following properties:
+
+- `actor_id`: The ID of the user performing the event.
+- `group`: Alternatively, the group performing the event. If this property is present, the `actor_id` is ignored.
+- `event`: The name of the event being tracked.
+- `properties`: Additional properties associated with the event. This can include details like product ID, order ID, and so on.
+
+<Note>
+
+The method receives other parameters, which you can find in the [Create Analytics Module Provider](/references/analytics/provider#track) guide.
+
+</Note>
+
+#### Method Logic
+
+In the method, you set the user ID either to the actor or group ID. You also check if the anonymous ID is present in the properties to use it.
+
+Next, you call the `track` method of the Segment client, passing it the user ID, anonymous ID, event name, properties, and timestamp (if present in the properties).
+
+### f. Implement shutdown Method
+
+The `shutdown` method is used to gracefully shut down the Segment client when the Medusa application is stopped. It allows you to send all pending events to Segment before the application exits.
+
+Add the following method to the `SegmentAnalyticsProviderService` class:
+
+```ts title="src/modules/segment/service.ts"
+class SegmentAnalyticsProviderService extends AbstractAnalyticsProviderService {
+  // ...
+  async shutdown(): Promise<void> {
+    await this.client.flush({
+      close: true,
+    })
+  }
+}
+```
+
+#### Method Logic
+
+In the method, you call the `flush` method of the Segment client with the `close` option set to `true`. This method will send all pending events to Segment and close the client connection.
+
+### g. Export Module Definition
+
+You've now finished implementing the necessary methods for the Segment Analytics Module Provider.
+
+The final piece to a module is its definition, which you export in an `index.ts` file at the module's root directory. This definition tells Medusa the module's details, including its service.
+
+To create the module's definition, create the file `src/modules/segment/index.ts` with the following content:
+
+```ts title="src/modules/segment/index.ts"
+import SegmentAnalyticsProviderService from "./service"
+import { 
+  ModuleProvider, 
+  Modules,
+} from "@medusajs/framework/utils"
+
+export default ModuleProvider(Modules.ANALYTICS, {
+  services: [SegmentAnalyticsProviderService],
+})
+```
+
+You use `ModuleProvider` from the Modules SDK to create the module provider's definition. It accepts two parameters:
+
+1. The name of the module that this provider belongs to, which is `Modules.ANALYTICS` in this case.
+2. An object with a required property `services` indicating the Module Provider's services.
+
+### h. Add Module Provider to Medusa's Configurations
+
+Once you finish building the module, add it to Medusa's configurations to start using it.
+
+In `medusa-config.ts`, add a `modules` property:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "@medusajs/medusa/analytics",
+      options: {
+        providers: [
+          {
+            resolve: "./src/modules/segment",
+            id: "segment",
+            options: {
+              writeKey: process.env.SEGMENT_WRITE_KEY || "",
+            },
+          },
+        ],
+      },
+    },
+  ],
+})
+```
+
+To pass an Analytics Module Provider to the Analytics Module, you add the `modules` property to the Medusa configuration and pass the Analytics Module in its value.
+
+The Analytics Module accepts a `providers` option, which is an array of Analytics Module Providers to register. However, you can only register one analytics provider in your Medusa application.
+
+To register the Segment Analytics Module Provider, you add an object to the `providers` array with the following properties:
+
+- `resolve`: The NPM package or path to the module provider. In this case, it's the path to the `src/modules/segment` directory.
+- `id`: The ID of the module provider. The Analytics Module Provider is then registered with the ID `aly_{identifier}_{id}`, where:
+    - `{identifier}`: The identifier static property defined in the Module Provider's service, which is `segment` in this case.
+    - `{id}`: The ID set in this configuration, which is also `segment` in this case.
+- `options`: The options to pass to the module provider. These are the options you defined in the `Options` interface of the module provider's service.
+
+### i. Set Option as Environment Variable
+
+Next, you'll set the Segment write key as an environment variable.
+
+To retrieve the Segment write key:
+
+1. Log into your [Segment](https://app.segment.com) account.
+2. Go to the Connections page and click the "Add More" button next to the "Sources" section.
+
+![Add more button in the Connections page](https://res.cloudinary.com/dza7lstvk/image/upload/v1748254988/Medusa%20Book/CleanShot_2025-05-26_at_10.47.24_2x_qqlkwk.png)
+
+3. In the "Choose a Source" step, select "Node.js" and click the "Next" button.
+
+![Select Node.js as the Source](https://res.cloudinary.com/dza7lstvk/image/upload/v1748255028/Medusa%20Book/CleanShot_2025-05-26_at_10.47.57_2x_zy9g8k.png)
+
+4. In the "Connect your Node.js Source" step, enter a name for the source and click the "Create Source" button. This will show you the write key to copy.
+
+![Copy the write key](https://res.cloudinary.com/dza7lstvk/image/upload/v1748255065/Medusa%20Book/CleanShot_2025-05-26_at_10.48.41_2x_lpgsbb.png)
+
+You can skip the next step of testing out the source for now.
+
+Then, add the following environment variable to your `.env` file:
+
+```shell
+SEGMENT_WRITE_KEY=123...
+```
+
+Replace `123...` with the write key you copied from Segment.
+
+You'll test out the integration as you set up event tracking in the next steps.
+
+---
+
+## Step 3: Track Order Placement Event
+
+You'll first track the order-placement event, which is triggered natively in the Medusa application.
+
+Medusa's events system allows you to listen to events triggered by the Medusa application and execute custom logic asynchronously in a [subscriber](!docs!/learn/fundamentals/events-and-subscribers).
+
+In the subscriber, you execute functionalities created in [workflows](!docs!/learn/fundamentals/workflows). A workflow is a series of actions, called steps, that complete a task.
+
+In this step, you'll create a workflow that tracks the `order.placed` event in Segment. Then, you'll create a subscriber that listens to this event and executes the workflow.
+
+### a. Create Track Event Step
+
+Before you create the workflow, you'll create a step that tracks an event in Segment. Later, you'll use this step in the workflows that track events, such as the order-placement event.
+
+To create a step, create the file `src/workflows/steps/track-event.ts` with the following content:
+
+export const stepHighlights = [
+  ["4", "event", "The name of the event to track."],
+  ["5", "userId", "The ID of the user performing the event."],
+  ["6", "properties", "Additional properties associated with the event."],
+  ["7", "timestamp", "The timestamp of the event."],
+  ["13", "analyticsModuleService", "Resolve the Analytics Module's service from the Medusa container."],
+  ["21", "anonymousId", "Set a random ID if no user ID is passed."],
+  ["26", "track", "Track the event in Segment."]
+]
+
+```ts title="src/workflows/steps/track-event.ts" highlights={stepHighlights}
+import { createStep } from "@medusajs/framework/workflows-sdk"
+
+type TrackEventStepInput = {
+  event: string
+  userId?: string
+  properties?: Record<string, unknown>
+  timestamp?: Date
+}
+
+export const trackEventStep = createStep(
+  "track-event",
+  async (input: TrackEventStepInput, { container }) => {
+    const analyticsModuleService = container.resolve(
+      "analytics"
+    )
+
+    if (!input.userId) {
+      // generate a random user id
+      input.properties = {
+        ...input.properties,
+        anonymousId: Math.random().toString(36).substring(2, 15) + 
+          Math.random().toString(36).substring(2, 15),
+      }
+    }
+
+    await analyticsModuleService.track({
+      event: input.event,
+      actor_id: input.userId,
+      properties: input.properties,
+    })
+  }
+)
+```
+
+You create a step with `createStep` from the Workflows SDK. It accepts two parameters:
+
+1. The step's unique name, which is `track-event`.
+2. An async function that receives two parameters:
+    - The step's input, which is in this case an object with the following properties:
+        - `event`: The name of the event to track.
+        - `userId`: The ID of the user performing the event.
+        - `properties`: Additional properties associated with the event.
+        - `timestamp`: The timestamp of the event (optional).
+    - An object that has properties including the [Medusa container](!docs!/learn/fundamentals/medusa-container), which is a registry of Framework and commerce tools that you can access in the step.
+
+<Note>
+
+The Medusa container is different from the module's container. Since modules are isolated, they each have a container with their resources. Refer to the [Module Container](!docs!/learn/fundamentals/modules/container) documentation for more information.
+
+</Note>
+
+In the step function, you resolve the Analytics Module's service from the Medusa container. This service is the interface to track events with the configured Analytics Module Provider, which is Segment in this case.
+
+If the `userId` is not provided, you generate a random anonymous ID and add it to the properties. This is useful for tracking events from users who are not logged in.
+
+Finally, you call the `track` method of the Analytics Module's service, passing it the event name, user ID, and properties.
+
+### b. Create Track Order Placed Workflow
+
+Next, you'll create the workflow that tracks the order placement event.
+
+To create the workflow, create the file `src/workflows/track-order-placed.ts` with the following content:
+
+export const workflowHighlights = [
+  ["15", "useQueryGraphStep", "Retrieve the order's details."],
+  ["34", "transform", "Prepare data for tracking."],
+  ["57", "trackEventStep", "Track the order placement event in Segment."]
+]
+
+```ts title="src/workflows/track-order-placed.ts" highlights={workflowHighlights}
+import { 
+  createWorkflow,
+  transform,
+} from "@medusajs/framework/workflows-sdk"
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { trackEventStep } from "./steps/track-event"
+
+type WorkflowInput = {
+  id: string
+}
+
+export const trackOrderPlacedWorkflow = createWorkflow(
+  "track-order-placed",
+  ({ id }: WorkflowInput) => {
+    const { data: orders } = useQueryGraphStep({
+      entity: "order",
+      fields: [
+        "id",
+        "email",
+        "total",
+        "currency_code",
+        "items.*",
+        "customer.id",
+        "customer.email",
+        "customer.first_name",
+        "customer.last_name",
+        "created_at",
+      ],
+      filters: {
+        id,
+      },
+    })
+
+    const order = transform({
+      order: orders[0],
+    }, ({ order }) => ({
+      orderId: order.id,
+      email: order.email,
+      total: order.total,
+      currency: order.currency_code,
+      items: order.items?.map((item) => ({
+        id: item?.id,
+        title: item?.title,
+        quantity: item?.quantity,
+        variant: item?.variant,
+        unit_price: item?.unit_price,
+      })),
+      customer: {
+        id: order.customer?.id,
+        email: order.customer?.email,
+        firstName: order.customer?.first_name,
+        lastName: order.customer?.last_name,
+      },
+      timestamp: order.created_at,
+    }))
+
+    trackEventStep({
+      event: "order.placed",
+      userId: order.customer?.id,
+      properties: order,
+    })
+  }
+)
+```
+
+You create a workflow using `createWorkflow` from the Workflows SDK. It accepts the workflow's unique name as a first parameter.
+
+It accepts as a second parameter a constructor function, which is the workflow's implementation. The function can accept input, which in this case an object holding the ID of the order placed.
+
+In the workflow's constructor function, you:
+
+1. Retrieve the Medusa order using the `useQueryGraphStep` helper step. This step uses Medusa's [Query](!docs!/learn/fundamentals/module-links/query) tool to retrieve data across modules. You pass it the order ID to retrieve.
+2. Use [transform](!docs!/learn/fundamentals/workflows/variable-manipulation) to prepare the tracking data, as direct data and variable manipulation isn't allowed in workflows. Learn more in the [Data Manipulation](!docs!/learn/fundamentals/workflows/variable-manipulation) documentation.
+3. Send the tracking event to Segment using the `trackEventStep` you created in the previous step.
+
+You now have the workflow that tracks the order placement event.
+
+<Note>
+
+Refer to the [Workflows](!docs!/learn/fundamentals/workflows) documentation to learn more about workflows and steps.
+
+</Note>
+
+### c. Handle order.placed Event
+
+Next, you'll create a subscriber that listens to the `order.placed` event and executes the workflow you created in the previous step.
+
+To create the subscriber, create the file `src/subscribers/order-placed.ts` with the following content:
+
+export const subscriberHighlights = [
+  ["8", "trackOrderPlacedWorkflow", "Execute the workflow to track the order placement event."],
+  ["17", "event", "Execute subscriber when an order is placed."]
+]
+
+```ts title="src/subscribers/order-placed.ts" highlights={subscriberHighlights}
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { trackOrderPlacedWorkflow } from "../workflows/track-order-placed"
+
+export default async function orderPlacedHandler({
+  event: { data },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  await trackOrderPlacedWorkflow(container)
+    .run({
+      input: {
+        id: data.id,
+      },
+    })
+}
+
+export const config: SubscriberConfig = {
+  event: "order.placed",
+}
+```
+
+A subscriber file must export:
+
+1. An asynchronous function, which is the subscriber that is executed when the event is emitted.
+2. A configuration object that holds the name of the event that the subscriber listens to, which is `order.placed` in this case.
+
+The subscriber function receives an object as a parameter that has the following properties:
+
+- `event`: An object that holds the event's data payload. The payload of the `order.placed` event is the ID of the order placed.
+- `container`: The Medusa container to access the Framework and commerce tools.
+
+In the subscriber function, you execute the `trackOrderPlacedWorkflow` by invoking it, passing the Medusa container as a parameter. Then, you chain a `run` method, passing it the order ID from the event's data payload as input.
+
+<Note>
+
+Refer to the [Events and Subscribers](!docs!/learn/fundamentals/events-and-subscribers) documentation to learn more about creating subscribers.
+
+</Note>
+
+### Test it Out
+
+You'll now test out the segment integration by placing an order using the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx).
+
+<Note title="Reminder" forceMultiline>
+
+The Next.js Starter Storefront was installed in a separate directory from Medusa. The directory's name is `{your-project}-storefront`.
+
+So, if your Medusa application's directory is `medusa-segment`, you can find the storefront by going back to the parent directory and changing to the `medusa-segment-storefront` directory:
+
+```bash
+cd ../medusa-segment-storefront # change based on your project name
+```
+
+</Note>
+
+First, run the following command in your Medusa application's directory to start the Medusa server:
+
+```bash npm2yarn badgeLabel="Medusa Application" badgeColor="green"
+npm run dev
+```
+
+Then, run the following command in your Next.js Starter Storefront's directory to start the storefront:
+
+```bash npm2yarn badgeLabel="Storefront" badgeColor="blue"
+npm run dev
+```
+
+In the storefront, add a product to the cart and proceed to checkout. Once you place the order, open the Segment dashboard to view the order event:
+
+1. Go to Connections > Sources.
+2. Click on the Node.js source you created earlier.
+3. Click on the "Debugger" tab at the top of the page.
+4. You should see the `order.placed` event with the order details.
+
+<Note>
+
+The event may take a few seconds to appear in the debugger.
+
+</Note>
+
+![Order Placed Event in Segment Debugger](https://res.cloudinary.com/dza7lstvk/image/upload/v1748259137/Medusa%20Book/CleanShot_2025-05-26_at_14.31.25_2x_xi5p9h.png)
+
+---
+
+## Track Custom Event
+
+In your Medusa application, you often need to track custom events that are relevant to your business use case. For example, a B2B business may want to track whenever a user requests a quote.
+
+In Medusa, you can emit custom events in your workflows when an action occurs. Then, you can create a subscriber that listens to the custom event and executes a workflow to track it in Segment.
+
+For example, if you have a `createQuoteWorkflow`, you can use Medusa's [emitEventStep](!docs!/learn/fundamentals/events-and-subscribers/emit-event#emit-event-in-a-workflow) to emit a custom event after the quote is created:
+
+```ts title="src/workflows/create-quote.ts"
+import { 
+  createWorkflow,
+} from "@medusajs/framework/workflows-sdk"
+import {
+  emitEventStep,
+} from "@medusajs/medusa/core-flows"
+
+const createQuoteWorkflow = createWorkflow(
+  "create-quote",
+  () => {
+    // ...
+
+    emitEventStep({
+      eventName: "quote.created",
+      data: {
+        id: "123",
+        // other data payload
+      },
+    })
+  }
+)
+```
+
+You can then create a subscriber that listens to the `quote.created` event and executes a workflow to track it in Segment:
+
+```ts title="src/subscribers/quote-created.ts"
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { trackQuoteWorkflow } from "../workflows/track-order-placed"
+
+export default async function orderPlacedHandler({
+  event: { data },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  await trackQuoteWorkflow(container)
+    .run({
+      input: {
+        id: data.id,
+      },
+    })
+}
+
+export const config: SubscriberConfig = {
+  event: "quote.created",
+}
+```
+
+The above example assumes you have a `trackQuoteWorkflow` that tracks the quote creation event in Segment, similar to the [trackOrderPlacedWorkflow](#b-create-track-order-placed-workflow) you created earlier.
+
+---
+
+## Next Steps
+
+You've now integrated Segment with your Medusa application and tracked common events like order placement. You can expand on the features in this tutorial to:
+
+- Track more events in your Medusa application, such as user sign-ups, cart additions, and more. You can refer to the [Events Reference](/references/events) for a full list of events emitted by Medusa.
+- Emit custom events that are relevant for your business use case, and track them in Segment.
+- Add destinations to Segment to benefit from the data collected. Segment supports various destinations, such as Google Analytics, Metabase, and more.
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get a more in-depth understanding of all the concepts you've used in this guide and more.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during your development, check out the [troubleshooting guides](../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in the troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.
+3. Contact the [sales team](https://medusajs.com/contact/) to get help from the Medusa team.

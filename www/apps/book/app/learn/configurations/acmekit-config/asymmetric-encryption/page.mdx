@@ -1,0 +1,494 @@
+import { TypeList, Table } from "docs-ui"
+
+export const metadata = {
+  title: `${pageNumber} Asymmetric Encryption`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn how to configure asymmetric encryption in Medusa using public/private key pairs instead of a shared secret.
+
+## What is Asymmetric Encryption?
+
+By default, Medusa uses symmetric JWT authentication, where the same secret signs and verifies tokens. With asymmetric encryption, you use a private key to sign tokens and a public key to verify them.
+
+This approach provides better security, supports key rotation, and enables distributed systems where multiple services can verify tokens without needing access to the signing key.
+
+### When to Use Asymmetric Encryption
+
+Asymmetric encryption is useful in several scenarios:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Scenario
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Description
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Benefits
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        Multi-Instance Deployments
+      </Table.Cell>
+      <Table.Cell>
+        Running multiple Medusa instances behind a load balancer.
+      </Table.Cell>
+      <Table.Cell>
+        Centralized signing, reduced risk if an instance is compromised.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Microservices Architecture
+      </Table.Cell>
+      <Table.Cell>
+        Medusa as part of a larger microservices ecosystem.
+      </Table.Cell>
+      <Table.Cell>
+        Independent token verification across services.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        JWKS Support
+      </Table.Cell>
+      <Table.Cell>
+        Dynamic key rotation using JSON Web Key Sets.
+      </Table.Cell>
+      <Table.Cell>
+        Seamless key rotation without service disruption.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+---
+
+## How to Configure Asymmetric Encryption
+
+### Step 1: Install Dependencies
+
+First, you need to install `jsonwebtoken` to handle JWT token creation and verification.
+
+Run the following command in your Medusa application:
+
+```bash npm2yarn
+npm install jsonwebtoken
+```
+
+### Step 2: Set Asymmetric JWT Configuration
+
+To configure asymmetric encryption, you need to set up both signing and verification options in your `medusa-config.ts` file.
+
+In `medusa-config.ts`, create a helper function to load the JWT configuration, and use it in the exported configuration:
+
+```ts title="medusa-config.ts"
+// other imports...
+import jwt from "jsonwebtoken"
+
+export const getJwtConfig = () => {
+  return {
+    jwtSecret: process.env.JWT_SECRET_KEY,
+    jwtPublicKey: process.env.JWT_PUBLIC_KEY,
+    jwtExpiresIn: process.env.JWT_EXPIRES_IN || "1d",
+    jwtOptions: {
+      algorithm: (process.env.JWT_ALGORITHM || "RS256") as jwt.Algorithm,
+      audience: process.env.JWT_AUDIENCE
+        ? process.env.JWT_AUDIENCE.split(",")
+        : undefined,
+      issuer: process.env.JWT_ISSUER,
+      keyid: process.env.JWT_KEYID,
+    },
+    jwtVerifyOptions: {
+      algorithms: [(process.env.JWT_ALGORITHM || "RS256") as jwt.Algorithm],
+      audience: process.env.JWT_AUDIENCE
+        ? process.env.JWT_AUDIENCE.split(",")
+        : undefined,
+      issuer: process.env.JWT_ISSUER,
+    },
+  }
+}
+
+const jwtConfig = getJwtConfig()
+
+module.exports = defineConfig({
+  projectConfig: {
+    http: {
+      // ...
+      jwtSecret: jwtConfig.jwtSecret,
+      jwtPublicKey: jwtConfig.jwtPublicKey,
+      jwtExpiresIn: jwtConfig.jwtExpiresIn,
+      jwtOptions: jwtConfig.jwtOptions,
+      jwtVerifyOptions: jwtConfig.jwtVerifyOptions,
+    },
+    // ...
+  },
+  modules: [
+    {
+      resolve: "@medusajs/medusa/user",
+      options: {
+        jwt_secret: {
+          key: jwtConfig.jwtSecret,
+        },
+        jwt_public_key: jwtConfig.jwtPublicKey,
+        jwt_options: jwtConfig.jwtOptions,
+      },
+    },
+  ],
+})
+```
+
+You set the JWT configurations in the following options:
+
+1. [http options](../page.mdx#http): You set the global JWT options for Medusa's HTTP layer, which are used to sign and verify JWT authentication tokens.
+    - Refer to the [Medusa Configuration chapter](../page.mdx#http) for more details on these options and their default values.
+2. [User Module options](!resources!/commerce-modules/user/module-options): You set the JWT options specific to the User Module, which are used to sign and verify invite tokens.
+
+### Step 3: Generate Key Pair
+
+Next, generate an RSA key pair (private and public keys) for signing and verifying tokens. You can use OpenSSL to generate the keys:
+
+```bash
+# Generate private key
+openssl genrsa -out private-key.pem 2048
+
+# Extract public key
+openssl rsa -in private-key.pem -pubout -out public-key.pem
+```
+
+Make sure not to commit your private key to Git or any public repository. Add it to your `.gitignore` file to prevent accidental commits:
+
+```title=".gitignore"
+# Asymmetric encryption keys (DO NOT COMMIT)
+private-key.pem
+*.pem
+```
+
+### Step 4: Set Environment Variables
+
+Finally, set the following environment variables using the generated keys:
+
+```bash
+# JWT Configuration
+JWT_SECRET_KEY="-----BEGIN RSA PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC...
+-----END RSA PRIVATE KEY-----"
+
+JWT_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvTtLGDIK...
+-----END PUBLIC KEY-----"
+
+JWT_ALGORITHM=RS256
+JWT_EXPIRES_IN=1d
+JWT_ISSUER=medusa
+JWT_AUDIENCE=medusa-api
+JWT_KEYID=medusa-key-1
+```
+
+Where:
+
+- `JWT_SECRET_KEY`: Your RSA private key for signing tokens.
+- `JWT_PUBLIC_KEY`: Your RSA public key for verifying tokens.
+- `JWT_ALGORITHM`: The [signing algorithm](https://www.npmjs.com/package/jsonwebtoken#algorithms-supported).
+- `JWT_EXPIRES_IN`: The token expiration time.
+- `JWT_ISSUER`: (Optional) The issuer claim for tokens.
+- `JWT_AUDIENCE`: (Optional) The audience claim for tokens.
+- `JWT_KEYID`: (Optional) The key ID for JWKS support.
+
+<Note title="Tip">
+
+For multiline keys in `.env` files, wrap the key with double quotes and use `\n` for newlines.
+
+</Note>
+
+---
+
+## Using JWKS (JSON Web Key Set)
+
+JWKS (JSON Web Key Set) is a set of public keys used to verify JWT tokens. By exposing a JWKS endpoint, you allow clients to dynamically fetch your public keys for token verification, enabling key rotation without requiring clients to update their configurations.
+
+This section explains how to set up JWKS support in Medusa and verify tokens using JWKS.
+
+### Step 1: Install Required Packages
+
+First, install the packages for handling JWKS and JWT verification. Run the following command in your Medusa application:
+
+```bash npm2yarn
+npm install jwks-rsa jsonwebtoken
+npm install @types/jsonwebtoken@8.5.9 --save-dev
+```
+
+You install the following packages:
+
+1. `jwks-rsa`: A library to create a JWKS client that can fetch and cache public keys.
+2. `jsonwebtoken`: A library to handle JWT token creation and verification.
+3. `@types/jsonwebtoken`: TypeScript types for the `jsonwebtoken` package. Make sure to install version `8.5.9` for compatibility.
+
+### Step 2: Expose JWKS Endpoint
+
+To allow clients to fetch the JWKS, expose it in an [API route](../../../fundamentals/api-routes/page.mdx).
+
+In the API route, return the JWKS content containing your public keys. You can set the JWKS content using an environment variable or by manually converting your public key to JWK format.
+
+#### Option 1: Environment Variable
+
+The first option is to set the JWKS content using an environment variable. Convert your public key to JWK format using online tools or libraries like [node-jose](https://www.npmjs.com/package/node-jose).
+
+For example, add the following environment variable:
+
+```bash
+JWKS_CONTENT='{"keys":[{"kty":"RSA","use":"sig","kid":"medusa-key-1","n":"vTtLGDIK...","e":"AQAB"}]}'
+```
+
+Then, create the API route at `src/api/.well-known/jwks.json/route.ts` with the following content:
+
+```ts title="src/api/.well-known/jwks.json/route.ts"
+import type { 
+  MedusaRequest, 
+  MedusaResponse, 
+} from "@medusajs/framework/http"
+
+export const GET = async (
+  req: MedusaRequest, 
+  res: MedusaResponse
+) => {
+  if (!process.env.JWKS_CONTENT) {
+    return res.status(500).json({ error: "JWKS_CONTENT not configured" })
+  }
+  
+  res.status(200).json(JSON.parse(process.env.JWKS_CONTENT))
+}
+```
+
+This exposes your public key at `/.well-known/jwks.json`, which clients can fetch to verify tokens.
+
+#### Option 2: Manual JWK Conversion
+
+If you prefer not to use an environment variable, manually convert your public key to JWK format using the JWT configurations you set in `medusa-config.ts`.
+
+For example, create the API route at `src/api/.well-known/jwks.json/route.ts` with the following content:
+
+```ts title="src/api/.well-known/jwks.json/route.ts"
+import type { 
+  MedusaRequest, 
+  MedusaResponse, 
+} from "@medusajs/framework/http"
+import crypto from "crypto"
+
+export const GET = async (
+  req: MedusaRequest, 
+  res: MedusaResponse
+) => {
+  const configModule = req.scope.resolve("configModule")
+  const { projectConfig } = configModule
+
+  // If JWKS_CONTENT is set, use it
+  if (process.env.JWKS_CONTENT) {
+    return res.status(200).json(JSON.parse(process.env.JWKS_CONTENT))
+  }
+
+  // Otherwise, generate from public key
+  const publicKey = projectConfig.http.jwtPublicKey
+  if (!publicKey) {
+    return res.status(500).json({ error: "No public key configured" })
+  }
+
+  try {
+    // Convert PEM to JWK
+    const jwk = crypto.createPublicKey(publicKey).export({ format: "jwk" })
+    
+    const jwks = {
+      keys: [{
+        ...jwk,
+        use: "sig",
+        kid: projectConfig.http.jwtOptions?.keyid || "medusa-key-1",
+        alg: projectConfig.http.jwtOptions?.algorithm || "RS256",
+      }],
+    }
+
+    res.status(200).json(jwks)
+  } catch (error: any) {
+    return res.status(500).json({ 
+      error: "Failed to generate JWKS", 
+      message: error.message, 
+    })
+  }
+}
+```
+
+In the above example:
+
+1. Check if the `JWKS_CONTENT` environment variable is set and return it if available.
+2. If not, retrieve the public key from the Medusa configuration and convert it to JWK format using Node's `crypto` module.
+3. Construct the JWKS response and return it.
+
+The public key will be available at `/.well-known/jwks.json` for clients to fetch.
+
+### Step 3: Verify Tokens Using JWKS
+
+Finally, verify JWT tokens from incoming requests using the JWKS API route.
+
+Create a [middleware](../../../fundamentals/api-routes/middlewares/page.mdx) function at `src/api/middlewares/jwks-auth.ts` that uses the `jwks-rsa` package to fetch the public key and verify the token:
+
+```ts title="src/api/middlewares/jwks-auth.ts"
+import {
+  MedusaRequest,
+  MedusaNextFunction,
+  MedusaResponse,
+} from "@medusajs/framework/http"
+import jwt from "jsonwebtoken"
+import { JwksClient } from "jwks-rsa"
+
+const MEDUSA_BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
+
+// Create JWKS client with caching
+const jwksClient = new JwksClient({
+  // This is the API route where your JWKS is exposed
+  jwksUri: `${MEDUSA_BACKEND_URL}/.well-known/jwks.json`,
+  cache: true,
+  rateLimit: true,
+  jwksRequestsPerMinute: 5,
+  cacheMaxAge: 60 * 60 * 1000, // 1 hour in ms
+})
+
+// Helper to get signing key
+async function getKey(header: any) {
+  try {
+    const key = await jwksClient.getSigningKey(header.kid)
+
+    return key.getPublicKey()
+  } catch (err: any) {
+    throw new Error(`Failed to get signing key: ${err.message}`)
+  }
+}
+
+// Function that validates JWT token
+export async function isValidJWTToken(token: string): Promise<boolean> {
+  if (!token) {
+    return false
+  }
+
+  try {
+    // Decode the token to get the header
+    const decoded = jwt.decode(token, { complete: true }) as {
+      header: { kid: string }
+      payload: {
+        actor_id: string
+      }
+    } | null
+
+    if (
+      !decoded ||
+      !decoded.header ||
+      !decoded.header.kid ||
+      !decoded.payload.actor_id
+    ) {
+      return false
+    }
+
+    const publicKey = await getKey(decoded.header)
+
+    return new Promise((resolve) => {
+      jwt.verify(
+        token,
+        publicKey,
+        {
+          ignoreExpiration: false,
+          ignoreNotBefore: false,
+        },
+        (err) => {
+          if (err) {
+            console.error("Error verifying JWT token:", err)
+            resolve(false)
+          }
+
+          resolve(true)
+        }
+      )
+    })
+  } catch (err: any) {
+    console.error("Error validating JWT token:", err)
+    return false
+  }
+}
+
+// Authentication middleware
+export const jwtAuthMiddleware = async (
+  req: MedusaRequest,
+  res: MedusaResponse,
+  next: MedusaNextFunction
+) => {
+  const authHeader = req.headers.authorization
+  const jwtToken = authHeader?.split(" ")[1]
+
+  // If we should check login and the JWT token is invalid, return 401
+  if (!jwtToken || !(await isValidJWTToken(jwtToken))) {
+    const error = new Error(
+      "Invalid auth token provided"
+    )
+
+    return next(error)
+  }
+
+  return next()
+}
+```
+
+The `jwtAuthMiddleware` function extracts the JWT token from the `Authorization` header, fetches the appropriate public key from the JWKS endpoint, and verifies the token.
+
+Apply this middleware to your protected API routes to ensure that only requests with valid JWT tokens are allowed.
+
+For example, apply the middleware in `src/api/middlewares.ts`:
+
+```ts title="src/api/middlewares.ts"
+import { defineMiddlewares } from "@medusajs/framework/http"
+import { jwtAuthMiddleware } from "./middlewares/jwks-auth"
+
+export default defineMiddlewares({
+  routes: [
+    {
+      matcher: "/custom-protected-route*",
+      middlewares: [jwtAuthMiddleware],
+    },
+  ],
+})
+```
+
+### Test JWKS Verification
+
+To test the JWKS verification, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+Next, obtain a valid JWT token by authenticating a user. For example, to authenticate an admin user, send a `POST` request to `/auth/user/emailpass`:
+
+```bash
+curl -X POST http://localhost:9000/auth/user/emailpass \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@medusa-test.com",
+    "password": "supersecret"
+  }'
+```
+
+Make sure to replace the email and password with valid credentials for your Medusa application.
+
+The response will include a `token` field, which is your JWT token.
+
+Finally, make a request to your protected route using the obtained JWT token:
+
+```bash
+curl http://localhost:9000/custom-protected-route \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+```
+
+If the token is valid, the middleware will successfully verify it using the public key fetched from the JWKS endpoint, and you'll receive a successful response. If the token is invalid or expired, you'll receive an error.

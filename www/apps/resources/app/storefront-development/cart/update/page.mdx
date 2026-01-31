@@ -1,0 +1,118 @@
+---
+tags:
+  - cart
+  - storefront
+products:
+  - cart
+  - customer
+---
+
+import { CodeTabs, CodeTab, Prerequisites } from "docs-ui"
+
+export const metadata = {
+  title: `Update Cart in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to update different details of a cart.
+
+<Note title="Tip">
+
+This guide doesn't cover updating the cart's line items. For that, refer to the [Manage Cart's Items in Storefront](../manage-items/page.mdx) guide.
+
+</Note>
+
+## Update Cart's Region
+
+If a customer changes their region, you must update their cart to be associated with that region.
+
+For example:
+
+<Note title="Tip">
+
+Learn how to install and configure the JS SDK in the [JS SDK documentation](../../../js-sdk/page.mdx).
+
+</Note>
+
+export const updateRegionHighlights = [
+  ["2", `"new_id"`, "Pass the new chosen region's ID."]
+]
+
+```ts highlights={updateRegionHighlights}
+sdk.store.cart.update(cartId, {
+  region_id: "new_id",
+})
+.then(({ cart }) => {
+  // use cart...
+  console.log(cart)
+})
+```
+
+The [Update Cart API route](!api!/store#carts_postcartsid) accepts a `region_id` request body parameter, whose value is the new region to associate with the cart.
+
+---
+
+## Set Cart's Customer
+
+You might need to change the cart's customer in two cases:
+
+- You created the cart for the customer as a guest, then they logged-in, so you want to associate the cart with them as a registered customer.
+- You're transferring the cart from one customer to another, which is useful in company setups, such as when implementing B2B commerce applications.
+
+To set or change the cart's customer, send an authenticated `POST` request to the Set Cart's Customer API route:
+
+<Note>
+
+This API route is only available after [Medusa v2.0.5](https://github.com/medusajs/medusa/releases/tag/v2.0.5).
+
+</Note>
+
+```ts
+// TODO must be authenticated as the customer to set the cart's customer
+sdk.store.cart.transferCart(cartId)
+.then(({ cart }) => {
+  // use cart...
+  console.log(cart)
+})
+```
+
+Assuming the JS SDK is configured to send an authenticated request, the cart is now associated with the logged-in customer.
+
+Learn more about authenticating customers with the JS SDK in the [Login Customer guide](../../customers/login/page.mdx).
+
+<Note title="Tip">
+
+When using the Fetch API to send the request, either use `credentials: include` if the customer is already authenticated with a cookie session, or pass the Authorization Bearer token in the request's header.
+
+</Note>
+
+---
+
+## Set Cart's Locale
+
+<Prerequisites
+  items={[
+    {
+      text: "Translation Module Configured",
+      link: "/commerce-modules/translation#configure-translation-module",
+    }
+  ]}
+/>
+
+By default, items in the cart will have their associated product's original content. If your storefront supports [localization](../../localization/page.mdx), you can set the cart's locale to ensure that the item contents are in the customer's preferred language.
+
+You can set the cart's locale by passing the `locale` request body parameter to the [Update Cart API route](!api!/store#carts_postcarts). For example:
+
+```ts
+sdk.store.cart.update(cartId, {
+  // you can also retrieve the locale from sdk.getLocale()
+  locale: "fr-FR",
+})
+.then(({ cart }) => {
+  // TODO use the cart...
+  console.log(cart)
+})
+```
+
+When the cart's locale is set, existing and new items in the cart will have their content in the specified locale if translations are available.

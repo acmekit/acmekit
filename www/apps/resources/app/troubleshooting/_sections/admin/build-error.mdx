@@ -1,0 +1,17 @@
+If you get the following error when you start the Medusa application, typically in production:
+
+```bash
+Could not find index.html in the admin build directory. Make sure to run 'medusa build' before starting the server.
+```
+
+## Why this Error Occurred
+
+This error occurs if you didn't follow the build process correctly. For example, you don't have an `.env.production` file or you ran the `start` command outside the `.medusa/server` directory.
+
+---
+
+## How to Fix it
+
+To fix this error, make sure you follow the build process correctly as explained in the [Build](!docs!/learn/build) documentation.
+
+You can also follow the [General Deployment](!docs!/learn/deployment/general) documentation if you're facing this error in your deployed application. This guide gives you the general steps to follow when deploying your Medusa application.

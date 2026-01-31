@@ -1,0 +1,46 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "build/**",
+        "dist/**"
+      ]
+    },
+    "prep": {
+      "dependsOn": [
+        "^tags#build",
+        "^build-scripts#build"
+      ]
+    },
+    "start:monorepo": {
+      "dependsOn": [
+        "^build-scripts#build",
+        "^docs-ui#build",
+        "^remark-rehype-plugins#build",
+        "^types#build"
+      ]
+    },
+    "lint": { },
+    "lint:content": { },
+    "test": {
+      "dependsOn": ["^build"]
+    },
+    "watch": { },
+    "dev:monorepo": {
+      "dependsOn": [
+        "^build-scripts#build",
+        "^docs-ui#build",
+        "^remark-rehype-plugins#build",
+        "^types#build"
+      ],
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

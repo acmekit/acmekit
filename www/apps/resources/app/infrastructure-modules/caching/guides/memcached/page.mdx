@@ -1,0 +1,1107 @@
+import { Prerequisites, Card } from "docs-ui"
+import { Github } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Create Memcached Caching Module Provider`,
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to create a Memcached [Caching Module Provider](../../providers/page.mdx) for your Medusa application.
+
+[Memcached](https://memcached.org/) is a high-performance, distributed memory caching system that speeds up dynamic web applications by reducing database load.
+
+By the end of this tutorial, you'll be able to cache data in your Medusa application using Memcached.
+
+<Note>
+
+Refer to the [Caching Module](../../page.mdx) documentation to learn more about caching in Medusa.
+
+</Note>
+
+![Diagram illustrating the Memcached caching module provider in a Medusa application](https://res.cloudinary.com/dza7lstvk/image/upload/v1759925175/Medusa%20Resources/memcached-summary_ztlanl.jpg)
+
+<Card
+  title="Full Code"
+  href="https://github.com/medusajs/examples/tree/main/memcached-caching"
+  text="Find the complete code on GitHub"
+  icon={Github}
+/>
+
+---
+
+<Prerequisites
+  items={[
+    {
+      text: "Medusa Application",
+      href: "!docs!/learn/installation"
+    },
+    {
+      text: "Memcached server",
+      href: "https://memcached.org/",
+    }
+  ]}
+/>
+
+## 1. Install Memcached Client
+
+To interact with Memcached, you'll need to install the `memjs` client. You can install it in your Medusa project by running the following command:
+
+```bash npm2yarn
+npm install memjs
+```
+
+---
+
+## 2. Create Module Directory
+
+A module is created under the `src/modules` directory of your Medusa application. So, create the directory `src/modules/memcached` in your Medusa project.
+
+---
+
+## 3. Create Memcached Connection Loader
+
+Next, establish a connection to Memcached in your module using a [Loader](!docs!/learn/fundamentals/modules/loaders). A loader is an asynchronous function that runs when the module is initialized. It's useful for setting up connections to external services, such as databases or caching systems.
+
+Create the file `src/modules/memcached/loaders/connection.ts` with the following content:
+
+export const loaderHighlights = [
+  ["5", "serverUrls", "Memcached server URLs"],
+  ["6", "username", "Username for authentication"],
+  ["7", "password", "Password for authentication"],
+  ["8", "options", "Additional Memcached client options"],
+  ["9", "cachePrefix", "Prefix for cache keys"],
+  ["10", "defaultTtl", "Default time-to-live for cached items"],
+  ["11", "compression", "Compression settings"],
+  ["12", "enable", "Enable compression"],
+  ["13", "threshold", "Minimum size to compress"],
+  ["14", "level", "Compression level"],
+  ["34", "client", "Create Memcached client"],
+  ["42", "stats", "Test the connection to Memcached"],
+  ["54", "register", "Register the client in the container"],
+]
+
+```ts title="src/modules/memcached/loaders/connection.ts" highlights={loaderHighlights}
+import { LoaderOptions } from "@medusajs/framework/types"
+import * as memjs from "memjs"
+
+export type ModuleOptions = {
+  serverUrls?: string[]
+  username?: string
+  password?: string
+  options?: memjs.ClientOptions
+  cachePrefix?: string
+  defaultTtl?: number // Default TTL in seconds
+  compression?: {
+    enabled?: boolean
+    threshold?: number // Minimum size in bytes to compress
+    level?: number // Compression level (1-9)
+  }
+}
+
+export default async function connection({
+  container,
+  options,
+}: LoaderOptions<ModuleOptions>) {
+  const logger = container.resolve("logger")
+  const { 
+    serverUrls = ["127.0.0.1:11211"], 
+    username, 
+    password, 
+    options: clientOptions,
+  } = options || {}
+
+  try {
+    logger.info("Connecting to Memcached...")
+
+    // Create Memcached client
+    const client = memjs.Client.create(serverUrls.join(","), {
+      username,
+      password,
+      ...clientOptions,
+    })
+
+    // Test the connection
+    await new Promise<void>((resolve, reject) => {
+      client.stats((err, stats) => {
+        if (err) {
+          logger.error("Failed to connect to Memcached:", err)
+          reject(err)
+        } else {
+          logger.info("Successfully connected to Memcached")
+          resolve()
+        }
+      })
+    })
+
+    // Register the client in the container
+    container.register({
+      memcachedClient: {
+        resolve: () => client,
+      },
+    })
+
+  } catch (error) {
+    logger.error("Failed to initialize Memcached connection:", error)
+    throw error
+  }
+}
+```
+
+You first define module options that are passed to the Memcached Module Provider. You'll set those up later when you [register the module in your Medusa application](#register-memcached-module-provider). The module accepts the following options:
+
+- `serverUrls`: An array of Memcached server URLs. Defaults to `["127.0.0.1:11211"]`.
+- `username`: The username for authenticating with the Memcached server (if required).
+- `password`: The password for authenticating with the Memcached server (if required).
+- `options`: Additional options to pass to the Memcached client.
+- `cachePrefix`: A prefix to use for all cache keys to avoid collisions. Defaults to `"medusa"`.
+- `defaultTtl`: The default time-to-live (TTL) for cached items, in seconds. Defaults to `3600` (1 hour).
+- `compression`: Configuration for data compression:
+  - `enabled`: Whether to enable compression. Defaults to `true`.
+  - `threshold`: The minimum size in bytes for data to be compressed. Defaults to `2048` (2KB).
+  - `level`: The compression level (1-9). Defaults to `6`.
+
+Then, export a loader function. This function receives an object with the following properties:
+
+- `container`: The [Module container](!docs!/learn/fundamentals/modules/container) that holds Framework and module-specific resources.
+- `options`: The options passed to the module when it's registered in the Medusa application.
+
+In the loader, you create a Memcached client and test the connection. If the connection is successful, you register the client in the container, allowing you later to access it in the module's service.
+
+---
+
+## 4. Create Memcached Module Provider Service
+
+You define a module's functionalities in a service. A service is a TypeScript or JavaScript class that the module exports. In the service's methods, you can interact with third-party services to perform operations.
+
+In this step, you'll create the service of the Memcached Module Provider. This service must implement the `ICachingProviderService` and implement its methods.
+
+To create the service, create the file `src/modules/memcached/service.ts` with the following content:
+
+export const serviceHighlights1 = [
+  ["25", "memcachedClient", "Resolve Memcached client from the module container."],
+  ["26", "options", "Options passed to the module provider."]
+]
+
+```ts title="src/modules/memcached/service.ts" highlights={serviceHighlights1}
+import { ICachingProviderService } from "@medusajs/framework/types"
+import * as memjs from "memjs"
+import { ModuleOptions } from "./loaders/connection"
+
+type InjectedDependencies = {
+  memcachedClient: memjs.Client
+}
+
+class MemcachedCachingProviderService implements ICachingProviderService {
+  static identifier = "memcached-cache"
+
+  protected client: memjs.Client
+  protected options_: ModuleOptions
+  protected readonly CACHE_PREFIX: string
+  protected readonly TAG_PREFIX: string
+  protected readonly OPTIONS_PREFIX: string
+  protected readonly KEY_TAGS_PREFIX: string
+  protected readonly TAG_KEYS_PREFIX: string
+  protected readonly compressionEnabled: boolean
+  protected readonly compressionThreshold: number
+  protected readonly compressionLevel: number
+  protected readonly defaultTtl: number
+
+  constructor(
+    { memcachedClient }: InjectedDependencies,
+    options: ModuleOptions
+  ) {
+    this.client = memcachedClient
+    this.options_ = options
+    
+    // Set all prefixes with the main prefix
+    const mainPrefix = options.cachePrefix || "medusa"
+    this.CACHE_PREFIX = `${mainPrefix}:`
+    this.TAG_PREFIX = `${mainPrefix}:tag:`
+    this.OPTIONS_PREFIX = `${mainPrefix}:opt:`
+    this.KEY_TAGS_PREFIX = `${mainPrefix}:key_tags:`
+    this.TAG_KEYS_PREFIX = `${mainPrefix}:tag_keys:`
+    
+    // Set compression options
+    this.compressionEnabled = options.compression?.enabled ?? true
+    this.compressionThreshold = options.compression?.threshold ?? 2048 // 2KB default
+    this.compressionLevel = options.compression?.level ?? 6 // Balanced compression
+    
+    // Set default TTL
+    this.defaultTtl = options.defaultTtl ?? 3600 // 1 hour default
+  }
+}
+```
+
+You create the service that implements the `ICachingProviderService` interface. You define in the class some protected properties to hold dependencies, the Memcached client, and configuration options.
+
+You also define a constructor in the service. Service constructors accept two parameters:
+
+1. The Module container, from which you can resolve dependencies. In this case, you resolve the `memcachedClient` that you registered in the loader.
+2. The options passed to the module when it's registered in the Medusa application.
+
+You'll get a type error at this point because you haven't implemented the methods of the `ICachingProviderService` interface yet. You'll implement them next, along with utility methods.
+
+### Compression Utility Methods
+
+Before implementing the caching methods, you'll implement two utility methods to handle data compression and decompression.
+
+These methods use the `zlib` library to compress data before storing it in Memcached and decompress it when retrieving it. This optimizes storage and network usage, especially for large data.
+
+First, add the following imports at the top of the file:
+
+```ts title="src/modules/memcached/service.ts"
+import { deflate, inflate } from "zlib"
+import { promisify } from "util"
+
+const deflateAsync = promisify(deflate)
+const inflateAsync = promisify(inflate)
+```
+
+Then, add the following methods to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  private async compressData(data: string): Promise<{ 
+    data: string; 
+    compressed: boolean
+  }> {
+    if (!this.compressionEnabled || data.length < this.compressionThreshold) {
+      return { data, compressed: false }
+    }
+
+    const buffer = Buffer.from(data, "utf8")
+    const compressed = await deflateAsync(buffer)
+    const compressedData = compressed.toString("base64")
+    
+    // Only use compression if it actually reduces size
+    if (compressedData.length < data.length) {
+      return { data: compressedData, compressed: true }
+    }
+    
+    return { data, compressed: false }
+  }
+
+  private async decompressData(
+    data: string, 
+    compressed: boolean
+  ): Promise<string> {
+    if (!compressed) {
+      return data
+    }
+
+    const buffer = Buffer.from(data, "base64")
+    const decompressed = await inflateAsync(buffer)
+    return decompressed.toString("utf8")
+  }
+}
+```
+
+You define two private methods:
+
+- `compressData`: Takes a string `data` as input and compresses it using `zlib.deflate` if compression is enabled and the data size exceeds the defined threshold. It returns an object containing the (possibly compressed) data and a boolean indicating whether compression was applied.
+- `decompressData`: Takes a string `data` and a boolean `compressed` as input. If `compressed` is `true`, it decompresses the data using `zlib.inflate`. Otherwise, it returns the data as is.
+
+### Set Methods
+
+Next, you'll implement the [set method](/references/caching-module-provider#set) of the `ICachingProviderService` interface. This method stores a value in the cache with an optional time-to-live (TTL) and associated tags.
+
+#### setKeyTags Helper Method
+
+Before implementing the method, you'll implement the helper method `setKeyTags`. Since Memcached doesn't support tagging natively, you'll need to manage tags manually by storing mappings between keys and tags.
+
+Add the following method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  private async setKeyTags(
+    key: string, 
+    tags: string[], 
+    setOptions: memjs.InsertOptions
+  ): Promise<void> {
+    const timestamp = Math.floor(Date.now() / 1000)
+    const tagNamespaces: Record<string, string> = {}
+    const operations: Promise<any>[] = []
+
+    // Batch all namespace operations
+    for (const tag of tags) {
+      const tagKey = this.TAG_PREFIX + tag
+      const tagKeysKey = `${this.TAG_KEYS_PREFIX}${tag}`
+      
+      // Get namespace version
+      operations.push(
+        (async () => {
+          const result = await this.client.get(tagKey)
+          if (!result.value) {
+            tagNamespaces[tag] = timestamp.toString()
+            await this.client.add(tagKey, timestamp.toString())
+          } else {
+            tagNamespaces[tag] = result.value.toString()
+          }
+        })()
+      )
+
+      // Add key to tag's key list
+      operations.push(
+        (async () => {
+          const result = await this.client.get(tagKeysKey)
+          let keys: string[] = []
+          if (result.value) {
+            keys = JSON.parse(result.value.toString()) as string[]
+          }
+          if (!keys.includes(key)) {
+            keys.push(key)
+            await this.client.set(tagKeysKey, JSON.stringify(keys), setOptions)
+          }
+        })()
+      )
+    }
+
+    await Promise.all(operations)
+    
+    // Store the tag namespaces for this key
+    const keyTagsKey = `${this.KEY_TAGS_PREFIX}${key}`
+    const serializedTags = JSON.stringify(tagNamespaces)
+    await this.client.set(keyTagsKey, serializedTags, setOptions)
+  }
+}
+```
+
+The `setKeyTags` method takes a cache `key`, an array of `tags`, and Memcached `setOptions`.
+
+In the method, you:
+
+1. Get the current timestamp to use as a namespace version for tags.
+2. Iterate over the provided tags and for each tag:
+    - Retrieve the current namespace version from Memcached. If it doesn't exist, set it to the current timestamp.
+    - Retrieve the list of keys associated with the tag. If the current key is not in the list, add it and update the list in Memcached.
+3. Store the mapping of tags and their namespace versions for the given key.
+
+You'll use this method in the `set` method to manage tags when storing a value.
+
+#### set Method
+
+Add the following `set` method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  async set({
+    key,
+    data,
+    ttl,
+    tags,
+    options,
+  }: {
+    key: string
+    data: any
+    ttl?: number
+    tags?: string[]
+    options?: { autoInvalidate?: boolean }
+  }): Promise<void> {
+    const prefixedKey = this.CACHE_PREFIX + key
+    const serializedData = JSON.stringify(data)
+    const setOptions: memjs.InsertOptions = {}
+    
+    // Use provided TTL or default TTL
+    setOptions.expires = ttl ?? this.defaultTtl
+
+    // Compress data if enabled
+    const { 
+      data: finalData, 
+      compressed,
+    } = await this.compressData(serializedData)
+
+    // Batch operations for better performance
+    const operations: Promise<any>[] = [
+      this.client.set(prefixedKey, finalData, setOptions),
+    ]
+
+    // Always store options (including compression flag) to allow checking them later
+    const optionsKey = this.OPTIONS_PREFIX + key
+    const optionsData = { ...options, compressed }
+    operations.push(
+      this.client.set(optionsKey, JSON.stringify(optionsData), setOptions)
+    )
+
+    // Handle tags using namespace simulation with batching
+    if (tags && tags.length > 0) {
+      operations.push(this.setKeyTags(key, tags, setOptions))
+    }
+
+    await Promise.all(operations)
+  }
+}
+```
+
+The `set` method takes an object with the following properties:
+
+- `key`: The cache key.
+- `data`: The value to cache.
+- `ttl`: Optional time-to-live for the cached value, in seconds.
+- `tags`: Optional array of tags to associate with the cached value.
+- `options`: Optional additional options, such as `autoInvalidate`, which indicates whether to automatically invalidate the cache based on tags.
+
+In the method, you:
+
+1. Store the value in Memcached with the specified TTL. You store the compressed data if compression is enabled and necessary.
+2. Store the options (including whether the data was compressed) in a separate key to allow checking them later.
+    - This is necessary to determine whether the data can be automatically invalidated based on tags.
+3. If tags are provided, call the `setKeyTags` method to set up the tag mappings.
+
+You batch all operations using `Promise.all` for better performance.
+
+### Get Methods
+
+Next, you'll implement the [get method](/references/caching-module-provider#get) of the `ICachingProviderService` interface. This method retrieves a value from the cache either by its key or by associated tags.
+
+Before implementing the method, you need two helper methods.
+
+#### validateKeyByTags Helper Method
+
+The first helper method validates that a key is still valid based on its tags. You'll use this method when retrieving a value by its key to ensure that the value hasn't been invalidated by tag updates.
+
+Add the following method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  private async validateKeyByTags(key: string, tags: string[]): Promise<boolean> {
+    if (!tags || tags.length === 0) {
+      return true // No tags to validate
+    }
+
+    // Get the stored tag namespaces for this key
+    const keyTagsKey = `${this.KEY_TAGS_PREFIX}${key}`
+    const keyTagsResult = await this.client.get(keyTagsKey)
+    
+    if (!keyTagsResult.value) {
+      return true // No stored tags, assume valid
+    }
+
+    const storedTags = JSON.parse(keyTagsResult.value.toString())
+    
+    // Batch all namespace checks for better performance
+    const tagKeys = Object.keys(storedTags).map((tag) => this.TAG_PREFIX + tag)
+    const tagResults = await Promise.all(
+      tagKeys.map((tagKey) => this.client.get(tagKey))
+    )
+
+    // Check if any tag namespace is missing or changed
+    for (let i = 0; i < tagResults.length; i++) {
+      const tag = Object.keys(storedTags)[i]
+      const tagResult = tagResults[i]
+      
+      if (tagResult.value) {
+        const currentTag = tagResult.value.toString()
+        // If the namespace has changed since the key was stored, it's invalid
+        if (currentTag !== storedTags[tag]) {
+          return false
+        }
+      } else {
+        // Namespace doesn't exist - this means it was reclaimed after being incremented
+        // This indicates the tag was cleared, so the key should be considered invalid
+        return false
+      }
+    }
+    
+    return true
+  }
+}
+```
+
+The `validateKeyByTags` method accepts a cache `key` and an array of `tags`.
+
+In the method, you:
+
+- Retrieve from Memcached the tag namespaces for the given key.
+    - If no tags are stored, you assume the key is valid and return `true`.
+- For each stored tag, retrieve its current namespace version from Memcached.
+- Compare the current namespace version with the stored version. If any tag's namespace has changed or is missing, return `false`, indicating that the key is invalid. Otherwise, return `true`.
+
+#### getByTags Helper Method
+
+The second helper method retrieves the cached data associated with specified tags. You'll use this method when retrieving a value by tags.
+
+Add the following method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  private async getByTags(tags: string[]): Promise<any[] | null> {
+    if (!tags || tags.length === 0) {
+      return null
+    }
+
+    // Get all keys associated with each tag
+    const tagKeysOperations = tags.map((tag) => {
+      const tagKeysKey = `${this.TAG_KEYS_PREFIX}${tag}`
+      return this.client.get(tagKeysKey)
+    })
+
+    const tagKeysResults = await Promise.all(tagKeysOperations)
+    
+    // Collect all unique keys from all tags
+    const allKeys = new Set<string>()
+    for (const result of tagKeysResults) {
+      if (result.value) {
+        const keys = JSON.parse(result.value.toString()) as string[]
+        keys.forEach((key) => allKeys.add(key))
+      }
+    }
+
+    if (allKeys.size === 0) {
+      return null
+    }
+
+     // Get all cached data for the collected keys
+     const dataOperations = Array.from(allKeys).map(async (key) => {
+       const prefixedKey = this.CACHE_PREFIX + key
+       const result = await this.client.get(prefixedKey)
+       
+       if (!result.value) {
+         return { key, data: null }
+       }
+       
+       const dataString = result.value.toString()
+       
+       // Check if data is compressed
+       const optionsKey = this.OPTIONS_PREFIX + key
+       const optionsResult = await this.client.get(optionsKey)
+       let compressed = false
+       
+       if (optionsResult.value) {
+         const options = JSON.parse(optionsResult.value.toString())
+         compressed = options.compressed || false
+       }
+       
+       // Decompress if needed
+       const decompressedData = await this.decompressData(dataString, compressed)
+       return { key, data: JSON.parse(decompressedData) }
+     })
+
+    const dataResults = await Promise.all(dataOperations)
+    
+    // Filter out null data and validate tags for each key
+    const validData: any[] = []
+    for (const { key, data } of dataResults) {
+      if (data !== null) {
+        // Validate that this key is still valid for the requested tags
+        const isValid = await this.validateKeyByTags(key, tags)
+        if (isValid) {
+          validData.push(data)
+        }
+      }
+    }
+
+    return Object.keys(validData).length > 0 ? validData : null
+  }
+}
+```
+
+The `getByTags` method takes an array of `tags`.
+
+In the method, you:
+
+- Retrieve from Memcached all keys associated with each tag. You collect all unique keys from the results.
+- For each unique key, retrieve the cached data with its options.
+    - If the data is compressed, decompress it using the `decompressData` method.
+- Validate each key using the `validateKeyByTags` method to ensure that the data is still valid based on its tags.
+- Return an array of valid cached data or `null` if no valid data is found.
+
+You can now implement the `get` method using these helper methods.
+
+#### get Method
+
+Add the `get` method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  async get({
+    key,
+    tags,
+  }: {
+    key?: string
+    tags?: string[]
+  }): Promise<any> {
+    if (key) {
+      const prefixedKey = this.CACHE_PREFIX + key
+      
+      // Get the stored tags for this key and validate them
+      const keyTagsKey = `${this.KEY_TAGS_PREFIX}${key}`
+      const keyTagsResult = await this.client.get(keyTagsKey)
+      
+      if (keyTagsResult.value) {
+        const storedTags = JSON.parse(keyTagsResult.value.toString())
+        const tagNames = Object.keys(storedTags)
+        
+        const isValid = await this.validateKeyByTags(key, tagNames)
+        if (!isValid) {
+          return null
+        }
+      }
+
+      const result = await this.client.get(prefixedKey)
+      if (result.value) {
+        const dataString = result.value.toString()
+        
+        // Check if data is compressed (look for compression flag in options)
+        const optionsKey = this.OPTIONS_PREFIX + key
+        const optionsResult = await this.client.get(optionsKey)
+        let compressed = false
+        
+        if (optionsResult.value) {
+          const options = JSON.parse(optionsResult.value.toString())
+          compressed = options.compressed || false
+        }
+        
+        // Decompress if needed
+        const decompressedData = await this.decompressData(dataString, compressed)
+        return JSON.parse(decompressedData)
+      }
+      return null
+    }
+
+    if (tags && tags.length > 0) {
+      // Retrieve data by tags - get all keys associated with the tags
+      return await this.getByTags(tags)
+    }
+
+    return null
+  }
+}
+```
+
+The `get` method takes an object with optional `key` and `tags` properties.
+
+In the method:
+
+- If a `key` is provided, you give it a higher priority and retrieve the cached value for that key.
+    - You first check if the key has associated tags and validate them using the `validateKeyByTags` method, ensuring the cached value is still valid.
+    - You decompress the data if it was stored in a compressed format.
+    - If the key is not found or is invalid, you return `null`. Otherwise, you return the cached value.
+- If no `key` is provided but `tags` are, you call the `getByTags` method to retrieve all cached values associated with the provided tags.
+- If neither `key` nor `tags` are provided, you return `null`.
+
+### Clear Methods
+
+Finally, you'll implement the [clear method](/references/caching-module-provider#clear) of the `ICachingProviderService` interface.
+
+The `clear` method removes a cached value either by its key or by associated tags. It also receives an optional `options` parameter to control whether to automatically invalidate the cache based on tags:
+
+- If `options` isn't set, you clear all cached values associated with the provided tags.
+- If `options.autoInvalidate` is `true`, you only invalidate the keys of the provided tags whose options allow automatic invalidation.
+
+Before implementing the `clear` method, you'll implement four helper methods to handle tag and key invalidation.
+
+#### removeKeysFromTag Helper Method
+
+The `removeKeysFromTag` method removes a list of keys from a tag's key list in Memcached. This is useful when invalidating by key or when clearing keys associated with a tag.
+
+Add the following method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  private async removeKeysFromTag(tag: string, keysToRemove: string[]): Promise<void> {
+    const tagKeysKey = `${this.TAG_KEYS_PREFIX}${tag}`
+    const tagKeysResult = await this.client.get(tagKeysKey)
+    
+    if (!tagKeysResult.value) {
+      return // No keys to remove
+    }
+    
+    let keys: string[] = JSON.parse(tagKeysResult.value.toString()) as string[]
+    
+    // Remove the specified keys
+    keys = keys.filter((key) => !keysToRemove.includes(key))
+    
+    if (keys.length === 0) {
+      // If no keys left, delete the tag keys entry
+      await this.client.delete(tagKeysKey)
+    } else {
+      // Update the tag keys list
+      await this.client.set(tagKeysKey, JSON.stringify(keys))
+    }
+  }
+}
+```
+
+The `removeKeysFromTag` method takes a `tag` and an array of `keysToRemove`.
+
+In the method, you:
+
+1. Retrieve the list of keys associated with the tag from Memcached.
+2. Filter out the keys that need to be removed.
+3. If no keys are left, delete the tag's key list entry. Otherwise, update the list in Memcached.
+
+#### clearByKey Helper Method
+
+Next, you'll implement the `clearByKey` method. It removes a cached value by its key and updates the associated tags to remove the key from their key lists.
+
+Add the following method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  private async clearByKey(key: string): Promise<void> {
+    // Get the key's tags before deleting to clean up tag key lists
+    const keyTagsKey = `${this.KEY_TAGS_PREFIX}${key}`
+    const keyTagsResult = await this.client.get(keyTagsKey)
+    
+    const operations: Promise<any>[] = [
+      this.client.delete(this.CACHE_PREFIX + key),
+      this.client.delete(this.OPTIONS_PREFIX + key),
+      this.client.delete(keyTagsKey),
+    ]
+
+    // If the key has tags, remove it from tag key lists
+    if (keyTagsResult.value) {
+      const storedTags = JSON.parse(keyTagsResult.value.toString())
+      const tagNames = Object.keys(storedTags)
+      
+      // Batch tag cleanup operations
+      const tagCleanupOperations = tagNames.map(async (tag) => {
+        await this.removeKeysFromTag(tag, [key])
+      })
+      operations.push(...tagCleanupOperations)
+    }
+
+    await Promise.all(operations)
+  }
+}
+```
+
+The `clearByKey` method takes a cache `key`.
+
+In the method, you:
+
+1. Retrieve the tags associated with the key before deleting it.
+2. Delete the cached value, its options, and the key's tag mapping from Memcached.
+3. If the key has associated tags, call the `removeKeysFromTag` method for each tag to remove the key from their key lists.
+4. Batch all operations using `Promise.all` for better performance.
+
+#### clearByTags Helper Method
+
+Next, you'll implement the `clearByTags` method. It removes all cached values associated with the provided tags. You'll use this method when the `options` parameter isn't set in the `clear` method.
+
+Add the following method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  private async clearByTags(tags: string[]): Promise<void> {
+    const operations = tags.map(async (tag) => {
+      const tagKey = this.TAG_PREFIX + tag
+      const result = await this.client.increment(tagKey, 1)
+      if (result === null) {
+        // Key doesn't exist, create it with current timestamp
+        const timestamp = Math.floor(Date.now() / 1000)
+        await this.client.add(tagKey, timestamp.toString())
+      }
+    })
+
+    await Promise.all(operations)
+  }
+}
+```
+
+The `clearByTags` method takes an array of `tags`.
+
+In the method, you loop over the tags to increment their namespace versions in Memcached. If a tag's namespace doesn't exist, you create it with the current timestamp.
+
+By incrementing the namespace version, you effectively invalidate the tag and all associated keys, as they will no longer match the stored namespace versions. The namespace version will also be replaced in Memcached after being reclaimed.
+
+<Note title="Tip">
+
+Learn more about this invalidation strategy in [Memcached's documentation](https://docs.memcached.org/userguide/usecases/).
+
+</Note>
+
+#### clearByTagsWithAutoInvalidate Helper Method
+
+The `clearByTagsWithAutoInvalidate` method removes cached values associated with the provided tags, but only for keys whose options allow automatic invalidation. You'll use this method when the `options.autoInvalidate` parameter is `true` in the `clear` method.
+
+Add the following method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  private async clearByTagsWithAutoInvalidate(tags: string[]): Promise<void> {
+    for (const tag of tags) {
+      // Get the list of keys associated with this tag
+      const tagKeysKey = `${this.TAG_KEYS_PREFIX}${tag}`
+      const tagKeysResult = await this.client.get(tagKeysKey)
+      
+      if (!tagKeysResult.value) {
+        continue
+      }
+      
+      const keys = JSON.parse(tagKeysResult.value.toString()) as string[]
+      
+      // Check each key's options and delete if autoInvalidate is true
+      const keysToRemove: string[] = []
+      for (const key of keys) {
+        const optionsKey = `${this.OPTIONS_PREFIX}${key}`
+        const optionsResult = await this.client.get(optionsKey)
+        
+        if (optionsResult.value) {
+          const options = JSON.parse(optionsResult.value.toString())
+          if (options.autoInvalidate) {
+            // Delete the key and its associated data
+            await this.client.delete(this.CACHE_PREFIX + key)
+            await this.client.delete(optionsKey)
+            await this.client.delete(`${this.KEY_TAGS_PREFIX}${key}`)
+            keysToRemove.push(key)
+          }
+        }
+      }
+      
+      // Remove deleted keys from the tag's key list
+      if (keysToRemove.length > 0) {
+        await this.removeKeysFromTag(tag, keysToRemove)
+      }
+    }
+  }
+}
+```
+
+You define the `clearByTagsWithAutoInvalidate` method, which takes an array of `tags`.
+
+In the method, you loop over the tags to:
+
+1. Retrieve the list of keys associated with each tag from Memcached.
+2. For each key, retrieve its options and check if `autoInvalidate` is `true`.
+3. If `autoInvalidate` is `true`, delete the cached value, its options, and its tag mapping from Memcached. You also keep track of the keys that were deleted.
+4. After processing all keys for a tag, call the `removeKeysFromTag` method to remove the deleted keys from the tag's key list.
+
+#### clear Method
+
+Finally, add the `clear` method to the `MemcachedCachingProviderService` class:
+
+```ts title="src/modules/memcached/service.ts"
+class MemcachedCachingProviderService implements ICachingProviderService {
+  // ...
+  async clear({
+    key,
+    tags,
+    options,
+  }: {
+    key?: string
+    tags?: string[]
+    options?: { autoInvalidate?: boolean }
+  }): Promise<void> {
+    if (key) {
+      await this.clearByKey(key)
+    }
+
+    if (tags?.length) {
+      if (!options) {
+        // Clear all items with the specified tags
+        await this.clearByTags(tags)
+      } else if (options.autoInvalidate) {
+        // Clear only items with autoInvalidate option set to true
+        await this.clearByTagsWithAutoInvalidate(tags)
+      }
+    }
+  }
+}
+```
+
+The `clear` method takes an object with optional `key`, `tags`, and `options` properties.
+
+In the method:
+
+- If a `key` is provided, you call the `clearByKey` method to remove the cached value and update associated tags.
+- If `tags` are provided:
+    - If `options` isn't set, you call the `clearByTags` method to invalidate all cached values associated with the tags.
+    - If `options.autoInvalidate` is `true`, you call the `clearByTagsWithAutoInvalidate` method to invalidate only the keys whose options allow automatic invalidation.
+
+You've now implemented all methods of the `ICachingProviderService` interface in the `MemcachedCachingProviderService` class.
+
+---
+
+## 5. Export Memcached Module Provider Definition
+
+The final piece of a module provider is its definition, which you export in an `index.ts` file at its root directory. This definition tells Medusa which module this provider belongs to, its loaders, and its service.
+
+Create the file `src/modules/memcached/index.ts` with the following content:
+
+```ts title="src/modules/memcached/index.ts"
+import { ModuleProvider, Modules } from "@medusajs/framework/utils"
+import MemcachedCachingProviderService from "./service"
+import connection from "./loaders/connection"
+
+export default ModuleProvider(Modules.CACHING, {
+  services: [MemcachedCachingProviderService],
+  loaders: [connection],
+})
+```
+
+You use the `ModuleProvider` function from the Modules SDK to create the module provider's definition. It accepts two parameters:
+
+1. The module this provider belongs to. In this case, the `Modules.CACHING` module.
+2. An object with the provider's `services` and `loaders`.
+
+---
+
+## 6. Register Memcached Module Provider
+
+The last step is to register the Memcached Module Provider in your Medusa application.
+
+### Enable Caching Feature Flag
+
+First, enable the [Caching Module's feature flag](../../page.mdx#1-enable-caching-feature-flag) by setting the following environment variable:
+
+```bash
+MEDUSA_FF_CACHING=true
+```
+
+### Register Memcached Module Provider
+
+Then, in `medusa-config.ts`, add a new entry in the `modules` array to register the Memcached Module Provider:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "@medusajs/medusa/caching",
+      options: {
+        in_memory: {
+          enable: true,
+        },
+        providers: [
+          {
+            resolve: "./src/modules/memcached",
+            id: "caching-memcached",
+            // Optional, makes this the default caching provider
+            is_default: true,
+            options: {
+              serverUrls: process.env.MEMCACHED_SERVERS?.split(",") || 
+                ["127.0.0.1:11211"],
+              // add other optional options here...
+            },
+          },
+          // other caching providers...
+        ],
+      },
+    },
+  ],
+})
+```
+
+You register the `@medusajs/medusa/caching` module and add the Memcached Module Provider to its `providers` array.
+
+You pass the options to configure the Memcached client and the module's behavior. These are the same [options you defined in the ModuleOptions type in the loader](#3-create-memcached-connection-loader).
+
+### Add Environment Variables
+
+Make sure you set the necessary environment variables in your `.env` file. For example:
+
+```bash
+MEMCACHED_SERVERS=127.0.0.1:11211 # Comma-separated list of Memcached server URLs
+# Add other optional variables as needed
+```
+
+You set the `MEMCACHED_SERVERS` variable to specify the Memcached server URLs. You can also set other optional variables like `MEMCACHED_USERNAME` and `MEMCACHED_PASSWORD` based on your use case.
+
+---
+
+## Test the Memcached Caching Provider
+
+To test that the Memcached Caching Provider is working, start the Medusa application with the following command:
+
+```bash npm2yarn
+npm run dev
+```
+
+You'll see in the logs that the Memcached connection is established successfully:
+
+```bash
+info:    Connecting to Memcached...
+info:    Successfully connected to Memcached
+```
+
+If you set the `is_default` option to `true` in the provider registration, the Memcached Caching Provider will be used for all caching operations in the Medusa application.
+
+### Create Test API Route
+
+To verify that the caching is working, you can create a simple [API route](!docs!/learn/fundamentals/api-routes) that retrieves data with caching.
+
+To create an API route, create a new file at `src/api/test-cache/route.ts` with the following content:
+
+```ts title="src/api/test-cache/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+
+export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+  const query = req.scope.resolve("query")
+    
+  // Test caching with a simple query
+  const { data } = await query.graph({
+    entity: "product",
+    fields: ["id", "title", "handle"],
+  }, {
+    cache: {
+      enable: true,
+      // For testing purposes
+      key: "test-cache-products",
+      // If you didn't set is_default to true, uncomment the following line
+      // providers: ["caching-memcached"],
+    },
+  })
+
+  res.status(200).json({
+    message: "Products retrieved with Memcached caching",
+    data,
+  })
+}
+```
+
+This creates a `GET` route at `/test-cache` that retrieves products using Query with caching enabled. The `key` so that you can easily check the cached data in Memcached for testing purposes.
+
+Then, send a `GET` request to the `/test-cache` endpoint:
+
+```bash
+curl http://localhost:9000/test-cache
+```
+
+You'll receive the list of products in the response.
+
+You can then check that the data is cached in Memcached using the [memcached-cli](https://github.com/pd4d10/memcached-cli) tool.
+
+First, establish a connection to your Memcached server:
+
+```bash npx2yarn
+npx memcached-cli localhost:11211 # Replace with your Memcached server URL
+```
+
+Then, retrieve the cached data using the key you specified in the API route:
+
+```bash
+get medusa:test-cache-products
+```
+
+Notice that you prefix the key with `medusa:`, which is the default prefix unless you set the `keyPrefix` option in the provider registration.
+
+---
+
+## Next Steps
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get a more in-depth understanding of all the concepts you've used in this guide and more.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during your development, check out the [troubleshooting guides](../../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in the troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.

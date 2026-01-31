@@ -1,0 +1,37 @@
+{
+  "name": "@acmekit/analytics-local",
+  "version": "2.13.2",
+  "description": "Local analytics provider for AcmeKit",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/modules/providers/analytics-local"
+  },
+  "files": [
+    "dist",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "AcmeKit",
+  "license": "MIT",
+  "scripts": {
+    "test": "../../../../node_modules/.bin/jest --passWithNoTests src",
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build ./tsconfig.json",
+    "watch": "yarn run -T tsc --watch"
+  },
+  "devDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "peerDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "keywords": [
+    "acmekit-plugin",
+    "acmekit-plugin-analytics"
+  ]
+}

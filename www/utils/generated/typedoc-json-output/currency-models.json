@@ -1,0 +1,347 @@
+{
+	"id": 2741,
+	"name": "currency-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 2742,
+			"name": "Currency",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "currency.ts",
+					"line": 3,
+					"character": 0,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/currency/src/models/currency.ts#L3"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 2743,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 2744,
+											"name": "code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ISO 3-character currency code. For example, `USD`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 4,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/currency/src/models/currency.ts#L4"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+															"qualifiedName": "TextProperty"
+														},
+														"name": "TextProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 2745,
+											"name": "symbol",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The symbol of the currency. For example, `$`."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 5,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/currency/src/models/currency.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 2746,
+											"name": "symbol_native",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The native symbol of the currency, if it has a different local symbol."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/currency/src/models/currency.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 2747,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the currency"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/currency/src/models/currency.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 2748,
+											"name": "decimal_digits",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "How many digits are after the decimal separator for prices in this currency."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 8,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/currency/src/models/currency.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 2749,
+											"name": "rounding",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The rounding percision of prices in this currency."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "currency.ts",
+													"line": 9,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/currency/src/models/currency.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												2744,
+												2745,
+												2746,
+												2747,
+												2748,
+												2749
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "currency.ts",
+											"line": 3,
+											"character": 40,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/currency/src/models/currency.ts#L3"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "currency"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			}
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				2742
+			]
+		}
+	],
+	"packageName": "@acmekit/currency",
+	"symbolIdMap": {
+		"2741": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"2742": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/currency.ts",
+			"qualifiedName": "default"
+		},
+		"2743": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/currency.ts",
+			"qualifiedName": "__object"
+		},
+		"2744": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/currency.ts",
+			"qualifiedName": "__object.code"
+		},
+		"2745": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/currency.ts",
+			"qualifiedName": "__object.symbol"
+		},
+		"2746": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/currency.ts",
+			"qualifiedName": "__object.symbol_native"
+		},
+		"2747": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/currency.ts",
+			"qualifiedName": "__object.name"
+		},
+		"2748": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/currency.ts",
+			"qualifiedName": "__object.decimal_digits"
+		},
+		"2749": {
+			"sourceFileName": "../../../../packages/modules/currency/src/models/currency.ts",
+			"qualifiedName": "__object.rounding"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/currency/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 2741
+		}
+	}
+}

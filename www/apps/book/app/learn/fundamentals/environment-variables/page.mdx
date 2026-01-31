@@ -1,0 +1,344 @@
+import { Table } from "docs-ui"
+
+export const metadata = {
+  title: `${pageNumber} Environment Variables`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn how environment variables are loaded in Medusa.
+
+## System Environment Variables
+
+The Medusa application loads and uses system environment variables.
+
+For example, if you set the `PORT` environment variable to `8000`, the Medusa application runs on that port instead of `9000`.
+
+In production, you should always use system environment variables that you set through your hosting provider.
+
+---
+
+## Environment Variables in .env Files
+
+During development, it's easier to set environment variables in a `.env` file in your repository.
+
+Based on your `NODE_ENV` system environment variable, Medusa will try to load environment variables from the following `.env` files:
+
+<Note title="Tip">
+
+As of [Medusa v2.5.0](https://github.com/medusajs/medusa/releases/tag/v2.5.0), `NODE_ENV` defaults to `production` when using `medusa start`. Otherwise, it defaults to `development`.
+
+</Note>
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>Environment</Table.HeaderCell>
+      <Table.HeaderCell>
+      
+      `.env` File
+      
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+
+      `NODE_ENV` = `development` or not set
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `.env`
+
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+
+      `NODE_ENV` = `production`
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `.env.production`
+
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+
+      `NODE_ENV` = `staging`
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `.env.staging`
+
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+
+      `NODE_ENV` = `test`
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `.env.test`
+
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+### Set Environment in `loadEnv`
+
+In the `medusa-config.ts` file of your Medusa application, you'll find a `loadEnv` function used that accepts `process.env.NODE_ENV` as a first parameter.
+
+This function is responsible for loading the correct `.env` file based on the value of `process.env.NODE_ENV`.
+
+To ensure that the correct `.env` file is loaded as shown in the table above, only specify `development`, `production`, `staging` or `test` as the value of `process.env.NODE_ENV` or as the parameter of `loadEnv`.
+
+---
+
+## Environment Variables for Admin Customizations
+
+Since the Medusa Admin is built on top of [Vite](https://vite.dev/), you prefix the environment variables you want to use in a widget or UI route with `VITE_`. Then, you can access or use them with the `import.meta.env` object.
+
+Learn more in the [Admin Environment Variables](../admin/environment-variables/page.mdx) chapter.
+
+---
+
+## Predefined Medusa Environment Variables
+
+You can further customize the Medusa application behavior using the following predefined environment variables. You can set the environment variables in your `.env` file or in your deployment platform.
+
+<Note title="Tip">
+
+You should opt for setting configurations in `medusa-config.ts` where possible. For a full list of Medusa configurations, refer to the [Medusa Configurations chapter](../../configurations/medusa-config/page.mdx).
+
+</Note>
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Environment Variable
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Description
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Default
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        `HOST`
+      </Table.Cell>
+      <Table.Cell>
+        The host to run the Medusa application on.
+      </Table.Cell>
+      <Table.Cell>
+        `localhost`
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `PORT`
+      </Table.Cell>
+      <Table.Cell>
+        The port to run the Medusa application on.
+      </Table.Cell>
+      <Table.Cell>
+        `9000`
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `DATABASE_URL`
+      </Table.Cell>
+      <Table.Cell>
+        The URL to connect to the PostgreSQL database. Only used if [projectConfig.databaseUrl](../../configurations/medusa-config/page.mdx#databaseurl) isn't set in `medusa-config.ts`.
+      </Table.Cell>
+      <Table.Cell>
+        `postgres://localhost/medusa-starter-default`
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `STORE_CORS`
+      </Table.Cell>
+      <Table.Cell>
+        URLs of storefronts that can access the Medusa backend's Store APIs. Only used if [projectConfig.http.storeCors](../../configurations/medusa-config/page.mdx#http-storeCors-1-1) isn't set in `medusa-config.ts`.
+      </Table.Cell>
+      <Table.Cell>
+        `http://localhost:8000`
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`ADMIN_CORS`</Table.Cell>
+      <Table.Cell>
+        URLs of admin dashboards that can access the Medusa backend's Admin APIs. Only used if [projectConfig.http.adminCors](../../configurations/medusa-config/page.mdx#http-adminCors-1-2) isn't set in `medusa-config.ts`.
+      </Table.Cell>
+      <Table.Cell>
+        `http://localhost:7000,http://localhost:7001,http://localhost:5173`
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`AUTH_CORS`</Table.Cell>
+      <Table.Cell>
+        URLs of clients that can access the Medusa backend's authentication routes. Only used if [projectConfig.http.authCors](../../configurations/medusa-config/page.mdx#http-authCors-1-0) isn't set in `medusa-config.ts`.
+      </Table.Cell>
+      <Table.Cell>
+        `http://localhost:7000,http://localhost:7001,http://localhost:5173`
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`JWT_SECRET`</Table.Cell>
+      <Table.Cell>
+        A random string used to create authentication tokens in the http layer. Only used if [projectConfig.http.jwtSecret](../../configurations/medusa-config/page.mdx#http-jwtSecret-1-3) isn't set in `medusa-config.ts`.
+      </Table.Cell>
+      <Table.Cell>
+        \-
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `COOKIE_SECRET`
+      </Table.Cell>
+      <Table.Cell>
+        A random string used to create cookie tokens in the http layer. Only used if [projectConfig.http.cookieSecret](../../configurations/medusa-config/page.mdx#http-cookieSecret-1-5) isn't set in `medusa-config.ts`.
+      </Table.Cell>
+      <Table.Cell>
+        \-
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `MEDUSA_BACKEND_URL`
+      </Table.Cell>
+      <Table.Cell>
+        The URL to the Medusa backend. Only used if [admin.backendUrl](../../configurations/medusa-config/page.mdx#backendurl) isn't set in `medusa-config.ts`.
+      </Table.Cell>
+      <Table.Cell>
+        \-
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `DB_HOST`
+      </Table.Cell>
+      <Table.Cell>
+        The host for the database. It's used when generating migrations for a plugin, and when running integration tests.
+      </Table.Cell>
+      <Table.Cell>
+        `localhost`
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `DB_USERNAME`
+      </Table.Cell>
+      <Table.Cell>
+        The username for the database. It's used when generating migrations for a plugin, and when running integration tests.
+      </Table.Cell>
+      <Table.Cell>
+        \-
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `DB_PASSWORD`
+      </Table.Cell>
+      <Table.Cell>
+        The password for the database user. It's used when generating migrations for a plugin, and when running integration tests.
+      </Table.Cell>
+      <Table.Cell>
+        \-
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `DB_TEMP_NAME`
+      </Table.Cell>
+      <Table.Cell>
+        The database name to create for integration tests.
+      </Table.Cell>
+      <Table.Cell>
+        \-
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `LOG_LEVEL`
+      </Table.Cell>
+      <Table.Cell>
+        The allowed levels to log. Learn more in the [Logging](../../debugging-and-testing/logging/page.mdx#log-levels) chapter.
+      </Table.Cell>
+      <Table.Cell>
+        `silly`
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `LOG_FILE`
+      </Table.Cell>
+      <Table.Cell>
+        The file to save logs in. By default, logs aren't saved in any file. Learn more in the [Logging](../../debugging-and-testing/logging/page.mdx) chapter.
+      </Table.Cell>
+      <Table.Cell>
+        \-
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `MEDUSA_DISABLE_TELEMETRY`
+      </Table.Cell>
+      <Table.Cell>
+        Whether to disable analytics data collection. Learn more in the [Usage](../../resources/usage/page.mdx) chapter.
+      </Table.Cell>
+      <Table.Cell>
+        \-
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+
+      `ADMIN_AUTH_TYPE` ([v2.12.0+](https://github.com/medusajs/medusa/releases/tag/v2.12.0))
+
+      </Table.Cell>
+      <Table.Cell>
+
+      A string indicating the authentication method that the JS SDK instance uses in the Medusa Admin. Possible values are `session` and `jwt`. Learn more in the [JS SDK Authentication guide](!resources!/js-sdk/auth/overview).
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `session`
+
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+      
+      `ADMIN_JWT_TOKEN_STORAGE_KEY` ([v2.12.0+](https://github.com/medusajs/medusa/releases/tag/v2.12.0))
+
+      </Table.Cell>
+      <Table.Cell>
+
+      A string indicating the key used to store the authentication JWT token in the browser's local storage. Only applicable if `ADMIN_AUTH_TYPE` is set to `jwt`.
+
+      </Table.Cell>
+      <Table.Cell>
+
+      `medusa_auth_token`
+
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>

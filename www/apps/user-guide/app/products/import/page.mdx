@@ -1,0 +1,289 @@
+---
+sidebar_position: 6
+sidebar_label: "Import Products"
+tags:
+    - user guide
+    - product
+products:
+    - product
+---
+
+import { ArrowDownTray, Trash, BellAlert, EllipsisHorizontal } from "@medusajs/icons"
+import { Prerequisites, Table } from "docs-ui"
+
+export const metadata = {
+  title: `Import Products in Medusa Admin`,
+}
+
+# {metadata.title}
+
+In this guide, you’ll learn how to import products into your Medusa store.
+
+## Import Products from a CSV File
+
+If you're migrating from another commerce platform, or from Medusa v1, you can import products into Medusa using a CSV file.
+
+When you import the CSV file, Medusa will either create or update products based on the CSV file you upload.
+
+### CSV File Format
+
+In the import form, you can download a template CSV file to see the format required for the import.
+
+#### CSV File Rows
+
+Each row in the CSV file represents a product variant to create or update. So, if a product has multiple variants, each variant will have its own row in the CSV file.
+
+For example, a product with two variants (red and blue) will have two rows in the CSV file, one for the red variant and one for the blue variant.
+
+#### CSV File Columns
+
+The columns in the CSV file holds the details of the product variant and its associated product. The CSV file can have the following columns:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>Column</Table.HeaderCell>
+      <Table.HeaderCell>Description</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>`Product Id`</Table.Cell>
+      <Table.Cell>The ID for an existing product to update. If provided, no other columns are required.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Handle`</Table.Cell>
+      <Table.Cell>A unique identifier used in the product's URL on the storefront. It allows you to create a human-readable URL for the product. The handle must be unique across all products, and it must contain lowercase letters, numbers, and hyphens (`-`). If not specified, Medusa will generate a handle from the title.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Title`</Table.Cell>
+      <Table.Cell>The product’s title. This is the only required field if you don't provide a `Product Id`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Status`</Table.Cell>
+      <Table.Cell>The status of the product. Can be `draft` (default), `published`, `proposed`, or `rejected`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Description`</Table.Cell>
+      <Table.Cell>A description of the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Subtitle`</Table.Cell>
+      <Table.Cell>A subtitle for the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product External Id`</Table.Cell>
+      <Table.Cell>The ID of the product in an external system, such as an ERP.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Thumbnail`</Table.Cell>
+      <Table.Cell>The URL of the product's thumbnail image.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Collection Id`</Table.Cell>
+      <Table.Cell>The ID of the collection the product belongs to.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Type Id`</Table.Cell>
+      <Table.Cell>The ID of the product type.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Category *`</Table.Cell>
+      <Table.Cell>The ID of a product category, where `*` is the number of the category, allowing you to add more than one category. For example, `Product Category 1`. </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Discountable`</Table.Cell>
+      <Table.Cell>Whether the product can be discounted. Can be `true` or `false`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Height`</Table.Cell>
+      <Table.Cell>The height of the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Hs Code`</Table.Cell>
+      <Table.Cell>The Harmonized System (HS) code for the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Image *`</Table.Cell>
+      <Table.Cell>The URL of a product image, where `*` is the image's number, allowing you to add more than one image. For example, `Product Image 1`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Length`</Table.Cell>
+      <Table.Cell>The length of the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Material`</Table.Cell>
+      <Table.Cell>The material of the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Mid Code`</Table.Cell>
+      <Table.Cell>The Manufacturer Identification Number (MID) for the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Origin Country`</Table.Cell>
+      <Table.Cell>The country of origin for the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Tag *`</Table.Cell>
+      <Table.Cell>The ID of the product's tag, where `*` is the tag's number, allowing you to add more than one tag. For example, `Product Tag 1`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Sales Channel *`</Table.Cell>
+      <Table.Cell>The ID of a sales channel the product is available in, where `*` is the sales channel's number, allowing you to add more than one sales channel. For example, `Product Sales Channel 1`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Weight`</Table.Cell>
+      <Table.Cell>The weight of the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Product Width`</Table.Cell>
+      <Table.Cell>The width of the product.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Id`</Table.Cell>
+      <Table.Cell>The ID for an existing variant to update. The variant must belong to the product specified in the `Product Id` column. If provided, no other variant-related columns are required.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Title`</Table.Cell>
+      <Table.Cell>The title of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Sku`</Table.Cell>
+      <Table.Cell>The SKU of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Upc`</Table.Cell>
+      <Table.Cell>The UPC of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Ean`</Table.Cell>
+      <Table.Cell>The EAN of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Hs Code`</Table.Cell>
+      <Table.Cell>The Harmonized System (HS) code for the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Mid Code`</Table.Cell>
+      <Table.Cell>The Manufacturer Identification Number (MID) for the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Manage Inventory`</Table.Cell>
+      <Table.Cell>Whether Medusa manages the variant's inventory. Can be `true` or `false`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Allow Backorder`</Table.Cell>
+      <Table.Cell>Whether the variant allows backorders. Can be `true` or `false`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Barcode`</Table.Cell>
+      <Table.Cell>The barcode of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Height`</Table.Cell>
+      <Table.Cell>The height of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Length`</Table.Cell>
+      <Table.Cell>The length of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Material`</Table.Cell>
+      <Table.Cell>The material of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Metadata`</Table.Cell>
+      <Table.Cell>Metadata for the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Option * Name`</Table.Cell>
+      <Table.Cell>The name of the variant's option, where `*` is the option's number. For example, `Variant Option 1 Name`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Option * Value`</Table.Cell>
+      <Table.Cell>The value of the variant's option, where `*` is the option's number. For example, `Variant Option 1 Value`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Origin Country`</Table.Cell>
+      <Table.Cell>The country of origin for the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Price *`</Table.Cell>
+      <Table.Cell>The price of the variant in a currency, where `*` is the currency's ISO code. For example, `Variant Price USD`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Price [X] Y`</Table.Cell>
+      <Table.Cell>The price of the variant in a region, where `X` is the region's name, and `Y` is the ISO currency code of the region. For example, `Variant Price Europe [EUR]`.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Variant Rank`</Table.Cell>
+      <Table.Cell>The rank of the variant among its siblings. Can be `0` or higher.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Weight`</Table.Cell>
+      <Table.Cell>The weight of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Variant Width`</Table.Cell>
+      <Table.Cell>The width of the variant.</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`Shipping Profile Id`</Table.Cell>
+      <Table.Cell>The ID of the shipping profile that the product belongs to.</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+---
+
+## Import List of Products
+
+<Prerequisites
+  items={[
+    {
+      text: "A CSV file to import.",
+      link: "#csv-file-format",
+    }
+  ]}
+/>
+
+To import products:
+
+1. Go to the Products page.
+2. Click on the Import button in the main section's header.
+3. In the side window:
+    1. If you’re unsure of what the CSV file’s format must be like, you can download the template CSV file.
+    2. To upload the CSV file you want to import products from, either drag-and-drop the file to the upload area or click on the area to open a file picker.
+    3. After you upload the CSV file:
+        1. Check the number of products to be created or updated.
+        2. To remove the uploaded file, click the <InlineIcon Icon={EllipsisHorizontal} alt="trash" /> icon, and choose Delete from the dropdown.
+4. Once you’re done, click the Import button.
+
+![Import Products Form](https://res.cloudinary.com/dza7lstvk/image/upload/v1739878759/User%20Guide/Screenshot_2025-02-18_at_1.39.01_PM_ctovne.png)
+
+This starts the import process which may take some time.
+
+### Check Import Status
+
+To check whether the import is in progress, finished, or failed:
+
+1. Click on the <InlineIcon Icon={BellAlert} alt="bell" /> notifications icon in the page's header.
+2. Find the product import, which should be the latest item on the list.
+
+The text on the import item will explain the current state of the import.
+
+### Troubleshooting Import Errors
+
+If the import fails, either during parsing of the CSV file or import process, make sure that:
+
+1. The [storage integration](!resources!/infrastructure-modules/file) is correctly set up in your Medusa application.
+2. The CSV file follows the [required format](#csv-file-format).
+3. All IDs provided in the CSV file (such as for collections, categories, tags, sales channels, shipping profiles, etc...) exist in your Medusa application.
+
+You can also refer to the server logs of your Medusa application to get more information about the error.
+
+<Note title="Cloud User?">
+
+Learn more about troubleshooting in the [Logs guide](!cloud!/logs).
+
+</Note>

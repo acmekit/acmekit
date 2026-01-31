@@ -1,0 +1,16 @@
+/**
+ * @schema AdminCreateFulfillmentShipment
+ * type: object
+ * description: Details of the shipment to create for a fulfillment.
+ * x-schemaName: AdminCreateFulfillmentShipment
+ * required:
+ *   - labels
+ * properties:
+ *   labels:
+ *     type: array
+ *     description: The shipment's labels.
+ *     items:
+ *       $ref: "#/components/schemas/AdminCreateFulfillmentLabel"
+ * 
+*/
+

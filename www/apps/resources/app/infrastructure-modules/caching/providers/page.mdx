@@ -1,0 +1,157 @@
+import { CardList, Card, Table, CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `Caching Module Providers`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn about Caching Module Providers in Medusa, including how to configure and use them in your Medusa application.
+
+## What is a Caching Module Provider?
+
+A Caching Module Provider implements the logic for caching data, such as integrating third-party caching services. The [Caching Module](../page.mdx) then uses the registered Caching Module Providers to handle caching data.
+
+Medusa provides the [Redis Caching Module Provider](./redis/page.mdx) that you can use in development and production. You can also [Create a Caching Provider](/references/caching-module-provider).
+
+<CardList
+  items={[
+    {
+      title: "Redis",
+      href: "/infrastructure-modules/caching/providers/redis",
+      badge: {
+        variant: "green",
+        children: "For Production"
+      }
+    },
+    {
+      title: "Memcached",
+      href: "/infrastructure-modules/caching/guides/memcached",
+      badge: {
+        variant: "blue",
+        children: "Tutorial"
+      }
+    }
+  ]}
+/>
+
+---
+
+## Default Caching Module Provider
+
+You can register multiple Caching Module Providers and specify which one to use as the default. The Caching Module uses the default provider for all caching operations unless you specify a specific provider.
+
+### How is the Default Provider Selected?
+
+The Caching Module determines the default Caching Module Provider based on the following scenarios:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>Scenario</Table.HeaderCell>
+      <Table.HeaderCell>Default Provider</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        One provider is registered.
+      </Table.Cell>
+      <Table.Cell>
+        The registered provider.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Multiple providers and one of them has an `is_default` flag.
+      </Table.Cell>
+      <Table.Cell>
+        The provider with the `is_default` flag set to `true`.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+If none of the above scenarios apply, the Caching Module throws an error during startup indicating that no default provider is configured.
+
+### Setting the Default Caching Module Provider
+
+To specify a provider as the default, you can set its `is_default` option to `true` when registering it in the `provider` array of the Caching Module.
+
+For example:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "@medusajs/medusa/caching",
+      options: {
+        providers: [
+          {
+            id: "caching-redis",
+            resolve: "@medusajs/caching-redis",
+            is_default: true, // Set as the default provider
+            options: {
+              // Redis options...
+            },
+          },
+          {
+            id: "caching-memcached",
+            resolve: "./path/to/your/memcached-provider",
+            options: {
+              // Memcached options...
+            },
+          },
+        ],
+      },
+    },
+  ],
+})
+```
+
+In this example, the Redis Caching Module Provider is set as the default provider by setting `is_default: true`. The Memcached Caching Module Provider is also registered but not set as the default.
+
+---
+
+## Caching with Specific Providers
+
+Whether you're caching data with Query, the Index Module, or directly using the Caching Module's service, you can specify an array of provider IDs to use for that specific caching operation.
+
+For example, considering you have the [above configuration](../page.mdx#setting-the-default-caching-module-provider) with both Redis and Memcached providers registered, you can specify which provider to use when caching data:
+
+<CodeTabs group="caching-method">
+  <CodeTab label="Query / Index Module" value="query-index">
+
+```ts highlights={[["7"]]}
+const { data: products } = useQueryGraphStep({
+  entity: "product",
+  fields: ["id", "title"],
+  options: {
+    cache: {
+      enable: true,
+      providers: ["caching-memcached"], // Specify Memcached provider
+    },
+  },
+})
+```
+
+  </CodeTab>
+  <CodeTab label="Caching Module Service" value="caching-service">
+
+```ts highlights={[["6"]]}
+const cachingModuleService = container.resolve(Modules.CACHING)
+
+await cachingModuleService.set({
+  key: "product-list",
+  data: products,
+  providers: ["caching-memcached"], // Specify Memcached provider
+})
+```
+
+  </CodeTab>
+</CodeTabs>
+
+In this example, both Query and the Caching Module's service use the Memcached provider, overriding the default Redis provider.
+
+The ID you pass is the same ID you specified in `medusa-config.ts` when registering the provider.

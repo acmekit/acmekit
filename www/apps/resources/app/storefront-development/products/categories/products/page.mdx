@@ -1,0 +1,146 @@
+---
+tags:
+  - product
+  - product category
+  - storefront
+products:
+  - product
+---
+
+import { CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `Retrieve a Category's Products in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to retrieve a category's products in the storefront.
+
+In your storefront, you may want to allow customers to browse products by category. To do so, you can retrieve the products that belong to a category and display them in your storefront.
+
+To retrieve a category's products in the storefront, send a request to the [List Products API route](!api!/store#products_getproducts) passing it the `category_id` query parameter:
+
+<Note title="Tip">
+
+Learn how to install and configure the JS SDK in the [JS SDK documentation](../../../../js-sdk/page.mdx).
+
+</Note>
+
+<CodeTabs group="store-request">
+  <CodeTab label="React" value="react">
+
+export const highlights = [
+  ["32", "category_id", "Pass the category ID as a query parameter."],
+]
+
+  ```tsx highlights={highlights}
+  "use client" // include with Next.js 13+
+
+  import { useEffect, useState } from "react"
+  import { HttpTypes } from "@medusajs/types"
+  import { sdk } from "@/lib/sdk"
+
+  type Props = {
+    categoryId: string
+  }
+
+  export default function CategoryProducts({
+    categoryId,
+  }: Props) {
+    const [loading, setLoading] = useState(true)
+    const [products, setProducts] = useState<
+      HttpTypes.StoreProduct[]
+    >([])
+    const limit = 20
+    const [currentPage, setCurrentPage] = useState(1)
+    const [hasMorePages, setHasMorePages] = useState(false)
+
+    useEffect(() => {
+      if (!loading) {
+        return 
+      }
+
+      const offset = (currentPage - 1) * limit
+
+      sdk.store.product.list({
+        limit,
+        offset,
+        category_id: categoryId,
+      })
+      .then(({ products: dataProducts, count }) => {
+        setProducts((prev) => {
+          if (prev.length > offset) {
+            // products already added because the same request has already been sent
+            return prev
+          }
+          return [
+            ...prev,
+            ...dataProducts,
+          ]
+        })
+        setHasMorePages(count > limit * currentPage)
+        setLoading(false)
+      })
+    }, [loading])
+
+    return (
+      <div>
+        {loading && <span>Loading...</span>}
+        {!loading && products.length === 0 && (
+          <span>No products found for category.</span>
+        )}
+        {!loading && products.length > 0 && (
+          <ul>
+            {products.map((product) => (
+              <li key={product.id}>{product.title}</li>
+            ))}
+          </ul>
+        )}
+        {!loading && hasMorePages && (
+          <button 
+            onClick={() => {
+              setCurrentPage((prev) => prev + 1)
+              setLoading(true)
+            }}
+            disabled={loading}
+          >
+            Load More
+          </button>
+        )}
+      </div>
+    )
+  }
+  ```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+
+export const fetchHighlights = [
+  ["3", "category_id", "Pass the category ID as a query parameter."],
+]
+
+  ```ts highlights={fetchHighlights}
+  sdk.store.product.list({
+    // other query params...
+    category_id: categoryId,
+  })
+  .then(({ products, count }) => {
+    // use products...
+    console.log(products)
+  })
+  ```
+
+  </CodeTab>
+</CodeTabs>
+
+In this example, you retrieve the products that belong to a category by passing the category's ID as a query parameter to the [List Products API route](!api!/store#products_getproducts). You can also pass other query parameters to filter or paginate the products, such as `limit` and `offset`.
+
+The response has a `products` field, which is an array of [products](!api!/store#products_product_schema).
+
+To learn more about displaying the products and their variants, refer to the following guides:
+
+- [Show Products in Storefront](../../list/page.mdx)
+- [Show Product Variant's Price](../../../products/price/page.mdx)
+- [Show Product Variant's Inventory](../../../products/inventory/page.mdx)
+- [Select Product Variants](../../../products/variants/page.mdx)

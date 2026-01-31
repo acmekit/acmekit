@@ -1,0 +1,167 @@
+export const metadata = {
+  title: `${pageNumber} Module Options`,
+}
+
+# {metadata.title}
+
+In this chapter, you’ll learn about passing options to your module from the Medusa application’s configurations and using them in the module’s resources.
+
+## What are Module Options?
+
+A module can receive options to customize or configure its functionality. For example, if you’re creating a module that integrates a third-party service, you’ll want to receive the integration credentials in the options rather than adding them directly in your code.
+
+---
+
+## How to Pass Options to a Module?
+
+To pass options to a module, add an `options` property to the module’s configuration in `medusa-config.ts`.
+
+For example:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "./src/modules/blog",
+      options: {
+        capitalize: true,
+      },
+    },
+  ],
+})
+```
+
+The `options` property’s value is an object. You can pass any properties you want.
+
+### Pass Options to a Module in a Plugin
+
+If your module is part of a plugin, you can pass options to the module in the plugin’s configuration.
+
+For example:
+
+```ts title="medusa-config.ts"
+import { defineConfig } from "@medusajs/framework/utils"
+module.exports = defineConfig({
+  plugins: [
+    {
+      resolve: "@myorg/plugin-name",
+      options: {
+        capitalize: true,
+      },
+    },
+  ],
+})
+```
+
+The `options` property in the plugin configuration is passed to all modules in a plugin.
+
+---
+
+## Access Module Options in Main Service
+
+The module’s main service receives the module options as a second parameter.
+
+For example:
+
+```ts title="src/modules/blog/service.ts" highlights={[["12"], ["14", "options?: ModuleOptions"], ["17"], ["18"], ["19"]]}
+import { MedusaService } from "@medusajs/framework/utils"
+import Post from "./models/post"
+
+// recommended to define type in another file
+type ModuleOptions = {
+  capitalize?: boolean
+}
+
+export default class BlogModuleService extends MedusaService({
+  Post,
+}){
+  protected options_: ModuleOptions
+
+  constructor({}, options?: ModuleOptions) {
+    super(...arguments)
+
+    this.options_ = options || {
+      capitalize: false,
+    }
+  }
+
+  // ...
+}
+```
+
+---
+
+## Access Module Options in Loader
+
+The object that a module’s loaders receive as a parameter has an `options` property holding the module's options.
+
+For example:
+
+```ts title="src/modules/blog/loaders/hello-world.ts" highlights={[["11"], ["12", "ModuleOptions", "The type of expected module options."], ["16"]]}
+import {
+  LoaderOptions,
+} from "@medusajs/framework/types"
+
+// recommended to define type in another file
+type ModuleOptions = {
+  capitalize?: boolean
+}
+
+export default async function helloWorldLoader({
+  options,
+}: LoaderOptions<ModuleOptions>) {
+  
+  console.log(
+    "[BLOG MODULE] Just started the Medusa application!",
+    options
+  )
+}
+```
+
+---
+
+## Validate Module Options
+
+If you expect a certain option and want to throw an error if it's not provided or isn't valid, it's recommended to perform the validation in a loader. The module's service is only instantiated when it's used, whereas the loader runs when the Medusa application starts.
+
+So, by performing the validation in the loader, you ensure you can throw an error at an early point, rather than when the module is used.
+
+For example, to validate that the Hello Module received an `apiKey` option, create the loader `src/modules/loaders/validate.ts`:
+
+```ts title="src/modules/blog/loaders/validate.ts" 
+import { LoaderOptions } from "@medusajs/framework/types"
+import { MedusaError } from "@medusajs/framework/utils"
+
+// recommended to define type in another file
+type ModuleOptions = {
+  apiKey?: string
+}
+
+export default async function validationLoader({
+  options,
+}: LoaderOptions<ModuleOptions>) {
+  if (!options.apiKey) {
+    throw new MedusaError(
+      MedusaError.Types.INVALID_DATA,
+      "Hello Module requires an apiKey option."
+    )
+  }
+}
+```
+
+Then, export the loader in the module's definition file, as explained in [this chapter](../loaders/page.mdx):
+
+```ts title="src/modules/blog/index.ts"
+// other imports...
+import validationLoader from "./loaders/validate"
+
+export const BLOG_MODULE = "blog"
+
+export default Module(BLOG_MODULE, {
+  // ...
+  loaders: [validationLoader],
+})
+```
+
+Now, when the Medusa application starts, the loader will run, validating the module's options and throwing an error if the `apiKey` option is missing.

@@ -1,0 +1,28 @@
+{
+	"ViewConfiguration": {
+		"filePath": "packages/modules/settings/src/models/view-configuration.ts",
+		"properties": {
+			"id": "The ID of the view configuration.",
+			"entity": "The entity of the view configuration",
+			"name": "The name of the view configuration",
+			"user_id": "The user id of the view configuration",
+			"is_system_default": "Whether the view configuration is system default.",
+			"configuration": "The configuration of the view configuration"
+		},
+		"deprecated": {
+			"is_deprecated": false
+		}
+	},
+	"UserPreference": {
+		"filePath": "packages/modules/settings/src/models/user-preference.ts",
+		"properties": {
+			"id": "The ID of the user preference.",
+			"user_id": "The user id of the user preference",
+			"key": "The key of the user preference",
+			"value": "The value of the user preference"
+		},
+		"deprecated": {
+			"is_deprecated": false
+		}
+	}
+}

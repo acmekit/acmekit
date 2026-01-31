@@ -1,0 +1,39 @@
+{
+  "name": "@acmekit/admin-bundler",
+  "version": "2.13.2",
+  "description": "Bundler for the AcmeKit admin dashboard.",
+  "author": "Kasper Kristensen <kasper@acmekit.com>",
+  "scripts": {
+    "build": "yarn run -T tsup"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/admin/admin-bundler"
+  },
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "devDependencies": {
+    "@acmekit/types": "2.13.2"
+  },
+  "dependencies": {
+    "@acmekit/admin-shared": "2.13.2",
+    "@acmekit/admin-vite-plugin": "2.13.2",
+    "@acmekit/dashboard": "2.13.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "compression": "^1.8.0",
+    "express": "^4.21.0",
+    "get-port": "^5.1.1",
+    "glob": "11.1.0",
+    "outdent": "^0.8.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.4.21"
+  },
+  "packageManager": "yarn@3.2.1"
+}

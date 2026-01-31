@@ -1,0 +1,52 @@
+{
+  "name": "@acmekit/types",
+  "version": "2.13.2",
+  "description": "AcmeKit Types definition",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "export": {
+    ".": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/core/types"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "!dist/**/__tests__",
+    "!dist/**/__fixtures__",
+    "!dist/**/__mocks__"
+  ],
+  "author": "AcmeKit",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build",
+    "watch": "yarn run -T tsc --build --watch",
+    "test": "exit 0"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.1.2"
+  },
+  "devDependencies": {
+    "@acmekit/deps": "2.13.2"
+  },
+  "peerDependencies": {
+    "ioredis": "^5.4.1",
+    "vite": "^5.4.21"
+  },
+  "peerDependenciesMeta": {
+    "ioredis": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    }
+  }
+}

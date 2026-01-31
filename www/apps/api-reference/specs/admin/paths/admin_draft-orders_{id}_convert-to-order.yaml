@@ -1,0 +1,70 @@
+post:
+  operationId: PostDraftOrdersIdConvertToOrder
+  summary: Convert a Draft Order to an Order
+  x-sidebar-summary: Convert to Order
+  description: >-
+    Convert a draft order to an order. This will finalize the draft order and
+    create a new order with the same details.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The draft order's ID.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: >-
+          ../code_samples/JavaScript/admin_draft-orders_{id}_convert-to-order/post.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_draft-orders_{id}_convert-to-order/post.sh
+  tags:
+    - Draft Orders
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AdminOrderResponse.yaml
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: convertDraftOrderWorkflow
+  x-events:
+    - name: order.placed
+      payload: |-
+        ```ts
+        {
+          id, // The ID of the order
+        }
+        ```
+      description: >-
+        Emitted when an order is placed, or when a draft order is converted to
+        an
+
+        order.
+      deprecated: false
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AdminDraftOrderParams.yaml

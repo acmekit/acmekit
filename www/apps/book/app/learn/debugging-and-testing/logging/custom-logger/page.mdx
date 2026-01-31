@@ -1,0 +1,133 @@
+export const metadata = {
+  title: `${pageNumber} Override Logger`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to override the default [Logger](../page.mdx) in Medusa with your custom implementation.
+
+## Why Override the Logger?
+
+Medusa's default `Logger` logs your application's events, errors, and general log messages into the console. However, you might want to customize this behavior for your specific use case.
+
+For example, you might want to change the logs format, or add additional metadata to your logs. In those cases, it's useful to override the default `Logger` with your custom implementation.
+
+After overriding the `Logger`, Medusa will use your custom logger whenever it needs to log a message.
+
+---
+
+## How to Override the Logger?
+
+To override the default `Logger`:
+
+1. Create a class that extends the `Logger` interface from `@medusajs/framework/types`.
+2. Pass the class in the Medusa configurations.
+
+### Step 1: Create a Custom Logger Class
+
+To create a custom logger class, create a new file at `src/utils/custom-logger.ts` with the following content:
+
+```ts title="src/utils/custom-logger.ts"
+import { Logger } from "@medusajs/framework/types"
+
+class MyLogger implements Logger {
+  panic(data: unknown): void {
+    console.error("PANIC:", data)
+  }
+  shouldLog(level: string): boolean {
+    // For demonstration, always log
+    return true
+  }
+  setLogLevel(level: string): void {
+    console.info("Set log level to:", level)
+  }
+  unsetLogLevel(): void {
+    console.info("Unset log level")
+  }
+  activity(message: string, config?: unknown): string {
+    console.log("ACTIVITY:", message, config)
+    return "activity-id"
+  }
+  progress(activityId: string, message: string): void {
+    console.log(`PROGRESS [${activityId}]:`, message)
+  }
+  error(messageOrError: string | Error, error?: Error): void {
+    if (error) {
+      console.error("ERROR:", messageOrError, error)
+    } else {
+      console.error("ERROR:", messageOrError)
+    }
+  }
+  failure(activityId: string, message: string): unknown {
+    console.warn(`FAILURE [${activityId}]:`, message)
+    return null
+  }
+  success(activityId: string, message: string): Record<string, unknown> {
+    console.log(`SUCCESS [${activityId}]:`, message)
+    return { activityId, message }
+  }
+  silly(message: string): void {
+    console.debug("SILLY:", message)
+  }
+  debug(message: string): void {
+    console.debug("DEBUG:", message)
+  }
+  verbose(message: string): void {
+    console.info("VERBOSE:", message)
+  }
+  http(message: string): void {
+    console.info("HTTP:", message)
+  }
+  info(message: string): void {
+    console.info("INFO:", message)
+  }
+  warn(message: string): void {
+    console.warn("WARN:", message)
+  }
+  log(...args: unknown[]): void {
+    console.log(...args)
+  }
+}
+
+export const logger = new MyLogger()
+```
+
+You can implement the methods as per your requirements. For simplicity, the above example logs messages to the console with a prefix indicating the log level.
+
+Notice that you must export an instance of your custom logger class to use it in the Medusa configurations.
+
+<Note>
+
+You can learn more about the methods in the [Logger](../page.mdx) chapter.
+
+</Note>
+
+### Step 2: Pass the Custom Logger in Medusa Configurations
+
+Next, to use the custom logger, set the `logger` configuration in your `medusa-config.ts` file:
+
+```ts title="medusa-config.ts"
+import { logger } from "./src/logger/my-logger"
+
+module.exports = defineConfig({
+  // ...
+  logger,
+})
+```
+
+The `logger` configuration accepts an instance of a class that extends the `Logger` interface.
+
+### Test Custom Logger
+
+To test that your custom logger is working, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+The logs will be displayed based on your custom implementation. For example, the above implementation that logs messages to the console will show logs similar to the following:
+
+```bash
+INFO: Watching filesystem to reload dev server on file change
+WARN: Local Event Bus installed. This is not recommended for production.
+```

@@ -1,0 +1,10 @@
+extends: substitution
+message: "Consider using '%s' instead of '%s'."
+level: error
+ignorecase: false
+action:
+  name: replace
+swap:
+  acmekit admin: AcmeKit Admin
+  AcmeKit admin: AcmeKit Admin
+  acmekit Admin: AcmeKit Admin

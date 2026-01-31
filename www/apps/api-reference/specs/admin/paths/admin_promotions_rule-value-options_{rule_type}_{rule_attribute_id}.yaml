@@ -1,0 +1,185 @@
+get:
+  operationId: GetPromotionsRuleValueOptionsRule_typeRule_attribute_id
+  summary: List Rule Values Given a Rule Attribute
+  x-sidebar-summary: List Rule Values
+  description: >
+    Retrieve all potential values for promotion rules and target and buy rules
+    based on the specified rule attribute and type.
+
+    For example, if you provide the ID of the `currency_code` rule attribute,
+    and set `rule_type` to `rules`, a list of currencies are retrieved in
+    label-value pairs.
+  x-authenticated: true
+  parameters:
+    - name: rule_type
+      in: path
+      description: The rule type.
+      required: true
+      schema:
+        type: string
+        enum:
+          - rules
+          - target-rules
+          - buy-rules
+    - name: rule_attribute_id
+      in: path
+      description: The rule attribute's ID.
+      required: true
+      schema:
+        type: string
+    - name: offset
+      in: query
+      description: The number of items to skip when retrieving a list.
+      required: false
+      schema:
+        type: number
+        title: offset
+        description: The number of items to skip when retrieving a list.
+        externalDocs:
+          url: '#pagination'
+    - name: limit
+      in: query
+      description: Limit the number of items returned in the list.
+      required: false
+      schema:
+        type: number
+        title: limit
+        description: Limit the number of items returned in the list.
+        externalDocs:
+          url: '#pagination'
+    - name: order
+      in: query
+      description: >-
+        The field to sort the data by. By default, the sort order is ascending.
+        To change the order to descending, prefix the field name with `-`.
+      required: false
+      schema:
+        type: string
+        title: order
+        description: >-
+          The field to sort the data by. By default, the sort order is
+          ascending. To change the order to descending, prefix the field name
+          with `-`.
+    - name: with_deleted
+      in: query
+      description: Whether to include deleted records in the result.
+      required: false
+      schema:
+        type: boolean
+        title: with_deleted
+        description: Whether to include deleted records in the result.
+    - name: application_method_target_type
+      in: query
+      description: The application method target type to retrieve rules for.
+      required: false
+      schema:
+        type: string
+        description: The application method target type to retrieve rules for.
+    - name: q
+      in: query
+      description: Apply a search query on the rule values' searchable properties.
+      required: false
+      schema:
+        type: string
+        title: q
+        description: Apply a search query on the rule values' searchable properties.
+    - name: value
+      in: query
+      required: false
+      schema:
+        oneOf:
+          - type: string
+            title: value
+            description: Filter by a specific rule value.
+          - type: array
+            description: Filter by multiple rule values.
+            items:
+              type: string
+              title: value
+              description: A rule value.
+    - name: fields
+      in: query
+      description: >-
+        Comma-separated fields that should be included in the returned data. If
+        a field is prefixed with `+` it will be added to the default fields,
+        using `-` will remove it from the default fields. Without prefix it will
+        replace the entire default fields.
+      required: false
+      schema:
+        type: string
+        title: fields
+        description: >-
+          Comma-separated fields that should be included in the returned data.
+          If a field is prefixed with `+` it will be added to the default
+          fields, using `-` will remove it from the default fields. Without
+          prefix it will replace the entire default fields.
+        externalDocs:
+          url: '#select-fields-and-relations'
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: >-
+          ../code_samples/JavaScript/admin_promotions_rule-value-options_{rule_type}_{rule_attribute_id}/get.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: >-
+          ../code_samples/Shell/admin_promotions_rule-value-options_{rule_type}_{rule_attribute_id}/get.sh
+  tags:
+    - Promotions
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            allOf:
+              - type: object
+                description: The pagination fields.
+                required:
+                  - limit
+                  - offset
+                  - count
+                properties:
+                  limit:
+                    type: number
+                    title: limit
+                    description: The maximum number of items returned.
+                  offset:
+                    type: number
+                    title: offset
+                    description: >-
+                      The number of items skipped before retrieving the returned
+                      items.
+                  count:
+                    type: number
+                    title: count
+                    description: The total number of items.
+              - type: object
+                description: The list of rule values.
+                required:
+                  - values
+                properties:
+                  values:
+                    type: array
+                    description: The list of rule values.
+                    items:
+                      $ref: ../components/schemas/AdminRuleValueOption.yaml
+            description: The paginated list of rule values.
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml

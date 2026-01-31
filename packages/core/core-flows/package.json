@@ -1,0 +1,43 @@
+{
+  "name": "@acmekit/core-flows",
+  "version": "2.13.2",
+  "description": "Set of workflow definitions for AcmeKit",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/core-flows"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__"
+  ],
+  "author": "AcmeKit",
+  "license": "MIT",
+  "devDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "dependencies": {
+    "csv-parse": "^5.6.0",
+    "json-2-csv": "^5.5.4"
+  },
+  "peerDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "scripts": {
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build",
+    "watch": "yarn run -T tsc --build --watch",
+    "test": "../../../node_modules/.bin/jest --bail --forceExit --passWithNoTests"
+  }
+}

@@ -1,0 +1,52 @@
+export const metadata = {
+  title: `Inventory Concepts`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn about the main concepts in the Inventory Module and how data is stored and connected.
+
+## InventoryItem
+
+An inventory item, represented by the [InventoryItem data model](/references/inventory-next/models/InventoryItem), is a stock-kept item whose inventory can be managed. For example, a product.
+
+The `InventoryItem` data model holds details about the stock item. It connects to other data models like `InventoryLevel` that store stock and quantity details.
+
+![A diagram showcasing the relation between data models in the Inventory Module](https://res.cloudinary.com/dza7lstvk/image/upload/v1709658103/Medusa%20Resources/inventory-architecture_kxr2ql.png)
+
+### Inventory Shipping Requirement
+
+An inventory item has a `requires_shipping` field that indicates whether the item needs shipping. This field is enabled by default.
+
+For example, if you're selling a digital license with limited stock that doesn't need shipping, you can set this field to `false`.
+
+When a customer buys a product variant in the Medusa application, this field determines whether the item needs shipping. Learn more in the [Configure Selling Products](../../product/selling-products/page.mdx) guide.
+
+---
+
+## InventoryLevel
+
+An inventory level, represented by the [InventoryLevel data model](/references/inventory-next/models/InventoryLevel), stores the inventory and quantity details of an inventory item in a specific location.
+
+It has three quantity properties:
+
+- `stocked_quantity`: The available stock quantity of an item in the associated location.
+- `reserved_quantity`: The quantity reserved from the available `stocked_quantity`. This quantity is still in stock but unavailable when checking if an item is available.
+    - For example, when an order is placed but not yet fulfilled, the ordered quantity is reserved from available stock.
+- `incoming_quantity`: The incoming stock quantity of an item into the associated location. This property doesn't affect the `stocked_quantity` or availability checks.
+
+### Associated Location
+
+The inventory level's location is set in the `location_id` property. Medusa links the `InventoryLevel` data model with the `StockLocation` data model from the [Stock Location Module](../../stock-location/page.mdx).
+
+---
+
+## ReservationItem
+
+A reservation item, represented by the [ReservationItem](/references/inventory-next/models/ReservationItem) data model, represents unavailable quantity of an inventory item in a location.
+
+When an order is placed, Medusa creates a reservation item for each inventory item in the order. The reservation item stores the reserved quantity of the inventory item in the location associated with the order's sales channel.
+
+You can also use reservation items for custom use cases. For example, if you're selling event tickets, you can create a reservation item when a customer selects a ticket. Then, you can remove the reservation item if the customer doesn't complete the purchase within a specific time.
+
+The reserved quantity is linked to a location, so it has a similar relationship to the `InventoryLevel` with the [Stock Location Module](../../stock-location/page.mdx).

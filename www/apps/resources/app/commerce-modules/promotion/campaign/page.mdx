@@ -1,0 +1,89 @@
+export const metadata = {
+  title: `Campaign`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn what a campaign is and its related concepts.
+
+<Note title="Looking for no-code docs?">
+
+Refer to this [Medusa Admin User Guide](!user-guide!/promotions/campaigns) to learn how to manage campaigns using the dashboard.
+
+</Note>
+
+## What is a Campaign?
+
+A [Campaign](/references/promotion/models/Campaign) groups [promotions](../concepts/page.mdx#what-is-a-promotion) under the same conditions, such as start and end dates.
+
+Use campaigns to group promotions that share the same time frame or target audience, and to limit promotion usage.
+
+![A diagram showcasing the relation between the Campaign and Promotion data models](https://res.cloudinary.com/dza7lstvk/image/upload/v1709899225/Medusa%20Resources/campagin-promotion_hh3qsi.jpg)
+
+---
+
+## Limit Promotion Usage with Campaign Budgets
+
+Each campaign can have a budget represented by the [CampaignBudget data model](/references/promotion/models/CampaignBudget). The budget limits how many times a promotion can be used.
+
+There are three types of budgets: two that are global and one that is based on cart attributes.
+
+### Global Budgets
+
+A global budget limits promotion usage without considering any cart attributes.
+
+There are two types of global budgets:
+
+- `spend`: An amount that, when exceeded, makes the promotion unusable.
+    - For example, if the amount limit is `$100` and the total usage of this promotion exceeds that threshold, the promotion can no longer be applied.
+- `usage`: The number of times a promotion can be used.
+    - For example, if the usage limit is `10`, customers can use the promotion only 10 times. After that, it can no longer be applied.
+
+![A diagram showcasing the relation between the Campaign and CampaignBudget data models](https://res.cloudinary.com/dza7lstvk/image/upload/v1709899463/Medusa%20Resources/campagin-budget_rvqlmi.jpg)
+
+Global budgets track usage and limits through the following properties of the `CampaignBudget` data model:
+
+- `limit`: The maximum amount or number of uses allowed for the promotion.
+- `used`: The current amount spent or number of times the promotion has been used.
+
+### Attribute-based Budgets
+
+<Note>
+
+Attribute-based budgets were introduced in [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0).
+
+</Note>
+
+An attribute-based budget limits promotion usage based on a cart attribute. Use these budget types to have granular control over how many times a promotion can be used based on specific attributes.
+
+There's one type of attribute-based budget, which is `use_by_attribute`. It allows you to limit the number of times a promotion can be used based on a specific cart attribute.
+
+#### Allowed Attributes
+
+There are two attributes that you can limit promotion usage by:
+
+- `customer_id`: Limits promotion usage based on the unique identifier of a customer.
+- `customer_email`: Limits promotion usage based on the email address of a customer.
+
+These attributes are compared against the cart's `customer_id` or `email` to determine how many times the promotion has been used for that specific attribute value, and whether the budget limit has been reached.
+
+#### Tracking Attribute-based Usage
+
+The `CampaignBudgetUsage` data model tracks the usage of attribute-based budgets. It tracks how many times a promotion has been used for each unique attribute value. It includes the following properties:
+
+1. `attribute_value`: The value of the attribute, such as a specific customer ID or email.
+2. `used`: The number of times the promotion has been used for that attribute value.
+
+For example, if the attribute is `customer_id`, a new `CampaignBudgetUsage` record is created for each customer that uses the promotion to track their individual usage. Once a customer exceeds the limit set in the `CampaignBudget`, they can no longer use the promotion.
+
+![A diagram showcasing the relation between the CampaignBudget and CampaignBudgetUsage data models](https://res.cloudinary.com/dza7lstvk/image/upload/v1760340527/Medusa%20Resources/campaign-budget-attr_fv0v2u.jpg)
+
+---
+
+## How Campaign Budgets Limit Promotion Usage
+
+When a customer tries to use a promotion, Medusa checks whether the campaign has a budget and if the budget limit has been reached. If the limit is reached, the promotion cannot be applied.
+
+For example, if a campaign has a `usage` budget with a limit of `10` and the promotion has already been used 10 times, it can no longer be applied and is considered expired.
+
+However, once a promotion is applied to a cart, it remains valid until the order is completed, even if the budget limit is reached in the meantime. This ensures that customers who already applied the promotion can still benefit from it during checkout.

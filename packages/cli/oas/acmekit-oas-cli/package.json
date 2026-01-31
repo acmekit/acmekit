@@ -1,0 +1,43 @@
+{
+  "name": "@acmekit/acmekit-oas-cli",
+  "version": "2.13.2",
+  "description": "OAS CLI",
+  "main": "dist/index.js",
+  "bin": {
+    "acmekit-oas": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "oas"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/cli/oas/acmekit-oas-cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "AcmeKit",
+  "license": "MIT",
+  "devDependencies": {
+    "@acmekit/types": "2.13.2"
+  },
+  "scripts": {
+    "build": "yarn run -T tsc --build",
+    "acmekit-oas": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@acmekit/acmekit": "2.13.2",
+    "@acmekit/utils": "2.13.2",
+    "@readme/json-schema-ref-parser": "^1.2.0",
+    "@readme/openapi-parser": "^2.4.0",
+    "@redocly/cli": "1.25.3",
+    "commander": "^11.0.0",
+    "execa": "^5.1.1",
+    "lodash.mergewith": "^4.6.2",
+    "openapi3-ts": "^3.1.2",
+    "swagger-inline": "^6.1.0",
+    "yargs": "^17.7.2"
+  }
+}

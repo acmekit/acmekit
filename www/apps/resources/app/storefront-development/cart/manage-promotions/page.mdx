@@ -1,0 +1,117 @@
+---
+tags:
+  - cart
+  - promotion
+  - storefront
+products:
+  - cart
+  - promotion
+---
+
+import { CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `Manage Cart Promotions in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to manage cart promotions or discounts, including adding, listing, and removing them.
+
+## Add Promotion to Cart
+
+To add a promotion to a cart, use the [Add Promotion API route](!api!/store#carts_postcartsidpromotions).
+
+For example:
+
+```ts
+fetch(`http://localhost:9000/store/carts/${cart.id}/promotions`, {
+  credentials: "include",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-publishable-api-key": 
+      process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || "temp",
+  },
+  body: JSON.stringify({
+    promo_codes: [promoCode],
+  }),
+})
+.then((res) => res.json())
+.then(({ cart }) => {
+  // use cart...
+  console.log(cart)
+})
+```
+
+The [Add Promotion API route](!api!/store#carts_postcartsidpromotions) accepts the cart ID as a path parameter, and a `promo_codes` request body parameter, which is an array of promotion codes to apply to the cart.
+
+The response includes the updated cart with the applied promotions. You can use this cart object to show the updated promotions to the customer.
+
+---
+
+## List Cart Promotions
+
+The cart object you retrieve in the storefront has a `promotions` field, which is an array of the promotions applied to the cart.
+
+You can refer to the [API reference](!api!/store#carts_cart_schema) for the expected fields in a promotion object.
+
+A promotion mainly has a `code` field. You can use that code to display the applied promotions to the customer, and later to [remove a promotion](#remove-promotion-from-cart) from the cart.
+
+For example, if you have a cart object retrieved from Medusa's Store APIs, you can list its promotions as follows:
+
+```tsx
+<div>
+  {cart?.promotions?.length ? (
+    <ul>
+      {cart.promotions.map((promo) => (
+        <li key={promo.id}>{promo.code}
+          <button onClick={() => removePromotion(promo.code!)}>Remove</button>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No promotions applied</p>
+  )}
+</div>
+```
+
+In the above example, you show the list of applied promotions, and for each promotion, you provide a button to [remove it from the cart](#remove-promotion-from-cart).
+
+<Note title="Tip">
+
+To show the total discount amount from the applied promotions, refer to the [Cart Totals guide](../totals/page.mdx).
+
+</Note>
+
+---
+
+## Remove Promotion from Cart
+
+To remove a promotion from a cart, use the [Remove Promotion API route](!api!/store#carts_deletecartsidpromotions).
+
+For example:
+
+```ts
+fetch(`http://localhost:9000/store/carts/${cart.id}/promotions`, {
+  credentials: "include",
+  method: "DELETE",
+  headers: {
+    "Content-Type": "application/json",
+    "x-publishable-api-key": 
+      process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || "temp",
+  },
+  body: JSON.stringify({
+    promo_codes: [code],
+  }),
+})
+.then((res) => res.json())
+.then(({ cart }) => {
+  // use cart...
+  console.log(cart)
+})
+```
+
+The [Remove Promotion API route](!api!/store#carts_deletecartsidpromotions) accepts the cart ID as a path parameter, and a `promo_codes` request body parameter, which is an array of promotion codes to remove from the cart.
+
+The response includes the updated cart with the removed promotions. You can use this cart object to show the updated promotions to the customer.

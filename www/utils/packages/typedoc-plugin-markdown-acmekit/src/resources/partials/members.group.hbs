@@ -1,0 +1,115 @@
+{{#if (sectionEnabled "members_group_categories")}}
+
+{{#if categories}}
+
+{{#each categories}}
+
+{{#ifShowSeparatorForTitleLevel}}
+{{#unless @first}}
+___
+{{/unless}}
+{{/ifShowSeparatorForTitleLevel}}
+
+{{#unless (getFormattingOption "expandMembers")}}
+
+{{#ifCanShowConstructorTitle}}
+
+{{titleLevel}} {{title}} {{../title}}
+
+{{incrementCurrentTitleLevel}}
+
+{{/ifCanShowConstructorTitle}}
+
+{{/unless}}
+
+{{#if (shouldExpandProperties title)}}
+
+{{#each (getAllChildren)}}
+
+{{> member }}
+
+{{/each}}
+
+{{else if (showPropertiesAsComponent title)}}
+
+{{#with (getAllChildren)}}
+
+{{{parameterComponent sectionTitle=../owningReflection.name}}}
+
+{{/with}}
+
+{{else}}
+
+{{#each (getAllChildren)}}
+
+{{> member }}
+
+{{/each}}
+
+{{/if}}
+
+{{#unless (getFormattingOption "expandMembers")}}
+
+{{#ifCanShowConstructorTitle}}
+
+{{decrementCurrentTitleLevel}}
+
+{{/ifCanShowConstructorTitle}}
+
+{{/unless}}
+
+{{/each}}
+
+{{else}}
+
+{{#unless (getFormattingOption "expandMembers")}}
+
+{{#ifCanShowConstructorTitle}}
+
+{{titleLevel}} {{title}}
+
+{{incrementCurrentTitleLevel}}
+
+{{/ifCanShowConstructorTitle}}
+
+{{/unless}}
+
+{{#if (shouldExpandProperties title)}}
+
+{{#each (getAllChildren)}}
+
+{{> member }}
+
+{{/each}}
+
+{{else if (showPropertiesAsComponent title)}}
+
+{{#with (getAllChildren)}}
+
+{{{parameterComponent sectionTitle=../owningReflection.name}}}
+
+{{/with}}
+
+{{else}}
+
+{{#each (getAllChildren)}}
+
+{{> member}}
+
+{{/each}}
+
+{{/if}}
+
+{{#unless (getFormattingOption "expandMembers")}}
+
+{{#ifCanShowConstructorTitle}}
+
+{{decrementCurrentTitleLevel}}
+
+{{/ifCanShowConstructorTitle}}
+
+{{/unless}}
+
+{{/if}}
+
+{{/if}}

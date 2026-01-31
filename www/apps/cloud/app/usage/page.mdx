@@ -1,0 +1,99 @@
+import { InlineIcon } from "docs-ui"
+import { ArrowDownTray, ChevronUpDown } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Usage`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to monitor your Cloud organization's standard and Flex Usage.
+
+## View Usage on Cloud
+
+In your organization's settings, you can view your current plan and usage limits. These usage limits depend on the plan your organization is on, and are applied across all projects within the organization.
+
+<Note>
+
+Organizations on the Enterprise plan don't have usage limits, and therefore don't have a Usage tab in their settings.
+
+</Note>
+
+To view your organization's usage:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the <InlineIcon Icon={ChevronUpDown} alt="switch organization" /> icon in the [organization switcher](../organizations/page.mdx#switch-organization) at the top left of the Cloud dashboard.
+3. Choose "Organization Settings" from the dropdown.
+4. Change to the "Usage" settings from the sidebar.
+
+In the Usage settings, you'll find a table with the list of resources your organization is using, along with their current usage levels and limits based on your plan.
+
+![Usage table in the Usage settings](https://res.cloudinary.com/dza7lstvk/image/upload/v1755264824/Cloud/CleanShot_2025-08-15_at_16.33.30_2x_cbkure.png)
+
+---
+
+## What is Flex Usage?
+
+Your organization has a set of usage limits based on its current [plan](../pricing/page.mdx). These usage limits are applied across all projects within the organization.
+
+Usage that exceeds the limits of your plan is considered Flex Usage. For example, if your plan allows for 100GB data transfer, any usage beyond that limit would be classified as Flex Usage.
+
+To learn how your Flex Usage is billed, refer to the [Billing](../billing/page.mdx) guide.
+
+### Monitor Flex Usage
+
+You can view additional Flex Usage for each resource and its charge in the [usage table](#view-usage-on-cloud). For each resource, the table has the following columns useful for monitoring Flex Usage:
+
+- **Flex**: The amount of usage beyond your plan limits. For example, the additional data transfer amount.
+- **Charge**: The cost associated with the Flex Usage.
+
+If you have Flex Usage, you can also see the flex charges visualized in the chart above the table.
+
+### Usage Chart Per Resource
+
+In the "Billable metrics" section of the Usage settings, you can view a chart for each resource showing your usage over time with forcasted usage. For example, you can view the usage chart for data transfer, Compute, object storage, etc...
+
+#### Usage Chart Types
+
+At the type of the "Billable metrics" section, you can find a "Cumulative" toggle. When enabled, the charts will display cumulative usage over time. When disabled, the charts will show daily usage.
+
+Cumulative usage helps you understand the total usage up to a specific date, while daily usage provides insights into your usage patterns on a day-to-day basis.
+
+![Cumulative usage toggle in the Billable metrics section](https://res.cloudinary.com/dza7lstvk/image/upload/v1765976513/Cloud/CleanShot_2025-12-17_at_15.01.07_2x_aimjwh.png)
+
+#### Understanding the Charts
+
+In each chart, there are two line types:
+
+1. Green lines: Represent your actual usage for the resource over time. This is the usage that has already occurred.
+2. Grey lines: Represent the forecasted usage for the resource. This is an estimate of your future usage based on historical data.
+
+There's also a horizontal orange dashed line indicating your plan's usage limit for that resource. If your actual usage (green line) exceeds this limit, the excess is considered Flex Usage.
+
+![Usage chart showing actual and forecasted usage with plan limit](https://res.cloudinary.com/dza7lstvk/image/upload/v1765976514/Cloud/CleanShot_2025-12-17_at_15.01.21_2x_upehmd.png)
+
+---
+
+## Download Cloud Usage Report
+
+To download your organization's usage as a JSON file:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the <InlineIcon Icon={ChevronUpDown} alt="switch organization" /> icon in the [organization switcher](../organizations/page.mdx#switch-organization) at the top left of the Cloud dashboard.
+3. Choose "Organization Settings" from the dropdown.
+4. Change to the "Usage" settings from the sidebar.
+5. Click the <InlineIcon Icon={ArrowDownTray} alt="download" /> button at the top right.
+
+The JSON file will be downloaded automatically.
+
+---
+
+## View Usage for Different Date Ranges
+
+By default, the usage table and Flex Usage chart show data for the current billing cycle on Cloud.
+
+To view usage for a different billing cycle, click on the "Current billing cycle" dropdown at the top of the Usage settings. You can then select the previous billing cycle, or a custom date range.
+
+After making your selection, the usage table will update automatically after a few seconds.
+
+![Usage table updated for different billing cycle](https://res.cloudinary.com/dza7lstvk/image/upload/v1755266925/Cloud/CleanShot_2025-08-15_at_17.07.47_2x_ieqxwi.png)

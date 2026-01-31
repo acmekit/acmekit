@@ -1,0 +1,1107 @@
+{
+	"id": 65520,
+	"name": "notification-service",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 65521,
+			"name": "INotificationModuleService",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"children": [
+				{
+					"id": 65522,
+					"name": "createNotifications",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "notification/service.ts",
+							"line": 29,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L29"
+						},
+						{
+							"fileName": "notification/service.ts",
+							"line": 48,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L48"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65523,
+							"name": "createNotifications",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to send multiple notifications and store them in the database."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The list of sent notifications."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nconst notifications = await notificationModuleService.createNotifications([\n  {\n    to: \"john@doe.me\",\n    template: \"order-confirmation\",\n    channel: \"email\",\n  },\n  {\n    to: \"+38975123456\",\n    template: \"order-confirmation\",\n    channel: \"sms\",\n  },\n])\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "notification/service.ts",
+									"line": 29,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L29"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65524,
+									"name": "data",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The notifications to be sent."
+											}
+										]
+									},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": {
+												"sourceFileName": "../../../../packages/core/types/src/notification/mutations.ts",
+												"qualifiedName": "CreateNotificationDTO"
+											},
+											"name": "CreateNotificationDTO",
+											"package": "@acmekit/types"
+										}
+									}
+								},
+								{
+									"id": 65525,
+									"name": "sharedContext",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "A context used to share resources, such as transaction manager, between the application and the module."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+											"qualifiedName": "Context"
+										},
+										"name": "Context",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": {
+												"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+												"qualifiedName": "NotificationDTO"
+											},
+											"name": "NotificationDTO",
+											"package": "@acmekit/types"
+										}
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						},
+						{
+							"id": 65526,
+							"name": "createNotifications",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to send a notification, and store the request in the database."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The sent notification."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nconst notification = await notificationModuleService.createNotifications({\n  to: \"john@doe.me\",\n  template: \"order-confirmation\",\n  channel: \"email\",\n})\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "notification/service.ts",
+									"line": 48,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L48"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65527,
+									"name": "data",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The notification to be sent."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/notification/mutations.ts",
+											"qualifiedName": "CreateNotificationDTO"
+										},
+										"name": "CreateNotificationDTO",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 65528,
+									"name": "sharedContext",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "A context used to share resources, such as transaction manager, between the application and the module."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+											"qualifiedName": "Context"
+										},
+										"name": "Context",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+											"qualifiedName": "NotificationDTO"
+										},
+										"name": "NotificationDTO",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65529,
+					"name": "retrieveNotification",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "notification/service.ts",
+							"line": 89,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L89"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65530,
+							"name": "retrieveNotification",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to retrieve a notification by its ID"
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The retrieved notification."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "A simple example that retrieves a notification by its ID:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst notification =\n  await notificationModuleService.retrieveNotification(\"noti_123\")\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nTo specify relations that should be retrieved:\n\n:::note\n\nYou can only retrieve data models defined in the same module. To retrieve linked data models\nfrom other modules, use [Query](https://docs.acmekit.com/learn/fundamentals/module-links/query) instead.\n\n:::\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst notification = await notificationModuleService.retrieveNotification(\n  \"noti_123\",\n  {\n    relations: [\"provider\"],\n  }\n)\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "notification/service.ts",
+									"line": 89,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L89"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65531,
+									"name": "notificationId",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The ID of the notification to retrieve."
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 65532,
+									"name": "config",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The configurations determining how the notification is retrieved. Its properties, such as "
+											},
+											{
+												"kind": "code",
+												"text": "`select`"
+											},
+											{
+												"kind": "text",
+												"text": " or "
+											},
+											{
+												"kind": "code",
+												"text": "`relations`"
+											},
+											{
+												"kind": "text",
+												"text": ", accept the\nattributes or relations associated with a notification."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+											"qualifiedName": "FindConfig"
+										},
+										"typeArguments": [
+											{
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+													"qualifiedName": "NotificationDTO"
+												},
+												"name": "NotificationDTO",
+												"package": "@acmekit/types"
+											}
+										],
+										"name": "FindConfig",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 65533,
+									"name": "sharedContext",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "A context used to share resources, such as transaction manager, between the application and the module."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+											"qualifiedName": "Context"
+										},
+										"name": "Context",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+											"qualifiedName": "NotificationDTO"
+										},
+										"name": "NotificationDTO",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65534,
+					"name": "listNotifications",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "notification/service.ts",
+							"line": 149,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L149"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65535,
+							"name": "listNotifications",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to retrieve a paginated list of notifications based on optional filters and configuration."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The list of notifications."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "To retrieve a list of notifications using their IDs:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst notifications = await notificationModuleService.listNotifications({\n  id: [\"noti_123\", \"noti_321\"],\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nTo specify relations that should be retrieved within the notifications:\n\n:::note\n\nYou can only retrieve data models defined in the same module. To retrieve linked data models\nfrom other modules, use [Query](https://docs.acmekit.com/learn/fundamentals/module-links/query) instead.\n\n:::\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst notifications = await notificationModuleService.listNotifications(\n  {\n    id: [\"noti_123\", \"noti_321\"],\n  },\n  {\n    relations: [\"provider\"],\n  }\n)\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nBy default, only the first "
+											},
+											{
+												"kind": "code",
+												"text": "`15`"
+											},
+											{
+												"kind": "text",
+												"text": " records are retrieved. You can control pagination by specifying the "
+											},
+											{
+												"kind": "code",
+												"text": "`skip`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`take`"
+											},
+											{
+												"kind": "text",
+												"text": " properties of the "
+											},
+											{
+												"kind": "code",
+												"text": "`config`"
+											},
+											{
+												"kind": "text",
+												"text": " parameter:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst notifications = await notificationModuleService.listNotifications(\n  {\n    id: [\"noti_123\", \"noti_321\"],\n  },\n  {\n    relations: [\"provider\"],\n    take: 20,\n    skip: 2,\n  }\n)\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "notification/service.ts",
+									"line": 149,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L149"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65536,
+									"name": "filters",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The filters to apply on the retrieved notifications."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+											"qualifiedName": "FilterableNotificationProps"
+										},
+										"name": "FilterableNotificationProps",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 65537,
+									"name": "config",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The configurations determining how the notifications are retrieved. Its properties, such as "
+											},
+											{
+												"kind": "code",
+												"text": "`select`"
+											},
+											{
+												"kind": "text",
+												"text": " or "
+											},
+											{
+												"kind": "code",
+												"text": "`relations`"
+											},
+											{
+												"kind": "text",
+												"text": ", accept the\nattributes or relations associated with a notification."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+											"qualifiedName": "FindConfig"
+										},
+										"typeArguments": [
+											{
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+													"qualifiedName": "NotificationDTO"
+												},
+												"name": "NotificationDTO",
+												"package": "@acmekit/types"
+											}
+										],
+										"name": "FindConfig",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 65538,
+									"name": "sharedContext",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "A context used to share resources, such as transaction manager, between the application and the module."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+											"qualifiedName": "Context"
+										},
+										"name": "Context",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": {
+												"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+												"qualifiedName": "NotificationDTO"
+											},
+											"name": "NotificationDTO",
+											"package": "@acmekit/types"
+										}
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65539,
+					"name": "listAndCountNotifications",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "notification/service.ts",
+							"line": 212,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L212"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65540,
+							"name": "listAndCountNotifications",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to retrieve a paginated list of notifications along with the total count of available notifications satisfying the provided filters."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The list of notifications along with the total count."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "To retrieve a list of notifications using their IDs:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst [notifications, count] =\n  await notificationModuleService.listAndCountNotifications({\n    id: [\"noti_123\", \"noti_321\"],\n  })\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nTo specify relations that should be retrieved within the notifications:\n\n:::note\n\nYou can only retrieve data models defined in the same module. To retrieve linked data models\nfrom other modules, use [Query](https://docs.acmekit.com/learn/fundamentals/module-links/query) instead.\n\n:::\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst [notifications, count] =\n  await notificationModuleService.listAndCountNotifications(\n    {\n      id: [\"noti_123\", \"noti_321\"],\n    },\n    {\n      relations: [\"provider\"],\n    }\n  )\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nBy default, only the first "
+											},
+											{
+												"kind": "code",
+												"text": "`15`"
+											},
+											{
+												"kind": "text",
+												"text": " records are retrieved. You can control pagination by specifying the "
+											},
+											{
+												"kind": "code",
+												"text": "`skip`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`take`"
+											},
+											{
+												"kind": "text",
+												"text": " properties of the "
+											},
+											{
+												"kind": "code",
+												"text": "`config`"
+											},
+											{
+												"kind": "text",
+												"text": " parameter:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst [notifications, count] =\n  await notificationModuleService.listAndCountNotifications(\n    {\n      id: [\"noti_123\", \"noti_321\"],\n    },\n    {\n      relations: [\"provider\"],\n      take: 20,\n      skip: 2,\n    }\n  )\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "notification/service.ts",
+									"line": 212,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L212"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65541,
+									"name": "filters",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The filters to apply on the retrieved notifications."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+											"qualifiedName": "FilterableNotificationProps"
+										},
+										"name": "FilterableNotificationProps",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 65542,
+									"name": "config",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The configurations determining how the notifications are retrieved. Its properties, such as "
+											},
+											{
+												"kind": "code",
+												"text": "`select`"
+											},
+											{
+												"kind": "text",
+												"text": " or "
+											},
+											{
+												"kind": "code",
+												"text": "`relations`"
+											},
+											{
+												"kind": "text",
+												"text": ", accept the\nattributes or relations associated with a notification."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/common/common.ts",
+											"qualifiedName": "FindConfig"
+										},
+										"typeArguments": [
+											{
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+													"qualifiedName": "NotificationDTO"
+												},
+												"name": "NotificationDTO",
+												"package": "@acmekit/types"
+											}
+										],
+										"name": "FindConfig",
+										"package": "@acmekit/types"
+									}
+								},
+								{
+									"id": 65543,
+									"name": "sharedContext",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "A context used to share resources, such as transaction manager, between the application and the module."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/shared-context.ts",
+											"qualifiedName": "Context"
+										},
+										"name": "Context",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "tuple",
+										"elements": [
+											{
+												"type": "array",
+												"elementType": {
+													"type": "reference",
+													"target": {
+														"sourceFileName": "../../../../packages/core/types/src/notification/common.ts",
+														"qualifiedName": "NotificationDTO"
+													},
+													"name": "NotificationDTO",
+													"package": "@acmekit/types"
+												}
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"children": [
+						65522,
+						65529,
+						65534,
+						65539
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "notification/service.ts",
+					"line": 7,
+					"character": 17,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/notification/service.ts#L7"
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"target": {
+						"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+						"qualifiedName": "IModuleService"
+					},
+					"name": "IModuleService",
+					"package": "@acmekit/types"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Interfaces",
+			"children": [
+				65521
+			]
+		}
+	],
+	"packageName": "@acmekit/types",
+	"symbolIdMap": {
+		"65520": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": ""
+		},
+		"65521": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService"
+		},
+		"65522": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.createNotifications"
+		},
+		"65523": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.createNotifications"
+		},
+		"65524": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "data"
+		},
+		"65525": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "sharedContext"
+		},
+		"65526": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.createNotifications"
+		},
+		"65527": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "data"
+		},
+		"65528": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "sharedContext"
+		},
+		"65529": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.retrieveNotification"
+		},
+		"65530": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.retrieveNotification"
+		},
+		"65531": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "notificationId"
+		},
+		"65532": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "config"
+		},
+		"65533": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "sharedContext"
+		},
+		"65534": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.listNotifications"
+		},
+		"65535": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.listNotifications"
+		},
+		"65536": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "filters"
+		},
+		"65537": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "config"
+		},
+		"65538": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "sharedContext"
+		},
+		"65539": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.listAndCountNotifications"
+		},
+		"65540": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "INotificationModuleService.listAndCountNotifications"
+		},
+		"65541": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "filters"
+		},
+		"65542": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "config"
+		},
+		"65543": {
+			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",
+			"qualifiedName": "sharedContext"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/types/src/notification/service.ts"
+		},
+		"reflections": {
+			"1": 65520
+		}
+	}
+}

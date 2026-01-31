@@ -1,0 +1,46 @@
+export const metadata = {
+  title: `${pageNumber} Scheduled Job Number of Executions`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn how to set a limit on the number of times a scheduled job is executed.
+
+## Default Number of Scheduled Job Executions
+
+By default, a scheduled job is executed whenever it matches its specified pattern. For example, if you set a scheduled job to run every five minutes, it will run every five minutes until you stop the Medusa application.
+
+---
+
+## Configure Number of Scheduled Job Executions
+
+To execute a scheduled job a specific number of times only, you can configure it with the `numberOfExecutions` option. Its value is the number of times the scheduled job can be executed during the Medusa application's runtime.
+
+For example:
+
+export const highlights = [
+  ["9", "numberOfExecutions", "The number of times the job should be executed."]
+]
+
+```ts highlights={highlights}
+export default async function myCustomJob() {
+  console.log("I'll be executed only three times.")
+}
+
+export const config = {
+  name: "hello-world",
+  // execute every minute
+  schedule: "* * * * *",
+  numberOfExecutions: 3,
+}
+```
+
+The above scheduled job has the `numberOfExecutions` configuration set to `3`.
+
+So, Medusa will execute this job only 3 times, once every minute, and then it won't be executed anymore during the current runtime.
+
+### Configuration is Per Application Runtime
+
+Medusa tracks the number of executions for a scheduled job during its current runtime. Once the application stops, the next time you start it, the counter will be reset to `0`.
+
+So, if you restart the Medusa application, the scheduled job will be executed again until it reaches the number of executions specified.

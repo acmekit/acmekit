@@ -1,0 +1,473 @@
+{
+	"id": 65830,
+	"name": "analytics-provider",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 65831,
+			"name": "AbstractAnalyticsProviderService",
+			"variant": "declaration",
+			"kind": 128,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "### constructor\n\nThe constructor allows you to access resources from the module's container using the first parameter,\nand the module's options using the second parameter.\n\nIf you're creating a client or establishing a connection with a third-party service, do it in the constructor.\n\n#### Example\n\n"
+					},
+					{
+						"kind": "code",
+						"text": "```ts\nimport { Logger } from \"@acmekit/framework/types\"\nimport { AbstractAnalyticsProviderService } from \"@acmekit/framework/utils\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nclass MyAnalyticsProviderService extends AbstractAnalyticsProviderService {\n  protected logger_: Logger\n  protected options_: Options\n  static identifier = \"my-analytics\"\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    super()\n\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n}\n\nexport default MyAnalyticsProviderService\n```"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 65832,
+					"name": "identifier",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isStatic": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Each analytics provider has a unique ID used to identify it. The provider's ID\nwill be stored as "
+							},
+							{
+								"kind": "code",
+								"text": "`aly_{identifier}_{id}`"
+							},
+							{
+								"kind": "text",
+								"text": ", where "
+							},
+							{
+								"kind": "code",
+								"text": "`{id}`"
+							},
+							{
+								"kind": "text",
+								"text": " is the provider's "
+							},
+							{
+								"kind": "code",
+								"text": "`id`"
+							},
+							{
+								"kind": "text",
+								"text": "\nproperty in the "
+							},
+							{
+								"kind": "code",
+								"text": "`acmekit-config.ts`"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nclass MyAnalyticsProviderService extends AbstractAnalyticsProviderService {\n  static identifier = \"my-analytics\"\n  // ...\n}\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "abstract-analytics-provider.ts",
+							"line": 65,
+							"character": 9,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/analytics/abstract-analytics-provider.ts#L65"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 65833,
+					"name": "constructor",
+					"variant": "declaration",
+					"kind": 512,
+					"flags": {},
+					"signatures": [
+						{
+							"id": 65834,
+							"name": "AbstractAnalyticsProviderService",
+							"variant": "signature",
+							"kind": 16384,
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"target": 65831,
+								"name": "AbstractAnalyticsProviderService",
+								"package": "@acmekit/utils"
+							}
+						}
+					]
+				},
+				{
+					"id": 65837,
+					"name": "track",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "abstract-analytics-provider.ts",
+							"line": 96,
+							"character": 8,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/analytics/abstract-analytics-provider.ts#L96"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65838,
+							"name": "track",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method tracks an event with the third-party analytics provider. The Analytics Module\nwill use this method in its "
+									},
+									{
+										"kind": "code",
+										"text": "`track`"
+									},
+									{
+										"kind": "text",
+										"text": " method if your provider is configured in "
+									},
+									{
+										"kind": "code",
+										"text": "`acmekit-config.ts`"
+									},
+									{
+										"kind": "text",
+										"text": ".\n\nYou can send the event to the third-party provider based on its semantics."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "Resolves when the event is tracked successfully."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyAnalyticsProviderService extends AbstractAnalyticsProviderService {\n  // ...\n  async track(\n    data: ProviderTrackAnalyticsEventDTO\n  ): Promise<void> {\n    // track event to third-party provider\n    // or using custom logic\n    // for example:\n    this.client.track(data)\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-analytics-provider.ts",
+									"line": 96,
+									"character": 8,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/analytics/abstract-analytics-provider.ts#L96"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65839,
+									"name": "data",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The event's details."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/analytics/mutations.ts",
+											"qualifiedName": "TrackAnalyticsEventDTO"
+										},
+										"name": "TrackAnalyticsEventDTO",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IAnalyticsProvider.track"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IAnalyticsProvider.track"
+					}
+				},
+				{
+					"id": 65840,
+					"name": "identify",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "abstract-analytics-provider.ts",
+							"line": 120,
+							"character": 8,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/analytics/abstract-analytics-provider.ts#L120"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65841,
+							"name": "identify",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method identifies an actor or group in the third-party analytics provider. The Analytics Module\nwill use this method in its "
+									},
+									{
+										"kind": "code",
+										"text": "`identify`"
+									},
+									{
+										"kind": "text",
+										"text": " method if your provider is configured in "
+									},
+									{
+										"kind": "code",
+										"text": "`acmekit-config.ts`"
+									},
+									{
+										"kind": "text",
+										"text": "."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "Resolves when the actor or group is identified successfully."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyAnalyticsProviderService extends AbstractAnalyticsProviderService {\n  // ...\n  async identify(\n    data: ProviderIdentifyAnalyticsEventDTO\n  ): Promise<void> {\n    // identify actor or group in the analytics provider\n    // or using custom logic\n    // for example:\n    this.client.identify(data)\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-analytics-provider.ts",
+									"line": 120,
+									"character": 8,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/analytics/abstract-analytics-provider.ts#L120"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65842,
+									"name": "data",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The details of the actor or group."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/analytics/mutations.ts",
+											"qualifiedName": "IdentifyAnalyticsEventDTO"
+										},
+										"name": "IdentifyAnalyticsEventDTO",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IAnalyticsProvider.identify"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IAnalyticsProvider.identify"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"children": [
+						65833
+					]
+				},
+				{
+					"title": "Properties",
+					"children": [
+						65832
+					]
+				},
+				{
+					"title": "Methods",
+					"children": [
+						65837,
+						65840
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "abstract-analytics-provider.ts",
+					"line": 53,
+					"character": 13,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/analytics/abstract-analytics-provider.ts#L53"
+				}
+			],
+			"implementedTypes": [
+				{
+					"type": "reference",
+					"target": {
+						"sourceFileName": "../../../../packages/core/types/src/analytics/provider.ts",
+						"qualifiedName": "IAnalyticsProvider"
+					},
+					"name": "IAnalyticsProvider",
+					"package": "@acmekit/types"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Classes",
+			"children": [
+				65831
+			]
+		}
+	],
+	"packageName": "@acmekit/utils",
+	"symbolIdMap": {
+		"65830": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": ""
+		},
+		"65831": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": "AbstractAnalyticsProviderService"
+		},
+		"65832": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": "AbstractAnalyticsProviderService.identifier"
+		},
+		"65837": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": "AbstractAnalyticsProviderService.track"
+		},
+		"65838": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": "AbstractAnalyticsProviderService.track"
+		},
+		"65839": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": "data"
+		},
+		"65840": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": "AbstractAnalyticsProviderService.identify"
+		},
+		"65841": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": "AbstractAnalyticsProviderService.identify"
+		},
+		"65842": {
+			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",
+			"qualifiedName": "data"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts"
+		},
+		"reflections": {
+			"1": 65830
+		}
+	}
+}

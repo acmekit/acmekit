@@ -1,0 +1,51 @@
+---
+sidebar_position: 7
+sidebar_label: "Export Products"
+tags:
+    - user guide
+    - product
+products:
+    - product
+---
+
+import { BellAlert, ArrowDownTray } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Export Products in Medusa Admin`,
+}
+
+# {metadata.title}
+
+In this guide, you’ll learn how to export all products in your Medusa store.
+
+## Export Products as CSV
+
+When you export your products, you download a CSV with the products' details. This is useful to import into external systems, or for creating backups.
+
+---
+
+## Export Products
+
+To export products:
+
+1. Go to the Products page.
+2. If you want to export a subset of products matching filters, apply the filters first to the products list.
+3. Click on the Export button in the main section's header.
+4. In the side window that opens, you can see any filters you've applied.
+5. Click on the Export button to start the export.
+6. To check the export's status, click the <InlineIcon Icon={BellAlert} alt="bell" /> notifications icon in the page's header. You should see your new export loading.
+7. Once the export is ready, click the <InlineIcon Icon={ArrowDownTray} alt="download" /> icon.
+
+---
+
+## Troubleshooting Export Errors
+
+If the export fails, either during creation of the CSV file or download, make sure that the [storage integration](!resources!/infrastructure-modules/file) is correctly set up in your Medusa application.
+
+You can also refer to the server logs of your Medusa application to get more information about the error.
+
+<Note title="Cloud User?">
+
+Learn more about troubleshooting in the [Logs guide](!cloud!/logs).
+
+</Note>

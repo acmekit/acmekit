@@ -1,0 +1,2917 @@
+{
+	"id": 65321,
+	"name": "caching",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 65322,
+			"name": "ICachingModuleService",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [],
+				"blockTags": [
+					{
+						"tag": "@since",
+						"content": [
+							{
+								"kind": "text",
+								"text": "2.11.0"
+							}
+						]
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 65323,
+					"name": "get",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "caching/index.ts",
+							"line": 74,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L74"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65324,
+							"name": "get",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method retrieves data from the cache. If neither "
+									},
+									{
+										"kind": "code",
+										"text": "`key`"
+									},
+									{
+										"kind": "text",
+										"text": " nor "
+									},
+									{
+										"kind": "code",
+										"text": "`tags`"
+									},
+									{
+										"kind": "text",
+										"text": " are provided, or the item is not found, "
+									},
+									{
+										"kind": "code",
+										"text": "`null`"
+									},
+									{
+										"kind": "text",
+										"text": " is returned."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The item(s) that was stored in the cache. If no item was found, or neither "
+											},
+											{
+												"kind": "code",
+												"text": "`key`"
+											},
+											{
+												"kind": "text",
+												"text": " nor "
+											},
+											{
+												"kind": "code",
+												"text": "`tags`"
+											},
+											{
+												"kind": "text",
+												"text": " were provided, "
+											},
+											{
+												"kind": "code",
+												"text": "`null`"
+											},
+											{
+												"kind": "text",
+												"text": " is returned."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "To retrieve by key:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst data = await cachingModuleService.get({\n  key: \"products\", // this key would typically be a hash\n}) as { id: string; title: string; }\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nTo retrieve by tags:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst data = await cachingModuleService.get({\n  tags: [\"Product:list:*\"],\n}) as { id: string; title: string; }[]\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nTo retrieve by key from specific providers:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst data = await cachingModuleService.get({\n  key: \"products\", // this key would typically be a hash\n  providers: [\"caching-redis\", \"caching-memcached\"]\n}) as { id: string; title: string; }\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nThis example will try to get the data from the "
+											},
+											{
+												"kind": "code",
+												"text": "`caching-redis`"
+											},
+											{
+												"kind": "text",
+												"text": " provider first, and if not found, it will try to get it from the "
+											},
+											{
+												"kind": "code",
+												"text": "`caching-memcached`"
+											},
+											{
+												"kind": "text",
+												"text": " provider."
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "caching/index.ts",
+									"line": 74,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L74"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65325,
+									"name": "param0",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The options for retrieving the item."
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 65326,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 65327,
+													"name": "key",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The key of the item to retrieve.\nIf both "
+															},
+															{
+																"kind": "code",
+																"text": "`key`"
+															},
+															{
+																"kind": "text",
+																"text": " and "
+															},
+															{
+																"kind": "code",
+																"text": "`tags`"
+															},
+															{
+																"kind": "text",
+																"text": " are provided, "
+															},
+															{
+																"kind": "code",
+																"text": "`key`"
+															},
+															{
+																"kind": "text",
+																"text": " takes precedence over "
+															},
+															{
+																"kind": "code",
+																"text": "`tags`"
+															},
+															{
+																"kind": "text",
+																"text": "."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 83,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L83"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 65328,
+													"name": "tags",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The tags of the items to retrieve. Tags\nare useful to retrieve multiple related items at once."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 88,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L88"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												},
+												{
+													"id": 65329,
+													"name": "providers",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The providers to retrieve the item(s) from. You can specify an array of provider IDs.\nThey're checked in the order they're provided in, so make sure to order them based on your priority.\nIf not provided, the [default provider](https://docs.acmekit.com/infrastructure-modules/caching/providers#default-caching-module-provider) is used."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 94,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L94"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														65327,
+														65328,
+														65329
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "caching/index.ts",
+													"line": 78,
+													"character": 5,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L78"
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65330,
+					"name": "set",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "caching/index.ts",
+							"line": 166,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L166"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65331,
+							"name": "set",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method stores data in the cache using the \n[default Caching Module Provider](https://docs.acmekit.com/infrastructure-modules/caching/providers#default-caching-module-provider)."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "A promise that resolves when the item has been stored."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "To store with key:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst data = { id: \"prod_123\", title: \"Product 123\" }\nconst key = await cachingModuleService.computeKey(data)\nawait cachingModuleService.set({\n  key,\n  data\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nTo store with tags:\n\n:::note\n\nTags should follow [conventions](https://docs.acmekit.com/infrastructure-modules/caching/concepts#caching-tags-convention) to ensure they're automatically invalidated.\n\n:::\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst data = [{ id: \"prod_123\", title: \"Product 123\" }]\nconst key = await cachingModuleService.computeKey(data)\nawait cachingModuleService.set({\n  key,\n  data,\n  tags: [`Product:${data[0].id}`, \"Product:list:*\"]\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nTo disable auto-invalidation for the item:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst data = [{ id: \"prod_123\", title: \"Product 123\" }]\nconst key = await cachingModuleService.computeKey(data)\nawait cachingModuleService.set({\n  key,\n  data,\n  options: { autoInvalidate: false }\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nThe item is now only invalidated when calling the "
+											},
+											{
+												"kind": "code",
+												"text": "`clear`"
+											},
+											{
+												"kind": "text",
+												"text": " method directly with the same key or tags.\n\nTo store with specific providers:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nconst data = { id: \"prod_123\", title: \"Product 123\" }\nconst key = await cachingModuleService.computeKey(data)\nawait cachingModuleService.set({\n  key,\n  data,\n  providers: [\n    \"caching-redis\",\n    { id: \"caching-memcached\", ttl: 120 } // custom TTL for this provider\n  ]\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nThis example will store the item in both the "
+											},
+											{
+												"kind": "code",
+												"text": "`caching-redis`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`caching-memcached`"
+											},
+											{
+												"kind": "text",
+												"text": " providers, with a custom TTL of "
+											},
+											{
+												"kind": "code",
+												"text": "`120`"
+											},
+											{
+												"kind": "text",
+												"text": " seconds for the "
+											},
+											{
+												"kind": "code",
+												"text": "`caching-memcached`"
+											},
+											{
+												"kind": "text",
+												"text": " provider."
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "caching/index.ts",
+									"line": 166,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L166"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65332,
+									"name": "param0",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The options for storing the item."
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 65333,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 65334,
+													"name": "key",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The key of the item to store."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 177,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L177"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 65335,
+													"name": "data",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The data to store in the cache."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 181,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L181"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "object"
+													}
+												},
+												{
+													"id": 65336,
+													"name": "ttl",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The time-to-live (TTL in seconds) value in seconds.\nIf not provided, the default TTL value configured in the provider should be used."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 186,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L186"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "number"
+													}
+												},
+												{
+													"id": 65337,
+													"name": "tags",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The tags of the items to store. Tags are useful to group related items \ntogether for retrieval or invalidation."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 191,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L191"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												},
+												{
+													"id": 65338,
+													"name": "options",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "Options for storing the item. The options are stored with the item, allowing you to later match against them when clearing the item.\nFor example, if you set "
+															},
+															{
+																"kind": "code",
+																"text": "`autoInvalidate: false`"
+															},
+															{
+																"kind": "text",
+																"text": ", the item will only be invalidated when calling the "
+															},
+															{
+																"kind": "code",
+																"text": "`clear`"
+															},
+															{
+																"kind": "text",
+																"text": " method directly with the same key or tags."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 196,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L196"
+														}
+													],
+													"type": {
+														"type": "reflection",
+														"declaration": {
+															"id": 65339,
+															"name": "__type",
+															"variant": "declaration",
+															"kind": 65536,
+															"flags": {},
+															"children": [
+																{
+																	"id": 65340,
+																	"name": "autoInvalidate",
+																	"variant": "declaration",
+																	"kind": 1024,
+																	"flags": {
+																		"isOptional": true
+																	},
+																	"comment": {
+																		"summary": [
+																			{
+																				"kind": "text",
+																				"text": "Whether to automatically invalidate the item when related data changes."
+																			}
+																		],
+																		"blockTags": [
+																			{
+																				"tag": "@defaultValue",
+																				"content": [
+																					{
+																						"kind": "code",
+																						"text": "```ts\ntrue\n```"
+																					}
+																				]
+																			}
+																		]
+																	},
+																	"sources": [
+																		{
+																			"fileName": "caching/index.ts",
+																			"line": 202,
+																			"character": 6,
+																			"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L202"
+																		}
+																	],
+																	"type": {
+																		"type": "intrinsic",
+																		"name": "boolean"
+																	}
+																}
+															],
+															"groups": [
+																{
+																	"title": "Properties",
+																	"children": [
+																		65340
+																	]
+																}
+															],
+															"sources": [
+																{
+																	"fileName": "caching/index.ts",
+																	"line": 196,
+																	"character": 14,
+																	"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L196"
+																}
+															]
+														}
+													}
+												},
+												{
+													"id": 65341,
+													"name": "providers",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The providers to store the item(s) in. You can specify an array of provider IDs or an array of objects with provider ID and TTL.\nIf not provided, the [default provider](https://docs.acmekit.com/infrastructure-modules/caching/providers#default-caching-module-provider) is used."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 208,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L208"
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+															"qualifiedName": "Providers"
+														},
+														"name": "Providers",
+														"package": "@acmekit/types"
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														65334,
+														65335,
+														65336,
+														65337,
+														65338,
+														65341
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "caching/index.ts",
+													"line": 173,
+													"character": 5,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L173"
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65342,
+					"name": "clear",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "caching/index.ts",
+							"line": 274,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L274"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65343,
+							"name": "clear",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method clears data from the cache. If neither "
+									},
+									{
+										"kind": "code",
+										"text": "`key`"
+									},
+									{
+										"kind": "text",
+										"text": " nor "
+									},
+									{
+										"kind": "code",
+										"text": "`tags`"
+									},
+									{
+										"kind": "text",
+										"text": " are provided, nothing is cleared.\n\nBy default, all items matching the key or tags are cleared regardless of their options. If you provide "
+									},
+									{
+										"kind": "code",
+										"text": "`options.autoInvalidate: true`"
+									},
+									{
+										"kind": "text",
+										"text": ",\nonly items that were set with "
+									},
+									{
+										"kind": "code",
+										"text": "`options.autoInvalidate: true`"
+									},
+									{
+										"kind": "text",
+										"text": " are cleared.\n\nFor example, if you set "
+									},
+									{
+										"kind": "code",
+										"text": "`options.autoInvalidate: true`"
+									},
+									{
+										"kind": "text",
+										"text": ", only items that were set with "
+									},
+									{
+										"kind": "code",
+										"text": "`options.autoInvalidate: true`"
+									},
+									{
+										"kind": "text",
+										"text": " are cleared.\nItems that were set with "
+									},
+									{
+										"kind": "code",
+										"text": "`options.autoInvalidate: false`"
+									},
+									{
+										"kind": "text",
+										"text": " are only cleared when you don't provide any options."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "A promise that resolves when the item(s) have been cleared."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "To invalidate cache by key:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nawait cachingModuleService.clear({\n key: \"products\" // this key would typically be a hash\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nThis example will clear the item with the key "
+											},
+											{
+												"kind": "code",
+												"text": "`products`"
+											},
+											{
+												"kind": "text",
+												"text": " regardless of its "
+											},
+											{
+												"kind": "code",
+												"text": "`options.autoInvalidate`"
+											},
+											{
+												"kind": "text",
+												"text": " value.\n\nTo invalidate cache by tags:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nawait cachingModuleService.clear({\n tags: [\"Product:list:*\"]\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nThis example will clear all items with the tag "
+											},
+											{
+												"kind": "code",
+												"text": "`Product:list:*`"
+											},
+											{
+												"kind": "text",
+												"text": " regardless of their "
+											},
+											{
+												"kind": "code",
+												"text": "`options.autoInvalidate`"
+											},
+											{
+												"kind": "text",
+												"text": " value.\n\nTo invalidate only the cache data that were set to automatically invalidate:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nawait cachingModuleService.clear({\n tags: [\"Product:list:*\"],\n options: { autoInvalidate: true }\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nThis example will only clear items with the tag "
+											},
+											{
+												"kind": "code",
+												"text": "`Product:list:*`"
+											},
+											{
+												"kind": "text",
+												"text": " that were set with "
+											},
+											{
+												"kind": "code",
+												"text": "`options.autoInvalidate: true`"
+											},
+											{
+												"kind": "text",
+												"text": ".\nItems that were set with "
+											},
+											{
+												"kind": "code",
+												"text": "`options.autoInvalidate: false`"
+											},
+											{
+												"kind": "text",
+												"text": " will not be cleared.\n\n:::note\n\nSetting "
+											},
+											{
+												"kind": "code",
+												"text": "`options.autoInvalidate: false`"
+											},
+											{
+												"kind": "text",
+												"text": " when calling the "
+											},
+											{
+												"kind": "code",
+												"text": "`clear`"
+											},
+											{
+												"kind": "text",
+												"text": " method will not clear any items.\nTo clear items that were set with "
+											},
+											{
+												"kind": "code",
+												"text": "`options.autoInvalidate: false`"
+											},
+											{
+												"kind": "text",
+												"text": ", you must call the "
+											},
+											{
+												"kind": "code",
+												"text": "`clear`"
+											},
+											{
+												"kind": "text",
+												"text": " method without any options.\n\n:::\n\nTo invalidate cache from specific providers:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\nawait cachingModuleService.clear({\n key: \"products\",\n providers: [\"caching-redis\", \"caching-memcached\"]\n})\n```"
+											},
+											{
+												"kind": "text",
+												"text": "\n\nThis example will try to clear the data from both the "
+											},
+											{
+												"kind": "code",
+												"text": "`caching-redis`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`caching-memcached`"
+											},
+											{
+												"kind": "text",
+												"text": " providers."
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "caching/index.ts",
+									"line": 274,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L274"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65344,
+									"name": "param0",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The options for clearing the item(s)."
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 65345,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 65346,
+													"name": "key",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The key of the item to clear."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 283,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L283"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 65347,
+													"name": "tags",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The tags of the items to clear. Tags\nare useful to clear multiple related items at once."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 288,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L288"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												},
+												{
+													"id": 65348,
+													"name": "options",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "Options for clearing the item(s). The options are matched against the stored options when the item was set.\nFor example, if the item was set with "
+															},
+															{
+																"kind": "code",
+																"text": "`autoInvalidate: true`"
+															},
+															{
+																"kind": "text",
+																"text": ", it will only be cleared if the "
+															},
+															{
+																"kind": "code",
+																"text": "`autoInvalidate`"
+															},
+															{
+																"kind": "text",
+																"text": " option is also set to "
+															},
+															{
+																"kind": "code",
+																"text": "`true`"
+															},
+															{
+																"kind": "text",
+																"text": ".\nIf not provided, all items matching the key or tags are cleared regardless of their options."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 294,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L294"
+														}
+													],
+													"type": {
+														"type": "reflection",
+														"declaration": {
+															"id": 65349,
+															"name": "__type",
+															"variant": "declaration",
+															"kind": 65536,
+															"flags": {},
+															"children": [
+																{
+																	"id": 65350,
+																	"name": "autoInvalidate",
+																	"variant": "declaration",
+																	"kind": 1024,
+																	"flags": {
+																		"isOptional": true
+																	},
+																	"comment": {
+																		"summary": [
+																			{
+																				"kind": "text",
+																				"text": "Whether to clear item(s) that were set to automatically invalidate."
+																			}
+																		]
+																	},
+																	"sources": [
+																		{
+																			"fileName": "caching/index.ts",
+																			"line": 298,
+																			"character": 6,
+																			"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L298"
+																		}
+																	],
+																	"type": {
+																		"type": "intrinsic",
+																		"name": "boolean"
+																	}
+																}
+															],
+															"groups": [
+																{
+																	"title": "Properties",
+																	"children": [
+																		65350
+																	]
+																}
+															],
+															"sources": [
+																{
+																	"fileName": "caching/index.ts",
+																	"line": 294,
+																	"character": 14,
+																	"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L294"
+																}
+															]
+														}
+													}
+												},
+												{
+													"id": 65351,
+													"name": "providers",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The providers from which to clear the item(s). You can specify an array of provider IDs.\nIf not provided, the [default provider](https://docs.acmekit.com/infrastructure-modules/caching/providers#default-caching-module-provider) is used."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 304,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L304"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														65346,
+														65347,
+														65348,
+														65351
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "caching/index.ts",
+													"line": 279,
+													"character": 5,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L279"
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65352,
+					"name": "computeKey",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "caching/index.ts",
+							"line": 320,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L320"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65353,
+							"name": "computeKey",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method computes a cache key based on the input object. It's useful to generate consistent and unique keys for caching."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The computed cache key."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nconst key = await cachingModuleService.computeKey({\n  id: \"prod_123\",\n  title: \"Product 123\"\n})\n// key will be a hash string like \"a1b2c3d4e5f6g7h8i9j0\"\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "caching/index.ts",
+									"line": 320,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L320"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65354,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input object to compute the key from."
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "object"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65355,
+					"name": "computeTags",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "caching/index.ts",
+							"line": 337,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L337"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65356,
+							"name": "computeTags",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method computes cache tags based on the input object. It's useful to generate consistent and relevant tags for caching."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "An array of computed cache tags."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nconst tags = await cachingModuleService.computeTags({\n  products: [{ id: \"prod_123\" }, { id: \"prod_456\" }],\n}, {\n  operation: \"updated\"\n})\n// tags might be [\"Product:prod_123\", \"Product:prod_456\", \"Product:list:*\"]\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "caching/index.ts",
+									"line": 337,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L337"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65357,
+									"name": "input",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The input object to compute the tags from."
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "object"
+									}
+								},
+								{
+									"id": 65358,
+									"name": "options",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Additional options to influence tag computation."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "any"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"children": [
+						65323,
+						65330,
+						65342,
+						65352,
+						65355
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "caching/index.ts",
+					"line": 18,
+					"character": 17,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L18"
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"target": {
+						"sourceFileName": "../../../../packages/core/types/src/modules-sdk/index.ts",
+						"qualifiedName": "IModuleService"
+					},
+					"name": "IModuleService",
+					"package": "@acmekit/types"
+				}
+			]
+		},
+		{
+			"id": 65372,
+			"name": "ICachingProviderService",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "### constructor\n\nThe constructor allows you to access resources from the module's container using the first parameter,\nand the module's options using the second parameter.\n\nIf you're creating a client or establishing a connection with a third-party service, do it in a [Loader](https://docs.acmekit.com/learn/fundamentals/modules/loaders)\nand store it in the Module's container. Then, you can access it in your service using the container.\n\n:::note[Loader Example]\n\n[Initialize MongoDB client in loader and access it in service](https://docs.acmekit.com/learn/fundamentals/modules/loaders#example-register-custom-mongodb-connection).\n\n:::\n\n#### Example\n\n"
+					},
+					{
+						"kind": "code",
+						"text": "```ts\nimport { ICachingProviderService } from \"@acmekit/framework/types\"\nimport { Logger } from \"@acmekit/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n  // assuming you initialized a client\n  // in a Loader and stored it in the container\n  client: Client\n}\n\ntype Options = {\n  url: string\n}\n\nclass MyCachingModuleProvider implements ICachingProviderService {\n  static identifier = \"my-cache\"\n  protected logger_: Logger\n  protected options_: Options\n  protected client\n\n  constructor (\n    { logger, client }: InjectedDependencies,\n    options: Options\n  ) {\n    this.logger_ = logger\n    this.options_ = options\n    // set the service's client to\n    // the client from the container\n    this.client = client\n  }\n\n  // ...\n}\n\nexport default MyCachingModuleProvider\n```"
+					},
+					{
+						"kind": "text",
+						"text": "\n\n### Identifier\n\nEvery caching module provider must have an "
+					},
+					{
+						"kind": "code",
+						"text": "`identifier`"
+					},
+					{
+						"kind": "text",
+						"text": " static property. The provider's ID\nwill be stored as "
+					},
+					{
+						"kind": "code",
+						"text": "`lp_{identifier}_{id}`"
+					},
+					{
+						"kind": "text",
+						"text": ", where "
+					},
+					{
+						"kind": "code",
+						"text": "`id`"
+					},
+					{
+						"kind": "text",
+						"text": " is the ID you set in your "
+					},
+					{
+						"kind": "code",
+						"text": "`acmekit-config.ts`"
+					},
+					{
+						"kind": "text",
+						"text": " file.\n\nFor example:\n\n"
+					},
+					{
+						"kind": "code",
+						"text": "```ts\nclass MyCachingModuleProvider implements ICachingProviderService {\n  static identifier = \"my-cache\"\n  // ...\n}\n```"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 65373,
+					"name": "get",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "caching/index.ts",
+							"line": 432,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L432"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65374,
+							"name": "get",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method retrieves data from the cache either by "
+									},
+									{
+										"kind": "code",
+										"text": "`key`"
+									},
+									{
+										"kind": "text",
+										"text": " or "
+									},
+									{
+										"kind": "code",
+										"text": "`tags`"
+									},
+									{
+										"kind": "text",
+										"text": ". If neither "
+									},
+									{
+										"kind": "code",
+										"text": "`key`"
+									},
+									{
+										"kind": "text",
+										"text": " nor "
+									},
+									{
+										"kind": "code",
+										"text": "`tags`"
+									},
+									{
+										"kind": "text",
+										"text": " are provided, "
+									},
+									{
+										"kind": "code",
+										"text": "`null`"
+									},
+									{
+										"kind": "text",
+										"text": " should be returned.\nIf both "
+									},
+									{
+										"kind": "code",
+										"text": "`key`"
+									},
+									{
+										"kind": "text",
+										"text": " and "
+									},
+									{
+										"kind": "code",
+										"text": "`tags`"
+									},
+									{
+										"kind": "text",
+										"text": " are provided, "
+									},
+									{
+										"kind": "code",
+										"text": "`key`"
+									},
+									{
+										"kind": "text",
+										"text": " should take precedence over "
+									},
+									{
+										"kind": "code",
+										"text": "`tags`"
+									},
+									{
+										"kind": "text",
+										"text": "."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The item(s) that was stored in the cache, or "
+											},
+											{
+												"kind": "code",
+												"text": "`null`"
+											},
+											{
+												"kind": "text",
+												"text": " if not found."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyCachingModuleProvider implements ICachingProviderService {\n  // ...\n  async get({ key, tags }: { key?: string; tags?: string[] }): Promise<any> {\n    // Assuming you're using a client to get data\n    if (key) {\n      return await this.client.get({ key })\n    }\n    if (tags) {\n      return await this.client.getByTags({ tags })\n    }\n    return null\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "caching/index.ts",
+									"line": 432,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L432"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65375,
+									"name": "param0",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The parameters for retrieving the item."
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 65376,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 65377,
+													"name": "key",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The key of the item to retrieve. If both are provided, "
+															},
+															{
+																"kind": "code",
+																"text": "`key`"
+															},
+															{
+																"kind": "text",
+																"text": " should take precedence over "
+															},
+															{
+																"kind": "code",
+																"text": "`tags`"
+															},
+															{
+																"kind": "text",
+																"text": "."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 436,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L436"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 65378,
+													"name": "tags",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The tags of the items to retrieve. All items with any of the provided tags should be retrieved."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 440,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L440"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														65377,
+														65378
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "caching/index.ts",
+													"line": 432,
+													"character": 21,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L432"
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65379,
+					"name": "set",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "caching/index.ts",
+							"line": 465,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L465"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65380,
+							"name": "set",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method stores data in the cache. It should also store the options with the item, \nallowing you to later to check the "
+									},
+									{
+										"kind": "code",
+										"text": "`autoInvalidate`"
+									},
+									{
+										"kind": "text",
+										"text": " option when clearing the item."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "A promise that resolves when the item has been stored."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyCachingModuleProvider implements ICachingProviderService {\n  // ...\n  async set({ key, data, ttl, tags, options }: { \n    key: string; \n    data: any; \n    ttl?: number; \n    tags?: string[]; \n    options?: { autoInvalidate?: boolean } \n  }): Promise<void> {\n    // Assuming you're using a client to set data\n    await this.client.set({ key, data, ttl, tags })\n    await this.client.set({ key, data: options, pipeline: \"options\" })\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "caching/index.ts",
+									"line": 465,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L465"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65381,
+									"name": "param0",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The parameters for storing the item."
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 65382,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 65383,
+													"name": "key",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The key of the item to store."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 475,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L475"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 65384,
+													"name": "data",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The data to store in the cache."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 479,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L479"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "object"
+													}
+												},
+												{
+													"id": 65385,
+													"name": "ttl",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The time-to-live (TTL in seconds) value in seconds.\nIf not provided, the default TTL value configured in the provider should be used."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 484,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L484"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "number"
+													}
+												},
+												{
+													"id": 65386,
+													"name": "tags",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The tags of the items to store. Items should be grouped together using tags for retrieval or invalidation."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 488,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L488"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												},
+												{
+													"id": 65387,
+													"name": "options",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "Options for storing the item. The options should be stored with the item, allowing you to later match against them when clearing the item.\nFor example, if you set "
+															},
+															{
+																"kind": "code",
+																"text": "`autoInvalidate: false`"
+															},
+															{
+																"kind": "text",
+																"text": ", the item will only be invalidated when calling the "
+															},
+															{
+																"kind": "code",
+																"text": "`clear`"
+															},
+															{
+																"kind": "text",
+																"text": " method directly with the same key or tags."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 493,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L493"
+														}
+													],
+													"type": {
+														"type": "reflection",
+														"declaration": {
+															"id": 65388,
+															"name": "__type",
+															"variant": "declaration",
+															"kind": 65536,
+															"flags": {},
+															"children": [
+																{
+																	"id": 65389,
+																	"name": "autoInvalidate",
+																	"variant": "declaration",
+																	"kind": 1024,
+																	"flags": {
+																		"isOptional": true
+																	},
+																	"comment": {
+																		"summary": [
+																			{
+																				"kind": "text",
+																				"text": "Whether to automatically invalidate the item when related data changes."
+																			}
+																		]
+																	},
+																	"sources": [
+																		{
+																			"fileName": "caching/index.ts",
+																			"line": 497,
+																			"character": 6,
+																			"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L497"
+																		}
+																	],
+																	"type": {
+																		"type": "intrinsic",
+																		"name": "boolean"
+																	}
+																}
+															],
+															"groups": [
+																{
+																	"title": "Properties",
+																	"children": [
+																		65389
+																	]
+																}
+															],
+															"sources": [
+																{
+																	"fileName": "caching/index.ts",
+																	"line": 493,
+																	"character": 14,
+																	"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L493"
+																}
+															]
+														}
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														65383,
+														65384,
+														65385,
+														65386,
+														65387
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "caching/index.ts",
+													"line": 471,
+													"character": 5,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L471"
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				},
+				{
+					"id": 65390,
+					"name": "clear",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "caching/index.ts",
+							"line": 533,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L533"
+						}
+					],
+					"signatures": [
+						{
+							"id": 65391,
+							"name": "clear",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method clears data from the cache. If no options are specified, all items matching the key or tags should be cleared.\nOtherwise, if "
+									},
+									{
+										"kind": "code",
+										"text": "`options.autoInvalidate`"
+									},
+									{
+										"kind": "text",
+										"text": " is "
+									},
+									{
+										"kind": "code",
+										"text": "`true`"
+									},
+									{
+										"kind": "text",
+										"text": ", only items that were set with "
+									},
+									{
+										"kind": "code",
+										"text": "`options.autoInvalidate: true`"
+									},
+									{
+										"kind": "text",
+										"text": " should be cleared.\n\nItems with "
+									},
+									{
+										"kind": "code",
+										"text": "`options.autoInvalidate: false`"
+									},
+									{
+										"kind": "text",
+										"text": " should only be cleared when no options are provided.\n\nIf neither "
+									},
+									{
+										"kind": "code",
+										"text": "`key`"
+									},
+									{
+										"kind": "text",
+										"text": " nor "
+									},
+									{
+										"kind": "code",
+										"text": "`tags`"
+									},
+									{
+										"kind": "text",
+										"text": " are provided, nothing should be cleared."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "A promise that resolves when the item(s) have been cleared."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nasync clear({ key, tags, options, }: { \n  key?: string; \n  tags?: string[]; \n  options?: { autoInvalidate?: boolean }\n}): Promise<void> {\n  if (!options) {\n    // clear all items\n    await this.client.invalidate({ key, tags })\n  } else if (options.autoInvalidate) {\n    // clear only items with autoInvalidate option set to true\n    const keysToDelete: string[] = []\n    const storedOptions = await this.client.get({ key, tags, pipeline: \"options\" })\n    storedOptions.forEach((item) => {\n      if (item.autoInvalidate) {\n        keysToDelete.push(item.key as string)\n      }\n    })\n    await this.client.invalidate({ keys: keysToDelete })\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "caching/index.ts",
+									"line": 533,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L533"
+								}
+							],
+							"parameters": [
+								{
+									"id": 65392,
+									"name": "param0",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The parameters for clearing the item(s)."
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 65393,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 65394,
+													"name": "key",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The key of the item to clear."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 541,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L541"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 65395,
+													"name": "tags",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "The tags of the items to clear. All items with any of the provided tags should be cleared."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 545,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L545"
+														}
+													],
+													"type": {
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "string"
+														}
+													}
+												},
+												{
+													"id": 65396,
+													"name": "options",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {
+														"isOptional": true
+													},
+													"comment": {
+														"summary": [
+															{
+																"kind": "text",
+																"text": "Options for clearing the item(s). The options should be matched against the stored options when the item was set.\nFor example, if the item was set with "
+															},
+															{
+																"kind": "code",
+																"text": "`autoInvalidate: true`"
+															},
+															{
+																"kind": "text",
+																"text": ", it will only be cleared if the "
+															},
+															{
+																"kind": "code",
+																"text": "`autoInvalidate`"
+															},
+															{
+																"kind": "text",
+																"text": " option is also set to "
+															},
+															{
+																"kind": "code",
+																"text": "`true`"
+															},
+															{
+																"kind": "text",
+																"text": ".\nIf not provided, all items matching the key or tags should be cleared regardless of their options."
+															}
+														]
+													},
+													"sources": [
+														{
+															"fileName": "caching/index.ts",
+															"line": 551,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L551"
+														}
+													],
+													"type": {
+														"type": "reflection",
+														"declaration": {
+															"id": 65397,
+															"name": "__type",
+															"variant": "declaration",
+															"kind": 65536,
+															"flags": {},
+															"children": [
+																{
+																	"id": 65398,
+																	"name": "autoInvalidate",
+																	"variant": "declaration",
+																	"kind": 1024,
+																	"flags": {
+																		"isOptional": true
+																	},
+																	"comment": {
+																		"summary": [
+																			{
+																				"kind": "text",
+																				"text": "Whether to clear item(s) that were set to automatically invalidate."
+																			}
+																		]
+																	},
+																	"sources": [
+																		{
+																			"fileName": "caching/index.ts",
+																			"line": 555,
+																			"character": 6,
+																			"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L555"
+																		}
+																	],
+																	"type": {
+																		"type": "intrinsic",
+																		"name": "boolean"
+																	}
+																}
+															],
+															"groups": [
+																{
+																	"title": "Properties",
+																	"children": [
+																		65398
+																	]
+																}
+															],
+															"sources": [
+																{
+																	"fileName": "caching/index.ts",
+																	"line": 551,
+																	"character": 14,
+																	"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L551"
+																}
+															]
+														}
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														65394,
+														65395,
+														65396
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "caching/index.ts",
+													"line": 537,
+													"character": 5,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L537"
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"children": [
+						65373,
+						65379,
+						65390
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "caching/index.ts",
+					"line": 409,
+					"character": 17,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/caching/index.ts#L409"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Interfaces",
+			"children": [
+				65322,
+				65372
+			]
+		}
+	],
+	"packageName": "@acmekit/types",
+	"symbolIdMap": {
+		"65321": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": ""
+		},
+		"65322": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService"
+		},
+		"65323": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.get"
+		},
+		"65324": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.get"
+		},
+		"65325": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__0"
+		},
+		"65326": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65327": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.key"
+		},
+		"65328": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.tags"
+		},
+		"65329": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.providers"
+		},
+		"65330": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.set"
+		},
+		"65331": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.set"
+		},
+		"65332": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__0"
+		},
+		"65333": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65334": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.key"
+		},
+		"65335": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.data"
+		},
+		"65336": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.ttl"
+		},
+		"65337": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.tags"
+		},
+		"65338": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.options"
+		},
+		"65339": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65340": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.autoInvalidate"
+		},
+		"65341": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.providers"
+		},
+		"65342": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.clear"
+		},
+		"65343": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.clear"
+		},
+		"65344": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__0"
+		},
+		"65345": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65346": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.key"
+		},
+		"65347": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.tags"
+		},
+		"65348": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.options"
+		},
+		"65349": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65350": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.autoInvalidate"
+		},
+		"65351": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.providers"
+		},
+		"65352": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.computeKey"
+		},
+		"65353": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.computeKey"
+		},
+		"65354": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "input"
+		},
+		"65355": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.computeTags"
+		},
+		"65356": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingModuleService.computeTags"
+		},
+		"65357": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "input"
+		},
+		"65358": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "options"
+		},
+		"65372": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingProviderService"
+		},
+		"65373": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingProviderService.get"
+		},
+		"65374": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingProviderService.get"
+		},
+		"65375": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__0"
+		},
+		"65376": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65377": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.key"
+		},
+		"65378": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.tags"
+		},
+		"65379": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingProviderService.set"
+		},
+		"65380": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingProviderService.set"
+		},
+		"65381": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__0"
+		},
+		"65382": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65383": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.key"
+		},
+		"65384": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.data"
+		},
+		"65385": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.ttl"
+		},
+		"65386": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.tags"
+		},
+		"65387": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.options"
+		},
+		"65388": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65389": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.autoInvalidate"
+		},
+		"65390": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingProviderService.clear"
+		},
+		"65391": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "ICachingProviderService.clear"
+		},
+		"65392": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__0"
+		},
+		"65393": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65394": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.key"
+		},
+		"65395": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.tags"
+		},
+		"65396": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.options"
+		},
+		"65397": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type"
+		},
+		"65398": {
+			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",
+			"qualifiedName": "__type.autoInvalidate"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/types/src/caching/index.ts"
+		},
+		"reflections": {
+			"1": 65321
+		}
+	}
+}

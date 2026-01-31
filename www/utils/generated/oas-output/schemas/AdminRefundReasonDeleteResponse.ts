@@ -1,0 +1,26 @@
+/**
+ * @schema AdminRefundReasonDeleteResponse
+ * type: object
+ * description: The deletion's details.
+ * required:
+ *   - id
+ *   - object
+ *   - deleted
+ * properties:
+ *   id:
+ *     type: string
+ *     title: id
+ *     description: The refund reason's ID.
+ *   object:
+ *     type: string
+ *     title: object
+ *     description: The name of the deleted object.
+ *     default: refund_reason
+ *   deleted:
+ *     type: boolean
+ *     title: deleted
+ *     description: Whether the refund reason was deleted.
+ * x-schemaName: AdminRefundReasonDeleteResponse
+ * 
+*/
+

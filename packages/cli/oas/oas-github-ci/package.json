@@ -1,0 +1,27 @@
+{
+  "name": "@acmekit/oas-github-ci",
+  "version": "2.13.2",
+  "description": "OAS Github CI",
+  "main": "scripts/build-openapi.js",
+  "files": [
+    "scripts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/cli/oas/oas-github-ci"
+  },
+  "private": true,
+  "author": "AcmeKit",
+  "license": "MIT",
+  "scripts": {
+    "ci": "node scripts/build-openapi.js",
+    "preview:admin": "yarn acmekit-oas docs --src-file ../../../../www/apps/api-reference/specs/admin/openapi.yaml --preview",
+    "preview:store": "yarn acmekit-oas docs --src-file ../../../../www/apps/api-reference/specs/store/openapi.yaml --preview",
+    "test": "../../../../node_modules/.bin/jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@acmekit/acmekit-oas-cli": "2.13.2",
+    "execa": "^5.1.1"
+  }
+}

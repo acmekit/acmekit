@@ -1,0 +1,24 @@
+/**
+ * @schema AdminUpdateStoreSupportedCurrency
+ * type: object
+ * description: The details to update in a supported currency of the store.
+ * required:
+ *   - currency_code
+ * properties:
+ *   currency_code:
+ *     type: string
+ *     title: currency_code
+ *     description: The currency's code.
+ *     example: usd
+ *   is_default:
+ *     type: boolean
+ *     title: is_default
+ *     description: Whether the currency is the default in the store.
+ *   is_tax_inclusive:
+ *     type: boolean
+ *     title: is_tax_inclusive
+ *     description: Whether prices using this currency are tax inclusive.
+ * x-schemaName: AdminUpdateStoreSupportedCurrency
+ * 
+*/
+

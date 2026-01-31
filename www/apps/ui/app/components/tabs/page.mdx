@@ -1,0 +1,61 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Tabs`,
+}
+
+# {metadata.title}
+
+A component that displays tabbed content.
+
+In this guide, you'll learn how to use the Tabs component.
+
+<ComponentExample name="tabs-demo" />
+
+## Usage
+
+```tsx
+import { Tabs } from "@medusajs/ui"
+```
+
+```tsx
+<Tabs>
+  <Tabs.List>
+    <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+    <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+    <Tabs.Trigger value="3">Tab 3</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="1">Panel 1</Tabs.Content>
+  <Tabs.Content value="2">Panel 2</Tabs.Content>
+  <Tabs.Content value="3">Panel 3</Tabs.Content>
+</Tabs>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Tabs" />
+
+---
+
+## Examples
+
+### Controlled Tabs
+
+<ComponentExample name="tabs-controlled" />
+
+### Tabs with a Disabled Tab
+
+<ComponentExample name="tabs-disabled" />
+
+### Tabs with Icons
+
+<ComponentExample name="tabs-icons" />
+
+### Vertical Tabs
+
+The `orientation` prop doesn't change the layout of the tabs, but it allows you to navigate between the tabs using the up and down arrow keys. You'll need to manually style the tabs vertically.
+
+<ComponentExample name="tabs-vertical" hideFeedback />

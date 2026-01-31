@@ -1,0 +1,56 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Currency Input`,
+}
+
+# {metadata.title}
+
+A component for rendering form inputs for money amounts, showing the currency in the input.
+
+In this guide, you'll learn how to use the Currency Input component.
+
+<ComponentExample name="currency-input-demo" />
+
+## Usage
+
+```tsx
+import { CurrencyInput } from "@medusajs/ui"
+```
+
+```tsx
+<CurrencyInput symbol="$" code="usd" />
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="CurrencyInput" />
+
+---
+
+## Examples
+
+### Controlled Currency Input
+
+<ComponentExample name="currency-input-controlled" />
+
+### Disabled Currency Input
+
+<ComponentExample name="currency-input-disabled" />
+
+### Currency Input with Error State
+
+<ComponentExample name="currency-input-error" />
+
+### Currency Input Sizes
+
+#### Base
+
+<ComponentExample name="currency-input-base" />
+
+#### Small
+
+<ComponentExample name="currency-input-small" hideFeedback />

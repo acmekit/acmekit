@@ -1,0 +1,46 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Calendar`,
+}
+
+# {metadata.title}
+
+A component for displaying a calendar interface with date selection capability.
+
+In this guide, you'll learn how to use the Calendar component.
+
+<ComponentExample name="calendar-demo" />
+
+## Usage
+
+```tsx
+import { Calendar } from "@medusajs/ui"
+```
+
+```tsx
+<Calendar />
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Calendar" />
+
+---
+
+## Examples
+
+### Controlled
+
+<ComponentExample name="calendar-controlled" />
+
+### Min/Max Dates
+
+<ComponentExample name="calendar-min-max" />
+
+### Unavailable Dates
+
+<ComponentExample name="calendar-unavailable" hideFeedback />

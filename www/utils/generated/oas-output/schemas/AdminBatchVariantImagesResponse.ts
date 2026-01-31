@@ -1,0 +1,26 @@
+/**
+ * @schema AdminBatchVariantImagesResponse
+ * type: object
+ * description: Result of managing the associations between images and a product variant.
+ * x-schemaName: AdminBatchVariantImagesResponse
+ * required:
+ *   - added
+ *   - removed
+ * properties:
+ *   added:
+ *     type: array
+ *     description: The IDs of product images added to the variant.
+ *     items:
+ *       type: string
+ *       title: added
+ *       description: The ID of the image added.
+ *   removed:
+ *     type: array
+ *     description: The IDs of product images removed from the variant.
+ *     items:
+ *       type: string
+ *       title: removed
+ *       description: The ID of the image removed.
+ * 
+*/
+

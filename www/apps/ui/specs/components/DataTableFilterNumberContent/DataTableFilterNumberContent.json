@@ -1,0 +1,65 @@
+{
+  "description": "",
+  "methods": [],
+  "displayName": "DataTableFilterNumberContent",
+  "props": {
+    "id": {
+      "required": true,
+      "tsType": {
+        "name": "string"
+      },
+      "description": ""
+    },
+    "filter": {
+      "required": true,
+      "tsType": {
+        "name": "any"
+      },
+      "description": ""
+    },
+    "placeholder": {
+      "required": false,
+      "tsType": {
+        "name": "string"
+      },
+      "description": "",
+      "defaultValue": {
+        "value": "\"Enter number...\"",
+        "computed": false
+      }
+    },
+    "includeOperators": {
+      "required": false,
+      "tsType": {
+        "name": "boolean"
+      },
+      "description": "",
+      "defaultValue": {
+        "value": "true",
+        "computed": false
+      }
+    },
+    "onUpdate": {
+      "required": false,
+      "tsType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(value: unknown) => void",
+        "signature": {
+          "arguments": [
+            {
+              "type": {
+                "name": "unknown"
+              },
+              "name": "value"
+            }
+          ],
+          "return": {
+            "name": "void"
+          }
+        }
+      },
+      "description": ""
+    }
+  }
+}

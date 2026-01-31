@@ -1,0 +1,2031 @@
+{
+	"id": 16905,
+	"name": "tax-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"text": "## Relations Overview\n\n",
+				"kind": "text"
+			},
+			{
+				"text": "```mermaid\nerDiagram\n\tTaxRate ||--|| TaxRateRule : rules\n\tTaxRegion ||--|| TaxRegion : children\n\tTaxRegion ||--|| TaxRate : tax_rates\n\tTaxProvider ||--|| TaxRegion : regions\n\n```",
+				"kind": "code"
+			}
+		]
+	},
+	"children": [
+		{
+			"id": 17028,
+			"name": "TaxProvider",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "tax-provider.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-provider.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 17029,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 17030,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the tax provider."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-provider.ts",
+													"line": 5,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-provider.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 17031,
+											"name": "is_enabled",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the tax provider is enabled."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-provider.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-provider.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 17032,
+											"name": "regions",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The regions that use this provider to calculate taxes."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-provider.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-provider.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16953,
+														"name": "TaxRegion"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												17030,
+												17031,
+												17032
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "tax-provider.ts",
+											"line": 4,
+											"character": 48,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-provider.ts#L4"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "TaxProvider"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 17003,
+			"name": "TaxRateRule",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "tax-rate-rule.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate-rule.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 17004,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 17005,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the tax rate rule."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate-rule.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate-rule.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 17006,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate-rule.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate-rule.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 17007,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the user that created the tax rate rule"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate-rule.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate-rule.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 17008,
+											"name": "tax_rate",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated tax rate."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate-rule.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate-rule.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16906,
+														"name": "TaxRate"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 17026,
+											"name": "reference",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the table this rule references.\n\n@example product_type"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate-rule.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate-rule.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 17027,
+											"name": "reference_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The id of a record in the table that this rule references.\n\n@example ptyp_1"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate-rule.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate-rule.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												17005,
+												17006,
+												17007,
+												17008,
+												17026,
+												17027
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "tax-rate-rule.ts",
+											"line": 5,
+											"character": 25,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate-rule.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "TaxRateRule"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 16906,
+			"name": "TaxRate",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "tax-rate.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 16907,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 16908,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the tax rate."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16909,
+											"name": "rate",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The rate to charge.\n\n@example 10"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/float.ts",
+													"qualifiedName": "FloatProperty"
+												},
+												"name": "FloatProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16910,
+											"name": "code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The code the tax rate is identified by."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16911,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the tax rate"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16912,
+											"name": "is_default",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether this tax rate is the default in the tax region."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16913,
+											"name": "is_combinable",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the tax rate should be combined with parent rates. Learn more in [this documentation](https://docs.acmekit.com/v2/resources/commerce-modules/tax/tax-rates-and-rules#combinable-tax-rates)."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16914,
+											"name": "tax_region",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated tax region."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16953,
+														"name": "TaxRegion"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16939,
+											"name": "rules",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated rules."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 17003,
+														"name": "TaxRateRule"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16951,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 19,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16952,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the user that created the tax rate"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-rate.ts",
+													"line": 20,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L20"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												16908,
+												16909,
+												16910,
+												16911,
+												16912,
+												16913,
+												16914,
+												16939,
+												16951,
+												16952
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "tax-rate.ts",
+											"line": 6,
+											"character": 21,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-rate.ts#L6"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "TaxRate"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 16953,
+			"name": "TaxRegion",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "tax-region.ts",
+					"line": 10,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L10"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 16954,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 16955,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the tax region."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16956,
+											"name": "country_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The country code of the tax region.\n\n@example us"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16957,
+											"name": "province_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The province code of the tax region"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16958,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16959,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the user that created the tax region"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16960,
+											"name": "provider",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The provider that calculates taxes in this region."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 17,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 17028,
+														"name": "TaxProvider"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16977,
+											"name": "parent",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The tax region's parent."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 22,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L22"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16953,
+														"name": "TaxRegion"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16982,
+											"name": "children",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The tax region's children.."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 27,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L27"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16953,
+														"name": "TaxRegion"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 16985,
+											"name": "tax_rates",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated tax rates."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "tax-region.ts",
+													"line": 30,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L30"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 16906,
+														"name": "TaxRate"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												16955,
+												16956,
+												16957,
+												16958,
+												16959,
+												16960,
+												16977,
+												16982,
+												16985
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "tax-region.ts",
+											"line": 11,
+											"character": 23,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/tax/src/models/tax-region.ts#L11"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "TaxRegion"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				17028,
+				17003,
+				16906,
+				16953
+			]
+		}
+	],
+	"packageName": "@acmekit/tax",
+	"symbolIdMap": {
+		"16905": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"16906": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "TaxRate"
+		},
+		"16907": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object"
+		},
+		"16908": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16909": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.rate"
+		},
+		"16910": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.code"
+		},
+		"16911": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.name"
+		},
+		"16912": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.is_default"
+		},
+		"16913": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.is_combinable"
+		},
+		"16914": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.tax_region"
+		},
+		"16915": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"16916": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"16917": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object"
+		},
+		"16918": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16919": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.country_code"
+		},
+		"16920": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.province_code"
+		},
+		"16921": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16922": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"16923": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.provider"
+		},
+		"16924": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16925": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16926": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16927": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16928": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.parent"
+		},
+		"16929": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16930": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16931": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16932": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16933": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.children"
+		},
+		"16934": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16935": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16936": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.tax_rates"
+		},
+		"16937": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16938": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16939": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.rules"
+		},
+		"16940": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"16941": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"16942": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"16943": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16944": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16945": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"16946": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.tax_rate"
+		},
+		"16947": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"16948": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"16949": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.reference"
+		},
+		"16950": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.reference_id"
+		},
+		"16951": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16952": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"16953": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "TaxRegion"
+		},
+		"16954": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object"
+		},
+		"16955": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16956": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.country_code"
+		},
+		"16957": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.province_code"
+		},
+		"16958": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"16959": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"16960": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.provider"
+		},
+		"16961": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16962": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16963": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object"
+		},
+		"16964": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16965": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.is_enabled"
+		},
+		"16966": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.regions"
+		},
+		"16967": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"16968": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"16969": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16970": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16971": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object"
+		},
+		"16972": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16973": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.is_enabled"
+		},
+		"16974": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.regions"
+		},
+		"16975": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"16976": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"16977": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.parent"
+		},
+		"16978": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16979": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16980": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16981": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16982": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.children"
+		},
+		"16983": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16984": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16985": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.tax_rates"
+		},
+		"16986": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16987": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"16988": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object"
+		},
+		"16989": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.id"
+		},
+		"16990": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.rate"
+		},
+		"16991": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.code"
+		},
+		"16992": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.name"
+		},
+		"16993": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.is_default"
+		},
+		"16994": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.is_combinable"
+		},
+		"16995": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.tax_region"
+		},
+		"16996": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"16997": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"16998": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.rules"
+		},
+		"16999": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"17000": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"17001": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"17002": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"17003": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "TaxRateRule"
+		},
+		"17004": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object"
+		},
+		"17005": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.id"
+		},
+		"17006": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"17007": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"17008": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.tax_rate"
+		},
+		"17009": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"17010": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__function"
+		},
+		"17011": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object"
+		},
+		"17012": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.id"
+		},
+		"17013": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.rate"
+		},
+		"17014": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.code"
+		},
+		"17015": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.name"
+		},
+		"17016": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.is_default"
+		},
+		"17017": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.is_combinable"
+		},
+		"17018": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.tax_region"
+		},
+		"17019": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"17020": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"17021": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.rules"
+		},
+		"17022": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"17023": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__function"
+		},
+		"17024": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"17025": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"17026": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.reference"
+		},
+		"17027": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-rate-rule.ts",
+			"qualifiedName": "__object.reference_id"
+		},
+		"17028": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "TaxProvider"
+		},
+		"17029": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object"
+		},
+		"17030": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.id"
+		},
+		"17031": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.is_enabled"
+		},
+		"17032": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__object.regions"
+		},
+		"17033": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"17034": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-provider.ts",
+			"qualifiedName": "__function"
+		},
+		"17035": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object"
+		},
+		"17036": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.id"
+		},
+		"17037": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.country_code"
+		},
+		"17038": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.province_code"
+		},
+		"17039": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"17040": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"17041": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.provider"
+		},
+		"17042": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17043": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17044": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17045": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17046": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.parent"
+		},
+		"17047": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17048": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17049": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17050": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17051": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.children"
+		},
+		"17052": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17053": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17054": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__object.tax_rates"
+		},
+		"17055": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		},
+		"17056": {
+			"sourceFileName": "../../../../packages/modules/tax/src/models/tax-region.ts",
+			"qualifiedName": "__function"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/tax/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 16905
+		}
+	}
+}

@@ -1,0 +1,6642 @@
+{
+	"id": 65682,
+	"name": "module-events",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 65796,
+			"name": "Cart",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65683,
+					"name": "CartWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Cart"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 8,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L8"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65684,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65685,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a cart is created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the cart\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "cart.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createCartWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 19,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L19"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "cart.created"
+									},
+									"defaultValue": "\"cart.created\""
+								},
+								{
+									"id": 65686,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a cart's details are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the cart\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "cart.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteLineItemsWorkflow, updateLineItemInCartWorkflow, updateCartWorkflow, addToCartWorkflow, addShippingMethodToCartWorkflow, updateLineItemInCartWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 30,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L30"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "cart.updated"
+									},
+									"defaultValue": "\"cart.updated\""
+								},
+								{
+									"id": 65687,
+									"name": "CUSTOMER_UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when the customer in the cart is updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the cart\n}\n```"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 41,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L41"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "cart.customer_updated"
+									},
+									"defaultValue": "\"cart.customer_updated\""
+								},
+								{
+									"id": 65688,
+									"name": "REGION_UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when the cart's region is updated. This\nevent is emitted alongside the "
+											},
+											{
+												"kind": "code",
+												"text": "`cart.updated`"
+											},
+											{
+												"kind": "text",
+												"text": " event."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the cart\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "cart.region_updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateCartWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 53,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L53"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "cart.region_updated"
+									},
+									"defaultValue": "\"cart.region_updated\""
+								},
+								{
+									"id": 65689,
+									"name": "CUSTOMER_TRANSFERRED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when the customer in the cart is transferred."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.8.0"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the cart\n  customer_id, // The ID of the customer\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "cart.customer_transferred"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "transferCartCustomerWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 68,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L68"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "cart.customer_transferred"
+									},
+									"defaultValue": "\"cart.customer_transferred\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65685,
+										65686,
+										65687,
+										65688,
+										65689
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 8,
+									"character": 34,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L8"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65683
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Cart",
+					"children": [
+						65683
+					]
+				}
+			]
+		},
+		{
+			"id": 65797,
+			"name": "Customer",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65690,
+					"name": "CustomerWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Customer"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 75,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L75"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65691,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65692,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a customer is created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the customer\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "customer.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createCustomersWorkflow, createCustomerAccountWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 86,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L86"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "customer.created"
+									},
+									"defaultValue": "\"customer.created\""
+								},
+								{
+									"id": 65693,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a customer is updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the customer\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "customer.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateCustomersWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 97,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L97"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "customer.updated"
+									},
+									"defaultValue": "\"customer.updated\""
+								},
+								{
+									"id": 65694,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a customer is deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the customer\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "customer.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteCustomersWorkflow, removeCustomerAccountWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 108,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L108"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "customer.deleted"
+									},
+									"defaultValue": "\"customer.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65692,
+										65693,
+										65694
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 75,
+									"character": 38,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L75"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65690
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Customer",
+					"children": [
+						65690
+					]
+				}
+			]
+		},
+		{
+			"id": 65798,
+			"name": "Order",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65695,
+					"name": "OrderWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Order"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 115,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L115"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65696,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65697,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when the details of an order or draft order is updated. This\ndoesn't include updates made by an edit."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the order\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateOrderWorkflow, updateDraftOrderWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 127,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L127"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.updated"
+									},
+									"defaultValue": "\"order.updated\""
+								},
+								{
+									"id": 65698,
+									"name": "PLACED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an order is placed, or when a draft order is converted to an\norder."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the order\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.placed"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "convertDraftOrderWorkflow, completeCartWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 140,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L140"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.placed"
+									},
+									"defaultValue": "\"order.placed\""
+								},
+								{
+									"id": 65699,
+									"name": "CANCELED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an order is canceld."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the order\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.canceled"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "cancelOrderWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 151,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L151"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.canceled"
+									},
+									"defaultValue": "\"order.canceled\""
+								},
+								{
+									"id": 65700,
+									"name": "COMPLETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when orders are completed."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the order\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.completed"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "completeOrderWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 162,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L162"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.completed"
+									},
+									"defaultValue": "\"order.completed\""
+								},
+								{
+									"id": 65701,
+									"name": "ARCHIVED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an order is archived."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the order\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.archived"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "archiveOrderWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 173,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L173"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.archived"
+									},
+									"defaultValue": "\"order.archived\""
+								},
+								{
+									"id": 65702,
+									"name": "FULFILLMENT_CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a fulfillment is created for an order."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  fulfillment_id, // The ID of the fulfillment\n  no_notification, // (boolean) Whether to notify the customer\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.fulfillment_created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createOrderFulfillmentWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 187,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L187"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.fulfillment_created"
+									},
+									"defaultValue": "\"order.fulfillment_created\""
+								},
+								{
+									"id": 65703,
+									"name": "FULFILLMENT_CANCELED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an order's fulfillment is canceled."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  fulfillment_id, // The ID of the fulfillment\n  no_notification, // (boolean) Whether to notify the customer\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.fulfillment_canceled"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "cancelOrderFulfillmentWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 200,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L200"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.fulfillment_canceled"
+									},
+									"defaultValue": "\"order.fulfillment_canceled\""
+								},
+								{
+									"id": 65704,
+									"name": "RETURN_REQUESTED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a return request is confirmed."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  return_id, // The ID of the return\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.return_requested"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createAndCompleteReturnOrderWorkflow, confirmReturnRequestWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 213,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L213"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.return_requested"
+									},
+									"defaultValue": "\"order.return_requested\""
+								},
+								{
+									"id": 65705,
+									"name": "RETURN_RECEIVED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a return is marked as received."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  return_id, // The ID of the return\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.return_received"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createAndCompleteReturnOrderWorkflow, confirmReturnReceiveWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 225,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L225"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.return_received"
+									},
+									"defaultValue": "\"order.return_received\""
+								},
+								{
+									"id": 65706,
+									"name": "CLAIM_CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a claim is created for an order."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  claim_id, // The ID of the claim\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.claim_created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "confirmClaimRequestWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 238,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L238"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.claim_created"
+									},
+									"defaultValue": "\"order.claim_created\""
+								},
+								{
+									"id": 65707,
+									"name": "EXCHANGE_CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an exchange is created for an order."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  exchange_id, // The ID of the exchange\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.exchange_created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "confirmExchangeRequestWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 250,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L250"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.exchange_created"
+									},
+									"defaultValue": "\"order.exchange_created\""
+								},
+								{
+									"id": 65708,
+									"name": "TRANSFER_REQUESTED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an order is requested to be transferred to\nanother customer."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the order\n  order_change_id, // The ID of the order change created for the transfer\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order.transfer_requested"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "requestOrderTransferWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 264,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L264"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order.transfer_requested"
+									},
+									"defaultValue": "\"order.transfer_requested\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65697,
+										65698,
+										65699,
+										65700,
+										65701,
+										65702,
+										65703,
+										65704,
+										65705,
+										65706,
+										65707,
+										65708
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 115,
+									"character": 35,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L115"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65709,
+					"name": "OrderEditWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Order Edit"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 271,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L271"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65710,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65711,
+									"name": "REQUESTED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an order edit is requested."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.8.0"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  actions, // (array) The [actions](https://docs.acmekit.com/resources/references/fulfillment/interfaces/fulfillment.OrderChangeActionDTO) to edit the order\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order-edit.requested"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "requestOrderEditRequestWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 285,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L285"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order-edit.requested"
+									},
+									"defaultValue": "\"order-edit.requested\""
+								},
+								{
+									"id": 65712,
+									"name": "CONFIRMED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an order edit request is confirmed."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.8.0"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  actions, // (array) The [actions](https://docs.acmekit.com/resources/references/fulfillment/interfaces/fulfillment.OrderChangeActionDTO) to edit the order\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order-edit.confirmed"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "confirmOrderEditRequestWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 299,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L299"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order-edit.confirmed"
+									},
+									"defaultValue": "\"order-edit.confirmed\""
+								},
+								{
+									"id": 65713,
+									"name": "CANCELED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an order edit request is canceled."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.8.0"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  order_id, // The ID of the order\n  actions, // (array) The [actions](https://docs.acmekit.com/resources/references/fulfillment/interfaces/fulfillment.OrderChangeActionDTO) to edit the order\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "order-edit.canceled"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "cancelBeginOrderEditWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 313,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L313"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "order-edit.canceled"
+									},
+									"defaultValue": "\"order-edit.canceled\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65711,
+										65712,
+										65713
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 271,
+									"character": 39,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L271"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65695,
+						65709
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Order",
+					"children": [
+						65695
+					]
+				},
+				{
+					"title": "Order Edit",
+					"children": [
+						65709
+					]
+				}
+			]
+		},
+		{
+			"id": 65799,
+			"name": "User",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65714,
+					"name": "UserWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "User"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 320,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L320"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65715,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65716,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when users are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the user\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "user.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createUsersWorkflow, createUserAccountWorkflow, acceptInviteWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 331,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L331"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "user.created"
+									},
+									"defaultValue": "\"user.created\""
+								},
+								{
+									"id": 65717,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when users are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the user\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "user.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateUsersWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 342,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L342"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "user.updated"
+									},
+									"defaultValue": "\"user.updated\""
+								},
+								{
+									"id": 65718,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when users are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the user\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "user.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteUsersWorkflow, removeUserAccountWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 353,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L353"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "user.deleted"
+									},
+									"defaultValue": "\"user.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65716,
+										65717,
+										65718
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 320,
+									"character": 34,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L320"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65762,
+					"name": "InviteWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Invite"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 702,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L702"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65763,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65764,
+									"name": "ACCEPTED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when an invite is accepted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the invite\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "invite.accepted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "acceptInviteWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 713,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L713"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "invite.accepted"
+									},
+									"defaultValue": "\"invite.accepted\""
+								},
+								{
+									"id": 65765,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when invites are created. You can listen to this event\nto send an email to the invited users, for example."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the invite\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "invite.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createInvitesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 725,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L725"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "invite.created"
+									},
+									"defaultValue": "\"invite.created\""
+								},
+								{
+									"id": 65766,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when invites are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the invite\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "invite.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteInvitesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 736,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L736"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "invite.deleted"
+									},
+									"defaultValue": "\"invite.deleted\""
+								},
+								{
+									"id": 65767,
+									"name": "RESENT",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when invites should be resent because their token was\nrefreshed. You can listen to this event to send an email to the invited users,\nfor example."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the invite\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "invite.resent"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "refreshInviteTokensWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 749,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L749"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "invite.resent"
+									},
+									"defaultValue": "\"invite.resent\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65764,
+										65765,
+										65766,
+										65767
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 702,
+									"character": 36,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L702"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65714,
+						65762
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "User",
+					"children": [
+						65714
+					]
+				},
+				{
+					"title": "Invite",
+					"children": [
+						65762
+					]
+				}
+			]
+		},
+		{
+			"id": 65800,
+			"name": "Auth",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65719,
+					"name": "AuthWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Auth"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 360,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L360"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65720,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65721,
+									"name": "PASSWORD_RESET",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a reset password token is generated. You can listen to this event\nto send a reset password email to the user or customer, for example."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  entity_id, // The identifier of the user or customer. For example, an email address.\n  actor_type, // The type of actor. For example, \"customer\", \"user\", or custom.\n  token, // The generated token.\n  metadata, // Optional custom metadata passed from the request.\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "auth.password_reset"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "generateResetPasswordTokenWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 375,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L375"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "auth.password_reset"
+									},
+									"defaultValue": "\"auth.password_reset\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65721
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 360,
+									"character": 34,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L360"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65719
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Auth",
+					"children": [
+						65719
+					]
+				}
+			]
+		},
+		{
+			"id": 65801,
+			"name": "Sales Channel",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65722,
+					"name": "SalesChannelWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Sales Channel"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 382,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L382"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65723,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65724,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when sales channels are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the sales channel\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "sales-channel.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createSalesChannelsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 393,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L393"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "sales-channel.created"
+									},
+									"defaultValue": "\"sales-channel.created\""
+								},
+								{
+									"id": 65725,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when sales channels are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the sales channel\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "sales-channel.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateSalesChannelsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 404,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L404"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "sales-channel.updated"
+									},
+									"defaultValue": "\"sales-channel.updated\""
+								},
+								{
+									"id": 65726,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when sales channels are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the sales channel\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "sales-channel.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteSalesChannelsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 415,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L415"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "sales-channel.deleted"
+									},
+									"defaultValue": "\"sales-channel.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65724,
+										65725,
+										65726
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 382,
+									"character": 42,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L382"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65722
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Sales Channel",
+					"children": [
+						65722
+					]
+				}
+			]
+		},
+		{
+			"id": 65802,
+			"name": "Product",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65727,
+					"name": "ProductCategoryWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Product Category"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 422,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L422"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65728,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65729,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product categories are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product category\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-category.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createProductCategoriesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 433,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L433"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-category.created"
+									},
+									"defaultValue": "\"product-category.created\""
+								},
+								{
+									"id": 65730,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product categories are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product category\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-category.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateProductCategoriesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 444,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L444"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-category.updated"
+									},
+									"defaultValue": "\"product-category.updated\""
+								},
+								{
+									"id": 65731,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product categories are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product category\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-category.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteProductCategoriesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 455,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L455"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-category.deleted"
+									},
+									"defaultValue": "\"product-category.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65729,
+										65730,
+										65731
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 422,
+									"character": 45,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L422"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65732,
+					"name": "ProductCollectionWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Product Collection"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 462,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L462"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65733,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65734,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product collections are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product collection\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-collection.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createCollectionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 473,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L473"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-collection.created"
+									},
+									"defaultValue": "\"product-collection.created\""
+								},
+								{
+									"id": 65735,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product collections are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product collection\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-collection.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateCollectionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 484,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L484"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-collection.updated"
+									},
+									"defaultValue": "\"product-collection.updated\""
+								},
+								{
+									"id": 65736,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product collections are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product collection\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-collection.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteCollectionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 495,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L495"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-collection.deleted"
+									},
+									"defaultValue": "\"product-collection.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65734,
+										65735,
+										65736
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 462,
+									"character": 47,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L462"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65737,
+					"name": "ProductVariantWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Product Variant"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 502,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L502"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65738,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65739,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product variants are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product variant\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-variant.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateProductVariantsWorkflow, batchProductVariantsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 513,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L513"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-variant.updated"
+									},
+									"defaultValue": "\"product-variant.updated\""
+								},
+								{
+									"id": 65740,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product variants are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product variant\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-variant.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createProductVariantsWorkflow, createProductsWorkflow, batchProductVariantsWorkflow, batchProductsWorkflow, importProductsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 524,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L524"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-variant.created"
+									},
+									"defaultValue": "\"product-variant.created\""
+								},
+								{
+									"id": 65741,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product variants are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product variant\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-variant.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteProductVariantsWorkflow, batchProductVariantsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 535,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L535"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-variant.deleted"
+									},
+									"defaultValue": "\"product-variant.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65739,
+										65740,
+										65741
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 502,
+									"character": 44,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L502"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65742,
+					"name": "ProductWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Product"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 542,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L542"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65743,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65744,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when products are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateProductsWorkflow, batchProductsWorkflow, importProductsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 553,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L553"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product.updated"
+									},
+									"defaultValue": "\"product.updated\""
+								},
+								{
+									"id": 65745,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when products are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createProductsWorkflow, batchProductsWorkflow, importProductsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 564,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L564"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product.created"
+									},
+									"defaultValue": "\"product.created\""
+								},
+								{
+									"id": 65746,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when products are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteProductsWorkflow, batchProductsWorkflow, importProductsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 575,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L575"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product.deleted"
+									},
+									"defaultValue": "\"product.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65744,
+										65745,
+										65746
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 542,
+									"character": 37,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L542"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65747,
+					"name": "ProductTypeWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Product Type"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 582,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L582"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65748,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65749,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product types are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product type\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-type.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateProductTypesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 593,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L593"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-type.updated"
+									},
+									"defaultValue": "\"product-type.updated\""
+								},
+								{
+									"id": 65750,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product types are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product type\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-type.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createProductTypesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 604,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L604"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-type.created"
+									},
+									"defaultValue": "\"product-type.created\""
+								},
+								{
+									"id": 65751,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product types are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product type\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-type.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteProductTypesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 615,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L615"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-type.deleted"
+									},
+									"defaultValue": "\"product-type.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65749,
+										65750,
+										65751
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 582,
+									"character": 41,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L582"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65752,
+					"name": "ProductTagWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Product Tag"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 622,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L622"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65753,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65754,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product tags are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product tag\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-tag.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateProductTagsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 633,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L633"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-tag.updated"
+									},
+									"defaultValue": "\"product-tag.updated\""
+								},
+								{
+									"id": 65755,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product tags are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product tag\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-tag.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createProductTagsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 644,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L644"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-tag.created"
+									},
+									"defaultValue": "\"product-tag.created\""
+								},
+								{
+									"id": 65756,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product tags are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product tag\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-tag.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteProductTagsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 655,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L655"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-tag.deleted"
+									},
+									"defaultValue": "\"product-tag.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65754,
+										65755,
+										65756
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 622,
+									"character": 40,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L622"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65757,
+					"name": "ProductOptionWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Product Option"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 662,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L662"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65758,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65759,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product options are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product option\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-option.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateProductOptionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 673,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L673"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-option.updated"
+									},
+									"defaultValue": "\"product-option.updated\""
+								},
+								{
+									"id": 65760,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product options are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product option\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-option.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createProductOptionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 684,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L684"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-option.created"
+									},
+									"defaultValue": "\"product-option.created\""
+								},
+								{
+									"id": 65761,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when product options are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the product option\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "product-option.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteProductOptionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 695,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L695"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "product-option.deleted"
+									},
+									"defaultValue": "\"product-option.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65759,
+										65760,
+										65761
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 662,
+									"character": 43,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L662"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65727,
+						65732,
+						65737,
+						65742,
+						65747,
+						65752,
+						65757
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Product Category",
+					"children": [
+						65727
+					]
+				},
+				{
+					"title": "Product Collection",
+					"children": [
+						65732
+					]
+				},
+				{
+					"title": "Product Variant",
+					"children": [
+						65737
+					]
+				},
+				{
+					"title": "Product",
+					"children": [
+						65742
+					]
+				},
+				{
+					"title": "Product Type",
+					"children": [
+						65747
+					]
+				},
+				{
+					"title": "Product Tag",
+					"children": [
+						65752
+					]
+				},
+				{
+					"title": "Product Option",
+					"children": [
+						65757
+					]
+				}
+			]
+		},
+		{
+			"id": 65803,
+			"name": "Region",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65768,
+					"name": "RegionWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Region"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 756,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L756"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65769,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65770,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when regions are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the region\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "region.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateRegionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 767,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L767"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "region.updated"
+									},
+									"defaultValue": "\"region.updated\""
+								},
+								{
+									"id": 65771,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when regions are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the region\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "region.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createRegionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 778,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L778"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "region.created"
+									},
+									"defaultValue": "\"region.created\""
+								},
+								{
+									"id": 65772,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when regions are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the region\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "region.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteRegionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 789,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L789"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "region.deleted"
+									},
+									"defaultValue": "\"region.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65770,
+										65771,
+										65772
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 756,
+									"character": 36,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L756"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65768
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Region",
+					"children": [
+						65768
+					]
+				}
+			]
+		},
+		{
+			"id": 65804,
+			"name": "Fulfillment",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65773,
+					"name": "FulfillmentWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Fulfillment"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 796,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L796"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65774,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65775,
+									"name": "SHIPMENT_CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a shipment is created for an order."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // the ID of the fulfillment\n  no_notification, // (boolean) whether to notify the customer\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "shipment.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createOrderShipmentWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 808,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L808"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "shipment.created"
+									},
+									"defaultValue": "\"shipment.created\""
+								},
+								{
+									"id": 65776,
+									"name": "DELIVERY_CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a fulfillment is marked as delivered."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // the ID of the fulfillment\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "delivery.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "markOrderFulfillmentAsDeliveredWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 819,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L819"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "delivery.created"
+									},
+									"defaultValue": "\"delivery.created\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65775,
+										65776
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 796,
+									"character": 41,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L796"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65777,
+					"name": "ShippingOptionTypeWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Shipping Option Type"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 826,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L826"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65778,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65779,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when shipping option types are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.10.0"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the shipping option type\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "shipping-option-type.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateShippingOptionTypesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 839,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L839"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "shipping-option-type.updated"
+									},
+									"defaultValue": "\"shipping-option-type.updated\""
+								},
+								{
+									"id": 65780,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when shipping option types are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.10.0"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the shipping option type\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "shipping-option-type.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createShippingOptionTypesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 852,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L852"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "shipping-option-type.created"
+									},
+									"defaultValue": "\"shipping-option-type.created\""
+								},
+								{
+									"id": 65781,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when shipping option types are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.10.0"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the shipping option type\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "shipping-option-type.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteShippingOptionTypesWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 865,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L865"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "shipping-option-type.deleted"
+									},
+									"defaultValue": "\"shipping-option-type.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65779,
+										65780,
+										65781
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 826,
+									"character": 48,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L826"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 65782,
+					"name": "ShippingOptionWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Shipping Option"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 872,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L872"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65783,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65784,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when shipping options are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.12.4"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the shipping option\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "shipping-option.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createShippingOptionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 885,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L885"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "shipping-option.created"
+									},
+									"defaultValue": "\"shipping-option.created\""
+								},
+								{
+									"id": 65785,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when shipping options are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.12.4"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the shipping option\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "shipping-option.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateShippingOptionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 898,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L898"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "shipping-option.updated"
+									},
+									"defaultValue": "\"shipping-option.updated\""
+								},
+								{
+									"id": 65786,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when shipping options are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.12.4"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the shipping option\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "shipping-option.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteShippingOptionsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 911,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L911"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "shipping-option.deleted"
+									},
+									"defaultValue": "\"shipping-option.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65784,
+										65785,
+										65786
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 872,
+									"character": 44,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L872"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65773,
+						65777,
+						65782
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Fulfillment",
+					"children": [
+						65773
+					]
+				},
+				{
+					"title": "Shipping Option Type",
+					"children": [
+						65777
+					]
+				},
+				{
+					"title": "Shipping Option",
+					"children": [
+						65782
+					]
+				}
+			]
+		},
+		{
+			"id": 65805,
+			"name": "Payment",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65787,
+					"name": "PaymentEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Payment"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 918,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L918"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65788,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65789,
+									"name": "CAPTURED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a payment is captured."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // the ID of the payment\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "payment.captured"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "capturePaymentWorkflow, processPaymentWorkflow, markPaymentCollectionAsPaid"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 929,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L929"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "payment.captured"
+									},
+									"defaultValue": "\"payment.captured\""
+								},
+								{
+									"id": 65790,
+									"name": "REFUNDED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when a payment is refunded."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // the ID of the payment\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "payment.refunded"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "refundPaymentWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 940,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L940"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "payment.refunded"
+									},
+									"defaultValue": "\"payment.refunded\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65789,
+										65790
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 918,
+									"character": 29,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L918"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65787
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Payment",
+					"children": [
+						65787
+					]
+				}
+			]
+		},
+		{
+			"id": 65806,
+			"name": "Translation",
+			"variant": "declaration",
+			"kind": 4,
+			"flags": {},
+			"children": [
+				{
+					"id": 65791,
+					"name": "TranslationWorkflowEvents",
+					"variant": "declaration",
+					"kind": 32,
+					"flags": {
+						"isConst": true
+					},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@category",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Translation"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "events.ts",
+							"line": 947,
+							"character": 13,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L947"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 65792,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"children": [
+								{
+									"id": 65793,
+									"name": "CREATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when translations are created."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.12.3"
+													}
+												]
+											},
+											{
+												"tag": "@featureFlag",
+												"content": [
+													{
+														"kind": "text",
+														"text": "translation"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the translation\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "translation.created"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "createTranslationsWorkflow, batchTranslationsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 960,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L960"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "translation.created"
+									},
+									"defaultValue": "\"translation.created\""
+								},
+								{
+									"id": 65794,
+									"name": "UPDATED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when translations are updated."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.12.3"
+													}
+												]
+											},
+											{
+												"tag": "@featureFlag",
+												"content": [
+													{
+														"kind": "text",
+														"text": "translation"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the translation\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "translation.updated"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "updateTranslationsWorkflow, batchTranslationsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 973,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L973"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "translation.updated"
+									},
+									"defaultValue": "\"translation.updated\""
+								},
+								{
+									"id": 65795,
+									"name": "DELETED",
+									"variant": "declaration",
+									"kind": 1024,
+									"flags": {
+										"isReadonly": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Emitted when translations are deleted."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@since",
+												"content": [
+													{
+														"kind": "text",
+														"text": "2.12.3"
+													}
+												]
+											},
+											{
+												"tag": "@featureFlag",
+												"content": [
+													{
+														"kind": "text",
+														"text": "translation"
+													}
+												]
+											},
+											{
+												"tag": "@eventPayload",
+												"content": [
+													{
+														"kind": "code",
+														"text": "```ts\n{\n  id, // The ID of the translation\n}\n```"
+													}
+												]
+											},
+											{
+												"tag": "@eventName",
+												"content": [
+													{
+														"kind": "code",
+														"text": "translation.deleted"
+													}
+												]
+											},
+											{
+												"tag": "@workflows",
+												"content": [
+													{
+														"kind": "text",
+														"text": "deleteTranslationsWorkflow, batchTranslationsWorkflow"
+													}
+												]
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "events.ts",
+											"line": 986,
+											"character": 2,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L986"
+										}
+									],
+									"type": {
+										"type": "literal",
+										"value": "translation.deleted"
+									},
+									"defaultValue": "\"translation.deleted\""
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"children": [
+										65793,
+										65794,
+										65795
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "events.ts",
+									"line": 947,
+									"character": 41,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/core-flows/events.ts#L947"
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"children": [
+						65791
+					]
+				}
+			],
+			"categories": [
+				{
+					"title": "Translation",
+					"children": [
+						65791
+					]
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Namespaces",
+			"children": [
+				65796,
+				65797,
+				65798,
+				65799,
+				65800,
+				65801,
+				65802,
+				65803,
+				65804,
+				65805,
+				65806
+			]
+		},
+		{
+			"title": "Variables",
+			"children": [
+				65683,
+				65690,
+				65695,
+				65709,
+				65714,
+				65719,
+				65722,
+				65727,
+				65732,
+				65737,
+				65742,
+				65747,
+				65752,
+				65757,
+				65762,
+				65768,
+				65773,
+				65777,
+				65782,
+				65787,
+				65791
+			]
+		}
+	],
+	"categories": [
+		{
+			"title": "Auth",
+			"children": [
+				65719
+			]
+		},
+		{
+			"title": "Cart",
+			"children": [
+				65683
+			]
+		},
+		{
+			"title": "Customer",
+			"children": [
+				65690
+			]
+		},
+		{
+			"title": "Fulfillment",
+			"children": [
+				65773
+			]
+		},
+		{
+			"title": "Invite",
+			"children": [
+				65762
+			]
+		},
+		{
+			"title": "Order",
+			"children": [
+				65695
+			]
+		},
+		{
+			"title": "Order Edit",
+			"children": [
+				65709
+			]
+		},
+		{
+			"title": "Other",
+			"children": [
+				65796,
+				65797,
+				65798,
+				65799,
+				65800,
+				65801,
+				65802,
+				65803,
+				65804,
+				65805,
+				65806
+			]
+		},
+		{
+			"title": "Payment",
+			"children": [
+				65787
+			]
+		},
+		{
+			"title": "Product",
+			"children": [
+				65742
+			]
+		},
+		{
+			"title": "Product Category",
+			"children": [
+				65727
+			]
+		},
+		{
+			"title": "Product Collection",
+			"children": [
+				65732
+			]
+		},
+		{
+			"title": "Product Option",
+			"children": [
+				65757
+			]
+		},
+		{
+			"title": "Product Tag",
+			"children": [
+				65752
+			]
+		},
+		{
+			"title": "Product Type",
+			"children": [
+				65747
+			]
+		},
+		{
+			"title": "Product Variant",
+			"children": [
+				65737
+			]
+		},
+		{
+			"title": "Region",
+			"children": [
+				65768
+			]
+		},
+		{
+			"title": "Sales Channel",
+			"children": [
+				65722
+			]
+		},
+		{
+			"title": "Shipping Option",
+			"children": [
+				65782
+			]
+		},
+		{
+			"title": "Shipping Option Type",
+			"children": [
+				65777
+			]
+		},
+		{
+			"title": "Translation",
+			"children": [
+				65791
+			]
+		},
+		{
+			"title": "User",
+			"children": [
+				65714
+			]
+		}
+	],
+	"packageName": "@acmekit/utils",
+	"symbolIdMap": {
+		"65682": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": ""
+		},
+		"65683": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "CartWorkflowEvents"
+		},
+		"65684": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65685": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65686": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65687": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CUSTOMER_UPDATED"
+		},
+		"65688": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.REGION_UPDATED"
+		},
+		"65689": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CUSTOMER_TRANSFERRED"
+		},
+		"65690": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "CustomerWorkflowEvents"
+		},
+		"65691": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65692": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65693": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65694": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65695": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "OrderWorkflowEvents"
+		},
+		"65696": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65697": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65698": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.PLACED"
+		},
+		"65699": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CANCELED"
+		},
+		"65700": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.COMPLETED"
+		},
+		"65701": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.ARCHIVED"
+		},
+		"65702": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.FULFILLMENT_CREATED"
+		},
+		"65703": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.FULFILLMENT_CANCELED"
+		},
+		"65704": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.RETURN_REQUESTED"
+		},
+		"65705": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.RETURN_RECEIVED"
+		},
+		"65706": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CLAIM_CREATED"
+		},
+		"65707": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.EXCHANGE_CREATED"
+		},
+		"65708": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.TRANSFER_REQUESTED"
+		},
+		"65709": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "OrderEditWorkflowEvents"
+		},
+		"65710": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65711": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.REQUESTED"
+		},
+		"65712": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CONFIRMED"
+		},
+		"65713": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CANCELED"
+		},
+		"65714": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "UserWorkflowEvents"
+		},
+		"65715": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65716": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65717": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65718": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65719": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "AuthWorkflowEvents"
+		},
+		"65720": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65721": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.PASSWORD_RESET"
+		},
+		"65722": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "SalesChannelWorkflowEvents"
+		},
+		"65723": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65724": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65725": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65726": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65727": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ProductCategoryWorkflowEvents"
+		},
+		"65728": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65729": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65730": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65731": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65732": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ProductCollectionWorkflowEvents"
+		},
+		"65733": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65734": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65735": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65736": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65737": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ProductVariantWorkflowEvents"
+		},
+		"65738": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65739": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65740": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65741": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65742": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ProductWorkflowEvents"
+		},
+		"65743": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65744": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65745": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65746": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65747": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ProductTypeWorkflowEvents"
+		},
+		"65748": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65749": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65750": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65751": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65752": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ProductTagWorkflowEvents"
+		},
+		"65753": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65754": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65755": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65756": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65757": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ProductOptionWorkflowEvents"
+		},
+		"65758": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65759": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65760": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65761": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65762": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "InviteWorkflowEvents"
+		},
+		"65763": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65764": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.ACCEPTED"
+		},
+		"65765": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65766": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65767": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.RESENT"
+		},
+		"65768": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "RegionWorkflowEvents"
+		},
+		"65769": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65770": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65771": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65772": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65773": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "FulfillmentWorkflowEvents"
+		},
+		"65774": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65775": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.SHIPMENT_CREATED"
+		},
+		"65776": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELIVERY_CREATED"
+		},
+		"65777": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ShippingOptionTypeWorkflowEvents"
+		},
+		"65778": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65779": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65780": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65781": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65782": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "ShippingOptionWorkflowEvents"
+		},
+		"65783": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65784": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65785": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65786": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		},
+		"65787": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "PaymentEvents"
+		},
+		"65788": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65789": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CAPTURED"
+		},
+		"65790": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.REFUNDED"
+		},
+		"65791": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "TranslationWorkflowEvents"
+		},
+		"65792": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object"
+		},
+		"65793": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.CREATED"
+		},
+		"65794": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.UPDATED"
+		},
+		"65795": {
+			"sourceFileName": "../../../../packages/core/utils/src/core-flows/events.ts",
+			"qualifiedName": "__object.DELETED"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/utils/src/core-flows/events.ts"
+		},
+		"reflections": {
+			"1": 65682
+		}
+	}
+}

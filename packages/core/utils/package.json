@@ -1,0 +1,57 @@
+{
+  "name": "@acmekit/utils",
+  "version": "2.13.2",
+  "description": "AcmeKit utilities functions shared by AcmeKit core and Modules",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/core/utils"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__"
+  ],
+  "author": "AcmeKit",
+  "license": "MIT",
+  "devDependencies": {
+    "@acmekit/types": "2.13.2",
+    "express": "^4.21.0"
+  },
+  "dependencies": {
+    "@acmekit/deps": "2.13.2",
+    "@graphql-codegen/core": "^4.0.2",
+    "@graphql-codegen/typescript": "^4.0.9",
+    "@graphql-tools/merge": "^9.0.7",
+    "@graphql-tools/schema": "^10.0.6",
+    "@types/pluralize": "^0.0.33",
+    "bignumber.js": "^9.1.2",
+    "dotenv": "^16.4.5",
+    "dotenv-expand": "^11.0.6",
+    "graphql": "^16.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg-connection-string": "^2.7.0",
+    "pluralize": "^8.0.0",
+    "ulid": "^2.3.0"
+  },
+  "peerDependencies": {
+    "express": "^4.21.0"
+  },
+  "scripts": {
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build",
+    "watch": "yarn run -T tsc --build --watch",
+    "test": "../../../node_modules/.bin/jest --silent=false --bail --forceExit --testPathIgnorePatterns='/integration-tests/' --testPathPattern=src",
+    "test:integration": "../../../node_modules/.bin/jest --passWithNoTests --silent --bail --forceExit --testPathPattern=\"src/.*/integration-tests/__tests__/.*\\.ts\""
+  }
+}

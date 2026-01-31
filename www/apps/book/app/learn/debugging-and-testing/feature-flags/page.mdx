@@ -1,0 +1,196 @@
+export const metadata = {
+  title: `${pageNumber} Feature Flags`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn what feature flags are, what the available feature flags in Medusa are, and how to toggle them.
+
+## What are Feature Flags?
+
+Feature flags allow you to ship new features that are still under development and testing, but not ready for production or wide use yet.
+
+Medusa uses feature flags to ship new versions even when some features are not fully ready. This approach allows our team to continuously deliver updates and improvements while stabilizing new features.
+
+---
+
+## Available Feature Flags in Medusa
+
+For a list of features hidden behind a feature flag in Medusa, check out the [feature-flags](https://github.com/medusajs/medusa/tree/develop/packages/medusa/src/feature-flags) directory in the `@medusajs/medusa` package.
+
+---
+
+## Toggle Feature Flags
+
+There are multiple ways to enable or disable feature flags in Medusa:
+
+- In the `medusa-config.ts` file;
+- Or using environment variables.
+
+### 1. Using the `medusa-config.ts` file
+
+The Medusa configurations in `medusa-config.ts` accept a `featureFlags` configuration to toggle feature flags. Its value is an object whose key is the feature flag key (defined in the feature flag's file), and the value is a boolean indicating whether the feature is enabled.
+
+For example, to enable the [Index Module](../../fundamentals/module-links/index-module/page.mdx)'s feature flag in `medusa-config.ts`:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  featureFlags: {
+    "index_engine": true,
+  },
+})
+```
+
+Make sure to [run migrations](../../fundamentals/data-models/write-migration/page.mdx#run-the-migration) after enabling a feature flag, in case it requires database changes.
+
+Before disabling a feature flag, make sure to [roll back the migrations](../../fundamentals/data-models/write-migration/page.mdx#rollback-the-migration) that depend on it.
+
+### 2. Using Environment Variables
+
+The feature flags can also be enabled or disabled using environment variables. This is useful to control the feature flag based on the environment.
+
+To toggle a feature flag using an environment variable, set an environment variable with its environment variable name (defined in the feature flag's file) and set its value to `true` or `false`.
+
+For example, to enable the [Index Module](../../fundamentals/module-links/index-module/page.mdx)'s feature flag using an environment variable:
+
+```shell
+MEDUSA_FF_INDEX_ENGINE=true
+```
+
+Make sure to [run migrations](../../fundamentals/data-models/write-migration/page.mdx#run-the-migration) after enabling a feature flag, in case it requires database changes.
+
+Before disabling a feature flag, make sure to [roll back the migrations](../../fundamentals/data-models/write-migration/page.mdx#rollback-the-migration) that depend on it.
+
+---
+
+## Check Feature Flag Status
+
+During development, you can check whether a feature flag is enabled. This is useful to add customizations that only apply when a specific feature is enabled.
+
+To build backend customizations around feature flags, you can either:
+
+- [Conditionally run code blocks](#conditionally-run-code-blocks) with the `FeatureFlag` utility;
+- Or [conditionally load files](#conditionally-load-files) with the `defineFileConfig` utility.
+
+For client customizations, you can use the [Feature Flags API Route](#feature-flags-api-route).
+
+### Conditionally Run Code Blocks
+
+The `FeatureFlag` utility allows you to check whether a specific feature flag is enabled in your backend customizations, including scheduled jobs, subscribers, and workflow steps.
+
+For example, to enable access to a route only if a feature flag is enabled, you can use the `FeatureFlag` utility in a [middleware](../../fundamentals/api-routes/middlewares/page.mdx):
+
+export const middlewareHighlights = [
+  ["11", "isFeatureEnabled", "Check if the Index Module flag is enabled."]
+]
+
+```ts title="src/api/middlewares.ts" highlights={middlewareHighlights}
+import { defineMiddlewares } from "@medusajs/framework/http"
+import { FeatureFlag } from "@medusajs/framework/utils"
+
+export default defineMiddlewares({
+  routes: [
+    {
+      matcher: "/custom",
+      method: ["GET"],
+      middlewares: [
+        async (req, res, next) => {
+          if (!FeatureFlag.isFeatureEnabled("index_engine")) {
+            return res.sendStatus(404)
+          }
+          next()
+        },
+      ],
+    },
+  ],
+})
+```
+
+The `FeatureFlag.isFeatureEnabled` method accepts the feature flag key as a parameter and returns a boolean indicating whether the feature is enabled or not.
+
+In the above example, you return a `404` response if a `GET` request is sent to the `/custom` route and the `index_engine` feature flag is disabled.
+
+### Conditionally Load Files
+
+You can also combine the `FeatureFlag` utility with the `defineFileConfig` utility that allows you to fully enable or disable loading a file based on a condition.
+
+For example, instead of adding a middleware, you can use the `defineFileConfig` utility to conditionally load an API route file only if a feature flag is enabled:
+
+export const apiRouteHighlights = [
+  ["13", "defineFileConfig", "Define logic to conditionally load the API route file"],
+  ["14", "isFeatureEnabled", "Only load the file if the feature flag is enabled"]
+]
+
+```ts title="src/api/routes/custom.ts" highlights={apiRouteHighlights}
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { defineFileConfig, FeatureFlag } from "@medusajs/framework/utils"
+
+export async function GET(
+  req: MedusaRequest,
+  res: MedusaResponse
+): Promise<void> {
+  res.json({
+    message: "Hello World",
+  })
+}
+
+defineFileConfig({
+  isDisabled: () => !FeatureFlag.isFeatureEnabled("index_engine"),
+})
+```
+
+The `defineFileConfig` function accepts an object with an `isDisabled` property. Its value is a function that returns a boolean indicating whether the file should be disabled.
+
+In the above example, the `GET` API route at `/custom` will only be available if the `index_engine` feature flag is enabled.
+
+<Note title="Middleware vs defineFileConfig">
+
+While both approaches can be used to disable API routes, a middleware is useful to disable specific HTTP methods at a route. For example, if a route file has `GET` and `POST` route handlers, the `defineFileConfig` approach will disable both `GET` and `POST` methods if the feature flag is disabled. If you need to disable only the `POST` route, you should use a middleware instead.
+
+</Note>
+
+### Feature Flags API Route
+
+For client customizations, you can use the [List Feature Flags API Route](!api!/admin#feature-flags_getfeatureflags) to check the status of feature flags.
+
+For example, you can show an [admin widget](../../fundamentals/admin/widgets/page.mdx) only if a feature flag is enabled:
+
+export const widgetHighlights = [
+  ["6", "featureFlags", "Retrieve feature flag statuses from the backend."],
+  ["13", "", "Hide widget if feature flag is disabled"]
+]
+
+```tsx title="src/admin/widgets/product-details.tsx" highlights={widgetHighlights}
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { sdk } from "../lib/sdk"
+import { useQuery } from "@tanstack/react-query"
+
+const ProductWidget = () => {
+  const { data: featureFlags } = useQuery({
+    queryKey: ["featureFlags"],
+    queryFn: () => sdk.client.fetch<{ 
+      feature_flags: Record<string, boolean>
+    }>(`/admin/feature-flags`),
+  })
+
+  if (!featureFlags?.feature_flags.index_engine) {
+    return null
+  }
+
+  return (
+    <div>
+      <h2>Product Widget</h2>
+      <p>Index engine feature is enabled</p>
+    </div>
+  )
+}
+
+export const config = defineWidgetConfig({
+  zone: "product.details.after",
+})
+
+export default ProductWidget
+```
+
+In the above example, the Product Widget will only be displayed if the `index_engine` feature flag is enabled. It retrieves the feature flag statuses from the `/admin/feature-flags` API route.

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature Request
+    url: https://github.com/acmekit/acmekit/discussions/categories/feature-requests
+    about: Use GitHub Discussions to open a feature request.
+  - name: Ask a question
+    url: https://discord.gg/acmekit
+    about: Join our community to ask questions and participate in discussions
+  - name: Want to work with us?
+    url: mailto:hello@acmekit.com?subject=[GitHub]%20Working%20with%20AcmeKit
+    about: Interested in working with AcmeKit? Get in touch!

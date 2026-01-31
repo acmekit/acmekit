@@ -1,0 +1,1257 @@
+{
+	"id": 45542,
+	"name": "file",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 45543,
+			"name": "AbstractFileProviderService",
+			"variant": "declaration",
+			"kind": 128,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "### constructor\n\nThe constructor allows you to access resources from the module's container using the first parameter,\nand the module's options using the second parameter.\n\nIf you're creating a client or establishing a connection with a third-party service, do it in the constructor.\n\n#### Example\n\n"
+					},
+					{
+						"kind": "code",
+						"text": "```ts\nimport { Logger } from \"@acmekit/framework/types\"\nimport { AbstractFileProviderService } from \"@acmekit/framework/utils\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nclass MyFileProviderService extends AbstractFileProviderService {\n  protected logger_: Logger\n  protected options_: Options\n  static identifier = \"my-file\"\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    super()\n\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n}\n\nexport default MyFileProviderService\n```"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 45544,
+					"name": "identifier",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isStatic": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Each file provider has a unique ID used to identify it. The provider's ID\nwill be stored as "
+							},
+							{
+								"kind": "code",
+								"text": "`fs_{identifier}_{id}`"
+							},
+							{
+								"kind": "text",
+								"text": ", where "
+							},
+							{
+								"kind": "code",
+								"text": "`{id}`"
+							},
+							{
+								"kind": "text",
+								"text": " is the provider's "
+							},
+							{
+								"kind": "code",
+								"text": "`id`"
+							},
+							{
+								"kind": "text",
+								"text": "\nproperty in the "
+							},
+							{
+								"kind": "code",
+								"text": "`acmekit-config.ts`"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nclass MyFileProviderService extends AbstractFileProviderService {\n  static identifier = \"my-file\"\n  // ...\n}\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "abstract-file-provider.ts",
+							"line": 62,
+							"character": 9,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L62"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 45545,
+					"name": "validateOptions",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {
+						"isStatic": true
+					},
+					"sources": [
+						{
+							"fileName": "abstract-file-provider.ts",
+							"line": 84,
+							"character": 9,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L84"
+						}
+					],
+					"signatures": [
+						{
+							"id": 45546,
+							"name": "validateOptions",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method validates the options of the provider set in "
+									},
+									{
+										"kind": "code",
+										"text": "`acmekit-config.ts`"
+									},
+									{
+										"kind": "text",
+										"text": ".\nImplementing this method is optional. It's useful if your provider requires custom validation.\n\nIf the options aren't valid, throw an error."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyFileProviderService extends AbstractFileProviderService {\n  static validateOptions(options: Record<any, any>) {\n    if (!options.apiKey) {\n      throw new AcmeKitError(\n        AcmeKitError.Types.INVALID_DATA,\n        \"API key is required in the provider's options.\"\n      )\n    }\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-file-provider.ts",
+									"line": 84,
+									"character": 9,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L84"
+								}
+							],
+							"parameters": [
+								{
+									"id": 45547,
+									"name": "options",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The provider's options."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+											"qualifiedName": "Record"
+										},
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "any"
+											},
+											{
+												"type": "intrinsic",
+												"name": "any"
+											}
+										],
+										"name": "Record",
+										"package": "typescript"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 45548,
+					"name": "constructor",
+					"variant": "declaration",
+					"kind": 512,
+					"flags": {},
+					"signatures": [
+						{
+							"id": 45549,
+							"name": "AbstractFileProviderService",
+							"variant": "signature",
+							"kind": 16384,
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"target": 45543,
+								"name": "AbstractFileProviderService",
+								"package": "@acmekit/utils"
+							}
+						}
+					]
+				},
+				{
+					"id": 45552,
+					"name": "upload",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "abstract-file-provider.ts",
+							"line": 121,
+							"character": 8,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L121"
+						}
+					],
+					"signatures": [
+						{
+							"id": 45553,
+							"name": "upload",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method uploads a file using your provider's custom logic. In this method, you can upload the file\ninto your provider's storage, and return the uploaded file's details.\n\nThis method will be used when uploading product images, CSV files for imports, or other\ncustom file uploads."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The uploaded file's details."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyFileProviderService extends AbstractFileProviderService {\n  // ...\n  async upload(\n    file: ProviderUploadFileDTO\n  ): Promise<ProviderFileResultDTO> {\n    // TODO upload file to third-party provider\n    // or using custom logic\n    // for example:\n    this.client.upload(file)\n\n    return {\n      url: \"some-url.com\",\n      key: \"file-name-or-id\"\n    }\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-file-provider.ts",
+									"line": 121,
+									"character": 8,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L121"
+								}
+							],
+							"parameters": [
+								{
+									"id": 45554,
+									"name": "file",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The file to upload."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+											"qualifiedName": "ProviderUploadFileDTO"
+										},
+										"name": "ProviderUploadFileDTO",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+											"qualifiedName": "ProviderFileResultDTO"
+										},
+										"name": "ProviderFileResultDTO",
+										"package": "@acmekit/types"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IFileProvider.upload"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IFileProvider.upload"
+					}
+				},
+				{
+					"id": 45555,
+					"name": "delete",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "abstract-file-provider.ts",
+							"line": 151,
+							"character": 8,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L151"
+						}
+					],
+					"signatures": [
+						{
+							"id": 45556,
+							"name": "delete",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method deletes one or more files from the storage. It's used when an admin user\ndeletes a product image, or other custom file deletions."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "Resolves when the files are deleted."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyFileProviderService extends AbstractFileProviderService {\n  // ...\n  async delete(\n    files: FileTypes.ProviderDeleteFileDTO | FileTypes.ProviderDeleteFileDTO[]\n  ): Promise<void> {\n    // TODO logic to remove the file from storage\n    // Use the `file.fileKey` to delete the file, which is the identifier of the file\n   // in the provider's storage.\n    // for example:\n    const fileArray = Array.isArray(files) ? files : [files]\n    for (const file of fileArray) {\n      this.client.delete(file.fileKey)\n    }\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-file-provider.ts",
+									"line": 151,
+									"character": 8,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L151"
+								}
+							],
+							"parameters": [
+								{
+									"id": 45557,
+									"name": "files",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The details of the files to delete."
+											}
+										]
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+													"qualifiedName": "ProviderDeleteFileDTO"
+												},
+												"name": "ProviderDeleteFileDTO",
+												"package": "@acmekit/types"
+											},
+											{
+												"type": "array",
+												"elementType": {
+													"type": "reference",
+													"target": {
+														"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+														"qualifiedName": "ProviderDeleteFileDTO"
+													},
+													"name": "ProviderDeleteFileDTO",
+													"package": "@acmekit/types"
+												}
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "void"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IFileProvider.delete"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IFileProvider.delete"
+					}
+				},
+				{
+					"id": 45558,
+					"name": "getPresignedDownloadUrl",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "abstract-file-provider.ts",
+							"line": 182,
+							"character": 8,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L182"
+						}
+					],
+					"signatures": [
+						{
+							"id": 45559,
+							"name": "getPresignedDownloadUrl",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to retrieve a download URL of the file. For some providers,\nsuch as S3, a presigned URL indicates a temporary URL to get access to a file.\n\nIf your provider doesn’t perform or offer a similar functionality, you can\nreturn the URL to download the file."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The file's presigned URL."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyFileProviderService extends AbstractFileProviderService {\n  // ...\n  async getPresignedDownloadUrl(\n    fileData: ProviderGetFileDTO\n  ): Promise<string> {\n    // TODO logic to get the presigned URL\n    // Use the `file.fileKey` to delete the file, which is the identifier of the file\n   // in the provider's storage.\n    // for example:\n    return this.client.getPresignedUrl(fileData.fileKey)\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-file-provider.ts",
+									"line": 182,
+									"character": 8,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L182"
+								}
+							],
+							"parameters": [
+								{
+									"id": 45560,
+									"name": "fileData",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The details of the file to get its\npresigned URL."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+											"qualifiedName": "ProviderGetFileDTO"
+										},
+										"name": "ProviderGetFileDTO",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IFileProvider.getPresignedDownloadUrl"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IFileProvider.getPresignedDownloadUrl"
+					}
+				},
+				{
+					"id": 45561,
+					"name": "getDownloadStream",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "abstract-file-provider.ts",
+							"line": 209,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L209"
+						}
+					],
+					"signatures": [
+						{
+							"id": 45562,
+							"name": "getDownloadStream",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method retrieves an uploaded file as a stream. This is useful when streaming\na file to clients or you want to process the file in chunks."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The file's stream."
+											}
+										]
+									},
+									{
+										"tag": "@since",
+										"content": [
+											{
+												"kind": "text",
+												"text": "2.8.0"
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyFileProviderService extends AbstractFileProviderService {\n  // ...\n  async getAsStream(file: ProviderDeleteFileDTO): Promise<Readable> {\n   // TODO logic to get the file as a stream\n   // Use the `file.fileKey` to get the file, which is the identifier of the file\n   // in the provider's storage.\n   // for example:\n    this.client.getAsStream(file.fileKey)\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-file-provider.ts",
+									"line": 209,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L209"
+								}
+							],
+							"parameters": [
+								{
+									"id": 45563,
+									"name": "fileData",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The details of the file to get its stream."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+											"qualifiedName": "ProviderGetFileDTO"
+										},
+										"name": "ProviderGetFileDTO",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/@types/node/stream.d.ts",
+											"qualifiedName": "internal.Readable"
+										},
+										"name": "Readable",
+										"package": "@types/node",
+										"qualifiedName": "internal.Readable"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IFileProvider.getDownloadStream"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IFileProvider.getDownloadStream"
+					}
+				},
+				{
+					"id": 45564,
+					"name": "getAsBuffer",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "abstract-file-provider.ts",
+							"line": 234,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L234"
+						}
+					],
+					"signatures": [
+						{
+							"id": 45565,
+							"name": "getAsBuffer",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method retrieves an uploaded file as a buffer. This is useful when you want to\nprocess the entire file in memory or send it as a response."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The file's buffer."
+											}
+										]
+									},
+									{
+										"tag": "@since",
+										"content": [
+											{
+												"kind": "text",
+												"text": "2.8.0"
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyFileProviderService extends AbstractFileProviderService {\n  // ...\n  async getAsBuffer(file: ProviderDeleteFileDTO): Promise<Buffer> {\n    // TODO logic to get the file as a buffer\n    // Use the `file.fileKey` to get the file, which is the identifier of the file\n    // in the provider's storage.\n    // for example:\n    this.client.getAsBuffer(file.fileKey)\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-file-provider.ts",
+									"line": 234,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L234"
+								}
+							],
+							"parameters": [
+								{
+									"id": 45566,
+									"name": "fileData",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The details of the file to get its buffer."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+											"qualifiedName": "ProviderGetFileDTO"
+										},
+										"name": "ProviderGetFileDTO",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../node_modules/@types/node/buffer.d.ts",
+											"qualifiedName": "__global.Buffer"
+										},
+										"name": "Buffer",
+										"package": "@types/node",
+										"qualifiedName": "__global.Buffer"
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IFileProvider.getAsBuffer"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IFileProvider.getAsBuffer"
+					}
+				},
+				{
+					"id": 45567,
+					"name": "getUploadStream",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "abstract-file-provider.ts",
+							"line": 259,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L259"
+						}
+					],
+					"signatures": [
+						{
+							"id": 45568,
+							"name": "getUploadStream",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method returns a writeable stream to upload a file."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The writeable stream and upload promise."
+											}
+										]
+									},
+									{
+										"tag": "@since",
+										"content": [
+											{
+												"kind": "text",
+												"text": "2.8.0"
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nclass MyFileProviderService extends AbstractFileProviderService {\n  // ...\n  async getUploadStream(fileData: FileTypes.ProviderUploadStreamDTO): Promise<{\n    writeStream: Writable\n    promise: Promise<FileTypes.ProviderFileResultDTO>\n    url: string\n    fileKey: string\n  }> {\n    // TODO logic to get the writeable stream\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "abstract-file-provider.ts",
+									"line": 259,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L259"
+								}
+							],
+							"parameters": [
+								{
+									"id": 45569,
+									"name": "fileData",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The details of the file to upload."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+											"qualifiedName": "ProviderUploadStreamDTO"
+										},
+										"name": "ProviderUploadStreamDTO",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "reflection",
+										"declaration": {
+											"id": 45570,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"children": [
+												{
+													"id": 45571,
+													"name": "writeStream",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "abstract-file-provider.ts",
+															"line": 260,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L260"
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../node_modules/@types/node/stream.d.ts",
+															"qualifiedName": "internal.Writable"
+														},
+														"name": "Writable",
+														"package": "@types/node",
+														"qualifiedName": "internal.Writable"
+													}
+												},
+												{
+													"id": 45572,
+													"name": "promise",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "abstract-file-provider.ts",
+															"line": 261,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L261"
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+															"qualifiedName": "Promise"
+														},
+														"typeArguments": [
+															{
+																"type": "reference",
+																"target": {
+																	"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+																	"qualifiedName": "ProviderFileResultDTO"
+																},
+																"name": "ProviderFileResultDTO",
+																"package": "@acmekit/types"
+															}
+														],
+														"name": "Promise",
+														"package": "typescript"
+													}
+												},
+												{
+													"id": 45573,
+													"name": "url",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "abstract-file-provider.ts",
+															"line": 262,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L262"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 45574,
+													"name": "fileKey",
+													"variant": "declaration",
+													"kind": 1024,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "abstract-file-provider.ts",
+															"line": 263,
+															"character": 4,
+															"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L263"
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												}
+											],
+											"groups": [
+												{
+													"title": "Properties",
+													"children": [
+														45571,
+														45572,
+														45573,
+														45574
+													]
+												}
+											],
+											"sources": [
+												{
+													"fileName": "abstract-file-provider.ts",
+													"line": 259,
+													"character": 72,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L259"
+												}
+											]
+										}
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"target": -1,
+								"name": "IFileProvider.getUploadStream"
+							}
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"target": -1,
+						"name": "IFileProvider.getUploadStream"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"children": [
+						45548
+					]
+				},
+				{
+					"title": "Properties",
+					"children": [
+						45544
+					]
+				},
+				{
+					"title": "Methods",
+					"children": [
+						45545,
+						45552,
+						45555,
+						45558,
+						45561,
+						45564,
+						45567
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "abstract-file-provider.ts",
+					"line": 50,
+					"character": 13,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/utils/src/file/abstract-file-provider.ts#L50"
+				}
+			],
+			"implementedTypes": [
+				{
+					"type": "reference",
+					"target": {
+						"sourceFileName": "../../../../packages/core/types/src/file/provider.ts",
+						"qualifiedName": "IFileProvider"
+					},
+					"name": "IFileProvider",
+					"package": "@acmekit/types"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Classes",
+			"children": [
+				45543
+			]
+		}
+	],
+	"packageName": "@acmekit/utils",
+	"symbolIdMap": {
+		"45542": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": ""
+		},
+		"45543": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService"
+		},
+		"45544": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.identifier"
+		},
+		"45545": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.validateOptions"
+		},
+		"45546": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.validateOptions"
+		},
+		"45547": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "options"
+		},
+		"45552": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.upload"
+		},
+		"45553": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.upload"
+		},
+		"45554": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "file"
+		},
+		"45555": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.delete"
+		},
+		"45556": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.delete"
+		},
+		"45557": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "files"
+		},
+		"45558": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.getPresignedDownloadUrl"
+		},
+		"45559": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.getPresignedDownloadUrl"
+		},
+		"45560": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "fileData"
+		},
+		"45561": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.getDownloadStream"
+		},
+		"45562": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.getDownloadStream"
+		},
+		"45563": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "fileData"
+		},
+		"45564": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.getAsBuffer"
+		},
+		"45565": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.getAsBuffer"
+		},
+		"45566": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "fileData"
+		},
+		"45567": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.getUploadStream"
+		},
+		"45568": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "AbstractFileProviderService.getUploadStream"
+		},
+		"45569": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "fileData"
+		},
+		"45570": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "__type"
+		},
+		"45571": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "__type.writeStream"
+		},
+		"45572": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "__type.promise"
+		},
+		"45573": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "__type.url"
+		},
+		"45574": {
+			"sourceFileName": "../../../../packages/core/utils/src/file/abstract-file-provider.ts",
+			"qualifiedName": "__type.fileKey"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/utils/src/file/abstract-file-provider.ts"
+		},
+		"reflections": {
+			"1": 45542
+		}
+	}
+}

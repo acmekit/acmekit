@@ -1,0 +1,31 @@
+{
+  "description": "This component is based on the [Radix UI Dropdown Menu Content](https://www.radix-ui.com/primitives/docs/components/dropdown-menu#content) primitive.",
+  "methods": [],
+  "displayName": "DropdownMenu.Content",
+  "props": {
+    "sideOffset": {
+      "defaultValue": {
+        "value": "8",
+        "computed": false
+      },
+      "description": "The space in pixels between the dropdown menu and its trigger element.",
+      "required": false
+    },
+    "collisionPadding": {
+      "defaultValue": {
+        "value": "8",
+        "computed": false
+      },
+      "description": "The distance in pixels from the boundary edges where collision detection should occur.",
+      "required": false
+    },
+    "align": {
+      "defaultValue": {
+        "value": "\"center\"",
+        "computed": false
+      },
+      "description": "The alignment of the dropdown menu relative to its trigger element.\n\n@defaultValue center",
+      "required": false
+    }
+  }
+}

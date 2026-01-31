@@ -1,0 +1,669 @@
+{
+	"id": 662,
+	"name": "auth-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"text": "## Relations Overview\n\n",
+				"kind": "text"
+			},
+			{
+				"text": "```mermaid\nerDiagram\n\tAuthIdentity ||--|| ProviderIdentity : provider_identities\n\n```",
+				"kind": "code"
+			}
+		]
+	},
+	"children": [
+		{
+			"id": 663,
+			"name": "AuthIdentity",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "auth-identity.ts",
+					"line": 4,
+					"character": 13,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/auth-identity.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 664,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 665,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the auth identity."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "auth-identity.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/auth-identity.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 666,
+											"name": "provider_identities",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `ProviderIdentity` records."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "auth-identity.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/auth-identity.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 679,
+														"name": "ProviderIdentity"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 678,
+											"name": "app_metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The app metadata of the auth identity"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "auth-identity.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/auth-identity.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												665,
+												666,
+												678
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "auth-identity.ts",
+											"line": 5,
+											"character": 27,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/auth-identity.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "auth_identity"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 679,
+			"name": "ProviderIdentity",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "provider-identity.ts",
+					"line": 4,
+					"character": 13,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/provider-identity.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 680,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 681,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the provider identity."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "provider-identity.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/provider-identity.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 682,
+											"name": "entity_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The entity ID of the provider identity"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "provider-identity.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/provider-identity.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 683,
+											"name": "provider",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the provider that created this identity."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "provider-identity.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/provider-identity.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 684,
+											"name": "auth_identity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated `AuthIdentity`."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "provider-identity.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/provider-identity.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 663,
+														"name": "AuthIdentity"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 693,
+											"name": "user_metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The user metadata of the provider identity."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "provider-identity.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/provider-identity.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 694,
+											"name": "provider_metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The provider metadata of the provider identity."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "provider-identity.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/provider-identity.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												681,
+												682,
+												683,
+												684,
+												693,
+												694
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "provider-identity.ts",
+											"line": 5,
+											"character": 31,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/auth/src/models/provider-identity.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "provider_identity"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				663,
+				679
+			]
+		}
+	],
+	"packageName": "@acmekit/auth",
+	"symbolIdMap": {
+		"662": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"663": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "AuthIdentity"
+		},
+		"664": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__object"
+		},
+		"665": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__object.id"
+		},
+		"666": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__object.provider_identities"
+		},
+		"667": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__function"
+		},
+		"668": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__function"
+		},
+		"669": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object"
+		},
+		"670": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.id"
+		},
+		"671": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.entity_id"
+		},
+		"672": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.provider"
+		},
+		"673": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.auth_identity"
+		},
+		"674": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__function"
+		},
+		"675": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__function"
+		},
+		"676": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.user_metadata"
+		},
+		"677": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.provider_metadata"
+		},
+		"678": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__object.app_metadata"
+		},
+		"679": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "ProviderIdentity"
+		},
+		"680": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object"
+		},
+		"681": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.id"
+		},
+		"682": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.entity_id"
+		},
+		"683": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.provider"
+		},
+		"684": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.auth_identity"
+		},
+		"685": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__function"
+		},
+		"686": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__function"
+		},
+		"687": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__object"
+		},
+		"688": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__object.id"
+		},
+		"689": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__object.provider_identities"
+		},
+		"690": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__function"
+		},
+		"691": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__function"
+		},
+		"692": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/auth-identity.ts",
+			"qualifiedName": "__object.app_metadata"
+		},
+		"693": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.user_metadata"
+		},
+		"694": {
+			"sourceFileName": "../../../../packages/modules/auth/src/models/provider-identity.ts",
+			"qualifiedName": "__object.provider_metadata"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/auth/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 662
+		}
+	}
+}

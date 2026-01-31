@@ -1,0 +1,59 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Avatar`,
+}
+
+# {metadata.title}
+
+A component for displaying user avatars with a fallback option.
+
+In this guide, you'll learn how to use the Avatar component.
+
+<ComponentExample name="avatar-demo" />
+
+## Usage
+
+```tsx
+import { Avatar } from "@medusajs/ui"
+```
+
+```tsx
+<Avatar
+  src="https://avatars.githubusercontent.com/u/10656202?v=4"
+  fallback="M"
+/>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Avatar" />
+
+---
+
+## Examples
+
+### Avatar Variants
+
+<ComponentExample name="avatar-variants" />
+
+### Avatar Sizes
+
+<ComponentExample name="avatar-sizes" />
+
+### Avatar Fallback Only
+
+<ComponentExample name="avatar-fallback" />
+
+### Avatar Custom Styling
+
+<ComponentExample name="avatar-custom-style" />
+
+### Avatar Accessibility
+
+You can add the `aria-label` prop to the Avatar component for better accessibility.
+
+<ComponentExample name="avatar-accessible" hideFeedback />

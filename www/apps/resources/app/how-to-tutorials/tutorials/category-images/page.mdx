@@ -1,0 +1,3246 @@
+---
+sidebar_label: "Product Category Images"
+tags:
+    - product
+    - server
+    - tutorial
+    - name: nextjs
+      label: "Megamenu and Category Banner"
+products:
+  - product
+---
+
+import { Github, PlaySolid } from "@medusajs/icons"
+import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
+
+export const metadata = {
+  title: `Add Images to Product Categories`,
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to add images to product categories in Medusa.
+
+When you install a Medusa application, you get a fully-fledged commerce platform with the Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](../../../commerce-modules/page.mdx), which are available out of the box.
+
+Medusa doesn't natively support adding images to product categories. However, it provides the customization capabilities you need to implement this feature.
+
+## Summary
+
+By following this tutorial, you'll learn how to:
+
+- Install and set up Medusa with the Next.js Starter Storefront.
+- Define data models for product category images and the logic to manage them.
+- Customize the Medusa Admin dashboard to manage category images.
+- Customize the Next.js Starter Storefront to add a megamenu that shows category thumbnails, and show a banner image on category pages.
+
+![Diagram showing the relation between product categories and their images](https://res.cloudinary.com/dza7lstvk/image/upload/v1760522310/Medusa%20Resources/category-images-summary_l1duwj.jpg)
+
+<CardList items={[
+  {
+    href: "https://github.com/medusajs/examples/tree/main/category-images",
+    title: "Full Code",
+    text: "Find the full code for this tutorial in this repository.",
+    icon: Github,
+  },
+  {
+    href: "https://res.cloudinary.com/dza7lstvk/raw/upload/v1760540368/OpenApi/category-images.openapi_azg6xy.yaml",
+    title: "OpenApi Specs for Postman",
+    text: "Import this OpenApi Specs file into tools like Postman.",
+    icon: PlaySolid,
+  },
+]} />
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Start by installing the Medusa application on your machine with the following command:
+
+```bash npx2yarnExec
+npx create-medusa-app@latest
+```
+
+You'll first be asked for the project's name. Then, when asked whether you want to install the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx), choose Yes.
+
+Afterward, the installation process will start, which will install the Medusa application in a directory with your project's name, and the Next.js Starter Storefront in a separate directory with the `{project-name}-storefront` name.
+
+<Note title="Why is the storefront installed separately?">
+
+The Medusa application is composed of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Afterward, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors?">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Create Product Media Module
+
+In Medusa, you can build custom features in a [module](!docs!/learn/fundamentals/modules). A module is a reusable package with the data models and functionalities related to a single feature or domain. Medusa integrates the module into your application without implications or side effects on your setup.
+
+<Note>
+
+Refer to the [Modules](!docs!/learn/fundamentals/modules) documentation to learn more.
+
+</Note>
+
+In this step, you'll build a Product Media module that manages images for product categories. You can also extend it to manage images for other product-related entities, such as product collections.
+
+### a. Create Module Directory
+
+Create the directory `src/modules/product-media` that will hold the Product Media Module's code.
+
+### b. Create Data Models
+
+A data model represents a table in the database. You create data models using Medusa's Data Model Language (DML). It simplifies defining a table's columns, relations, and indexes with straightforward methods and configurations.
+
+<Note>
+
+Refer to the [Data Models](!docs!/learn/fundamentals/modules#1-create-data-model) documentation to learn more.
+
+</Note>
+
+For the Product Media module, you only need the `ProductCategoryImage` data model to represent an image associated with a product category.
+
+To create the data model, create the file `src/modules/product-media/models/product-category-image.ts` with the following content:
+
+export const dataModelHighlights = [
+  ["4", "id", "A unique identifier for the image."],
+  ["5", "url", "The URL of the image."],
+  ["6", "file_id", "The ID of the file in the external storage service."],
+  ["7", "type", "The type of image, which can be either `thumbnail` or `image`."],
+  ["8", "category_id", "The ID of the product category associated with this image."],
+  ["10", "indexes", "Unique index to enforce one thumbnail image per product category."]
+]
+
+```ts title="src/modules/product-media/models/product-category-image.ts" highlights={dataModelHighlights}
+import { model } from "@medusajs/framework/utils"
+
+const ProductCategoryImage = model.define("product_category_image", {
+  id: model.id().primaryKey(),
+  url: model.text(),
+  file_id: model.text(),
+  type: model.enum(["thumbnail", "image"]),
+  category_id: model.text(),
+})
+  .indexes([
+    {
+      on: ["category_id", "type"],
+      where: "type = 'thumbnail'",
+      unique: true,
+      name: "unique_thumbnail_per_category",
+    },
+  ])
+
+export default ProductCategoryImage
+```
+
+The `ProductCategoryImage` data model has the following properties:
+
+- `id`: A unique identifier for the image.
+- `url`: The URL of the image.
+- `file_id`: The ID of the file in the external storage service. This is useful when deleting the file from storage.
+- `type`: The type of image, which can be either `thumbnail` or `image`.
+- `category_id`: The ID of the product category associated with this image.
+
+You also define a unique index on the `category_id` and `type` columns to ensure each product category has only one thumbnail image.
+
+<Note>
+
+Learn more about defining data model properties in the [Property Types documentation](!docs!/learn/fundamentals/data-models/properties).
+
+</Note>
+
+### c. Create Module's Service
+
+You manage your module's data models in a service.
+
+A service is a TypeScript class that the module exports. In the service's methods, you can connect to the database to manage your data models, or connect to third-party services when integrating with external platforms.
+
+<Note>
+
+Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-create-service) to learn more.
+
+</Note>
+
+To create the Product Media module's service, create the file `src/modules/product-media/service.ts` with the following content:
+
+```ts title="src/modules/product-media/service.ts"
+import { MedusaService } from "@medusajs/framework/utils"
+import ProductCategoryImage from "./models/product-category-image"
+
+class ProductMediaModuleService extends MedusaService({
+  ProductCategoryImage,
+}) {}
+
+export default ProductMediaModuleService
+```
+
+The `ProductMediaModuleService` extends `MedusaService`, which generates a class with data-management methods for your module's data models. This saves you time implementing Create, Read, Update, and Delete (CRUD) methods.
+
+The `ProductMediaModuleService` class now has methods like `createProductCategoryImages` and `retrieveProductCategoryImages`.
+
+<Note>
+
+Find all methods generated by the `MedusaService` in [the Service Factory](../../../service-factory-reference/page.mdx) reference.
+
+</Note>
+
+### d. Create the Module Definition
+
+The final piece of a module is its definition, which you export in an `index.ts` file at the module's root directory. This definition tells Medusa the module's name and its service.
+
+So, create the file `src/modules/product-media/index.ts` with the following content:
+
+```ts title="src/modules/product-media/index.ts"
+import ProductMediaModuleService from "./service"
+import { Module } from "@medusajs/framework/utils"
+
+export const PRODUCT_MEDIA_MODULE = "productMedia"
+
+export default Module(PRODUCT_MEDIA_MODULE, {
+  service: ProductMediaModuleService,
+})
+```
+
+You use the `Module` function to create the module's definition. It accepts two parameters:
+
+1. The module's name, which is `productMedia`.
+2. An object with a required property `service` indicating the module's service.
+
+You also export the module's name as `PRODUCT_MEDIA_MODULE` so you can reference it later.
+
+### Add Module to Medusa's Configurations
+
+After building the module, add it to Medusa's configurations to start using it.
+
+In `medusa-config.ts`, add a `modules` property with an array containing your custom module:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  // ...
+  modules: [
+    {
+      resolve: "./src/modules/product-media",
+    },
+  ],
+})
+```
+
+Each object in the `modules` array has a `resolve` property, whose value is either a path to the module's directory, or an `npm` package’s name.
+
+### Generate Migrations
+
+Since data models represent tables in the database, you define how they're created in the database with migrations. A migration is a TypeScript class that defines database changes made by a module.
+
+<Note>
+
+Refer to the [Migrations documentation](!docs!/learn/fundamentals/modules#5-generate-migrations) to learn more.
+
+</Note>
+
+Medusa's CLI tool can generate migrations for you. To generate a migration for the Product Media Module, run the following command in your Medusa application's directory:
+
+```bash npx2yarn
+npx medusa db:generate productMedia
+```
+
+The `db:generate` command of the Medusa CLI accepts the name of the module to generate the migration for. You'll now have a `migrations` directory under `src/modules/product-media` that holds the generated migration.
+
+Then, to reflect these migrations on the database, run the following command:
+
+```bash npx2yarn
+npx medusa db:migrate
+```
+
+The tables for the data models are now created in the database.
+
+---
+
+## Step 3: Create Product Category Images
+
+In this step, you'll implement the logic to create product category images using the Product Media module.
+
+When building commerce features in Medusa that client applications consume, such as the Medusa Admin dashboard or a storefront, you need to implement:
+
+1. A [workflow](!docs!/learn/fundamentals/workflows) with steps that define the feature's business logic.
+2. An [API route](!docs!/learn/fundamentals/api-routes) that exposes the workflow's functionality to client applications.
+
+In this step, you'll create a workflow and an API route to create product category images.
+
+<Note>
+
+You won't implement the functionality to upload the image, as Medusa already exposes an API route to upload files. You'll use that route in the Medusa Admin dashboard to upload images and get their URLs and file IDs.
+
+</Note>
+
+### a. Create Product Category Image Workflow
+
+In this section, you'll implement the workflow that creates product category images.
+
+A workflow is a series of queries and actions, called steps, that complete a task. A workflow is similar to a function, but it allows you to track execution progress, define rollback logic, and configure other advanced features.
+
+<Note>
+
+Refer to the [Workflows documentation](!docs!/learn/fundamentals/workflows) to learn more.
+
+</Note>
+
+The workflow you'll build has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "createCategoryImagesWorkflow",
+    steps: [
+      {
+        type: "when",
+        condition: `category_images.some((img) => img.type === "thumbnail")`,
+        steps: [
+          {
+            type: "step",
+            name: "convertCategoryThumbnailsStep",
+            description: "Convert existing thumbnails of a category to regular images.",
+            depth: 1
+          },
+        ],
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "createCategoryImagesStep",
+        description: "Create the category images.",
+        depth: 2
+      }
+    ]
+  }}
+/>
+
+### convertCategoryThumbnailsStep
+
+The `convertCategoryThumbnailsStep` converts existing thumbnails of a category to regular images if a new thumbnail is being added for that category. This ensures that each category has only one thumbnail image.
+
+To create the step, create the file `src/workflows/steps/convert-category-thumbnails.ts` with the following content:
+
+```ts title="src/workflows/steps/convert-category-thumbnails.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { PRODUCT_MEDIA_MODULE } from "../../modules/product-media"
+import ProductMediaModuleService from "../../modules/product-media/service"
+
+export type ConvertCategoryThumbnailsStepInput = {
+  category_ids: string[]
+}
+
+export const convertCategoryThumbnailsStep = createStep(
+  "convert-category-thumbnails-step",
+  async (input: ConvertCategoryThumbnailsStepInput, { container }) => {
+    // TODO: implement step logic
+  },
+  async (compensationData, { container }) => {
+    // TODO: implement compensation logic
+  }
+)
+```
+
+You create a step with the `createStep` function. It accepts three parameters:
+
+1. The step's unique name.
+2. An async function that receives two parameters:
+    - The step's input, which is an object containing the categories whose thumbnails to convert.
+    - An object with properties including the [Medusa container](!docs!/learn/fundamentals/medusa-container), which is a registry of Framework and commerce tools accessible in the step.
+3. An async compensation function that undoes the actions performed by the step function. This function executes only if an error occurs during workflow execution.
+
+Next, define the step's logic that converts existing thumbnails of a category to regular images. Replace the `// TODO: implement step logic` comment in the step function with the following:
+
+```ts title="src/workflows/steps/convert-category-thumbnails.ts"
+const productMediaService: ProductMediaModuleService =
+  container.resolve(PRODUCT_MEDIA_MODULE)
+
+// Find existing thumbnails in the specified categories
+const existingThumbnails = await productMediaService.listProductCategoryImages({
+  type: "thumbnail",
+  category_id: input.category_ids,
+})
+
+if (existingThumbnails.length === 0) {
+  return new StepResponse([], [])
+}
+
+// Store previous states for compensation
+const compensationData: string[] = existingThumbnails.map((t) => t.id)
+
+// Convert existing thumbnails to "image" type
+await productMediaService.updateProductCategoryImages(
+  existingThumbnails.map((t) => ({
+    id: t.id,
+    type: "image" as const,
+  }))
+)
+
+return new StepResponse(existingThumbnails, compensationData)
+```
+
+In the step function, you:
+
+1. Resolve the `ProductMediaModuleService` from the Medusa container to manage product category images.
+2. Retrieve existing thumbnail images for the categories in the input.
+3. If there are no existing thumbnails, return an empty `StepResponse`.
+4. Otherwise, update the existing thumbnails to regular images.
+
+A step function must return a `StepResponse` instance. The `StepResponse` constructor accepts two parameters:
+
+1. The step's output, which is the updated category images.
+2. Data to pass to the step's compensation function.
+
+The compensation function should undo the actions performed by the step function. Replace the `// TODO: implement compensation logic` comment in the compensation function with the following:
+
+```ts
+if (!compensationData?.length) {
+  return
+}
+
+const productMediaService: ProductMediaModuleService =
+  container.resolve(PRODUCT_MEDIA_MODULE)
+
+// Revert thumbnails back to "thumbnail" type
+await productMediaService.updateProductCategoryImages(
+  compensationData.map((id) => ({
+    id,
+    type: "thumbnail" as const,
+  }))
+)
+```
+
+In the compensation function, you revert the images back to thumbnails in case an error occurs in the workflow execution.
+
+#### createCategoryImagesStep
+
+The `createCategoryImagesStep` creates the category images.
+
+To create the step, create the file `src/workflows/steps/create-category-images.ts` with the following content:
+
+export const createCategoryImagesStepHighlights = [
+  ["22", "imagesByCategory", "Group images by category to handle thumbnails efficiently."],
+  ["32", "thumbnailImages", "Filter thumbnail images for each category."],
+  ["36", "MedusaError", "Throw an error if more than one thumbnail is being added for a category."],
+  ["44", "createProductCategoryImages", "Create all category images."],
+  ["58", "deleteProductCategoryImages", "Delete created category images in case of an error."]
+]
+
+```ts title="src/workflows/steps/create-category-images.ts" highlights={createCategoryImagesStepHighlights}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { PRODUCT_MEDIA_MODULE } from "../../modules/product-media"
+import ProductMediaModuleService from "../../modules/product-media/service"
+import { MedusaError } from "@medusajs/framework/utils"
+
+export type CreateCategoryImagesStepInput = {
+  category_images: {
+    category_id: string
+    type: "thumbnail" | "image"
+    url: string
+    file_id: string
+  }[]
+}
+
+export const createCategoryImagesStep = createStep(
+  "create-category-images-step",
+  async (input: CreateCategoryImagesStepInput, { container }) => {
+    const productMediaService: ProductMediaModuleService =
+      container.resolve(PRODUCT_MEDIA_MODULE)
+
+    // Group images by category to handle thumbnails efficiently
+    const imagesByCategory = input.category_images.reduce((acc, img) => {
+      if (!acc[img.category_id]) {
+        acc[img.category_id] = []
+      }
+      acc[img.category_id].push(img)
+      return acc
+    }, {} as Record<string, typeof input.category_images>)
+
+    // Process each category
+    for (const [_, images] of Object.entries(imagesByCategory)) {
+      const thumbnailImages = images.filter((img) => img.type === "thumbnail")
+      
+      // If there are new thumbnails for this category, convert existing ones to "image"
+      if (thumbnailImages.length > 1) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
+          "Only one thumbnail is allowed per category"
+        )
+      }
+    }
+
+    // Create all category images
+    const createdImages = await productMediaService.createProductCategoryImages(
+      Object.values(imagesByCategory).flat()
+    )
+
+    return new StepResponse(createdImages, createdImages)
+  },
+  async (compensationData, { container }) => {
+    if (!compensationData?.length) {
+      return
+    }
+
+    const productMediaService: ProductMediaModuleService =
+      container.resolve(PRODUCT_MEDIA_MODULE)
+
+    await productMediaService.deleteProductCategoryImages(
+      compensationData
+    )
+  }
+)
+```
+
+This step accepts the category images to create as input.
+
+In the step function, you throw an error if more than one thumbnail image is being added for a category. Otherwise, you create the category images.
+
+In the compensation function, you delete the created category images in case an error occurs in the workflow execution.
+
+#### Create Workflow
+
+You can now create the workflow that uses the `createCategoryImagesStep` step.
+
+To create the workflow, create the file `src/workflows/create-category-images.ts` with the following content:
+
+export const createCategoryImagesWorkflowHighlights = [
+  ["23", "when", "Check if any image is a thumbnail."],
+  ["26", "categoryIds", "Extract category IDs from images being added as thumbnails."],
+  ["34", "convertCategoryThumbnailsStep", "Convert existing thumbnails of the categories to regular images."],
+  ["40", "createCategoryImagesStep", "Create the category images."],
+]
+
+```ts title="src/workflows/create-category-images.ts" highlights={createCategoryImagesWorkflowHighlights} collapsibleLines="1-9" expandButtonLabel="Show Imports"
+import {
+  createWorkflow,
+  transform,
+  when,
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { createCategoryImagesStep } from "./steps/create-category-images"
+import { convertCategoryThumbnailsStep } from "./steps/convert-category-thumbnails"
+
+export type CreateCategoryImagesInput = {
+  category_images: {
+    category_id: string
+    type: "thumbnail" | "image"
+    url: string
+    file_id: string
+  }[]
+}
+
+export const createCategoryImagesWorkflow = createWorkflow(
+  "create-category-images",
+  (input: CreateCategoryImagesInput) => {
+
+    when(input, (data) => data.category_images.some((img) => img.type === "thumbnail"))
+    .then(
+      () => {
+        const categoryIds = transform({
+          input,
+        }, (data) => {
+          return data.input.category_images.filter(
+            (img) => img.type === "thumbnail"
+          ).map((img) => img.category_id)
+        })
+        
+        convertCategoryThumbnailsStep({
+          category_ids: categoryIds,
+        })
+      }
+    )
+
+    const categoryImages = createCategoryImagesStep({
+      category_images: input.category_images,
+    })
+
+    return new WorkflowResponse(categoryImages)
+  }
+)
+```
+
+You create a workflow using the `createWorkflow` function. It accepts the workflow's unique name as a first parameter.
+
+It accepts as a second parameter a constructor function that holds the workflow's implementation. The function accepts an input object with the category images to create.
+
+In the workflow, you:
+
+1. Check if any of the images to create is a thumbnail using [when-then](!docs!/learn/fundamentals/workflows/conditions).
+    - If so, you execute the `convertCategoryThumbnailsStep` step to convert existing thumbnails of the categories to regular images.
+2. Create the category images using the `createCategoryImagesStep`.
+
+A workflow must return an instance of `WorkflowResponse` that accepts the data to return to the workflow's executor. You return the created images.
+
+<Note>
+
+In a workflow, you can't manipulate data or check conditions because Medusa stores an internal representation of the workflow on application startup. Learn more in the [Data Manipulation](!docs!/learn/fundamentals/workflows/variable-manipulation) and [Conditions](!docs!/learn/fundamentals/workflows/conditions) documentation.
+
+</Note>
+
+### b. Create API Route
+
+Next, you'll create an API route that exposes the workflow's functionality to client applications.
+
+An API route is created in a `route.ts` file under a sub-directory of the `src/api` directory. The path of the API route is the file's path relative to `src/api`.
+
+<Note>
+
+Refer to the [API routes](!docs!/learn/fundamentals/api-routes) documentation to learn more about them.
+
+</Note>
+
+Create the file `src/api/admin/categories/[category_id]/images/route.ts` with the following content:
+
+<Note>
+
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+
+</Note>
+
+export const createApiRouteHighlights = [
+  ["5", "CreateCategoryImagesSchema", "Zod schema to validate request body."],
+  ["17", "POST", "POST API route to create category images."],
+  ["30", "createCategoryImagesWorkflow", "Execute the workflow to create category images."]
+]
+
+```ts title="src/api/admin/categories/[category_id]/images/route.ts" highlights={createApiRouteHighlights}
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { createCategoryImagesWorkflow } from "../../../../../workflows/create-category-images"
+import { z } from "@medusajs/framework/zod"
+
+export const CreateCategoryImagesSchema = z.object({
+  images: z.array(
+    z.object({
+      type: z.enum(["thumbnail", "image"]),
+      url: z.string(),
+      file_id: z.string(),
+    })
+  ).min(1, "At least one image is required"),
+})
+
+type CreateCategoryImagesInput = z.infer<typeof CreateCategoryImagesSchema>
+
+export async function POST(
+  req: MedusaRequest<CreateCategoryImagesInput>,
+  res: MedusaResponse
+): Promise<void> {
+  const { category_id } = req.params
+  const { images } = req.validatedBody
+
+  // Add category_id to each image
+  const category_images = images.map((image) => ({
+    ...image,
+    category_id,
+  }))
+
+  const { result } = await createCategoryImagesWorkflow(req.scope).run({
+    input: {
+      category_images,
+    },
+  })
+
+  res.status(200).json({ category_images: result })
+}
+```
+
+You create the `CreateCategoryImagesSchema` schema to validate request bodies sent to this API route using [Zod](https://zod.dev/).
+
+Then, you export a `POST` function, which exposes a `POST` API route at `/admin/categories/:category_id/images`.
+
+In the API route, you execute the `createCategoryImagesWorkflow` workflow with the category images to create. You set each image's `category_id` to the `category_id` parameter from the request URL.
+
+Finally, you return the created category images in the response.
+
+### c. Add Validation Middleware
+
+To validate the body parameters of requests sent to the API route, apply a [middleware](!docs!/learn/fundamentals/api-routes/middlewares).
+
+To apply middleware to a route, create the file `src/api/middlewares.ts` with the following content:
+
+```ts title="src/api/middlewares.ts"
+import { 
+  defineMiddlewares, 
+  validateAndTransformBody,
+} from "@medusajs/framework/http"
+import { 
+  CreateCategoryImagesSchema,
+} from "./admin/categories/[category_id]/images/route"
+
+export default defineMiddlewares({
+  routes: [
+    {
+      matcher: "/admin/categories/:category_id/images",
+      method: ["POST"],
+      middlewares: [
+        validateAndTransformBody(CreateCategoryImagesSchema),
+      ],
+    },
+  ],
+})
+```
+
+You apply Medusa's `validateAndTransformBody` middleware to `POST` requests sent to the `/admin/categories/:category_id/images` route. The middleware function accepts a Zod schema that you created in the API route's file.
+
+<Note title="Tip">
+
+Refer to the [Middlewares](!docs!/learn/fundamentals/api-routes/middlewares) documentation to learn more.
+
+</Note>
+
+You'll test this API route later when you customize the Medusa Admin.
+
+---
+
+## Step 4: List Product Category Images API
+
+In this step, you'll add an API route that retrieves a category's images.
+
+In `src/api/admin/categories/[category_id]/images/route.ts`, add the following at the end of the file:
+
+```ts title="src/api/admin/categories/[category_id]/images/route.ts"
+export async function GET(
+  req: MedusaRequest,
+  res: MedusaResponse
+): Promise<void> {
+  const { category_id } = req.params
+  const query = req.scope.resolve("query")
+
+  const { data: categoryImages } = await query.graph({
+    entity: "product_category_image",
+    fields: ["*"],
+    filters: {
+      category_id,
+    },
+  })
+
+  res.status(200).json({ category_images: categoryImages })
+}
+```
+
+You export a `GET` function that exposes a `GET` API route at `/admin/categories/:category_id/images`.
+
+In the API route, you resolve [Query](!docs!/learn/fundamentals/module-links/query), which retrieves data across modules.
+
+You use Query to retrieve the images for the category whose ID is specified in the request's URL parameters.
+
+Finally, you return the retrieved category images in the response.
+
+You'll test this API route next when you customize the Medusa Admin.
+
+---
+
+## Step 5: Create Product Category Images in Medusa Admin
+
+In this step, you'll customize the Medusa Admin dashboard to manage a product category's images.
+
+The Medusa Admin dashboard is customizable, allowing you to insert widgets into existing pages or create new pages.
+
+<Note title="Tip">
+
+Refer to the [Admin Development](!docs!/learn/fundamentals/admin) documentation to learn more.
+
+</Note>
+
+In this step, you'll insert a widget into the product category details page to display its images and allow uploading new ones. Later, you'll expand the widget to support deleting images and updating their types.
+
+### a. Initialize JS SDK
+
+To send requests to the Medusa server, you'll use the [JS SDK](../../../js-sdk/page.mdx). It's already installed in your Medusa project, but you need to initialize it before using it in your customizations.
+
+Create the file `src/admin/lib/sdk.ts` with the following content:
+
+```ts title="src/admin/lib/sdk.ts"
+import Medusa from "@medusajs/js-sdk"
+
+export const sdk = new Medusa({
+  baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
+  debug: import.meta.env.DEV,
+  auth: {
+    type: "session",
+  },
+})
+```
+
+Learn more about the initialization options in the [JS SDK](../../../js-sdk/page.mdx) reference.
+
+### b. Define Types
+
+Next, you'll define TypeScript types that you'll use in your admin customizations.
+
+Create the file `src/admin/types.ts` with the following content:
+
+```ts title="src/admin/types.ts"
+export type CategoryImage = {
+  id?: string
+  url: string
+  type: "thumbnail" | "image"
+  file_id: string
+  category_id?: string
+}
+
+export type UploadedFile = {
+  id: string
+  url: string
+  type?: "thumbnail" | "image"
+}
+```
+
+You define types for a product category image and an uploaded file (before it is created as a category image).
+
+### c. Add Media Widget
+
+Next, you'll add a widget to the product category details page to show its images.
+
+Widgets are created in a `.tsx` file under the `src/admin/widgets` directory. So, create the file `src/admin/widgets/category-media-widget.tsx` with the following content:
+
+export const categoryMediaWidgetHighlights = [
+  ["13", "CategoryMediaWidget", "Widget component to display category images."],
+  ["14", "response", "Fetch category images using Tanstack Query and the JS SDK."],
+  ["56", "ThumbnailBadge", "Show a badge if the image is a thumbnail."],
+  ["67", "defineWidgetConfig", "Define the widget's configuration to specify its rendering zone."]
+]
+
+```tsx title="src/admin/widgets/category-media-widget.tsx" highlights={categoryMediaWidgetHighlights}
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { Container, Heading } from "@medusajs/ui"
+import { DetailWidgetProps, AdminProductCategory } from "@medusajs/framework/types"
+import { useQuery } from "@tanstack/react-query"
+import { sdk } from "../lib/sdk"
+import { CategoryImage } from "../types"
+import { ThumbnailBadge } from "@medusajs/icons"
+
+type CategoryImagesResponse = {
+  category_images: CategoryImage[]
+}
+
+const CategoryMediaWidget = ({ data }: DetailWidgetProps<AdminProductCategory>) => {
+  const { data: response, isLoading } = useQuery({
+    queryKey: ["category-images", data.id],
+    queryFn: async () => {
+      const result = await sdk.client.fetch<CategoryImagesResponse>(
+        `/admin/categories/${data.id}/images`
+      )
+      return result
+    },
+  })
+
+  const images = response?.category_images || []
+
+  return (
+    <Container className="divide-y p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        <Heading level="h2">Media</Heading>
+        {/* TODO show edit modal */}
+      </div>
+      <div className="px-6 py-4">
+        <div className="grid grid-cols-[repeat(auto-fill,96px)] gap-4">
+          {isLoading && (
+            <div className="col-span-full">
+              <p className="text-ui-fg-subtle text-sm">Loading...</p>
+            </div>
+          )}
+          {!isLoading && images.length === 0 && (
+            <div className="col-span-full">
+              <p className="text-ui-fg-subtle text-sm">No images added yet</p>
+            </div>
+          )}
+          {images.map((image: CategoryImage) => (
+            <div
+              key={image.id}
+              className="relative aspect-square overflow-hidden rounded-lg border border-ui-border-base bg-ui-bg-subtle"
+            >
+              <img
+                src={image.url}
+                alt={`Category ${image.type}`}
+                className="h-full w-full object-cover"
+              />
+              {image.type === "thumbnail" && (
+                <div className="absolute top-2 left-2">
+                  <ThumbnailBadge />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </Container>
+  )
+}
+
+export const config = defineWidgetConfig({
+  zone: "product_category.details.after",
+})
+
+export default CategoryMediaWidget
+```
+
+A widget file must export:
+
+- A default React component. This component renders the widget's UI.
+- A `config` object created with `defineWidgetConfig` from the Admin SDK. It accepts an object with the `zone` property that indicates where the widget will be rendered in the Medusa Admin dashboard.
+
+In the widget's component, you use [Tanstack (React) Query](https://tanstack.com/query/latest) to fetch the category images with the JS SDK. You display the images in a grid.
+
+If an image is a thumbnail, you show a `ThumbnailBadge` icon at the top-left corner of the image.
+
+### d. Category Media Modal
+
+Next, you'll create a modal that displays the category images with a form to upload new images. Later, you'll expand on the modal to allow deleting images or updating their types.
+
+#### Category Image Item Component
+
+First, you'll create a component that represents a category image in the modal.
+
+Create the file `src/admin/components/category-media/category-image-item.tsx` with the following content:
+
+```tsx title="src/admin/components/category-media/category-image-item.tsx"
+import { ThumbnailBadge } from "@medusajs/icons"
+
+type CategoryImageItemProps = {
+  id: string
+  url: string
+  alt: string
+  isThumbnail: boolean
+}
+
+export const CategoryImageItem = ({
+  id,
+  url,
+  alt,
+  isThumbnail,
+}: CategoryImageItemProps) => {
+  return (
+    <div
+      key={id}
+      className="shadow-elevation-card-rest hover:shadow-elevation-card-hover focus-visible:shadow-borders-focus bg-ui-bg-subtle-hover group relative aspect-square h-auto max-w-full overflow-hidden rounded-lg outline-none"
+    >
+      {isThumbnail && (
+        <div className="absolute left-2 top-2">
+          <ThumbnailBadge />
+        </div>
+      )}
+      {/* TODO add selection checkbox */}
+      <img
+        src={url}
+        alt={alt}
+        className="size-full object-cover object-center"
+      />
+    </div>
+  )
+}
+```
+
+The `CategoryImageItem` component accepts the image's ID, URL, alt text, and whether it's a thumbnail. It displays the image and a `ThumbnailBadge` icon if it's a thumbnail.
+
+#### Category Image Gallery Component
+
+Next, you'll create a component that displays a gallery of category images, including existing and newly uploaded images.
+
+Create the file `src/admin/components/category-media/category-image-gallery.tsx` with the following content:
+
+```tsx title="src/admin/components/category-media/category-image-gallery.tsx"
+import { Text } from "@medusajs/ui"
+import { CategoryImage, UploadedFile } from "../../types"
+import { CategoryImageItem } from "./category-image-item"
+
+type CategoryImageGalleryProps = {
+  existingImages: CategoryImage[]
+  uploadedFiles: UploadedFile[]
+  currentThumbnailId: string | null
+}
+
+export const CategoryImageGallery = ({
+  existingImages,
+  uploadedFiles,
+  currentThumbnailId,
+}: CategoryImageGalleryProps) => {
+  // TODO filter deleted images
+  const visibleExistingImages = existingImages
+
+  const hasNoImages = visibleExistingImages.length === 0 && uploadedFiles.length === 0
+
+  return (
+    <div className="bg-ui-bg-subtle size-full overflow-auto">
+      <div className="grid h-fit auto-rows-auto grid-cols-4 gap-6 p-6">
+        {/* Existing images */}
+        {visibleExistingImages.map((image) => {
+          if (!image.id) {return null}
+          
+          const imageId = image.id
+          const isThumbnail = currentThumbnailId === imageId
+          
+          return (
+            <CategoryImageItem
+              key={imageId}
+              id={imageId}
+              url={image.url}
+              alt={`Category ${image.type}`}
+              isThumbnail={isThumbnail}
+            />
+          )
+        })}
+
+        {/* Newly uploaded files */}
+        {uploadedFiles.map((file) => {
+          const uploadedId = `uploaded:${file.id}`
+          const isThumbnail = currentThumbnailId === uploadedId
+          
+          return (
+            <CategoryImageItem
+              key={file.id}
+              id={file.id}
+              url={file.url}
+              alt="Uploaded"
+              isThumbnail={isThumbnail}
+            />
+          )
+        })}
+
+        {/* Empty state */}
+        {hasNoImages && (
+          <div className="col-span-4 flex items-center justify-center p-8">
+            <Text className="text-ui-fg-subtle text-center">
+              No images yet. Upload images to get started.
+            </Text>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+```
+
+The `CategoryImageGallery` component accepts the following props:
+
+- `existingImages`: The existing category images.
+- `uploadedFiles`: The newly uploaded files that are not yet created as category images.
+- `currentThumbnailId`: The ID of the current thumbnail image.
+
+The component displays the existing images and the newly uploaded files using the `CategoryImageItem` component. It also shows an empty state message if there are no images.
+
+#### Category Image Upload Component
+
+Next, you'll create a component that allows uploading new images.
+
+Create the file `src/admin/components/category-media/category-image-upload.tsx` with the following content:
+
+```tsx title="src/admin/components/category-media/category-image-upload.tsx"
+import { RefObject } from "react"
+import { ArrowDownTray } from "@medusajs/icons"
+
+type CategoryImageUploadProps = {
+  fileInputRef: RefObject<HTMLInputElement>
+  isUploading: boolean
+  onFileSelect: (files: FileList | null) => void
+}
+
+export const CategoryImageUpload = ({
+  fileInputRef,
+  isUploading,
+  onFileSelect,
+}: CategoryImageUploadProps) => {
+  return (
+    <div className="bg-ui-bg-base overflow-auto border-b px-6 py-4 lg:border-b-0 lg:border-l">
+      <div className="flex flex-col space-y-2">
+        <div className="flex flex-col gap-y-2">
+          <div className="flex flex-col gap-y-1">
+            <div className="flex items-center gap-x-1">
+              <label className="font-sans txt-compact-small font-medium">
+                Media
+              </label>
+              <p className="font-normal font-sans txt-compact-small text-ui-fg-muted">
+                (Optional)
+              </p>
+            </div>
+            <span className="txt-small text-ui-fg-subtle">
+              Add media to the product to showcase it in your storefront.
+            </span>
+          </div>
+
+          <div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              multiple
+              accept="image/jpeg,image/png,image/gif,image/webp,image/heic,image/svg+xml"
+              onChange={(e) => onFileSelect(e.target.files)}
+              hidden
+            />
+
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isUploading}
+              className="bg-ui-bg-component border-ui-border-strong transition-fg group flex w-full flex-col items-center gap-y-2 rounded-lg border border-dashed p-8 hover:border-ui-border-interactive focus:border-ui-border-interactive focus:shadow-borders-focus outline-none focus:border-solid disabled:opacity-50 disabled:cursor-not-allowed"
+              onDragOver={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+              }}
+              onDrop={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                if (!isUploading) {
+                  onFileSelect(e.dataTransfer.files)
+                }
+              }}
+            >
+              <div className="text-ui-fg-subtle group-disabled:text-ui-fg-disabled flex items-center gap-x-2">
+                <ArrowDownTray />
+                <p className="font-normal font-sans txt-medium">
+                  {isUploading ? "Uploading..." : "Upload images"}
+                </p>
+              </div>
+              <p className="font-normal font-sans txt-compact-small text-ui-fg-muted group-disabled:text-ui-fg-disabled">
+                Drag and drop images here or click to upload.
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+The `CategoryImageUpload` component accepts the following props:
+
+- `fileInputRef`: A reference to the hidden file input element.
+- `isUploading`: A boolean indicating whether files are being uploaded.
+- `onFileSelect`: A callback function that is called when files are selected or dropped.
+
+The component renders a button that opens the file picker when clicked. It also supports drag-and-drop uploads.
+
+When files are selected or dropped, the component calls the `onFileSelect` callback with the selected files.
+
+#### Category Image Hooks
+
+Next, you'll create custom hooks for uploading images and creating category images. You'll use these hooks in the modal to upload images then create category images.
+
+Create the file `src/admin/hooks/use-category-image.ts` with the following content:
+
+```ts title="src/admin/hooks/use-category-image.ts"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { sdk } from "../lib/sdk"
+import { CategoryImage } from "../types"
+
+type UseCategoryImageMutationsProps = {
+  categoryId: string
+  onCreateSuccess?: () => void
+}
+
+export const useCategoryImageMutations = ({
+  categoryId,
+  onCreateSuccess,
+}: UseCategoryImageMutationsProps) => {
+  const queryClient = useQueryClient()
+
+  const uploadFilesMutation = useMutation({
+    mutationFn: async (files: File[]) => {
+      const response = await sdk.admin.upload.create({ files })
+      return response
+    },
+    onError: (error) => {
+      console.error("Failed to upload files:", error)
+    },
+  })
+
+  const createImagesMutation = useMutation({
+    mutationFn: async (images: Omit<CategoryImage, "id" | "category_id">[]) => {
+      const response = await sdk.client.fetch(
+        `/admin/categories/${categoryId}/images`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: {
+            images,
+          },
+        }
+      )
+      return response
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["category-images", categoryId] })
+      onCreateSuccess?.()
+    },
+  })
+
+  // TODO add update and delete mutations
+
+  return {
+    uploadFilesMutation,
+    createImagesMutation,
+  }
+}
+```
+
+The `useCategoryImageMutations` hook accepts the following parameters:
+
+- `categoryId`: The ID of the category to manage images for.
+- `onCreateSuccess`: An optional callback function called after successfully creating images.
+
+The hook returns two mutations:
+
+1. `uploadFilesMutation`: A mutation that uploads files using Medusa's existing API route for uploads. This will upload the images to the [configured File Module Provider](../../../infrastructure-modules/file/page.mdx#what-is-a-file-module-provider).
+2. `createImagesMutation`: A mutation that creates category images by sending a `POST` request to the API route you created earlier.
+
+You'll later add mutations to update and delete category images.
+
+#### Category Media Modal Component
+
+Finally, you'll create the modal component that uses the components and hook you created earlier.
+
+Create the file `src/admin/components/category-media/category-media-modal.tsx` with the following content:
+
+export const categoryMediaModalHighlights1 = [
+  ["10", "categoryId", "The ID of the category to manage images for."],
+  ["11", "existingImages", "The existing category images."],
+  ["18", "open", "Whether the modal is open."],
+  ["19", "uploadedFiles", "An array of newly uploaded files not yet created as category images."],
+  ["20", "currentThumbnailId", "The ID of the current thumbnail image."],
+  ["23", "fileInputRef", "A reference to the hidden file input element."],
+  ["24", "queryClient", "The Tanstack Query client for managing query caching and invalidation."],
+  ["29", "useCategoryImageMutations", "The mutations to manage category images."],
+  ["37", "isSaving", "Whether an operation, such as creating images, is in progress."],
+]
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={categoryMediaModalHighlights1} collapsibleLines="1-8" expandButtonLabel="Show Imports"
+import { useState, useRef } from "react"
+import { FocusModal, Button, Heading, toast } from "@medusajs/ui"
+import { useQueryClient } from "@tanstack/react-query"
+import { CategoryImage, UploadedFile } from "../../types"
+import { CategoryImageGallery } from "./category-image-gallery"
+import { CategoryImageUpload } from "./category-image-upload"
+import { useCategoryImageMutations } from "../../hooks/use-category-image"
+
+type CategoryMediaModalProps = {
+  categoryId: string
+  existingImages: CategoryImage[]
+}
+
+export const CategoryMediaModal = ({
+  categoryId,
+  existingImages,
+}: CategoryMediaModalProps) => {
+  const [open, setOpen] = useState(false)
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
+  const [currentThumbnailId, setCurrentThumbnailId] = useState<string | null>(
+    null
+  )
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const queryClient = useQueryClient()
+
+  const {
+    uploadFilesMutation,
+    createImagesMutation,
+  } = useCategoryImageMutations({
+    categoryId,
+    onCreateSuccess: () => {
+      setOpen(false)
+      resetModalState()
+    },
+  })
+
+  const isSaving = 
+    createImagesMutation.isPending
+
+  // TODO add functions
+}
+```
+
+The `CategoryMediaModal` component accepts the following props:
+
+- `categoryId`: The ID of the category to manage images for.
+- `existingImages`: The existing category images.
+
+In the component, you define the following variables:
+
+- `open`: A boolean indicating whether the modal is open.
+- `uploadedFiles`: An array of newly uploaded files not yet created as category images.
+- `currentThumbnailId`: The ID of the current thumbnail image.
+- `fileInputRef`: A reference to the hidden file input element.
+- `queryClient`: The Tanstack Query client for managing query caching and invalidation.
+- `uploadFilesMutation` and `createImagesMutation`: The mutations returned by the `useCategoryImageMutations` hook.
+- `isSaving`: A boolean indicating whether an operation, such as creating images, is in progress.
+
+Next, you'll add functions to handle modal state changes. Replace the `// TODO add functions` comment with the following:
+
+export const categoryMediaModalHighlights2 = [
+  ["1", "resetModalState", "Resets the modal's state by clearing uploaded files and the current thumbnail ID."],
+  ["6", "initializeThumbnail", "Initializes the current thumbnail ID based on existing images."],
+  ["13", "handleOpenChange", "Handles changes to the modal's open state, initializing or resetting the state as needed."],
+]
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={categoryMediaModalHighlights2}
+const resetModalState = () => {
+  setUploadedFiles([])
+  setCurrentThumbnailId(null)
+}
+
+const initializeThumbnail = () => {
+  const thumbnailImage = existingImages.find((img) => img.type === "thumbnail")
+  if (thumbnailImage?.id) {
+    setCurrentThumbnailId(thumbnailImage.id)
+  }
+}
+
+const handleOpenChange = (isOpen: boolean) => {
+  setOpen(isOpen)
+  if (isOpen) {
+    initializeThumbnail()
+  } else {
+    resetModalState()
+  }
+}
+
+// TODO handle upload file
+``` 
+
+You add three functions:
+
+1. `resetModalState`: Resets the modal's state by clearing uploaded files and the current thumbnail ID.
+2. `initializeThumbnail`: Initializes the current thumbnail ID based on existing images when the modal opens.
+3. `handleOpenChange`: Handles changes to the modal's open state, initializing or resetting the state as needed.
+
+Next, you'll add a function to handle file uploads. Replace the `// TODO handle upload file` comment with the following:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const handleUploadFile = (files: FileList | null) => {
+  if (!files || files.length === 0) {return}
+  const filesArray = Array.from(files)
+  
+  uploadFilesMutation.mutate(filesArray, {
+    onSuccess: (data) => {
+      setUploadedFiles((prev) => [...prev, ...data.files])
+    },
+  })
+  
+  if (fileInputRef.current) {
+    fileInputRef.current.value = ""
+  }
+}
+
+// TODO handle save
+```
+
+You add the `handleUploadFile` function, which is called when files are selected or dropped. It uploads the files using `uploadFilesMutation` and updates the `uploadedFiles` state with the uploaded files.
+
+Next, you'll add a function to handle saving the uploaded files as category images. Replace the `// TODO handle save` comment with the following:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const handleSave = async () => {
+  const hasNewImages = uploadedFiles.length > 0
+
+  try {
+    const operations: Array<Promise<unknown>> = []
+    if (hasNewImages) {
+      const imagesToCreate = uploadedFiles.map((file) => ({
+        url: file.url,
+        file_id: file.id,
+        type: file.type || (currentThumbnailId === `uploaded:${file.id}` ? 
+          "thumbnail" : "image"
+        ),
+      }))
+      operations.push(createImagesMutation.mutateAsync(imagesToCreate))
+    }
+
+    // TODO add update and delete operations
+
+    await Promise.all(operations)
+
+    queryClient.invalidateQueries({ queryKey: ["category-images", categoryId] })
+    setOpen(false)
+    resetModalState()
+    toast.success("Category media saved successfully")
+  } catch (error) {
+    toast.error("Failed to save changes")
+  }
+}
+
+// TODO render modal
+```
+
+You add the `handleSave` function, which is called when the user clicks the "Save" button in the modal. It creates category images for the uploaded files using `createImagesMutation`.
+
+You'll revisit this function later to add update and delete operations.
+
+Finally, you'll render the modal. Replace the `// TODO render modal` comment with the following:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+return (
+  <FocusModal open={open} onOpenChange={handleOpenChange}>
+    <FocusModal.Trigger asChild>
+      <Button size="small" variant="secondary">
+        Edit
+      </Button>
+    </FocusModal.Trigger>
+
+    <FocusModal.Content>
+      <FocusModal.Header>
+        <Heading>Edit Media</Heading>
+      </FocusModal.Header>
+
+      <FocusModal.Body className="flex h-full overflow-hidden">
+        <div className="flex w-full h-full flex-col-reverse lg:grid lg:grid-cols-[1fr_560px]">
+          <CategoryImageGallery
+            existingImages={existingImages}
+            uploadedFiles={uploadedFiles}
+            currentThumbnailId={currentThumbnailId}
+          />
+          <CategoryImageUpload
+            fileInputRef={fileInputRef}
+            isUploading={uploadFilesMutation.isPending}
+            onFileSelect={handleUploadFile}
+          />
+        </div>
+        {/* TODO show command bar */}
+      </FocusModal.Body>
+      <FocusModal.Footer>
+        <div className="flex items-center justify-end gap-x-2">
+          <FocusModal.Close asChild>
+            <Button size="small" variant="secondary">
+              Cancel
+            </Button>
+          </FocusModal.Close>
+          <Button
+            size="small"
+            onClick={handleSave}
+            isLoading={isSaving}
+          >
+            Save
+          </Button>
+        </div>
+      </FocusModal.Footer>
+    </FocusModal.Content>
+  </FocusModal>
+)
+```
+
+You render a modal using the `FocusModal` component from [Medusa UI](!ui!). The modal displays the `CategoryImageGallery` component on the left and the `CategoryImageUpload` component on the right.
+
+You also render an "Edit" button that opens the modal when clicked.
+
+### e. Add Modal to Widget
+
+Finally, add the `CategoryMediaModal` component to the `CategoryMediaWidget` component.
+
+In `src/admin/widgets/category-media-widget.tsx`, add the following import at the top:
+
+```tsx title="src/admin/widgets/category-media-widget.tsx"
+import { CategoryMediaModal } from "../components/category-media/category-media-modal"
+```
+
+Then, in the `CategoryMediaWidget`'s `return` statement, replace the `/* TODO show edit modal */` comment with the following:
+
+```tsx title="src/admin/widgets/category-media-widget.tsx"
+<CategoryMediaModal categoryId={data.id} existingImages={images} />
+```
+
+You add the `CategoryMediaModal` component, passing the category ID and existing images as props.
+
+### Test the Media Widget
+
+You can now test the media widget in the Medusa Admin dashboard.
+
+Run the following command in the Medusa project directory to start the Medusa server:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, go to `localhost:9000/app` in your browser and:
+
+1. Log in with the admin user you created earlier.
+2. Go to Products → Categories.
+3. Click on a category to view its details.
+
+You'll see a new Media section in the category details page with an "Edit" button.
+
+If you click the "Edit" button, a modal will open where you can upload new images.
+
+<Note>
+
+Images are uploaded to the [configured File Module Provider](../../../infrastructure-modules/file/page.mdx#what-is-a-file-module-provider). If you haven't configured one, images will be uploaded to the `static` folder in your Medusa project.
+
+</Note>
+
+![Media widget showing images with upload form](https://res.cloudinary.com/dza7lstvk/image/upload/v1760455846/Medusa%20Resources/CleanShot_2025-10-14_at_18.29.49_2x_vhbn6z.png)
+
+After uploading images, you can click the "Save" button to create the category images. The images will be displayed in the Media section of the category details page.
+
+![Media widget showing images after upload](https://res.cloudinary.com/dza7lstvk/image/upload/v1760456027/Medusa%20Resources/CleanShot_2025-10-14_at_18.33.27_2x_au7nxg.png)
+
+---
+
+## Step 6: Update Product Category Images
+
+In this step, you'll implement the functionality to update a category image's type (between "thumbnail" and "image"). This includes:
+
+- Creating a workflow that updates category images.
+- Adding an API route that exposes the workflow's functionality.
+- Updating the Medusa Admin modal to allow updating image types.
+
+### a. Update Category Images Workflow
+
+The workflow that updates category images has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "updateCategoryImagesWorkflow",
+    steps: [
+      {
+        type: "when",
+        condition: `updates.some((u) => u.type === "thumbnail")`,
+        steps: [
+          {
+            type: "step",
+            name: "useQueryGraphStep",
+            description: "Get existing thumbnail images",
+            link: "/references/helper-steps/useQueryGraphStep",
+            depth: 1
+          },
+          {
+            type: "step",
+            name: "convertCategoryThumbnailsStep",
+            description: "Convert existing thumbnails to images",
+            depth: 2
+          }
+        ],
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "updateCategoryImagesStep",
+        description: "Update category images",
+        depth: 2
+      }
+    ]
+  }}
+/>
+
+Medusa provides the `useQueryGraphStep`, and you've already created the `convertCategoryThumbnailsStep` in [step 3](#convertcategorythumbnailsstep). You only need to create the `updateCategoryImagesStep`.
+
+#### updateCategoryImagesStep
+
+The `updateCategoryImagesStep` updates the category images.
+
+To create the step, create the file `src/workflows/steps/update-category-images.ts` with the following content:
+
+export const updateCategoryImagesStepHighlights = [
+  ["19", "prevData", "Get the previous state of the category images for compensation."],
+  ["24", "updatedData", "Update the category images."],
+  ["39", "updateProductCategoryImages", "Revert the category images to their previous state if an error occurs."]
+]
+
+```ts title="src/workflows/steps/update-category-images.ts" highlights={updateCategoryImagesStepHighlights}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { PRODUCT_MEDIA_MODULE } from "../../modules/product-media"
+import ProductMediaModuleService from "../../modules/product-media/service"
+
+export type UpdateCategoryImagesStepInput = {
+  updates: {
+    id: string
+    type?: "thumbnail" | "image"
+  }[]
+}
+
+export const updateCategoryImagesStep = createStep(
+  "update-category-images-step",
+  async (input: UpdateCategoryImagesStepInput, { container }) => {
+    const productMediaService: ProductMediaModuleService =
+      container.resolve(PRODUCT_MEDIA_MODULE)
+
+    // Get previous data for the images being updated
+    const prevData = await productMediaService.listProductCategoryImages({
+      id: input.updates.map((u) => u.id),
+    })
+
+    // Apply the requested updates
+    const updatedData = await productMediaService.updateProductCategoryImages(
+      input.updates
+    )
+
+    return new StepResponse(updatedData, prevData)
+  },
+  async (compensationData, { container }) => {
+    if (!compensationData?.length) {
+      return
+    }
+
+    const productMediaService: ProductMediaModuleService =
+      container.resolve(PRODUCT_MEDIA_MODULE)
+
+    // Revert all updates
+    await productMediaService.updateProductCategoryImages(
+      compensationData.map((img) => ({
+        id: img.id,
+        type: img.type,
+      }))
+    )
+  }
+)
+```
+
+This step accepts an array of updates, where each update contains the category image ID to update and the new type.
+
+You update the category images in the step function and revert the updates in the compensation function.
+
+#### Update Workflow
+
+Next, you'll create the workflow that uses the step you just created to update category images.
+
+Create the file `src/workflows/steps/update-category-images.ts` with the following content:
+
+export const updateCategoryImagesWorkflowHighlights = [
+  ["21", "when", "Check if any of the updates set an image to be a thumbnail."],
+  ["24", "categoryImageIds", "Get the IDs of the images being updated to thumbnails."],
+  ["29", "useQueryGraphStep", "Get the category IDs of the images being updated to thumbnails."],
+  ["39", "categoryIds", "Extract the category IDs from the fetched category images."],
+  ["43", "convertCategoryThumbnailsStep", "Convert any existing thumbnails in those categories to regular images."],
+  ["48", "updateCategoryImagesStep", "Update the category images."]
+]
+
+```ts title="src/workflows/update-category-images.ts" highlights={updateCategoryImagesWorkflowHighlights} collapsibleLines="1-10" expandButtonLabel="Show Imports"
+import {
+  createWorkflow,
+  WorkflowResponse,
+  transform,
+  when,
+} from "@medusajs/framework/workflows-sdk"
+import { updateCategoryImagesStep } from "./steps/update-category-images"
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { convertCategoryThumbnailsStep } from "./steps/convert-category-thumbnails"
+
+export type UpdateCategoryImagesInput = {
+  updates: {
+    id: string
+    type?: "thumbnail" | "image"
+  }[]
+}
+
+export const updateCategoryImagesWorkflow = createWorkflow(
+  "update-category-images",
+  (input: UpdateCategoryImagesInput) => {
+    when(input, (data) => data.updates.some((u) => u.type === "thumbnail"))
+    .then(
+      () => {
+        const categoryImageIds = transform({
+          input,
+        }, (data) => data.input.updates.filter(
+          (u) => u.type === "thumbnail"
+        ).map((u) => u.id))
+        const { data: categoryImages } = useQueryGraphStep({
+          entity: "product_category_image",
+          fields: ["category_id"],
+          filters: {
+            id: categoryImageIds,
+          },
+          options: {
+            throwIfKeyNotFound: true,
+          },
+        })
+        const categoryIds = transform({
+          categoryImages,
+        }, (data) => data.categoryImages.map((img) => img.category_id))
+    
+        convertCategoryThumbnailsStep({
+          category_ids: categoryIds,
+        })  
+      }
+    )
+    const updatedImages = updateCategoryImagesStep({
+      updates: input.updates,
+    })
+
+    return new WorkflowResponse(updatedImages)
+  }
+)
+```
+
+The workflow accepts the category images to update.
+
+In the workflow, you:
+
+1. Check if any of the updates set an image to be a thumbnail using a `when` condition.
+    - If so, you retrieve the category IDs of the images being updated to thumbnails using the `useQueryGraphStep`, which uses Query to retrieve data across modules.
+    - You then call the `convertCategoryThumbnailsStep` to convert any existing thumbnails in those categories to regular images.
+2. Finally, you call the `updateCategoryImagesStep` to update the category images.
+
+### b. Update Category Images API Route
+
+Next, you'll create an API route that exposes the `updateCategoryImagesWorkflow`'s functionality.
+
+Create the file `src/api/admin/categories/[category_id]/images/batch/route.ts` with the following content:
+
+```ts title="src/api/admin/categories/[category_id]/images/batch/route.ts"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import {
+  updateCategoryImagesWorkflow,
+} from "../../../../../../workflows/update-category-images"
+import { z } from "@medusajs/framework/zod"
+
+export const UpdateCategoryImagesSchema = z.object({
+  updates: z.array(z.object({
+    id: z.string(),
+    type: z.enum(["thumbnail", "image"]),
+  })).min(1, "At least one update is required"),
+})
+
+type UpdateCategoryImagesInput = z.infer<typeof UpdateCategoryImagesSchema>
+
+export async function POST(
+  req: MedusaRequest<UpdateCategoryImagesInput>,
+  res: MedusaResponse
+): Promise<void> {
+  const { updates } = req.validatedBody
+
+  const { result } = await updateCategoryImagesWorkflow(req.scope).run({
+    input: { updates },
+  })
+
+  res.status(200).json({ category_images: result })
+}
+```
+
+You create a `POST` API route at `/admin/categories/:category_id/images/batch` that accepts an array of category images to update in the request body.
+
+You validate the request body using a Zod schema, then execute the `updateCategoryImagesWorkflow` with the validated input.
+
+Finally, you return the updated category images in the response.
+
+### c. Add Validation Middleware
+
+To ensure the request body is validated using the Zod schema you created, you'll add a validation middleware to the new API route.
+
+In `src/api/middlewares.ts`, add the following import at the top of the file:
+
+```ts title="src/api/middlewares.ts"
+import { 
+  UpdateCategoryImagesSchema,
+} from "./admin/categories/[category_id]/images/batch/route"
+```
+
+Then, add a new route object passed to the array in `defineMiddlewares`:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/admin/categories/:category_id/images/batch",
+      method: ["POST"],
+      middlewares: [
+        validateAndTransformBody(UpdateCategoryImagesSchema),
+      ],
+    },
+  ],
+})
+```
+
+All `POST` requests to `/admin/categories/:category_id/images/batch` will now be validated using the `UpdateCategoryImagesSchema`.
+
+### d. Add Update Mutation
+
+Next, add a mutation to the `useCategoryImageMutations` hook for updating category images.
+
+In `src/admin/hooks/use-category-image.ts`, update the `UseCategoryImageMutationsProps` type to include an `onUpdateSuccess` callback:
+
+```ts title="src/admin/hooks/use-category-image.ts" highlights={[["3"]]}
+type UseCategoryImageMutationsProps = {
+  // ...
+  onUpdateSuccess?: () => void
+}
+```
+
+Then, in `useCategoryImageMutations`, add the `onUpdateSuccess` prop to the function parameters:
+
+```ts title="src/admin/hooks/use-category-image.ts" highlights={[["3"]]}
+export const useCategoryImageMutations = ({
+  // ...
+  onUpdateSuccess,
+}: UseCategoryImageMutationsProps) => {
+  // ...
+}
+```
+
+Next, add the `updateImagesMutation` mutation inside the `useCategoryImageMutations` function, after the `createImagesMutation`:
+
+```ts title="src/admin/hooks/use-category-image.ts"
+const updateImagesMutation = useMutation({
+  mutationFn: async (
+    updates: { id: string; type: "thumbnail" | "image" }[]
+  ) => {
+    const response = await sdk.client.fetch(
+      `/admin/categories/${categoryId}/images/batch`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          updates,
+        },
+      }
+    )
+    return response
+  },
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ["category-images", categoryId] })
+    onUpdateSuccess?.()
+  },
+})
+```
+
+Finally, add `updateImagesMutation` to the returned object of the `useCategoryImageMutations` hook:
+
+```ts title="src/admin/hooks/use-category-image.ts" highlights={[["3"]]}
+return {
+  // ...
+  updateImagesMutation,
+}
+```
+
+### e. Add Selection in Category Image Item
+
+Next, add the ability to select a category image in the `CategoryImageItem` component. You'll use this selection to choose which image to set as the thumbnail, and later to delete images.
+
+In `src/admin/components/category-media/category-image-item.tsx`, add the following imports at the top of the file:
+
+```tsx title="src/admin/components/category-media/category-image-item.tsx"
+import { Checkbox, clx } from "@medusajs/ui"
+```
+
+Then update the `CategoryImageItemProps` type to include two new props:
+
+```tsx title="src/admin/components/category-media/category-image-item.tsx" highlights={[["3"], ["4"]]}
+type CategoryImageItemProps = {
+  // ...
+  isSelected: boolean
+  onToggleSelect: () => void
+}
+```
+
+You add two new props:
+
+- `isSelected`: A boolean indicating whether the image is selected.
+- `onToggleSelect`: A callback function that is called when the selection state changes.
+
+Next, update the props in the `CategoryImageItem` component:
+
+```tsx title="src/admin/components/category-media/category-image-item.tsx" highlights={[["3"], ["4"]]}
+export const CategoryImageItem = ({
+  // ...
+  isSelected,
+  onToggleSelect,
+}: CategoryImageItemProps) => {
+  // ...
+}
+```
+
+Finally, replace the `TODO` in the component's `return` statement with the following:
+
+```tsx title="src/admin/components/category-media/category-image-item.tsx" 
+<div className={clx(
+  "transition-fg absolute right-2 top-2 opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 group-focus:opacity-100",
+  isSelected && "opacity-100"
+)}>
+  <Checkbox
+    checked={isSelected}
+    onCheckedChange={onToggleSelect}
+  />
+</div>
+```
+
+You add a checkbox in the top-right corner of the image that indicates whether it's selected. The checkbox is visible when the image is hovered or selected.
+
+When the checkbox state changes, it calls the `onToggleSelect` callback to update the selection state.
+
+### f. Update Category Image Gallery
+
+Next, you'll update the `CategoryImageGallery` component to manage the selection state of category images.
+
+In `src/admin/components/category-media/category-image-gallery.tsx`, update the `CategoryImageGalleryProps` type to include two new props:
+
+```tsx title="src/admin/components/category-media/category-image-gallery.tsx" highlights={[["3"], ["4"]]}
+type CategoryImageGalleryProps = {
+  // ...
+  selectedImageIds: Set<string>
+  onToggleSelect: (id: string, isUploaded?: boolean) => void
+}
+```
+
+You add two new props:
+
+- `selectedImageIds`: A set of IDs of the selected images.
+- `onToggleSelect`: A callback function that is called when an image's selection state changes.
+
+Then, update the props in the `CategoryImageGallery` component:
+
+```tsx title="src/admin/components/category-media/category-image-gallery.tsx" highlights={[["3"], ["4"]]}
+export const CategoryImageGallery = ({
+  // ...
+  selectedImageIds,
+  onToggleSelect,
+}: CategoryImageGalleryProps) => {
+  // ...
+}
+```
+
+Next, update the `CategoryImageItem` components in the `return` statement to pass the new props:
+
+```tsx title="src/admin/components/category-media/category-image-gallery.tsx" highlights={[["11"], ["12"], ["24"], ["25"]]}
+return (
+  <div className="bg-ui-bg-subtle size-full overflow-auto">
+    {/* ... */}
+    {/* Existing images */}
+    {visibleExistingImages.map((image) => {
+      // ...
+      
+      return (
+        <CategoryImageItem
+          // ...
+          isSelected={selectedImageIds.has(imageId)}
+          onToggleSelect={() => onToggleSelect(imageId)}
+        />
+      )
+    })}
+
+    {/* Newly uploaded files */}
+    {uploadedFiles.map((file) => {
+      // ...
+      
+      return (
+        <CategoryImageItem
+          // ...
+          isSelected={selectedImageIds.has(uploadedId)}
+          onToggleSelect={() => onToggleSelect(file.id, true)}
+        />
+      )
+    })}
+
+    {/* ... */}
+  </div>
+)
+```
+
+You pass the `isSelected` prop to indicate whether the image is selected, and the `onToggleSelect` prop to handle selection changes.
+
+### g. Update Category Media Modal
+
+Lastly, you'll update the `CategoryMediaModal` component to manage the selection state and implement the update functionality.
+
+In `src/admin/components/category-media/category-media-modal.tsx`, add the following import at the top of the file:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+import { CommandBar } from "@medusajs/ui"
+```
+
+You'll use the `CommandBar` component from Medusa UI to show actions like "Set as Thumbnail" and "Delete".
+
+Then, in the `CategoryMediaModal` component, add a new state variable to manage the selected image IDs:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const [selectedImageIds, setSelectedImageIds] = useState<Set<string>>(new Set())
+```
+
+Next, add to the destructured variables the `updateImagesMutation` from the `useCategoryImageMutations` hook, and pass the `onUpdateSuccess` callback:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={[["3"], ["6"], ["7"], ["8"]]}
+const {
+  // ...
+  updateImagesMutation,
+} = useCategoryImageMutations({
+  // ...
+  onUpdateSuccess: () => {
+    setSelectedImageIds(new Set())
+  },
+})
+```
+
+After that, update the `isSaving` variable to include the `updateImagesMutation`'s pending state:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const isSaving = 
+  createImagesMutation.isPending ||
+  updateImagesMutation.isPending
+```
+
+Next, update the `resetModalState` function to clear the selected image IDs:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={[["3"]]}
+const resetModalState = () => {
+  // ...
+  setSelectedImageIds(new Set())
+}
+```
+
+Next, add a function that toggles the selection state of an image:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const handleImageSelection = (id: string, isUploaded: boolean = false) => {
+  const itemId = isUploaded ? `uploaded:${id}` : id
+  const newSelected = new Set(selectedImageIds)
+  if (newSelected.has(itemId)) {
+    newSelected.delete(itemId)
+  } else {
+    newSelected.add(itemId)
+  }
+  setSelectedImageIds(newSelected)
+}
+```
+
+The `handleImageSelection` function accepts the image ID and a boolean indicating whether it's an uploaded file (not yet created as a category image).
+
+It toggles the selection state of the image by adding or removing its ID from the `selectedImageIds` set.
+
+Then, add a function that sets the selected image as the thumbnail:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const handleSetAsThumbnail = () => {
+  if (selectedImageIds.size !== 1) {return}
+
+  const selectedId = Array.from(selectedImageIds)[0]
+  setCurrentThumbnailId(selectedId)
+  if (selectedId.startsWith("uploaded:")) {
+    // update uploaded file type to thumbnail
+    const uploadedFileId = selectedId.replace("uploaded:", "")
+    setUploadedFiles((prev) =>
+      prev.map((file) => {
+        return file.id === uploadedFileId ? { ...file, type: "thumbnail" } : file
+      })
+    )
+  }
+  
+  setSelectedImageIds(new Set())
+}
+```
+
+The `handleSetAsThumbnail` function checks if exactly one image is selected. If so, it sets that image as the current thumbnail by updating the `currentThumbnailId` state.
+
+If the selected image is an uploaded file (not yet created as a category image), it updates its type to "thumbnail" in the `uploadedFiles` state.
+
+Next, update the `handleSave` function to include the update operation for changing image types:
+
+export const handleSaveChangesHighlights1 = [
+  ["4", "initialThumbnail", "Finds the initial thumbnail image from the existing images."],
+  ["7", "thumbnailChanged", "Checks if the thumbnail has changed and is not an uploaded file."],
+  ["31", "if", "Update thumbnail if changed."]
+]
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={handleSaveChangesHighlights1}
+const handleSave = async () => {
+  const hasNewImages = uploadedFiles.length > 0
+  
+  const initialThumbnail = existingImages.find(
+    (img) => img.type === "thumbnail"
+  )
+  const thumbnailChanged = 
+    currentThumbnailId && 
+    !currentThumbnailId.startsWith("uploaded:") &&
+    currentThumbnailId !== initialThumbnail?.id
+
+  if (!hasNewImages && !thumbnailChanged) {
+    setOpen(false)
+    return
+  }
+
+  try {
+    const operations: Array<Promise<unknown>> = []
+    if (hasNewImages) {
+      const imagesToCreate = uploadedFiles.map((file) => ({
+        url: file.url,
+        file_id: file.id,
+        type: file.type || (currentThumbnailId === `uploaded:${file.id}` ? 
+          "thumbnail" : "image"
+        ),
+      }))
+      operations.push(createImagesMutation.mutateAsync(imagesToCreate))
+    }
+
+    // Update thumbnail if changed
+    if (thumbnailChanged) {
+      const updates = [
+        {
+          id: currentThumbnailId,
+          type: "thumbnail" as const,
+        },
+      ]
+      operations.push(updateImagesMutation.mutateAsync(updates))
+    }
+
+    await Promise.all(operations)
+
+    queryClient.invalidateQueries({ queryKey: ["category-images", categoryId] })
+    setOpen(false)
+    resetModalState()
+    toast.success("Category media saved successfully")
+  } catch (error) {
+    toast.error("Failed to save changes")
+  }
+}
+```
+
+You update the `handleSave` function to:
+
+- Check if the thumbnail has changed and isn't an uploaded file.
+- If the thumbnail has changed, add an update operation to the `operations` array to set the image type to "thumbnail" using the `updateImagesMutation`.
+- Ensure that if the new thumbnail is an uploaded file, it doesn't attempt to update it, since it will be created with the correct type.
+
+Finally, in the `return` statement, replace the `/* TODO show command bar */` comment with the following:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+<CommandBar open={selectedImageIds.size > 0}>
+  <CommandBar.Bar>
+    <CommandBar.Value>
+      {selectedImageIds.size} selected
+    </CommandBar.Value>
+    <CommandBar.Seperator />
+    <CommandBar.Command
+      action={handleSetAsThumbnail}
+      label="Set as thumbnail"
+      shortcut="t"
+      disabled={selectedImageIds.size !== 1}
+    />
+    {/* TODO add delete command */}
+  </CommandBar.Bar>
+</CommandBar>
+```
+
+You add a `CommandBar` that shows the number of selected images and a command to "Set as thumbnail". The command is disabled unless exactly one image is selected.
+
+Then, update the `CategoryImageGallery` component to pass the new props:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={[["3"], ["4"]]}
+<CategoryImageGallery
+  // ...
+  selectedImageIds={selectedImageIds}
+  onToggleSelect={handleImageSelection}
+/>
+```
+
+You pass the `selectedImageIds` state and the `handleImageSelection` function to manage image selection.
+
+### Test Update Functionality
+
+You can now test the update functionality in the Medusa Admin dashboard.
+
+Start the Medusa server if it's not already running, and go to a category's details page:
+
+1. Click the "Edit" button in the Media section to open the modal.
+2. Hover over an image and click the checkbox to select it.
+3. You'll see a command bar at the bottom, where you can click "Set as thumbnail" to set the selected image as the thumbnail. You can also press the "t" key as a shortcut.
+4. Click the "Save" button to save the changes.
+
+![Media widget showing command bar with set as thumbnail action](https://res.cloudinary.com/dza7lstvk/image/upload/v1760514879/Medusa%20Resources/CleanShot_2025-10-15_at_10.54.18_2x_qfrwgy.png)
+
+You'll now see the thumbnail icon on the image in the Media section of the category details page.
+
+![Media widget showing updated thumbnail](https://res.cloudinary.com/dza7lstvk/image/upload/v1760515015/Medusa%20Resources/CleanShot_2025-10-15_at_10.56.24_2x_suv0qr.png)
+
+---
+
+## Step 7: Delete Product Category Images
+
+In this step, you'll implement the functionality to delete category images. This includes:
+
+1. Creating a workflow that deletes category images.
+2. Adding an API route that exposes the workflow's functionality.
+3. Updating the Medusa Admin modal to allow deleting images.
+
+### a. Delete Category Images Workflow
+
+The workflow that deletes category images has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "deleteCategoryImagesWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the file IDs of the images",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1
+      },
+      {
+        type: "workflow",
+        name: "deleteFilesWorkflow",
+        description: "Delete the files from storage.",
+        link: "/references/medusa-workflows/deleteFilesWorkflow",
+        depth: 2
+      },
+      {
+        type: "step",
+        name: "deleteCategoryImagesStep",
+        description: "Delete the category images.",
+        depth: 3
+      }
+    ]
+  }}
+/>
+
+The first two steps are available out-of-the-box in Medusa. You only need to create the last step.
+
+#### deleteCategoryImagesStep
+
+The `deleteCategoryImagesStep` step deletes the category images.
+
+To create the step, create the file `src/workflows/steps/delete-category-image.ts` with the following content:
+
+export const deleteCategoryImagesStepHighlights = [
+  ["16", "categoryImages", "Retrieve the full data of the category images before deletion."],
+  ["21", "deleteProductCategoryImages", "Delete the category images."],
+  ["37", "createProductCategoryImages", "Recreate the deleted category images if an error occurs."]
+]
+
+```ts title="src/workflows/steps/delete-category-images.ts" highlights={deleteCategoryImagesStepHighlights}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { PRODUCT_MEDIA_MODULE } from "../../modules/product-media"
+import ProductMediaModuleService from "../../modules/product-media/service"
+
+export type DeleteCategoryImagesStepInput = {
+  ids: string[]
+}
+
+export const deleteCategoryImagesStep = createStep(
+  "delete-category-images-step",
+  async (input: DeleteCategoryImagesStepInput, { container }) => {
+    const productMediaService: ProductMediaModuleService =
+      container.resolve(PRODUCT_MEDIA_MODULE)
+
+    // Retrieve the full category images data before deleting
+    const categoryImages = await productMediaService.listProductCategoryImages({
+      id: input.ids,
+    })
+
+    // Delete the category images
+    await productMediaService.deleteProductCategoryImages(input.ids)
+
+    return new StepResponse(
+      { success: true, deleted: input.ids }, 
+      categoryImages
+    )
+  },
+  async (categoryImages, { container }) => {
+    if (!categoryImages || categoryImages.length === 0) {
+      return
+    }
+
+    const productMediaService: ProductMediaModuleService =
+      container.resolve(PRODUCT_MEDIA_MODULE)
+
+    // Recreate all category images with their original data
+    await productMediaService.createProductCategoryImages(
+      categoryImages.map((categoryImage) => ({
+        id: categoryImage.id,
+        category_id: categoryImage.category_id,
+        type: categoryImage.type,
+        url: categoryImage.url,
+        file_id: categoryImage.file_id,
+      }))
+    )
+  }
+)
+```
+
+This step accepts an array of category image IDs to delete.
+
+In the step, you first retrieve the full data of the category images to be deleted. This is necessary for the compensation function to recreate them.
+
+Then, you delete the category images and pass the deleted data to the compensation function.
+
+In the compensation function, you recreate the deleted category images using their original data if an error occurs during workflow execution.
+
+#### Delete Workflow
+
+Next, you'll create the workflow that uses the step you just created to delete category images.
+
+Create the file `src/workflows/delete-category-image.ts` with the following content:
+
+export const deleteCategoryImagesWorkflowHighlights = [
+  ["17", "useQueryGraphStep", "Retrieve the category images to get their file IDs."],
+  ["29", "fileIds", "Extract the file IDs from the retrieved category images."],
+  ["35", "deleteFilesWorkflow", "Delete the files from storage."],
+  ["42", "deleteCategoryImagesStep", "Delete the category images."]
+]
+
+```ts title="src/workflows/delete-category-images.ts" highlights={deleteCategoryImagesWorkflowHighlights} collapsibleLines="1-10" expandButtonLabel="Show Imports"
+import {
+  createWorkflow,
+  WorkflowResponse,
+  transform,
+} from "@medusajs/framework/workflows-sdk"
+import { deleteFilesWorkflow, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { deleteCategoryImagesStep } from "./steps/delete-category-image"
+
+export type DeleteCategoryImagesInput = {
+  ids: string[]
+}
+
+export const deleteCategoryImagesWorkflow = createWorkflow(
+  "delete-category-images",
+  (input: DeleteCategoryImagesInput) => {
+    // First, get the category images to retrieve the file_ids
+    const { data: categoryImages } = useQueryGraphStep({
+      entity: "product_category_image",
+      fields: ["id", "file_id", "url", "type", "category_id"],
+      filters: {
+        id: input.ids,
+      },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    // Transform the category images to extract file IDs
+    const fileIds = transform(
+      { categoryImages },
+      (data) => data.categoryImages.map((img) => img.file_id)
+    )
+
+    // Delete the files from storage
+    deleteFilesWorkflow.runAsStep({
+      input: {
+        ids: fileIds,
+      },
+    })
+
+    // Then delete the category image records
+    const result = deleteCategoryImagesStep({ ids: input.ids })
+
+    return new WorkflowResponse(result)
+  }
+)
+```
+
+The workflow accepts the IDs of the category images to delete.
+
+In the workflow, you:
+
+1. Retrieve the category images using `useQueryGraphStep` to get their file IDs. This step uses Query to retrieve data across modules.
+2. Prepare the file IDs using [transform](!docs!/learn/fundamentals/workflows/variable-manipulation).
+3. Delete the files from storage using `deleteFilesWorkflow`.
+4. Delete the category images using `deleteCategoryImagesStep`.
+
+### b. Delete Category Images API Route
+
+Next, you'll create an API route that exposes the `deleteCategoryImagesWorkflow`'s functionality.
+
+In `src/api/admin/categories/[category_id]/images/batch/route.ts`, add the following import at the top of the file:
+
+```ts title="src/api/admin/categories/[category_id]/images/batch/route.ts"
+import {
+  deleteCategoryImagesWorkflow,
+} from "../../../../../../workflows/delete-category-image"
+```
+
+Then, add the following at the end of the file:
+
+```ts title="src/api/admin/categories/[category_id]/images/batch/route.ts"
+export const DeleteCategoryImagesSchema = z.object({
+  ids: z.array(z.string()).min(1, "At least one ID is required"),
+})
+
+type DeleteCategoryImagesInput = z.infer<typeof DeleteCategoryImagesSchema>
+
+export async function DELETE(
+  req: MedusaRequest<DeleteCategoryImagesInput>,
+  res: MedusaResponse
+): Promise<void> {
+  const { ids } = req.validatedBody
+
+  await deleteCategoryImagesWorkflow(req.scope).run({
+    input: { ids },
+  })
+
+  res.status(200).json({
+    deleted: ids,
+  })
+}
+```
+
+You create a `DELETE` API route at `/admin/categories/:category_id/images/batch` that accepts an array of category image IDs to delete in the request body.
+
+You validate the request body using a Zod schema, then execute the `deleteCategoryImagesWorkflow` with the validated input.
+
+Finally, you return the deleted category image IDs in the response.
+
+### c. Add Validation Middleware
+
+To ensure the request body is validated using the Zod schema you created, you'll add a validation middleware to the new API route.
+
+In `src/api/middlewares.ts`, add the following import at the top of the file:
+
+```ts title="src/api/middlewares.ts"
+import { 
+  DeleteCategoryImagesSchema,
+} from "./admin/categories/[category_id]/images/batch/route"
+```
+
+Then, add a new route object passed to the array in `defineMiddlewares`:
+
+```ts title="src/api/middlewares.ts"
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/admin/categories/:category_id/images/batch",
+      method: ["DELETE"],
+      middlewares: [
+        validateAndTransformBody(DeleteCategoryImagesSchema),
+      ],
+    },
+  ],
+})
+```
+
+All `DELETE` requests to `/admin/categories/:category_id/images/batch` will now be validated using the `DeleteCategoryImagesSchema`.
+
+### c. Add Delete Mutation
+
+Next, you'll add a mutation to the `useCategoryImageMutations` hook to delete category images.
+
+In `src/admin/hooks/use-category-image.ts`, update the `UseCategoryImageMutationsProps` type to include an `onDeleteSuccess` callback:
+
+```ts title="src/admin/hooks/use-category-image.ts" highlights={[["3"]]}
+type UseCategoryImageMutationsProps = {
+  // ...
+  onDeleteSuccess?: (deletedIds: string[]) => void
+}
+```
+
+Then, in `useCategoryImageMutations`, add the `onDeleteSuccess` prop to the function parameters:
+
+```ts title="src/admin/hooks/use-category-image.ts" highlights={[["3"]]}
+export const useCategoryImageMutations = ({
+  // ...
+  onDeleteSuccess,
+}: UseCategoryImageMutationsProps) => {
+  // ...
+}
+```
+
+Next, add the `deleteImagesMutation` mutation inside the `useCategoryImageMutations` function, after the `updateImagesMutation`:
+
+```ts title="src/admin/hooks/use-category-image.ts"
+const deleteImagesMutation = useMutation({
+  mutationFn: async (ids: string[]) => {
+    const response = await sdk.client.fetch(
+      `/admin/categories/${categoryId}/images/batch`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          ids,
+        },
+      }
+    )
+    return response
+  },
+  onSuccess: (_data, deletedIds) => {
+    queryClient.invalidateQueries({ queryKey: ["category-images", categoryId] })
+    onDeleteSuccess?.(deletedIds)
+  },
+})
+```
+
+Finally, add `deleteImagesMutation` to the returned object of the `useCategoryImageMutations` hook:
+
+```ts title="src/admin/hooks/use-category-image.ts" highlights={[["3"]]}
+return {
+  // ...
+  deleteImagesMutation,
+}
+```
+
+### d. Update Category Image Gallery
+
+Next, you'll update the `CategoryImageGallery` component to hide images to be deleted.
+
+In `src/admin/components/category-media/category-image-gallery.tsx`, update the `CategoryImageGalleryProps` type to include a new prop:
+
+```tsx title="src/admin/components/category-media/category-image-gallery.tsx" highlights={[["3"]]}
+type CategoryImageGalleryProps = {
+  // ...
+  imagesToDelete: Set<string>
+}
+```
+
+You add the `imagesToDelete` prop, which is a set of IDs of the images to be deleted.
+
+Then, update the props in the `CategoryImageGallery` component:
+
+```tsx title="src/admin/components/category-media/category-image-gallery.tsx" highlights={[["3"]]}
+export const CategoryImageGallery = ({
+  // ...
+  imagesToDelete,
+}: CategoryImageGalleryProps) => {
+  // ...
+}
+```
+
+Finally, update the `visibleExistingImages` to filter out images that are marked for deletion:
+
+```tsx title="src/admin/components/category-media/category-image-gallery.tsx"
+const visibleExistingImages = existingImages.filter(
+  (image) => image.id && !imagesToDelete.has(image.id)
+)
+```
+
+### e. Update Category Media Modal
+
+Lastly, you'll update the `CategoryMediaModal` component to manage the images to be deleted and implement the delete functionality.
+
+In `src/admin/components/category-media/category-media-modal.tsx`, add a new state variable to manage the IDs of images to be deleted:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const [imagesToDelete, setImagesToDelete] = useState<Set<string>>(new Set())
+```
+
+Next, add to the destructured variables the `deleteImagesMutation` from the `useCategoryImageMutations` hook, and pass the `onDeleteSuccess` callback:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={[["3"], ["6"], ["7"], ["8"], ["9"], ["10"], ["11"]]}
+const {
+  // ...
+  deleteImagesMutation,
+} = useCategoryImageMutations({
+  // ...
+  onDeleteSuccess: (deletedIds) => {
+    setSelectedImageIds(new Set())
+    if (currentThumbnailId && deletedIds.includes(currentThumbnailId)) {
+      setCurrentThumbnailId(null)
+    }
+  },
+})
+```
+
+You update the `onDeleteSuccess` callback to clear the selected image IDs and reset the current thumbnail if it was deleted.
+
+Then, update the `isSaving` variable to include the `deleteImagesMutation`'s pending state:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const isSaving = 
+  createImagesMutation.isPending ||
+  updateImagesMutation.isPending ||
+  deleteImagesMutation.isPending
+```
+
+Next, update the `resetModalState` function to clear the images to be deleted:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={[["3"]]}
+const resetModalState = () => {
+  // ...
+  setImagesToDelete(new Set())
+}
+```
+
+After that, add a function that marks selected images for deletion:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const handleDelete = () => {
+  if (selectedImageIds.size === 0) {return}
+
+  const uploadedFileIds: string[] = []
+  const savedImageIds: string[] = []
+
+  selectedImageIds.forEach((id) => {
+    if (id.startsWith("uploaded:")) {
+      uploadedFileIds.push(id.replace("uploaded:", ""))
+    } else {
+      savedImageIds.push(id)
+    }
+  })
+
+  if (uploadedFileIds.length > 0) {
+    setUploadedFiles((prev) =>
+      prev.filter((file) => !uploadedFileIds.includes(file.id))
+    )
+    if (currentThumbnailId?.startsWith("uploaded:")) {
+      const thumbnailFileId = currentThumbnailId.replace("uploaded:", "")
+      if (uploadedFileIds.includes(thumbnailFileId)) {
+        setCurrentThumbnailId(null)
+      }
+    }
+  }
+
+  if (savedImageIds.length > 0) {
+    setImagesToDelete((prev) => {
+      const newSet = new Set(prev)
+      savedImageIds.forEach((id) => newSet.add(id))
+      return newSet
+    })
+    if (currentThumbnailId && savedImageIds.includes(currentThumbnailId)) {
+      setCurrentThumbnailId(null)
+    }
+  }
+
+  setSelectedImageIds(new Set())
+}
+```
+
+In the `handleDelete` function, you:
+
+- Check if any images are selected; if none, return early.
+- Separate the selected IDs into `uploadedFileIds` (newly uploaded files) and `savedImageIds` (existing category images).
+- For uploaded files, remove them from the `uploadedFiles` state. If the current thumbnail is among the deleted uploaded files, reset the thumbnail state.
+- For saved images, add their IDs to the `imagesToDelete` state. If the current thumbnail is among the deleted saved images, reset the thumbnail state.
+- Finally, clear the selected image IDs.
+
+Next, update the `handleSave` function to include the delete operation:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+const handleSave = async () => {
+  const hasNewImages = uploadedFiles.length > 0
+  const hasImagesToDelete = imagesToDelete.size > 0
+  
+  const initialThumbnail = existingImages.find((img) => img.type === "thumbnail")
+  const thumbnailChanged = 
+    currentThumbnailId && 
+    !currentThumbnailId.startsWith("uploaded:") &&
+    currentThumbnailId !== initialThumbnail?.id
+
+  if (!hasNewImages && !hasImagesToDelete && !thumbnailChanged) {
+    setOpen(false)
+    return
+  }
+
+  try {
+    const operations: Array<Promise<unknown>> = []
+    if (hasNewImages) {
+      const imagesToCreate = uploadedFiles.map((file) => ({
+        url: file.url,
+        file_id: file.id,
+        type: file.type || (currentThumbnailId === `uploaded:${file.id}` ? 
+          "thumbnail" : "image"
+        ),
+      }))
+      operations.push(createImagesMutation.mutateAsync(imagesToCreate))
+    }
+
+    // Update thumbnail if changed and it's not an uploaded file
+    if (thumbnailChanged && !(hasNewImages && currentThumbnailId?.startsWith("uploaded:"))) {
+      const updates = [
+        {
+          id: currentThumbnailId,
+          type: "thumbnail" as const,
+        },
+      ]
+      operations.push(updateImagesMutation.mutateAsync(updates))
+    }
+
+    if (hasImagesToDelete) {
+      const idsToDelete = Array.from(imagesToDelete)
+      operations.push(deleteImagesMutation.mutateAsync(idsToDelete))
+    }
+
+    await Promise.all(operations)
+
+    queryClient.invalidateQueries({ queryKey: ["category-images", categoryId] })
+    setOpen(false)
+    resetModalState()
+    toast.success("Category media saved successfully")
+  } catch (error) {
+    toast.error("Failed to save changes")
+  }
+}
+```
+
+You update the `handleSave` function to:
+
+- Check if there are images to delete.
+- If images need deletion, add a delete operation to the `operations` array using `deleteImagesMutation`.
+
+Finally, in the `return` statement, replace the `/* TODO add delete command */` comment with the following:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx"
+return (
+  <CommandBar open={selectedImageIds.size > 0}>
+    {/* ... */}
+    <CommandBar.Seperator />
+    <CommandBar.Command
+      action={handleDelete}
+      label="Delete"
+      shortcut="d"
+    />
+  </CommandBar>
+)
+```
+
+You add a command to "Delete" the selected images. You can also press the "d" key as a shortcut.
+
+Then, update the `CategoryImageGallery` component to pass the new prop:
+
+```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={[["3"]]}
+<CategoryImageGallery
+  // ...
+  imagesToDelete={imagesToDelete}
+/>
+```
+
+You pass the `imagesToDelete` state to hide images that are marked for deletion.
+
+### Test Delete Functionality
+
+You can now test the delete functionality in the Medusa Admin dashboard.
+
+Start the Medusa server if it's not already running, and go to a category's details page:
+
+1. Click the "Edit" button in the Media section to open the modal.
+2. Hover over an image and click the checkbox to select it.
+3. You'll see a command bar at the bottom, where you can click "Delete" to mark the selected images for deletion. You can also press the "d" key as a shortcut.
+4. Click the "Save" button to save the changes.
+
+![Media widget showing command bar with delete action](https://res.cloudinary.com/dza7lstvk/image/upload/v1760516694/Medusa%20Resources/CleanShot_2025-10-15_at_11.23.42_2x_k1folo.png)
+
+You'll see the selected images are removed from the Media section of the category details page.
+
+![Media widget showing updated images after deletion](https://res.cloudinary.com/dza7lstvk/image/upload/v1760516693/Medusa%20Resources/CleanShot_2025-10-15_at_11.24.30_2x_rmgtqn.png)
+
+---
+
+## Step 8: Show Category Images in Storefront
+
+In the last step, you'll update the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx) to:
+
+- Add a megamenu that displays categories with their thumbnails.
+- Display a banner image on category pages.
+
+<Note title="Reminder" forceMultiline>
+
+The Next.js Starter Storefront was installed in a separate directory from Medusa. The directory's name is `{your-project}-storefront`.
+
+So, if your Medusa application's directory is `medusa-category-images`, you can find the storefront by going back to the parent directory and changing to the `medusa-category-images-storefront` directory:
+
+```bash
+cd ../medusa-category-images-storefront # change based on your project name
+```
+
+</Note>
+
+### a. Add Read-Only Link
+
+Before customizing the storefront, you need a way to retrieve a category's images from the Medusa backend.
+
+You can do this by creating a [read-only link](!docs!/learn/fundamentals/module-links/read-only). A read-only link allows you to retrieve data related to a model from another module without compromising [module isolation](!docs!/learn/fundamentals/modules/isolation).
+
+You'll create an inverse read-only link from the `ProductCategory` model in the `Product` module to the `ProductCategoryImage` model in the `ProductMedia` module.
+
+To create the link, create the file `src/links/product-category-image.ts` with the following content:
+
+```ts title="src/links/product-category-image.ts" badgeLabel="Medusa Application" badgeColor="green"
+import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "@medusajs/medusa/product"
+import ProductMediaModule from "../modules/product-media"
+
+export default defineLink(
+  {
+    linkable: ProductModule.linkable.productCategory,
+    field: "id",
+    isList: true,
+  },
+  {
+    ...ProductMediaModule.linkable.productCategoryImage.id,
+    primaryKey: "category_id",
+  },
+  {
+    readOnly: true,
+  }
+)
+```
+
+You define a link using the `defineLink` function. It accepts three parameters:
+
+1. An object indicating the first data model in the link. It has the following properties:
+   - `linkable`: A module has a special `linkable` property containing link configurations for its data models. You pass the linkable configurations of the `ProductCategory` model.
+   - `field`: The field in the `ProductCategory` model used to link to the `ProductCategoryImage` model. In this case, it's the `id` field.
+   - `isList`: A boolean indicating whether the data model links to multiple records in the other data model. Since a category can have multiple images, you set it to `true`.
+2. An object indicating the second data model in the link. It has the following properties:
+   - You spread the linkable configurations of the `ProductCategoryImage` model.
+   - `primaryKey`: The field in the `ProductCategoryImage` model that links back to the `ProductCategory` model. In this case, it's the `category_id` field.
+3. An options object. You set the `readOnly` property to `true` to indicate this is a read-only link.
+
+You'll learn how this link allows you to retrieve category images in the next section.
+
+### b. Retrieve Category Images
+
+You'll now begin customizing the storefront.
+
+First, update the functions that retrieve categories to include their images.
+
+In `src/lib/data/categories.ts`, update the `fields` query parameter in the `listCategories` and `getCategoryByHandle` functions to include the new link you created:
+
+```ts title="src/lib/data/categories.ts" badgeLabel="Storefront" badgeColor="blue" highlights={[["9"], ["26"]]}
+export const listCategories = async (query?: Record<string, any>) => {
+  // ...
+  return sdk.client
+    .fetch<{ product_categories: HttpTypes.StoreProductCategory[] }>(
+      "/store/product-categories",
+      {
+        query: {
+          fields:
+            "*category_children, *products, *parent_category, *parent_category.parent_category, *product_category_image",
+          // ...
+        },
+        // ...
+      }
+    )
+    // ...
+}
+
+export const getCategoryByHandle = async (categoryHandle: string[]) => {
+  // ...
+
+  return sdk.client
+    .fetch<HttpTypes.StoreProductCategoryListResponse>(
+      `/store/product-categories`,
+      {
+        query: {
+          fields: "*category_children, *products, *product_category_image",
+          // ...
+        },
+        // ...
+      }
+    )
+    // ...
+}
+```
+
+You add `*product_category_image` to the `fields` query parameter in both functions. The asterisk (`*`) indicates that you want to include all fields in the product category image record.
+
+### c. Add Category Image Type
+
+Next, you'll add a TypeScript type for a category image.
+
+In `src/types/global.ts`, add the following type:
+
+```ts title="src/types/global.ts" badgeLabel="Storefront" badgeColor="blue"
+export type CategoryImage = {
+  id?: string
+  url: string
+  type: "thumbnail" | "image"
+  category_id?: string
+}
+```
+
+You define a `CategoryImage` type that represents a category image.
+
+### d. Add Megamenu
+
+Next, you'll add a megamenu that shows categories with their thumbnail. You'll then change the navigation bar to show the megamenu.
+
+#### Create Megamenu Component
+
+To create the megamenu component, create the file `src/modules/layout/components/megamenu/index.tsx` with the following content:
+
+```tsx title="src/modules/layout/components/megamenu/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+import { HttpTypes } from "@medusajs/types"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { CategoryImage } from "../../../../types/global"
+import Thumbnail from "../../../products/components/thumbnail"
+
+type CategoryWithImages = HttpTypes.StoreProductCategory & {
+  product_category_image?: CategoryImage[]
+}
+
+const Megamenu = ({
+  categories,
+}: {
+  categories: CategoryWithImages[]
+}) => {
+  // Filter to only show parent categories (no parent_category_id)
+  const parentCategories = categories.filter(
+    (category) => !category.parent_category_id
+  )
+
+  return (
+    <div className="h-full w-full hidden small:flex items-center justify-center">
+      <div className="w-fit group/megamenu h-full">
+        <LocalizedClientLink
+          data-testid="nav-categories-button"
+          className="relative h-full flex items-center focus:outline-none hover:text-ui-fg-base"
+          href="/store"
+        >
+          Shop
+        </LocalizedClientLink>
+
+        {/* Megamenu dropdown */}
+        <div className="absolute left-0 right-0 top-full z-30 opacity-0 invisible translate-y-1 group-hover/megamenu:opacity-100 group-hover/megamenu:visible group-hover/megamenu:translate-y-0 transition-all duration-150 ease-out w-full">
+          <div className="bg-white border-b border-ui-border-base shadow-sm">
+            <div className="content-container">
+              <div
+                data-testid="nav-categories-popup"
+                className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-8 gap-y-6 py-8"
+              >
+                {parentCategories.map((category) => {
+                  const thumbnail = category.product_category_image?.find(
+                    (img) => img.type === "thumbnail"
+                  )
+
+                  return (
+                    <LocalizedClientLink
+                      key={category.id}
+                      href={`/categories/${category.handle}`}
+                      className="group/megamenu-item flex flex-col gap-2 focus:outline-none"
+                      data-testid={`category-${category.handle}`}
+                    >
+                      <Thumbnail
+                        thumbnail={thumbnail?.url}
+                        size="square"
+                        className="!shadow-none"
+                      />
+                      <div className="text-center">
+                        <h3 className="text-xs text-ui-fg-base group-hover/megamenu-item:text-ui-fg-subtle transition-colors">
+                          {category.name}
+                        </h3>
+                      </div>
+                    </LocalizedClientLink>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Megamenu
+```
+
+The `Megamenu` component accepts an array of categories with their images.
+
+It filters the categories to show only parent categories (those without a `parent_category_id`).
+
+Then, it renders a megamenu that displays each parent category with its thumbnail image and name. Each category links to its category page.
+
+#### Update Navigation Bar
+
+Next, you'll update the navigation bar to show the megamenu.
+
+In `src/modules/layout/templates/nav/index.tsx`, update the file content to the following:
+
+```tsx title="src/modules/layout/templates/nav/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+import { Suspense } from "react"
+import { listCategories } from "@lib/data/categories"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import CartButton from "@modules/layout/components/cart-button"
+import Megamenu from "@modules/layout/components/megamenu"
+
+export default async function Nav() {
+  const categories = await listCategories({
+    limit: 5,
+  })
+
+  return (
+    <div className="sticky top-0 inset-x-0 z-50 group">
+      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
+        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center w-full h-full text-small-regular">
+          {/* Left: Logo */}
+          <div className="flex items-center gap-x-6 h-full">
+            <LocalizedClientLink
+              href="/"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
+              data-testid="nav-store-link"
+            >
+              Medusa Store
+            </LocalizedClientLink>
+          </div>
+
+          {/* Center: Megamenu */}
+          <div className="flex-1 flex justify-center h-full">
+            <Megamenu categories={categories} />
+          </div>
+
+          {/* Right: Account and Cart */}
+          <div className="flex items-center gap-x-6 h-full">
+            <div className="hidden small:flex items-center gap-x-6 h-full">
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
+                href="/account"
+                data-testid="nav-account-link"
+              >
+                Account
+              </LocalizedClientLink>
+            </div>
+            <Suspense
+              fallback={
+                <LocalizedClientLink
+                  className="hover:text-ui-fg-base flex gap-2"
+                  href="/cart"
+                  data-testid="nav-cart-link"
+                >
+                  Cart (0)
+                </LocalizedClientLink>
+              }
+            >
+              <CartButton />
+            </Suspense>
+          </div>
+        </nav>
+      </header>
+    </div>
+  )
+}
+```
+
+You make the following key changes:
+
+1. Retrieve the categories using the `listCategories` function, limiting it to 5 categories.
+2. Move the logo to the left side of the navigation bar and remove the previous Menu item.
+3. Add the `Megamenu` component in the center of the navigation bar, passing the retrieved categories as a prop.
+
+#### Test Megamenu
+
+To test out the megamenu, start the Medusa application with the following command:
+
+```bash npm2yarn badgeLabel="Medusa Application" badgeColor="green"
+npm run dev
+```
+
+Then, run the following command in the Next.js Starter Storefront directory to start the storefront:
+
+```bash npm2yarn badgeLabel="Storefront" badgeColor="blue"
+npm run dev
+```
+
+Open the storefront at `http://localhost:8000` in your browser. You'll see the "Shop" item in the navigation bar.
+
+Hover over the "Shop" item to see the megamenu with categories and their thumbnails.
+
+![Storefront showing megamenu with categories and their thumbnails](https://res.cloudinary.com/dza7lstvk/image/upload/v1760518332/Medusa%20Resources/CleanShot_2025-10-15_at_11.51.56_2x_mifvqx.png)
+
+### e. Show Banner Image on Category Page
+
+Next, you'll show a banner image on a category's page.
+
+#### Create Banner Component
+
+To create the banner component, create the file `src/modules/categories/components/category-banner/index.tsx` with the following content:
+
+```tsx title="src/modules/categories/components/category-banner/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+import Image from "next/image"
+import { CategoryImage } from ".././../../../types/global"
+
+type CategoryBannerProps = {
+  images?: CategoryImage[]
+  categoryName: string
+}
+
+export default function CategoryBanner({
+  images,
+  categoryName,
+}: CategoryBannerProps) {
+  // Get the first image that is not a thumbnail
+  const bannerImage = images?.find((img) => img.type === "image")
+
+  if (!bannerImage) {
+    return null
+  }
+
+  return (
+    <div className="relative w-full h-64 md:h-80 lg:h-96 mb-8 overflow-hidden">
+      <Image
+        src={bannerImage.url}
+        alt={categoryName}
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
+      />
+    </div>
+  )
+}
+```
+
+The `CategoryBanner` component accepts an array of category images and the category name as props.
+
+It retrieves the first non-thumbnail image and displays it as a banner. If no such image exists, it returns `null`.
+
+#### Update Category Page
+
+Next, you'll update the category page to include the banner component.
+
+Replace the content of `src/modules/categories/templates/index.tsx` with the following:
+
+```tsx title="src/modules/categories/templates/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+import { notFound } from "next/navigation"
+import { Suspense } from "react"
+
+import InteractiveLink from "@modules/common/components/interactive-link"
+import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
+import RefinementList from "@modules/store/components/refinement-list"
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import PaginatedProducts from "@modules/store/templates/paginated-products"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import CategoryBanner from "@modules/categories/components/category-banner"
+import { HttpTypes } from "@medusajs/types"
+import { CategoryImage } from ".././../../types/global"
+
+type CategoryWithImages = HttpTypes.StoreProductCategory & {
+  product_category_image?: CategoryImage[]
+}
+
+export default function CategoryTemplate({
+  category,
+  sortBy,
+  page,
+  countryCode,
+}: {
+  category: CategoryWithImages
+  sortBy?: SortOptions
+  page?: string
+  countryCode: string
+}) {
+  const pageNumber = page ? parseInt(page) : 1
+  const sort = sortBy || "created_at"
+
+  if (!category || !countryCode) {notFound()}
+
+  const parents = [] as HttpTypes.StoreProductCategory[]
+
+  const getParents = (category: HttpTypes.StoreProductCategory) => {
+    if (category.parent_category) {
+      parents.push(category.parent_category)
+      getParents(category.parent_category)
+    }
+  }
+
+  getParents(category)
+
+  return (
+    <>
+      {/* Full-width banner outside content-container */}
+      <CategoryBanner
+        images={category.product_category_image}
+        categoryName={category.name}
+      />
+
+      <div
+        className="flex flex-col small:flex-row small:items-start pb-6 content-container"
+        data-testid="category-container"
+      >
+        <RefinementList sortBy={sort} data-testid="sort-by-container" />
+        <div className="w-full">
+          <div className="flex flex-row mb-8 text-2xl-semi gap-4">
+            {parents &&
+              parents.map((parent) => (
+                <span key={parent.id} className="text-ui-fg-subtle">
+                  <LocalizedClientLink
+                    className="mr-4 hover:text-black"
+                    href={`/categories/${parent.handle}`}
+                    data-testid="sort-by-link"
+                  >
+                    {parent.name}
+                  </LocalizedClientLink>
+                  /
+                </span>
+              ))}
+            <h1 data-testid="category-page-title">{category.name}</h1>
+          </div>
+          {category.description && (
+            <div className="mb-8 text-base-regular">
+              <p>{category.description}</p>
+            </div>
+          )}
+          {category.category_children && (
+            <div className="mb-8 text-base-large">
+              <ul className="grid grid-cols-1 gap-2">
+                {category.category_children?.map((c) => (
+                  <li key={c.id}>
+                    <InteractiveLink href={`/categories/${c.handle}`}>
+                      {c.name}
+                    </InteractiveLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <Suspense
+            fallback={
+              <SkeletonProductGrid
+                numberOfProducts={category.products?.length ?? 8}
+              />
+            }
+          >
+            <PaginatedProducts
+              sortBy={sort}
+              page={pageNumber}
+              categoryId={category.id}
+              countryCode={countryCode}
+            />
+          </Suspense>
+        </div>
+      </div>
+    </>
+  )
+}
+```
+
+You make the following key changes:
+
+- Update the type of the `category` prop to include category images.
+- Display the `CategoryBanner` component at the top of the page, passing the category images and name as props.
+
+#### Test Category Banner
+
+To test out the category banner, ensure both the Medusa application and the Next.js Starter Storefront are running.
+
+Then, open the storefront at `http://localhost:8000` in your browser. You can navigate to a category page by clicking on a category in the megamenu.
+
+You'll see the banner image at the top of the category page. If you don't see a banner image, ensure that the category has an image of type "image" (not "thumbnail") in the Medusa Admin dashboard.
+
+![Storefront showing category page with banner image](https://res.cloudinary.com/dza7lstvk/image/upload/v1760518495/Medusa%20Resources/CleanShot_2025-10-15_at_11.54.44_2x_muadjw.png)
+
+---
+
+## Next Steps
+
+You've now added support for category images in Medusa. You can expand on this by:
+
+- Adding images to other models, such as collections.
+- Adding support for reordering category images.
+- Allowing setting multiple thumbnails for different use cases (for example, mobile vs. desktop).
+- Adding alt text for category images for better accessibility and SEO.
+
+### Learn More About Medusa
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn) for a more in-depth understanding of the concepts you've used in this guide and more.
+
+To learn more about the commerce features Medusa provides, check out [Commerce Modules](../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during your development, check out the [troubleshooting guides](../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in the troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.

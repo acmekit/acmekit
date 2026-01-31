@@ -1,0 +1,2222 @@
+{
+	"id": 6566,
+	"name": "inventory-next-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 6567,
+			"name": "InventoryItem",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "inventory-item.ts",
+					"line": 5,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L5"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 6568,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 6569,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the inventory item."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6570,
+											"name": "sku",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The SKU of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6571,
+											"name": "origin_country",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The origin country of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6572,
+											"name": "hs_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The HS code of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6573,
+											"name": "mid_code",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The MID code of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6574,
+											"name": "material",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The material of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6575,
+											"name": "weight",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The weight of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6576,
+											"name": "length",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The length of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6577,
+											"name": "height",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The height of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6578,
+											"name": "width",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The width of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+													"qualifiedName": "NumberProperty"
+												},
+												"name": "NumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6579,
+											"name": "requires_shipping",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the inventory item requires shipping."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 17,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L17"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6580,
+											"name": "description",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The description of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 18,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L18"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6581,
+											"name": "title",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The title of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 19,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L19"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6582,
+											"name": "thumbnail",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The thumbnail URL of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 20,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L20"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6583,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 21,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L21"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6584,
+											"name": "location_levels",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated location levels."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 22,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L22"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 6617,
+														"name": "InventoryLevel"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6598,
+											"name": "reservation_items",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated reservation items."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 25,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L25"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/has-many.ts",
+													"qualifiedName": "HasMany"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 6653,
+														"name": "ReservationItem"
+													}
+												],
+												"name": "HasMany",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6615,
+											"name": "reserved_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The reserved quantity of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 28,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L28"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/computed.ts",
+													"qualifiedName": "ComputedProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "union",
+														"types": [
+															{
+																"type": "literal",
+																"value": null
+															},
+															{
+																"type": "intrinsic",
+																"name": "number"
+															}
+														]
+													},
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+															"qualifiedName": "NumberProperty"
+														},
+														"name": "NumberProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "ComputedProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6616,
+											"name": "stocked_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The stocked quantity of the inventory item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-item.ts",
+													"line": 29,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L29"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/computed.ts",
+													"qualifiedName": "ComputedProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "union",
+														"types": [
+															{
+																"type": "literal",
+																"value": null
+															},
+															{
+																"type": "intrinsic",
+																"name": "number"
+															}
+														]
+													},
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/number.ts",
+															"qualifiedName": "NumberProperty"
+														},
+														"name": "NumberProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "ComputedProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												6569,
+												6570,
+												6571,
+												6572,
+												6573,
+												6574,
+												6575,
+												6576,
+												6577,
+												6578,
+												6579,
+												6580,
+												6581,
+												6582,
+												6583,
+												6584,
+												6598,
+												6615,
+												6616
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "inventory-item.ts",
+											"line": 6,
+											"character": 27,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-item.ts#L6"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "InventoryItem"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 6617,
+			"name": "InventoryLevel",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "inventory-level.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 6618,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 6619,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the inventory level."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-level.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6620,
+											"name": "location_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the inventory level's location. When used with the [Stock Location Module](https://docs.acmekit.com/resources/commerce-modules/stock-location), the ID will be a `StockLocation`'s ID."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-level.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6621,
+											"name": "stocked_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The stocked quantity of the inventory level"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-level.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6622,
+											"name": "reserved_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The reserved quantity of the inventory level"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-level.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6623,
+											"name": "incoming_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The incoming quantity of the inventory level"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-level.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6624,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-level.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6625,
+											"name": "inventory_item",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated inventory item."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-level.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 6567,
+														"name": "InventoryItem"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6652,
+											"name": "available_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The available quantity of the inventory level"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "inventory-level.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/computed.ts",
+													"qualifiedName": "ComputedProperty"
+												},
+												"typeArguments": [
+													{
+														"type": "union",
+														"types": [
+															{
+																"type": "literal",
+																"value": null
+															},
+															{
+																"type": "intrinsic",
+																"name": "number"
+															}
+														]
+													},
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+															"qualifiedName": "BigNumberProperty"
+														},
+														"name": "BigNumberProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "ComputedProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												6619,
+												6620,
+												6621,
+												6622,
+												6623,
+												6624,
+												6625,
+												6652
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "inventory-level.ts",
+											"line": 5,
+											"character": 28,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/inventory-level.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "InventoryLevel"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 6653,
+			"name": "ReservationItem",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "reservation-item.ts",
+					"line": 4,
+					"character": 6,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L4"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 6654,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 6655,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the reservation item."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 6,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@acmekit/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6656,
+											"name": "line_item_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the reservation item's line item."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 7,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6657,
+											"name": "allow_backorder",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the underlying item can still be ordered despite the reserved quantity."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 8,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6658,
+											"name": "location_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the location that the quantity is reserved from. When used with the [Stock Location Module](https://docs.acmekit.com/resources/commerce-modules/stock-location), the ID will be a `StockLocation`'s ID."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 9,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L9"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6659,
+											"name": "quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The reserved quantity."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 10,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L10"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/big-number.ts",
+													"qualifiedName": "BigNumberProperty"
+												},
+												"name": "BigNumberProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6660,
+											"name": "raw_quantity",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The raw reserved quantity."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 11,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L11"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6661,
+											"name": "external_id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The external ID of the reservation item. Can store an ID from a third-party system."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 12,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L12"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6662,
+											"name": "description",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The description of the reservation item"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 13,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L13"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6663,
+											"name": "created_by",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the user that created the reservation item."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 14,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6664,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 15,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 6665,
+											"name": "inventory_item",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The associated inventory item."
+													}
+												],
+												"modifierTags": [
+													"@expandable"
+												]
+											},
+											"sources": [
+												{
+													"fileName": "reservation-item.ts",
+													"line": 16,
+													"character": 4,
+													"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L16"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/relations/belongs-to.ts",
+													"qualifiedName": "BelongsTo"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": 6567,
+														"name": "InventoryItem"
+													}
+												],
+												"name": "BelongsTo",
+												"package": "@acmekit/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												6655,
+												6656,
+												6657,
+												6658,
+												6659,
+												6660,
+												6661,
+												6662,
+												6663,
+												6664,
+												6665
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "reservation-item.ts",
+											"line": 5,
+											"character": 29,
+											"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/modules/inventory/src/models/reservation-item.ts#L5"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@acmekit/utils"
+					},
+					{
+						"type": "literal",
+						"value": "ReservationItem"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@acmekit/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				6567,
+				6617,
+				6653
+			]
+		}
+	],
+	"packageName": "@acmekit/inventory",
+	"symbolIdMap": {
+		"6566": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"6567": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "InventoryItem"
+		},
+		"6568": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object"
+		},
+		"6569": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.id"
+		},
+		"6570": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.sku"
+		},
+		"6571": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.origin_country"
+		},
+		"6572": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.hs_code"
+		},
+		"6573": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.mid_code"
+		},
+		"6574": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.material"
+		},
+		"6575": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.weight"
+		},
+		"6576": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.length"
+		},
+		"6577": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.height"
+		},
+		"6578": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.width"
+		},
+		"6579": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.requires_shipping"
+		},
+		"6580": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.description"
+		},
+		"6581": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.title"
+		},
+		"6582": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.thumbnail"
+		},
+		"6583": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"6584": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.location_levels"
+		},
+		"6585": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6586": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6587": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object"
+		},
+		"6588": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.id"
+		},
+		"6589": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.location_id"
+		},
+		"6590": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.stocked_quantity"
+		},
+		"6591": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.reserved_quantity"
+		},
+		"6592": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.incoming_quantity"
+		},
+		"6593": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"6594": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.inventory_item"
+		},
+		"6595": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__function"
+		},
+		"6596": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__function"
+		},
+		"6597": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.available_quantity"
+		},
+		"6598": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.reservation_items"
+		},
+		"6599": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6600": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6601": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object"
+		},
+		"6602": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.id"
+		},
+		"6603": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.line_item_id"
+		},
+		"6604": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.allow_backorder"
+		},
+		"6605": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.location_id"
+		},
+		"6606": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.quantity"
+		},
+		"6607": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.raw_quantity"
+		},
+		"6608": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.external_id"
+		},
+		"6609": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.description"
+		},
+		"6610": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"6611": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"6612": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.inventory_item"
+		},
+		"6613": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6614": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6615": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.reserved_quantity"
+		},
+		"6616": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.stocked_quantity"
+		},
+		"6617": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "InventoryLevel"
+		},
+		"6618": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object"
+		},
+		"6619": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.id"
+		},
+		"6620": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.location_id"
+		},
+		"6621": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.stocked_quantity"
+		},
+		"6622": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.reserved_quantity"
+		},
+		"6623": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.incoming_quantity"
+		},
+		"6624": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"6625": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.inventory_item"
+		},
+		"6626": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__function"
+		},
+		"6627": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__function"
+		},
+		"6628": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object"
+		},
+		"6629": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.id"
+		},
+		"6630": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.sku"
+		},
+		"6631": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.origin_country"
+		},
+		"6632": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.hs_code"
+		},
+		"6633": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.mid_code"
+		},
+		"6634": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.material"
+		},
+		"6635": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.weight"
+		},
+		"6636": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.length"
+		},
+		"6637": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.height"
+		},
+		"6638": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.width"
+		},
+		"6639": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.requires_shipping"
+		},
+		"6640": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.description"
+		},
+		"6641": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.title"
+		},
+		"6642": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.thumbnail"
+		},
+		"6643": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"6644": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.location_levels"
+		},
+		"6645": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6646": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6647": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.reservation_items"
+		},
+		"6648": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6649": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6650": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.reserved_quantity"
+		},
+		"6651": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.stocked_quantity"
+		},
+		"6652": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-level.ts",
+			"qualifiedName": "__object.available_quantity"
+		},
+		"6653": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "ReservationItem"
+		},
+		"6654": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object"
+		},
+		"6655": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.id"
+		},
+		"6656": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.line_item_id"
+		},
+		"6657": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.allow_backorder"
+		},
+		"6658": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.location_id"
+		},
+		"6659": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.quantity"
+		},
+		"6660": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.raw_quantity"
+		},
+		"6661": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.external_id"
+		},
+		"6662": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.description"
+		},
+		"6663": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.created_by"
+		},
+		"6664": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"6665": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__object.inventory_item"
+		},
+		"6666": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6667": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/reservation-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6668": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object"
+		},
+		"6669": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.id"
+		},
+		"6670": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.sku"
+		},
+		"6671": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.origin_country"
+		},
+		"6672": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.hs_code"
+		},
+		"6673": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.mid_code"
+		},
+		"6674": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.material"
+		},
+		"6675": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.weight"
+		},
+		"6676": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.length"
+		},
+		"6677": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.height"
+		},
+		"6678": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.width"
+		},
+		"6679": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.requires_shipping"
+		},
+		"6680": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.description"
+		},
+		"6681": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.title"
+		},
+		"6682": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.thumbnail"
+		},
+		"6683": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.metadata"
+		},
+		"6684": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.location_levels"
+		},
+		"6685": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6686": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6687": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.reservation_items"
+		},
+		"6688": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6689": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__function"
+		},
+		"6690": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.reserved_quantity"
+		},
+		"6691": {
+			"sourceFileName": "../../../../packages/modules/inventory/src/models/inventory-item.ts",
+			"qualifiedName": "__object.stocked_quantity"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/inventory/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 6566
+		}
+	}
+}

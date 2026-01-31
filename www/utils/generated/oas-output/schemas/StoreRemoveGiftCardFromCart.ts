@@ -1,0 +1,15 @@
+/**
+ * @schema StoreRemoveGiftCardFromCart
+ * type: object
+ * description: The details to remove a gift card from the cart.
+ * x-schemaName: StoreRemoveGiftCardFromCart
+ * required:
+ *   - code
+ * properties:
+ *   code:
+ *     type: string
+ *     title: code
+ *     description: The gift card code to remove from the cart.
+ * 
+*/
+

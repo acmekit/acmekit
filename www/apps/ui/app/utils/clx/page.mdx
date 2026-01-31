@@ -1,0 +1,92 @@
+export const metadata = {
+  title: `clx`,
+}
+
+# {metadata.title}
+
+`clx` is a utility function that adds class names to your components, with support for conditional classes and merging Tailwind CSS classes.
+
+In this guide, you'll learn how to use the `clx` utility function.
+
+## Usage
+
+
+The `clx` function is built using [clsx](https://www.npmjs.com/package/clsx) and [tw-merge](https://www.npmjs.com/package/tw-merge). It is intended to be used with [Tailwind CSS](https://tailwindcss.com/) to efficiently add classes to your components.
+
+
+`clx` is useful for:
+
+- Conditionally apply classes based on props or state. For example, you can apply the `hidden` class if a component's `open` state variable is `false`.
+- Merge multiple strings into a single class name string. For example, you can apply class names to the component, and allow passing additional class names as props.
+- Override conflicting Tailwind CSS classes. For example, if you specify a `p-2` class name on your component, and you pass a `p-4` class name as a prop, the `p-4` class will take precedence.
+    - The last class name specified will take precedence over any previous class names.
+
+For example:
+
+```tsx
+import { clx } from "@medusajs/ui"
+
+type BoxProps = {
+  className?: string
+  children: React.ReactNode
+  mt: "sm" | "md" | "lg"
+}
+
+const Box = ({ className, children, mt }: BoxProps) => {
+  return (
+    <div
+      className={clx(
+        "flex items-center justify-center",
+        {
+          "mt-4": mt === "sm",
+          "mt-8": mt === "md",
+          "mt-12": mt === "lg",
+        },
+        className
+      )}
+    >
+      {children}
+    </div>
+  )
+}
+```
+
+In the above example, you use `clx` to:
+
+- Apply a base style.
+- Apply a margin top that depends on the `mt` prop.
+- Add class names passed as a prop.
+
+`clx` ensures that Tailwind CSS classes are merged without style conflicts.
+
+---
+
+## API Reference
+
+### clx Parameters
+
+`clx` accepts any number of arguments, each of them can be of the following types:
+
+- `string`: A string of class names to apply.
+
+```tsx
+clx("flex items-center justify-between")
+```
+
+- `Record<string, boolean>`: An object whose keys are the class names to apply, and the values are booleans indicating whether to apply the class names.
+
+```tsx
+clx({
+  "flex items-center justify-between": isFlex,
+})
+```
+
+- `Array`: An array of strings or objects to apply.
+
+```tsx
+clx([
+  "flex items-center justify-between",
+  {
+    "hidden": isHidden,
+  },
+])

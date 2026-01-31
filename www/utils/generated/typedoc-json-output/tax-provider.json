@@ -1,0 +1,702 @@
+{
+	"id": 49325,
+	"name": "tax-provider",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 49326,
+			"name": "ShippingTaxCalculationLine",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "A shipping method and the tax rates configured to apply to the\nshipping method."
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "provider.ts",
+					"line": 14,
+					"character": 12,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L14"
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 49327,
+					"name": "__type",
+					"variant": "declaration",
+					"kind": 65536,
+					"flags": {},
+					"children": [
+						{
+							"id": 49328,
+							"name": "shipping_line",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The shipping method to calculate taxes for."
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "provider.ts",
+									"line": 18,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L18"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../../../packages/core/types/src/tax/common.ts",
+									"qualifiedName": "TaxableShippingDTO"
+								},
+								"name": "TaxableShippingDTO",
+								"package": "@acmekit/types"
+							}
+						},
+						{
+							"id": 49329,
+							"name": "rates",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The rates applicable on the shipping method."
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "provider.ts",
+									"line": 22,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L22"
+								}
+							],
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "../../../../packages/core/types/src/tax/common.ts",
+										"qualifiedName": "TaxRateDTO"
+									},
+									"name": "TaxRateDTO",
+									"package": "@acmekit/types"
+								}
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"children": [
+								49328,
+								49329
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "provider.ts",
+							"line": 14,
+							"character": 41,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L14"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 49330,
+			"name": "ItemTaxCalculationLine",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "A line item and the tax rates configured to apply to the\nproduct contained in the line item."
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "provider.ts",
+					"line": 29,
+					"character": 12,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L29"
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 49331,
+					"name": "__type",
+					"variant": "declaration",
+					"kind": 65536,
+					"flags": {},
+					"children": [
+						{
+							"id": 49332,
+							"name": "line_item",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The line item to calculate taxes for."
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "provider.ts",
+									"line": 33,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L33"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../../../packages/core/types/src/tax/common.ts",
+									"qualifiedName": "TaxableItemDTO"
+								},
+								"name": "TaxableItemDTO",
+								"package": "@acmekit/types"
+							}
+						},
+						{
+							"id": 49333,
+							"name": "rates",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The rates applicable on the item."
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "provider.ts",
+									"line": 37,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L37"
+								}
+							],
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "../../../../packages/core/types/src/tax/common.ts",
+										"qualifiedName": "TaxRateDTO"
+									},
+									"name": "TaxRateDTO",
+									"package": "@acmekit/types"
+								}
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"children": [
+								49332,
+								49333
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "provider.ts",
+							"line": 29,
+							"character": 37,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L29"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 49334,
+			"name": "ITaxProvider",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "### Identifier Property\n\nEach tax provider has a unique identifier defined in its class. The provider's ID\nwill be stored as "
+					},
+					{
+						"kind": "code",
+						"text": "`tp_{identifier}_{id}`"
+					},
+					{
+						"kind": "text",
+						"text": ", where "
+					},
+					{
+						"kind": "code",
+						"text": "`{id}`"
+					},
+					{
+						"kind": "text",
+						"text": " is the provider's "
+					},
+					{
+						"kind": "code",
+						"text": "`id`"
+					},
+					{
+						"kind": "text",
+						"text": "\nproperty in the "
+					},
+					{
+						"kind": "code",
+						"text": "`acmekit-config.ts`"
+					},
+					{
+						"kind": "text",
+						"text": ".\n\nFor example:\n\n"
+					},
+					{
+						"kind": "code",
+						"text": "```ts title=\"src/modules/my-tax/service.ts\"\nexport default class MyTaxProvider implements ITaxProvider {\n  static identifier = \"my-tax\"\n  // ...\n}\n```"
+					},
+					{
+						"kind": "text",
+						"text": "\n\n### constructor\n\nYou can use the "
+					},
+					{
+						"kind": "code",
+						"text": "`constructor`"
+					},
+					{
+						"kind": "text",
+						"text": " of your Tax Module Provider's service to access the resources registered in the [Module Container](https://docs.acmekit.com/resources/acmekit-container-resources#module-container-resources).\n\nYou can also use the constructor to initialize your integration with the third-party provider. For example, if you use a client to connect to the third-party provider’s APIs, you can initialize it in the constructor and use it in other methods in the service.\n\nAdditionally, if you’re creating your tax provider as a plugin or a module provider to be installed in any AcmeKit application and you want to access its options, you can access them in the second parameter of the constructor.\n\nFor example:\n\n"
+					},
+					{
+						"kind": "code",
+						"text": "```ts\nimport {\n  ITaxProvider,\n  Logger\n} from \"@acmekit/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nexport default class MyTaxProvider implements ITaxProvider {\n  static identifier = \"my-tax\"\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n}\n```"
+					},
+					{
+						"kind": "text",
+						"text": "\n\n---"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 49335,
+					"name": "getIdentifier",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "provider.ts",
+							"line": 119,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L119"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49336,
+							"name": "getIdentifier",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to retrieve the unique identifier of the tax provider."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The unique identifier of the tax provider."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\nexport default class MyTaxProvider implements ITaxProvider {\n  static identifier = \"my-tax\"\n  \n  getIdentifier(): string {\n    return MyTaxProvider.identifier\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "provider.ts",
+									"line": 119,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L119"
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					]
+				},
+				{
+					"id": 49337,
+					"name": "getTaxLines",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "provider.ts",
+							"line": 177,
+							"character": 2,
+							"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L177"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49338,
+							"name": "getTaxLines",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "This method is used to retrieve the tax lines of items and shipping methods. It's used during checkout \nwhen the "
+									},
+									{
+										"kind": "code",
+										"text": "`getTaxLines`"
+									},
+									{
+										"kind": "text",
+										"text": " method of the Tax Module's main service is called for a tax\nregion that uses this tax provider."
+									}
+								],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "The list of calculated line item and shipping tax lines.\nIf an item in the array has the "
+											},
+											{
+												"kind": "code",
+												"text": "`shipping_line_id`"
+											},
+											{
+												"kind": "text",
+												"text": " property, then it's a shipping tax line. Otherwise, if it has\nthe "
+											},
+											{
+												"kind": "code",
+												"text": "`line_item_id`"
+											},
+											{
+												"kind": "text",
+												"text": " property, then it's a line item tax line."
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "text",
+												"text": "An example of how this method is implemented in the "
+											},
+											{
+												"kind": "code",
+												"text": "`system`"
+											},
+											{
+												"kind": "text",
+												"text": " provider:\n\n"
+											},
+											{
+												"kind": "code",
+												"text": "```ts\n// ...\n\nexport default class SystemTaxService implements ITaxProvider {\n  // ...\n\n  async getTaxLines(\n    itemLines: TaxTypes.ItemTaxCalculationLine[],\n    shippingLines: TaxTypes.ShippingTaxCalculationLine[],\n    _: TaxTypes.TaxCalculationContext\n  ): Promise<(TaxTypes.ItemTaxLineDTO | TaxTypes.ShippingTaxLineDTO)[]> {\n    let taxLines: (TaxTypes.ItemTaxLineDTO | TaxTypes.ShippingTaxLineDTO)[] =\n      itemLines.flatMap((l) => {\n        return l.rates.map((r) => ({\n          rate_id: r.id, // this is optional. When integrating with a third-party, you don't need to provide it\n          rate: r.rate || 0, // For example, 10 for 10%\n          name: r.name,\n          code: r.code,\n          line_item_id: l.line_item.id,\n          provider_id: this.getIdentifier(),\n        }))\n      })\n\n    taxLines = taxLines.concat(\n      shippingLines.flatMap((l) => {\n        return l.rates.map((r) => ({\n          rate_id: r.id, // this is optional. When integrating with a third-party, you don't need to provide it\n          rate: r.rate || 0, // For example, 10 for 10%\n          name: r.name,\n          code: r.code,\n          shipping_line_id: l.shipping_line.id,\n          provider_id: this.getIdentifier(),\n        }))\n      })\n    )\n\n    return taxLines\n  }\n}\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "provider.ts",
+									"line": 177,
+									"character": 2,
+									"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L177"
+								}
+							],
+							"parameters": [
+								{
+									"id": 49339,
+									"name": "itemLines",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The line item lines to calculate taxes for."
+											}
+										]
+									},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": 49330,
+											"name": "ItemTaxCalculationLine",
+											"package": "@acmekit/types"
+										}
+									}
+								},
+								{
+									"id": 49340,
+									"name": "shippingLines",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The shipping method lines to calculate taxes for."
+											}
+										]
+									},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": 49326,
+											"name": "ShippingTaxCalculationLine",
+											"package": "@acmekit/types"
+										}
+									}
+								},
+								{
+									"id": 49341,
+									"name": "context",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The context relevant and useful for the taxes calculation."
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "../../../../packages/core/types/src/tax/common.ts",
+											"qualifiedName": "TaxCalculationContext"
+										},
+										"name": "TaxCalculationContext",
+										"package": "@acmekit/types"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "../../node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Promise"
+								},
+								"typeArguments": [
+									{
+										"type": "array",
+										"elementType": {
+											"type": "union",
+											"types": [
+												{
+													"type": "reference",
+													"target": {
+														"sourceFileName": "../../../../packages/core/types/src/tax/common.ts",
+														"qualifiedName": "ItemTaxLineDTO"
+													},
+													"name": "ItemTaxLineDTO",
+													"package": "@acmekit/types"
+												},
+												{
+													"type": "reference",
+													"target": {
+														"sourceFileName": "../../../../packages/core/types/src/tax/common.ts",
+														"qualifiedName": "ShippingTaxLineDTO"
+													},
+													"name": "ShippingTaxLineDTO",
+													"package": "@acmekit/types"
+												}
+											]
+										}
+									}
+								],
+								"name": "Promise",
+								"package": "typescript"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"children": [
+						49335,
+						49337
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "provider.ts",
+					"line": 104,
+					"character": 17,
+					"url": "https://github.com/acmekit/acmekit/blob/de08ea732b599374a071c016fa8af2e4f3e31075/packages/core/types/src/tax/provider.ts#L104"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Interfaces",
+			"children": [
+				49334
+			]
+		},
+		{
+			"title": "Type Aliases",
+			"children": [
+				49326,
+				49330
+			]
+		}
+	],
+	"packageName": "@acmekit/types",
+	"symbolIdMap": {
+		"49325": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": ""
+		},
+		"49326": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "ShippingTaxCalculationLine"
+		},
+		"49327": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "__type"
+		},
+		"49328": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "__type.shipping_line"
+		},
+		"49329": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "__type.rates"
+		},
+		"49330": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "ItemTaxCalculationLine"
+		},
+		"49331": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "__type"
+		},
+		"49332": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "__type.line_item"
+		},
+		"49333": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "__type.rates"
+		},
+		"49334": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "ITaxProvider"
+		},
+		"49335": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "ITaxProvider.getIdentifier"
+		},
+		"49336": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "ITaxProvider.getIdentifier"
+		},
+		"49337": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "ITaxProvider.getTaxLines"
+		},
+		"49338": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "ITaxProvider.getTaxLines"
+		},
+		"49339": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "itemLines"
+		},
+		"49340": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "shippingLines"
+		},
+		"49341": {
+			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",
+			"qualifiedName": "context"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/core/types/src/tax/provider.ts"
+		},
+		"reflections": {
+			"1": 49325
+		}
+	}
+}

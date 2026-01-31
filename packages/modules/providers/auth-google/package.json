@@ -1,0 +1,41 @@
+{
+  "name": "@acmekit/auth-google",
+  "version": "2.13.2",
+  "description": "Google OAuth authentication provider for AcmeKit",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/modules/providers/auth-google"
+  },
+  "files": [
+    "dist",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "AcmeKit",
+  "license": "MIT",
+  "scripts": {
+    "test": "../../../../node_modules/.bin/jest --passWithNoTests src",
+    "test:integration": "../../../../node_modules/.bin/jest --passWithNoTests --forceExit --testPathPattern=\"integration-tests/__tests__/.*\\.spec\\.ts\"",
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build",
+    "watch": "yarn run -T tsc --watch"
+  },
+  "devDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  },
+  "peerDependencies": {
+    "@acmekit/framework": "2.13.2"
+  },
+  "keywords": [
+    "acmekit-provider",
+    "acmekit-provider-auth-google"
+  ]
+}

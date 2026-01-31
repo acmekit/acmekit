@@ -1,0 +1,135 @@
+import { Table } from "docs-ui"
+
+export const metadata = {
+  title: `${pageNumber} Override API Routes`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn the approach recommended when you need to override an existing API route in Medusa.
+
+## Approaches to Consider Instead of Overriding API Routes
+
+While building customizations in your Medusa application, you may need to make changes to existing API routes for your business use case.
+
+Medusa provides the following approaches to customize API routes:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Approach
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Description
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        [Pass Additional Data](../additional-data/page.mdx)
+      </Table.Cell>
+      <Table.Cell>
+        Pass custom data to the API route with custom validation.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Perform Custom Logic within an Existing Flows](../../workflows/workflow-hooks/page.mdx)
+      </Table.Cell>
+      <Table.Cell>
+        API routes execute workflows to perform business logic, which may have hooks that allow you to perform custom logic.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Use Custom Middlewares](../middlewares/page.mdx)
+      </Table.Cell>
+      <Table.Cell>
+        Use custom middlewares to perform custom logic before the API route is executed. However, you cannot remove or replace middlewares applied to existing API routes.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Listen to Events in Subscribers](../../events-and-subscribers/page.mdx)
+      </Table.Cell>
+      <Table.Cell>
+        Functionalities in API routes may trigger events that you can handle in subscribers. This is useful if you're performing an action that isn't integral to the API route's core functionality or response.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+If the above approaches do not meet your needs, you can consider the approaches mentioned in the rest of this chapter.
+
+---
+
+## Replicate, Don't Override API Routes
+
+If the approaches mentioned in the [section above](#approaches-to-consider-before-overriding-api-routes) do not meet your needs, you can replicate an existing API route and modify it to suit your requirements.
+
+By replicating instead of overriding, the original API route remains intact, allowing you to easily revert to the original functionality if needed. You can also update your Medusa version without worrying about breaking changes in the original API route.
+
+---
+
+## How to Replicate an API Route?
+
+Medusa's API routes are generally slim and use logic contained in [workflows](../../workflows/page.mdx). So, creating a custom route based on the original route is straightforward.
+
+You can view the source code for Medusa's API routes in the [Medusa GitHub repository](https://github.com/medusajs/medusa/tree/develop/packages/medusa/src/api).
+
+For example, if you need to allow vendors to access the `POST /admin/products` API route, you can create an API route in your Medusa project at `src/api/vendor/products/route.ts` with the [same code as the original route](https://github.com/medusajs/medusa/blob/develop/packages/medusa/src/api/admin/products/route.ts#L88). Then, you can make changes to it or its middlewares.
+
+---
+
+## When to Replicate an API Route?
+
+Some examples of when you might want to replicate an API route include:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Use Case
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Description
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        Custom Validation
+      </Table.Cell>
+      <Table.Cell>
+        You want to change the validation logic for a specific API route, and the [Additional Data](../additional-data/page.mdx) isn't sufficient or applicable.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Change Authentication
+      </Table.Cell>
+      <Table.Cell>
+        You want to remove required authentication for a specific API route, or you want to allow custom [actor types](!resources!/commerce-modules/auth/auth-identity-and-actor-types) to access existing protected API routes.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Custom Response
+      </Table.Cell>
+      <Table.Cell>
+        You want to change the response format of an existing API route.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Override Middleware
+      </Table.Cell>
+      <Table.Cell>
+        You want to override the middleware applied on existing API routes. Because of [how middlewares are ordered and applied](../middlewares/page.mdx#how-are-middlewares-ordered-and-applied), you can't remove or replace middlewares applied to existing API routes.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>

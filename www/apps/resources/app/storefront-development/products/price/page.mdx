@@ -1,0 +1,171 @@
+---
+tags:
+  - product
+  - storefront
+  - pricing
+products:
+  - product
+  - pricing
+---
+
+import { CodeTabs, CodeTab, Table } from "docs-ui"
+
+export const metadata = {
+  title: `Retrieve Product Variant's Prices in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to retrieve product variants' prices in the storefront, including sale prices.
+
+<Note title="Tip">
+
+For code examples on how to show product variants' prices in your storefront, refer to the [Full Code Examples](#full-code-examples) section.
+
+</Note>
+
+## Pricing Query Parameters
+
+When you retrieve products either with the [List Products](!api!/store#products_getproducts) or [Retrieve Products](!api!/store#products_getproductsid) API routes, you must include in the beginning of the `fields` query parameter the value `*variants.calculated_price` to retrieve the product variants' prices.
+
+You also must pass at least one of the following query parameters to retrieve an accurate product variant price:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>Parameter</Table.HeaderCell>
+      <Table.HeaderCell>Description</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        `region_id`
+      </Table.Cell>
+      <Table.Cell>
+        The ID of the customer's region. This parameter must be included if you want to apply taxes on the product variant's price.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `country_code`
+      </Table.Cell>
+      <Table.Cell>
+        The customer's country code. This parameter must be included if you want to apply taxes on the product variant's price.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `province`
+      </Table.Cell>
+      <Table.Cell>
+        The lower-case [ISO 3166-2 province code](https://en.wikipedia.org/wiki/ISO_3166-2), which can be taken from a customer's address. This parameter helps further narrowing down the taxes applied on a the product variant's prices.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `cart_id`
+      </Table.Cell>
+      <Table.Cell>
+        The ID of the customer's cart, if available. If set, the cart's region and shipping address's country code and province are used instead of the `region_id`, `country_code`, and `province` parameters.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+For example:
+
+<Note title="Tip">
+
+Learn how to install and configure the JS SDK in the [JS SDK documentation](../../../js-sdk/page.mdx).
+
+</Note>
+
+```ts
+sdk.store.product.retrieve(id, {
+  fields: `*variants.calculated_price`,
+  region_id: region.id,
+})
+.then(({ product: dataProduct }) => {
+  // TODO use product
+  console.log(product)
+})
+```
+
+In this example, you pass the selected region's ID as a query parameter with the `fields` query parameter set to `*variants.calculated_price`.
+
+### Prices for Authenticated Customer
+
+If you pass the customer's authentication token / session in the request, the customer and their group, if available, are automatically used to retrieve prices specific to the customer.
+
+For example, if there's a promotion that applies to the authenticated customer's group, the promotion's prices are used instead of the default prices.
+
+---
+
+## Product Variant's Price Properties
+
+If you pass the parameters mentioned above, each variant has a `calculated_price` object with the following properties:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>Property</Table.HeaderCell>
+      <Table.HeaderCell>Description</Table.HeaderCell>
+      <Table.HeaderCell>Notes</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        `calculated_amount`
+      </Table.Cell>
+      <Table.Cell>
+        The product variant's price.
+      </Table.Cell>
+      <Table.Cell>
+        Show this price if you didn't supply the `region_id` and `country_code` query parameters to retrieve prices with taxes applied.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `calculated_amount_with_tax`
+      </Table.Cell>
+      <Table.Cell>
+        The `calculated_amount` with taxes applied.
+      </Table.Cell>
+      <Table.Cell>
+        This property is only available if you supply both the `region_id` and `country_code` query parameters.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `calculated_amount_without_tax`
+      </Table.Cell>
+      <Table.Cell>
+         The `calculated_amount` without taxes applied.
+      </Table.Cell>
+      <Table.Cell>
+        This property is only available if you supply both the `region_id` and `country_code` query parameters.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `calculated_price.price_list_type`
+      </Table.Cell>
+      <Table.Cell>
+         The type of the variant price.
+      </Table.Cell>
+      <Table.Cell>
+        If its value is `sale`, it means the `calculated_amount` is a sale price. You can show the amount before the sale using the `original_amount` property.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+---
+
+## Full Code Examples
+
+- [Example: Show Product Variant's Price](./examples/show-price/page.mdx).
+- [Example: Show Product Variant's Sale Price](./examples/sale-price/page.mdx).
+- [Example: Show Product Variant's Price with Taxes](./examples/tax-price/page.mdx).

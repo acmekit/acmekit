@@ -1,0 +1,45 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Icon Badge`,
+}
+
+# {metadata.title}
+
+A component that displays an icon in a badge.
+
+In this guide, you'll learn how to use the Icon Badge component.
+
+<ComponentExample name="icon-badge-demo" />
+
+## Usage
+
+```tsx
+import { IconBadge } from "@medusajs/ui"
+import { BuildingTax } from "@medusajs/icons"
+```
+
+```tsx
+<IconBadge>
+  <BuildingTax />
+</IconBadge>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="IconBadge" />
+
+---
+
+## Examples
+
+### Colors
+
+<ComponentExample name="icon-badge-all-colors" />
+
+### Sizes
+
+<ComponentExample name="icon-badge-all-sizes" hideFeedback />

@@ -1,0 +1,41 @@
+{
+  "name": "@acmekit/orchestration",
+  "version": "2.13.2",
+  "description": "AcmeKit utilities to orchestrate modules",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/core/orchestration"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "!dist/**/__tests__",
+    "!dist/**/__fixtures__",
+    "!dist/**/__mocks__"
+  ],
+  "author": "AcmeKit",
+  "license": "MIT",
+  "devDependencies": {
+    "@acmekit/types": "2.13.2"
+  },
+  "dependencies": {
+    "@acmekit/deps": "2.13.2",
+    "@acmekit/utils": "2.13.2",
+    "ulid": "^2.3.0"
+  },
+  "scripts": {
+    "build": "yarn run -T rimraf dist && yarn run -T tsc --build",
+    "watch": "yarn run -T tsc --build --watch",
+    "test": "../../../node_modules/.bin/jest --bail --forceExit"
+  }
+}

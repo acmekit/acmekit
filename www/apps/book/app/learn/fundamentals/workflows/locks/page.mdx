@@ -1,0 +1,194 @@
+export const metadata = {
+  title: `${pageNumber} Locking Operations in Workflows`,
+}
+
+# {metadata.title}
+
+In this chapter, you’ll learn how to lock operations in your workflows to avoid race conditions and ensure data consistency.
+
+## What is a Lock?
+
+A lock is a mechanism that restricts multiple accesses to a resource or a piece of code, preventing multiple processes from modifying it simultaneously.
+
+Locks are particularly useful in workflows where concurrent executions may lead to commerce risks. For example, Medusa uses locks in its cart workflows to prevent issues like overselling products or double charging customers.
+
+The [Locking Module](!resources!/infrastructure-modules/locking) handles the locking mechanism using the underlying provider. You can use the Locking Module's service in your workflows to create locks around critical sections of your code.
+
+---
+
+## How to Use Locks in Workflows
+
+Medusa provides two steps that you can use to create locks in your workflows:
+
+- [acquireLockStep](!resources!/references/medusa-workflows/steps/acquireLockStep): Attempt to acquire a lock. If the lock is already held by another process, this step will wait until the lock is released. It will fail if a timeout occurs before acquiring the lock.
+- [releaseLockStep](!resources!/references/medusa-workflows/steps/releaseLockStep): Release a previously acquired lock.
+
+You can use these steps in your workflows to ensure that only one instance of a workflow can modify a resource at a time.
+
+For example:
+
+export const workflowLockHighlights = [
+  ["13", "acquireLockStep", "Acquire a lock on the order."],
+  ["21", "chargeCustomerStep", "Perform an operation once the lock is acquired."],
+  ["23", "releaseLockStep", "Release the lock after the operation is complete."]
+]
+
+```ts title="src/workflows/charge-customer.ts" highlights={workflowLockHighlights}
+import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { acquireLockStep, releaseLockStep } from "@medusajs/medusa/core-flows"
+import { chargeCustomerStep } from "./steps/charge-customer-step"
+
+type WorkflowInput = {
+  customer_id: string;
+  order_id: string;
+}
+
+export const chargeCustomerWorkflow = createWorkflow(
+  "charge-customer",
+  (input: WorkflowInput) => {
+    acquireLockStep({
+      key: input.order_id,
+      // Attempt to acquire the lock for two seconds before timing out
+      timeout: 2,
+      // Lock is only held for a maximum of ten seconds
+      ttl: 10,
+    })
+
+    chargeCustomerStep(input)
+
+    releaseLockStep({
+      key: input.order_id,
+    })
+  }
+)
+```
+
+In this example, the workflow attempts to acquire a lock on an order using its ID as the lock key.
+
+Once the lock is acquired, it executes the `chargeCustomerStep`. After the step is complete, it releases the lock using the `releaseLockStep`.
+
+If the lock cannot be acquired within the specified timeout period, the `acquireLockStep` will throw an error, and the workflow will fail.
+
+<Note title="Tip">
+
+If an error occurs in the workflow after a lock is acquired with `acquireLockStep`, the step's compensation function will release the lock automatically.
+
+</Note>
+
+### Locking Steps API
+
+Refer to the [acquireLockStep](!resources!/references/medusa-workflows/steps/acquireLockStep) and [releaseLockStep](!resources!/references/medusa-workflows/steps/releaseLockStep) for more information on the inputs of these steps.
+
+---
+
+## How to Use Locks in Workflow Steps
+
+You can alternatively acquire and release locks within steps by resolving the Locking Module's service and using its `acquire` and `release` methods.
+
+<Note type="warning">
+
+Do not acquire locks within a workflow and a step in the same workflow execution, as this can lead to deadlocks.
+
+</Note>
+
+For example:
+
+```ts title="src/workflows/steps/charge-customer.ts"
+import { createStep } from "@medusajs/framework/workflows-sdk"
+
+type StepInput = {
+  order_id: string
+  customer_id: string
+}
+
+export const chargeCustomerStep = createStep(
+  "charge-customer",
+  async (input: StepInput, { container }) => {
+    const lockingModuleService = container.resolve("locking")
+
+    await lockingModuleService.acquire(input.order_id, {
+      // Lock will auto-expire after 10 seconds
+      expire: 10,
+    })
+
+    // TODO: charge customer
+
+    await lockingModuleService.release(input.order_id)
+  }
+)
+```
+
+In this example, the `chargeCustomerStep` step acquires a lock on the order using the `order_id` as the lock key. After performing the operation, it releases the lock.
+
+<Note title="Tip">
+
+The step will wait until the lock is acquired based on the configured Locking Module Provider's options. For example, the [Redis Locking Module Provider](!resources!/infrastructure-modules/locking/redis) will wait five seconds before timing out.
+
+</Note>
+
+### Locking Module Service API
+
+Refer to the [Locking Module reference](!resources!/references/locking-service) for more information on the Locking Module's service methods.
+
+---
+
+## Locks in Nested Workflows
+
+When a [Nested workflows](../execute-another-workflow/page.mdx) acquires a lock with `acquireLockStep`, the lock is not acquired. So, if you're using a workflow that acquires locks with `acquireLockStep` within another workflow, the parent workflow must handle the locking mechanism.
+
+<Note>
+
+If the nested workflow acquires a lock in a step using the Locking Module's service, the lock will be acquired as expected.
+
+</Note>
+
+For example, consider a custom workflow that executes Medusa's [completeCartWorkflow](!resources!/references/medusa-workflows/completeCartWorkflow). The `completeCartWorkflow` acquires locks on the cart with `acquireLockStep` to prevent race conditions.
+
+Therefore, the custom workflow must acquire and release the locks around the `completeCartWorkflow` execution. For example:
+
+export const nestedWorkflowLockHighlights = [
+  ["16", "acquireLockStep", "Acquire a lock on the cart before executing the nested workflow."],
+  ["23", "completeCartWorkflow", "Execute the nested workflow that requires the lock."],
+  ["30", "releaseLockStep", "Release the lock after the nested workflow is complete."]
+]
+
+```ts title="src/workflows/custom-complete-cart.ts" highlights={nestedWorkflowLockHighlights}
+import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { 
+  acquireLockStep, 
+  releaseLockStep,
+  completeCartWorkflow,
+} from "@medusajs/medusa/core-flows"
+
+type WorkflowInput = {
+  cart_id: string;
+}
+
+export const customCompleteCartWorkflow = createWorkflow(
+  "custom-complete-cart",
+  (input: WorkflowInput) => {
+    // acquire the same lock as the nested workflow
+    acquireLockStep({
+      key: input.cart_id,
+      timeout: 30,
+      ttl: 60 * 2,
+    })
+
+    // Execute the nested workflow
+    completeCartWorkflow.runAsStep({
+      input: {
+        id: input.cart_id,
+      },
+    })
+
+    // release the lock after the nested workflow is complete
+    releaseLockStep({
+      key: input.cart_id,
+    })
+  }
+)
+```
+
+In the example above, the `customCompleteCartWorkflow` acquires a lock on the cart before executing the `completeCartWorkflow` and releases it afterward.
+
+Make sure you're acquiring the same lock key as the nested workflow.

@@ -1,0 +1,620 @@
+---
+tags:
+  - customer
+  - storefront
+  - auth
+products:
+  - customer
+  - auth
+---
+
+import { Prerequisites, CodeTabs, CodeTab, Details } from "docs-ui"
+
+export const metadata = {
+  title: `Third-Party or Social Login in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to implement third-party or social login in your storefront. You'll implement the flow using Google as an example.
+
+## Summary
+
+By following the steps in this guide, you'll learn how to:
+
+- Create a login page with a button that starts the third-party login process. This redirects customers to the third-party service for authentication.
+- Create a callback page that the third-party service redirects to after authentication. This page receives query parameters from the third-party service and uses them to validate the authentication in Medusa.
+
+These are the pages you need in your storefront to allow customers to log in or create an account using a third-party service.
+
+![Diagram with a summary of the third-party login flow in the storefront.](https://res.cloudinary.com/dza7lstvk/image/upload/v1758108102/third-party-storefront-summary_z1h5hx.jpg)
+
+<Prerequisites
+  items={[
+    {
+      text: "Google OAuth credentials configured. This is required for using the Google Auth Module Provider.",
+    },
+    {
+      text: "Install the Google Auth Module Provider in your Medusa application, or the provider you're using.",
+      link: "/commerce-modules/auth/auth-providers/google"
+    },
+    {
+      text: "JS SDK installed and configured in your storefront, with the authentication method you're using (JWT or session) configured.",
+      link: "../login/page.mdx#login-customer-methods"
+    }
+  ]}
+/>
+
+## Step 1: Login Button in Storefront
+
+In your storefront, you'll have a login page with different login options. One of those options will be a button that starts the third-party login process. For example, a "Login with Google" button.
+
+When the customer clicks the "Login with Google" button, send a request to the [Authenticate Customer API route](!api!/store#auth_postactor_typeauth_provider). This returns the URL to redirect the customer to Google for authentication.
+
+For example:
+
+<Note title="Tip">
+
+Learn how to install and configure the JS SDK in the [JS SDK documentation](../../../js-sdk/page.mdx).
+
+</Note>
+
+<CodeTabs group="authenticated-request">
+  <CodeTab label="React" value="react">
+  
+export const reactHighlights = [
+  ["7", "login", "Send a request to the Authenticate Customer API route"],
+  ["9", "result.location", "If the request returns a location, redirect to that location to continue the authentication"],
+  ["16", "", "If the token isn't returned, the authentication has failed"],
+  ["24", "retrieve", "Retrieve the customer's details as an example of testing authentication"]
+]
+
+```tsx highlights={reactHighlights}
+"use client" // include with Next.js 13+
+
+import { sdk } from "@/lib/sdk"
+
+export default function Login() {
+  const loginWithGoogle = async () => {
+    const result = await sdk.auth.login("customer", "google", {})
+
+    if (typeof result === "object" && result.location) {
+      // redirect to Google for authentication
+      window.location.href = result.location
+
+      return
+    }
+    
+    if (typeof result !== "string") {
+      // result failed, show an error
+      alert("Authentication failed")
+      return
+    }
+
+    // Customer was previously authenticated, and its token is now stored in the JS SDK.
+    // all subsequent requests are authenticated
+    const { customer } = await sdk.store.customer.retrieve()
+
+    console.log(customer)
+  }
+
+  return (
+    <div>
+      <button onClick={loginWithGoogle}>Login with Google</button>
+    </div>
+  )
+}
+```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+  
+export const jsSdkHighlights = [
+  ["2", "login", "Send a request to the Authenticate Customer API route"],
+  ["4", "", "If the request returns a location, redirect to that location to continue the authentication"],
+  ["11", "", "If the token isn't returned, the authentication has failed"],
+  ["19", "retrieve", "Retrieve the customer's details as an example of testing authentication"]
+]
+
+```ts highlights={jsSdkHighlights}
+const loginWithGoogle = async () => {
+  const result = await sdk.auth.login("customer", "google", {})
+
+  if (typeof result === "object" && result.location) {
+    // redirect to Google for authentication
+    window.location.href = result.location
+
+    return
+  }
+  
+  if (typeof result !== "string") {
+    // result failed, show an error
+    alert("Authentication failed")
+    return
+  }
+
+  // Customer was previously authenticated, and its token is now stored in the JS SDK.
+  // all subsequent requests are authenticated
+  const { customer } = await sdk.store.customer.retrieve()
+
+  console.log(customer)
+}
+```
+
+  </CodeTab>
+</CodeTabs>
+
+You define a `loginWithGoogle` function that:
+
+- Sends a request to the `/auth/customer/google` API route using the JS SDK's `auth.login` method.
+    - If you're using a provider other than Google, replace `google` in the `login` method with your provider ID.
+- If the response is an object with a `location` property, redirect to the returned page for authentication with the third-party service.
+- If the response is not an object or a string, the authentication has failed.
+- If the response is a string, it's the customer's authentication token. This means the customer has been authenticated before.
+    - All subsequent requests by the JS SDK are now authenticated. As an example, you can retrieve the customer's details using the `store.customer.retrieve` method.
+
+<Note title="Tip">
+
+The JS SDK sets and passes authentication headers or session cookies automatically based on your [configured authentication method](../../../js-sdk/auth/overview/page.mdx). If you're not using the JS SDK, make sure to pass the necessary headers in your request as explained in the [API reference](!api!/store#authentication).
+
+</Note>
+
+---
+
+## Step 2: Callback Page in Storefront
+
+After the customer clicks the "Login with Google" button, they're redirected to Google to authenticate. Once they authenticate with Google, they're redirected back to your storefront to the callback page. You set this page's URL in Google's OAuth credentials configurations.
+
+![Google OAuth credentials settings showing the Redirect URI field](https://res.cloudinary.com/dza7lstvk/image/upload/v1758106535/CleanShot_2025-09-17_at_13.55.18_2x_baalfu.png)
+
+In this step, you'll create the callback page that handles the response from Google and creates or retrieves the customer account. You'll implement the page step-by-step to explain the different parts of the flow. You can copy the full page code from the [Full Code Example for Third-Party Login Callback Page](#full-code-example-for-third-party-login-callback-page) section.
+
+### a. Install the React-JWT Library
+
+First, install the [react-jwt library](https://www.npmjs.com/package/react-jwt) in your storefront:
+
+```bash npm2yarn
+npm install react-jwt
+```
+
+You'll use it to decode the token that Medusa returns after validating the authentication callback.
+
+### b. Implement the Callback Page
+
+Then, create a new page in your storefront that will be used as the callback/redirect URI destination:
+
+<CodeTabs group="authenticated-request">
+  <CodeTab label="React" value="react">
+  
+export const sendCallbackReactHighlights = [
+  ["12", "queryParams", "The query parameters received from Google, such as `code` and `state`"],
+  ["21", "callback", "Send a request to the Validate Authentication Callback API route"],
+  ["28", "catch", "If an error occurs, show an alert and exit execution"]
+]
+
+```tsx highlights={sendCallbackReactHighlights}
+"use client" // include with Next.js 13+
+
+import { HttpTypes } from "@medusajs/types"
+import { useEffect, useMemo, useState } from "react"
+import { decodeToken } from "react-jwt"
+import { sdk } from "@/lib/sdk"
+
+export default function GoogleCallback() {
+  const [loading, setLoading] = useState(true)
+  const [customer, setCustomer] = useState<HttpTypes.StoreCustomer>()
+  // for other than Next.js
+  const queryParams = useMemo(() => {
+    const searchParams = new URLSearchParams(window.location.search)
+    return Object.fromEntries(searchParams.entries())
+  }, [])
+
+  const sendCallback = async () => {
+    let token = ""
+
+    try {
+      token = await sdk.auth.callback(
+        "customer", 
+        "google", 
+        // pass all query parameters received from the
+        // third party provider
+        queryParams
+      )
+    } catch (error) {
+      alert("Authentication Failed")
+      
+      throw error
+    }
+
+    return token
+  }
+
+  // TODO add more functions
+
+  return (
+    <div>
+      {loading && <span>Loading...</span>}
+      {customer && <span>Created customer {customer.email} with Google.</span>}
+    </div>
+  )
+}
+```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+  
+export const sendCallbackFetchHighlights = [
+  ["6", "queryParams", "The query parameters received from Google, such as `code` and `state`"],
+  ["12", "callback", "Send a request to the Validate Authentication Callback API route"],
+  ["19", "catch", "If an error occurs, show an alert and exit execution"]
+]
+
+```ts highlights={sendCallbackFetchHighlights}
+import { decodeToken } from "react-jwt"
+
+// ...
+
+const searchParams = new URLSearchParams(window.location.search)
+const queryParams = Object.fromEntries(searchParams.entries())
+
+const sendCallback = async () => {
+  let token = ""
+
+  try {
+    token = await sdk.auth.callback(
+      "customer", 
+      "google", 
+      // pass all query parameters received from the
+      // third party provider
+      queryParams
+    )
+  } catch (error) {
+    alert("Authentication Failed")
+    
+    throw error
+  }
+
+  return token
+}
+
+// TODO add more functions...
+```
+
+  </CodeTab>
+</CodeTabs>
+
+You add a new page. In the page's component, you define the `sendCallback` function that sends a request to the [Validate Callback API route](!api!/store#auth_postactor_typeauth_providercallback), passing it all query parameters received from Google. These include the `code` and `state` parameters.
+
+<Note title="Tip">
+
+The JS SDK stores the JWT token returned by the Validate Callback API route automatically. It attaches this token to subsequent requests. If you're building this authentication flow without the JS SDK, you need to pass it manually to the next requests.
+
+</Note>
+
+### c. Create Customer Function
+
+Next, you'll add to the page a function that creates a customer. You'll use this function if the customer is authenticating with the third-party service for the first time.
+
+Replace the `TODO` after the `sendCallback` function with the following:
+  
+export const createCustomerHighlights = [
+  ["3", "create", "Create a customer"]
+]
+
+```ts highlights={createCustomerHighlights} title="JS SDK / React Applicable"
+const createCustomer = async (email: string) => {
+  // create customer
+  await sdk.store.customer.create({
+    email,
+  })
+}
+
+// TODO add more functions...
+```
+
+You add the function `createCustomer` which creates a customer when this is the first time the customer is authenticating with the third-party service.
+
+<Note title="Tip">
+
+This method assumes that the token received from the [Validate Callback API route](!api!/store#auth_postactor_typeauth_providercallback) is already set in the JS SDK. So, if you're implementing this flow without using the JS SDK, make sure to pass the token received from the [Validate Callback API route](!api!/store#auth_postactor_typeauth_providercallback) in the [authorization Bearer header](!api!/store#authentication).
+
+</Note>
+
+### d. Refresh Token Function
+
+Next, you'll add to the page a function that refreshes the authentication token after creating the customer. This is necessary to ensure that the token includes the created customer's details.
+
+Replace the new `TODO` with the following:
+  
+export const refreshTokenHighlights = [
+  ["3", "refresh", "Fetch a new token for the created customer"]
+]
+
+```ts highlights={refreshTokenHighlights} title="JS SDK / React Applicable"
+const refreshToken = async () => {
+  // refresh the token
+  const result = await sdk.auth.refresh()
+}
+
+// TODO add more functions...
+```
+
+You add the function `refreshToken` that sends a request to the [Refresh Token API route](!api!/store#auth_postadminauthtokenrefresh) to retrieve a new token for the created customer.
+
+The `refreshToken` method also updates the token stored by the JS SDK, ensuring that subsequent requests use that token.
+
+<Note title="Tip">
+
+This method assumes that the token received from the [Validate Callback API route](!api!/store#auth_postactor_typeauth_providercallback) is already set in the JS SDK. So, if you're implementing this flow without using the JS SDK, make sure to pass the token in the [authorization Bearer header](!api!/store#authentication). Make sure to also update the token stored in your application after refreshing it.
+
+</Note>
+
+### e. Validate Callback Function
+
+Finally, you'll add to the page a function that validates the authentication callback in Medusa and creates or retrieves the customer account. It will use the functions added earlier.
+
+Add in the place of the new `TODO` the `validateCallback` function that runs when the page first loads to validate the authentication:
+
+export const validateReactHighlights = [
+  ["2", "sendCallback", "Validate the callback in Medusa and retrieve the authentication token"],
+  ["6", "shouldCreateCustomer", "Check if the decoded token has an `actor_id` property to decide whether a customer needs to be created"],
+  ["9", "createCustomer", "Create a customer if the decoded token doesn't have `actor_id`"],
+  ["11", "refreshToken", "Fetch a new token for the created customer"],
+  ["15", "retrieve", "Retrieve the customer's details as an example of testing authentication"]
+]
+
+```tsx highlights={validateReactHighlights}
+const validateCallback = async () => {
+  const token = await sendCallback()
+
+  const decodedToken = decodeToken(token) as { actor_id: string, user_metadata: Record<string, unknown> }
+
+  const shouldCreateCustomer = decodedToken.actor_id === ""
+
+  if (shouldCreateCustomer) {
+    await createCustomer(decodedToken.user_metadata.email as string)
+
+    await refreshToken()
+  }
+
+  // use token to send authenticated requests
+  const { customer: customerData } =  await sdk.store.customer.retrieve()
+
+  setCustomer(customerData)
+  setLoading(false)
+}
+
+// TODO run validateCallback when the page loads
+```
+
+The `validateCallback` function uses the functions added earlier to implement the following flow:
+
+1. Send a request to the [Validate Callback API route](!api!/store#auth_postactor_typeauth_providercallback). This returns an authentication token.
+    - The `sendCallback` function also sets the token in the JS SDK. This passes the token in subsequent requests.
+2. Decode the token to check if it has an `actor_id` property.
+  - If the property exists, the customer is already registered. The authentication token can be used for subsequent authenticated requests.
+  - If the property doesn't exist, this is the first time the customer is authenticating with the third-party service. So:
+      1. Create a customer. The `user_metadata` in the decoded token will hold the customer's information in the third-party provider, such as their `email`. You can use this value as the customer's email in Medusa.
+      2. Refetch the customer's authentication token.
+      3. Use the token for subsequent authenticated requests.
+3. Retrieve the customer's details as an example of testing authentication.
+
+### f. Run the Callback Validation on Page Load
+
+Finally, you need to run the `validateCallback` function when the page first loads. In React, you can do that using the `useEffect` hook.
+
+For example, replace the last `TODO` with the following:
+
+```tsx
+useEffect(() => {
+  if (!loading) {
+    return
+  }
+
+  validateCallback()
+}, [loading])
+```
+
+This runs the `validateCallback` function when the page first loads. If the validation is successful, the customer is authenticated.
+
+You can show a success message or redirect the customer to another page. For example, use another `useEffect` hook to redirect the customer to the homepage after successful authentication:
+
+```tsx
+useEffect(() => {
+  if (!customer) {
+    return
+  }
+
+  // redirect to homepage after successful authentication
+  window.location.href = "/"
+}, [customer])
+```
+
+### Full Code Example for Third-Party Login Callback Page
+
+<CodeTabs group="authenticated-request">
+  <CodeTab label="React" value="react">
+
+```tsx
+"use client" // include with Next.js 13+
+
+import { HttpTypes } from "@medusajs/types"
+import { useEffect, useMemo, useState } from "react"
+import { decodeToken } from "react-jwt"
+import { sdk } from "@/lib/sdk"
+
+export default function GoogleCallback() {
+  const [loading, setLoading] = useState(true)
+  const [customer, setCustomer] = useState<HttpTypes.StoreCustomer>()
+  // for other than Next.js
+  const queryParams = useMemo(() => {
+    const searchParams = new URLSearchParams(window.location.search)
+    return Object.fromEntries(searchParams.entries())
+  }, [])
+
+  const sendCallback = async () => {
+    let token = ""
+
+    try {
+      token = await sdk.auth.callback(
+        "customer", 
+        "google", 
+        // pass all query parameters received from the
+        // third party provider
+        queryParams
+      )
+    } catch (error) {
+      alert("Authentication Failed")
+      
+      throw error
+    }
+
+    return token
+  }
+
+  const createCustomer = async () => {
+    // create customer
+    await sdk.store.customer.create({
+      email: "example@medusajs.com",
+    })
+  }
+
+  const refreshToken = async () => {
+    // refresh the token
+    const result = await sdk.auth.refresh()
+  }
+
+  const validateCallback = async () => {
+    const token = await sendCallback()
+
+    const decodedToken = decodeToken(token) as { actor_id: string, user_metadata: Record<string, unknown> }
+
+    const shouldCreateCustomer = decodedToken.actor_id === ""
+
+    if (shouldCreateCustomer) {
+      await createCustomer(decodedToken.user_metadata.email as string)
+
+      await refreshToken()
+    }
+
+    // use token to send authenticated requests
+    const { customer: customerData } =  await sdk.store.customer.retrieve()
+
+    setCustomer(customerData)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    if (!loading) {
+      return
+    }
+
+    validateCallback()
+  }, [loading])
+
+  useEffect(() => {
+    if (!customer) {
+      return
+    }
+
+    // TODO redirect to homepage after successful authentication
+  }, [customer])
+
+  return (
+    <div>
+      {loading && <span>Loading...</span>}
+      {customer && <span>Created customer {customer.email} with Google.</span>}
+    </div>
+  )
+}
+```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+
+```ts
+import { decodeToken } from "react-jwt"
+
+// ...
+
+const queryParams = new URLSearchParams(window.location.search)
+const code = queryParams.get("code")
+const state = queryParams.get("state")
+
+
+const sendCallback = async () => {
+  let token = ""
+
+  try {
+    token = await sdk.auth.callback(
+      "customer", 
+      "google", 
+      // pass all query parameters received from the
+      // third party provider
+      queryParams
+    )
+  } catch (error) {
+    alert("Authentication Failed")
+    
+    throw error
+  }
+
+  return token
+}
+
+const createCustomer = async () => {
+  // create customer
+  await sdk.store.customer.create({
+    email: "example@medusajs.com",
+  })
+}
+
+const refreshToken = async () => {
+  // refresh the token
+  const result = await sdk.auth.refresh()
+}
+
+const validateCallback = async () => {
+  const token = await sendCallback()
+
+  const shouldCreateCustomer = (decodeToken(token) as { actor_id: string }).actor_id === ""
+
+  if (shouldCreateCustomer) {
+    await createCustomer()
+
+    await refreshToken()
+  }
+
+    // all subsequent requests are authenticated
+  const { customer: customerData } =  await sdk.store.customer.retrieve()
+
+  setCustomer(customerData)
+  setLoading(false)
+}
+```
+
+  </CodeTab>
+</CodeTabs>
+
+---
+
+## Deep Dive: Third-Party Login Flow in Storefront
+
+In this section, you'll find a general overview of the third-party login flow in the storefront. This is useful if you're not using the JS SDK or want to understand the flow better.
+
+If you already set up the [Auth Module Provider](../../../commerce-modules/auth/auth-providers/page.mdx) in your Medusa application, you can log in a customer with a third-party service, such as Google or GitHub, using the following flow:
+
+![Diagram illustrating the authentication flow between the storefront, Medusa application, and the third-party service.](https://res.cloudinary.com/dza7lstvk/image/upload/v1725531068/Medusa%20Resources/Social_Media_Graphics_third-party-auth-customer_kfn3k3.jpg)
+
+1. Authenticate the customer with the [Authenticate Customer API route](!api!/store#auth_postactor_typeauth_provider). It may return:
+    - A URL in a `location` property to authenticate with a third-party service, such as Google. When you receive this property, redirect to the returned location.
+    - A token in a `token` property. In this case, the customer was previously logged in with the third-party service. No additional actions are required. You can use the token to send subsequent authenticated requests.
+2. Once authentication with the third-party service finishes, it redirects back to the storefront with query parameters such as `code` and `state`. Make sure your third-party service is configured to redirect to your storefront's callback page after successful authentication.
+3. In the storefront's callback page, send a request to the [Validate Authentication Callback API route](!api!/store#auth_postactor_typeauth_providercallback). Pass the query parameters (`code`, `state`, etc.) received from the third-party service.
+    - Medusa validates the authentication with the third-party service.
+4. If the callback validation is successful, you'll receive the authentication token. Decode the received token in the storefront using tools like [react-jwt](https://www.npmjs.com/package/react-jwt).
+    - If the decoded data has an `actor_id` property, the customer is already registered. Use this token for subsequent authenticated requests.
+    - If not, follow the rest of the steps.
+5. The customer is not registered yet. Use the received token from the Validate Authentication Callback API route to create the customer using the [Create Customer API route](!api!/store#customers_postcustomers).
+6. Send a request to the [Refresh Token Route](!api!/store#auth_postadminauthtokenrefresh) to retrieve a new token for the customer. Pass the token from the Validate Authentication Callback API in the header.
+7. Use the token for subsequent authenticated requests, such as retrieving the customer's details using the [Retrieve Customer API route](!api!/store#getactor_typecustomersme).

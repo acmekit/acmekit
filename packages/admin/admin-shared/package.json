@@ -1,0 +1,22 @@
+{
+  "name": "@acmekit/admin-shared",
+  "description": "Shared code for AcmeKit admin packages.",
+  "version": "2.13.2",
+  "author": "Kasper Kristensen <kasper@acmekit.com>",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmekit/acmekit",
+    "directory": "packages/admin/admin-shared"
+  },
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "yarn run -T tsup"
+  },
+  "packageManager": "yarn@3.2.1"
+}
