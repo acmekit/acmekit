@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/acmekit-oas-cli",
-  "version": "2.13.3",
+  "version": "2.13.8",
   "description": "OAS CLI",
   "main": "dist/index.js",
   "bin": {
@@ -21,15 +21,15 @@
   "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
-    "@acmekit/types": "2.13.3"
+    "@acmekit/types": "2.13.8"
   },
   "scripts": {
     "build": "yarn run -T tsc --build",
     "acmekit-oas": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@acmekit/acmekit": "2.13.3",
-    "@acmekit/utils": "2.13.3",
+    "@acmekit/acmekit": "2.13.8",
+    "@acmekit/utils": "2.13.8",
     "@readme/json-schema-ref-parser": "^1.2.0",
     "@readme/openapi-parser": "^2.4.0",
     "@redocly/cli": "1.25.3",

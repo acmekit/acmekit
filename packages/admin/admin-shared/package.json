@@ -1,7 +1,7 @@
 {
   "name": "@acmekit/admin-shared",
   "description": "Shared code for AcmeKit admin packages.",
-  "version": "2.13.3",
+  "version": "2.13.8",
   "author": "Kasper Kristensen <kasper@acmekit.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",

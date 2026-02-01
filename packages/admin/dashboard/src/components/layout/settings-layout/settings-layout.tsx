@@ -1,11 +1,12 @@
 import { ArrowUturnLeft, MinusMini } from "@acmekit/icons"
 import { clx, Divider, IconButton, Text } from "@acmekit/ui"
 import { Collapsible as RadixCollapsible } from "radix-ui"
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link, useLocation } from "react-router-dom"
 
 import { useExtension } from "../../../providers/extension-provider"
+import { useFeatureFlag } from "../../../providers/feature-flag-provider"
 import { INavItem, NavItem } from "../nav-item"
 import { Shell } from "../shell"
 import { UserMenu } from "../user-menu"
@@ -18,6 +19,48 @@ export const SettingsLayout = () => {
   )
 }
 
+const useSettingRoutes = (): INavItem[] => {
+  const isTranslationsEnabled = useFeatureFlag("translation")
+  const { t } = useTranslation()
+
+  return useMemo(
+    () => [
+      { label: t("store.domain"), to: "/settings/store" },
+      { label: t("users.domain"), to: "/settings/users" },
+      ...(isTranslationsEnabled
+        ? [{ label: t("translations.domain"), to: "/settings/translations" }]
+        : []),
+    ],
+    [t, isTranslationsEnabled]
+  )
+}
+
+const useDeveloperRoutes = (): INavItem[] => {
+  const { t } = useTranslation()
+  return useMemo(
+    () => [
+      {
+        label: t("apiKeyManagement.domain.publishable"),
+        to: "/settings/publishable-api-keys",
+      },
+      {
+        label: t("apiKeyManagement.domain.secret"),
+        to: "/settings/secret-api-keys",
+      },
+      { label: t("workflowExecutions.domain"), to: "/settings/workflows" },
+    ],
+    [t]
+  )
+}
+
+const useMyAccountRoutes = (): INavItem[] => {
+  const { t } = useTranslation()
+  return useMemo(
+    () => [{ label: t("profile.domain"), to: "/settings/profile" }],
+    [t]
+  )
+}
+
 /**
  * Ensure that the `from` prop is not another settings route, to avoid
  * the user getting stuck in a navigation loop.
@@ -26,7 +69,6 @@ const getSafeFromValue = (from: string) => {
   if (from.startsWith("/settings")) {
     return "/"
   }
-
   return from
 }
 
@@ -34,6 +76,9 @@ const SettingsSidebar = () => {
   const { getMenu } = useExtension()
   const extensionRoutes = getMenu("settingsExtensions")
   const { t } = useTranslation()
+  const routes = useSettingRoutes()
+  const developerRoutes = useDeveloperRoutes()
+  const myAccountRoutes = useMyAccountRoutes()
 
   return (
     <aside className="relative flex flex-1 flex-col justify-between overflow-y-auto">
@@ -45,11 +90,34 @@ const SettingsSidebar = () => {
       </div>
       <div className="flex flex-1 flex-col">
         <div className="flex flex-1 flex-col overflow-y-auto">
+          <RadixCollapsibleSection
+            label={t("app.nav.settings.general")}
+            items={routes}
+          />
+          <div className="flex items-center justify-center px-3">
+            <Divider variant="dashed" />
+          </div>
+          <RadixCollapsibleSection
+            label={t("app.nav.settings.developer")}
+            items={developerRoutes}
+          />
+          <div className="flex items-center justify-center px-3">
+            <Divider variant="dashed" />
+          </div>
+          <RadixCollapsibleSection
+            label={t("app.nav.settings.myAccount")}
+            items={myAccountRoutes}
+          />
           {extensionRoutes.length > 0 ? (
-            <RadixCollapsibleSection
-              label={t("app.nav.common.extensions")}
-              items={extensionRoutes}
-            />
+            <Fragment>
+              <div className="flex items-center justify-center px-3">
+                <Divider variant="dashed" />
+              </div>
+              <RadixCollapsibleSection
+                label={t("app.nav.common.extensions")}
+                items={extensionRoutes}
+              />
+            </Fragment>
           ) : null}
         </div>
         <div className="bg-ui-bg-subtle sticky bottom-0">

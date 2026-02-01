@@ -1,5 +1,125 @@
 # Changelog
 
+## 2.0.6
+
+### Patch Changes
+
+- xxccb
+
+- Updated dependencies []:
+  - @acmekit/acmekit@2.13.8
+  - @acmekit/test-utils@2.13.8
+  - @acmekit/core-flows@2.13.8
+  - @acmekit/framework@2.13.8
+  - @acmekit/modules-sdk@2.13.8
+  - @acmekit/utils@2.13.8
+  - @acmekit/api-key@2.13.8
+  - @acmekit/auth@2.13.8
+  - @acmekit/cache-inmemory@2.13.8
+  - @acmekit/customer@2.13.8
+  - @acmekit/event-bus-local@2.13.8
+  - @acmekit/event-bus-redis@2.13.8
+  - @acmekit/store@2.13.8
+  - @acmekit/translation@2.13.8
+  - @acmekit/user@2.13.8
+  - @acmekit/workflow-engine-inmemory@2.13.8
+
+## 2.0.5
+
+### Patch Changes
+
+- some ch
+
+- Updated dependencies []:
+  - @acmekit/acmekit@2.13.7
+  - @acmekit/test-utils@2.13.7
+  - @acmekit/core-flows@2.13.7
+  - @acmekit/framework@2.13.7
+  - @acmekit/modules-sdk@2.13.7
+  - @acmekit/utils@2.13.7
+  - @acmekit/api-key@2.13.7
+  - @acmekit/auth@2.13.7
+  - @acmekit/cache-inmemory@2.13.7
+  - @acmekit/customer@2.13.7
+  - @acmekit/event-bus-local@2.13.7
+  - @acmekit/event-bus-redis@2.13.7
+  - @acmekit/store@2.13.7
+  - @acmekit/translation@2.13.7
+  - @acmekit/user@2.13.7
+  - @acmekit/workflow-engine-inmemory@2.13.7
+
+## 2.0.4
+
+### Patch Changes
+
+- hhhxx
+
+- Updated dependencies []:
+  - @acmekit/acmekit@2.13.6
+  - @acmekit/test-utils@2.13.6
+  - @acmekit/core-flows@2.13.6
+  - @acmekit/framework@2.13.6
+  - @acmekit/modules-sdk@2.13.6
+  - @acmekit/utils@2.13.6
+  - @acmekit/api-key@2.13.6
+  - @acmekit/auth@2.13.6
+  - @acmekit/cache-inmemory@2.13.6
+  - @acmekit/customer@2.13.6
+  - @acmekit/event-bus-local@2.13.6
+  - @acmekit/event-bus-redis@2.13.6
+  - @acmekit/store@2.13.6
+  - @acmekit/translation@2.13.6
+  - @acmekit/user@2.13.6
+  - @acmekit/workflow-engine-inmemory@2.13.6
+
+## 2.0.3
+
+### Patch Changes
+
+- some
+
+- Updated dependencies []:
+  - @acmekit/acmekit@2.13.5
+  - @acmekit/test-utils@2.13.5
+  - @acmekit/core-flows@2.13.5
+  - @acmekit/framework@2.13.5
+  - @acmekit/modules-sdk@2.13.5
+  - @acmekit/utils@2.13.5
+  - @acmekit/api-key@2.13.5
+  - @acmekit/auth@2.13.5
+  - @acmekit/cache-inmemory@2.13.5
+  - @acmekit/customer@2.13.5
+  - @acmekit/event-bus-local@2.13.5
+  - @acmekit/event-bus-redis@2.13.5
+  - @acmekit/store@2.13.5
+  - @acmekit/translation@2.13.5
+  - @acmekit/user@2.13.5
+  - @acmekit/workflow-engine-inmemory@2.13.5
+
+## 2.0.2
+
+### Patch Changes
+
+- change
+
+- Updated dependencies []:
+  - @acmekit/acmekit@2.13.4
+  - @acmekit/test-utils@2.13.4
+  - @acmekit/core-flows@2.13.4
+  - @acmekit/framework@2.13.4
+  - @acmekit/modules-sdk@2.13.4
+  - @acmekit/utils@2.13.4
+  - @acmekit/api-key@2.13.4
+  - @acmekit/auth@2.13.4
+  - @acmekit/cache-inmemory@2.13.4
+  - @acmekit/customer@2.13.4
+  - @acmekit/event-bus-local@2.13.4
+  - @acmekit/event-bus-redis@2.13.4
+  - @acmekit/store@2.13.4
+  - @acmekit/translation@2.13.4
+  - @acmekit/user@2.13.4
+  - @acmekit/workflow-engine-inmemory@2.13.4
+
 ## 2.0.1
 
 ### Patch Changes

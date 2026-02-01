@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/cache-inmemory",
-  "version": "2.13.3",
+  "version": "2.13.8",
   "description": "In-memory Cache Module for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -23,7 +23,7 @@
   "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
-    "@acmekit/framework": "2.13.3"
+    "@acmekit/framework": "2.13.8"
   },
   "scripts": {
     "watch": "yarn run -T tsc --build --watch",
@@ -31,6 +31,6 @@
     "test": "../../../node_modules/.bin/jest --passWithNoTests"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.3"
+    "@acmekit/framework": "2.13.8"
   }
 }

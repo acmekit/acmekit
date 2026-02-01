@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/oas-github-ci",
-  "version": "2.13.3",
+  "version": "2.13.8",
   "description": "OAS Github CI",
   "main": "scripts/build-openapi.js",
   "files": [
@@ -21,7 +21,7 @@
     "test": "../../../../node_modules/.bin/jest --passWithNoTests"
   },
   "dependencies": {
-    "@acmekit/acmekit-oas-cli": "2.13.3",
+    "@acmekit/acmekit-oas-cli": "2.13.8",
     "execa": "^5.1.1"
   }
 }

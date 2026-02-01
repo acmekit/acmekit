@@ -1,5 +1,230 @@
 # Changelog
 
+## 2.13.8
+
+### Patch Changes
+
+- xxccb
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.8
+  - @acmekit/admin-bundler@2.13.8
+  - @acmekit/core-flows@2.13.8
+  - @acmekit/framework@2.13.8
+  - @acmekit/analytics@2.13.8
+  - @acmekit/api-key@2.13.8
+  - @acmekit/auth@2.13.8
+  - @acmekit/cache-inmemory@2.13.8
+  - @acmekit/cache-redis@2.13.8
+  - @acmekit/caching@2.13.8
+  - @acmekit/customer@2.13.8
+  - @acmekit/event-bus-local@2.13.8
+  - @acmekit/event-bus-redis@2.13.8
+  - @acmekit/file@2.13.8
+  - @acmekit/index@2.13.8
+  - @acmekit/link-modules@2.13.8
+  - @acmekit/locking@2.13.8
+  - @acmekit/notification@2.13.8
+  - @acmekit/analytics-local@2.13.8
+  - @acmekit/analytics-posthog@2.13.8
+  - @acmekit/auth-emailpass@2.13.8
+  - @acmekit/auth-github@2.13.8
+  - @acmekit/auth-google@2.13.8
+  - @acmekit/caching-redis@2.13.8
+  - @acmekit/file-local@2.13.8
+  - @acmekit/file-s3@2.13.8
+  - @acmekit/locking-postgres@2.13.8
+  - @acmekit/locking-redis@2.13.8
+  - @acmekit/notification-local@2.13.8
+  - @acmekit/notification-sendgrid@2.13.8
+  - @acmekit/rbac@2.13.8
+  - @acmekit/settings@2.13.8
+  - @acmekit/store@2.13.8
+  - @acmekit/translation@2.13.8
+  - @acmekit/user@2.13.8
+  - @acmekit/workflow-engine-inmemory@2.13.8
+  - @acmekit/workflow-engine-redis@2.13.8
+
+## 2.13.7
+
+### Patch Changes
+
+- some ch
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.7
+  - @acmekit/admin-bundler@2.13.7
+  - @acmekit/core-flows@2.13.7
+  - @acmekit/framework@2.13.7
+  - @acmekit/analytics@2.13.7
+  - @acmekit/api-key@2.13.7
+  - @acmekit/auth@2.13.7
+  - @acmekit/cache-inmemory@2.13.7
+  - @acmekit/cache-redis@2.13.7
+  - @acmekit/caching@2.13.7
+  - @acmekit/customer@2.13.7
+  - @acmekit/event-bus-local@2.13.7
+  - @acmekit/event-bus-redis@2.13.7
+  - @acmekit/file@2.13.7
+  - @acmekit/index@2.13.7
+  - @acmekit/link-modules@2.13.7
+  - @acmekit/locking@2.13.7
+  - @acmekit/notification@2.13.7
+  - @acmekit/analytics-local@2.13.7
+  - @acmekit/analytics-posthog@2.13.7
+  - @acmekit/auth-emailpass@2.13.7
+  - @acmekit/auth-github@2.13.7
+  - @acmekit/auth-google@2.13.7
+  - @acmekit/caching-redis@2.13.7
+  - @acmekit/file-local@2.13.7
+  - @acmekit/file-s3@2.13.7
+  - @acmekit/locking-postgres@2.13.7
+  - @acmekit/locking-redis@2.13.7
+  - @acmekit/notification-local@2.13.7
+  - @acmekit/notification-sendgrid@2.13.7
+  - @acmekit/rbac@2.13.7
+  - @acmekit/settings@2.13.7
+  - @acmekit/store@2.13.7
+  - @acmekit/translation@2.13.7
+  - @acmekit/user@2.13.7
+  - @acmekit/workflow-engine-inmemory@2.13.7
+  - @acmekit/workflow-engine-redis@2.13.7
+
+## 2.13.6
+
+### Patch Changes
+
+- hhhxx
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.6
+  - @acmekit/admin-bundler@2.13.6
+  - @acmekit/core-flows@2.13.6
+  - @acmekit/framework@2.13.6
+  - @acmekit/analytics@2.13.6
+  - @acmekit/api-key@2.13.6
+  - @acmekit/auth@2.13.6
+  - @acmekit/cache-inmemory@2.13.6
+  - @acmekit/cache-redis@2.13.6
+  - @acmekit/caching@2.13.6
+  - @acmekit/customer@2.13.6
+  - @acmekit/event-bus-local@2.13.6
+  - @acmekit/event-bus-redis@2.13.6
+  - @acmekit/file@2.13.6
+  - @acmekit/index@2.13.6
+  - @acmekit/link-modules@2.13.6
+  - @acmekit/locking@2.13.6
+  - @acmekit/notification@2.13.6
+  - @acmekit/analytics-local@2.13.6
+  - @acmekit/analytics-posthog@2.13.6
+  - @acmekit/auth-emailpass@2.13.6
+  - @acmekit/auth-github@2.13.6
+  - @acmekit/auth-google@2.13.6
+  - @acmekit/caching-redis@2.13.6
+  - @acmekit/file-local@2.13.6
+  - @acmekit/file-s3@2.13.6
+  - @acmekit/locking-postgres@2.13.6
+  - @acmekit/locking-redis@2.13.6
+  - @acmekit/notification-local@2.13.6
+  - @acmekit/notification-sendgrid@2.13.6
+  - @acmekit/rbac@2.13.6
+  - @acmekit/settings@2.13.6
+  - @acmekit/store@2.13.6
+  - @acmekit/translation@2.13.6
+  - @acmekit/user@2.13.6
+  - @acmekit/workflow-engine-inmemory@2.13.6
+  - @acmekit/workflow-engine-redis@2.13.6
+
+## 2.13.5
+
+### Patch Changes
+
+- some
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.5
+  - @acmekit/admin-bundler@2.13.5
+  - @acmekit/core-flows@2.13.5
+  - @acmekit/framework@2.13.5
+  - @acmekit/analytics@2.13.5
+  - @acmekit/api-key@2.13.5
+  - @acmekit/auth@2.13.5
+  - @acmekit/cache-inmemory@2.13.5
+  - @acmekit/cache-redis@2.13.5
+  - @acmekit/caching@2.13.5
+  - @acmekit/customer@2.13.5
+  - @acmekit/event-bus-local@2.13.5
+  - @acmekit/event-bus-redis@2.13.5
+  - @acmekit/file@2.13.5
+  - @acmekit/index@2.13.5
+  - @acmekit/link-modules@2.13.5
+  - @acmekit/locking@2.13.5
+  - @acmekit/notification@2.13.5
+  - @acmekit/analytics-local@2.13.5
+  - @acmekit/analytics-posthog@2.13.5
+  - @acmekit/auth-emailpass@2.13.5
+  - @acmekit/auth-github@2.13.5
+  - @acmekit/auth-google@2.13.5
+  - @acmekit/caching-redis@2.13.5
+  - @acmekit/file-local@2.13.5
+  - @acmekit/file-s3@2.13.5
+  - @acmekit/locking-postgres@2.13.5
+  - @acmekit/locking-redis@2.13.5
+  - @acmekit/notification-local@2.13.5
+  - @acmekit/notification-sendgrid@2.13.5
+  - @acmekit/rbac@2.13.5
+  - @acmekit/settings@2.13.5
+  - @acmekit/store@2.13.5
+  - @acmekit/translation@2.13.5
+  - @acmekit/user@2.13.5
+  - @acmekit/workflow-engine-inmemory@2.13.5
+  - @acmekit/workflow-engine-redis@2.13.5
+
+## 2.13.4
+
+### Patch Changes
+
+- change
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.4
+  - @acmekit/admin-bundler@2.13.4
+  - @acmekit/core-flows@2.13.4
+  - @acmekit/framework@2.13.4
+  - @acmekit/analytics@2.13.4
+  - @acmekit/api-key@2.13.4
+  - @acmekit/auth@2.13.4
+  - @acmekit/cache-inmemory@2.13.4
+  - @acmekit/cache-redis@2.13.4
+  - @acmekit/caching@2.13.4
+  - @acmekit/customer@2.13.4
+  - @acmekit/event-bus-local@2.13.4
+  - @acmekit/event-bus-redis@2.13.4
+  - @acmekit/file@2.13.4
+  - @acmekit/index@2.13.4
+  - @acmekit/link-modules@2.13.4
+  - @acmekit/locking@2.13.4
+  - @acmekit/notification@2.13.4
+  - @acmekit/analytics-local@2.13.4
+  - @acmekit/analytics-posthog@2.13.4
+  - @acmekit/auth-emailpass@2.13.4
+  - @acmekit/auth-github@2.13.4
+  - @acmekit/auth-google@2.13.4
+  - @acmekit/caching-redis@2.13.4
+  - @acmekit/file-local@2.13.4
+  - @acmekit/file-s3@2.13.4
+  - @acmekit/locking-postgres@2.13.4
+  - @acmekit/locking-redis@2.13.4
+  - @acmekit/notification-local@2.13.4
+  - @acmekit/notification-sendgrid@2.13.4
+  - @acmekit/rbac@2.13.4
+  - @acmekit/settings@2.13.4
+  - @acmekit/store@2.13.4
+  - @acmekit/translation@2.13.4
+  - @acmekit/user@2.13.4
+  - @acmekit/workflow-engine-inmemory@2.13.4
+  - @acmekit/workflow-engine-redis@2.13.4
+
 ## 2.13.3
 
 ### Patch Changes

@@ -23,7 +23,7 @@ export const Login = () => {
   const navigate = useNavigate()
   const { getWidgets } = useExtension()
 
-  const from = location.state?.from?.pathname || "/orders"
+  const from = location.state?.from?.pathname || "/"
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
