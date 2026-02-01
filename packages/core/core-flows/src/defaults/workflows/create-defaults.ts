@@ -1,21 +1,12 @@
-import {
-  createWorkflow,
-  transform,
-  when,
-  WorkflowResponse,
-} from "@acmekit/framework/workflows-sdk"
-import {
-  createApiKeysStep,
-  linkSalesChannelsToApiKeyWorkflow,
-} from "../../api-key"
+import { createWorkflow, when, WorkflowResponse } from "@acmekit/framework/workflows-sdk"
+import { createApiKeysStep } from "../../api-key"
 import { useQueryGraphStep } from "../../common"
-import { createDefaultSalesChannelStep } from "../../sales-channel"
 import { createDefaultStoreStep } from "../steps/create-default-store"
 
 export const createDefaultsWorkflowID = "create-defaults"
 /**
  * This workflow creates default data for a AcmeKit application, including
- * a default sales channel and store. The AcmeKit application uses this workflow
+ * a default store and publishable API key. The AcmeKit application uses this workflow
  * to create the default data, if not existing, when the application is first started.
  *
  * You can use this workflow within your customizations or your own custom workflows, allowing you to
@@ -32,16 +23,8 @@ export const createDefaultsWorkflowID = "create-defaults"
 export const createDefaultsWorkflow = createWorkflow(
   createDefaultsWorkflowID,
   () => {
-    const salesChannel = createDefaultSalesChannelStep({
-      data: {
-        name: "Default Sales Channel",
-        description: "Created by AcmeKit",
-      },
-    })
     const store = createDefaultStoreStep({
-      store: {
-        default_sales_channel_id: salesChannel.id,
-      },
+      store: {},
     })
 
     const publishableApiKey = useQueryGraphStep({
@@ -59,7 +42,7 @@ export const createDefaultsWorkflow = createWorkflow(
       { publishableApiKey },
       ({ publishableApiKey }) => !publishableApiKey?.data
     ).then(() => {
-      const createResult = createApiKeysStep({
+      createApiKeysStep({
         api_keys: [
           {
             title: "Default Publishable API Key",
@@ -67,20 +50,6 @@ export const createDefaultsWorkflow = createWorkflow(
             created_by: "",
           },
         ],
-      })
-
-      const publishableApiKey = transform(
-        { createResult },
-        ({ createResult }) => {
-          return createResult[0]
-        }
-      )
-
-      linkSalesChannelsToApiKeyWorkflow.runAsStep({
-        input: {
-          id: publishableApiKey.id,
-          add: [salesChannel.id],
-        },
       })
     })
 

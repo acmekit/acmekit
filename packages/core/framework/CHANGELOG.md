@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.13.3
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.3
+  - @acmekit/cli@2.13.3
+  - @acmekit/modules-sdk@2.13.3
+  - @acmekit/orchestration@2.13.3
+  - @acmekit/types@2.13.3
+  - @acmekit/utils@2.13.3
+  - @acmekit/workflows-sdk@2.13.3
+  - @acmekit/deps@2.13.3
+
 ## 2.13.2
 
 ### Patch Changes

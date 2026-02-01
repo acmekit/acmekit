@@ -279,17 +279,27 @@ async function prepareProject({
     // TODO for now we just seed the default data
     // we should add onboarding seeding again if it makes
     // since once we re-introduce the onboarding flow.
-    factBoxOptions.interval = displayFactBox({
-      ...factBoxOptions,
-      title: "Seeding database...",
-    })
+    const packageJsonForSeed = JSON.parse(
+      fs.readFileSync(packageJsonPath, "utf-8")
+    )
+    if (packageJsonForSeed.scripts?.seed) {
+      factBoxOptions.interval = displayFactBox({
+        ...factBoxOptions,
+        title: "Seeding database...",
+      })
 
-    await packageManager.runCommand("seed", execOptions)
+      await packageManager.runCommand("seed", execOptions)
 
-    displayFactBox({
-      ...factBoxOptions,
-      message: "Seeded database with demo data",
-    })
+      displayFactBox({
+        ...factBoxOptions,
+        message: "Seeded database with demo data",
+      })
+    } else {
+      displayFactBox({
+        ...factBoxOptions,
+        message: "Skipped seeding (starter has no seed script)",
+      })
+    }
   }
 
   // if installation includes Next.js, retrieve the publishable API key

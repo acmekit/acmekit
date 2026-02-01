@@ -33,14 +33,15 @@ function getPluginName(index: number) {
 }
 
 async function writeEntryFile(outDir: string, plugins?: string[]) {
+  const pluginsList = plugins ?? []
   const entry = outdent`
     import App from "@acmekit/dashboard";
     import React from "react";
     import ReactDOM from "react-dom/client";
     import "./index.css";
 
-    ${plugins
-      ?.map((plugin, idx) => `import ${getPluginName(idx)} from "${plugin}"`)
+    ${pluginsList
+      .map((plugin, idx) => `import ${getPluginName(idx)} from "${plugin}"`)
       .join("\n")}
 
     let root = null
@@ -52,8 +53,8 @@ async function writeEntryFile(outDir: string, plugins?: string[]) {
     
     root.render(
       <React.StrictMode>
-        <App plugins={[${plugins
-          ?.map((_, idx) => getPluginName(idx))
+        <App plugins={[${pluginsList
+          .map((_, idx) => getPluginName(idx))
           .join(", ")}]} />
       </React.StrictMode>
     )

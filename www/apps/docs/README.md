@@ -1,1 +1,0 @@
-Directory of old AcmeKit documentation. You can find it on the [v1.x branch](https://github.com/acmekit/acmekit/tree/v1.x)

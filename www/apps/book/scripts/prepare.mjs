@@ -63,18 +63,6 @@ async function main() {
           "..",
           "resources",
           "app",
-          "commerce-modules"
-        ),
-        allowedFilesPatterns: [
-          /^(?!.*\/(workflows|js-sdk|extend|admin-widget-zones)\/).*$/,
-        ],
-      },
-      {
-        dir: path.join(
-          process.cwd(),
-          "..",
-          "resources",
-          "app",
           "infrastructure-modules"
         ),
       },
@@ -247,27 +235,6 @@ async function main() {
           options: {
             baseUrl: `${baseUrl}/api/admin`,
             type: "Admin",
-          },
-        },
-        options: {
-          plugins,
-        },
-      },
-      {
-        dir: path.join(
-          process.cwd(),
-          "..",
-          "api-reference",
-          "specs",
-          "store",
-          "paths"
-        ),
-        ext: "yaml",
-        generator: {
-          name: "apiRef",
-          options: {
-            baseUrl: `${baseUrl}/api/store`,
-            type: "Store",
           },
         },
         options: {

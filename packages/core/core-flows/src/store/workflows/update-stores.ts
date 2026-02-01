@@ -4,10 +4,8 @@ import {
   WorkflowResponse,
   createWorkflow,
   transform,
-  when,
 } from "@acmekit/framework/workflows-sdk"
 import { updateStoresStep } from "../steps"
-import { updatePricePreferencesAsArrayStep } from "../../pricing"
 
 /**
  * The updated stores.
@@ -66,23 +64,6 @@ export const updateStoresWorkflow = createWorkflow(
     })
 
     const stores = updateStoresStep(normalizedInput)
-
-    when({ input }, (data) => {
-      return !!data.input.update.supported_currencies?.length
-    }).then(() => {
-      const upsertPricePreferences = transform({ input }, (data) => {
-        return data.input.update.supported_currencies!.map((currency) => {
-          return {
-            attribute: "currency_code",
-            value: currency.currency_code,
-            is_tax_inclusive: currency.is_tax_inclusive,
-          }
-        })
-      })
-
-      updatePricePreferencesAsArrayStep(upsertPricePreferences)
-    })
-
     return new WorkflowResponse(stores)
   }
 )

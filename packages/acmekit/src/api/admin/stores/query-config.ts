@@ -9,7 +9,6 @@ export const defaultAdminStoreFields = [
   "id",
   "name",
   "*supported_currencies",
-  "*supported_currencies.currency",
   ...(FeatureFlag.isFeatureEnabled(TranslationFeatureFlag.key)
     ? ["*supported_locales", "*supported_locales.locale"]
     : []),

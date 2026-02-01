@@ -10,27 +10,7 @@ const DB_URL = `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
 process.env.DATABASE_URL = DB_URL
 process.env.LOG_LEVEL = "error"
 
-const customFulfillmentProvider = {
-  resolve: "@acmekit/fulfillment-manual",
-  id: "test-provider",
-}
-
-const customFulfillmentProviderCalculated = {
-  resolve: require("./dist/utils/providers/fulfillment-manual-calculated")
-    .default,
-  id: "test-provider-calculated",
-}
-
 const modules = {
-  [Modules.FULFILLMENT]: {
-    /** @type {import('@acmekit/fulfillment').FulfillmentModuleOptions} */
-    options: {
-      providers: [
-        customFulfillmentProvider,
-        customFulfillmentProviderCalculated,
-      ],
-    },
-  },
   [Modules.NOTIFICATION]: {
     resolve: "@acmekit/notification",
     options: {

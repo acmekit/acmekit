@@ -4,11 +4,6 @@ import {
   CUSTOM_FIELD_FORM_ZONES,
   CUSTOM_FIELD_MODELS,
 } from "./constants"
-import type {
-  ProductDisplayZone,
-  ProductFormTab,
-  ProductFormZone,
-} from "./product"
 
 export type CustomFieldModel = (typeof CUSTOM_FIELD_MODELS)[number]
 
@@ -23,26 +18,14 @@ export type CustomFieldZone = CustomFieldFormZone | CustomFieldContainerZone
 
 export type CustomFieldImportType = "display" | "field" | "link" | "config"
 
-export interface CustomFieldModelFormMap {
-  product: ProductFormZone
-}
+/** Plugin-provided form zones per model. Empty by default. */
+export interface CustomFieldModelFormMap {}
 
-export interface CustomFieldModelContainerMap {
-  product: ProductDisplayZone
-}
+/** Plugin-provided container zones per model. Empty by default. */
+export interface CustomFieldModelContainerMap {}
 
-export type CustomFieldModelFormTabsMap = {
-  product: {
-    create: ProductFormTab
-    edit: never
-    organize: never
-    attributes: never
-  }
-  customer: {
-    create: never
-    edit: never
-  }
-}
+/** Plugin-provided form tabs per model. Empty by default. */
+export type CustomFieldModelFormTabsMap = Record<string, never>
 
 export type CustomFieldFormKeys<T extends CustomFieldModel> =
   CustomFieldModelFormMap[T]

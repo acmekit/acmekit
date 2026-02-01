@@ -10,13 +10,6 @@ process.env.LOG_LEVEL = "error"
 
 const enableAcmeKitV2 = process.env.MEDUSA_FF_MEDUSA_V2 == "true"
 
-const customPaymentProvider = {
-  resolve: {
-    services: [require("@acmekit/payment/dist/providers/system").default],
-  },
-  id: "default_2",
-}
-
 const customFulfillmentProvider = {
   resolve: "@acmekit/fulfillment-manual",
   id: "test-provider",
@@ -84,13 +77,6 @@ module.exports = {
     [Modules.TAX]: true,
     [Modules.CURRENCY]: true,
     [Modules.ORDER]: true,
-    [Modules.PAYMENT]: {
-      resolve: "@acmekit/payment",
-      /** @type {import('@acmekit/payment').PaymentModuleOptions}*/
-      options: {
-        providers: [customPaymentProvider],
-      },
-    },
     [Modules.FULFILLMENT]: {
       /** @type {import('@acmekit/fulfillment').FulfillmentModuleOptions} */
       options: {

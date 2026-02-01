@@ -1,5 +1,50 @@
 # Changelog
 
+## 2.13.3
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.3
+  - @acmekit/admin-bundler@2.13.3
+  - @acmekit/core-flows@2.13.3
+  - @acmekit/framework@2.13.3
+  - @acmekit/analytics@2.13.3
+  - @acmekit/api-key@2.13.3
+  - @acmekit/auth@2.13.3
+  - @acmekit/cache-inmemory@2.13.3
+  - @acmekit/cache-redis@2.13.3
+  - @acmekit/caching@2.13.3
+  - @acmekit/customer@2.13.3
+  - @acmekit/event-bus-local@2.13.3
+  - @acmekit/event-bus-redis@2.13.3
+  - @acmekit/file@2.13.3
+  - @acmekit/index@2.13.3
+  - @acmekit/link-modules@2.13.3
+  - @acmekit/locking@2.13.3
+  - @acmekit/notification@2.13.3
+  - @acmekit/analytics-local@2.13.3
+  - @acmekit/analytics-posthog@2.13.3
+  - @acmekit/auth-emailpass@2.13.3
+  - @acmekit/auth-github@2.13.3
+  - @acmekit/auth-google@2.13.3
+  - @acmekit/caching-redis@2.13.3
+  - @acmekit/file-local@2.13.3
+  - @acmekit/file-s3@2.13.3
+  - @acmekit/locking-postgres@2.13.3
+  - @acmekit/locking-redis@2.13.3
+  - @acmekit/notification-local@2.13.3
+  - @acmekit/notification-sendgrid@2.13.3
+  - @acmekit/rbac@2.13.3
+  - @acmekit/settings@2.13.3
+  - @acmekit/store@2.13.3
+  - @acmekit/translation@2.13.3
+  - @acmekit/user@2.13.3
+  - @acmekit/workflow-engine-inmemory@2.13.3
+  - @acmekit/workflow-engine-redis@2.13.3
+
 ## 2.13.2
 
 ### Patch Changes

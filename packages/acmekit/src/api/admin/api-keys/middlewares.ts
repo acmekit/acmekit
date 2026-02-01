@@ -7,7 +7,6 @@ import {
 } from "@acmekit/framework"
 import { MiddlewareRoute } from "@acmekit/framework/http"
 import { PolicyOperation } from "@acmekit/framework/utils"
-import { createLinkBody } from "../../utils/validators"
 import {
   AdminCreateApiKey,
   AdminGetApiKeyParams,
@@ -102,23 +101,6 @@ export const adminApiKeyRoutesMiddlewares: MiddlewareRoute[] = [
     matcher: "/admin/api-keys/:id/revoke",
     middlewares: [
       validateAndTransformBody(AdminRevokeApiKey),
-      validateAndTransformQuery(
-        AdminGetApiKeyParams,
-        QueryConfig.retrieveTransformQueryConfig
-      ),
-    ],
-    policies: [
-      {
-        resource: Entities.api_key,
-        operation: PolicyOperation.update,
-      },
-    ],
-  },
-  {
-    method: ["POST"],
-    matcher: "/admin/api-keys/:id/sales-channels",
-    middlewares: [
-      validateAndTransformBody(createLinkBody()),
       validateAndTransformQuery(
         AdminGetApiKeyParams,
         QueryConfig.retrieveTransformQueryConfig

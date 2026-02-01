@@ -29,14 +29,7 @@ const DEFAULT_DATABASE_URL = "postgres://localhost/acmekit-starter-default"
 const DEFAULT_ADMIN_CORS =
   "http://localhost:7000,http://localhost:7001,http://localhost:5173"
 
-export const DEFAULT_STORE_RESTRICTED_FIELDS = [
-  "order",
-  "orders",
-  /*"customer",
-  "customers",
-  "payment_collection",
-  "payment_collections"*/
-]
+export const DEFAULT_STORE_RESTRICTED_FIELDS: string[] = []
 
 /**
  * The "defineConfig" helper can be used to define the configuration
@@ -143,12 +136,9 @@ function resolvePlugins(
   configPlugins: InputConfig["plugins"],
   { isCloud }: { isCloud: boolean }
 ): ConfigModule["plugins"] {
-  const defaultPlugins: Map<string, ConfigModule["plugins"][number]> = new Map([
-    [
-      "@acmekit/draft-order",
-      { resolve: "@acmekit/draft-order", options: {} },
-    ],
-  ])
+  const defaultPlugins: Map<string, ConfigModule["plugins"][number]> = new Map(
+    []
+  )
 
   if (configPlugins?.length) {
     configPlugins.forEach((plugin) => {
@@ -178,22 +168,9 @@ function resolveModules(
   projectConfig: InputConfig["projectConfig"]
 ): Exclude<ConfigModule["modules"], undefined> {
   const sharedModules = [
-    { resolve: MODULE_PACKAGE_NAMES[Modules.STOCK_LOCATION] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.INVENTORY] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.PRODUCT] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.PRICING] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.PROMOTION] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.CUSTOMER] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.SALES_CHANNEL] },
-
-    { resolve: MODULE_PACKAGE_NAMES[Modules.CART] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.REGION] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.API_KEY] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.STORE] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.TAX] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.CURRENCY] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.PAYMENT] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.ORDER] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.SETTINGS] },
 
     {
@@ -223,17 +200,6 @@ function resolveModules(
         jwt_options: projectConfig?.http?.jwtOptions,
         jwt_verify_options: projectConfig?.http?.jwtVerifyOptions,
         jwt_public_key: projectConfig?.http?.jwtPublicKey,
-      },
-    },
-    {
-      resolve: MODULE_PACKAGE_NAMES[Modules.FULFILLMENT],
-      options: {
-        providers: [
-          {
-            resolve: "@acmekit/acmekit/fulfillment-manual",
-            id: "manual",
-          },
-        ],
       },
     },
     {
@@ -527,18 +493,6 @@ function applyCloudOptionsToModules(
           cloud: {
             api_key: config.apiKey,
             endpoint: config.emailsEndpoint,
-            environment_handle: config.environmentHandle,
-            sandbox_handle: config.sandboxHandle,
-          },
-          ...(module.options ?? {}),
-        }
-        break
-      case Modules.PAYMENT:
-        module.options = {
-          cloud: {
-            api_key: config.apiKey,
-            webhook_secret: config.webhookSecret,
-            endpoint: config.paymentsEndpoint,
             environment_handle: config.environmentHandle,
             sandbox_handle: config.sandboxHandle,
           },

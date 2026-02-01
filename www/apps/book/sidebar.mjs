@@ -75,13 +75,8 @@ export const sidebars = [
             children: [
               {
                 type: "link",
-                title: "Link Brands and Products",
+                title: "Define Link",
                 path: "/learn/customization/extend-features/define-link",
-              },
-              {
-                type: "link",
-                title: "Extend Core Flow",
-                path: "/learn/customization/extend-features/extend-create-product",
               },
               {
                 type: "link",
@@ -204,11 +199,6 @@ export const sidebars = [
                 type: "link",
                 path: "/learn/fundamentals/modules/multiple-services",
                 title: "Multiple Services",
-              },
-              {
-                type: "link",
-                path: "/learn/fundamentals/modules/commerce-modules",
-                title: "Commerce Modules",
               },
               {
                 type: "link",
@@ -580,12 +570,6 @@ export const sidebars = [
             title: "Tips",
           },
         ],
-      },
-      {
-        type: "link",
-        path: "/learn/storefront-development",
-        title: "Storefront Development",
-        chapterTitle: "Storefront",
       },
       {
         type: "category",

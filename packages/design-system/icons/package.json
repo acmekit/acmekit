@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/icons",
-  "version": "2.13.2",
+  "version": "2.13.3",
   "description": "AcmeKit UI React icon library",
   "author": "Kasper Kristensen <kasper@acmekit.com>",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "generate": "yarn run -T rimraf ./src/components && toolbox icons -o './src/components'"
   },
   "devDependencies": {
-    "@acmekit/toolbox": "2.13.2",
+    "@acmekit/toolbox": "2.13.3",
     "react": "^18.3.1"
   },
   "peerDependencies": {

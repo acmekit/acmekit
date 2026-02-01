@@ -157,7 +157,7 @@
     "openapi:generate": "yarn ./packages/cli/oas/oas-github-ci run ci --with-full-file",
     "acmekit-oas": "yarn ./packages/cli/oas/acmekit-oas-cli run acmekit-oas",
     "release:snapshot": "changeset publish --no-git-tags --snapshot --tag snapshot",
-    "release:next": "chgstangeset publish --no-git-tags --snapshot --tag next",
+    "release:next": "changeset publish --no-git-tags --snapshot --tag next",
     "version:next": "changeset version --snapshot next",
     "release": "changeset publish",
     "version": "changeset version && yarn install --no-immutable"

@@ -1,7 +1,7 @@
 import { ArrowUturnLeft, MinusMini } from "@acmekit/icons"
 import { clx, Divider, IconButton, Text } from "@acmekit/ui"
 import { Collapsible as RadixCollapsible } from "radix-ui"
-import { Fragment, useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link, useLocation } from "react-router-dom"
 
@@ -9,7 +9,6 @@ import { useExtension } from "../../../providers/extension-provider"
 import { INavItem, NavItem } from "../nav-item"
 import { Shell } from "../shell"
 import { UserMenu } from "../user-menu"
-import { useFeatureFlag } from "../../../providers/feature-flag-provider"
 
 export const SettingsLayout = () => {
   return (
@@ -19,108 +18,13 @@ export const SettingsLayout = () => {
   )
 }
 
-const useSettingRoutes = (): INavItem[] => {
-  const isTranslationsEnabled = useFeatureFlag("translation")
-  const { t } = useTranslation()
-
-  return useMemo(
-    () => [
-      {
-        label: t("store.domain"),
-        to: "/settings/store",
-      },
-      {
-        label: t("users.domain"),
-        to: "/settings/users",
-      },
-      {
-        label: t("regions.domain"),
-        to: "/settings/regions",
-      },
-      {
-        label: t("taxRegions.domain"),
-        to: "/settings/tax-regions",
-      },
-      {
-        label: t("returnReasons.domain"),
-        to: "/settings/return-reasons",
-      },
-      {
-        label: t("refundReasons.domain"),
-        to: "/settings/refund-reasons",
-      },
-      {
-        label: t("salesChannels.domain"),
-        to: "/settings/sales-channels",
-      },
-      {
-        label: t("productTypes.domain"),
-        to: "/settings/product-types",
-      },
-      {
-        label: t("productTags.domain"),
-        to: "/settings/product-tags",
-      },
-      {
-        label: t("stockLocations.domain"),
-        to: "/settings/locations",
-      },
-      ...(isTranslationsEnabled
-        ? [
-            {
-              label: t("translations.domain"),
-              to: "/settings/translations",
-            },
-          ]
-        : []),
-    ],
-    [t, isTranslationsEnabled]
-  )
-}
-
-const useDeveloperRoutes = (): INavItem[] => {
-  const { t } = useTranslation()
-
-  return useMemo(
-    () => [
-      {
-        label: t("apiKeyManagement.domain.publishable"),
-        to: "/settings/publishable-api-keys",
-      },
-      {
-        label: t("apiKeyManagement.domain.secret"),
-        to: "/settings/secret-api-keys",
-      },
-      {
-        label: t("workflowExecutions.domain"),
-        to: "/settings/workflows",
-      },
-    ],
-    [t]
-  )
-}
-
-const useMyAccountRoutes = (): INavItem[] => {
-  const { t } = useTranslation()
-
-  return useMemo(
-    () => [
-      {
-        label: t("profile.domain"),
-        to: "/settings/profile",
-      },
-    ],
-    [t]
-  )
-}
-
 /**
  * Ensure that the `from` prop is not another settings route, to avoid
  * the user getting stuck in a navigation loop.
  */
 const getSafeFromValue = (from: string) => {
   if (from.startsWith("/settings")) {
-    return "/orders"
+    return "/"
   }
 
   return from
@@ -128,12 +32,7 @@ const getSafeFromValue = (from: string) => {
 
 const SettingsSidebar = () => {
   const { getMenu } = useExtension()
-
-  const routes = useSettingRoutes()
-  const developerRoutes = useDeveloperRoutes()
-  const myAccountRoutes = useMyAccountRoutes()
   const extensionRoutes = getMenu("settingsExtensions")
-
   const { t } = useTranslation()
 
   return (
@@ -146,35 +45,12 @@ const SettingsSidebar = () => {
       </div>
       <div className="flex flex-1 flex-col">
         <div className="flex flex-1 flex-col overflow-y-auto">
-          <RadixCollapsibleSection
-            label={t("app.nav.settings.general")}
-            items={routes}
-          />
-          <div className="flex items-center justify-center px-3">
-            <Divider variant="dashed" />
-          </div>
-          <RadixCollapsibleSection
-            label={t("app.nav.settings.developer")}
-            items={developerRoutes}
-          />
-          <div className="flex items-center justify-center px-3">
-            <Divider variant="dashed" />
-          </div>
-          <RadixCollapsibleSection
-            label={t("app.nav.settings.myAccount")}
-            items={myAccountRoutes}
-          />
-          {extensionRoutes.length > 0 && (
-            <Fragment>
-              <div className="flex items-center justify-center px-3">
-                <Divider variant="dashed" />
-              </div>
-              <RadixCollapsibleSection
-                label={t("app.nav.common.extensions")}
-                items={extensionRoutes}
-              />
-            </Fragment>
-          )}
+          {extensionRoutes.length > 0 ? (
+            <RadixCollapsibleSection
+              label={t("app.nav.common.extensions")}
+              items={extensionRoutes}
+            />
+          ) : null}
         </div>
         <div className="bg-ui-bg-subtle sticky bottom-0">
           <UserSection />
@@ -185,7 +61,7 @@ const SettingsSidebar = () => {
 }
 
 const Header = () => {
-  const [from, setFrom] = useState("/orders")
+  const [from, setFrom] = useState("/")
 
   const { t } = useTranslation()
   const location = useLocation()

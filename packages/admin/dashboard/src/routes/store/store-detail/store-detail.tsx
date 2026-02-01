@@ -7,13 +7,9 @@ import { storeLoader } from "./loader"
 import { SingleColumnPageSkeleton } from "../../../components/common/skeleton"
 import { SingleColumnPage } from "../../../components/layout/pages"
 import { useExtension } from "../../../providers/extension-provider"
-import { StoreCurrencySection } from "./components/store-currency-section"
-import { StoreLocaleSection } from "./components/store-locale-section"
-import { useFeatureFlag } from "../../../providers/feature-flag-provider"
 
 export const StoreDetail = () => {
   const initialData = useLoaderData() as Awaited<ReturnType<typeof storeLoader>>
-  const isTranslationsEnabled = useFeatureFlag("translation")
 
   const { store, isPending, isError, error } = useStore(undefined, {
     initialData,
@@ -22,7 +18,7 @@ export const StoreDetail = () => {
   const { getWidgets } = useExtension()
 
   if (isPending || !store) {
-    return <SingleColumnPageSkeleton sections={2} showJSON showMetadata />
+    return <SingleColumnPageSkeleton sections={1} showJSON showMetadata />
   }
 
   if (isError) {
@@ -41,8 +37,6 @@ export const StoreDetail = () => {
       showJSON
     >
       <StoreGeneralSection store={store} />
-      <StoreCurrencySection store={store} />
-      {isTranslationsEnabled && <StoreLocaleSection store={store} />}
     </SingleColumnPage>
   )
 }

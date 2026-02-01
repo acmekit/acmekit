@@ -1,7 +1,7 @@
 {
   "name": "@acmekit/toolbox",
   "private": true,
-  "version": "2.13.2",
+  "version": "2.13.3",
   "description": "CLI tool for importing Figma designs for AcmeKit UI",
   "license": "MIT",
   "author": "Kasper Kristensen <kasper@acmekit.com>",

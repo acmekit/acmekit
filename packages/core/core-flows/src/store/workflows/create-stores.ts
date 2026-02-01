@@ -1,4 +1,4 @@
-import type { StoreDTO, StoreWorkflow } from "@acmekit/framework/types"
+import type { StoreDTO } from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
@@ -6,7 +6,6 @@ import {
   transform,
 } from "@acmekit/framework/workflows-sdk"
 import { createStoresStep } from "../steps"
-import { updatePricePreferencesAsArrayStep } from "../../pricing"
 
 /**
  * The data to create stores.
@@ -15,7 +14,11 @@ export type CreateStoresWorkflowInput = {
   /**
    * The stores to create.
    */
-  stores: StoreWorkflow.CreateStoreWorkflowInput[]
+  stores: Array<{
+    name?: string
+    supported_currencies?: Array<{ currency_code: string; is_default?: boolean }>
+    supported_locales?: Array<{ locale_code: string }>
+  }>
 }
 
 /**
@@ -71,27 +74,6 @@ export const createStoresWorkflow = createWorkflow(
     })
 
     const stores = createStoresStep(normalizedInput)
-
-    const upsertPricePreferences = transform({ input }, (data) => {
-      const toUpsert = new Map<
-        string,
-        { attribute: string; value: string; is_tax_inclusive?: boolean }
-      >()
-
-      data.input.stores.forEach((store) => {
-        store.supported_currencies.forEach((currency) => {
-          toUpsert.set(currency.currency_code, {
-            attribute: "currency_code",
-            value: currency.currency_code,
-            is_tax_inclusive: currency.is_tax_inclusive,
-          })
-        })
-      })
-
-      return Array.from(toUpsert.values())
-    })
-
-    updatePricePreferencesAsArrayStep(upsertPricePreferences)
     return new WorkflowResponse(stores)
   }
 )

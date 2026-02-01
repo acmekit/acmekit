@@ -4,9 +4,7 @@ import { SingleColumnPageSkeleton } from "../../../components/common/skeleton"
 import { SingleColumnPage } from "../../../components/layout/pages"
 import { useApiKey } from "../../../hooks/api/api-keys"
 import { useExtension } from "../../../providers/extension-provider"
-import { ApiKeyType } from "../common/constants"
 import { ApiKeyGeneralSection } from "./components/api-key-general-section"
-import { ApiKeySalesChannelSection } from "./components/api-key-sales-channel-section"
 import { apiKeyLoader } from "./loader"
 
 export const ApiKeyManagementDetail = () => {
@@ -25,8 +23,6 @@ export const ApiKeyManagementDetail = () => {
     return <SingleColumnPageSkeleton showJSON sections={1} />
   }
 
-  const isPublishable = api_key?.type === ApiKeyType.PUBLISHABLE
-
   if (isError) {
     throw error
   }
@@ -42,7 +38,6 @@ export const ApiKeyManagementDetail = () => {
       data={api_key}
     >
       <ApiKeyGeneralSection apiKey={api_key} />
-      {isPublishable && <ApiKeySalesChannelSection apiKey={api_key} />}
     </SingleColumnPage>
   )
 }

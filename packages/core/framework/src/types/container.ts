@@ -6,28 +6,15 @@ import {
   IAuthModuleService,
   ICacheService,
   ICachingModuleService,
-  ICartModuleService,
-  ICurrencyModuleService,
   ICustomerModuleService,
   IEventBusModuleService,
   IFileModuleService,
-  IFulfillmentModuleService,
   IIndexService,
-  IInventoryService,
   ILockingModule,
   INotificationModuleService,
-  IOrderModuleService,
-  IPaymentModuleService,
-  IPricingModuleService,
-  IProductModuleService,
-  IPromotionModuleService,
   IRbacModuleService,
-  IRegionModuleService,
-  ISalesChannelModuleService,
   ISettingsModuleService,
-  IStockLocationService,
   IStoreModuleService,
-  ITaxModuleService,
   ITranslationModuleService,
   IUserModuleService,
   IWorkflowEngineService,
@@ -57,25 +44,12 @@ declare module "@acmekit/types" {
     [Modules.ANALYTICS]: IAnalyticsModuleService
     [Modules.AUTH]: IAuthModuleService
     [Modules.CACHE]: ICacheService
-    [Modules.CART]: ICartModuleService
     [Modules.CUSTOMER]: ICustomerModuleService
     [Modules.EVENT_BUS]: IEventBusModuleService
-    [Modules.INVENTORY]: IInventoryService
-    [Modules.PAYMENT]: IPaymentModuleService
-    [Modules.PRICING]: IPricingModuleService
-    [Modules.PRODUCT]: IProductModuleService
-    [Modules.PROMOTION]: IPromotionModuleService
-    [Modules.SALES_CHANNEL]: ISalesChannelModuleService
-    [Modules.TAX]: ITaxModuleService
-    [Modules.FULFILLMENT]: IFulfillmentModuleService
-    [Modules.STOCK_LOCATION]: IStockLocationService
     [Modules.USER]: IUserModuleService
     [Modules.WORKFLOW_ENGINE]: IWorkflowEngineService
-    [Modules.REGION]: IRegionModuleService
-    [Modules.ORDER]: IOrderModuleService
     [Modules.API_KEY]: IApiKeyModuleService
     [Modules.STORE]: IStoreModuleService
-    [Modules.CURRENCY]: ICurrencyModuleService
     [Modules.FILE]: IFileModuleService
     [Modules.NOTIFICATION]: INotificationModuleService
     [Modules.LOCKING]: ILockingModule

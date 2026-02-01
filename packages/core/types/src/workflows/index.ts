@@ -1,2 +1,2 @@
-export * from "./stock-locations"
-export * from "./products"
+// Workflow input DTOs - kernel only (commerce workflow types removed)
+export {}

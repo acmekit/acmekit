@@ -10,31 +10,6 @@ const DB_URL = `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
 process.env.POSTGRES_URL = DB_URL
 process.env.LOG_LEVEL = "error"
 
-const customTaxProviderRegistration = {
-  resolve: {
-    services: [require("@acmekit/tax/dist/providers/system").default],
-  },
-  id: "system_2",
-}
-
-const customPaymentProvider = {
-  resolve: {
-    services: [require("@acmekit/payment/dist/providers/system").default],
-  },
-  id: "default_2",
-}
-
-const customFulfillmentProvider = {
-  resolve: "@acmekit/fulfillment-manual",
-  id: "test-provider",
-}
-
-const customFulfillmentProviderCalculated = {
-  resolve: require("./dist/utils/providers/fulfillment-manual-calculated")
-    .default,
-  id: "test-provider-calculated",
-}
-
 module.exports = defineConfig({
   admin: {
     disable: true,
@@ -84,42 +59,8 @@ module.exports = defineConfig({
       resolve: "@acmekit/locking",
     },
     {
-      key: Modules.STOCK_LOCATION,
-      resolve: "@acmekit/stock-location",
-      options: {},
-    },
-    {
-      key: Modules.INVENTORY,
-      resolve: "@acmekit/inventory",
-      options: {},
-    },
-    {
-      key: Modules.PRODUCT,
-      resolve: "@acmekit/product",
-    },
-    {
-      key: Modules.PRICING,
-      resolve: "@acmekit/pricing",
-    },
-    {
-      key: Modules.PROMOTION,
-      resolve: "@acmekit/promotion",
-    },
-    {
-      key: Modules.REGION,
-      resolve: "@acmekit/region",
-    },
-    {
       key: Modules.CUSTOMER,
       resolve: "@acmekit/customer",
-    },
-    {
-      key: Modules.SALES_CHANNEL,
-      resolve: "@acmekit/sales-channel",
-    },
-    {
-      key: Modules.CART,
-      resolve: "@acmekit/cart",
     },
     {
       key: Modules.WORKFLOW_ENGINE,
@@ -132,38 +73,6 @@ module.exports = defineConfig({
     {
       key: Modules.STORE,
       resolve: "@acmekit/store",
-    },
-    {
-      key: Modules.TAX,
-      resolve: "@acmekit/tax",
-      options: {
-        providers: [customTaxProviderRegistration],
-      },
-    },
-    {
-      key: Modules.CURRENCY,
-      resolve: "@acmekit/currency",
-    },
-    {
-      key: Modules.ORDER,
-      resolve: "@acmekit/order",
-    },
-    {
-      key: Modules.PAYMENT,
-      resolve: "@acmekit/payment",
-      options: {
-        providers: [customPaymentProvider],
-      },
-    },
-    {
-      key: Modules.FULFILLMENT,
-      resolve: "@acmekit/fulfillment",
-      options: {
-        providers: [
-          customFulfillmentProvider,
-          customFulfillmentProviderCalculated,
-        ],
-      },
     },
     {
       key: Modules.NOTIFICATION,

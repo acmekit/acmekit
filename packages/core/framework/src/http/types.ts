@@ -6,11 +6,10 @@ import type {
 } from "@acmekit/deps/zod"
 import type { NextFunction, Request, Response } from "express"
 
-import {
-  FindConfig,
-  AcmeKitPricingContext,
-  RequestQueryFields,
-} from "@acmekit/types"
+import { FindConfig, RequestQueryFields } from "@acmekit/types"
+
+/** @internal Kernel-only; pricing context type removed with commerce. */
+export type AcmeKitPricingContext = Record<string, unknown>
 import { AcmeKitContainer } from "../container"
 import { PolicyAction } from "./middlewares/check-permissions"
 import { RestrictedFields } from "./utils/restricted-fields"

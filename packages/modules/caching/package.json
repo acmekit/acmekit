@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/caching",
-  "version": "2.13.2",
+  "version": "2.13.3",
   "description": "Caching Module for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -28,12 +28,12 @@
     "test:integration": "../../../node_modules/.bin/jest --passWithNoTests --forceExit --testPathPattern=\"integration-tests/__tests__/.*\\.ts\""
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.2",
-    "@acmekit/test-utils": "2.13.2",
+    "@acmekit/framework": "2.13.3",
+    "@acmekit/test-utils": "2.13.3",
     "awilix": "^8.0.1"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.2",
+    "@acmekit/framework": "2.13.3",
     "awilix": "^8.0.1"
   },
   "dependencies": {

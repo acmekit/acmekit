@@ -1,25 +1,16 @@
 import {
-  BuildingStorefront,
-  Buildings,
   ChevronDownMini,
   CogSixTooth,
-  CurrencyDollar,
   EllipsisHorizontal,
   MagnifyingGlass,
   MinusMini,
   OpenRectArrowOut,
-  ReceiptPercent,
-  ShoppingCart,
   SquaresPlus,
-  Tag,
-  Users,
 } from "@acmekit/icons"
 import { Avatar, Divider, DropdownMenu, Text, clx } from "@acmekit/ui"
 import { Collapsible as RadixCollapsible } from "radix-ui"
 import { useTranslation } from "react-i18next"
 
-import { useStore } from "../../../hooks/api/store"
-import { Skeleton } from "../../common/skeleton"
 import { INavItem, NavItem } from "../../layout/nav-item"
 import { Shell } from "../../layout/shell"
 
@@ -94,23 +85,13 @@ const Logout = () => {
 
 const Header = () => {
   const { t } = useTranslation()
-  const { store, isPending, isError, error } = useStore()
   const direction = useDocumentDirection()
-  const name = store?.name
-  const fallback = store?.name?.slice(0, 1).toUpperCase()
-
-  const isLoaded = !isPending && !!store && !!name && !!fallback
-
-  if (isError) {
-    throw error
-  }
+  const fallback = "A"
 
   return (
     <div className="w-full p-3">
-    <DropdownMenu
-          dir={direction}>
+      <DropdownMenu dir={direction}>
         <DropdownMenu.Trigger
-          disabled={!isLoaded}
           className={clx(
             "bg-ui-bg-subtle transition-fg grid w-full grid-cols-[24px_1fr_15px] items-center gap-x-3 rounded-md p-0.5 pe-2 outline-none",
             "hover:bg-ui-bg-subtle-hover",
@@ -118,140 +99,36 @@ const Header = () => {
             "focus-visible:shadow-borders-focus"
           )}
         >
-          {fallback ? (
-            <Avatar variant="squared" size="xsmall" fallback={fallback} />
-          ) : (
-            <Skeleton className="h-6 w-6 rounded-md" />
-          )}
+          <Avatar variant="squared" size="xsmall" fallback={fallback} />
           <div className="block overflow-hidden text-start">
-            {name ? (
-              <Text
-                size="small"
-                weight="plus"
-                leading="compact"
-                className="truncate"
-              >
-                {store.name}
-              </Text>
-            ) : (
-              <Skeleton className="h-[9px] w-[120px]" />
-            )}
+            <Text
+              size="small"
+              weight="plus"
+              leading="compact"
+              className="truncate"
+            >
+              {t("app.nav.main.store", "Admin")}
+            </Text>
           </div>
           <EllipsisHorizontal className="text-ui-fg-muted" />
         </DropdownMenu.Trigger>
-        {isLoaded && (
-          <DropdownMenu.Content className="w-[var(--radix-dropdown-menu-trigger-width)] min-w-0">
-            <div className="flex items-center gap-x-3 px-2 py-1">
-              <Avatar variant="squared" size="small" fallback={fallback} />
-              <div className="flex flex-col overflow-hidden">
-                <Text
-                  size="small"
-                  weight="plus"
-                  leading="compact"
-                  className="truncate"
-                >
-                  {name}
-                </Text>
-                <Text
-                  size="xsmall"
-                  leading="compact"
-                  className="text-ui-fg-subtle"
-                >
-                  {t("app.nav.main.store")}
-                </Text>
-              </div>
-            </div>
-            <DropdownMenu.Separator />
-            <DropdownMenu.Item className="gap-x-2" asChild>
-              <Link to="/settings/store">
-                <BuildingStorefront className="text-ui-fg-subtle" />
-                {t("app.nav.main.storeSettings")}
-              </Link>
-            </DropdownMenu.Item>
-            <DropdownMenu.Separator />
-            <Logout />
-          </DropdownMenu.Content>
-        )}
+        <DropdownMenu.Content className="w-[var(--radix-dropdown-menu-trigger-width)] min-w-0">
+          <DropdownMenu.Item className="gap-x-2" asChild>
+            <Link to="/settings">
+              <CogSixTooth className="text-ui-fg-subtle" />
+              {t("app.nav.main.storeSettings", "Settings")}
+            </Link>
+          </DropdownMenu.Item>
+          <DropdownMenu.Separator />
+          <Logout />
+        </DropdownMenu.Content>
       </DropdownMenu>
     </div>
   )
 }
 
 const useCoreRoutes = (): Omit<INavItem, "pathname">[] => {
-  const { t } = useTranslation()
-
-  return [
-    {
-      icon: <ShoppingCart />,
-      label: t("orders.domain"),
-      to: "/orders",
-      items: [
-        // TODO: Enable when domin is introduced
-        // {
-        //   label: t("draftOrders.domain"),
-        //   to: "/draft-orders",
-        // },
-      ],
-    },
-    {
-      icon: <Tag />,
-      label: t("products.domain"),
-      to: "/products",
-      items: [
-        {
-          label: t("collections.domain"),
-          to: "/collections",
-        },
-        {
-          label: t("categories.domain"),
-          to: "/categories",
-        },
-        // TODO: Enable when domin is introduced
-        // {
-        //   label: t("giftCards.domain"),
-        //   to: "/gift-cards",
-        // },
-      ],
-    },
-    {
-      icon: <Buildings />,
-      label: t("inventory.domain"),
-      to: "/inventory",
-      items: [
-        {
-          label: t("reservations.domain"),
-          to: "/reservations",
-        },
-      ],
-    },
-    {
-      icon: <Users />,
-      label: t("customers.domain"),
-      to: "/customers",
-      items: [
-        {
-          label: t("customerGroups.domain"),
-          to: "/customer-groups",
-        },
-      ],
-    },
-    {
-      icon: <ReceiptPercent />,
-      label: t("promotions.domain"),
-      to: "/promotions",
-      items: [
-        {
-          label: t("campaigns.domain"),
-          to: "/campaigns",
-        },
-      ],
-    },
-    {
-      icon: <CurrencyDollar />,
-      label: t("priceLists.domain"),
-      to: "/price-lists",
-    },
-  ]
+  return []
 }
 
 const Searchbar = () => {

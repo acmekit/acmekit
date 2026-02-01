@@ -919,7 +919,7 @@ describe("defineConfig", function () {
           } as any,
         },
         modules: {
-          [Modules.CART]: false,
+          [Modules.CUSTOMER]: false,
         },
       })
     ).toMatchInlineSnapshot(`

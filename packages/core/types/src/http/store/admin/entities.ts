@@ -1,4 +1,3 @@
-import { AdminCurrency } from "../../currency"
 import { AdminLocale } from "../../locale"
 
 export interface AdminStoreCurrency {
@@ -21,10 +20,6 @@ export interface AdminStoreCurrency {
    * Whether the currency is the default currency for the store.
    */
   is_default: boolean
-  /**
-   * The currency's details.
-   */
-  currency: AdminCurrency
   /**
    * The date the currency was created.
    */
