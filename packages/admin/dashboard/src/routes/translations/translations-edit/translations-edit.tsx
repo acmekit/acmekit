@@ -3,8 +3,8 @@ import { useEffect } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { RouteFocusModal } from "../../../components/modals"
 import {
+  useLocales,
   useReferenceTranslations,
-  useStore,
   useTranslationSettings,
 } from "../../../hooks/api"
 import { useFeatureFlag } from "../../../providers/feature-flag-provider"
@@ -46,11 +46,14 @@ export const TranslationsEdit = () => {
     placeholderData: keepPreviousData,
   })
   const {
-    store,
-    isPending: isStorePending,
-    isError: isStoreError,
-    error: storeError,
-  } = useStore()
+    locales: localesList,
+    isPending: isLocalesPending,
+    isError: isLocalesError,
+    error: localesError,
+  } = useLocales()
+
+  const availableLocales =
+    localesList?.map((l) => ({ locale_code: l.code, locale: l.code })) ?? []
 
   const ready =
     !isPending &&
@@ -58,11 +61,11 @@ export const TranslationsEdit = () => {
     !!translation_settings &&
     !isTranslationSettingsPending &&
     !!references &&
-    !isStorePending &&
-    !!store
+    !isLocalesPending &&
+    !!localesList
 
-  if (isError || isStoreError || isTranslationSettingsError) {
-    throw error || storeError || translationSettingsError
+  if (isError || isLocalesError || isTranslationSettingsError) {
+    throw error || localesError || translationSettingsError
   }
 
   return (
@@ -72,7 +75,7 @@ export const TranslationsEdit = () => {
           translations={translations}
           references={references}
           entityType={reference!}
-          availableLocales={store?.supported_locales ?? []}
+          availableLocales={availableLocales}
           translatableFields={translation_settings[reference!]?.fields ?? []}
           fetchNextPage={fetchNextPage}
           hasNextPage={hasNextPage}

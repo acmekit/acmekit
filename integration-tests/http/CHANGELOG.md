@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.0.7
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/acmekit@2.13.9
+  - @acmekit/test-utils@2.13.9
+  - @acmekit/core-flows@2.13.9
+  - @acmekit/framework@2.13.9
+  - @acmekit/modules-sdk@2.13.9
+  - @acmekit/utils@2.13.9
+  - @acmekit/api-key@2.13.9
+  - @acmekit/auth@2.13.9
+  - @acmekit/cache-inmemory@2.13.9
+  - @acmekit/customer@2.13.9
+  - @acmekit/event-bus-local@2.13.9
+  - @acmekit/event-bus-redis@2.13.9
+  - @acmekit/store@2.13.9
+  - @acmekit/translation@2.13.9
+  - @acmekit/user@2.13.9
+  - @acmekit/workflow-engine-inmemory@2.13.9
+
 ## 2.0.6
 
 ### Patch Changes

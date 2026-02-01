@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/cache-redis",
-  "version": "2.13.8",
+  "version": "2.13.9",
   "description": "Redis Cache Module for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -23,7 +23,7 @@
   "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
-    "@acmekit/framework": "2.13.8"
+    "@acmekit/framework": "2.13.9"
   },
   "scripts": {
     "watch": "yarn run -T tsc --build --watch",
@@ -34,6 +34,6 @@
     "ioredis": "^5.4.1"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.8"
+    "@acmekit/framework": "2.13.9"
   }
 }

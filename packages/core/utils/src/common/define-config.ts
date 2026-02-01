@@ -168,9 +168,7 @@ function resolveModules(
   projectConfig: InputConfig["projectConfig"]
 ): Exclude<ConfigModule["modules"], undefined> {
   const sharedModules = [
-    { resolve: MODULE_PACKAGE_NAMES[Modules.CUSTOMER] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.API_KEY] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.STORE] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.SETTINGS] },
 
     {

@@ -16,20 +16,9 @@ type HandlerConfig = {
   data: Record<string, string>
 }
 
-// TODO: The config should be loaded dynamically from acmekit-config.js
-// TODO: We can use a more powerful templating syntax to allow for eg. combining fields.
-const handlerConfig: HandlerConfig[] = [
-  {
-    event: "order.created",
-    template: "order-created-template",
-    channel: "email",
-    to: "order.email",
-    resource_id: "order.id",
-    data: {
-      order_id: "order.id",
-    },
-  },
-]
+// TODO: Load from acmekit-config.js for domain-specific notifications.
+// Empty by default for generic apps; add entries for events your app emits.
+const handlerConfig: HandlerConfig[] = []
 
 const configAsMap = handlerConfig.reduce(
   (acc: Record<string, HandlerConfig[]>, h) => {

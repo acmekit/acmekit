@@ -17,7 +17,7 @@
 </h4>
 
 <p align="center">
-  Building blocks for digital commerce
+  Application bootstrap for the AcmeKit framework
 </p>
 <p align="center">
   <a href="https://github.com/acmekit/acmekit/blob/develop/LICENSE">
@@ -44,9 +44,9 @@ Visit the [Quickstart Guide](https://docs.acmekit.com/learn) to set up a server.
 
 ## What is AcmeKit
 
-AcmeKit is a set of commerce modules and tools that allow you to build rich, reliable, and performant commerce applications without reinventing core commerce logic. The modules can be customized and used to build advanced ecommerce stores, marketplaces, or any product that needs foundational commerce primitives. All modules are open-source and freely available on npm.
+AcmeKit is the application bootstrap for the AcmeKit framework. It wires server, admin, API routes (auth, users, rbac, file uploads, etc.), and loaders so you can build applications in any domain. Add modules and plugins via `acmekit-config.js` and your app's `api/` and `workflows/` directories.
 
-Learn more about [AcmeKit’s architecture](https://docs.acmekit.com/learn/advanced-development/architecture/overview) and [commerce modules](https://docs.acmekit.com/resources/commerce-modules) in the Docs.
+Learn more about [AcmeKit’s architecture](https://docs.acmekit.com/learn/advanced-development/architecture/overview) in the Docs.
 
 ## Roadmap & Upgrades
 

@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/file-local",
-  "version": "2.13.8",
+  "version": "2.13.9",
   "description": "Local filesystem file storage for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -26,10 +26,10 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.8"
+    "@acmekit/framework": "2.13.9"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.8"
+    "@acmekit/framework": "2.13.9"
   },
   "keywords": [
     "acmekit-plugin",

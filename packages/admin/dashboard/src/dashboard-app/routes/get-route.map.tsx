@@ -18,7 +18,7 @@ function mergeSettingsRouteChildren(
     .flatMap((r) => r.children ?? [])
 }
 
-/** Default framework settings routes (profile, store, users, api-keys, workflows, translations). */
+/** Default framework settings routes (profile, users, api-keys, workflows, translations). */
 const defaultSettingsRouteChildren: RouteObject[] = [
   {
     path: "profile",
@@ -29,19 +29,6 @@ const defaultSettingsRouteChildren: RouteObject[] = [
       {
         path: "edit",
         lazy: () => import("../../routes/profile/profile-edit"),
-      },
-    ],
-  },
-  {
-    path: "store",
-    errorElement: <ErrorBoundary />,
-    lazy: () => import("../../routes/store/store-detail"),
-    handle: { breadcrumb: () => t("store.domain") },
-    children: [
-      { path: "edit", lazy: () => import("../../routes/store/store-edit") },
-      {
-        path: "metadata/edit",
-        lazy: () => import("../../routes/store/store-metadata"),
       },
     ],
   },

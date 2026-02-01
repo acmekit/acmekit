@@ -9,8 +9,8 @@ export default defineConfig(({ mode }) => {
 
   const BASE = env.VITE_ACMEKIT_BASE || "/"
   const BACKEND_URL = env.VITE_ACMEKIT_BACKEND_URL || "http://localhost:9000"
-  const STOREFRONT_URL =
-    env.VITE_ACMEKIT_STOREFRONT_URL || "http://localhost:8000"
+  const FRONTEND_URL =
+    env.VITE_ACMEKIT_FRONTEND_URL || env.VITE_ACMEKIT_STOREFRONT_URL || "http://localhost:3000"
 
   /**
    * Add this to your .env file to specify the project to load admin extensions from.
@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
     define: {
       __BASE__: JSON.stringify(BASE),
       __BACKEND_URL__: JSON.stringify(BACKEND_URL),
-      __STOREFRONT_URL__: JSON.stringify(STOREFRONT_URL),
+      __FRONTEND_URL__: JSON.stringify(FRONTEND_URL),
     },
     server: {
       open: true,

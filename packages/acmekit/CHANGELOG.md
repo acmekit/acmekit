@@ -1,5 +1,48 @@
 # Changelog
 
+## 2.13.9
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.9
+  - @acmekit/admin-bundler@2.13.9
+  - @acmekit/core-flows@2.13.9
+  - @acmekit/framework@2.13.9
+  - @acmekit/analytics@2.13.9
+  - @acmekit/api-key@2.13.9
+  - @acmekit/auth@2.13.9
+  - @acmekit/cache-inmemory@2.13.9
+  - @acmekit/cache-redis@2.13.9
+  - @acmekit/caching@2.13.9
+  - @acmekit/event-bus-local@2.13.9
+  - @acmekit/event-bus-redis@2.13.9
+  - @acmekit/file@2.13.9
+  - @acmekit/index@2.13.9
+  - @acmekit/link-modules@2.13.9
+  - @acmekit/locking@2.13.9
+  - @acmekit/notification@2.13.9
+  - @acmekit/analytics-local@2.13.9
+  - @acmekit/analytics-posthog@2.13.9
+  - @acmekit/auth-emailpass@2.13.9
+  - @acmekit/auth-github@2.13.9
+  - @acmekit/auth-google@2.13.9
+  - @acmekit/caching-redis@2.13.9
+  - @acmekit/file-local@2.13.9
+  - @acmekit/file-s3@2.13.9
+  - @acmekit/locking-postgres@2.13.9
+  - @acmekit/locking-redis@2.13.9
+  - @acmekit/notification-local@2.13.9
+  - @acmekit/notification-sendgrid@2.13.9
+  - @acmekit/rbac@2.13.9
+  - @acmekit/settings@2.13.9
+  - @acmekit/translation@2.13.9
+  - @acmekit/user@2.13.9
+  - @acmekit/workflow-engine-inmemory@2.13.9
+  - @acmekit/workflow-engine-redis@2.13.9
+
 ## 2.13.8
 
 ### Patch Changes

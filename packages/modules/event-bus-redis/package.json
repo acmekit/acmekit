@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/event-bus-redis",
-  "version": "2.13.8",
+  "version": "2.13.9",
   "description": "Redis Event Bus Module for AcmeKit",
   "main": "dist/index.js",
   "files": [
@@ -23,9 +23,9 @@
   "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
-    "@acmekit/framework": "2.13.8",
-    "@acmekit/types": "2.13.8",
-    "@acmekit/utils": "2.13.8"
+    "@acmekit/framework": "2.13.9",
+    "@acmekit/types": "2.13.9",
+    "@acmekit/utils": "2.13.9"
   },
   "scripts": {
     "watch": "yarn run -T tsc --build --watch",
@@ -38,6 +38,6 @@
     "ioredis": "^5.4.1"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.8"
+    "@acmekit/framework": "2.13.9"
   }
 }

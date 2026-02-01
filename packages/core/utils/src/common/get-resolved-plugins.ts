@@ -92,15 +92,19 @@ async function resolvePlugin(
 
   const hasAdmin =
     !!pkgJSON.contents.exports?.["./admin"] || !!pluginStaticOptions.srcDir
-  const isAdminLocal = hasAdmin && !!pluginStaticOptions.srcDir
+  const pluginAdminSrcDir = path.join(resolvedPath, "src", "admin")
+  const hasLocalAdminSrc =
+    hasAdmin &&
+    (!!pluginStaticOptions.srcDir ||
+      (await fs.access(pluginAdminSrcDir).then(() => true).catch(() => false)))
+  const adminResolvePath = pluginStaticOptions.srcDir
+    ? path.join(pluginStaticOptions.srcDir, "admin")
+    : path.join(resolvedPath, "src", "admin")
 
   const adminConfig = hasAdmin
     ? {
-        type: isAdminLocal ? ("local" as const) : ("package" as const),
-        resolve: path.posix.join(
-          isAdminLocal ? pluginStaticOptions.srcDir : name,
-          "admin"
-        ),
+        type: hasLocalAdminSrc ? ("local" as const) : ("package" as const),
+        resolve: hasLocalAdminSrc ? adminResolvePath : path.posix.join(name, "admin"),
       }
     : undefined
 

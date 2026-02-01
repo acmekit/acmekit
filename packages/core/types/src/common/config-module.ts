@@ -90,19 +90,22 @@ export interface AdminOptions {
   backendUrl?: string
 
   /**
-   * The URL of your AcmeKit storefront application. This will help generate links from the admin
-   * to provide to customers to complete any processes
+   * The URL of your frontend application. Used by the admin to generate links (e.g. for redirects or CORS).
    *
    * @example
    * ```js title="acmekit-config.ts"
    * module.exports = defineConfig({
    *   admin: {
-   *     storefrontUrl: process.env.MEDUSA_STOREFRONT_URL ||
-   *       "http://localhost:9000"
+   *     frontendUrl: process.env.ACMEKIT_FRONTEND_URL || "http://localhost:3000"
    *   },
    *   // ...
    * })
    * ```
+   */
+  frontendUrl?: string
+
+  /**
+   * @deprecated Use `frontendUrl` instead.
    */
   storefrontUrl?: string
 

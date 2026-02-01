@@ -22,7 +22,8 @@ export async function getViteConfig(
   const root = path.resolve(process.cwd(), ".acmekit/client")
 
   const backendUrl = options.backendUrl ?? ""
-  const storefrontUrl = options.storefrontUrl ?? ""
+  const frontendUrl =
+    options.frontendUrl ?? (options as { storefrontUrl?: string }).storefrontUrl ?? ""
   const authType = process.env.ADMIN_AUTH_TYPE ?? undefined
   const jwtTokenStorageKey =
     process.env.ADMIN_JWT_TOKEN_STORAGE_KEY ?? undefined
@@ -53,7 +54,7 @@ export async function getViteConfig(
       __BACKEND_URL__: JSON.stringify(backendUrl),
       __AUTH_TYPE__: JSON.stringify(authType),
       __JWT_TOKEN_STORAGE_KEY__: JSON.stringify(jwtTokenStorageKey),
-      __STOREFRONT_URL__: JSON.stringify(storefrontUrl),
+      __FRONTEND_URL__: JSON.stringify(frontendUrl),
     },
     server: {
       fs: {
@@ -126,7 +127,9 @@ export async function getViteConfig(
 }
 
 function getAllowedHosts(): string[] | undefined {
-  const hosts = process.env.__MEDUSA_ADMIN_ADDITIONAL_ALLOWED_HOSTS
+  const hosts =
+    process.env.__ACMEKIT_ADMIN_ADDITIONAL_ALLOWED_HOSTS ??
+    process.env.__MEDUSA_ADMIN_ADDITIONAL_ALLOWED_HOSTS
   if (!hosts) {
     return undefined
   }

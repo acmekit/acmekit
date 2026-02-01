@@ -89,7 +89,7 @@ export type CustomFormField<
 export interface CustomFieldConfig<TModel extends CustomFieldModel> {
   /**
    * The name of the model that the custom models are linked to.
-   * This should be the name of one of the built-in models, such as `product` or `customer`.
+   * This should be one of the supported model keys.
    *
    * @example
    * ```ts

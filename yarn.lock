@@ -12,13 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@acmekit/acmekit-oas-cli@2.13.8, @acmekit/acmekit-oas-cli@workspace:packages/cli/oas/acmekit-oas-cli":
+"@acmekit/acmekit-oas-cli@2.13.9, @acmekit/acmekit-oas-cli@workspace:packages/cli/oas/acmekit-oas-cli":
   version: 0.0.0-use.local
   resolution: "@acmekit/acmekit-oas-cli@workspace:packages/cli/oas/acmekit-oas-cli"
   dependencies:
-    "@acmekit/acmekit": 2.13.8
-    "@acmekit/types": 2.13.8
-    "@acmekit/utils": 2.13.8
+    "@acmekit/acmekit": 2.13.9
+    "@acmekit/types": 2.13.9
+    "@acmekit/utils": 2.13.9
     "@readme/json-schema-ref-parser": ^1.2.0
     "@readme/openapi-parser": ^2.4.0
     "@redocly/cli": 1.25.3
@@ -33,62 +33,45 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/acmekit@2.13.8, @acmekit/acmekit@workspace:*, @acmekit/acmekit@workspace:packages/acmekit":
+"@acmekit/acmekit@2.13.9, @acmekit/acmekit@workspace:*, @acmekit/acmekit@workspace:packages/acmekit":
   version: 0.0.0-use.local
   resolution: "@acmekit/acmekit@workspace:packages/acmekit"
   dependencies:
-    "@acmekit/admin-bundler": 2.13.8
-    "@acmekit/analytics": 2.13.8
-    "@acmekit/analytics-local": 2.13.8
-    "@acmekit/analytics-posthog": 2.13.8
-    "@acmekit/api-key": 2.13.8
-    "@acmekit/auth": 2.13.8
-    "@acmekit/auth-emailpass": 2.13.8
-    "@acmekit/auth-github": 2.13.8
-    "@acmekit/auth-google": 2.13.8
-    "@acmekit/cache-inmemory": 2.13.8
-    "@acmekit/cache-redis": 2.13.8
-    "@acmekit/caching": 2.13.8
-    "@acmekit/caching-redis": 2.13.8
-    "@acmekit/cart": 2.13.2
-    "@acmekit/core-flows": 2.13.8
-    "@acmekit/currency": 2.13.2
-    "@acmekit/customer": 2.13.8
-    "@acmekit/event-bus-local": 2.13.8
-    "@acmekit/event-bus-redis": 2.13.8
-    "@acmekit/file": 2.13.8
-    "@acmekit/file-local": 2.13.8
-    "@acmekit/file-s3": 2.13.8
-    "@acmekit/framework": 2.13.8
-    "@acmekit/fulfillment": 2.13.2
-    "@acmekit/fulfillment-manual": 2.13.2
-    "@acmekit/index": 2.13.8
-    "@acmekit/inventory": 2.13.2
-    "@acmekit/link-modules": 2.13.8
-    "@acmekit/locking": 2.13.8
-    "@acmekit/locking-postgres": 2.13.8
-    "@acmekit/locking-redis": 2.13.8
-    "@acmekit/notification": 2.13.8
-    "@acmekit/notification-local": 2.13.8
-    "@acmekit/notification-sendgrid": 2.13.8
-    "@acmekit/order": 2.13.2
-    "@acmekit/payment": 2.13.2
-    "@acmekit/payment-stripe": 2.13.2
-    "@acmekit/pricing": 2.13.2
-    "@acmekit/product": 2.13.2
-    "@acmekit/promotion": 2.13.2
-    "@acmekit/rbac": 2.13.8
-    "@acmekit/region": 2.13.2
-    "@acmekit/sales-channel": 2.13.2
-    "@acmekit/settings": 2.13.8
-    "@acmekit/stock-location": 2.13.2
-    "@acmekit/store": 2.13.8
-    "@acmekit/tax": 2.13.2
-    "@acmekit/telemetry": 2.13.8
-    "@acmekit/translation": 2.13.8
-    "@acmekit/user": 2.13.8
-    "@acmekit/workflow-engine-inmemory": 2.13.8
-    "@acmekit/workflow-engine-redis": 2.13.8
+    "@acmekit/admin-bundler": 2.13.9
+    "@acmekit/analytics": 2.13.9
+    "@acmekit/analytics-local": 2.13.9
+    "@acmekit/analytics-posthog": 2.13.9
+    "@acmekit/api-key": 2.13.9
+    "@acmekit/auth": 2.13.9
+    "@acmekit/auth-emailpass": 2.13.9
+    "@acmekit/auth-github": 2.13.9
+    "@acmekit/auth-google": 2.13.9
+    "@acmekit/cache-inmemory": 2.13.9
+    "@acmekit/cache-redis": 2.13.9
+    "@acmekit/caching": 2.13.9
+    "@acmekit/caching-redis": 2.13.9
+    "@acmekit/core-flows": 2.13.9
+    "@acmekit/event-bus-local": 2.13.9
+    "@acmekit/event-bus-redis": 2.13.9
+    "@acmekit/file": 2.13.9
+    "@acmekit/file-local": 2.13.9
+    "@acmekit/file-s3": 2.13.9
+    "@acmekit/framework": 2.13.9
+    "@acmekit/index": 2.13.9
+    "@acmekit/link-modules": 2.13.9
+    "@acmekit/locking": 2.13.9
+    "@acmekit/locking-postgres": 2.13.9
+    "@acmekit/locking-redis": 2.13.9
+    "@acmekit/notification": 2.13.9
+    "@acmekit/notification-local": 2.13.9
+    "@acmekit/notification-sendgrid": 2.13.9
+    "@acmekit/rbac": 2.13.9
+    "@acmekit/settings": 2.13.9
+    "@acmekit/telemetry": 2.13.9
+    "@acmekit/translation": 2.13.9
+    "@acmekit/user": 2.13.9
+    "@acmekit/workflow-engine-inmemory": 2.13.9
+    "@acmekit/workflow-engine-redis": 2.13.9
     "@inquirer/checkbox": ^2.3.11
     "@inquirer/input": ^2.2.9
     boxen: ^5.0.1
@@ -105,7 +88,7 @@ __metadata:
     slugify: ^1.6.6
     uuid: ^9.0.0
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     "@swc/core": ^1.7.28
     posthog-node: ^5.11.0
     react-dom: ^18.3.1
@@ -122,14 +105,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/admin-bundler@2.13.8, @acmekit/admin-bundler@workspace:packages/admin/admin-bundler":
+"@acmekit/admin-bundler@2.13.9, @acmekit/admin-bundler@workspace:packages/admin/admin-bundler":
   version: 0.0.0-use.local
   resolution: "@acmekit/admin-bundler@workspace:packages/admin/admin-bundler"
   dependencies:
-    "@acmekit/admin-shared": 2.13.8
-    "@acmekit/admin-vite-plugin": 2.13.8
-    "@acmekit/dashboard": 2.13.8
-    "@acmekit/types": 2.13.8
+    "@acmekit/admin-shared": 2.13.9
+    "@acmekit/admin-vite-plugin": 2.13.9
+    "@acmekit/dashboard": 2.13.9
+    "@acmekit/types": 2.13.9
     "@vitejs/plugin-react": ^4.2.1
     autoprefixer: ^10.4.19
     compression: ^1.8.0
@@ -147,22 +130,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@acmekit/admin-sdk@workspace:packages/admin/admin-sdk"
   dependencies:
-    "@acmekit/admin-shared": 2.13.8
+    "@acmekit/admin-shared": 2.13.9
     zod: 3.25.76
   languageName: unknown
   linkType: soft
 
-"@acmekit/admin-shared@2.13.8, @acmekit/admin-shared@workspace:packages/admin/admin-shared":
+"@acmekit/admin-shared@2.13.9, @acmekit/admin-shared@workspace:packages/admin/admin-shared":
   version: 0.0.0-use.local
   resolution: "@acmekit/admin-shared@workspace:packages/admin/admin-shared"
   languageName: unknown
   linkType: soft
 
-"@acmekit/admin-vite-plugin@2.13.8, @acmekit/admin-vite-plugin@workspace:packages/admin/admin-vite-plugin":
+"@acmekit/admin-vite-plugin@2.13.9, @acmekit/admin-vite-plugin@workspace:packages/admin/admin-vite-plugin":
   version: 0.0.0-use.local
   resolution: "@acmekit/admin-vite-plugin@workspace:packages/admin/admin-vite-plugin"
   dependencies:
-    "@acmekit/admin-shared": 2.13.8
+    "@acmekit/admin-shared": 2.13.9
     "@babel/parser": 7.25.6
     "@babel/traverse": 7.25.6
     "@babel/types": 7.25.6
@@ -177,158 +160,149 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/analytics-local@2.13.8, @acmekit/analytics-local@workspace:packages/modules/providers/analytics-local":
+"@acmekit/analytics-local@2.13.9, @acmekit/analytics-local@workspace:packages/modules/providers/analytics-local":
   version: 0.0.0-use.local
   resolution: "@acmekit/analytics-local@workspace:packages/modules/providers/analytics-local"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/analytics-posthog@2.13.8, @acmekit/analytics-posthog@workspace:packages/modules/providers/analytics-posthog":
+"@acmekit/analytics-posthog@2.13.9, @acmekit/analytics-posthog@workspace:packages/modules/providers/analytics-posthog":
   version: 0.0.0-use.local
   resolution: "@acmekit/analytics-posthog@workspace:packages/modules/providers/analytics-posthog"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     posthog-node: ^5.11.0
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     posthog-node: ^5.11.0
   languageName: unknown
   linkType: soft
 
-"@acmekit/analytics@2.13.8, @acmekit/analytics@workspace:packages/modules/analytics":
+"@acmekit/analytics@2.13.9, @acmekit/analytics@workspace:packages/modules/analytics":
   version: 0.0.0-use.local
   resolution: "@acmekit/analytics@workspace:packages/modules/analytics"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/api-key@2.13.8, @acmekit/api-key@workspace:^, @acmekit/api-key@workspace:packages/modules/api-key":
+"@acmekit/api-key@2.13.9, @acmekit/api-key@workspace:^, @acmekit/api-key@workspace:packages/modules/api-key":
   version: 0.0.0-use.local
   resolution: "@acmekit/api-key@workspace:packages/modules/api-key"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/auth-emailpass@2.13.8, @acmekit/auth-emailpass@workspace:packages/modules/providers/auth-emailpass":
+"@acmekit/auth-emailpass@2.13.9, @acmekit/auth-emailpass@workspace:packages/modules/providers/auth-emailpass":
   version: 0.0.0-use.local
   resolution: "@acmekit/auth-emailpass@workspace:packages/modules/providers/auth-emailpass"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     scrypt-kdf: ^2.0.1
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/auth-github@2.13.8, @acmekit/auth-github@workspace:packages/modules/providers/auth-github":
+"@acmekit/auth-github@2.13.9, @acmekit/auth-github@workspace:packages/modules/providers/auth-github":
   version: 0.0.0-use.local
   resolution: "@acmekit/auth-github@workspace:packages/modules/providers/auth-github"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/auth-google@2.13.8, @acmekit/auth-google@workspace:packages/modules/providers/auth-google":
+"@acmekit/auth-google@2.13.9, @acmekit/auth-google@workspace:packages/modules/providers/auth-google":
   version: 0.0.0-use.local
   resolution: "@acmekit/auth-google@workspace:packages/modules/providers/auth-google"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     jsonwebtoken: ^9.0.2
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/auth@2.13.8, @acmekit/auth@workspace:*, @acmekit/auth@workspace:packages/modules/auth":
+"@acmekit/auth@2.13.9, @acmekit/auth@workspace:*, @acmekit/auth@workspace:packages/modules/auth":
   version: 0.0.0-use.local
   resolution: "@acmekit/auth@workspace:packages/modules/auth"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/cache-inmemory@2.13.8, @acmekit/cache-inmemory@workspace:*, @acmekit/cache-inmemory@workspace:packages/modules/cache-inmemory":
+"@acmekit/cache-inmemory@2.13.9, @acmekit/cache-inmemory@workspace:*, @acmekit/cache-inmemory@workspace:packages/modules/cache-inmemory":
   version: 0.0.0-use.local
   resolution: "@acmekit/cache-inmemory@workspace:packages/modules/cache-inmemory"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/cache-redis@2.13.8, @acmekit/cache-redis@workspace:packages/modules/cache-redis":
+"@acmekit/cache-redis@2.13.9, @acmekit/cache-redis@workspace:packages/modules/cache-redis":
   version: 0.0.0-use.local
   resolution: "@acmekit/cache-redis@workspace:packages/modules/cache-redis"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     ioredis: ^5.4.1
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/caching-redis@2.13.8, @acmekit/caching-redis@workspace:packages/modules/providers/caching-redis":
+"@acmekit/caching-redis@2.13.9, @acmekit/caching-redis@workspace:packages/modules/providers/caching-redis":
   version: 0.0.0-use.local
   resolution: "@acmekit/caching-redis@workspace:packages/modules/providers/caching-redis"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     ioredis: ^5.4.1
     xxhash-wasm: ^1.1.0
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/caching@2.13.8, @acmekit/caching@workspace:*, @acmekit/caching@workspace:packages/modules/caching":
+"@acmekit/caching@2.13.9, @acmekit/caching@workspace:*, @acmekit/caching@workspace:packages/modules/caching":
   version: 0.0.0-use.local
   resolution: "@acmekit/caching@workspace:packages/modules/caching"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
     awilix: ^8.0.1
     fast-json-stable-stringify: ^2.1.0
     node-cache: ^5.1.2
     xxhash-wasm: ^1.1.0
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     awilix: ^8.0.1
   languageName: unknown
   linkType: soft
 
-"@acmekit/cart@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/cart@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 33c0ab1cf38b10c064bfd21345e38cc6c4dd8651854c27fd91866126532366bf556fc900e7b230ad6ff5ec50731f4c5abb8c412d5e533f633ddef1e6e2e4e486
-  languageName: node
-  linkType: hard
-
-"@acmekit/cli@2.13.8, @acmekit/cli@workspace:packages/cli/acmekit-cli":
+"@acmekit/cli@2.13.9, @acmekit/cli@workspace:packages/cli/acmekit-cli":
   version: 0.0.0-use.local
   resolution: "@acmekit/cli@workspace:packages/cli/acmekit-cli"
   dependencies:
-    "@acmekit/deps": 2.13.8
-    "@acmekit/telemetry": 2.13.8
-    "@acmekit/utils": 2.13.8
+    "@acmekit/deps": 2.13.9
+    "@acmekit/telemetry": 2.13.9
+    "@acmekit/utils": 2.13.9
     "@types/express": ^4.17.21
     chalk: ^4.1.2
     configstore: ^5.0.1
@@ -355,49 +329,40 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/core-flows@2.13.8, @acmekit/core-flows@workspace:*, @acmekit/core-flows@workspace:^, @acmekit/core-flows@workspace:packages/core/core-flows":
+"@acmekit/core-flows@2.13.9, @acmekit/core-flows@workspace:*, @acmekit/core-flows@workspace:^, @acmekit/core-flows@workspace:packages/core/core-flows":
   version: 0.0.0-use.local
   resolution: "@acmekit/core-flows@workspace:packages/core/core-flows"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     csv-parse: ^5.6.0
     json-2-csv: ^5.5.4
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/currency@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/currency@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 25699169f0d6d07aa40b1bfef17b2906107883974104ffb130635a46050fe835ab66586893856954d8c13fa6d8b9a289dd159151b9a1afb4333058fd1d25723c
-  languageName: node
-  linkType: hard
-
-"@acmekit/customer@2.13.8, @acmekit/customer@workspace:^, @acmekit/customer@workspace:packages/modules/customer":
+"@acmekit/customer@workspace:^, @acmekit/customer@workspace:packages/modules/customer":
   version: 0.0.0-use.local
   resolution: "@acmekit/customer@workspace:packages/modules/customer"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/dashboard@2.13.8, @acmekit/dashboard@workspace:packages/admin/dashboard":
+"@acmekit/dashboard@2.13.9, @acmekit/dashboard@workspace:packages/admin/dashboard":
   version: 0.0.0-use.local
   resolution: "@acmekit/dashboard@workspace:packages/admin/dashboard"
   dependencies:
-    "@acmekit/admin-shared": 2.13.8
-    "@acmekit/admin-vite-plugin": 2.13.8
-    "@acmekit/icons": 2.13.8
-    "@acmekit/js-sdk": 2.13.8
-    "@acmekit/types": 2.13.8
-    "@acmekit/ui": 4.1.8
-    "@acmekit/ui-preset": 2.13.8
+    "@acmekit/admin-shared": 2.13.9
+    "@acmekit/admin-vite-plugin": 2.13.9
+    "@acmekit/icons": 2.13.9
+    "@acmekit/js-sdk": 2.13.9
+    "@acmekit/types": 2.13.9
+    "@acmekit/ui": 4.1.9
+    "@acmekit/ui-preset": 2.13.9
     "@ariakit/react": ^0.4.15
     "@babel/runtime": ^7.26.10
     "@dnd-kit/core": ^6.1.0
@@ -436,7 +401,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/deps@2.13.8, @acmekit/deps@workspace:packages/deps":
+"@acmekit/deps@2.13.9, @acmekit/deps@workspace:packages/deps":
   version: 0.0.0-use.local
   resolution: "@acmekit/deps@workspace:packages/deps"
   dependencies:
@@ -456,77 +421,77 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/event-bus-local@2.13.8, @acmekit/event-bus-local@workspace:*, @acmekit/event-bus-local@workspace:packages/modules/event-bus-local":
+"@acmekit/event-bus-local@2.13.9, @acmekit/event-bus-local@workspace:*, @acmekit/event-bus-local@workspace:packages/modules/event-bus-local":
   version: 0.0.0-use.local
   resolution: "@acmekit/event-bus-local@workspace:packages/modules/event-bus-local"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/event-bus-redis@2.13.8, @acmekit/event-bus-redis@workspace:*, @acmekit/event-bus-redis@workspace:packages/modules/event-bus-redis":
+"@acmekit/event-bus-redis@2.13.9, @acmekit/event-bus-redis@workspace:*, @acmekit/event-bus-redis@workspace:packages/modules/event-bus-redis":
   version: 0.0.0-use.local
   resolution: "@acmekit/event-bus-redis@workspace:packages/modules/event-bus-redis"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/types": 2.13.8
-    "@acmekit/utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/types": 2.13.9
+    "@acmekit/utils": 2.13.9
     bullmq: 5.13.0
     ioredis: ^5.4.1
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/file-local@2.13.8, @acmekit/file-local@workspace:packages/modules/providers/file-local":
+"@acmekit/file-local@2.13.9, @acmekit/file-local@workspace:packages/modules/providers/file-local":
   version: 0.0.0-use.local
   resolution: "@acmekit/file-local@workspace:packages/modules/providers/file-local"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/file-s3@2.13.8, @acmekit/file-s3@workspace:packages/modules/providers/file-s3":
+"@acmekit/file-s3@2.13.9, @acmekit/file-s3@workspace:packages/modules/providers/file-s3":
   version: 0.0.0-use.local
   resolution: "@acmekit/file-s3@workspace:packages/modules/providers/file-s3"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     "@aws-sdk/client-s3": ^3.556.0
     "@aws-sdk/lib-storage": ^3.556.0
     "@aws-sdk/s3-request-presigner": ^3.556.0
     ulid: ^2.3.0
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/file@2.13.8, @acmekit/file@workspace:packages/modules/file":
+"@acmekit/file@2.13.9, @acmekit/file@workspace:packages/modules/file":
   version: 0.0.0-use.local
   resolution: "@acmekit/file@workspace:packages/modules/file"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/framework@2.13.8, @acmekit/framework@workspace:*, @acmekit/framework@workspace:packages/core/framework":
+"@acmekit/framework@2.13.9, @acmekit/framework@workspace:*, @acmekit/framework@workspace:packages/core/framework":
   version: 0.0.0-use.local
   resolution: "@acmekit/framework@workspace:packages/core/framework"
   dependencies:
-    "@acmekit/cli": 2.13.8
-    "@acmekit/deps": 2.13.8
-    "@acmekit/modules-sdk": 2.13.8
-    "@acmekit/orchestration": 2.13.8
-    "@acmekit/telemetry": 2.13.8
-    "@acmekit/types": 2.13.8
-    "@acmekit/utils": 2.13.8
-    "@acmekit/workflows-sdk": 2.13.8
+    "@acmekit/cli": 2.13.9
+    "@acmekit/deps": 2.13.9
+    "@acmekit/modules-sdk": 2.13.9
+    "@acmekit/orchestration": 2.13.9
+    "@acmekit/telemetry": 2.13.9
+    "@acmekit/types": 2.13.9
+    "@acmekit/utils": 2.13.9
+    "@acmekit/workflows-sdk": 2.13.9
     "@jercle/yargonaut": ^1.1.5
     "@types/express": ^4.17.21
     chokidar: ^4.0.3
@@ -544,7 +509,7 @@ __metadata:
     tsconfig-paths: ^4.2.0
     zod-validation-error: 3.5.1
   peerDependencies:
-    "@acmekit/cli": 2.13.8
+    "@acmekit/cli": 2.13.9
     "@aws-sdk/client-dynamodb": ^3.218.0
     connect-dynamodb: ^3.0.5
     ioredis: ^5.4.1
@@ -562,148 +527,121 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/fulfillment-manual@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/fulfillment-manual@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: db26834b78004df4c4f77392f78eee78af8cbf66bfb09bd30273b27debfcbc51a032ed905d4db77cbeef8ecaec63911d57e774510b25feab7e2afd786aea02ce
-  languageName: node
-  linkType: hard
-
-"@acmekit/fulfillment@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/fulfillment@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: c9ee81cab8c265e4c01ce9943364b3ab4c3c68abf470bc2428a9a13ba9902df1885af9c6b6a44021338b0ca1c99df652d0f4c6ae56211e1d386724364e951dbd
-  languageName: node
-  linkType: hard
-
-"@acmekit/icons@2.13.8, @acmekit/icons@workspace:packages/design-system/icons":
+"@acmekit/icons@2.13.9, @acmekit/icons@workspace:packages/design-system/icons":
   version: 0.0.0-use.local
   resolution: "@acmekit/icons@workspace:packages/design-system/icons"
   dependencies:
-    "@acmekit/toolbox": 2.13.8
+    "@acmekit/toolbox": 2.13.9
     react: ^18.3.1
   peerDependencies:
     react: ^18.3.1
   languageName: unknown
   linkType: soft
 
-"@acmekit/index@2.13.8, @acmekit/index@workspace:packages/modules/index":
+"@acmekit/index@2.13.9, @acmekit/index@workspace:packages/modules/index":
   version: 0.0.0-use.local
   resolution: "@acmekit/index@workspace:packages/modules/index"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/inventory@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/inventory@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: e9d2c8393124567717c82f7457d1c8855932c84d8241b7ee69c53c8bafbb5f45a20618020e6b2a4d6ff62529c2bcfc712ea7576d10a9b785c49ce8e2bac5bcf0
-  languageName: node
-  linkType: hard
-
-"@acmekit/js-sdk@2.13.8, @acmekit/js-sdk@workspace:packages/core/js-sdk":
+"@acmekit/js-sdk@2.13.9, @acmekit/js-sdk@workspace:packages/core/js-sdk":
   version: 0.0.0-use.local
   resolution: "@acmekit/js-sdk@workspace:packages/core/js-sdk"
   dependencies:
-    "@acmekit/types": 2.13.8
+    "@acmekit/types": 2.13.9
     fetch-event-stream: ^0.1.5
     qs: ^6.12.1
   languageName: unknown
   linkType: soft
 
-"@acmekit/link-modules@2.13.8, @acmekit/link-modules@workspace:^, @acmekit/link-modules@workspace:packages/modules/link-modules":
+"@acmekit/link-modules@2.13.9, @acmekit/link-modules@workspace:^, @acmekit/link-modules@workspace:packages/modules/link-modules":
   version: 0.0.0-use.local
   resolution: "@acmekit/link-modules@workspace:packages/modules/link-modules"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/locking-postgres@2.13.8, @acmekit/locking-postgres@workspace:packages/modules/providers/locking-postgres":
+"@acmekit/locking-postgres@2.13.9, @acmekit/locking-postgres@workspace:packages/modules/providers/locking-postgres":
   version: 0.0.0-use.local
   resolution: "@acmekit/locking-postgres@workspace:packages/modules/providers/locking-postgres"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/locking-redis@2.13.8, @acmekit/locking-redis@workspace:packages/modules/providers/locking-redis":
+"@acmekit/locking-redis@2.13.9, @acmekit/locking-redis@workspace:packages/modules/providers/locking-redis":
   version: 0.0.0-use.local
   resolution: "@acmekit/locking-redis@workspace:packages/modules/providers/locking-redis"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     ioredis: ^5.4.1
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/locking@2.13.8, @acmekit/locking@workspace:packages/modules/locking":
+"@acmekit/locking@2.13.9, @acmekit/locking@workspace:packages/modules/locking":
   version: 0.0.0-use.local
   resolution: "@acmekit/locking@workspace:packages/modules/locking"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/modules-sdk@2.13.8, @acmekit/modules-sdk@workspace:^, @acmekit/modules-sdk@workspace:packages/core/modules-sdk":
+"@acmekit/modules-sdk@2.13.9, @acmekit/modules-sdk@workspace:^, @acmekit/modules-sdk@workspace:packages/core/modules-sdk":
   version: 0.0.0-use.local
   resolution: "@acmekit/modules-sdk@workspace:packages/core/modules-sdk"
   dependencies:
-    "@acmekit/deps": 2.13.8
-    "@acmekit/orchestration": 2.13.8
-    "@acmekit/types": 2.13.8
-    "@acmekit/utils": 2.13.8
+    "@acmekit/deps": 2.13.9
+    "@acmekit/orchestration": 2.13.9
+    "@acmekit/types": 2.13.9
+    "@acmekit/utils": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/notification-local@2.13.8, @acmekit/notification-local@workspace:packages/modules/providers/notification-local":
+"@acmekit/notification-local@2.13.9, @acmekit/notification-local@workspace:packages/modules/providers/notification-local":
   version: 0.0.0-use.local
   resolution: "@acmekit/notification-local@workspace:packages/modules/providers/notification-local"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/notification-sendgrid@2.13.8, @acmekit/notification-sendgrid@workspace:packages/modules/providers/notification-sendgrid":
+"@acmekit/notification-sendgrid@2.13.9, @acmekit/notification-sendgrid@workspace:packages/modules/providers/notification-sendgrid":
   version: 0.0.0-use.local
   resolution: "@acmekit/notification-sendgrid@workspace:packages/modules/providers/notification-sendgrid"
   dependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
     "@sendgrid/mail": ^8.1.6
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/notification@2.13.8, @acmekit/notification@workspace:packages/modules/notification":
+"@acmekit/notification@2.13.9, @acmekit/notification@workspace:packages/modules/notification":
   version: 0.0.0-use.local
   resolution: "@acmekit/notification@workspace:packages/modules/notification"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
@@ -711,150 +649,56 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@acmekit/oas-github-ci@workspace:packages/cli/oas/oas-github-ci"
   dependencies:
-    "@acmekit/acmekit-oas-cli": 2.13.8
+    "@acmekit/acmekit-oas-cli": 2.13.9
     execa: ^5.1.1
   languageName: unknown
   linkType: soft
 
-"@acmekit/orchestration@2.13.8, @acmekit/orchestration@workspace:packages/core/orchestration":
+"@acmekit/orchestration@2.13.9, @acmekit/orchestration@workspace:packages/core/orchestration":
   version: 0.0.0-use.local
   resolution: "@acmekit/orchestration@workspace:packages/core/orchestration"
   dependencies:
-    "@acmekit/deps": 2.13.8
-    "@acmekit/types": 2.13.8
-    "@acmekit/utils": 2.13.8
+    "@acmekit/deps": 2.13.9
+    "@acmekit/types": 2.13.9
+    "@acmekit/utils": 2.13.9
     ulid: ^2.3.0
   languageName: unknown
   linkType: soft
 
-"@acmekit/order@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/order@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 2898cf185ccd3e8c0b73ea6639d14392a4f23d9bf0fc6ff29131e1472abb936e30401cedbc37fe88a0065184aef865d5d0cf4e77bc5463a7159a077745094ce5
-  languageName: node
-  linkType: hard
-
-"@acmekit/payment-stripe@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/payment-stripe@npm:2.13.2"
-  dependencies:
-    stripe: ^15.5.0
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: f1940bde2d65ed1604a9d9c334fe869ba3b946f8fd10a55c96d7fa1471faf017691e1292c04f2e02ff544c71413733bdeffa9170c31c1d3704a1a6e01f186934
-  languageName: node
-  linkType: hard
-
-"@acmekit/payment@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/payment@npm:2.13.2"
-  dependencies:
-    stripe: 19.1.0
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 2020a46a83ede1a4efdf9af03fb1fffaedfd6919be7d0ccae0f1b67c8cb2ddd0865e3f3a8df34b1ed0a7c0c84e821033408c53b6bc75c89e5a658c017dd050e9
-  languageName: node
-  linkType: hard
-
-"@acmekit/pricing@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/pricing@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: fdc4b5a34afa6ba8c5cc828dce45f67d50bc55384f812c1a5884ee8eb6da1e7fc008ced723064dec4423f57343433b5d2f0d4c5f49f7f325f402bb174451ffa4
-  languageName: node
-  linkType: hard
-
-"@acmekit/product@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/product@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 238215b0422671b81696f82976d9da452083e19f6adde3e2055c300d45fe96003f6e515957b065fee67ed230d861399de8f45ec081545dd0651cd129fafc9c63
-  languageName: node
-  linkType: hard
-
-"@acmekit/promotion@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/promotion@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 62cb0635297038149f78cb8cb93a053024555565b92e924e9bee7c908ff179e77d59d727b1a37dd7fb2c896ddf48be64174d555e05ef1be9e56c02e688c55432
-  languageName: node
-  linkType: hard
-
-"@acmekit/rbac@2.13.8, @acmekit/rbac@workspace:packages/modules/rbac":
+"@acmekit/rbac@2.13.9, @acmekit/rbac@workspace:packages/modules/rbac":
   version: 0.0.0-use.local
   resolution: "@acmekit/rbac@workspace:packages/modules/rbac"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/region@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/region@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 1fb54165286e9c0b035fad4f524968283841465b5723da7582345455d2f115d3a1c057c65d1b3a0584441a53eca65732020bcb3415fd72e17e2bc1c73ece917f
-  languageName: node
-  linkType: hard
-
-"@acmekit/sales-channel@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/sales-channel@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 30055824b1d25e16032a72e530d722d65a33da6eb04783efd13fcc99ffd2050b804c42bf85d0e4a334daff256fe1154d7d529c3a885d9243058d617a8900b750
-  languageName: node
-  linkType: hard
-
-"@acmekit/settings@2.13.8, @acmekit/settings@workspace:packages/modules/settings":
+"@acmekit/settings@2.13.9, @acmekit/settings@workspace:packages/modules/settings":
   version: 0.0.0-use.local
   resolution: "@acmekit/settings@workspace:packages/modules/settings"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/stock-location@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/stock-location@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: 2e1777de24eabbdf29ef1755d6efb69c190daf87cbaf203a5a4a1536bc0a016708ccaec039559d34058cdabcb38ea9c67d8714c084aaf36bcdc8d263aee1c8ff
-  languageName: node
-  linkType: hard
-
-"@acmekit/store@2.13.8, @acmekit/store@workspace:^, @acmekit/store@workspace:packages/modules/store":
+"@acmekit/store@workspace:^, @acmekit/store@workspace:packages/modules/store":
   version: 0.0.0-use.local
   resolution: "@acmekit/store@workspace:packages/modules/store"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/tax@npm:2.13.2":
-  version: 2.13.2
-  resolution: "@acmekit/tax@npm:2.13.2"
-  peerDependencies:
-    "@acmekit/framework": 2.13.2
-  checksum: df16a02fb1e9ed67dc5f35bd5797120c9bddc2495d2165b0cf5ac1fa49857ea980a0ecf9f45e390bf39201c013504423d6949a4c7f19dd434b263b271c7e59d8
-  languageName: node
-  linkType: hard
-
-"@acmekit/telemetry@2.13.8, @acmekit/telemetry@workspace:packages/acmekit-telemetry":
+"@acmekit/telemetry@2.13.9, @acmekit/telemetry@workspace:packages/acmekit-telemetry":
   version: 0.0.0-use.local
   resolution: "@acmekit/telemetry@workspace:packages/acmekit-telemetry"
   dependencies:
@@ -870,21 +714,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/test-utils@2.13.8, @acmekit/test-utils@workspace:*, @acmekit/test-utils@workspace:packages/acmekit-test-utils":
+"@acmekit/test-utils@2.13.9, @acmekit/test-utils@workspace:*, @acmekit/test-utils@workspace:packages/acmekit-test-utils":
   version: 0.0.0-use.local
   resolution: "@acmekit/test-utils@workspace:packages/acmekit-test-utils"
   dependencies:
-    "@acmekit/core-flows": 2.13.8
-    "@acmekit/framework": 2.13.8
+    "@acmekit/core-flows": 2.13.9
+    "@acmekit/framework": 2.13.9
     "@types/express": ^4.17.21
     axios: ^1.13.1
     express: ^4.21.0
     get-port: ^5.1.1
     ulid: ^2.3.0
   peerDependencies:
-    "@acmekit/acmekit": 2.13.8
-    "@acmekit/core-flows": 2.13.8
-    "@acmekit/framework": 2.13.8
+    "@acmekit/acmekit": 2.13.9
+    "@acmekit/core-flows": 2.13.9
+    "@acmekit/framework": 2.13.9
   peerDependenciesMeta:
     "@acmekit/acmekit":
       optional: true
@@ -893,7 +737,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/toolbox@2.13.8, @acmekit/toolbox@workspace:packages/design-system/toolbox":
+"@acmekit/toolbox@2.13.9, @acmekit/toolbox@workspace:packages/design-system/toolbox":
   version: 0.0.0-use.local
   resolution: "@acmekit/toolbox@workspace:packages/design-system/toolbox"
   dependencies:
@@ -913,22 +757,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/translation@2.13.8, @acmekit/translation@workspace:*, @acmekit/translation@workspace:packages/modules/translation":
+"@acmekit/translation@2.13.9, @acmekit/translation@workspace:*, @acmekit/translation@workspace:packages/modules/translation":
   version: 0.0.0-use.local
   resolution: "@acmekit/translation@workspace:packages/modules/translation"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/types@2.13.8, @acmekit/types@workspace:^, @acmekit/types@workspace:packages/core/types":
+"@acmekit/types@2.13.9, @acmekit/types@workspace:^, @acmekit/types@workspace:packages/core/types":
   version: 0.0.0-use.local
   resolution: "@acmekit/types@workspace:packages/core/types"
   dependencies:
-    "@acmekit/deps": 2.13.8
+    "@acmekit/deps": 2.13.9
     bignumber.js: ^9.1.2
   peerDependencies:
     ioredis: ^5.4.1
@@ -941,11 +785,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/ui-preset@2.13.8, @acmekit/ui-preset@workspace:packages/design-system/ui-preset":
+"@acmekit/ui-preset@2.13.9, @acmekit/ui-preset@workspace:packages/design-system/ui-preset":
   version: 0.0.0-use.local
   resolution: "@acmekit/ui-preset@workspace:packages/design-system/ui-preset"
   dependencies:
-    "@acmekit/toolbox": 2.13.8
+    "@acmekit/toolbox": 2.13.9
     "@tailwindcss/forms": ^0.5.3
     tailwindcss: ^3.4.3
     tailwindcss-animate: ^1.0.6
@@ -954,12 +798,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/ui@4.1.8, @acmekit/ui@workspace:packages/design-system/ui":
+"@acmekit/ui@4.1.9, @acmekit/ui@workspace:packages/design-system/ui":
   version: 0.0.0-use.local
   resolution: "@acmekit/ui@workspace:packages/design-system/ui"
   dependencies:
-    "@acmekit/icons": 2.13.8
-    "@acmekit/ui-preset": 2.13.8
+    "@acmekit/icons": 2.13.9
+    "@acmekit/ui-preset": 2.13.9
     "@dnd-kit/core": ^6.1.0
     "@dnd-kit/sortable": ^8.0.0
     "@dnd-kit/utilities": ^3.2.2
@@ -985,24 +829,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/user@2.13.8, @acmekit/user@workspace:^, @acmekit/user@workspace:packages/modules/user":
+"@acmekit/user@2.13.9, @acmekit/user@workspace:^, @acmekit/user@workspace:packages/modules/user":
   version: 0.0.0-use.local
   resolution: "@acmekit/user@workspace:packages/modules/user"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
     jsonwebtoken: ^9.0.2
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/utils@2.13.8, @acmekit/utils@workspace:^, @acmekit/utils@workspace:packages/core/utils":
+"@acmekit/utils@2.13.9, @acmekit/utils@workspace:^, @acmekit/utils@workspace:packages/core/utils":
   version: 0.0.0-use.local
   resolution: "@acmekit/utils@workspace:packages/core/utils"
   dependencies:
-    "@acmekit/deps": 2.13.8
-    "@acmekit/types": 2.13.8
+    "@acmekit/deps": 2.13.9
+    "@acmekit/types": 2.13.9
     "@graphql-codegen/core": ^4.0.2
     "@graphql-codegen/typescript": ^4.0.9
     "@graphql-tools/merge": ^9.0.7
@@ -1022,42 +866,42 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@acmekit/workflow-engine-inmemory@2.13.8, @acmekit/workflow-engine-inmemory@workspace:*, @acmekit/workflow-engine-inmemory@workspace:packages/modules/workflow-engine-inmemory":
+"@acmekit/workflow-engine-inmemory@2.13.9, @acmekit/workflow-engine-inmemory@workspace:*, @acmekit/workflow-engine-inmemory@workspace:packages/modules/workflow-engine-inmemory":
   version: 0.0.0-use.local
   resolution: "@acmekit/workflow-engine-inmemory@workspace:packages/modules/workflow-engine-inmemory"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
     cron-parser: ^4.9.0
     ulid: ^2.3.0
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/workflow-engine-redis@2.13.8, @acmekit/workflow-engine-redis@workspace:packages/modules/workflow-engine-redis":
+"@acmekit/workflow-engine-redis@2.13.9, @acmekit/workflow-engine-redis@workspace:packages/modules/workflow-engine-redis":
   version: 0.0.0-use.local
   resolution: "@acmekit/workflow-engine-redis@workspace:packages/modules/workflow-engine-redis"
   dependencies:
-    "@acmekit/framework": 2.13.8
-    "@acmekit/test-utils": 2.13.8
+    "@acmekit/framework": 2.13.9
+    "@acmekit/test-utils": 2.13.9
     bullmq: 5.13.0
     ioredis: ^5.4.1
     ulid: ^2.3.0
   peerDependencies:
-    "@acmekit/framework": 2.13.8
+    "@acmekit/framework": 2.13.9
   languageName: unknown
   linkType: soft
 
-"@acmekit/workflows-sdk@2.13.8, @acmekit/workflows-sdk@workspace:packages/core/workflows-sdk":
+"@acmekit/workflows-sdk@2.13.9, @acmekit/workflows-sdk@workspace:packages/core/workflows-sdk":
   version: 0.0.0-use.local
   resolution: "@acmekit/workflows-sdk@workspace:packages/core/workflows-sdk"
   dependencies:
-    "@acmekit/deps": 2.13.8
-    "@acmekit/modules-sdk": 2.13.8
-    "@acmekit/orchestration": 2.13.8
-    "@acmekit/types": 2.13.8
-    "@acmekit/utils": 2.13.8
+    "@acmekit/deps": 2.13.9
+    "@acmekit/modules-sdk": 2.13.9
+    "@acmekit/orchestration": 2.13.9
+    "@acmekit/types": 2.13.9
+    "@acmekit/utils": 2.13.9
     ulid: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -11617,7 +11461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=13.7.0, @types/node@npm:>=8.1.0":
+"@types/node@npm:*, @types/node@npm:>=13.7.0":
   version: 24.10.1
   resolution: "@types/node@npm:24.10.1"
   dependencies:
@@ -14897,8 +14741,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "create-acmekit-app@workspace:packages/cli/create-acmekit-app"
   dependencies:
-    "@acmekit/deps": 2.13.8
-    "@acmekit/telemetry": 2.13.8
+    "@acmekit/deps": 2.13.9
+    "@acmekit/telemetry": 2.13.9
     boxen: ^5.0.1
     chalk: ^4.1.2
     commander: ^11.0.0
@@ -23495,7 +23339,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.10.0, qs@npm:^6.11.0, qs@npm:^6.11.2, qs@npm:^6.12.1, qs@npm:~6.14.0":
+"qs@npm:^6.10.0, qs@npm:^6.11.2, qs@npm:^6.12.1, qs@npm:~6.14.0":
   version: 6.14.0
   resolution: "qs@npm:6.14.0"
   dependencies:
@@ -26008,30 +25852,6 @@ __metadata:
   dependencies:
     js-tokens: ^9.0.1
   checksum: 50918f669915d9ad0fe4b7599902b735f853f2201c97791ead00104a654259c0c61bc2bc8fa3db05109339b61f4cf09e47b94ecc874ffbd0e013965223893af8
-  languageName: node
-  linkType: hard
-
-"stripe@npm:19.1.0":
-  version: 19.1.0
-  resolution: "stripe@npm:19.1.0"
-  dependencies:
-    qs: ^6.11.0
-  peerDependencies:
-    "@types/node": ">=16"
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-  checksum: d1f6412373962a585f877af6b5933a000573dad1b0c5fe3937633ccb7117764ad46c8fb565431d846ac08f32811c150ffdce3a273717905a983e416ea131091f
-  languageName: node
-  linkType: hard
-
-"stripe@npm:^15.5.0":
-  version: 15.12.0
-  resolution: "stripe@npm:15.12.0"
-  dependencies:
-    "@types/node": ">=8.1.0"
-    qs: ^6.11.0
-  checksum: 95de07b108b98388d2ead2dedc3fc371df55287c9e926385f95890c680d655234ba2832a23e11e283e946d44dac01868eec823ccf878628eb75f5baa67f08175
   languageName: node
   linkType: hard
 

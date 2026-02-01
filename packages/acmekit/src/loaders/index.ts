@@ -218,8 +218,6 @@ export default async ({
     ? () => {}
     : await loadEntrypoints(plugins, container, expressApp, rootDirectory)
 
-  const { createDefaultsWorkflow } = await import("@acmekit/core-flows")
-  await createDefaultsWorkflow(container).run()
   await onApplicationStart()
 
   const shutdown = async () => {

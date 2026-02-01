@@ -1,11 +1,8 @@
 import { defineMiddlewares } from "../utils/define-middlewares"
 import { adminApiKeyRoutesMiddlewares } from "./admin/api-keys/middlewares"
-import { adminCustomerGroupRoutesMiddlewares } from "./admin/customer-groups/middlewares"
-import { adminCustomerRoutesMiddlewares } from "./admin/customers/middlewares"
 import { adminInviteRoutesMiddlewares } from "./admin/invites/middlewares"
 import { adminNotificationRoutesMiddlewares } from "./admin/notifications/middlewares"
 import { adminRbacRoutesMiddlewares } from "./admin/rbac/middlewares"
-import { adminStoreRoutesMiddlewares } from "./admin/stores/middlewares"
 import { adminUploadRoutesMiddlewares } from "./admin/uploads/middlewares"
 import { adminUserRoutesMiddlewares } from "./admin/users/middlewares"
 import { columnRoutesMiddlewares } from "./admin/views/[entity]/columns/middlewares"
@@ -25,9 +22,6 @@ export default defineMiddlewares([
   ...adminInviteRoutesMiddlewares,
   ...adminTranslationsRoutesMiddlewares,
   ...adminApiKeyRoutesMiddlewares,
-  ...adminStoreRoutesMiddlewares,
-  ...adminCustomerGroupRoutesMiddlewares,
-  ...adminCustomerRoutesMiddlewares,
   ...adminLocalesRoutesMiddlewares,
   ...adminUploadRoutesMiddlewares,
   ...adminNotificationRoutesMiddlewares,

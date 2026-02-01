@@ -66,11 +66,11 @@ export function unstable_defineCustomFieldsConfig<
  * import type { HttpTypes } from "@acmekit/types"
  * import type { Brand } from "../../types/brand"
  *
- * type ExtendedProduct = HttpTypes.Product & {
+ * type ExtendedEntity = HttpTypes.Product & {
  *   brand: Brand | null
  * }
  *
- * const form = unstable_createFormHelper<ExtendedProduct>()
+ * const form = unstable_createFormHelper<ExtendedEntity>()
  *
  * export default unstable_defineCustomFieldsConfig({
  *   entryPoint: "product",

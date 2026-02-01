@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/auth-emailpass",
-  "version": "2.13.8",
+  "version": "2.13.9",
   "description": "Email and password credential authentication provider for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -26,13 +26,13 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.8"
+    "@acmekit/framework": "2.13.9"
   },
   "dependencies": {
     "scrypt-kdf": "^2.0.1"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.8"
+    "@acmekit/framework": "2.13.9"
   },
   "keywords": [
     "acmekit-provider",

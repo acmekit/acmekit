@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { TwoColumnPageSkeleton } from "../../../components/common/skeleton"
 import { TwoColumnPage } from "../../../components/layout/pages"
 import {
-  useStore,
+  useLocales,
   useTranslationSettings,
   useTranslationStatistics,
 } from "../../../hooks/api"
@@ -26,7 +26,9 @@ export const TranslationList = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const { store, isPending, isError, error } = useStore()
+  const { locales: localesList, isPending, isError, error } = useLocales()
+  const supportedLocales =
+    localesList?.map((l) => ({ locale_code: l.code, locale: l.code })) ?? []
   const {
     translation_settings,
     isPending: isTranslationSettingsPending,
@@ -42,17 +44,12 @@ export const TranslationList = () => {
     error: translationStatisticsError,
   } = useTranslationStatistics(
     {
-      locales:
-        store?.supported_locales?.map(
-          (suportedLocale) => suportedLocale.locale_code
-        ) ?? [],
+      locales: supportedLocales.map((l) => l.locale_code),
       entity_types: Object.keys(translation_settings ?? {}),
     },
     {
       enabled:
-        !!translation_settings &&
-        !!store &&
-        store.supported_locales?.length > 0,
+        !!translation_settings && supportedLocales.length > 0,
     }
   )
 
@@ -60,7 +57,7 @@ export const TranslationList = () => {
     throw error || translationSettingsError || translationStatisticsError
   }
 
-  const hasLocales = (store?.supported_locales ?? []).length > 0
+  const hasLocales = supportedLocales.length > 0
 
   const translatableEntities: TranslatableEntity[] = useMemo(() => {
     if (!translation_settings) {
@@ -104,7 +101,7 @@ export const TranslationList = () => {
   }, [navigate])
 
   const isReady =
-    !!store &&
+    !!localesList &&
     !isPending &&
     !isTranslationSettingsPending &&
     !!translation_settings &&
@@ -168,19 +165,11 @@ export const TranslationList = () => {
       </TwoColumnPage.Main>
       <TwoColumnPage.Sidebar>
         <ActiveLocalesSection
-          locales={
-            store?.supported_locales?.map(
-              (suportedLocale) => suportedLocale.locale
-            ) ?? []
-          }
+          locales={supportedLocales.map((l) => l.locale)}
         ></ActiveLocalesSection>
         <TranslationsCompletionSection
           statistics={statistics ?? {}}
-          locales={
-            store?.supported_locales?.map(
-              (supportedLocale) => supportedLocale.locale
-            ) ?? []
-          }
+          locales={supportedLocales.map((l) => l.locale)}
         />
       </TwoColumnPage.Sidebar>
     </TwoColumnPage>
