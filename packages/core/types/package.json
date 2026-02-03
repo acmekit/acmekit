@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/types",
-  "version": "2.13.9",
+  "version": "2.13.10",
   "description": "AcmeKit Types definition",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,7 +35,7 @@
     "bignumber.js": "^9.1.2"
   },
   "devDependencies": {
-    "@acmekit/deps": "2.13.9"
+    "@acmekit/deps": "2.13.10"
   },
   "peerDependencies": {
     "ioredis": "^5.4.1",

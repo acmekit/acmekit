@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.0.8
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/acmekit@2.13.10
+  - @acmekit/test-utils@2.13.10
+  - @acmekit/core-flows@2.13.10
+  - @acmekit/framework@2.13.10
+  - @acmekit/modules-sdk@2.13.10
+  - @acmekit/utils@2.13.10
+  - @acmekit/api-key@2.13.10
+  - @acmekit/auth@2.13.10
+  - @acmekit/cache-inmemory@2.13.10
+  - @acmekit/customer@2.13.10
+  - @acmekit/event-bus-local@2.13.10
+  - @acmekit/event-bus-redis@2.13.10
+  - @acmekit/store@2.13.10
+  - @acmekit/translation@2.13.10
+  - @acmekit/user@2.13.10
+  - @acmekit/workflow-engine-inmemory@2.13.10
+
 ## 2.0.7
 
 ### Patch Changes

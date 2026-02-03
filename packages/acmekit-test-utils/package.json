@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/test-utils",
-  "version": "2.13.9",
+  "version": "2.13.10",
   "description": "Test utils for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -25,8 +25,8 @@
   "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
-    "@acmekit/core-flows": "2.13.9",
-    "@acmekit/framework": "2.13.9"
+    "@acmekit/core-flows": "2.13.10",
+    "@acmekit/framework": "2.13.10"
   },
   "dependencies": {
     "@types/express": "^4.17.21",
@@ -36,9 +36,9 @@
     "ulid": "^2.3.0"
   },
   "peerDependencies": {
-    "@acmekit/acmekit": "2.13.9",
-    "@acmekit/core-flows": "2.13.9",
-    "@acmekit/framework": "2.13.9"
+    "@acmekit/acmekit": "2.13.10",
+    "@acmekit/core-flows": "2.13.10",
+    "@acmekit/framework": "2.13.10"
   },
   "peerDependenciesMeta": {
     "@acmekit/acmekit": {

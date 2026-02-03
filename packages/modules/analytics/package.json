@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/analytics",
-  "version": "2.13.9",
+  "version": "2.13.10",
   "description": "AcmeKit Analytics module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,10 +32,10 @@
     "test:integration": "../../../node_modules/.bin/jest --passWithNoTests --forceExit --testPathPattern=\"integration-tests/__tests__/.*\\.ts\""
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.9",
-    "@acmekit/test-utils": "2.13.9"
+    "@acmekit/framework": "2.13.10",
+    "@acmekit/test-utils": "2.13.10"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.9"
+    "@acmekit/framework": "2.13.10"
   }
 }

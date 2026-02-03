@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/deps",
-  "version": "2.13.9",
+  "version": "2.13.10",
   "description": "Dependencies for AcmeKit",
   "main": "dist/index.js",
   "repository": {

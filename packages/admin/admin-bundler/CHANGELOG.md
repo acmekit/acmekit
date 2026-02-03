@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.13.10
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/admin-shared@2.13.10
+  - @acmekit/admin-vite-plugin@2.13.10
+  - @acmekit/dashboard@2.13.10
+
 ## 2.13.9
 
 ### Patch Changes

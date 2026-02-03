@@ -1,5 +1,48 @@
 # Changelog
 
+## 2.13.10
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.10
+  - @acmekit/admin-bundler@2.13.10
+  - @acmekit/core-flows@2.13.10
+  - @acmekit/framework@2.13.10
+  - @acmekit/analytics@2.13.10
+  - @acmekit/api-key@2.13.10
+  - @acmekit/auth@2.13.10
+  - @acmekit/cache-inmemory@2.13.10
+  - @acmekit/cache-redis@2.13.10
+  - @acmekit/caching@2.13.10
+  - @acmekit/event-bus-local@2.13.10
+  - @acmekit/event-bus-redis@2.13.10
+  - @acmekit/file@2.13.10
+  - @acmekit/index@2.13.10
+  - @acmekit/link-modules@2.13.10
+  - @acmekit/locking@2.13.10
+  - @acmekit/notification@2.13.10
+  - @acmekit/analytics-local@2.13.10
+  - @acmekit/analytics-posthog@2.13.10
+  - @acmekit/auth-emailpass@2.13.10
+  - @acmekit/auth-github@2.13.10
+  - @acmekit/auth-google@2.13.10
+  - @acmekit/caching-redis@2.13.10
+  - @acmekit/file-local@2.13.10
+  - @acmekit/file-s3@2.13.10
+  - @acmekit/locking-postgres@2.13.10
+  - @acmekit/locking-redis@2.13.10
+  - @acmekit/notification-local@2.13.10
+  - @acmekit/notification-sendgrid@2.13.10
+  - @acmekit/rbac@2.13.10
+  - @acmekit/settings@2.13.10
+  - @acmekit/translation@2.13.10
+  - @acmekit/user@2.13.10
+  - @acmekit/workflow-engine-inmemory@2.13.10
+  - @acmekit/workflow-engine-redis@2.13.10
+
 ## 2.13.9
 
 ### Patch Changes

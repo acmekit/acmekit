@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/orchestration",
-  "version": "2.13.9",
+  "version": "2.13.10",
   "description": "AcmeKit utilities to orchestrate modules",
   "main": "dist/index.js",
   "exports": {
@@ -26,11 +26,11 @@
   "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
-    "@acmekit/types": "2.13.9"
+    "@acmekit/types": "2.13.10"
   },
   "dependencies": {
-    "@acmekit/deps": "2.13.9",
-    "@acmekit/utils": "2.13.9",
+    "@acmekit/deps": "2.13.10",
+    "@acmekit/utils": "2.13.10",
     "ulid": "^2.3.0"
   },
   "scripts": {

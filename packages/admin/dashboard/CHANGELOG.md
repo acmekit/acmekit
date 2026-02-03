@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.13.10
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/admin-shared@2.13.10
+  - @acmekit/js-sdk@2.13.10
+  - @acmekit/icons@2.13.10
+  - @acmekit/ui@4.1.10
+
 ## 2.13.9
 
 ### Patch Changes
