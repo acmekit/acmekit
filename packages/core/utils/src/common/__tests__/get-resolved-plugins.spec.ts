@@ -12,11 +12,6 @@ afterEach(async () => {
 
 describe("getResolvedPlugins | relative paths", () => {
   test("resolve configured plugins", async () => {
-    await fs.createJson("node_modules/@acmekit/draft-order/package.json", {
-      name: "@acmekit/draft-order",
-      version: "1.0.0",
-    })
-
     await fs.createJson("plugins/dummy/package.json", {
       name: "my-dummy-plugin",
       version: "1.0.0",
@@ -32,10 +27,6 @@ describe("getResolvedPlugins | relative paths", () => {
               apiKey: "asecret",
             },
           },
-          {
-            resolve: "@acmekit/draft-order",
-            options: {},
-          },
         ],
       }),
       false
@@ -43,17 +34,6 @@ describe("getResolvedPlugins | relative paths", () => {
 
     expect(plugins).toEqual(
       expect.arrayContaining([
-        {
-          id: "@acmekit/draft-order",
-          modules: [],
-          name: "@acmekit/draft-order",
-          options: {},
-          resolve: path.join(
-            fs.basePath,
-            "node_modules/@acmekit/draft-order/.acmekit/server/src"
-          ),
-          version: "1.0.0",
-        },
         {
           resolve: path.join(fs.basePath, "./plugins/dummy/.acmekit/server/src"),
           admin: undefined,
@@ -115,11 +95,6 @@ describe("getResolvedPlugins | relative paths", () => {
   })
 
   test("throw error when package.json file is missing", async () => {
-    await fs.createJson("node_modules/@acmekit/draft-order/package.json", {
-      name: "@acmekit/draft-order",
-      version: "1.0.0",
-    })
-
     const resolvePlugins = async () =>
       getResolvedPlugins(
         fs.basePath,
@@ -142,10 +117,6 @@ describe("getResolvedPlugins | relative paths", () => {
   })
 
   test("resolve admin source from acmekit-plugin-options file", async () => {
-    await fs.createJson("node_modules/@acmekit/draft-order/package.json", {
-      name: "@acmekit/draft-order",
-      version: "1.0.0",
-    })
     await fs.createJson("plugins/dummy/package.json", {
       name: "my-dummy-plugin",
       version: "1.0.0",
@@ -170,10 +141,6 @@ describe("getResolvedPlugins | relative paths", () => {
             options: {
               apiKey: "asecret",
             },
-          },
-          {
-            resolve: "@acmekit/draft-order",
-            options: {},
           },
         ],
       }),
@@ -200,27 +167,12 @@ describe("getResolvedPlugins | relative paths", () => {
           },
         ],
       },
-      {
-        id: "@acmekit/draft-order",
-        modules: [],
-        name: "@acmekit/draft-order",
-        options: {},
-        resolve: path.join(
-          fs.basePath,
-          "node_modules/@acmekit/draft-order/.acmekit/server/src"
-        ),
-        version: "1.0.0",
-      },
     ]))
   })
 })
 
 describe("getResolvedPlugins | package reference", () => {
   test("resolve configured plugins", async () => {
-    await fs.createJson("node_modules/@acmekit/draft-order/package.json", {
-      name: "@acmekit/draft-order",
-      version: "1.0.0",
-    })
     await fs.createJson("package.json", {})
     await fs.createJson("node_modules/@plugins/dummy/package.json", {
       name: "my-dummy-plugin",
@@ -312,10 +264,6 @@ describe("getResolvedPlugins | package reference", () => {
   })
 
   test("throw error when package.json file is missing", async () => {
-    await fs.createJson("node_modules/@acmekit/draft-order/package.json", {
-      name: "@acmekit/draft-order",
-      version: "1.0.0",
-    })
     const resolvePlugins = async () =>
       getResolvedPlugins(
         fs.basePath,
@@ -326,10 +274,6 @@ describe("getResolvedPlugins | package reference", () => {
               options: {
                 apiKey: "asecret",
               },
-            },
-            {
-              resolve: "@acmekit/draft-order",
-              options: {},
             },
           ],
         }),

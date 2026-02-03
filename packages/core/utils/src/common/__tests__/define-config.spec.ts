@@ -29,15 +29,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -51,20 +42,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -86,42 +63,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -140,12 +87,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -155,11 +97,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -210,15 +148,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -232,20 +161,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -267,42 +182,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -321,12 +206,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -336,11 +216,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -378,9 +254,7 @@ describe("defineConfig", function () {
             "options": {
               "apiKey": "test",
             },
-            "resolve": "${require.resolve(
-              "../__fixtures__/define-config/github"
-            )}",
+            "resolve": "/Users/deux/Projects/Monorepo/personal/acmekit/packages/core/utils/src/common/__fixtures__/define-config/github/index.ts",
           },
           "api_key": {
             "resolve": "@acmekit/acmekit/api-key",
@@ -399,15 +273,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -421,20 +286,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -456,42 +307,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -510,12 +331,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -525,11 +341,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -568,9 +380,7 @@ describe("defineConfig", function () {
             "options": {
               "apiKey": "test",
             },
-            "resolve": "${require.resolve(
-              "../__fixtures__/define-config/github"
-            )}",
+            "resolve": "/Users/deux/Projects/Monorepo/personal/acmekit/packages/core/utils/src/common/__fixtures__/define-config/github/index.ts",
           },
           "api_key": {
             "resolve": "@acmekit/acmekit/api-key",
@@ -589,15 +399,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -611,20 +412,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -646,42 +433,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -700,12 +457,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -715,11 +467,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -767,15 +515,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -789,20 +528,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -824,42 +549,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -878,12 +573,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -893,11 +583,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -948,14 +634,8 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "disable": true,
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
           "customer": {
-            "resolve": "@acmekit/acmekit/customer",
+            "disable": true,
           },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
@@ -970,20 +650,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -1005,42 +671,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -1059,12 +695,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -1074,11 +705,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -1150,15 +777,6 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/caching",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "options": {
               "redisUrl": "redis://localhost:6379",
@@ -1186,20 +804,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "options": {
@@ -1233,42 +837,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -1292,12 +866,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-redis",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -1307,11 +876,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -1385,15 +950,6 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/caching",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "options": {
               "redisUrl": "redis://localhost:6379",
@@ -1421,20 +977,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "options": {
@@ -1468,42 +1010,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -1527,12 +1039,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-redis",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -1542,11 +1049,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -1636,15 +1139,6 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/caching",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "options": {
               "redisUrl": "redis://localhost:6379",
@@ -1672,20 +1166,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "options": {
@@ -1719,42 +1199,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -1778,12 +1228,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-redis",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -1793,11 +1238,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -1823,9 +1264,7 @@ describe("defineConfig", function () {
 
   it("should include default plugins", function () {
     const config = defineConfig()
-    expect(config.plugins).toEqual([
-      { resolve: "@acmekit/draft-order", options: {} },
-    ])
+    expect(config.plugins).toEqual([])
   })
 
   it("should append custom plugins to defaults", function () {
@@ -1835,7 +1274,6 @@ describe("defineConfig", function () {
       ],
     })
     expect(config.plugins).toEqual([
-      { resolve: "@acmekit/draft-order", options: {} },
       { resolve: "@acmekit/custom-plugin", options: { key: "value" } },
     ])
   })
@@ -1849,7 +1287,6 @@ describe("defineConfig", function () {
       ],
     })
     expect(config.plugins).toEqual([
-      { resolve: "@acmekit/draft-order", options: {} },
       { resolve: "@acmekit/plugin-one", options: { setting: "a" } },
       { resolve: "@acmekit/plugin-two", options: { setting: "b" } },
       { resolve: "./local-plugin", options: {} },
@@ -1859,11 +1296,11 @@ describe("defineConfig", function () {
   it("should merge plugins", function () {
     const config = defineConfig({
       plugins: [
-        { resolve: "@acmekit/draft-order", options: { setting: "a" } },
+        { resolve: "@acmekit/custom-plugin", options: { setting: "a" } },
       ],
     })
     expect(config.plugins).toEqual([
-      { resolve: "@acmekit/draft-order", options: { setting: "a" } },
+      { resolve: "@acmekit/custom-plugin", options: { setting: "a" } },
     ])
   })
 
@@ -1872,15 +1309,12 @@ describe("defineConfig", function () {
     process.env.EXECUTION_CONTEXT = "acmekit-cloud"
 
     const config = defineConfig({
-      plugins: [
-        { resolve: "@acmekit/cloud-plugin", options: { cloud: true } },
-      ],
+      plugins: [{ resolve: "@acmekit/cloud-plugin", options: { cloud: true } }],
     })
 
     process.env = { ...originalEnv }
 
     expect(config.plugins).toEqual([
-      { resolve: "@acmekit/draft-order", options: {} },
       { resolve: "@acmekit/cloud-plugin", options: { cloud: true } },
     ])
   })
@@ -1889,18 +1323,14 @@ describe("defineConfig", function () {
     const config = defineConfig({
       plugins: [],
     })
-    expect(config.plugins).toEqual([
-      { resolve: "@acmekit/draft-order", options: {} },
-    ])
+    expect(config.plugins).toEqual([])
   })
 
   it("should handle undefined plugins", function () {
     const config = defineConfig({
       modules: {},
     })
-    expect(config.plugins).toEqual([
-      { resolve: "@acmekit/draft-order", options: {} },
-    ])
+    expect(config.plugins).toEqual([])
   })
 
   it("should allow custom dynamodb config", function () {
@@ -1948,15 +1378,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -1970,20 +1391,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -2005,42 +1412,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -2059,12 +1436,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "databaseUrl": "postgres://localhost/acmekit-starter-default",
           "http": {
@@ -2074,11 +1446,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -2150,15 +1518,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -2172,20 +1531,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -2213,51 +1558,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "options": {
-              "cloud": {
-                "api_key": "test-api-key",
-                "endpoint": "test-payments-endpoint",
-                "environment_handle": "test-environment",
-                "sandbox_handle": undefined,
-                "webhook_secret": "test-webhook-secret",
-              },
-            },
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -2276,12 +1582,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "cloud": {
             "apiKey": "test-api-key",
@@ -2303,11 +1604,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -2370,15 +1667,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -2392,20 +1680,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -2433,51 +1707,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "options": {
-              "cloud": {
-                "api_key": "test-api-key",
-                "endpoint": "test-payments-endpoint",
-                "environment_handle": undefined,
-                "sandbox_handle": "test-sandbox",
-                "webhook_secret": "test-webhook-secret",
-              },
-            },
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -2496,12 +1731,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "cloud": {
             "apiKey": "test-api-key",
@@ -2523,11 +1753,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },
@@ -2599,15 +1825,6 @@ describe("defineConfig", function () {
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
           },
-          "cart": {
-            "resolve": "@acmekit/acmekit/cart",
-          },
-          "currency": {
-            "resolve": "@acmekit/acmekit/currency",
-          },
-          "customer": {
-            "resolve": "@acmekit/acmekit/customer",
-          },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
           },
@@ -2621,20 +1838,6 @@ describe("defineConfig", function () {
               ],
             },
             "resolve": "@acmekit/acmekit/file",
-          },
-          "fulfillment": {
-            "options": {
-              "providers": [
-                {
-                  "id": "manual",
-                  "resolve": "@acmekit/acmekit/fulfillment-manual",
-                },
-              ],
-            },
-            "resolve": "@acmekit/acmekit/fulfillment",
-          },
-          "inventory": {
-            "resolve": "@acmekit/acmekit/inventory",
           },
           "locking": {
             "resolve": "@acmekit/acmekit/locking",
@@ -2662,51 +1865,12 @@ describe("defineConfig", function () {
             },
             "resolve": "@acmekit/acmekit/notification",
           },
-          "order": {
-            "resolve": "@acmekit/acmekit/order",
-          },
-          "payment": {
-            "options": {
-              "cloud": {
-                "api_key": "overriden-api-key",
-                "endpoint": "overriden-payments-endpoint",
-                "environment_handle": "overriden-environment",
-                "sandbox_handle": undefined,
-                "webhook_secret": "overriden-webhook-secret",
-              },
-            },
-            "resolve": "@acmekit/acmekit/payment",
-          },
-          "pricing": {
-            "resolve": "@acmekit/acmekit/pricing",
-          },
-          "product": {
-            "resolve": "@acmekit/acmekit/product",
-          },
-          "promotion": {
-            "resolve": "@acmekit/acmekit/promotion",
-          },
           "rbac": {
             "disable": true,
             "resolve": "@acmekit/acmekit/rbac",
           },
-          "region": {
-            "resolve": "@acmekit/acmekit/region",
-          },
-          "sales_channel": {
-            "resolve": "@acmekit/acmekit/sales-channel",
-          },
           "settings": {
             "resolve": "@acmekit/acmekit/settings",
-          },
-          "stock_location": {
-            "resolve": "@acmekit/acmekit/stock-location",
-          },
-          "store": {
-            "resolve": "@acmekit/acmekit/store",
-          },
-          "tax": {
-            "resolve": "@acmekit/acmekit/tax",
           },
           "translation": {
             "disable": true,
@@ -2725,12 +1889,7 @@ describe("defineConfig", function () {
             "resolve": "@acmekit/acmekit/workflow-engine-inmemory",
           },
         },
-        "plugins": [
-          {
-            "options": {},
-            "resolve": "@acmekit/draft-order",
-          },
-        ],
+        "plugins": [],
         "projectConfig": {
           "cloud": {
             "apiKey": "overriden-api-key",
@@ -2752,11 +1911,7 @@ describe("defineConfig", function () {
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {
-              "store": [
-                ${DEFAULT_STORE_RESTRICTED_FIELDS.map((v) => `"${v}"`).join(
-                  ",\n                "
-                )},
-              ],
+              "store": [],
             },
             "storeCors": "http://localhost:8000",
           },

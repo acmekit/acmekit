@@ -24,7 +24,9 @@ import {
 } from "@acmekit/framework/utils"
 import { WorkflowLoader } from "@acmekit/framework/workflows"
 import { Express, NextFunction, Request, Response } from "express"
-import { join } from "path"
+import { dirname, join } from "path"
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const coreFlowsResolve = require.resolve("@acmekit/core-flows")
 import requestIp from "request-ip"
 import { v4 } from "uuid"
 import adminLoader from "./admin"
@@ -202,7 +204,11 @@ export default async ({
     gqlSchema,
   } = await new AcmeKitAppLoader().load()
 
-  const workflowsSourcePaths = plugins.map((p) => join(p.resolve, "workflows"))
+  const coreFlowsDistPath = dirname(coreFlowsResolve)
+  const workflowsSourcePaths = [
+    coreFlowsDistPath,
+    ...plugins.map((p) => join(p.resolve, "workflows")),
+  ]
   const workflowLoader = new WorkflowLoader(workflowsSourcePaths, container)
   await workflowLoader.load()
 
