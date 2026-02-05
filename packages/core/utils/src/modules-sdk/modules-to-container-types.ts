@@ -15,12 +15,10 @@ import { Modules } from "./definition"
 const SERVICES_INTERFACES = {
   [Modules.AUTH]: "IAuthModuleService",
   [Modules.CACHE]: "ICacheService",
-  [Modules.CUSTOMER]: "ICustomerModuleService",
   [Modules.EVENT_BUS]: "IEventBusModuleService",
   [Modules.USER]: "IUserModuleService",
   [Modules.WORKFLOW_ENGINE]: "IWorkflowEngineService",
   [Modules.API_KEY]: "IApiKeyModuleService",
-  [Modules.STORE]: "IStoreModuleService",
   [Modules.FILE]: "IFileModuleService",
   [Modules.NOTIFICATION]: "INotificationModuleService",
   [Modules.LOCKING]: "ILockingModule",

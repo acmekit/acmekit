@@ -1,9 +1,9 @@
 import { BaseFilterable, OperatorMap } from "../../dal"
 
 /**
- * An API key's type.
+ * An API key's type (generic API access).
  */
-export type ApiKeyType = "secret" | "publishable"
+export type ApiKeyType = "secret" | "client"
 
 /**
  * The API key details.

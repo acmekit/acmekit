@@ -1,17 +1,18 @@
 /**
  * @enum
  *
- * The API key's type.
+ * The API key's type (generic API access).
  */
 export enum ApiKeyType {
   /**
-   * Publishable key that is tied to eg. a sales channel
+   * Client key for public/client API access (e.g. frontend, mobile apps).
    */
-  PUBLISHABLE = "publishable",
+  CLIENT = "client",
   /**
-   * Secret key that allows access to the admin API
+   * Secret key for server/admin API access.
    */
   SECRET = "secret",
 }
 
-export const PUBLISHABLE_KEY_HEADER = "x-publishable-api-key"
+/** Header used to pass client API key for API access. */
+export const CLIENT_API_KEY_HEADER = "x-client-api-key"

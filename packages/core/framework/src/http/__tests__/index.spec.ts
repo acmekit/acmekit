@@ -17,9 +17,9 @@ import { ApiLoader, AcmeKitNextFunction } from "../index"
 
 jest.setTimeout(30000)
 
-jest.mock("../middlewares/ensure-publishable-api-key", () => {
-  return {
-    ensurePublishableApiKeyMiddleware: async (
+jest.mock("../middlewares/ensure-client-api-key", () => {
+    return {
+      ensureClientApiKeyMiddleware: async (
       req: any,
       res: any,
       next: AcmeKitNextFunction

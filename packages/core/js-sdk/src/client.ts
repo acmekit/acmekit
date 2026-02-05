@@ -9,7 +9,7 @@ import {
   Logger,
 } from "./types"
 
-export const PUBLISHABLE_KEY_HEADER = "x-publishable-api-key"
+export const CLIENT_API_KEY_HEADER = "x-client-api-key"
 export const LOCALE_STORAGE_KEY = "acmekit_locale"
 
 // We want to explicitly retrieve the base URL instead of relying on relative paths that differ in behavior between browsers.
@@ -246,7 +246,7 @@ export class Client {
       "content-type": "application/json",
       accept: "application/json",
       ...this.getApiKeyHeader_(),
-      ...this.getPublishableKeyHeader_(),
+      ...this.getClientApiKeyHeader_(),
     })
 
     this.logger.debug(
@@ -320,11 +320,11 @@ export class Client {
       : {}
   }
 
-  protected getPublishableKeyHeader_ = ():
-    | { [PUBLISHABLE_KEY_HEADER]: string }
+  protected getClientApiKeyHeader_ = ():
+    | { [CLIENT_API_KEY_HEADER]: string }
     | {} => {
-    return this.config.publishableKey
-      ? { [PUBLISHABLE_KEY_HEADER]: this.config.publishableKey }
+    return this.config.clientApiKey
+      ? { [CLIENT_API_KEY_HEADER]: this.config.clientApiKey }
       : {}
   }
 

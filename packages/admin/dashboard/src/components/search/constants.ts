@@ -1,7 +1,7 @@
 export const SEARCH_AREAS = [
   "all",
   "user",
-  "publishableApiKey",
+  "clientApiKey",
   "secretApiKey",
   "command",
   "navigation",

@@ -14,8 +14,6 @@ export const defaultAdminApiKeyFields = [
   "created_by",
   "revoked_at",
   "revoked_by",
-  "sales_channels.id",
-  "sales_channels.name",
 ]
 
 export const retrieveTransformQueryConfig = {

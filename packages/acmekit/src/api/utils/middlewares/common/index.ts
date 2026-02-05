@@ -1,1 +1,1 @@
-export * from "./maybe-attach-pub-key-scopes"
+export * from "./maybe-attach-client-api-key"

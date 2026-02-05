@@ -24,29 +24,19 @@ export type CreateApiKeysWorkflowOutput = ApiKeyDTO[]
 
 export const createApiKeysWorkflowId = "create-api-keys"
 /**
- * This workflow creates one or more API keys, which can be secret or publishable. It's used by the
- * [Create API Key Admin API Route](https://docs.acmekit.com/api/admin#api-keys_postapikeys).
- *
- * You can use this workflow within your customizations or your own custom workflows, allowing you to
- * create API keys within your custom flows.
+ * This workflow creates one or more API keys (client or secret). It's used by the
+ * Create API Key Admin API Route.
  *
  * @example
- * const { result } = await createApiKeysWorkflow(container)
- * .run({
+ * const { result } = await createApiKeysWorkflow(container).run({
  *   input: {
  *     api_keys: [
- *       {
- *         type: "publishable",
- *         title: "Storefront",
- *         created_by: "user_123"
- *       }
+ *       { type: "client", title: "Default client key", created_by: "user_123" }
  *     ]
  *   }
  * })
  *
- * @summary
- *
- * Create secret or publishable API keys.
+ * @summary Create client or secret API keys.
  */
 export const createApiKeysWorkflow = createWorkflow(
   createApiKeysWorkflowId,

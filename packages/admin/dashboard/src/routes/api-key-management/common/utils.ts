@@ -9,7 +9,7 @@ export function getApiKeyTypeFromPathname(pathname: string) {
     case true:
       return ApiKeyType.SECRET
     case false:
-      return ApiKeyType.PUBLISHABLE
+      return ApiKeyType.CLIENT
   }
 }
 
@@ -34,10 +34,10 @@ export function getApiKeyTypeProps(
   type: AdminApiKeyResponse["api_key"]["type"],
   t: TFunction
 ): { color: "green" | "blue"; label: string } {
-  if (type === ApiKeyType.PUBLISHABLE) {
+  if (type === ApiKeyType.CLIENT) {
     return {
       color: "green",
-      label: t("apiKeyManagement.type.publishable"),
+      label: t("apiKeyManagement.type.client"),
     }
   }
 

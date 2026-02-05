@@ -1,58 +1,48 @@
 import { createWorkflow, when, WorkflowResponse } from "@acmekit/framework/workflows-sdk"
 import { createApiKeysStep } from "../../api-key"
 import { useQueryGraphStep } from "../../common"
-import { createDefaultStoreStep } from "../steps/create-default-store"
 
 export const createDefaultsWorkflowID = "create-defaults"
 /**
- * This workflow creates default data for a AcmeKit application, including
- * a default store and publishable API key. The AcmeKit application uses this workflow
- * to create the default data, if not existing, when the application is first started.
+ * This workflow creates default data for an AcmeKit application, including
+ * a default client API key if none exists. The application uses this workflow
+ * to create the default data when first started.
  *
- * You can use this workflow within your customizations or your own custom workflows, allowing you to
- * create default data within your custom flows, such as seed scripts.
+ * You can use this workflow within your customizations or custom workflows.
  *
  * @example
- * const { result } = await createDefaultsWorkflow(container)
- * .run()
+ * const { result } = await createDefaultsWorkflow(container).run()
  *
- * @summary
- *
- * Create default data for a AcmeKit application.
+ * @summary Create default data for an AcmeKit application.
  */
 export const createDefaultsWorkflow = createWorkflow(
   createDefaultsWorkflowID,
   () => {
-    const store = createDefaultStoreStep({
-      store: {},
-    })
-
-    const publishableApiKey = useQueryGraphStep({
+    const clientApiKey = useQueryGraphStep({
       entity: "api_key",
       fields: ["id", "type"],
       filters: {
-        type: "publishable",
+        type: "client",
       },
       options: {
         isList: false,
       },
     })
 
-    when(
-      { publishableApiKey },
-      ({ publishableApiKey }) => !publishableApiKey?.data
-    ).then(() => {
-      createApiKeysStep({
-        api_keys: [
-          {
-            title: "Default Publishable API Key",
-            type: "publishable",
-            created_by: "",
-          },
-        ],
-      })
-    })
+    when({ clientApiKey }, ({ clientApiKey }) => !clientApiKey?.data).then(
+      () => {
+        createApiKeysStep({
+          api_keys: [
+            {
+              title: "Default Client API Key",
+              type: "client",
+              created_by: "",
+            },
+          ],
+        })
+      }
+    )
 
-    return new WorkflowResponse(store)
+    return new WorkflowResponse(void 0)
   }
 )

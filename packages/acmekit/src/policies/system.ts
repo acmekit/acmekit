@@ -9,8 +9,6 @@ const systemResources = [
   "file",
   "notification",
   "workflow_execution",
-  "store",
-  "store_locale",
 ]
 
 const policies: PolicyDefinition[] = []

@@ -1,1 +1,1 @@
-export * from "./create-default-store"
+// Default steps - create-default-store removed (commerce-specific)

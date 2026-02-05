@@ -159,8 +159,8 @@ export class ApiKeyModuleService
     const generatedTokens: TokenDTO[] = []
     for (const key of data) {
       let tokenData: TokenDTO
-      if (key.type === ApiKeyType.PUBLISHABLE) {
-        tokenData = ApiKeyModuleService.generatePublishableKey()
+      if (key.type === ApiKeyType.CLIENT) {
+        tokenData = ApiKeyModuleService.generateClientKey()
       } else {
         tokenData = await ApiKeyModuleService.generateSecretKey()
       }
@@ -567,9 +567,9 @@ export class ApiKeyModuleService
     }
   }
 
-  // These are public keys, so there is no point hashing them.
-  protected static generatePublishableKey(): TokenDTO {
-    const token = "pk_" + crypto.randomBytes(32).toString("hex")
+  // Client keys are not hashed so they can be sent to clients.
+  protected static generateClientKey(): TokenDTO {
+    const token = "ck_" + crypto.randomBytes(32).toString("hex")
 
     return {
       rawToken: token,

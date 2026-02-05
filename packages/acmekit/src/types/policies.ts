@@ -4,15 +4,6 @@
  */
 
 export interface DefaultPolicyResources {
-  // Customer resources
-  customer: "customer"
-  customer_address: "customer_address"
-  customer_group: "customer_group"
-
-  // Store resources
-  store: "store"
-  store_locale: "store_locale"
-
   // Translation resources
   translation: "translation"
   translation_settings: "translation_settings"

@@ -31,7 +31,7 @@ export type UpdateApiKeysWorkflowOutput = ApiKeyDTO[]
 
 export const updateApiKeysWorkflowId = "update-api-keys"
 /**
- * This workflow updates one or more secret or publishable API keys. It's used by the
+ * This workflow updates one or more client or secret API keys. It's used by the
  * [Update API Key Admin API Route](https://docs.acmekit.com/api/admin#api-keys_postapikeysid).
  * 
  * You can use this workflow within your customizations or your own custom workflows, allowing you to
@@ -52,7 +52,7 @@ export const updateApiKeysWorkflowId = "update-api-keys"
  * 
  * @summary
  * 
- * Update secret or publishable API keys.
+ * Update client or secret API keys.
  */
 export const updateApiKeysWorkflow = createWorkflow(
   updateApiKeysWorkflowId,

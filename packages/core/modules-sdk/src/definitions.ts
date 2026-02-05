@@ -65,17 +65,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.CUSTOMER]: {
-    key: Modules.CUSTOMER,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.CUSTOMER),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.USER]: {
     key: Modules.USER,
     defaultPackage: false,
@@ -102,17 +91,6 @@ export const ModulesDefinition: {
     key: Modules.SETTINGS,
     defaultPackage: false,
     label: upperCaseFirst(Modules.SETTINGS),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
-  [Modules.STORE]: {
-    key: Modules.STORE,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.STORE),
     isRequired: false,
     isQueryable: true,
     dependencies: [ContainerRegistrationKeys.LOGGER],

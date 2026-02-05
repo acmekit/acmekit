@@ -59,20 +59,12 @@ module.exports = defineConfig({
       resolve: "@acmekit/locking",
     },
     {
-      key: Modules.CUSTOMER,
-      resolve: "@acmekit/customer",
-    },
-    {
       key: Modules.WORKFLOW_ENGINE,
       resolve: "@acmekit/workflow-engine-inmemory",
     },
     {
       key: Modules.API_KEY,
       resolve: "@acmekit/api-key",
-    },
-    {
-      key: Modules.STORE,
-      resolve: "@acmekit/store",
     },
     {
       key: Modules.NOTIFICATION,

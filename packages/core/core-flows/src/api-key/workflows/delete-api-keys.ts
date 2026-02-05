@@ -15,7 +15,7 @@ export type DeleteApiKeysWorkflowInput = {
 
 export const deleteApiKeysWorkflowId = "delete-api-keys"
 /**
- * This workflow deletes one or more secret or publishable API keys. It's used by the
+ * This workflow deletes one or more client or secret API keys. It's used by the
  * [Delete API Key Admin API Route](https://docs.acmekit.com/api/admin#api-keys_deleteapikeysid).
  * 
  * You can use this workflow within your customizations or your own custom workflows, allowing you to
@@ -31,14 +31,13 @@ export const deleteApiKeysWorkflowId = "delete-api-keys"
  * 
  * @summary
  * 
- * Delete secret or publishable API keys.
+ * Delete client or secret API keys.
  */
 export const deleteApiKeysWorkflow = createWorkflow(
   deleteApiKeysWorkflowId,
   (input: WorkflowData<DeleteApiKeysWorkflowInput>): WorkflowData<void> => {
     deleteApiKeysStep(input.ids)
 
-    // Please note, the ids here should be publishable key IDs
     removeRemoteLinkStep({
       [Modules.API_KEY]: { publishable_key_id: input.ids },
     })

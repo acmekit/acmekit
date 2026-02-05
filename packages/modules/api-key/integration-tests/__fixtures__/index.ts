@@ -9,6 +9,6 @@ export const createSecretKeyFixture: CreateApiKeyDTO = {
 
 export const createPublishableKeyFixture: CreateApiKeyDTO = {
   title: "Test API Key",
-  type: ApiKeyType.PUBLISHABLE,
+  type: ApiKeyType.CLIENT,
   created_by: "test",
 }

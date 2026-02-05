@@ -14,7 +14,7 @@ const PAGE_SIZE = 20
 export const ApiKeyManagementListTable = ({
   keyType,
 }: {
-  keyType: "secret" | "publishable"
+  keyType: "secret" | "client"
 }) => {
   const { t } = useTranslation()
 
@@ -54,13 +54,13 @@ export const ApiKeyManagementListTable = ({
       <div className="flex items-center justify-between px-6 py-4">
         <div>
           <Heading level="h1">
-            {keyType === "publishable"
-              ? t(`apiKeyManagement.domain.publishable`)
+            {keyType === "client"
+              ? t(`apiKeyManagement.domain.client`)
               : t("apiKeyManagement.domain.secret")}
           </Heading>
           <Text className="text-ui-fg-subtle" size="small">
-            {keyType === "publishable"
-              ? t(`apiKeyManagement.subtitle.publishable`)
+            {keyType === "client"
+              ? t(`apiKeyManagement.subtitle.client`)
               : t("apiKeyManagement.subtitle.secret")}
           </Text>
         </div>

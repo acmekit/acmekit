@@ -3,25 +3,25 @@ import {
   ContainerRegistrationKeys,
   isPresent,
   AcmeKitError,
-  PUBLISHABLE_KEY_HEADER,
+  CLIENT_API_KEY_HEADER,
 } from "@acmekit/utils"
 import type {
   AcmeKitNextFunction,
   AcmeKitResponse,
-  AcmeKitStoreRequest,
+  AcmeKitClientKeyRequest,
 } from "../../http"
 
-export async function ensurePublishableApiKeyMiddleware(
-  req: AcmeKitStoreRequest,
+export async function ensureClientApiKeyMiddleware(
+  req: AcmeKitClientKeyRequest,
   _: AcmeKitResponse,
   next: AcmeKitNextFunction
 ) {
-  const publishableApiKey = req.get(PUBLISHABLE_KEY_HEADER)
+  const clientApiKey = req.get(CLIENT_API_KEY_HEADER)
 
-  if (!isPresent(publishableApiKey)) {
+  if (!isPresent(clientApiKey)) {
     const error = new AcmeKitError(
       AcmeKitError.Types.NOT_ALLOWED,
-      `Publishable API key required in the request header: ${PUBLISHABLE_KEY_HEADER}. You can manage your keys in settings in the dashboard.`
+      `Client API key required in the request header: ${CLIENT_API_KEY_HEADER}. You can manage your keys in settings in the dashboard.`
     )
     return next(error)
   }
@@ -30,19 +30,13 @@ export async function ensurePublishableApiKeyMiddleware(
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
   try {
-    // Cache API key data and check revocation in memory
     const { data } = await query.graph(
       {
         entity: "api_key",
-        fields: [
-          "id",
-          "token",
-          "revoked_at",
-          "sales_channels_link.sales_channel_id",
-        ],
+        fields: ["id", "token", "revoked_at"],
         filters: {
-          token: publishableApiKey,
-          type: ApiKeyType.PUBLISHABLE,
+          token: clientApiKey,
+          type: ApiKeyType.CLIENT,
         },
       },
       {
@@ -70,18 +64,15 @@ export async function ensurePublishableApiKeyMiddleware(
     try {
       throw new AcmeKitError(
         AcmeKitError.Types.NOT_ALLOWED,
-        `A valid publishable key is required to proceed with the request`
+        `A valid client API key is required to proceed with the request`
       )
     } catch (e) {
       return next(e)
     }
   }
 
-  req.publishable_key_context = {
+  req.client_api_key_context = {
     key: apiKey.token,
-    sales_channel_ids: apiKey.sales_channels_link.map(
-      (link) => link.sales_channel_id
-    ),
   }
 
   return next()

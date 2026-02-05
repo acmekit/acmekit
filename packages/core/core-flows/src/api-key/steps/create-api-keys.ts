@@ -23,8 +23,8 @@ export const createApiKeysStepId = "create-api-keys"
  * const data = createApiKeysStep({
  *   api_keys: [
  *     {
- *       type: "publishable",
- *       title: "Storefront",
+ *       type: "client",
+ *       title: "Default client key",
  *       created_by: "user_123"
  *     }
  *   ]

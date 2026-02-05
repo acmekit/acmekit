@@ -31,7 +31,7 @@ import { MiddlewareFileLoader } from "./middleware-file-loader"
 import { applyLocale, authenticate, AuthType } from "./middlewares"
 import { createBodyParserMiddlewaresStack } from "./middlewares/bodyparser"
 import { wrapWithPoliciesCheck } from "./middlewares/check-permissions"
-import { ensurePublishableApiKeyMiddleware } from "./middlewares/ensure-publishable-api-key"
+import { ensureClientApiKeyMiddleware } from "./middlewares/ensure-client-api-key"
 import { errorHandler } from "./middlewares/error-handler"
 import { RoutesFinder } from "./routes-finder"
 import { RoutesLoader } from "./routes-loader"
@@ -405,18 +405,17 @@ export class ApiLoader {
   }
 
   /**
-   * Applies the middleware to authenticate the headers to contain
-   * a `x-publishable-key` header
+   * Applies the middleware to require a valid client API key header (x-client-api-key).
    */
-  #applyStorePublishableKeyMiddleware(namespace: string) {
+  #applyClientApiKeyMiddleware(namespace: string) {
     this.#logger.debug(
-      `Registering publishable key middleware for namespace ${namespace}`
+      `Registering client API key middleware for namespace ${namespace}`
     )
     let middleware = ApiLoader.traceMiddleware
-      ? ApiLoader.traceMiddleware(ensurePublishableApiKeyMiddleware, {
+      ? ApiLoader.traceMiddleware(ensureClientApiKeyMiddleware, {
           route: namespace,
         })
-      : ensurePublishableApiKeyMiddleware
+      : ensureClientApiKeyMiddleware
 
     this.#app.use(namespace, middleware as RequestHandler)
   }
@@ -505,9 +504,9 @@ export class ApiLoader {
       this.#createCorsOptions(configManager.config.projectConfig.http.storeCors)
     )
     /**
-     * Publishable key check, CORS and auth setup for store routes.
+     * Client API key check, CORS and auth setup for client/public API routes.
      */
-    this.#applyStorePublishableKeyMiddleware("/store")
+    this.#applyClientApiKeyMiddleware("/store")
 
     this.#applyLocaleMiddleware("/store")
 

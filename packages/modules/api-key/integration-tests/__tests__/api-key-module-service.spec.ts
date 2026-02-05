@@ -80,7 +80,7 @@ moduleIntegrationTestRunner<IApiKeyModuleService>({
           expect(apiKey).toEqual(
             expect.objectContaining({
               title: "Test API Key",
-              type: ApiKeyType.PUBLISHABLE,
+              type: ApiKeyType.CLIENT,
               salt: undefined,
               created_by: "test",
               last_used_at: null,

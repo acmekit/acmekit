@@ -32,7 +32,7 @@ export type RevokeApiKeysWorkflowOutput = ApiKeyDTO[]
 export const revokeApiKeysWorkflowId = "revoke-api-keys"
 /**
  * This workflow revokes one or more API keys. If the API key is a secret, 
- * it can't be used for authentication anymore. If it's publishable, it can't be used by client applications.
+ * it can't be used for authentication anymore. If it's a client key, it can't be used by client applications.
  * 
  * This workflow is used by the [Revoke API Key API Route](https://docs.acmekit.com/api/admin#api-keys_postapikeysidrevoke).
  * 
@@ -54,7 +54,7 @@ export const revokeApiKeysWorkflowId = "revoke-api-keys"
  * 
  * @summary
  * 
- * Revoke secret or publishable API keys.
+ * Revoke client or secret API keys.
  */
 export const revokeApiKeysWorkflow = createWorkflow(
   revokeApiKeysWorkflowId,

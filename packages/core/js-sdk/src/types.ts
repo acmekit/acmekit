@@ -8,7 +8,7 @@ export type Logger = {
 export type Config = {
   baseUrl: string
   globalHeaders?: ClientHeaders
-  publishableKey?: string
+  clientApiKey?: string
   apiKey?: string
   auth?: {
     type?: "jwt" | "session"

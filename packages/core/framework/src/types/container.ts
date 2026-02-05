@@ -6,7 +6,6 @@ import {
   IAuthModuleService,
   ICacheService,
   ICachingModuleService,
-  ICustomerModuleService,
   IEventBusModuleService,
   IFileModuleService,
   IIndexService,
@@ -14,7 +13,6 @@ import {
   INotificationModuleService,
   IRbacModuleService,
   ISettingsModuleService,
-  IStoreModuleService,
   ITranslationModuleService,
   IUserModuleService,
   IWorkflowEngineService,
@@ -44,12 +42,10 @@ declare module "@acmekit/types" {
     [Modules.ANALYTICS]: IAnalyticsModuleService
     [Modules.AUTH]: IAuthModuleService
     [Modules.CACHE]: ICacheService
-    [Modules.CUSTOMER]: ICustomerModuleService
     [Modules.EVENT_BUS]: IEventBusModuleService
     [Modules.USER]: IUserModuleService
     [Modules.WORKFLOW_ENGINE]: IWorkflowEngineService
     [Modules.API_KEY]: IApiKeyModuleService
-    [Modules.STORE]: IStoreModuleService
     [Modules.FILE]: IFileModuleService
     [Modules.NOTIFICATION]: INotificationModuleService
     [Modules.LOCKING]: ILockingModule

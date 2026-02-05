@@ -191,7 +191,7 @@
         "productTag": "Product Tags",
         "location": "Locations",
         "shippingProfile": "Shipping Profiles",
-        "publishableApiKey": "Publishable API Keys",
+        "clientApiKey": "Client API Keys",
         "secretApiKey": "Secret API Keys",
         "command": "Commands",
         "navigation": "Navigation"
@@ -2761,11 +2761,11 @@
   },
   "apiKeyManagement": {
     "domain": {
-      "publishable": "Publishable API Keys",
+      "client": "Client API Keys",
       "secret": "Secret API Keys"
     },
     "subtitle": {
-      "publishable": "Manage API keys used in the storefront to limit the scope of requests to specific sales channels.",
+      "client": "Manage API keys for client and public API access.",
       "secret": "Manage API keys used to authenticate admin users in admin applications."
     },
     "status": {
@@ -2773,12 +2773,12 @@
       "revoked": "Revoked"
     },
     "type": {
-      "publishable": "Publishable",
+      "client": "Client",
       "secret": "Secret"
     },
     "create": {
-      "createPublishableHeader": "Create Publishable API Key",
-      "createPublishableHint": "Create a new publishable API key to limit the scope of requests to specific sales channels.",
+      "createClientHeader": "Create Client API Key",
+      "createClientHint": "Create a new client API key for public or client application API access.",
       "createSecretHeader": "Create Secret API Key",
       "createSecretHint": "Create a new secret API key to access the AcmeKit API as an authenticated admin user.",
       "secretKeyCreatedHeader": "Secret Key Created",

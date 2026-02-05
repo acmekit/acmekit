@@ -200,7 +200,6 @@ export interface AcmeKitRequest<
    * The locale for the current request, resolved from:
    * 1. Query parameter `?locale=`
    * 2. x-acmekit-locale header
-   * 3. Store's default locale
    */
   locale?: string
 }
@@ -213,9 +212,9 @@ export interface AuthContext {
   user_metadata: Record<string, unknown>
 }
 
-export interface PublishableKeyContext {
+/** Context attached when request is authenticated via client API key. */
+export interface ClientApiKeyContext {
   key: string
-  sales_channel_ids: string[]
 }
 
 export interface AuthenticatedAcmeKitRequest<
@@ -223,16 +222,17 @@ export interface AuthenticatedAcmeKitRequest<
   QueryFields = Record<string, unknown>
 > extends AcmeKitRequest<Body, QueryFields> {
   auth_context: AuthContext
-  publishable_key_context?: PublishableKeyContext
+  client_api_key_context?: ClientApiKeyContext
   policies?: PolicyAction[]
 }
 
-export interface AcmeKitStoreRequest<
+/** Request that requires a valid client API key (e.g. public API routes). */
+export interface AcmeKitClientKeyRequest<
   Body = unknown,
   QueryFields = Record<string, unknown>
 > extends AcmeKitRequest<Body, QueryFields> {
   auth_context?: AuthContext
-  publishable_key_context: PublishableKeyContext
+  client_api_key_context: ClientApiKeyContext
   policies?: PolicyAction | PolicyAction[]
 }
 

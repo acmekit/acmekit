@@ -40,8 +40,8 @@ const useDeveloperRoutes = (): INavItem[] => {
   return useMemo(
     () => [
       {
-        label: t("apiKeyManagement.domain.publishable"),
-        to: "/settings/publishable-api-keys",
+        label: t("apiKeyManagement.domain.client"),
+        to: "/settings/client-api-keys",
       },
       {
         label: t("apiKeyManagement.domain.secret"),

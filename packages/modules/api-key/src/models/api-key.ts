@@ -7,7 +7,7 @@ const ApiKey = model
     salt: model.text(),
     redacted: model.text().searchable(),
     title: model.text().searchable(),
-    type: model.enum(["publishable", "secret"]),
+    type: model.enum(["client", "secret"]),
     last_used_at: model.dateTime().nullable(),
     created_by: model.text(),
     revoked_by: model.text().nullable(),

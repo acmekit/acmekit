@@ -1,5 +1,5 @@
 import { Modules } from "../../modules-sdk"
-import { DEFAULT_STORE_RESTRICTED_FIELDS, defineConfig } from "../define-config"
+import { defineConfig } from "../define-config"
 
 describe("defineConfig", function () {
   it("should merge empty config with the defaults", function () {
@@ -96,9 +96,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -215,9 +213,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -340,9 +336,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -466,9 +460,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -582,9 +574,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -605,7 +595,7 @@ describe("defineConfig", function () {
           } as any,
         },
         modules: {
-          [Modules.CUSTOMER]: false,
+          [Modules.API_KEY]: false,
         },
       })
     ).toMatchInlineSnapshot(`
@@ -618,6 +608,7 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
+            "disable": true,
             "resolve": "@acmekit/acmekit/api-key",
           },
           "auth": {
@@ -633,9 +624,6 @@ describe("defineConfig", function () {
           },
           "cache": {
             "resolve": "@acmekit/acmekit/cache-inmemory",
-          },
-          "customer": {
-            "disable": true,
           },
           "event_bus": {
             "resolve": "@acmekit/acmekit/event-bus-local",
@@ -704,9 +692,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -875,9 +861,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -1048,9 +1032,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -1237,9 +1219,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -1445,9 +1425,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -1603,9 +1581,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -1752,9 +1728,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
@@ -1910,9 +1884,7 @@ describe("defineConfig", function () {
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
-            "restrictedFields": {
-              "store": [],
-            },
+            "restrictedFields": {},
             "storeCors": "http://localhost:8000",
           },
           "redisOptions": {

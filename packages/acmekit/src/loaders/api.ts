@@ -58,6 +58,12 @@ export default async ({ app, container, plugins }: Options) => {
     },
   } = container.resolve<ConfigModule>("configModule")
 
+  const baseRestrictedFields: string[] = Array.isArray(restrictedFields)
+    ? restrictedFields
+    : restrictedFields
+    ? Object.values(restrictedFields).flat()
+    : []
+
   // TODO: Figure out why this is causing issues with test when placed inside ./api.ts
   // Adding this here temporarily
   // Test: (packages/acmekit/src/api/routes/admin/currencies/update-currency.ts)
@@ -65,7 +71,7 @@ export default async ({ app, container, plugins }: Options) => {
     await new ApiLoader({
       app: app,
       sourceDir: sourcePaths,
-      baseRestrictedFields: restrictedFields?.store,
+      baseRestrictedFields,
       container,
     }).load()
   } catch (err) {

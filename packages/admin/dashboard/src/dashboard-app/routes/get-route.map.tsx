@@ -75,9 +75,9 @@ const defaultSettingsRouteChildren: RouteObject[] = [
     ],
   },
   {
-    path: "publishable-api-keys",
+    path: "client-api-keys",
     element: <Outlet />,
-    handle: { breadcrumb: () => t("apiKeyManagement.domain.publishable") },
+    handle: { breadcrumb: () => t("apiKeyManagement.domain.client") },
     children: [
       {
         path: "",

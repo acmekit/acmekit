@@ -63,8 +63,8 @@ export const ApiKeyCreateForm = ({ keyType }: ApiKeyCreateFormProps) => {
           toast.success(t("apiKeyManagement.create.successToast"))
 
           switch (keyType) {
-            case ApiKeyType.PUBLISHABLE:
-              handleSuccess(`/settings/publishable-api-keys/${api_key.id}`)
+            case ApiKeyType.CLIENT:
+              handleSuccess(`/settings/client-api-keys/${api_key.id}`)
               break
             case ApiKeyType.SECRET:
               setCreatedKey(api_key)
@@ -109,15 +109,15 @@ export const ApiKeyCreateForm = ({ keyType }: ApiKeyCreateFormProps) => {
                 <div>
                   <RouteFocusModal.Title asChild>
                     <Heading>
-                      {keyType === ApiKeyType.PUBLISHABLE
-                        ? t("apiKeyManagement.create.createPublishableHeader")
+                      {keyType === ApiKeyType.CLIENT
+                        ? t("apiKeyManagement.create.createClientHeader")
                         : t("apiKeyManagement.create.createSecretHeader")}
                     </Heading>
                   </RouteFocusModal.Title>
                   <RouteFocusModal.Description asChild>
                     <Text size="small" className="text-ui-fg-subtle">
-                      {keyType === ApiKeyType.PUBLISHABLE
-                        ? t("apiKeyManagement.create.createPublishableHint")
+                      {keyType === ApiKeyType.CLIENT
+                        ? t("apiKeyManagement.create.createClientHint")
                         : t("apiKeyManagement.create.createSecretHint")}
                     </Text>
                   </RouteFocusModal.Description>
