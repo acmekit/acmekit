@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/analytics-local",
-  "version": "2.13.10",
+  "version": "2.13.15",
   "description": "Local analytics provider for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -25,10 +25,10 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.10"
+    "@acmekit/framework": "2.13.15"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.10"
+    "@acmekit/framework": "2.13.15"
   },
   "keywords": [
     "acmekit-plugin",

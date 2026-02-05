@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/auth-google",
-  "version": "2.13.10",
+  "version": "2.13.15",
   "description": "Google OAuth authentication provider for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -26,13 +26,13 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.10"
+    "@acmekit/framework": "2.13.15"
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.2"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.10"
+    "@acmekit/framework": "2.13.15"
   },
   "keywords": [
     "acmekit-provider",

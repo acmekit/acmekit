@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/telemetry",
-  "version": "2.13.10",
+  "version": "2.13.15",
   "description": "Telemetry for AcmeKit",
   "main": "dist/index.js",
   "repository": {

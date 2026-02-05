@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.1.11
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/icons@2.13.11
+
 ## 4.1.10
 
 ### Patch Changes

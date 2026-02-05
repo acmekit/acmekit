@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/cli",
-  "version": "2.13.10",
+  "version": "2.13.15",
   "description": "Command Line interface for AcmeKit Commerce",
   "main": "dist/index.js",
   "bin": {
@@ -32,9 +32,9 @@
   "author": "Sebastian Rindom",
   "license": "MIT",
   "dependencies": {
-    "@acmekit/deps": "2.13.10",
-    "@acmekit/telemetry": "2.13.10",
-    "@acmekit/utils": "2.13.10",
+    "@acmekit/deps": "2.13.15",
+    "@acmekit/telemetry": "2.13.15",
+    "@acmekit/utils": "2.13.15",
     "@types/express": "^4.17.21",
     "chalk": "^4.1.2",
     "configstore": "^5.0.1",

@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/admin-bundler",
-  "version": "2.13.10",
+  "version": "2.13.15",
   "description": "Bundler for the AcmeKit admin dashboard.",
   "author": "Kasper Kristensen <kasper@acmekit.com>",
   "scripts": {
@@ -18,12 +18,12 @@
     "package.json"
   ],
   "devDependencies": {
-    "@acmekit/types": "2.13.10"
+    "@acmekit/types": "2.13.15"
   },
   "dependencies": {
-    "@acmekit/admin-shared": "2.13.10",
-    "@acmekit/admin-vite-plugin": "2.13.10",
-    "@acmekit/dashboard": "2.13.10",
+    "@acmekit/admin-shared": "2.13.15",
+    "@acmekit/admin-vite-plugin": "2.13.15",
+    "@acmekit/dashboard": "2.13.15",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
     "compression": "^1.8.0",
