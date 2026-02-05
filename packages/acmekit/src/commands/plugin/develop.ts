@@ -1,8 +1,11 @@
 import { Compiler } from "@acmekit/framework/build-tools"
 import { logger } from "@acmekit/framework/logger"
 import * as swcCore from "@swc/core"
+import chokidar from "chokidar"
 import { execFile } from "child_process"
 import path from "path"
+
+const ADMIN_REBUILD_DEBOUNCE_MS = 300
 
 export default async function developPlugin({
   directory,
@@ -98,5 +101,41 @@ export default async function developPlugin({
   }
 
   await compiler.buildPluginBackend(parsedConfig)
+
+  const bundler = await import("@acmekit/admin-bundler")
+  const adminBuilt = await compiler.buildPluginAdminExtensions(bundler)
+  if (!adminBuilt) {
+    logger.warn(
+      "Plugin admin extensions build failed; continuing with backend-only watch."
+    )
+  }
+
+  let adminRebuildTimeout: ReturnType<typeof setTimeout> | null = null
+  const scheduleAdminRebuild = () => {
+    if (adminRebuildTimeout) {
+      clearTimeout(adminRebuildTimeout)
+    }
+    adminRebuildTimeout = setTimeout(async () => {
+      adminRebuildTimeout = null
+      const built = await compiler.buildPluginAdminExtensions(bundler)
+      if (built) {
+        publishChanges()
+      }
+    }, ADMIN_REBUILD_DEBOUNCE_MS)
+  }
+
+  chokidar
+    .watch("src/admin", {
+      cwd: directory,
+      ignoreInitial: true,
+      ignored: ["node_modules", "dist", ".acmekit"],
+    })
+    .on("add", scheduleAdminRebuild)
+    .on("change", scheduleAdminRebuild)
+    .on("unlink", scheduleAdminRebuild)
+    .on("ready", () => {
+      logger.info("watching admin (src/admin) for changes")
+    })
+
   await compiler.developPluginBackend(transformFile, publishChanges)
 }
