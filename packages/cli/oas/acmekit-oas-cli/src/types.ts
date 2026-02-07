@@ -1,8 +1,8 @@
-type ApiType = "store" | "admin" | "combined"
+export type ApiType = "client" | "admin" | "combined"
 
-type CircularReferenceSchema = Record<string, string[]>
+export type CircularReferenceSchema = Record<string, string[]>
 
-type CircularReferenceConfig = {
+export type CircularReferenceConfig = {
   decorators: {
     "acmekit/circular-patch": {
       schemas: CircularReferenceSchema

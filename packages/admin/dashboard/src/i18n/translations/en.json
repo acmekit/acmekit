@@ -39,6 +39,7 @@
     "removed": "Removed",
     "remaining": "Left",
     "admin": "Admin",
+    "client": "Client",
     "store": "Store",
     "details": "Details",
     "items_one": "{{count}} item",
@@ -261,6 +262,8 @@
         "extensions": "Extensions"
       },
       "main": {
+        "organization": "Organization",
+        "settings": "Settings",
         "store": "Store",
         "storeSettings": "Store settings"
       },

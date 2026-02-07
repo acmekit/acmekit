@@ -25,7 +25,6 @@ const useSettingRoutes = (): INavItem[] => {
 
   return useMemo(
     () => [
-      { label: t("store.domain"), to: "/settings/store" },
       { label: t("users.domain"), to: "/settings/users" },
       ...(isTranslationsEnabled
         ? [{ label: t("translations.domain"), to: "/settings/translations" }]

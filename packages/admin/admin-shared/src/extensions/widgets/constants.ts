@@ -110,9 +110,9 @@ const USER_INJECTION_ZONES = [
   "user.list.after",
 ] as const
 
-const STORE_INJECTION_ZONES = [
-  "store.details.before",
-  "store.details.after",
+const ORGANIZATION_INJECTION_ZONES = [
+  "organization.details.before",
+  "organization.details.after",
 ] as const
 
 const PROFILE_INJECTION_ZONES = [
@@ -221,7 +221,7 @@ export const INJECTION_ZONES = [
   ...PRICE_LIST_INJECTION_ZONES,
   ...PROMOTION_INJECTION_ZONES,
   ...USER_INJECTION_ZONES,
-  ...STORE_INJECTION_ZONES,
+  ...ORGANIZATION_INJECTION_ZONES,
   ...PROFILE_INJECTION_ZONES,
   ...REGION_INJECTION_ZONES,
   ...SHIPPING_PROFILE_INJECTION_ZONES,

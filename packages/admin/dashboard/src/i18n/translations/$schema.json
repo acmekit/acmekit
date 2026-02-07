@@ -122,6 +122,9 @@
         "admin": {
           "type": "string"
         },
+        "client": {
+          "type": "string"
+        },
         "store": {
           "type": "string"
         },
@@ -711,7 +714,7 @@
                 "shippingProfile": {
                   "type": "string"
                 },
-                "publishableApiKey": {
+                "clientApiKey": {
                   "type": "string"
                 },
                 "secretApiKey": {
@@ -747,7 +750,7 @@
                 "productTag",
                 "location",
                 "shippingProfile",
-                "publishableApiKey",
+                "clientApiKey",
                 "secretApiKey",
                 "command",
                 "navigation"
@@ -1014,6 +1017,12 @@
             "main": {
               "type": "object",
               "properties": {
+                "organization": {
+                  "type": "string"
+                },
+                "settings": {
+                  "type": "string"
+                },
                 "store": {
                   "type": "string"
                 },
@@ -10284,27 +10293,27 @@
         "domain": {
           "type": "object",
           "properties": {
-            "publishable": {
+            "client": {
               "type": "string"
             },
             "secret": {
               "type": "string"
             }
           },
-          "required": ["publishable", "secret"],
+          "required": ["client", "secret"],
           "additionalProperties": false
         },
         "subtitle": {
           "type": "object",
           "properties": {
-            "publishable": {
+            "client": {
               "type": "string"
             },
             "secret": {
               "type": "string"
             }
           },
-          "required": ["publishable", "secret"],
+          "required": ["client", "secret"],
           "additionalProperties": false
         },
         "status": {
@@ -10323,23 +10332,23 @@
         "type": {
           "type": "object",
           "properties": {
-            "publishable": {
+            "client": {
               "type": "string"
             },
             "secret": {
               "type": "string"
             }
           },
-          "required": ["publishable", "secret"],
+          "required": ["client", "secret"],
           "additionalProperties": false
         },
         "create": {
           "type": "object",
           "properties": {
-            "createPublishableHeader": {
+            "createClientHeader": {
               "type": "string"
             },
-            "createPublishableHint": {
+            "createClientHint": {
               "type": "string"
             },
             "createSecretHeader": {
@@ -10365,8 +10374,8 @@
             }
           },
           "required": [
-            "createPublishableHeader",
-            "createPublishableHint",
+            "createClientHeader",
+            "createClientHint",
             "createSecretHeader",
             "createSecretHint",
             "secretKeyCreatedHeader",

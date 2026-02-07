@@ -64,7 +64,7 @@ describe("command docs", () => {
       }
       const outDir = path.resolve(tmpDir, uid())
       await mkdir(outDir, { recursive: true })
-      srcFile = path.resolve(outDir, "store.oas.json")
+      srcFile = path.resolve(outDir, "client.oas.json")
       await writeJson(srcFile, openApi)
     })
 
@@ -203,7 +203,7 @@ describe("command docs", () => {
       }
       const outDir = path.resolve(tmpDir, uid())
       await mkdir(outDir, { recursive: true })
-      srcFile = path.resolve(outDir, "store.oas.json")
+      srcFile = path.resolve(outDir, "client.oas.json")
       await writeJson(srcFile, openApi)
       configFile = path.resolve(outDir, "redocly-config.json")
       await writeJson(configFile, config)
@@ -326,7 +326,7 @@ describe("command docs", () => {
       }
       const outDir = path.resolve(tmpDir, uid())
       await mkdir(outDir, { recursive: true })
-      srcFile = path.resolve(outDir, "store.oas.json")
+      srcFile = path.resolve(outDir, "client.oas.json")
       await writeJson(srcFile, openApi)
     })
 

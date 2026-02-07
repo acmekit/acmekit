@@ -92,7 +92,7 @@ describe("command oas", () => {
     it("generates oas with admin routes only", async () => {
       const routes = Object.keys(oas.paths)
       expect(routes.includes("/admin/products")).toBeTruthy()
-      expect(routes.includes("/store/products")).toBeFalsy()
+      expect(routes.includes("/client/products")).toBeFalsy()
     })
 
     it("generates oas using admin.oas.base.yaml", async () => {
@@ -106,23 +106,23 @@ describe("command oas", () => {
     })
   })
 
-  describe("--type store", () => {
+  describe("--type client", () => {
     let oas: OpenAPIObject
 
     beforeAll(async () => {
       const outDir = path.resolve(tmpDir, uid())
-      await runCLI("oas", ["--type", "store", "--out-dir", outDir, "--local"])
-      const generatedFilePath = path.resolve(outDir, "store.oas.json")
+      await runCLI("oas", ["--type", "client", "--out-dir", outDir, "--local"])
+      const generatedFilePath = path.resolve(outDir, "client.oas.json")
       oas = (await readJson(generatedFilePath)) as OpenAPIObject
     })
 
-    it("generates oas with store routes only", async () => {
+    it("generates oas with client routes only", async () => {
       const routes = Object.keys(oas.paths)
       expect(routes.includes("/admin/products")).toBeFalsy()
-      expect(routes.includes("/store/products")).toBeTruthy()
+      expect(routes.includes("/client/products")).toBeTruthy()
     })
 
-    it("generates oas using store.oas.base.yaml", async () => {
+    it("generates oas using client or store base", async () => {
       const yamlFilePath = path.resolve(
         oasOutputPath,
         "base",
@@ -149,10 +149,10 @@ describe("command oas", () => {
       oas = (await readJson(generatedFilePath)) as OpenAPIObject
     })
 
-    it("generates oas with admin and store routes", async () => {
+    it("generates oas with admin and client routes", async () => {
       const routes = Object.keys(oas.paths)
       expect(routes.includes("/admin/products")).toBeTruthy()
-      expect(routes.includes("/store/products")).toBeTruthy()
+      expect(routes.includes("/client/products")).toBeTruthy()
     })
 
     it("generates oas using default.oas.base.yaml", async () => {
@@ -167,7 +167,7 @@ describe("command oas", () => {
 
     it("prefixes tags with api type", async () => {
       const found = (oas.tags ?? []).filter((tag) => {
-        return !(tag.name.startsWith("Admin") || tag.name.startsWith("Store"))
+        return !(tag.name.startsWith("Admin") || tag.name.startsWith("Client"))
       })
       expect(found).toEqual([])
     })
@@ -179,7 +179,7 @@ describe("command oas", () => {
         })
         .flat()
       const found = tags.filter((tag) => {
-        return !(tag.startsWith("Admin") || tag.startsWith("Store"))
+        return !(tag.startsWith("Admin") || tag.startsWith("Client"))
       })
       expect(found).toEqual([])
     })
@@ -189,12 +189,12 @@ describe("command oas", () => {
         .map((operation) => operation.operationId)
         .filter((operationId): operationId is string => !!operationId)
       const found = operationIds.filter((tag) => {
-        return !(tag.startsWith("Admin") || tag.startsWith("Store"))
+        return !(tag.startsWith("Admin") || tag.startsWith("Client"))
       })
       expect(found).toEqual([])
     })
 
-    it("combines components.schemas from admin and store", async () => {
+    it("combines components.schemas from admin and client", async () => {
       const schemas = Object.keys(oas.components?.schemas ?? {})
       expect(schemas.includes("AdminProductsListRes")).toBeTruthy()
       expect(schemas.includes("StoreProductsListRes")).toBeTruthy()
@@ -202,7 +202,7 @@ describe("command oas", () => {
   })
 
   /**
-   * to optimize test suite time, we only test --paths with the store api
+   * to optimize test suite time, we only test --paths with the client api
    */
   describe("--paths", () => {
     let oas: OpenAPIObject
@@ -212,7 +212,7 @@ describe("command oas", () => {
 /** @oas [get] /foobar/tests
  *  operationId: GetFoobarTests
  */
-/** @oas [get] /store/regions
+/** @oas [get] /client/regions
  *  operationId: OverwrittenOperation
  */
 /**
@@ -238,25 +238,25 @@ describe("command oas", () => {
       const outDir = path.resolve(tmpDir, uid())
       await runCLI("oas", [
         "--type",
-        "store",
+        "client",
         "--out-dir",
         outDir,
         "--paths",
         additionalPath,
         "--local",
       ])
-      const generatedFilePath = path.resolve(outDir, "store.oas.json")
+      const generatedFilePath = path.resolve(outDir, "client.oas.json")
       oas = (await readJson(generatedFilePath)) as OpenAPIObject
     })
 
     it("should add new path to existing paths", async () => {
       const routes = Object.keys(oas.paths)
-      expect(routes.includes("/store/products")).toBeTruthy()
+      expect(routes.includes("/client/products")).toBeTruthy()
       expect(routes.includes("/foobar/tests")).toBeTruthy()
     })
 
     it("should overwrite existing path", async () => {
-      expect(oas.paths["/store/regions"]["get"].operationId).toBe(
+      expect(oas.paths["/client/regions"]["get"].operationId).toBe(
         "OverwrittenOperation"
       )
     })
@@ -276,7 +276,7 @@ describe("command oas", () => {
   })
 
   /**
-   * to optimize test suite time, we only test --base with the store api
+   * to optimize test suite time, we only test --base with the client api
    */
   describe("--base", () => {
     let oas: OpenAPIObject
@@ -311,7 +311,7 @@ paths:
       responses:
         "200":
           description: OK
-  "/store/regions":
+  "/client/regions":
     get:
       operationId: OverwrittenOperation
       responses:
@@ -374,25 +374,25 @@ components:
       const outDir = path.resolve(tmpDir, uid())
       await runCLI("oas", [
         "--type",
-        "store",
+        "client",
         "--out-dir",
         outDir,
         "--base",
         filePath,
         "--local",
       ])
-      const generatedFilePath = path.resolve(outDir, "store.oas.json")
+      const generatedFilePath = path.resolve(outDir, "client.oas.json")
       oas = (await readJson(generatedFilePath)) as OpenAPIObject
     })
 
     it("should add new path to existing paths", async () => {
       const routes = Object.keys(oas.paths)
-      expect(routes.includes("/store/products")).toBeTruthy()
+      expect(routes.includes("/client/products")).toBeTruthy()
       expect(routes.includes("/foobar/tests")).toBeTruthy()
     })
 
     it("should overwrite existing path", async () => {
-      expect(oas.paths["/store/regions"]["get"].operationId).toBe(
+      expect(oas.paths["/client/regions"]["get"].operationId).toBe(
         "OverwrittenOperation"
       )
     })
@@ -488,7 +488,7 @@ components:
     it("generates oas with admin routes only", async () => {
       const routes = Object.keys(oas.paths)
       expect(routes.includes("/admin/products")).toBeTruthy()
-      expect(routes.includes("/store/products")).toBeFalsy()
+      expect(routes.includes("/client/products")).toBeFalsy()
     })
   })
 
@@ -524,7 +524,7 @@ paths:
       responses:
         "200":
           description: OK
-  "/store/regions":
+  "/client/regions":
     get:
       operationId: OverwrittenOperation
       responses:
@@ -587,24 +587,24 @@ components:
       const outDir = path.resolve(tmpDir, uid())
       await runCLI("oas", [
         "--type",
-        "store",
+        "client",
         "--out-dir",
         outDir,
         "--base",
         filePath,
       ])
-      const generatedFilePath = path.resolve(outDir, "store.oas.json")
+      const generatedFilePath = path.resolve(outDir, "client.oas.json")
       oas = (await readJson(generatedFilePath)) as OpenAPIObject
     })
 
     it("should add new path to existing paths", async () => {
       const routes = Object.keys(oas.paths)
-      expect(routes.includes("/store/products")).toBeTruthy()
+      expect(routes.includes("/client/products")).toBeTruthy()
       expect(routes.includes("/foobar/tests")).toBeTruthy()
     })
 
     it("should overwrite existing path", async () => {
-      expect(oas.paths["/store/regions"]["get"].operationId).toBe(
+      expect(oas.paths["/client/regions"]["get"].operationId).toBe(
         "OverwrittenOperation"
       )
     })

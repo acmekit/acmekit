@@ -224,7 +224,7 @@ export class ApiLoader {
    * Registers the middleware for restricted fields
    */
   #assignRestrictedFields(baseRestrictedFields: string[]) {
-    this.#app.use("/store", ((
+    this.#app.use("/client", ((
       req: AcmeKitRequest,
       _: AcmeKitResponse,
       next: AcmeKitNextFunction
@@ -264,7 +264,7 @@ export class ApiLoader {
     toggleKey:
       | "shouldAppendAdminCors"
       | "shouldAppendAuthCors"
-      | "shouldAppendStoreCors",
+      | "shouldAppendClientCors",
     corsOptions: CorsOptions
   ) {
     const logger = this.#logger
@@ -499,20 +499,20 @@ export class ApiLoader {
 
     this.#applyCorsMiddleware(
       routesFinder,
-      "/store",
-      "shouldAppendStoreCors",
-      this.#createCorsOptions(configManager.config.projectConfig.http.storeCors)
+      "/client",
+      "shouldAppendClientCors",
+      this.#createCorsOptions(configManager.config.projectConfig.http.clientCors)
     )
     /**
      * Client API key check, CORS and auth setup for client/public API routes.
      */
-    this.#applyClientApiKeyMiddleware("/store")
+    this.#applyClientApiKeyMiddleware("/client")
 
-    this.#applyLocaleMiddleware("/store")
+    this.#applyLocaleMiddleware("/client")
 
     this.#applyAuthMiddleware(
       routesFinder,
-      "/store",
+      "/client",
       "customer",
       ["bearer", "session"],
       {

@@ -22,7 +22,7 @@ type InitializedOptions = Required<Pick<AdminOptions, "path" | "disable">> &
     plugins?: string[]
   }
 
-const NOT_ALLOWED_PATHS = ["/auth", "/store", "/admin"]
+const NOT_ALLOWED_PATHS = ["/auth", "/client", "/admin"]
 
 export default async function adminLoader({
   app,

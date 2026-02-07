@@ -656,7 +656,7 @@ export default defineMiddlewares({
 
           return cors({
             origin: parseCorsOrigins(
-              configModule.projectConfig.http.storeCors
+              configModule.projectConfig.http.appCors
             ),
             credentials: true,
           })(req, res, next)

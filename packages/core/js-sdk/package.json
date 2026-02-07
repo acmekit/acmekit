@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/js-sdk",
-  "version": "2.13.15",
+  "version": "2.13.20",
   "description": "SDK for the AcmeKit API",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -29,7 +29,7 @@
   "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
-    "@acmekit/types": "2.13.15"
+    "@acmekit/types": "2.13.20"
   },
   "dependencies": {
     "fetch-event-stream": "^0.1.5",

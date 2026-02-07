@@ -20,7 +20,7 @@ const snippets = [
   {
     label: "cURL",
     language: "markdown",
-    code: `curl -H 'x-publishable-key: YOUR_API_KEY' 'http://localhost:9000/store/products/PRODUCT_ID'`,
+    code: `curl -H 'x-publishable-key: YOUR_API_KEY' 'http://localhost:9000/client/products/PRODUCT_ID'`,
   },
   {
     label: "AcmeKit JS Client",
@@ -42,7 +42,7 @@ export const Default: Story = {
           <CodeBlock snippets={snippets}>
             <CodeBlock.Header></CodeBlock.Header>
             <CodeBlock.Body>
-              <span>/store/products/:id</span>
+              <span>/client/products/:id</span>
             </CodeBlock.Body>
           </CodeBlock>
         </div>

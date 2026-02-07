@@ -59,7 +59,7 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "publishable",
+            "client",
             "secret"
           ],
           "mappedType": "enum"
@@ -145,7 +145,7 @@
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_api_key_deleted_at\" ON \"api_key\" (deleted_at) WHERE deleted_at IS NULL"
+          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_api_key_deleted_at\" ON \"api_key\" (\"deleted_at\") WHERE deleted_at IS NULL"
         },
         {
           "keyName": "IDX_api_key_token_unique",
@@ -154,7 +154,7 @@
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE UNIQUE INDEX IF NOT EXISTS \"IDX_api_key_token_unique\" ON \"api_key\" (token) WHERE deleted_at IS NULL"
+          "expression": "CREATE UNIQUE INDEX IF NOT EXISTS \"IDX_api_key_token_unique\" ON \"api_key\" (\"token\") WHERE deleted_at IS NULL"
         },
         {
           "keyName": "IDX_api_key_revoked_at",
@@ -163,7 +163,7 @@
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_api_key_revoked_at\" ON \"api_key\" (revoked_at) WHERE deleted_at IS NULL"
+          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_api_key_revoked_at\" ON \"api_key\" (\"revoked_at\") WHERE deleted_at IS NULL"
         },
         {
           "keyName": "IDX_api_key_redacted",
@@ -172,7 +172,7 @@
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_api_key_redacted\" ON \"api_key\" (redacted) WHERE deleted_at IS NULL"
+          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_api_key_redacted\" ON \"api_key\" (\"redacted\") WHERE deleted_at IS NULL"
         },
         {
           "keyName": "IDX_api_key_type",
@@ -181,7 +181,7 @@
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_api_key_type\" ON \"api_key\" (type) WHERE deleted_at IS NULL"
+          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_api_key_type\" ON \"api_key\" (\"type\") WHERE deleted_at IS NULL"
         },
         {
           "keyName": "api_key_pkey",

@@ -21,7 +21,7 @@ describe("validateAndTransformBody", () => {
       body: {
         additional_data: {},
       },
-    } as AcmeKitRequest
+    } as unknown as AcmeKitRequest
 
     const mockResponse = {} as AcmeKitResponse
     const nextFunction = jest.fn()
@@ -57,7 +57,7 @@ describe("validateAndTransformBody", () => {
     let mockRequest = {
       query: {},
       body: {},
-    } as AcmeKitRequest
+    } as unknown as AcmeKitRequest
 
     const mockResponse = {} as AcmeKitResponse
     const nextFunction = jest.fn()
@@ -90,7 +90,7 @@ describe("validateAndTransformBody", () => {
       body: {
         additional_data: {},
       },
-    } as AcmeKitRequest
+    } as unknown as AcmeKitRequest
 
     const mockResponse = {} as AcmeKitResponse
     const nextFunction = jest.fn()

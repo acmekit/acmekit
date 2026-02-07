@@ -14,7 +14,7 @@ For example, if you allow only origins starting with `http://localhost:7001` to 
 
 ### CORS Configurations
 
-The `storeCors` and `adminCors` properties of Medusa's `http` configuration set the allowed origins for routes starting with `/store` and `/admin` respectively.
+The `appCors` and `adminCors` properties of Medusa's `http` configuration set the allowed origins for routes starting with `/store` and `/admin` respectively.
 
 These configurations accept a URL pattern to identify allowed origins.
 
@@ -24,7 +24,7 @@ For example:
 module.exports = defineConfig({
   projectConfig: {
     http: {
-      storeCors: "http://localhost:8000",
+      appCors: "http://localhost:8000",
       adminCors: "http://localhost:7001",
       // ...
     },
@@ -106,7 +106,7 @@ export default defineMiddlewares({
 
           return cors({
             origin: parseCorsOrigins(
-              configModule.projectConfig.http.storeCors
+              configModule.projectConfig.http.appCors
             ),
             credentials: true,
           })(req, res, next)
@@ -117,4 +117,4 @@ export default defineMiddlewares({
 })
 ```
 
-This retrieves the configurations exported from `medusa-config.ts` and applies the `storeCors` to routes starting with `/custom`.
+This retrieves the configurations exported from `medusa-config.ts` and applies the `appCors` to routes starting with `/custom`.

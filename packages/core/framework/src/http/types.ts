@@ -89,11 +89,11 @@ export type RouteDescriptor = {
   handler: RouteHandler
   optedOutOfAuth: boolean
   isRoute: true
-  routeType?: "admin" | "store" | "auth"
+  routeType?: "admin" | "client" | "auth"
   absolutePath?: string
   relativePath?: string
   shouldAppendAdminCors: boolean
-  shouldAppendStoreCors: boolean
+  shouldAppendClientCors: boolean
   shouldAppendAuthCors: boolean
 }
 
@@ -127,7 +127,7 @@ export type GlobalMiddlewareDescriptor = {
 }
 
 export interface AcmeKitRequest<
-  Body = unknown,
+  Body = Record<string, unknown>,
   QueryFields = Record<string, unknown>
 > extends Request<{ [key: string]: string }, any, Body> {
   validatedBody: Body
@@ -202,6 +202,12 @@ export interface AcmeKitRequest<
    * 2. x-acmekit-locale header
    */
   locale?: string
+
+  /**
+   * Set by auth middleware when the request is authenticated.
+   * Prefer typing the handler as {@link AuthenticatedAcmeKitRequest} when auth is required.
+   */
+  auth_context?: AuthContext
 }
 
 export interface AuthContext {
@@ -218,7 +224,7 @@ export interface ClientApiKeyContext {
 }
 
 export interface AuthenticatedAcmeKitRequest<
-  Body = unknown,
+  Body = Record<string, unknown>,
   QueryFields = Record<string, unknown>
 > extends AcmeKitRequest<Body, QueryFields> {
   auth_context: AuthContext
@@ -228,7 +234,7 @@ export interface AuthenticatedAcmeKitRequest<
 
 /** Request that requires a valid client API key (e.g. public API routes). */
 export interface AcmeKitClientKeyRequest<
-  Body = unknown,
+  Body = Record<string, unknown>,
   QueryFields = Record<string, unknown>
 > extends AcmeKitRequest<Body, QueryFields> {
   auth_context?: AuthContext

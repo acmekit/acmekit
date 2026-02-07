@@ -1,12 +1,13 @@
 import { upperCaseFirst } from "@acmekit/utils"
 import { OpenAPIObject } from "openapi3-ts"
+import type { ApiType } from "../types"
 
 export async function combineOAS(
   adminOAS: OpenAPIObject,
-  storeOAS: OpenAPIObject
+  clientOAS: OpenAPIObject
 ): Promise<OpenAPIObject> {
   prepareOASForCombine(adminOAS, "admin")
-  prepareOASForCombine(storeOAS, "store")
+  prepareOASForCombine(clientOAS, "client")
 
   const combinedOAS: OpenAPIObject = {
     openapi: "3.0.0",
@@ -27,7 +28,7 @@ export async function combineOAS(
     },
   }
 
-  for (const oas of [adminOAS, storeOAS]) {
+  for (const oas of [adminOAS, clientOAS]) {
     /**
      * Combine paths
      */
@@ -79,7 +80,7 @@ function prepareOASForCombine(
     for (const operationKey in oas.paths[pathKey]) {
       /**
        * Prefix tags declared on routes
-       * e.g.: Admin Customer, Store Customer
+       * e.g.: Admin Customer, Client Customer
        */
       if (oas.paths[pathKey][operationKey].tags) {
         oas.paths[pathKey][operationKey].tags = oas.paths[pathKey][
@@ -88,7 +89,7 @@ function prepareOASForCombine(
       }
       /**
        * Prefix operationId
-       * e.g.: AdminGetCustomers, StoreGetCustomers
+       * e.g.: AdminGetCustomers, ClientGetCustomers
        */
       if (oas.paths[pathKey][operationKey].operationId) {
         oas.paths[pathKey][operationKey].operationId = getPrefixedOperationId(
@@ -101,7 +102,7 @@ function prepareOASForCombine(
 
   /**
    * Prefix tags globally
-   * e.g.: Admin Customer, Store Customer
+   * e.g.: Admin Customer, Client Customer
    */
   if (oas.tags) {
     for (const tag of oas.tags) {

@@ -13,7 +13,7 @@ const docsApiPath = path.resolve(repoRootPath, "www/apps/api-reference/specs")
 
 const run = async () => {
   const oasOutDir = isDryRun ? await getTmpDirectory() : docsApiPath
-  for (const apiType of ["store", "admin"]) {
+  for (const apiType of ["client", "admin"]) {
     await generateOASSource(oasOutDir, apiType)
     const oasSrcFile = path.resolve(oasOutDir, `${apiType}.oas.json`)
     const docsOutDir = path.resolve(oasOutDir, apiType)

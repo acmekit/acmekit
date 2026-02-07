@@ -67,7 +67,7 @@ describe("Middleware file loader", () => {
         },
         {
           "handler": [Function],
-          "matcher": "/store/*",
+          "matcher": "/client/*",
           "methods": undefined,
           "policies": undefined,
         },

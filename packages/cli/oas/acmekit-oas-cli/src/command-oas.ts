@@ -4,6 +4,7 @@ import { lstat, mkdir, writeFile } from "fs/promises"
 import { OpenAPIObject } from "openapi3-ts"
 import * as path from "path"
 import swaggerInline from "swagger-inline"
+import type { ApiType } from "./types"
 import { combineOAS } from "./utils/combine-oas"
 import {
   mergeBaseIntoOAS,
@@ -27,7 +28,7 @@ export const commandDescription =
 
 export const commandOptions: Option[] = [
   new Option("-t, --type <type>", "API type to compile.")
-    .choices(["admin", "store", "combined"])
+    .choices(["admin", "client", "combined"])
     .makeOptionMandatory(),
   new Option(
     "-o, --out-dir <outDir>",
@@ -106,10 +107,10 @@ export async function execute(cliParams: OptionValues) {
     const adminOAS = !local
       ? await getPublicOas("admin")
       : await getOASFromCodebase("admin")
-    const storeOAS = !local
-      ? await getPublicOas("store")
-      : await getOASFromCodebase("store")
-    oas = await combineOAS(adminOAS, storeOAS)
+    const clientOAS = !local
+      ? await getPublicOas("client")
+      : await getOASFromCodebase("client")
+    oas = await combineOAS(adminOAS, clientOAS)
   } else {
     oas = !local
       ? await getPublicOas(apiType)
@@ -153,20 +154,42 @@ async function getOASFromCodebase(apiType: ApiType): Promise<OpenAPIObject> {
     "generated",
     "oas-output"
   )
+  // When apiType is "client", fall back to "store" operations/base until www is regenerated
+  const operationsDir =
+    apiType === "client"
+      ? (await isDirectory(path.resolve(oasOutputPath, "operations", "client"))
+          ? "client"
+          : "store")
+      : apiType
+  const baseFile =
+    apiType === "client" && operationsDir === "store"
+      ? "store.oas.base.yaml"
+      : `${apiType}.oas.base.yaml`
   const gen = await swaggerInline(
     [
-      path.resolve(oasOutputPath, "operations", apiType),
+      path.resolve(oasOutputPath, "operations", operationsDir),
       path.resolve(oasOutputPath, "schemas"),
-      // We currently load error schemas from here. If we change
-      // that in the future, we should change the path.
       path.resolve(acmekitPackagePath, "dist", "utils/middlewares"),
     ],
     {
-      base: path.resolve(oasOutputPath, "base", `${apiType}.oas.base.yaml`),
+      base: path.resolve(oasOutputPath, "base", baseFile),
       format: ".json",
     }
   )
-  return (await OpenAPIParser.parse(JSON.parse(gen))) as OpenAPIObject
+  let oas = (await OpenAPIParser.parse(JSON.parse(gen))) as OpenAPIObject
+  if (apiType === "client" && operationsDir === "store") {
+    oas = rewriteStorePathsToClient(oas)
+  }
+  return oas
+}
+
+function rewriteStorePathsToClient(oas: OpenAPIObject): OpenAPIObject {
+  const paths: OpenAPIObject["paths"] = {}
+  for (const pathKey in oas.paths) {
+    const newKey = pathKey.replace(/^\/store(\/|$)/, "/client$1")
+    paths[newKey] = oas.paths[pathKey]
+  }
+  return { ...oas, paths }
 }
 
 async function getPublicOas(apiType: ApiType) {

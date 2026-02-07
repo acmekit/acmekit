@@ -6,7 +6,7 @@ import {
   customersCreateMiddlewareMock,
   customersCreateMiddlewareValidatorMock,
   customersGlobalMiddlewareMock,
-  storeGlobalMiddlewareMock,
+  clientGlobalMiddlewareMock,
 } from "../mocks"
 
 const customersGlobalMiddleware = (
@@ -30,12 +30,12 @@ const customersCreateMiddleware = (
   next()
 }
 
-const storeGlobal = (
+const clientGlobal = (
   req: AcmeKitRequest,
   res: AcmeKitResponse,
   next: AcmeKitNextFunction
 ) => {
-  storeGlobalMiddlewareMock()
+  clientGlobalMiddlewareMock()
   next()
 }
 
@@ -61,8 +61,8 @@ const middlewares = defineMiddlewares([
     middlewares: [customersCreateMiddleware],
   },
   {
-    matcher: "/store/*",
-    middlewares: [storeGlobal],
+    matcher: "/client/*",
+    middlewares: [clientGlobal],
   },
   {
     matcher: "/webhooks",

@@ -28,7 +28,7 @@ The following sections list the changes to make in your Medusa application and s
 
 To allow your production storefront to access your Medusa application on Cloud, you need to set two Cross-Origin Resource Sharing (CORS) environment variables in your Medusa application:
 
-- `STORE_CORS`: The URLs of storefronts that can access your Medusa backend's `/store` API routes. This is a comma-separated list of URLs that is typically used as the value of the [http.storeCors](!docs!/learn/configurations/medusa-config#httpstorecors) configuration.
+- `STORE_CORS`: The URLs of storefronts that can access your Medusa backend's `/store` API routes. This is a comma-separated list of URLs that is typically used as the value of the [http.appCors](!docs!/learn/configurations/medusa-config#httpappCors) configuration.
 - `AUTH_CORS`: The URLs of the clients (storefront and admin) that can access the Medusa backend's `/auth` API routes. This is a comma-separated list of URLs that is typically used as the value of the [http.authCors](!docs!/learn/configurations/medusa-config#httpauthcors) configuration.
 
 For example, if your storefront is hosted at `https://my-storefront.com`, you can [set the following environment variables in your production environment](../environments/environment-variables/page.mdx#add-environment-variables):

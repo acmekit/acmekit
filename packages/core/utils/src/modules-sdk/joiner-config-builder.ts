@@ -92,7 +92,11 @@ export function defineJoinerConfig(
         fullPath = path.join(sourcePath, "src")
       }
 
-      const srcDir = fullPath.includes("dist") ? "dist" : "src"
+      /**
+       * Prefer "src" when present so paths like .acmekit/dist/src/modules/... or
+       * deployment dirs containing "dist" still resolve to the correct models dir.
+       */
+      const srcDir = fullPath.includes("src") ? "src" : fullPath.includes("dist") ? "dist" : "src"
       const splitPath = fullPath.split(srcDir)
 
       let basePath = splitPath[0] + srcDir

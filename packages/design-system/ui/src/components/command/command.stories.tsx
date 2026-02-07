@@ -25,8 +25,8 @@ export const Default: Story = {
             <Badge className="dark" size="small" color="green">
               GET
             </Badge>
-            <code>localhost:9000/store/products</code>
-            <Command.Copy content="localhost:9000/store/products" />
+            <code>localhost:9000/client/products</code>
+            <Command.Copy content="localhost:9000/client/products" />
           </Command>
         </div>
       </TooltipProvider>

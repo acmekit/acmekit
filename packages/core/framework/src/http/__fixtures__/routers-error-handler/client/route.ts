@@ -1,3 +1,5 @@
+import { Request, Response } from "express"
+
 export const GET = async (req: Request, res: Response) => {
   throw {
     code: "NOT_ALLOWED",

@@ -1,5 +1,85 @@
 # Changelog
 
+## 2.13.20
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.20
+  - @acmekit/cli@2.13.20
+  - @acmekit/modules-sdk@2.13.20
+  - @acmekit/orchestration@2.13.20
+  - @acmekit/types@2.13.20
+  - @acmekit/utils@2.13.20
+  - @acmekit/workflows-sdk@2.13.20
+  - @acmekit/deps@2.13.20
+
+## 2.13.19
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.19
+  - @acmekit/cli@2.13.19
+  - @acmekit/modules-sdk@2.13.19
+  - @acmekit/orchestration@2.13.19
+  - @acmekit/types@2.13.19
+  - @acmekit/utils@2.13.19
+  - @acmekit/workflows-sdk@2.13.19
+  - @acmekit/deps@2.13.19
+
+## 2.13.18
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.18
+  - @acmekit/cli@2.13.18
+  - @acmekit/modules-sdk@2.13.18
+  - @acmekit/orchestration@2.13.18
+  - @acmekit/types@2.13.18
+  - @acmekit/utils@2.13.18
+  - @acmekit/workflows-sdk@2.13.18
+  - @acmekit/deps@2.13.18
+
+## 2.13.17
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.17
+  - @acmekit/cli@2.13.17
+  - @acmekit/modules-sdk@2.13.17
+  - @acmekit/orchestration@2.13.17
+  - @acmekit/types@2.13.17
+  - @acmekit/utils@2.13.17
+  - @acmekit/workflows-sdk@2.13.17
+  - @acmekit/deps@2.13.17
+
+## 2.13.16
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.16
+  - @acmekit/cli@2.13.16
+  - @acmekit/modules-sdk@2.13.16
+  - @acmekit/orchestration@2.13.16
+  - @acmekit/types@2.13.16
+  - @acmekit/utils@2.13.16
+  - @acmekit/workflows-sdk@2.13.16
+  - @acmekit/deps@2.13.16
+
 ## 2.13.11
 
 ### Patch Changes

@@ -18,7 +18,7 @@ This error occurs when you try to access the Medusa server's API routes from a d
 
 Medusa has three CORS settings that you can configure in your `medusa-config.ts` file:
 
-1. [http.storeCors](!docs!/learn/configurations/medusa-config#httpstorecors): Allowed origins for requests to routes starting with `/store`. By default, it's set to `http://localhost:8000` for local development.
+1. [http.appCors](!docs!/learn/configurations/medusa-config#httpappCors): Allowed origins for requests to routes starting with `/store`. By default, it's set to `http://localhost:8000` for local development.
 2. [http.adminCors](!docs!/learn/configurations/medusa-config#httpadmincors): Allowed origins for requests to routes starting with `/admin`. By default, it's set to `http://localhost:9000` for local development.
 3. [http.authCors](!docs!/learn/configurations/medusa-config#httpauthcors): Allowed origins for requests to routes starting with `/auth`. By default, it's set to `http://localhost:8000,http://localhost:9000` for local development.
 
@@ -38,7 +38,7 @@ Then use the environment variables in your `medusa-config.ts` file:
 module.exports = defineConfig({
   projectConfig: {
     http: {
-      storeCors: process.env.STORE_CORS,
+      appCors: process.env.STORE_CORS,
       adminCors: process.env.ADMIN_CORS,
       authCors: process.env.AUTH_CORS,
     },
@@ -80,7 +80,7 @@ export default defineMiddlewares({
           return cors({
             origin: parseCorsOrigins(
               // Use the appropriate CORS setting for your custom route
-              configModule.projectConfig.http.storeCors
+              configModule.projectConfig.http.appCors
             ),
             credentials: true,
           })(req, res, next)

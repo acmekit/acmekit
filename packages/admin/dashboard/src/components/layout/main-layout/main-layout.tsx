@@ -107,7 +107,7 @@ const Header = () => {
               leading="compact"
               className="truncate"
             >
-              {t("app.nav.main.store", "Admin")}
+              {t("app.nav.main.organization", "Organization")}
             </Text>
           </div>
           <EllipsisHorizontal className="text-ui-fg-muted" />
@@ -116,7 +116,7 @@ const Header = () => {
           <DropdownMenu.Item className="gap-x-2" asChild>
             <Link to="/settings">
               <CogSixTooth className="text-ui-fg-subtle" />
-              {t("app.nav.main.storeSettings", "Settings")}
+              {t("app.nav.main.settings", "Settings")}
             </Link>
           </DropdownMenu.Item>
           <DropdownMenu.Separator />

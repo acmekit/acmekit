@@ -9,7 +9,7 @@ export const AdminOnlyCell = ({ adminOnly }: AdminOnlyCellProps) => {
   const { t } = useTranslation()
 
   const color = adminOnly ? "blue" : "green"
-  const text = adminOnly ? t("general.admin") : t("general.store")
+  const text = adminOnly ? t("general.admin") : t("general.client")
 
   return <StatusCell color={color}>{text}</StatusCell>
 }

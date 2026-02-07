@@ -57,7 +57,7 @@ export interface AdminOptions {
    *
    * The value cannot be one of the reserved paths:
    * - `/admin`
-   * - `/store`
+   * - `/client`
    * - `/auth`
    * - `/`
    *
@@ -781,7 +781,7 @@ export type ProjectConfigOptions = {
     /**
      * The AcmeKit application's API Routes are protected by Cross-Origin Resource Sharing (CORS). So, only allowed URLs or URLs matching a specified pattern can send requests to the backend’s API Routes.
      *
-     * `store_cors` is a string used to specify the accepted URLs or patterns for store API Routes. It can either be one accepted origin, or a comma-separated list of accepted origins.
+     * `client_cors` is a string used to specify the accepted URLs or patterns for client API Routes. It can either be one accepted origin, or a comma-separated list of accepted origins.
      *
      * Every origin in that list must either be:
      *
@@ -793,13 +793,13 @@ export type ProjectConfigOptions = {
      *
      * ```bash
      * # Allow different ports locally starting with 800
-     * STORE_CORS=/http:\/\/localhost:800\d+$/
+     * CLIENT_CORS=/http:\/\/localhost:800\d+$/
      *
      * # Allow any origin ending with vercel.app. For example, storefront.vercel.app
-     * STORE_CORS=/vercel\.app$/
+     * CLIENT_CORS=/vercel\.app$/
      *
      * # Allow all HTTP requests
-     * STORE_CORS=/http:\/\/.+/
+     * CLIENT_CORS=/http:\/\/.+/
      * ```
      *
      * Then, set the configuration in `acmekit-config.ts`:
@@ -808,7 +808,7 @@ export type ProjectConfigOptions = {
      * module.exports = defineConfig({
      *   projectConfig: {
      *     http: {
-     *       storeCors: process.env.STORE_CORS,
+     *       clientCors: process.env.CLIENT_CORS,
      *     }
      *     // ...
      *   },
@@ -822,7 +822,7 @@ export type ProjectConfigOptions = {
      * module.exports = defineConfig({
      *   projectConfig: {
      *     http: {
-     *       storeCors: "/vercel\\.app$/",
+     *       clientCors: "/vercel\\.app$/",
      *     }
      *     // ...
      *   },
@@ -830,7 +830,7 @@ export type ProjectConfigOptions = {
      * })
      * ```
      */
-    storeCors: string
+    clientCors: string
 
     /**
      * The AcmeKit application's API Routes are protected by Cross-Origin Resource Sharing (CORS). So, only allowed URLs or URLs matching a specified pattern can send requests to the backend’s API Routes.

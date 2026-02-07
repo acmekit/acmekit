@@ -21,7 +21,7 @@ module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
     http: {
-      storeCors: process.env.STORE_CORS!,
+      appCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
       authCors: process.env.AUTH_CORS!,
       jwtSecret: process.env.JWT_SECRET || "supersecret",
@@ -498,7 +498,7 @@ Every origin in that list must either be:
 - A full URL. For example, `http://localhost:7001`. The URL must not end with a backslash;
 - Or a regular expression pattern that can match more than one origin. For example, `.example.com`. The regex pattern that Medusa tests for is `^([\/~@;%#'])(.*?)\1([gimsuy]*)$`.
 
-Since the `/auth` routes are used for authentication for both store and admin routes, it's recommended to set this configuration's value to a combination of the [storeCors](#httpstoreCors) and [adminCors](#httpadminCors) configurations.
+Since the `/auth` routes are used for authentication for both store and admin routes, it's recommended to set this configuration's value to a combination of the [appCors](#httpappCors) and [adminCors](#httpadminCors) configurations.
 
 Some example values of common use cases:
 
@@ -541,9 +541,9 @@ module.exports = defineConfig({
 })
 ```
 
-#### http.storeCors
+#### http.appCors
 
-The `projectConfig.http.storeCors` configuration specifies the accepted URLs or patterns for API routes starting with `/store`. It can either be one accepted origin, or a comma-separated list of accepted origins.
+The `projectConfig.http.appCors` configuration specifies the accepted URLs or patterns for API routes starting with `/store`. It can either be one accepted origin, or a comma-separated list of accepted origins.
 
 Every origin in that list must either be:
 
@@ -569,7 +569,7 @@ Then, set the configuration in `medusa-config.ts`:
 module.exports = defineConfig({
   projectConfig: {
     http: {
-      storeCors: process.env.STORE_CORS,
+      appCors: process.env.STORE_CORS,
     },
     // ...
   },
@@ -583,7 +583,7 @@ If you’re adding the value directly within `medusa-config.ts`, make sure to ad
 module.exports = defineConfig({
   projectConfig: {
     http: {
-      storeCors: "/vercel\\.app$/",
+      appCors: "/vercel\\.app$/",
     },
     // ...
   },

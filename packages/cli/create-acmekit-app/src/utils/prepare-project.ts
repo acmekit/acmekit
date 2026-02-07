@@ -10,11 +10,11 @@ import PackageManager from "./package-manager.js"
 import { updatePackageVersions } from "./update-package-versions.js"
 
 const ADMIN_EMAIL = "admin@acmekit-test.com"
-let STORE_CORS = "http://localhost:8000"
+let CLIENT_CORS = "http://localhost:8000"
 let ADMIN_CORS = "http://localhost:5173,http://localhost:9000"
 const DOCS_CORS = "https://docs.acmekit.com"
-const AUTH_CORS = [ADMIN_CORS, STORE_CORS, DOCS_CORS].join(",")
-STORE_CORS += `,${DOCS_CORS}`
+const AUTH_CORS = [ADMIN_CORS, CLIENT_CORS, DOCS_CORS].join(",")
+CLIENT_CORS += `,${DOCS_CORS}`
 ADMIN_CORS += `,${DOCS_CORS}`
 const DEFAULT_REDIS_URL = "redis://localhost:6379"
 
@@ -185,7 +185,7 @@ async function prepareProject({
   let inviteToken: string | undefined = undefined
 
   // add environment variables
-  let env = `MEDUSA_ADMIN_ONBOARDING_TYPE=${onboardingType}${EOL}STORE_CORS=${STORE_CORS}${EOL}ADMIN_CORS=${ADMIN_CORS}${EOL}AUTH_CORS=${AUTH_CORS}${EOL}REDIS_URL=${DEFAULT_REDIS_URL}${EOL}JWT_SECRET=supersecret${EOL}COOKIE_SECRET=supersecret`
+  let env = `MEDUSA_ADMIN_ONBOARDING_TYPE=${onboardingType}${EOL}CLIENT_CORS=${CLIENT_CORS}${EOL}ADMIN_CORS=${ADMIN_CORS}${EOL}AUTH_CORS=${AUTH_CORS}${EOL}REDIS_URL=${DEFAULT_REDIS_URL}${EOL}JWT_SECRET=supersecret${EOL}COOKIE_SECRET=supersecret`
 
   if (!skipDb) {
     if (dbName) {

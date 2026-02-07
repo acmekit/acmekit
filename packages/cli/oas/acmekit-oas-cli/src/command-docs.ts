@@ -10,6 +10,7 @@ import mergeWith from "lodash.mergewith"
 
 import * as path from "path"
 import yargs from "yargs"
+import type { CircularReferenceConfig } from "./types"
 import {
   formatHintRecommendation,
   getCircularPatchRecommendation,

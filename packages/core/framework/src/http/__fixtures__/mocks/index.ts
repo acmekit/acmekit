@@ -3,14 +3,14 @@ import { ConfigModule } from "@acmekit/types"
 export const customersGlobalMiddlewareMock = jest.fn()
 export const customersCreateMiddlewareMock = jest.fn()
 export const customersCreateMiddlewareValidatorMock = jest.fn()
-export const storeGlobalMiddlewareMock = jest.fn()
+export const clientGlobalMiddlewareMock = jest.fn()
 
 export const config = {
   projectConfig: {
     databaseLogging: false,
     http: {
       authCors: "http://localhost:9000",
-      storeCors: "http://localhost:8000",
+      clientCors: "http://localhost:8000",
       adminCors: "http://localhost:7001",
       jwtSecret: "supersecret",
       cookieSecret: "superSecret",

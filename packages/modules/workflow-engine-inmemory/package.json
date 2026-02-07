@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/workflow-engine-inmemory",
-  "version": "2.13.15",
+  "version": "2.13.20",
   "description": "AcmeKit Workflow Orchestrator module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,14 +36,14 @@
     "orm:cache:clear": "MIKRO_ORM_CLI_CONFIG=./mikro-orm.config.dev.ts MIKRO_ORM_ALLOW_GLOBAL_CLI=true acmekit-mikro-orm cache:clear"
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.15",
-    "@acmekit/test-utils": "2.13.15"
+    "@acmekit/framework": "2.13.20",
+    "@acmekit/test-utils": "2.13.20"
   },
   "dependencies": {
     "cron-parser": "^4.9.0",
     "ulid": "^2.3.0"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.15"
+    "@acmekit/framework": "2.13.20"
   }
 }

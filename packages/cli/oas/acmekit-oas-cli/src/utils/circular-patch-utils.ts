@@ -1,6 +1,7 @@
 import { OpenAPIObject, SchemaObject } from "openapi3-ts"
 import OpenAPIParser from "@readme/openapi-parser"
 import { $Refs } from "@readme/json-schema-ref-parser"
+import type { CircularReferenceSchema } from "../types"
 import { jsonObjectToYamlString } from "./yaml-utils"
 
 export const getCircularReferences = async (

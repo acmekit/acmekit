@@ -66,7 +66,7 @@ Refer to the [JS SDK reference](../../js-sdk/page.mdx) to learn more about using
 
 ## Configure Store CORS in Medusa
 
-The Medusa application’s API routes are guarded by a CORS middleware. Make sure to set the `storeCors` property of the `http` configuration in `medusa-config.ts` to the storefront’s URL.
+The Medusa application’s API routes are guarded by a CORS middleware. Make sure to set the `appCors` property of the `http` configuration in `medusa-config.ts` to the storefront’s URL.
 
 For example:
 
@@ -74,7 +74,7 @@ For example:
 module.exports = defineConfig({
   projectConfig: {
     http: {
-      storeCors: "http://localhost:3000,http://localhost:8000",
+      appCors: "http://localhost:3000,http://localhost:8000",
       // ...
     },
   },
@@ -82,4 +82,4 @@ module.exports = defineConfig({
 })
 ```
 
-Refer to the [Medusa configuration](!docs!/learn/configurations/medusa-config#httpstorecors) guide to learn more about configuring CORS in the Medusa application.
+Refer to the [Medusa configuration](!docs!/learn/configurations/medusa-config#httpappCors) guide to learn more about configuring CORS in the Medusa application.

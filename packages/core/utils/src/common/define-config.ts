@@ -24,12 +24,11 @@ import { tryConvertToNumber } from "./try-convert-to-number"
 const MEDUSA_CLOUD_EXECUTION_CONTEXT = "acmekit-cloud"
 const DEFAULT_SECRET = "supersecret"
 const DEFAULT_ADMIN_URL = "/"
-const DEFAULT_STORE_CORS = "http://localhost:8000"
+const DEFAULT_CLIENT_CORS = "http://localhost:8000"
 const DEFAULT_DATABASE_URL = "postgres://localhost/acmekit-starter-default"
 const DEFAULT_ADMIN_CORS =
   "http://localhost:7000,http://localhost:7001,http://localhost:5173"
 
-export const DEFAULT_STORE_RESTRICTED_FIELDS: string[] = []
 
 /**
  * The "defineConfig" helper can be used to define the configuration
@@ -381,15 +380,13 @@ function normalizeProjectConfig(
     ...(isCloud ? { redisUrl: process.env.REDIS_URL } : {}),
     databaseUrl: process.env.DATABASE_URL || DEFAULT_DATABASE_URL,
     http: {
-      storeCors: process.env.STORE_CORS || DEFAULT_STORE_CORS,
+      clientCors: process.env.CLIENT_CORS || DEFAULT_CLIENT_CORS,
       adminCors: process.env.ADMIN_CORS || DEFAULT_ADMIN_CORS,
       authCors: process.env.AUTH_CORS || DEFAULT_ADMIN_CORS,
       jwtSecret: process.env.JWT_SECRET || DEFAULT_SECRET,
       jwtPublicKey: process.env.JWT_PUBLIC_KEY,
       cookieSecret: process.env.COOKIE_SECRET || DEFAULT_SECRET,
-      restrictedFields: {
-        store: DEFAULT_STORE_RESTRICTED_FIELDS,
-      },
+      restrictedFields: {},
       ...http,
     },
     redisOptions: {

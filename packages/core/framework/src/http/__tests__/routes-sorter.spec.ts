@@ -24,7 +24,7 @@ describe("Routes sorter", () => {
         handler: () => {},
       },
       {
-        matcher: "/store",
+        matcher: "/client",
         handler: () => {},
       },
       {
@@ -92,7 +92,7 @@ describe("Routes sorter", () => {
         },
         {
           "handler": [Function],
-          "matcher": "/store",
+          "matcher": "/client",
         },
         {
           "handler": [Function],

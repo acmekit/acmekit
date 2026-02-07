@@ -93,11 +93,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -210,11 +210,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -333,11 +333,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -457,11 +457,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -571,11 +571,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:3000",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -609,7 +609,6 @@ describe("defineConfig", function () {
         "modules": {
           "api_key": {
             "disable": true,
-            "resolve": "@acmekit/acmekit/api-key",
           },
           "auth": {
             "options": {
@@ -689,11 +688,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:3000",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -858,11 +857,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1029,11 +1028,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1216,11 +1215,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1422,11 +1421,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:3000",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1578,11 +1577,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1725,11 +1724,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1881,11 +1880,11 @@ describe("defineConfig", function () {
           "http": {
             "adminCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
             "authCors": "http://localhost:7000,http://localhost:7001,http://localhost:5173",
+            "clientCors": "http://localhost:8000",
             "cookieSecret": "supersecret",
             "jwtPublicKey": undefined,
             "jwtSecret": "supersecret",
             "restrictedFields": {},
-            "storeCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],

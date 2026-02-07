@@ -1,5 +1,220 @@
 # Changelog
 
+## 2.13.20
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.20
+  - @acmekit/admin-bundler@2.13.20
+  - @acmekit/core-flows@2.13.20
+  - @acmekit/framework@2.13.20
+  - @acmekit/analytics@2.13.20
+  - @acmekit/api-key@2.13.20
+  - @acmekit/auth@2.13.20
+  - @acmekit/cache-inmemory@2.13.20
+  - @acmekit/cache-redis@2.13.20
+  - @acmekit/caching@2.13.20
+  - @acmekit/event-bus-local@2.13.20
+  - @acmekit/event-bus-redis@2.13.20
+  - @acmekit/file@2.13.20
+  - @acmekit/index@2.13.20
+  - @acmekit/link-modules@2.13.20
+  - @acmekit/locking@2.13.20
+  - @acmekit/notification@2.13.20
+  - @acmekit/analytics-local@2.13.20
+  - @acmekit/analytics-posthog@2.13.20
+  - @acmekit/auth-emailpass@2.13.20
+  - @acmekit/auth-github@2.13.20
+  - @acmekit/auth-google@2.13.20
+  - @acmekit/caching-redis@2.13.20
+  - @acmekit/file-local@2.13.20
+  - @acmekit/file-s3@2.13.20
+  - @acmekit/locking-postgres@2.13.20
+  - @acmekit/locking-redis@2.13.20
+  - @acmekit/notification-local@2.13.20
+  - @acmekit/notification-sendgrid@2.13.20
+  - @acmekit/rbac@2.13.20
+  - @acmekit/settings@2.13.20
+  - @acmekit/translation@2.13.20
+  - @acmekit/user@2.13.20
+  - @acmekit/workflow-engine-inmemory@2.13.20
+  - @acmekit/workflow-engine-redis@2.13.20
+
+## 2.13.19
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.19
+  - @acmekit/admin-bundler@2.13.19
+  - @acmekit/core-flows@2.13.19
+  - @acmekit/framework@2.13.19
+  - @acmekit/analytics@2.13.19
+  - @acmekit/api-key@2.13.19
+  - @acmekit/auth@2.13.19
+  - @acmekit/cache-inmemory@2.13.19
+  - @acmekit/cache-redis@2.13.19
+  - @acmekit/caching@2.13.19
+  - @acmekit/event-bus-local@2.13.19
+  - @acmekit/event-bus-redis@2.13.19
+  - @acmekit/file@2.13.19
+  - @acmekit/index@2.13.19
+  - @acmekit/link-modules@2.13.19
+  - @acmekit/locking@2.13.19
+  - @acmekit/notification@2.13.19
+  - @acmekit/analytics-local@2.13.19
+  - @acmekit/analytics-posthog@2.13.19
+  - @acmekit/auth-emailpass@2.13.19
+  - @acmekit/auth-github@2.13.19
+  - @acmekit/auth-google@2.13.19
+  - @acmekit/caching-redis@2.13.19
+  - @acmekit/file-local@2.13.19
+  - @acmekit/file-s3@2.13.19
+  - @acmekit/locking-postgres@2.13.19
+  - @acmekit/locking-redis@2.13.19
+  - @acmekit/notification-local@2.13.19
+  - @acmekit/notification-sendgrid@2.13.19
+  - @acmekit/rbac@2.13.19
+  - @acmekit/settings@2.13.19
+  - @acmekit/translation@2.13.19
+  - @acmekit/user@2.13.19
+  - @acmekit/workflow-engine-inmemory@2.13.19
+  - @acmekit/workflow-engine-redis@2.13.19
+
+## 2.13.18
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.18
+  - @acmekit/admin-bundler@2.13.18
+  - @acmekit/core-flows@2.13.18
+  - @acmekit/framework@2.13.18
+  - @acmekit/analytics@2.13.18
+  - @acmekit/api-key@2.13.18
+  - @acmekit/auth@2.13.18
+  - @acmekit/cache-inmemory@2.13.18
+  - @acmekit/cache-redis@2.13.18
+  - @acmekit/caching@2.13.18
+  - @acmekit/event-bus-local@2.13.18
+  - @acmekit/event-bus-redis@2.13.18
+  - @acmekit/file@2.13.18
+  - @acmekit/index@2.13.18
+  - @acmekit/link-modules@2.13.18
+  - @acmekit/locking@2.13.18
+  - @acmekit/notification@2.13.18
+  - @acmekit/analytics-local@2.13.18
+  - @acmekit/analytics-posthog@2.13.18
+  - @acmekit/auth-emailpass@2.13.18
+  - @acmekit/auth-github@2.13.18
+  - @acmekit/auth-google@2.13.18
+  - @acmekit/caching-redis@2.13.18
+  - @acmekit/file-local@2.13.18
+  - @acmekit/file-s3@2.13.18
+  - @acmekit/locking-postgres@2.13.18
+  - @acmekit/locking-redis@2.13.18
+  - @acmekit/notification-local@2.13.18
+  - @acmekit/notification-sendgrid@2.13.18
+  - @acmekit/rbac@2.13.18
+  - @acmekit/settings@2.13.18
+  - @acmekit/translation@2.13.18
+  - @acmekit/user@2.13.18
+  - @acmekit/workflow-engine-inmemory@2.13.18
+  - @acmekit/workflow-engine-redis@2.13.18
+
+## 2.13.17
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.17
+  - @acmekit/admin-bundler@2.13.17
+  - @acmekit/core-flows@2.13.17
+  - @acmekit/framework@2.13.17
+  - @acmekit/analytics@2.13.17
+  - @acmekit/api-key@2.13.17
+  - @acmekit/auth@2.13.17
+  - @acmekit/cache-inmemory@2.13.17
+  - @acmekit/cache-redis@2.13.17
+  - @acmekit/caching@2.13.17
+  - @acmekit/event-bus-local@2.13.17
+  - @acmekit/event-bus-redis@2.13.17
+  - @acmekit/file@2.13.17
+  - @acmekit/index@2.13.17
+  - @acmekit/link-modules@2.13.17
+  - @acmekit/locking@2.13.17
+  - @acmekit/notification@2.13.17
+  - @acmekit/analytics-local@2.13.17
+  - @acmekit/analytics-posthog@2.13.17
+  - @acmekit/auth-emailpass@2.13.17
+  - @acmekit/auth-github@2.13.17
+  - @acmekit/auth-google@2.13.17
+  - @acmekit/caching-redis@2.13.17
+  - @acmekit/file-local@2.13.17
+  - @acmekit/file-s3@2.13.17
+  - @acmekit/locking-postgres@2.13.17
+  - @acmekit/locking-redis@2.13.17
+  - @acmekit/notification-local@2.13.17
+  - @acmekit/notification-sendgrid@2.13.17
+  - @acmekit/rbac@2.13.17
+  - @acmekit/settings@2.13.17
+  - @acmekit/translation@2.13.17
+  - @acmekit/user@2.13.17
+  - @acmekit/workflow-engine-inmemory@2.13.17
+  - @acmekit/workflow-engine-redis@2.13.17
+
+## 2.13.16
+
+### Patch Changes
+
+- changes
+
+- Updated dependencies []:
+  - @acmekit/telemetry@2.13.16
+  - @acmekit/admin-bundler@2.13.16
+  - @acmekit/core-flows@2.13.16
+  - @acmekit/framework@2.13.16
+  - @acmekit/analytics@2.13.16
+  - @acmekit/api-key@2.13.16
+  - @acmekit/auth@2.13.16
+  - @acmekit/cache-inmemory@2.13.16
+  - @acmekit/cache-redis@2.13.16
+  - @acmekit/caching@2.13.16
+  - @acmekit/event-bus-local@2.13.16
+  - @acmekit/event-bus-redis@2.13.16
+  - @acmekit/file@2.13.16
+  - @acmekit/index@2.13.16
+  - @acmekit/link-modules@2.13.16
+  - @acmekit/locking@2.13.16
+  - @acmekit/notification@2.13.16
+  - @acmekit/analytics-local@2.13.16
+  - @acmekit/analytics-posthog@2.13.16
+  - @acmekit/auth-emailpass@2.13.16
+  - @acmekit/auth-github@2.13.16
+  - @acmekit/auth-google@2.13.16
+  - @acmekit/caching-redis@2.13.16
+  - @acmekit/file-local@2.13.16
+  - @acmekit/file-s3@2.13.16
+  - @acmekit/locking-postgres@2.13.16
+  - @acmekit/locking-redis@2.13.16
+  - @acmekit/notification-local@2.13.16
+  - @acmekit/notification-sendgrid@2.13.16
+  - @acmekit/rbac@2.13.16
+  - @acmekit/settings@2.13.16
+  - @acmekit/translation@2.13.16
+  - @acmekit/user@2.13.16
+  - @acmekit/workflow-engine-inmemory@2.13.16
+  - @acmekit/workflow-engine-redis@2.13.16
+
 ## 2.13.11
 
 ### Patch Changes
