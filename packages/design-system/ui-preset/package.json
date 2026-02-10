@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/ui-preset",
-  "version": "2.13.20",
+  "version": "2.13.23",
   "description": "AcmeKit UI preset",
   "license": "MIT",
   "repository": {
@@ -30,7 +30,7 @@
     "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
-    "@acmekit/toolbox": "2.13.20",
+    "@acmekit/toolbox": "2.13.23",
     "tailwindcss": "^3.4.3"
   },
   "publishConfig": {

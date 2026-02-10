@@ -1,7 +1,7 @@
 {
   "name": "acmekit-dev-cli",
   "description": "CLI helpers for contributors working on AcmeKit",
-  "version": "2.13.20",
+  "version": "2.13.23",
   "author": "Sebastian Rindom <skrindom@gmail.com>",
   "bin": {
     "acmekit-dev": "./dist/index.js"

@@ -1,3 +1,4 @@
+import { OperatorMap } from "../../../dal"
 import { FindParams } from "../../common"
 
 export interface AdminGetWorkflowExecutionsParams extends FindParams {
@@ -13,4 +14,16 @@ export interface AdminGetWorkflowExecutionsParams extends FindParams {
    * Filter by the ID of the workflow to retrieve workflow executions for a specific workflow.
    */
   workflow_id?: string | string[]
+  /**
+   * Filter by the state of the workflow execution.
+   */
+  state?: string | string[]
+  /**
+   * Filter by the date the workflow execution was created.
+   */
+  created_at?: OperatorMap<string>
+  /**
+   * Filter by the date the workflow execution was updated.
+   */
+  updated_at?: OperatorMap<string>
 }

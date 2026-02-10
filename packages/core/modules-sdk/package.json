@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/modules-sdk",
-  "version": "2.13.20",
+  "version": "2.13.23",
   "description": "SDK for acmekit modules",
   "main": "dist/index.js",
   "export": {
@@ -31,11 +31,11 @@
     "watch": "yarn run -T tsc --build --watch"
   },
   "devDependencies": {
-    "@acmekit/types": "2.13.20"
+    "@acmekit/types": "2.13.23"
   },
   "dependencies": {
-    "@acmekit/deps": "2.13.20",
-    "@acmekit/orchestration": "2.13.20",
-    "@acmekit/utils": "2.13.20"
+    "@acmekit/deps": "2.13.23",
+    "@acmekit/orchestration": "2.13.23",
+    "@acmekit/utils": "2.13.23"
   }
 }

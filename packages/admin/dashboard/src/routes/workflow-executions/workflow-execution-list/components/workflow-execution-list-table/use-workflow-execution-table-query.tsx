@@ -8,13 +8,20 @@ export const useWorkflowExecutionTableQuery = ({
   pageSize?: number
   prefix?: string
 }) => {
-  const raw = useQueryParams(["q", "offset"], prefix)
+  const raw = useQueryParams(
+    ["q", "offset", "order", "state", "created_at", "updated_at"],
+    prefix
+  )
 
-  const { offset, ...rest } = raw
+  const { offset, order, state, created_at, updated_at, ...rest } = raw
 
   const searchParams: HttpTypes.AdminGetWorkflowExecutionsParams = {
     limit: pageSize,
     offset: offset ? parseInt(offset) : 0,
+    order: order ?? "-created_at",
+    state: state ? state.split(",") : undefined,
+    created_at: created_at ? JSON.parse(created_at) : undefined,
+    updated_at: updated_at ? JSON.parse(updated_at) : undefined,
     ...rest,
   }
 

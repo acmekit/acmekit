@@ -41,12 +41,11 @@ type ConvertHookToObject<THook> = THook extends Hook<
   : never
 
 /**
- * Helper to convert an array of hooks to functions
+ * Helper to convert an array of hooks to functions.
+ * Supports both mutable and readonly tuples so that hook names are inferred for autocomplete.
  */
-type ConvertHooksToFunctions<THooks extends any[]> = THooks extends [
-  infer A,
-  ...infer R
-]
+type ConvertHooksToFunctions<THooks extends readonly any[]> = THooks extends
+  readonly [infer A, ...infer R]
   ? ConvertHookToObject<A> & ConvertHooksToFunctions<R>
   : {}
 
@@ -263,7 +262,11 @@ export type WorkflowTransactionContext = StepExecutionContext &
  * }
  * ```
  */
-export type ReturnWorkflow<TData, TResult, THooks extends any[]> = {
+export type ReturnWorkflow<
+  TData,
+  TResult,
+  THooks extends readonly any[] = readonly []
+> = {
   <TDataOverride = undefined, TResultOverride = undefined>(
     container?: LoadedModule[] | AcmeKitContainer
   ): Omit<

@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/notification-sendgrid",
-  "version": "2.13.20",
+  "version": "2.13.23",
   "description": "Sendgrid notification provider for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -26,13 +26,13 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.20"
+    "@acmekit/framework": "2.13.23"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.20"
+    "@acmekit/framework": "2.13.23"
   },
   "keywords": [
     "acmekit-provider",

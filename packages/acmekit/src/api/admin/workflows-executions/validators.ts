@@ -1,6 +1,10 @@
 import { TransactionHandlerType } from "@acmekit/framework/utils"
 import { z } from "@acmekit/framework/zod"
-import { createFindParams, createSelectParams } from "../../utils/validators"
+import {
+  createFindParams,
+  createOperatorMap,
+  createSelectParams,
+} from "../../utils/validators"
 
 export type AdminGetWorkflowExecutionDetailsParamsType = z.infer<
   typeof AdminGetWorkflowExecutionDetailsParams
@@ -14,11 +18,15 @@ export type AdminGetWorkflowExecutionsParamsType = z.infer<
 export const AdminGetWorkflowExecutionsParams = createFindParams({
   offset: 0,
   limit: 100,
+  order: "-created_at",
 }).merge(
   z.object({
     q: z.string().optional(),
     transaction_id: z.union([z.string(), z.array(z.string())]).optional(),
     workflow_id: z.union([z.string(), z.array(z.string())]).optional(),
+    state: z.union([z.string(), z.array(z.string())]).optional(),
+    created_at: createOperatorMap().optional(),
+    updated_at: createOperatorMap().optional(),
   })
 )
 

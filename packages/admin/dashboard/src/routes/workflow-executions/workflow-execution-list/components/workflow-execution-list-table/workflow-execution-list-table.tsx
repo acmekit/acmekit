@@ -5,6 +5,7 @@ import { _DataTable } from "../../../../../components/table/data-table"
 import { useWorkflowExecutions } from "../../../../../hooks/api/workflow-executions"
 import { useDataTable } from "../../../../../hooks/use-data-table"
 import { useWorkflowExecutionTableColumns } from "./use-workflow-execution-table-columns"
+import { useWorkflowExecutionTableFilters } from "./use-workflow-execution-table-filters"
 import { useWorkflowExecutionTableQuery } from "./use-workflow-execution-table-query"
 
 const PAGE_SIZE = 20
@@ -15,6 +16,7 @@ export const WorkflowExecutionListTable = () => {
   const { searchParams, raw } = useWorkflowExecutionTableQuery({
     pageSize: PAGE_SIZE,
   })
+
   const { workflow_executions, count, isLoading, isError, error } =
     useWorkflowExecutions(
       {
@@ -26,6 +28,7 @@ export const WorkflowExecutionListTable = () => {
     )
 
   const columns = useWorkflowExecutionTableColumns()
+  const filters = useWorkflowExecutionTableFilters()
 
   const { table } = useDataTable({
     data: workflow_executions || [],
@@ -53,8 +56,13 @@ export const WorkflowExecutionListTable = () => {
       <_DataTable
         table={table}
         columns={columns}
+        filters={filters}
         count={count}
         isLoading={isLoading}
+        orderBy={[
+          { key: "created_at", label: t("fields.createdAt") },
+          { key: "updated_at", label: t("fields.updatedAt") },
+        ]}
         pageSize={PAGE_SIZE}
         navigateTo={(row) => `${row.id}`}
         search

@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/auth-github",
-  "version": "2.13.20",
+  "version": "2.13.23",
   "description": "Github OAuth authentication provider for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -26,10 +26,10 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "@acmekit/framework": "2.13.20"
+    "@acmekit/framework": "2.13.23"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.20"
+    "@acmekit/framework": "2.13.23"
   },
   "keywords": [
     "acmekit-provider",

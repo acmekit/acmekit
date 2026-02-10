@@ -11038,6 +11038,34 @@
         "stepsCompletedLabel_other": {
           "type": "string"
         },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "stepsSummary": {
+              "type": "string"
+            },
+            "failedSteps": {
+              "type": "string"
+            },
+            "skippedSteps": {
+              "type": "string"
+            },
+            "compensatedYes": {
+              "type": "string"
+            },
+            "compensatedNo": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "stepsSummary",
+            "failedSteps",
+            "skippedSteps",
+            "compensatedYes",
+            "compensatedNo"
+          ],
+          "additionalProperties": false
+        },
         "list": {
           "type": "object",
           "properties": {
@@ -11184,6 +11212,7 @@
         "progressLabel",
         "stepsCompletedLabel_one",
         "stepsCompletedLabel_other",
+        "metrics",
         "list",
         "history",
         "state",
@@ -11757,6 +11786,9 @@
           "type": "string"
         },
         "taxInclusivePricing": {
+          "type": "string"
+        },
+        "duration": {
           "type": "string"
         },
         "currency": {

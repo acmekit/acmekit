@@ -30,6 +30,18 @@ import {
   WorkflowData,
 } from "./type"
 
+/** Extract TResult from a composer return type for workflow type inference */
+type ResultFromWorkflowReturn<R> =
+  R extends WorkflowResponse<infer T, infer _H> ? T : unknown
+
+/** Extract THooks from a composer return type so .hooks.<name> is inferred for autocomplete */
+type HooksFromWorkflowReturn<R> =
+  R extends WorkflowResponse<unknown, infer H>
+    ? H extends readonly any[]
+      ? H
+      : readonly []
+    : readonly []
+
 global[OrchestrationUtils.SymbolAcmeKitWorkflowComposerContext] = null
 
 const buildTransactionId = (
@@ -51,8 +63,7 @@ const buildTransactionId = (
  * invoke the exported workflow, then run its `run` method.
  *
  * @typeParam TData - The type of the input passed to the composer function.
- * @typeParam TResult - The type of the output returned by the composer function.
- * @typeParam THooks - The type of hooks defined in the workflow.
+ * @typeParam TComposerReturn - Inferred from the composer return type; used to derive result and hooks for workflow typing.
  *
  * @returns The created workflow. You can later execute the workflow by invoking it, then using its `run` method.
  *
@@ -99,7 +110,10 @@ const buildTransactionId = (
  * }
  */
 
-export function createWorkflow<TData, TResult, THooks extends any[]>(
+export function createWorkflow<
+  TData,
+  TComposerReturn = void | WorkflowResponse<unknown, readonly any[]>,
+>(
   /**
    * The name of the workflow or its configuration.
    */
@@ -109,10 +123,12 @@ export function createWorkflow<TData, TResult, THooks extends any[]>(
    * The function can't be an arrow function or an asynchronus function. It also can't directly manipulate data.
    * You'll have to use the {@link transform} function if you need to directly manipulate data.
    */
-  composer: (
-    input: WorkflowData<TData>
-  ) => void | WorkflowResponse<TResult, THooks>
-): ReturnWorkflow<TData, TResult, THooks> {
+  composer: (input: WorkflowData<TData>) => TComposerReturn
+): ReturnWorkflow<
+  TData,
+  ResultFromWorkflowReturn<TComposerReturn>,
+  HooksFromWorkflowReturn<TComposerReturn>
+> {
   const fileSourcePath = getCallerFilePath() as string
   const name = isString(nameOrConfig) ? nameOrConfig : nameOrConfig.name
   const options = isString(nameOrConfig) ? {} : nameOrConfig
@@ -177,7 +193,10 @@ export function createWorkflow<TData, TResult, THooks extends any[]>(
     WorkflowManager.register(name, context.flow, handlers, options)
   }
 
-  const workflow = exportWorkflow<TData, TResult>(name, returnedStep, {
+  const workflow = exportWorkflow<
+    TData,
+    ResultFromWorkflowReturn<TComposerReturn>
+  >(name, returnedStep, {
     wrappedInput: true,
     sourcePath: fileSourcePath,
   })
@@ -205,7 +224,9 @@ export function createWorkflow<TData, TResult, THooks extends any[]>(
     input,
   }: {
     input: TData
-  }): ReturnType<StepFunction<TData, TResult>> => {
+  }): ReturnType<
+      StepFunction<TData, ResultFromWorkflowReturn<TComposerReturn>>
+    > => {
     // Get current workflow composition context
     const workflowCompositionContext =
       global[OrchestrationUtils.SymbolAcmeKitWorkflowComposerContext]
@@ -290,10 +311,16 @@ export function createWorkflow<TData, TResult, THooks extends any[]>(
 
         return
       }
-    )(input) as ReturnType<StepFunction<TData, TResult>>
+    )(input) as ReturnType<
+      StepFunction<TData, ResultFromWorkflowReturn<TComposerReturn>>
+    >
 
     return step
   }
 
-  return mainFlow as ReturnWorkflow<TData, TResult, THooks>
+  return mainFlow as ReturnWorkflow<
+    TData,
+    ResultFromWorkflowReturn<TComposerReturn>,
+    HooksFromWorkflowReturn<TComposerReturn>
+  >
 }

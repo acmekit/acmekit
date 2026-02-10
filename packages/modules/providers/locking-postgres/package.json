@@ -1,6 +1,6 @@
 {
   "name": "@acmekit/locking-postgres",
-  "version": "2.13.20",
+  "version": "2.13.23",
   "description": "Postgres Advisory Locks for AcmeKit",
   "main": "dist/index.js",
   "repository": {
@@ -20,10 +20,10 @@
   "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
-    "@acmekit/framework": "2.13.20"
+    "@acmekit/framework": "2.13.23"
   },
   "peerDependencies": {
-    "@acmekit/framework": "2.13.20"
+    "@acmekit/framework": "2.13.23"
   },
   "scripts": {
     "watch": "yarn run -T tsc --build --watch",
