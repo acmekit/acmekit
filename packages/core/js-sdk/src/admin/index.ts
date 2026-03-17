@@ -35,9 +35,6 @@ import { SalesChannel } from "./sales-channel"
 import { ShippingOption } from "./shipping-option"
 import { ShippingProfile } from "./shipping-profile"
 import { StockLocation } from "./stock-location"
-import { TaxProvider } from "./tax-provider"
-import { TaxRate } from "./tax-rate"
-import { TaxRegion } from "./tax-region"
 import { Upload } from "./upload"
 import { User } from "./user"
 import { Views } from "./views"
@@ -156,14 +153,6 @@ export class Admin {
    */
   public exchange: Exchange
   /**
-   * @tags tax
-   */
-  public taxRate: TaxRate
-  /**
-   * @tags tax
-   */
-  public taxRegion: TaxRegion
-  /**
    * @tags product
    */
   public productTag: ProductTag
@@ -213,10 +202,6 @@ export class Admin {
    */
   public promotion: Promotion
   /**
-   * @tags tax
-   */
-  public taxProvider: TaxProvider
-  /**
    * @tags translations
    */
   public translation: Translation
@@ -261,8 +246,6 @@ export class Admin {
     this.orderEdit = new OrderEdit(client)
     this.return = new Return(client)
     this.claim = new Claim(client)
-    this.taxRate = new TaxRate(client)
-    this.taxRegion = new TaxRegion(client)
     this.translation = new Translation(client)
     this.productTag = new ProductTag(client)
     this.user = new User(client)
@@ -279,7 +262,6 @@ export class Admin {
     this.promotion = new Promotion(client)
     this.campaign = new Campaign(client)
     this.plugin = new Plugin(client)
-    this.taxProvider = new TaxProvider(client)
     this.views = new Views(client)
   }
 }

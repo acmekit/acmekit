@@ -34,10 +34,6 @@ const useSettingRoutes = (): INavItem[] => {
         to: "/settings/regions",
       },
       {
-        label: t("taxRegions.domain"),
-        to: "/settings/tax-regions",
-      },
-      {
         label: t("returnReasons.domain"),
         to: "/settings/return-reasons",
       },

@@ -208,17 +208,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.TAX]: {
-    key: Modules.TAX,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.TAX),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER, Modules.EVENT_BUS],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.API_KEY]: {
     key: Modules.API_KEY,
     defaultPackage: false,
