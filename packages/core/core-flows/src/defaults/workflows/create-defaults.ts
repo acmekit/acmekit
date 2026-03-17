@@ -10,12 +10,11 @@ import {
 } from "../../api-key"
 import { useQueryGraphStep } from "../../common"
 import { createDefaultSalesChannelStep } from "../../sales-channel"
-import { createDefaultStoreStep } from "../steps/create-default-store"
 
 export const createDefaultsWorkflowID = "create-defaults"
 /**
  * This workflow creates default data for a Medusa application, including
- * a default sales channel and store. The Medusa application uses this workflow
+ * a default sales channel. The Medusa application uses this workflow
  * to create the default data, if not existing, when the application is first started.
  *
  * You can use this workflow within your customizations or your own custom workflows, allowing you to
@@ -36,11 +35,6 @@ export const createDefaultsWorkflow = createWorkflow(
       data: {
         name: "Default Sales Channel",
         description: "Created by Medusa",
-      },
-    })
-    const store = createDefaultStoreStep({
-      store: {
-        default_sales_channel_id: salesChannel.id,
       },
     })
 
@@ -84,6 +78,6 @@ export const createDefaultsWorkflow = createWorkflow(
       })
     })
 
-    return new WorkflowResponse(store)
+    return new WorkflowResponse(salesChannel)
   }
 )

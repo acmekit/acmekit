@@ -241,17 +241,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.STORE]: {
-    key: Modules.STORE,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.STORE),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.CURRENCY]: {
     key: Modules.CURRENCY,
     defaultPackage: false,

@@ -32,7 +32,6 @@ const SERVICES_INTERFACES = {
   [Modules.REGION]: "IRegionModuleService",
   [Modules.ORDER]: "IOrderModuleService",
   [Modules.API_KEY]: "IApiKeyModuleService",
-  [Modules.STORE]: "IStoreModuleService",
   [Modules.CURRENCY]: "ICurrencyModuleService",
   [Modules.FILE]: "IFileModuleService",
   [Modules.NOTIFICATION]: "INotificationModuleService",

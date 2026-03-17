@@ -36,7 +36,6 @@ import { SalesChannel } from "./sales-channel"
 import { ShippingOption } from "./shipping-option"
 import { ShippingProfile } from "./shipping-profile"
 import { StockLocation } from "./stock-location"
-import { Store } from "./store"
 import { TaxProvider } from "./tax-provider"
 import { TaxRate } from "./tax-rate"
 import { TaxRegion } from "./tax-region"
@@ -166,10 +165,6 @@ export class Admin {
    */
   public taxRegion: TaxRegion
   /**
-   * @tags store
-   */
-  public store: Store
-  /**
    * @tags product
    */
   public productTag: ProductTag
@@ -274,7 +269,6 @@ export class Admin {
     this.taxRate = new TaxRate(client)
     this.taxRegion = new TaxRegion(client)
     this.translation = new Translation(client)
-    this.store = new Store(client)
     this.productTag = new ProductTag(client)
     this.user = new User(client)
     this.locale = new Locale(client)

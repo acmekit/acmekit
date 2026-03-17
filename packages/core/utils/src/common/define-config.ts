@@ -189,7 +189,6 @@ function resolveModules(
     { resolve: MODULE_PACKAGE_NAMES[Modules.CART] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.REGION] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.API_KEY] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.STORE] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.TAX] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.CURRENCY] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.PAYMENT] },

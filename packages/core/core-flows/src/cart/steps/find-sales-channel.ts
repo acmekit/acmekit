@@ -1,13 +1,11 @@
 import {
   ISalesChannelModuleService,
-  IStoreModuleService,
   MedusaContainer,
   SalesChannelDTO,
 } from "@medusajs/framework/types"
 import {
   MedusaError,
   Modules,
-  isDefined,
   useCache,
 } from "@medusajs/framework/utils"
 import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
@@ -38,22 +36,9 @@ async function fetchSalesChannel(
   })
 }
 
-async function fetchStore(container: MedusaContainer) {
-  const storeModule = container.resolve<IStoreModuleService>(Modules.STORE)
-  return await useCache<Awaited<ReturnType<typeof storeModule.listStores>>>(
-    async () =>
-      storeModule.listStores(
-        {},
-        { select: ["id", "default_sales_channel_id"] }
-      ),
-    { key: "find-sales-channel-default-store", container }
-  )
-}
-
 export const findSalesChannelStepId = "find-sales-channel"
 /**
- * This step either retrieves a sales channel either using the ID provided as an input, or, if no ID
- * is provided, the default sales channel of the first store.
+ * This step retrieves a sales channel using the ID provided as input.
  */
 export const findSalesChannelStep = createStep(
   findSalesChannelStepId,
@@ -62,15 +47,6 @@ export const findSalesChannelStep = createStep(
 
     if (data.salesChannelId) {
       salesChannel = await fetchSalesChannel(data.salesChannelId, container)
-    } else if (!isDefined(data.salesChannelId)) {
-      const [store] = await fetchStore(container)
-
-      if (store?.default_sales_channel_id) {
-        salesChannel = await fetchSalesChannel(
-          store.default_sales_channel_id,
-          container
-        )
-      }
     }
 
     if (!salesChannel) {

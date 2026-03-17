@@ -26,7 +26,6 @@ import {
   ISalesChannelModuleService,
   ISettingsModuleService,
   IStockLocationService,
-  IStoreModuleService,
   ITaxModuleService,
   ITranslationModuleService,
   IUserModuleService,
@@ -74,7 +73,6 @@ declare module "@medusajs/types" {
     [Modules.REGION]: IRegionModuleService
     [Modules.ORDER]: IOrderModuleService
     [Modules.API_KEY]: IApiKeyModuleService
-    [Modules.STORE]: IStoreModuleService
     [Modules.CURRENCY]: ICurrencyModuleService
     [Modules.FILE]: IFileModuleService
     [Modules.NOTIFICATION]: INotificationModuleService
