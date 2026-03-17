@@ -184,7 +184,6 @@ function resolveModules(
 
     { resolve: MODULE_PACKAGE_NAMES[Modules.CART] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.API_KEY] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.PAYMENT] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.ORDER] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.SETTINGS] },
 
@@ -509,18 +508,6 @@ function applyCloudOptionsToModules(
           cloud: {
             api_key: config.apiKey,
             endpoint: config.emailsEndpoint,
-            environment_handle: config.environmentHandle,
-            sandbox_handle: config.sandboxHandle,
-          },
-          ...(module.options ?? {}),
-        }
-        break
-      case Modules.PAYMENT:
-        module.options = {
-          cloud: {
-            api_key: config.apiKey,
-            webhook_secret: config.webhookSecret,
-            endpoint: config.paymentsEndpoint,
             environment_handle: config.environmentHandle,
             sandbox_handle: config.sandboxHandle,
           },

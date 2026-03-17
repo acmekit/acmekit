@@ -8,12 +8,6 @@ export const LINKS = {
     Modules.INVENTORY,
     "inventory_item_id"
   ),
-  CartPaymentCollection: composeLinkName(
-    Modules.CART,
-    "cart_id",
-    Modules.PAYMENT,
-    "payment_collection_id"
-  ),
   SalesChannelLocation: composeLinkName(
     Modules.SALES_CHANNEL,
     "sales_channel_id",
@@ -56,24 +50,6 @@ export const LINKS = {
     Modules.SALES_CHANNEL,
     "sales_channel_id"
   ),
-  OrderPaymentCollection: composeLinkName(
-    Modules.ORDER,
-    "order_id",
-    Modules.PAYMENT,
-    "payment_collection_id"
-  ),
-  OrderClaimPaymentCollection: composeLinkName(
-    Modules.ORDER,
-    "claim_id",
-    Modules.PAYMENT,
-    "payment_collection_id"
-  ),
-  OrderExchangePaymentCollection: composeLinkName(
-    Modules.ORDER,
-    "exchange_id",
-    Modules.PAYMENT,
-    "payment_collection_id"
-  ),
   OrderFulfillment: composeLinkName(
     Modules.ORDER,
     "order_id",
@@ -91,12 +67,6 @@ export const LINKS = {
     "product_id",
     Modules.FULFILLMENT,
     "shipping_profile_id"
-  ),
-  CustomerAccountHolder: composeLinkName(
-    Modules.CUSTOMER,
-    "customer_id",
-    Modules.PAYMENT,
-    "account_holder_id"
   ),
   UserRbacRole: composeLinkName(
     Modules.USER,

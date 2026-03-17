@@ -98,17 +98,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.PAYMENT]: {
-    key: Modules.PAYMENT,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.PAYMENT),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.USER]: {
     key: Modules.USER,
     defaultPackage: false,

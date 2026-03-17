@@ -9,8 +9,6 @@ import { Invite } from "./invite"
 import { Notification } from "./notification"
 import { Order } from "./order"
 import { OrderEdit } from "./order-edit"
-import { Payment } from "./payment"
-import { PaymentCollection } from "./payment-collection"
 import { Plugin } from "./plugin"
 import { RefundReason } from "./refund-reasons"
 import { Return } from "./return"
@@ -77,17 +75,9 @@ export class Admin {
    */
   public locale: Locale
   /**
-   * @tags payment
-   */
-  public payment: Payment
-  /**
    * @tags order
    */
   public refundReason: RefundReason
-  /**
-   * @tags payment
-   */
-  public paymentCollection: PaymentCollection
   /**
    * @tags api key
    */
@@ -128,10 +118,8 @@ export class Admin {
     this.translation = new Translation(client)
     this.user = new User(client)
     this.locale = new Locale(client)
-    this.payment = new Payment(client)
     this.refundReason = new RefundReason(client)
     this.exchange = new Exchange(client)
-    this.paymentCollection = new PaymentCollection(client)
     this.apiKey = new ApiKey(client)
     this.workflowExecution = new WorkflowExecution(client)
     this.customerGroup = new CustomerGroup(client)

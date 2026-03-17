@@ -24,15 +24,6 @@ export interface DefaultPolicyResources {
   return_reason: "return_reason"
   credit_line: "credit_line"
 
-  // Payment resources
-  payment: "payment"
-  payment_collection: "payment_collection"
-  payment_method: "payment_method"
-  payment_session: "payment_session"
-  refund_reason: "refund_reason"
-  capture: "capture"
-  refund: "refund"
-
   // Pricing resources
   price_list: "price_list"
   price_preference: "price_preference"

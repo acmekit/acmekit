@@ -13,8 +13,6 @@ import { adminNotificationRoutesMiddlewares } from "./admin/notifications/middle
 import { adminOrderChangesRoutesMiddlewares } from "./admin/order-changes/middlewares"
 import { adminOrderEditRoutesMiddlewares } from "./admin/order-edits/middlewares"
 import { adminOrderRoutesMiddlewares } from "./admin/orders/middlewares"
-import { adminPaymentCollectionsMiddlewares } from "./admin/payment-collections/middlewares"
-import { adminPaymentRoutesMiddlewares } from "./admin/payments/middlewares"
 import { adminPriceListsRoutesMiddlewares } from "./admin/price-lists/middlewares"
 import { adminPricePreferencesRoutesMiddlewares } from "./admin/price-preferences/middlewares"
 import { adminProductCategoryRoutesMiddlewares } from "./admin/product-categories/middlewares"
@@ -47,8 +45,6 @@ import { storeCurrencyRoutesMiddlewares } from "./client/currencies/middlewares"
 import { storeCustomerRoutesMiddlewares } from "./client/customers/middlewares"
 import { storeRoutesMiddlewares } from "./client/middlewares"
 import { storeOrderRoutesMiddlewares } from "./client/orders/middlewares"
-import { storePaymentCollectionsMiddlewares } from "./client/payment-collections/middlewares"
-import { storePaymentProvidersMiddlewares } from "./client/payment-providers/middlewares"
 import { storeProductCategoryRoutesMiddlewares } from "./client/product-categories/middlewares"
 import { storeProductTagRoutesMiddlewares } from "./client/product-tags/middlewares"
 import { storeProductTypeRoutesMiddlewares } from "./client/product-types/middlewares"
@@ -76,8 +72,6 @@ export default defineMiddlewares([
   ...storeProductCategoryRoutesMiddlewares,
   ...storeProductTagRoutesMiddlewares,
   ...storeProductTypeRoutesMiddlewares,
-  ...storePaymentProvidersMiddlewares,
-  ...storePaymentCollectionsMiddlewares,
   ...storeOrderRoutesMiddlewares,
   ...authRoutesMiddlewares,
   ...adminWorkflowsExecutionsMiddlewares,
@@ -98,7 +92,6 @@ export default defineMiddlewares([
   ...adminLocalesRoutesMiddlewares,
   ...storeCurrencyRoutesMiddlewares,
   ...adminProductRoutesMiddlewares,
-  ...adminPaymentRoutesMiddlewares,
   ...adminPriceListsRoutesMiddlewares,
   ...adminPricePreferencesRoutesMiddlewares,
   ...adminInventoryRoutesMiddlewares,
@@ -123,7 +116,6 @@ export default defineMiddlewares([
   ...adminTaxProviderRoutesMiddlewares,
   ...adminOrderChangesRoutesMiddlewares,
   ...adminOrderEditRoutesMiddlewares,
-  ...adminPaymentCollectionsMiddlewares,
   ...viewConfigurationRoutesMiddlewares,
   ...columnRoutesMiddlewares,
   ...adminIndexRoutesMiddlewares,
