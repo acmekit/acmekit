@@ -21,17 +21,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.STOCK_LOCATION]: {
-    key: Modules.STOCK_LOCATION,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.STOCK_LOCATION),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [Modules.EVENT_BUS],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.CACHE]: {
     key: Modules.CACHE,
     defaultPackage: MODULE_PACKAGE_NAMES[Modules.CACHE],

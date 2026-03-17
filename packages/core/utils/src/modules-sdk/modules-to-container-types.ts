@@ -21,7 +21,6 @@ const SERVICES_INTERFACES = {
   [Modules.PAYMENT]: "IPaymentModuleService",
   [Modules.SALES_CHANNEL]: "ISalesChannelModuleService",
   [Modules.FULFILLMENT]: "IFulfillmentModuleService",
-  [Modules.STOCK_LOCATION]: "IStockLocationService",
   [Modules.USER]: "IUserModuleService",
   [Modules.WORKFLOW_ENGINE]: "IWorkflowEngineService",
   [Modules.ORDER]: "IOrderModuleService",

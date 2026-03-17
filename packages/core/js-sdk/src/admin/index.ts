@@ -21,7 +21,6 @@ import { ReturnReason } from "./return-reason"
 import { SalesChannel } from "./sales-channel"
 import { ShippingOption } from "./shipping-option"
 import { ShippingProfile } from "./shipping-profile"
-import { StockLocation } from "./stock-location"
 import { User } from "./user"
 import { Views } from "./views"
 import { WorkflowExecution } from "./workflow-execution"
@@ -42,10 +41,6 @@ export class Admin {
    * @tags order
    */
   public returnReason: ReturnReason
-  /**
-   * @tags stock location
-   */
-  public stockLocation: StockLocation
   /**
    * @tags sales channel
    */
@@ -153,7 +148,6 @@ export class Admin {
     this.invite = new Invite(client)
     this.customer = new Customer(client)
     this.returnReason = new ReturnReason(client)
-    this.stockLocation = new StockLocation(client)
     this.salesChannel = new SalesChannel(client)
     this.fulfillmentSet = new FulfillmentSet(client)
     this.fulfillment = new Fulfillment(client)
