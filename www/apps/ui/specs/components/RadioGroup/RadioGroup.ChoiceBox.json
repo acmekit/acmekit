@@ -1,0 +1,27 @@
+{
+  "description": "This component is based on the [Radix UI Radio Group Item](https://www.radix-ui.com/primitives/docs/components/radio-group#item) primitives.",
+  "methods": [],
+  "displayName": "RadioGroup.ChoiceBox",
+  "props": {
+    "label": {
+      "required": true,
+      "tsType": {
+        "name": "string"
+      },
+      "description": "The label for the radio button."
+    },
+    "description": {
+      "required": true,
+      "tsType": {
+        "name": "string"
+      },
+      "description": "The description for the radio button."
+    },
+    "value": {
+      "description": "The value of the radio button.",
+      "tsType": {
+        "name": "string"
+      }
+    }
+  }
+}

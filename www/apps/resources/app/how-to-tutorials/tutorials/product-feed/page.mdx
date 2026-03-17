@@ -1,0 +1,662 @@
+---
+sidebar_label: "Meta Product Feed"
+tags:
+  - name: product
+    label: "Implement Meta Product Feed"
+  - server
+  - tutorial
+products:
+  - product
+---
+
+import { Github, PlaySolid, EllipsisHorizontal } from "@medusajs/icons"
+import { Prerequisites, WorkflowDiagram, CardList, InlineIcon } from "docs-ui"
+
+export const metadata = {
+  title: `Implement Product Feed for Meta and Google`,
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to create a product feed in Medusa that can be used for Meta and Google.
+
+When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](../../../commerce-modules/page.mdx) that are available out-of-the-box.
+
+Businesses that are selling on social media platforms like Meta (Instagram and Facebook) and Google need to upload their product catalog to those platforms and keep them in sync with their Medusa store. Creating a product feed allows you to automate this process.
+
+## Summary
+
+By following this tutorial, you will learn how to:
+
+- Install and set up Medusa with the Next.js Starter Storefront.
+- Create a workflow that builds a product feed XML.
+- Expose an API route to serve the product feed.
+- Use the API route on social platforms like Meta and Google.
+
+You can follow this tutorial whether you're new to Medusa or an advanced Medusa developer.
+
+![Products in the Meta Catalogue](https://res.cloudinary.com/dza7lstvk/image/upload/v1756732400/Medusa%20Resources/CleanShot_2025-09-01_at_16.12.33_2x_oszhkt.png)
+
+<CardList items={[
+  {
+    href: "https://github.com/medusajs/examples/tree/main/product-feed",
+    title: "Full Code",
+    text: "Find the full code for this tutorial in this repository.",
+    icon: Github,
+  },
+  {
+    href: "https://res.cloudinary.com/dza7lstvk/raw/upload/v1756719230/OpenApi/Product_Feed_qdma7g.yaml",
+    title: "OpenApi Specs for Postman",
+    text: "Import this OpenApi Specs file into tools like Postman.",
+    icon: PlaySolid,
+  },
+]} />
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Start by installing the Medusa application on your machine with the following command:
+
+```bash npx2yarnExec
+npx create-medusa-app@latest
+```
+
+You'll first be asked for the project's name. Then, when asked whether you want to install the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx), choose Yes.
+
+Afterward, the installation process will start, which will install the Medusa application in a directory with your project's name, and the Next.js Starter Storefront in a separate directory with the `{project-name}-storefront` name.
+
+<Note title="Why is the storefront installed separately?">
+
+The Medusa application is composed of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Afterward, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors?">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Create Product Feed Workflow
+
+In this step, you'll create the logic to build an XML string for a product feed.
+
+In Medusa, you implement commerce logic within a [workflow](!docs!/learn/fundamentals/workflows). A workflow is a series of queries and actions, called steps, that complete a task. A workflow is similar to a function, but it allows you to track its executions' progress, define roll-back logic, and configure other advanced features.
+
+You'll create a workflow that builds a product feed. Later, you'll execute the workflow from an API route, allowing third-party services to retrieve the product feed.
+
+<Note>
+
+Refer to the [Workflows](!docs!/learn/fundamentals/workflows) documentation to learn more about workflows.
+
+</Note>
+
+The workflow you'll create will have the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "generateProductFeedWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "getProductFeedItemsStep",
+        description: "Retrieve Medusa products as items for the feed.",
+        depth: 1,
+      },
+      {
+        type: "step",
+        name: "buildProductFeedXmlStep",
+        description: "Get the product feed as an XML string.",
+        depth: 2
+      }
+    ]
+  }}
+/>
+
+### getProductFeedItemsStep
+
+The `getProductFeedItemsStep` will retrieve the Medusa products with pagination, and format their product variants as items to be added to the feed.
+
+To create the step, create the file `src/workflows/steps/get-product-feed-items.ts` with the following content:
+
+export const getProductFeedItemsHighlights1 = [
+  ["5", "FeedItem", "Type of an item in the feed."],
+  ["20", "formatPrice", "Format the price of a product variant."],
+]
+
+```ts title="src/workflows/steps/get-product-feed-items.ts" highlights={getProductFeedItemsHighlights1}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { getVariantAvailability, QueryContext } from "@medusajs/framework/utils"
+import { CalculatedPriceSet } from "@medusajs/framework/types"
+
+export type FeedItem = {
+  id: string
+  title: string
+  description: string
+  link: string
+  image_link?: string
+  additional_image_link?: string
+  availability: string
+  price: string
+  sale_price?: string
+  item_group_id: string
+  condition?: string
+  brand?: string
+}
+
+const formatPrice = (price: number, currency_code: string) => {
+  return `${new Intl.NumberFormat("en-US", {
+    currency: currency_code,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price)} ${currency_code.toUpperCase()}`
+}
+
+type StepInput = {
+  currency_code: string
+  country_code: string
+}
+
+export const getProductFeedItemsStep = createStep(
+  "get-product-feed-items", 
+  async (input: StepInput, { container }) => {
+    // ...
+  }
+)
+```
+
+You first define a `FeedItem` type that represents each product in the feed. It has properties matching [Meta](https://www.facebook.com/business/help/120325381656392) and [Google](https://support.google.com/merchants/answer/7052112)'s specification. You can add other optional specification fields to this type, if necessary.
+
+You also define a `formatPrice` function that will format a price with a currency code based on the format requested by Meta and Google. Meta and Google request that a price is formatted as "X.XX USD", where X.XX is the price with two decimal places, and `USD` is the currency code in uppercase.
+
+After that, you create a step with the `createStep` function. It accepts two parameters:
+
+1. The step's unique name.
+2. An async function that receives two parameters:
+    - The step's input, which is an object holding the requested currency and country codes.
+    - An object that has properties including the [Medusa container](!docs!/learn/fundamentals/medusa-container), which is a registry of Framework and commerce tools that you can access in the step.
+
+Next, you'll implement the step's logic. Add the following in the step function:
+
+export const getProductFeedItemsHighlights2 = [
+  ["1", "feedItems", "The items to be added to the product feed."],
+  ["4", "storefrontUrl", "The storefront URL to format the product links."],
+  ["15", "products", "Retrieve the products with pagintion"],
+  ["55", "feedItems", "Return the feed items."]
+]
+
+```ts title="src/workflows/steps/get-product-feed-items.ts" highlights={getProductFeedItemsHighlights2}
+const feedItems: FeedItem[] = []
+const query = container.resolve("query")
+const configModule = container.resolve("configModule")
+const storefrontUrl = configModule.admin.storefrontUrl || 
+  process.env.STOREFRONT_URL
+
+const limit = 100
+let offset = 0
+let count = 0
+const countryCode = input.country_code.toLowerCase()
+const currencyCode = input.currency_code.toLowerCase()
+
+do {
+  const {
+    data: products,
+    metadata,
+  } = await query.graph({
+    entity: "product",
+    fields: [
+      "id",
+      "title",
+      "description",
+      "handle",
+      "thumbnail",
+      "images.*",
+      "status",
+      "variants.*",
+      "variants.calculated_price.*",
+      "sales_channels.*",
+      "sales_channels.stock_locations.*",
+      "sales_channels.stock_locations.address.*",
+    ],
+    filters: {
+      status: "published",
+    },
+    context: {
+      variants: {
+        calculated_price: QueryContext({
+          currency_code: currencyCode,
+        }),
+      },
+    },
+    pagination: {
+      take: limit,
+      skip: offset,
+    },
+  })
+  
+  count = metadata?.count ?? 0
+  offset += limit
+
+  // TODO prepare feed data
+} while (count > offset)
+
+return new StepResponse({ items: feedItems })
+```
+
+You first initialize an empty array of `FeedItem` objects that you'll populate later.
+
+Then, you resolve the following resources from the Medusa container:
+
+- [Query](!docs!/learn/fundamentals/module-links/query) that allows you to retrieve data across modules.
+- [Medusa Configurations](!docs!/learn/configurations/medusa-config) that are defined in `medusa-config.ts`.
+
+You use the Medusa configurations to retrieve the storefront URL, which you'll use to build the product links in the feed. If the storefront URL is not set in the configurations, you fall back to the `STOREFRONT_URL` environment variable.
+
+After that, you use Query to retrieve product data with pagination. For each product, you retrieve fields and relations useful for the feed. You still need to add the logic for populating the feed items.
+
+<Note>
+
+To retrieve the product variant prices for a currency code, you must pass the currency code as a [query context](!docs!/learn/fundamentals/module-links/query-context). Learn more in the [Get Variant Prices](../../../commerce-modules/product/guides/price/page.mdx) chapter.
+
+</Note>
+
+Finally, a step function must return a `StepResponse` instance with the step's output, which is the list of feed items.
+
+#### Populate Feed Items
+
+To populate the product data as feed items, replace the `TODO` in the step with the following:
+
+export const getProductFeedItemsHighlights3 = [
+  ["2", "", "Skip products without variants"],
+  ["3", "salesChannel", "Retrieve the product's sales channel with stock locations in the requested country code"],
+  ["9", "availability", "Retrieve inventory availability for the product's variants."],
+  ["17", "hasOriginalPrice", "Check if the product variant is on sale."],
+  ["18", "originalPrice", "The regular price of the product variant."],
+  ["20", "salePrice", "The sale price of the product variant."],
+  ["22", "stockStatus", "The stock status of the product variant."],
+  ["38", "item_group_id", "Group the variants by their product."]
+]
+
+```ts title="src/workflows/steps/get-product-feed-items.ts" highlights={getProductFeedItemsHighlights3}
+for (const product of products) {
+  if (!product.variants.length) {continue}
+  const salesChannel = product.sales_channels?.find((channel) => {
+    return channel?.stock_locations?.some((location) => {
+      return location?.address?.country_code.toLowerCase() === countryCode
+    })
+  })
+
+  const availability = salesChannel?.id ? await getVariantAvailability(query, {
+    variant_ids: product.variants.map((variant) => variant.id),
+    sales_channel_id: salesChannel?.id,
+  }) : undefined
+
+  for (const variant of product.variants) {
+    // @ts-ignore
+    const calculatedPrice = variant.calculated_price as CalculatedPriceSet
+    const hasOriginalPrice = calculatedPrice?.original_amount
+    const originalPrice = hasOriginalPrice ? calculatedPrice.original_amount : 
+    calculatedPrice.calculated_amount
+    const salePrice = hasOriginalPrice ? calculatedPrice.calculated_amount : 
+      undefined
+    const stockStatus = !variant.manage_inventory ? "in stock" : 
+      !availability?.[variant.id]?.availability ? "out of stock" : "in stock"
+
+    feedItems.push({
+      id: variant.id,
+      title: product.title,
+      description: product.description ?? "",
+      link: `${storefrontUrl || ""}/${input.country_code}/${product.handle}`,
+      image_link: product.thumbnail ?? "",
+      additional_image_link: product.images?.map(
+        (image) => image.url
+      )?.join(","),
+      availability: stockStatus,
+      price: formatPrice(originalPrice as number, currencyCode),
+      sale_price: salePrice ? formatPrice(salePrice as number, currencyCode) : 
+        undefined,
+      item_group_id: product.id,
+      condition: "new", // TODO add condition if supported
+      brand: "", // TODO add brand if supported
+    })
+  }
+}
+```
+
+For each product, you:
+
+- Skip the product if it doesn't have variants.
+    - In Medusa, customers purchase variants of a product.
+- Try to retrieve the sales channel of a product that has stock locations in the requested country code.
+    - In Medusa, a product variant's inventory is tracked by stock locations that are associated with sales channels. So, you must retrieve the product's sales channel that matches the requested country code to check the availability of each variant. Learn more in the [Product Variant Inventory](../../../commerce-modules/product/variant-inventory/page.mdx) guide.
+- For each variant, you:
+    - Retrieve the variant's price and sale price.
+        - If the `calculated_price.original_amount` is different than `calculated_price.calculated_amount`, the variant is on sale and the `calculated_price.calculated_amount` is the sale price.
+        - Otherwise, the `calculated_price.calculated_amount` is the regular price.
+    - Check the variant's availability.
+        - If the variant's `manage_inventory` property is disabled, the variant is always in stock.
+        - If the variant's `manage_inventory` property is enabled, check the availability retrieved from the `getVariantAvailability` function.
+    - Populate the feed item with the variant's data.
+
+The `feedItems` array will contain feed data for every product variant.
+
+### buildProductFeedXmlStep
+
+In the `buildProductFeedXmlStep`, you will construct the XML string for the product feed.
+
+To create the step, create the file `src/workflows/steps/build-product-feed-xml.ts` with the following content:
+
+```ts title="src/workflows/steps/build-product-feed-xml.ts"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { FeedItem } from "./get-product-feed-items"
+
+type StepInput = {
+  items: FeedItem[]
+}
+
+export const buildProductFeedXmlStep = createStep(
+  "build-product-feed-xml",
+  async (input: StepInput) => {
+    const escape = (str: string) =>
+      str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&apos;")
+
+    const itemsXml = input.items.map((item) => {
+      return (
+        `<item>` +
+          `<g:id>${escape(item.id)}</g:id>` +
+          `<title>${escape(item.title)}</title>` +
+          `<description>${escape(item.description)}</description>` +
+          `<link>${escape(item.link)}</link>` +
+          (item.image_link ? `<g:image_link>${escape(item.image_link)}</g:image_link>` : "") +
+          (item.additional_image_link ? `<g:additional_image_link>${escape(item.additional_image_link)}</g:additional_image_link>` : "") +
+          `<g:availability>${escape(item.availability)}</g:availability>` +
+          `<g:price>${escape(item.price)}</g:price>` +
+          (item.sale_price ? `<g:sale_price>${escape(item.sale_price)}</g:sale_price>` : "") +
+          `<g:condition>${escape(item.condition || "new")}</g:condition>` +
+          (item.brand ? `<g:brand>${escape(item.brand)}</g:brand>` : "") +
+          `<g:item_group_id>${escape(item.item_group_id)}</g:item_group_id>` +
+        `</item>`
+      )
+    }).join("")
+
+    const xml =
+      `<?xml version="1.0" encoding="UTF-8"?>` +
+      `<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">` +
+        `<channel>` +
+          `<title>Product Feed</title>` +
+          `<description>Product Feed for Social Platforms</description>` +
+          itemsXml +
+        `</channel>` +
+      `</rss>`
+
+    return new StepResponse(xml)
+  }
+)
+```
+
+This step accepts the feed items as an input.
+
+In the step, you format the XML string based on the specifications accepted by Meta and Google. You also escape special characters in the feed data to ensure the XML is valid.
+
+Finally, the step returns the XML string.
+
+### Create the Workflow
+
+Now that you have the steps, you can create the workflow to build a product feed.
+
+Create the file `src/workflows/generate-product-feed.ts` with the following content:
+
+```ts title="src/workflows/generate-product-feed.ts"
+import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { getProductFeedItemsStep } from "./steps/get-product-feed-items"
+import { buildProductFeedXmlStep } from "./steps/build-product-feed-xml"
+
+type GenerateProductFeedWorkflowInput = {
+  currency_code: string
+  country_code: string
+}
+
+export const generateProductFeedWorkflow = createWorkflow(
+  "generate-product-feed",
+  (input: GenerateProductFeedWorkflowInput) => {
+    const { items: feedItems } = getProductFeedItemsStep(input)
+
+    const xml = buildProductFeedXmlStep({ 
+      items: feedItems,
+    })
+
+    return new WorkflowResponse({ xml })
+  }
+)
+
+export default generateProductFeedWorkflow
+```
+
+You create a workflow using the `createWorkflow` function. It accepts the workflow's unique name as a first parameter.
+
+It accepts as a second parameter a constructor function that holds the workflow's implementation.
+
+The constructor function accepts an object holding the currency code and country code.
+
+In the function, you:
+
+- Get the product feed items using the `getProductFeedItemsStep`.
+- Build the product feed XML using the `buildProductFeedXmlStep`.
+
+A workflow must return an instance of `WorkflowResponse`. It receives as a parameter the data returned by the workflow, which is the XML string.
+
+In the next step, you'll create an API route that executes this workflow.
+
+---
+
+## Step 3: Create Product Feed API Route
+
+In this step, you'll expose the product feed XML by creating an API route.
+
+An [API route](!docs!/learn/fundamentals/api-routes) is an endpoint that exposes commerce features to external applications and clients, such as third-party services.
+
+<Note>
+
+Refer to the [API routes](!docs!/learn/fundamentals/api-routes) documentation to learn more.
+
+</Note>
+
+An API route is created in a `route.ts` file under a sub-directory of the `src/api` directory. The path of the API route is the file's path relative to `src/api`.
+
+So, to create the API route, create the file `src/api/product-feed/route.ts` with the following content:
+
+```ts title="src/api/product-feed/route.ts"
+import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import generateProductFeedWorkflow from "../../workflows/generate-product-feed"
+
+export async function GET(
+  req: MedusaRequest, 
+  res: MedusaResponse
+) {
+  const { 
+    currency_code,
+    country_code,
+   } = req.validatedQuery
+
+  const { result } = await generateProductFeedWorkflow(req.scope).run({
+    input: {
+      currency_code: currency_code as string,
+      country_code: country_code as string,
+    },
+  })
+
+  res.setHeader("Content-Type", "application/rss+xml; charset=utf-8")
+  res.status(200).send(result.xml)
+}
+```
+
+By exporting a `GET` route handler function, you expose a `GET` API route at the `/product-feed` path.
+
+In the route handler, you retrieve the country and currency codes from the request's query parameters.
+
+Then, you execute the `generateProductFeedWorkflow` by invoking it, passing it the Medusa container (which is `req.scope`), and calling its `run` method. You pass the workflow's input to the `run` method.
+
+Finally, you set the response headers to indicate that the content is XML and send the XML string in the response.
+
+### Add Query Validation Middleware
+
+To ensure that the country and currency codes are passed as query parameters, you need to apply a middleware.
+
+A [middleware](!docs!/learn/fundamentals/api-routes/middlewares) is a function that runs when a request is sent before running the route handler. It's useful to validate request query and body parameters.
+
+To apply a middleware on the API route, create the file `src/api/middlewares.ts` with the following content:
+
+<Note>
+
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+
+</Note>
+
+```ts title="src/api/middlewares.ts"
+import { defineMiddlewares, validateAndTransformQuery } from "@medusajs/framework/http"
+import { z } from "@medusajs/framework/zod"
+
+export default defineMiddlewares({
+  routes: [
+    {
+      matcher: "/product-feed",
+      methods: ["GET"],
+      middlewares: [
+        validateAndTransformQuery(z.object({
+          currency_code: z.string(),
+          country_code: z.string(),
+        }), {}),
+      ],
+    },
+  ],
+})
+```
+
+You apply the `validateAndTransformQuery` middleware on the `/product-feed` API route. The middleware accepts as a first parameter a [Zod](https://zod.dev/) schema that defines the expected query parameters.
+
+The request will now fail before reaching the route handler if the query parameters are invalid.
+
+### Test it Out
+
+To test out the product feed API route, start the Medusa server with the following command:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, in your browser, go to `http://localhost:9000/product-feed?currency_code=eur&country_code=dk`. You can replace the currency and country codes based on the ones you use in your store.
+
+You'll receive an XML in the response similar to the following:
+
+```plain
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Product Feed</title>
+    <description>Product Feed for Social Platforms</description>
+    <item>
+      <g:id>variant_123</g:id>
+      <g:title>Product Title</g:title>
+      <g:description>Product Description</g:description>
+      <g:link>https://example.com/dk/product-handle</g:link>
+      <g:image_link>https://example.com/product/image.jpg</g:image_link>
+      <g:price>19.99 EUR</g:price>
+      <g:availability>in stock</g:availability>
+      <g:item_group_id>product_123</g:item_group_id>
+    </item>
+  </channel>
+</rss>
+```
+
+---
+
+## Step 4: Use the Product Feed
+
+If your Medusa application is [deployed](../../../deployment/page.mdx), you can now use the product feed API route on social platforms like [Meta](https://www.facebook.com/business/help/125074381480892?id=725943027795860) and [Google](https://support.google.com/merchants/answer/11586438?hl=en&sjid=6331702527227918188-EU).
+
+<Note>
+
+Make sure to set the [admin.storefrontUrl](!docs!/learn/configurations/medusa-config#storefronturl) or `STOREFRONT_URL` environment variable before using the product feed API route.
+
+</Note>
+
+For example, to add your product feed as a data source in Meta:
+
+<Prerequisites
+  items={[
+    {
+      text: "Meta Business Portfolio",
+      link: "https://www.facebook.com/business/help/1710077379203657"
+    },
+    {
+      text: "Shop or Catalogue in Business Portfolio",
+      link: "https://www.facebook.com/business/help/1275400645914358?id=725943027795860"
+    }
+  ]}
+/>
+
+1. Go to your [Meta Business Portfolio](https://business.facebook.com/).
+2. Select your business portfolio.
+3. Go to Catalogue -> Data sources.
+4. Choose the "Data feed" option, and click Next.
+
+![Meta Data Sources Setup Form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756731936/Medusa%20Resources/CleanShot_2025-09-01_at_16.04.51_2x_kht1lx.png)
+
+5. Choose the "Use a URL or Google Sheets" option, and enter the URL to the product feed API route. For example, `https://your-medusa-store.com/product-feed?currency_code=eur&country_code=dk`.
+6. Click the Next button.
+7. In the pop-up that opens, choose "EUR" as the default currency, or the currency you want to use.
+8. Click the Upload button.
+
+Then, wait until Meta finishes processing and uploading your products. Once it's done, you can view the products in Catalogue -> Products.
+
+![Meta Catalogue Products](https://res.cloudinary.com/dza7lstvk/image/upload/v1756732208/Medusa%20Resources/CleanShot_2025-09-01_at_16.09.52_2x_tbs52f.png)
+
+---
+
+## Next Steps
+
+You've now set up the product feed API route for your Medusa application. Meta and Google will pull products from this feed periodically, ensuring your product listings are always up to date.
+
+You can add more fields to the product feed based on your use case. Refer to [Meta](https://www.facebook.com/business/help/120325381656392) and [Google](https://support.google.com/merchants/answer/7052112)'s product feed specifications for more details on available fields and their formats.
+
+### Learn More about Medusa
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get a more in-depth understanding of all the concepts you've used in this guide and more.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during your development, check out the [troubleshooting guides](../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in the troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.

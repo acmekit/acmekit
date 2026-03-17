@@ -1,0 +1,11 @@
+type: object
+description: The index's metadata details.
+x-schemaName: AdminIndexDetailsResponse
+required:
+  - metadata
+properties:
+  metadata:
+    type: array
+    description: The index's metadata.
+    items:
+      $ref: ./IndexInfo.yaml

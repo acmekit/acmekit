@@ -1,0 +1,26 @@
+/**
+ * @schema AdminShippingOptionTypeDeleteResponse
+ * type: object
+ * description: The response returned after deleting a shipping option type.
+ * x-schemaName: AdminShippingOptionTypeDeleteResponse
+ * required:
+ *   - id
+ *   - object
+ *   - deleted
+ * properties:
+ *   id:
+ *     type: string
+ *     title: id
+ *     description: The shipping option type's ID.
+ *   object:
+ *     type: string
+ *     title: object
+ *     description: The name of the deleted object.
+ *     default: shipping_option_type
+ *   deleted:
+ *     type: boolean
+ *     title: deleted
+ *     description: Whether the Shipping Option Type was deleted.
+ * 
+*/
+

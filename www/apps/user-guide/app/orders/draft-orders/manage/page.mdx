@@ -1,0 +1,270 @@
+---
+sidebar_position: 9
+sidebar_label: "Manage Draft Order"
+tags:
+    - user guide
+    - order
+products:
+    - order
+---
+
+import { 
+  ArrowUpRightOnBox, 
+  EllipsisHorizontal, 
+  Plus,
+  PencilSquare,
+  XMark
+} from "@medusajs/icons"
+
+export const metadata = {
+  title: `Manage Draft Order Details in Medusa Admin`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to manage draft order details in the Medusa Admin.
+
+<Note title="Prerequisite">
+
+If you're using a version earlier than v2.10.0, you must [install the Draft Orders Plugin manually](!resources!/commerce-modules/order/draft-orders). Your technical team should handle the plugin installation.
+
+</Note>
+
+## View Draft Order Details
+
+To view the details of a draft order:
+
+1. Go to Orders -> Drafts.
+2. Click on the draft order you want to view.
+
+This will open the draft order's details page, which is divided into several sections.
+
+###  Summary Section
+
+The Summary section includes a summary of the items the customer purchased, as well as totals related to taxes, shipping, and more. Use this section to get a quick overview of the draft order, [convert it to a regular order](#convert-draft-order-to-regular-order), or [manage its items](#manage-draft-orders-items).
+
+![Order Summary](https://res.cloudinary.com/dza7lstvk/image/upload/v1756195258/User%20Guide/CleanShot_2025-08-26_at_11.00.44_2x_pay32p.png)
+
+### Customer Section
+
+The Customer section shows the customer’s details, including their contact information and shipping address. Use this section to view and [edit the customer’s details pertaining to the order](#manage-draft-orders-customer-details).
+
+![Customer Section](https://res.cloudinary.com/dza7lstvk/image/upload/v1756196430/User%20Guide/CleanShot_2025-08-26_at_11.03.51_2x_snez5u.png)
+
+### Activity Section
+
+The Activity section of the draft order details page shows a summary of the changes made to the draft order. That includes updates to items and shipping methods.
+
+![Activity Section](https://res.cloudinary.com/dza7lstvk/image/upload/v1756196547/User%20Guide/CleanShot_2025-08-26_at_11.21.53_2x_m2wxe8.png)
+
+### Shipping Section
+
+The Shipping section shows the draft order's shipping details, including the shipping methods chosen for each shipping profile associated with the draft order's items. Use this section to view and [manage the shipping methods for the draft order](#manage-draft-orders-shipping-methods).
+
+![Shipping Section](https://res.cloudinary.com/dza7lstvk/image/upload/v1756196678/User%20Guide/CleanShot_2025-08-26_at_11.24.26_2x_vbv6gs.png)
+
+## Metadata Section
+
+The Metadata section allows you to view and [manage custom metadata associated with the draft order](#manage-draft-orders-metadata). Metadata can be useful for storing additional information about the order that is not covered by the default fields.
+
+### JSON Section
+
+The JSON section is useful for developers to view the raw order data in JSON format. Developers can use this section to debug and troubleshoot issues related to the order.
+
+To view the JSON structure, click the <InlineIcon Icon={ArrowUpRightOnBox} alt="Expand" /> icon. 
+
+---
+
+## Edit Draft Order's Sales Channel
+
+To edit the sales channel of a draft order:
+
+1. Go to the draft order's details page.
+2. In the first section displaying the order's number and region, click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the draft order's row.
+3. Select "Edit sales channel" from the dropdown menu.
+4. In the side window that opens, select the new sales channel from the dropdown.
+5. Click the Save button.
+
+![Edit Sales Channel form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756196930/User%20Guide/CleanShot_2025-08-26_at_11.28.40_2x_mptkto.png)
+
+---
+
+## Manage Draft Order's Items
+
+To add, edit, or remove items from a draft order:
+
+1. Go to the draft order's details page.
+2. Click on the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the Summary section's header.
+3. Select "Edit items" from the dropdown menu.
+4. In the form that opens:
+    - To add an item, click the <InlineIcon Icon={Plus} alt="plus" /> button in the "Items" section's header. From the dropdown, you can either choose:
+        - **Add items**: Add existing product variants to the draft order. This will open the product variant selection window.
+        - **Add custom item**: Add a custom item that's only available in this draft order. This will open a form to enter the item's title, price, and quantity.
+    - To edit an existing item, click the <InlineIcon Icon={PencilSquare} alt="pencil" /> button in the item's row. This will allow you to change the item's quantity and price.
+    - To remove an item, click the <InlineIcon Icon={PencilSquare} alt="pencil" /> button in the item's row, then set the item's quantity to zero. This will remove the item from the draft order.
+5. Once you're done, click the "Save" button.
+
+The items in the Summary section will be updated accordingly.
+
+![Draft Order Items Form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756197277/User%20Guide/CleanShot_2025-08-26_at_11.34.21_2x_zkngzx.png)
+
+---
+
+## Manage Draft Order's Promotions
+
+To add or remove promotions applied to the draft order:
+
+1. Go to the draft order's details page.
+2. Click on the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the Summary section's header.
+3. Select "Edit promotions" from the dropdown menu.
+4. In the side window that opens:
+    - To add a promotion, choose it from the dropdown menu.
+    - To remove a promotion, click the <InlineIcon Icon={XMark} alt="x-mark" /> icon next to the promotion you want to remove.
+5. Once you're done, click the "Save" button.
+
+The Summary section will be updated accordingly with the discount changes.
+
+![Draft Order Promotions Form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756197906/User%20Guide/CleanShot_2025-08-26_at_11.44.08_2x_ekecht.png)
+
+---
+
+## Manage Draft Order's Shipping Methods
+
+To manage the shipping methods of a draft order:
+
+1. Go to the draft order's details page.
+2. In the Shipping section, click on the "Add shipping" or "Edit shipping" button.
+3. In the form that opens, you can perform the following steps to manage the shipping methods of every shipping profile:
+    - To add a shipping option, click the "Add shipping option" button for the shipping profile.
+    - In the form that opens, set the following information:
+        - **Location**: Choose the location to ship the items from. This will affect the available shipping options.
+        - **Shipping option**: After choosing a location, select a shipping option from that location that will be used to ship the items.
+        - **Custom amount**: (optional) If you want to override the price of the shipping option, you can set a custom amount.
+        - **Items to ship**: This section only shows you which items this shipping option ships. You cannot edit this section.
+    - Once you're done, click the "Add" button.
+    - To edit the shipping option of a shipping profile, click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the shipping option's row and choose "Edit shipping option" from the dropdown. You can edit the location, shipping option, and custom amount.
+    - To remove a shipping option from the draft order, click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the shipping option's row and choose "Remove shipping option" from the dropdown.
+4. Once you're done managing the shipping methods, click the "Save" button.
+
+The Shipping section will be updated accordingly.
+
+![Draft Order Shipping Form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756197813/User%20Guide/CleanShot_2025-08-26_at_11.43.20_2x_hkhuib.png)
+
+---
+
+## Manage Draft Order's Customer Details
+
+### Transfer Draft Order to Another Customer
+
+If you've associated the draft order with a customer in your store, you can transfer the draft order to another existing customer.
+
+To transfer the draft order to another customer:
+
+1. Go to the draft order's details page.
+2. Click on the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the Customer section's header.
+3. Choose "Transfer ownership" from the dropdown menu.
+4. In the side window that opens, choose the customer to transfer the draft order to in the "New customer" field.
+5. Once you're done, click the "Save" button.
+
+![Transfer ownership form for draft order](https://res.cloudinary.com/dza7lstvk/image/upload/v1756198151/User%20Guide/CleanShot_2025-08-26_at_11.48.44_2x_jztl1a.png)
+
+### Edit Email
+
+The draft order has an associated email address that is used to send order updates to the customer.
+
+To edit the email address associated with a draft order:
+
+1. Go to the draft order's details page.
+2. Click on the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the Customer section's header.
+3. Choose "Edit email" from the dropdown menu.
+4. In the side window that opens, enter the new email address in the "Email" field.
+5. Once you're done, click the "Save" button.
+
+Updates related to the order will be sent to the new email address.
+
+![Edit email in draft order form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756198151/User%20Guide/CleanShot_2025-08-26_at_11.48.33_2x_b5in62.png)
+
+---
+
+## Edit Draft Order's Shipping Address
+
+To edit the shipping address used for a draft order:
+
+1. Go to the draft order's details page.
+2. Click on the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the Customer section's header.
+3. Choose "Edit shipping address" from the dropdown menu.
+4. In the side window that opens, you can update the shipping address details, including the country, first and last names, company, address lines, city, state, postal code, and phone number.
+5. Once you're done, click the "Save" button.
+
+![Edit shipping address in draft order form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756198303/User%20Guide/CleanShot_2025-08-26_at_11.51.29_2x_iu8pfb.png)
+
+---
+
+## Edit Draft Order's Billing Address
+
+To edit the billing address used for a draft order:
+
+1. Go to the draft order's details page.
+2. Click on the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the Customer section's header.
+3. Choose "Edit billing address" from the dropdown menu.
+4. In the side window that opens, you can update the billing address details, including the country, first and last names, company, address lines, city, state, postal code, and phone number.
+5. Once you're done, click the "Save" button.
+
+![Edit billing address in draft order form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756198303/User%20Guide/CleanShot_2025-08-26_at_11.51.29_2x_iu8pfb.png)
+
+---
+
+## Manage Draft Order's Metadata
+
+Metadata is custom data that can be associated with the draft order in key-value pairs. This is usually used by developers for custom integrations or to store additional information about the draft order.
+
+When the draft order is converted to an order, the metadata will be carried over to the order.
+
+To edit the draft order's metadata:
+
+1. Click the <InlineIcon Icon={ArrowUpRightOnBox} alt="arrow" /> icon in the "Metadata" section.
+2. In the side window that opens:
+    - Manage the key-value pairs in the table.
+    - To add a new row of key-value pairs before or after a row:
+        - Hover over the row and click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon at its end.
+        - Choose "Insert row above" or "Insert row below" from the dropdown.
+    - To delete a row of key-value pairs:
+        - Hover over the row and click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon at its end.
+        - Choose "Delete row" from the dropdown.
+3. Once you're done, click the Save button.
+
+---
+
+## Convert Draft Order to Regular Order
+
+Once you're done managing the draft order and it is ready to be processed, you can convert it to a regular order.
+
+<Note title="Important">
+
+This action can't be undone. If you convert the draft order to a regular order by mistake, you can [cancel the order](../../manage/page.mdx#cancel-an-order).
+
+</Note>
+
+To convert the draft order to a regular order:
+
+1. Go to the draft order's details page.
+2. In the Summary section of the draft order's details page, click the "Convert to order" button.
+3. Confirm converting the draft order by clicking the "Confirm" button in the pop-up.
+
+You'll then be redirected to the order's details page. Learn more about it in the [Manage Orders](../../manage/page.mdx) guide.
+
+---
+
+## Delete Draft Order
+
+<Note type="warning">
+
+Deleting a draft order is irreversible.
+
+</Note>
+
+To delete a draft order:
+
+1. Go to the draft order's details page.
+2. In the first section displaying the order's number and region, click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon.
+3. Choose "Delete draft order" from the dropdown menu.

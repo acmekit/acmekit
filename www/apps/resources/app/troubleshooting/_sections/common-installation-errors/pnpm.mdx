@@ -1,0 +1,37 @@
+If you use `pnpm` as a package manager in your Medusa application, you might face errors about missing packages. For example:
+
+```bash
+can't resolve @medusajs/dashboard
+```
+
+You may also receive an error related to Tanstack Query:
+
+```bash
+No QueryClient set, use QueryClientProvider to set one
+```
+
+## Why This Error Occurred
+
+Medusa doesn't officially support `pnpm` as a package manager, which may lead to unexpected errors, including issues with package resolution.
+
+For Tanstack Query, the error occurs because the package is required by `@medusajs/dashboard`, but `pnpm` does not automatically install it as a dependency of that package.
+
+---
+
+## How to Fix it
+
+To resolve this error and other potential errors, consider switching to `yarn` as your package manager.
+
+If you still want to use `pnpm`, you must manually install the following packages in your project:
+
+```bash
+pnpm add @medusajs/dashboard @medusajs/icons @medusajs/types @medusajs/draft-order @medusajs/ui
+```
+
+Make sure to also update these packages whenever you update your Medusa application.
+
+For the Tanstack Query error, you must also install it manually. It must be the same version installed in [@medusajs/dashboard](https://github.com/medusajs/medusa/blob/d58462c9c91a3e335d03f758438e109caad1f839/packages/admin/dashboard/package.json#L54):
+
+```bash
+pnpm add @tanstack/react-query@{version}
+```

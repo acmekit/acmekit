@@ -1,0 +1,27 @@
+/**
+ * @schema AdminCreateStockLocation
+ * type: object
+ * description: The stock location's details.
+ * x-schemaName: AdminCreateStockLocation
+ * required:
+ *   - name
+ * properties:
+ *   name:
+ *     type: string
+ *     title: name
+ *     description: The stock location's name.
+ *   address_id:
+ *     type: string
+ *     title: address_id
+ *     description: The ID of the stock location's address.
+ *   address:
+ *     $ref: "#/components/schemas/AdminUpsertStockLocationAddress"
+ *   metadata:
+ *     type: object
+ *     description: The stock location's metadata, used to store custom key-value pairs.
+ *     externalDocs:
+ *       url: https://docs.medusajs.com/api/admin#manage-metadata
+ *       description: Learn how to manage metadata
+ * 
+*/
+

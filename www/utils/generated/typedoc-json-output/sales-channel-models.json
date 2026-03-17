@@ -1,0 +1,316 @@
+{
+	"id": 15229,
+	"name": "sales-channel-models",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 15230,
+			"name": "SalesChannel",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "sales-channel.ts",
+					"line": 3,
+					"character": 6,
+					"url": "https://github.com/medusajs/medusa/blob/ad4437b298d499d1a51e54decad6de3f5ebd2181/packages/modules/sales-channel/src/models/sales-channel.ts#L3"
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+					"qualifiedName": "DmlEntity"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../../../packages/core/utils/src/dml/entity.ts",
+							"qualifiedName": "DMLEntitySchemaBuilder"
+						},
+						"typeArguments": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 15231,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"children": [
+										{
+											"id": 15232,
+											"name": "id",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The ID of the sales channel."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "sales-channel.ts",
+													"line": 4,
+													"character": 2,
+													"url": "https://github.com/medusajs/medusa/blob/ad4437b298d499d1a51e54decad6de3f5ebd2181/packages/modules/sales-channel/src/models/sales-channel.ts#L4"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/primary-key.ts",
+													"qualifiedName": "PrimaryKeyModifier"
+												},
+												"typeArguments": [
+													{
+														"type": "reference",
+														"target": {
+															"sourceFileName": "../../../../packages/core/utils/src/dml/properties/id.ts",
+															"qualifiedName": "IdProperty"
+														},
+														"name": "IdProperty",
+														"package": "@medusajs/utils"
+													}
+												],
+												"name": "PrimaryKeyModifier",
+												"package": "@medusajs/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15233,
+											"name": "name",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The name of the sales channel"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "sales-channel.ts",
+													"line": 5,
+													"character": 2,
+													"url": "https://github.com/medusajs/medusa/blob/ad4437b298d499d1a51e54decad6de3f5ebd2181/packages/modules/sales-channel/src/models/sales-channel.ts#L5"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@medusajs/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15234,
+											"name": "description",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The description of the sales channel"
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "sales-channel.ts",
+													"line": 6,
+													"character": 2,
+													"url": "https://github.com/medusajs/medusa/blob/ad4437b298d499d1a51e54decad6de3f5ebd2181/packages/modules/sales-channel/src/models/sales-channel.ts#L6"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/text.ts",
+													"qualifiedName": "TextProperty"
+												},
+												"name": "TextProperty",
+												"package": "@medusajs/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15235,
+											"name": "is_disabled",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Whether the sales channel is disabled."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "sales-channel.ts",
+													"line": 7,
+													"character": 2,
+													"url": "https://github.com/medusajs/medusa/blob/ad4437b298d499d1a51e54decad6de3f5ebd2181/packages/modules/sales-channel/src/models/sales-channel.ts#L7"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/boolean.ts",
+													"qualifiedName": "BooleanProperty"
+												},
+												"name": "BooleanProperty",
+												"package": "@medusajs/utils"
+											},
+											"defaultValue": "..."
+										},
+										{
+											"id": 15236,
+											"name": "metadata",
+											"variant": "declaration",
+											"kind": 1024,
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Holds custom data in key-value pairs."
+													}
+												]
+											},
+											"sources": [
+												{
+													"fileName": "sales-channel.ts",
+													"line": 8,
+													"character": 2,
+													"url": "https://github.com/medusajs/medusa/blob/ad4437b298d499d1a51e54decad6de3f5ebd2181/packages/modules/sales-channel/src/models/sales-channel.ts#L8"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "../../../../packages/core/utils/src/dml/properties/json.ts",
+													"qualifiedName": "JSONProperty"
+												},
+												"name": "JSONProperty",
+												"package": "@medusajs/utils"
+											},
+											"defaultValue": "..."
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												15232,
+												15233,
+												15234,
+												15235,
+												15236
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "sales-channel.ts",
+											"line": 3,
+											"character": 50,
+											"url": "https://github.com/medusajs/medusa/blob/ad4437b298d499d1a51e54decad6de3f5ebd2181/packages/modules/sales-channel/src/models/sales-channel.ts#L3"
+										}
+									]
+								}
+							}
+						],
+						"name": "DMLEntitySchemaBuilder",
+						"package": "@medusajs/utils"
+					},
+					{
+						"type": "literal",
+						"value": "SalesChannel"
+					}
+				],
+				"name": "DmlEntity",
+				"package": "@medusajs/utils"
+			},
+			"defaultValue": "..."
+		}
+	],
+	"groups": [
+		{
+			"title": "Variables",
+			"children": [
+				15230
+			]
+		}
+	],
+	"packageName": "@medusajs/sales-channel",
+	"symbolIdMap": {
+		"15229": {
+			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/index.ts",
+			"qualifiedName": ""
+		},
+		"15230": {
+			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/sales-channel.ts",
+			"qualifiedName": "SalesChannel"
+		},
+		"15231": {
+			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/sales-channel.ts",
+			"qualifiedName": "__object"
+		},
+		"15232": {
+			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/sales-channel.ts",
+			"qualifiedName": "__object.id"
+		},
+		"15233": {
+			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/sales-channel.ts",
+			"qualifiedName": "__object.name"
+		},
+		"15234": {
+			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/sales-channel.ts",
+			"qualifiedName": "__object.description"
+		},
+		"15235": {
+			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/sales-channel.ts",
+			"qualifiedName": "__object.is_disabled"
+		},
+		"15236": {
+			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/sales-channel.ts",
+			"qualifiedName": "__object.metadata"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "../../../../packages/modules/sales-channel/src/models/index.ts"
+		},
+		"reflections": {
+			"1": 15229
+		}
+	}
+}

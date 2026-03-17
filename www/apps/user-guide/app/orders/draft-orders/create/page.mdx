@@ -1,0 +1,62 @@
+---
+sidebar_position: 9
+sidebar_label: "Create Draft Order"
+tags:
+    - user guide
+    - order
+products:
+    - order
+---
+
+export const metadata = {
+  title: `Create Draft Orders in Medusa Admin`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to create draft orders in the Medusa Admin.
+
+<Note title="Prerequisite">
+
+If you're using a version earlier than v2.10.0, you must [install the Draft Orders Plugin manually](!resources!/commerce-modules/order/draft-orders). Your technical team should handle the plugin installation.
+
+</Note>
+
+## When to Create a Draft Order
+
+You should create a draft order in the following scenarios:
+
+- When handling customer support requests that require creating an order on behalf of the customer.
+- When processing orders that are taken offline, such as over the phone or in-store.
+- When a customer wants to place an order but needs to finalize details later.
+
+You can create the draft order and convert it to a regular order once it is ready for processing.
+
+---
+
+## Create a Draft Order
+
+To create a draft order:
+
+1. Go to Orders -> Drafts.
+2. Click on the Create button in the main section's header.
+3. In the form that opens, enter the following information:
+    - **Region**: Choose the region for the draft order. This determines the currency and tax rules applied to the order.
+    - **Sales Channel**: Select the sales channel for the draft order. This defines where the order is being placed, affects which inventory items are available, and determines which shipping options are applicable to the order.
+    - **Customer** (optional): Select an existing customer that the draft order belongs to. You can also set the customer at a later point or not set it at all.
+    - **Email**: Set the customer's email address. The customer may receive order updates at this email.
+    - **Shipping Address**: Enter the shipping address details for the draft order, or select an existing address if the customer is set.
+    - **Billing Address**: Either set the billing address to be the same as the shipping address or enter a different billing address.
+4. Once you're done, click the Save button.
+
+The draft order will be created, and you will be redirected to the draft order's details page.
+
+![Draft order form](https://res.cloudinary.com/dza7lstvk/image/upload/v1756194728/User%20Guide/CleanShot_2025-08-26_at_10.51.58_2x_imrw09.png)
+
+---
+
+## Next Steps: Manage Items and Shipping Methods
+
+After creating the draft order, you can add items to the order and manage its shipping methods.
+
+Learn how to do that in the [Manage Draft Order Details](../manage/page.mdx) guide.

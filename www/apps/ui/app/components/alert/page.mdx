@@ -1,0 +1,53 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Alert`,
+}
+
+# {metadata.title}
+
+A component for displaying important messages.
+
+In this guide, you'll learn how to use the Alert component.
+
+<ComponentExample name="alert-demo" />
+
+---
+
+## Usage
+
+```tsx
+import { Alert } from "@medusajs/ui"
+```
+
+```tsx
+<Alert>Here's a message</Alert>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Alert" />
+
+---
+
+## Examples
+
+### Success Alert
+
+<ComponentExample name="alert-success" />
+
+### Warning Alert
+
+<ComponentExample name="alert-warning" />
+
+### Error Alert
+
+<ComponentExample name="alert-error" />
+
+### Dismissible Alert
+
+<ComponentExample name="alert-dismissable" hideFeedback />
+

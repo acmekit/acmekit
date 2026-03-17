@@ -1,0 +1,74 @@
+---
+tags:
+  - customer
+  - storefront
+  - auth
+products:
+  - customer
+  - auth
+---
+
+import { CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `Log-out Customer in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to log-out a customer in the storefront based on the authentication method.
+
+## Log-out using the JS SDK
+
+If you're using the JS SDK, you can use the `auth.logout` method to log-out the customer:
+
+```ts
+sdk.auth.logout()
+.then(() => {
+  // TODO redirect customer to login page
+})
+```
+
+The JS SDK will handle the necessary actions based on the [authentication method](../login/page.mdx#js-sdk-authentication-configuration) you're using:
+
+1. If you're using the `session` authentication method, the JS SDK will send a `DELETE` request to the `/auth/session` route. Then, it will remove any stored tokens from the configured storage method (by default, `localStorage`).
+2. If you're using the `jwt` authentication method, the JS SDK will only remove the JWT token from the configured storage method (by default, `localStorage`).
+
+Once the operation succeeds, you can redirect the customer to the login page.
+
+---
+
+## Log-out without the JS SDK
+
+If you're not using the JS SDK, you need to log out the customer based on the authentication method you're using.
+
+### Log-out for JWT Token
+
+If you're authenticating the customer with their JWT token, remove the JWT token stored locally in your storefront based on your storage method.
+
+For example, if you're storing the JWT token in `localStorage`, remove the item from it:
+
+```ts
+localStorage.removeItem(`token`)
+```
+
+Where `token` is the key of the JWT token in the `localStorage`.
+
+### Log-out for Cookie Session
+
+If you're authenticating the customer with their cookie session ID, you need to send a `DELETE` request to the `/auth/session` route. This will remove the session cookie from the customer's browser.
+
+For example:
+
+```ts
+fetch(`http://localhost:9000/auth/session`, {
+  credentials: "include",
+  method: "DELETE",
+})
+.then((res) => res.json())
+.then(() => {
+  // TODO redirect customer to login page
+})
+```
+
+The API route returns nothing in the response. If the request was successful, you can perform any necessary work to unset the customer and redirect them to the login page.

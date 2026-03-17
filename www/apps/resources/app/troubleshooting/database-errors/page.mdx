@@ -1,0 +1,21 @@
+import SaslSection from '../_sections/database-errors/sasl.mdx'
+import ConnectionErrorSection from '../_sections/database-errors/connection-error.mdx'
+import DockerSection from "../_sections/database-errors/docker.mdx"
+
+export const metadata = {
+  title: `Database Errors`,
+}
+
+# {metadata.title}
+
+This troubleshooting guide covers common database errors you may encounter when working with Medusa and how to resolve them.
+
+## General Errors Connecting to Database
+
+<SaslSection />
+
+---
+
+## Can't Connect to PostgreSQL Docker Container
+
+<DockerSection />

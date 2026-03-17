@@ -1,0 +1,724 @@
+---
+sidebar_label: "First-Purchase Discount"
+tags:
+    - name: cart
+      label: "Implement First-Purchase Discount"
+    - server
+    - nextjs
+    - tutorial
+    - name: customer
+      label: "Implement First-Purchase Discount"
+    - name: promotion
+      label: "Implement First-Purchase Discount"
+products:
+  - cart
+  - customer
+  - promotion
+---
+
+import { Github } from "@medusajs/icons"
+import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
+
+export const metadata = {
+  title: `Implement First-Purchase Discount in Medusa`,
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to implement first-purchase discounts in Medusa.
+
+When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](../../../commerce-modules/page.mdx), which are available out-of-the-box. These features include promotion and cart management features.
+
+The first-purchase discount feature encourages customers to sign up and make their first purchase by offering them a discount. In this tutorial, you'll learn how to implement this feature in Medusa.
+
+## Summary
+
+By following this tutorial, you'll learn how to:
+
+- Install and set up Medusa.
+- Apply a first-purchase discount to a customer's cart if they are a first-time customer.
+- Add custom validation to ensure the discount is only used by first-time customers.
+- Customize the Next.js Starter Storefront to display a pop-up encouraging first-time customers to sign up and receive a discount.
+
+You can follow this tutorial whether you're new to Medusa or an advanced Medusa developer.
+
+![Diagram showcasing the flow of first-time purchase discounts](https://res.cloudinary.com/dza7lstvk/image/upload/v1750846212/Medusa%20Resources/first-purchase-promo-overview_jbiwa9.jpg)
+
+<Card
+  title="View on Github"
+  icon={Github}
+  href="https://github.com/medusajs/examples/tree/main/first-purchase-discount"
+  text="Find the full code for this tutorial."
+/>
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Start by installing the Medusa application on your machine with the following command:
+
+```bash npx2yarnExec
+npx create-medusa-app@latest
+```
+
+First, you'll be asked for the project's name. Then, when prompted about installing the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx), choose "Yes."
+
+Afterward, the installation process will start, which will install the Medusa application in a directory with your project's name and the Next.js Starter Storefront in a separate directory named `{project-name}-storefront`.
+
+<Note title="Why is the storefront installed separately?">
+
+The Medusa application is composed of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Afterward, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors?">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Create a First-Purchase Promotion
+
+Before you apply the first-purchase discount or promotion to a customer's cart, you need to create the promotion that will be applied.
+
+Start your Medusa application with the following command:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, open the Medusa Admin dashboard at `http://localhost:9000/app` and log in with the user you created in the previous step.
+
+Next, click on the "Promotions" tab in the left sidebar, then click on the "Create Promotion" button to create a new promotion.
+
+You can customize the promotion based on your use case. For example, it can be a `10%` off the entire order, or a fixed amount off specific items.
+
+Make sure to set the promotion's code to `FIRST_PURCHASE`, as you'll be using this code in your Medusa customization. If you want to use a different code, make sure to update the code in the next steps accordingly.
+
+<Note title="Need help?">
+
+Refer to the [Create Promotions User Guide](!user-guide!/promotions/create) to learn how to create promotions in Medusa.
+
+</Note>
+
+Once you create and publish the promotion, you can proceed to the next steps.
+
+![First-purchase promotion in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1750846696/Medusa%20Resources/CleanShot_2025-06-25_at_13.18.00_2x_j46emw.png)
+
+---
+
+## Step 3: Apply the First-Purchase Discount to Cart
+
+In this step, you'll customize the Medusa application to automatically apply the first-purchase promotion to a cart.
+
+To build this feature, you need to:
+
+- Create a [workflow](!docs!/learn/fundamentals/workflows) that implements the logic to apply the first-purchase promotion to a cart.
+- Execute the workflow in a [subscriber](!docs!/learn/fundamentals/events-and-subscribers) that is triggered when a cart is created, or when it's transferred to a customer.
+
+### a. Store the First-Purchase Promotion Code
+
+Since you'll refer to the first-purchase promotion code in multiple places, it's a good idea to store it as a constant in your Medusa application.
+
+So, create the file `src/constants.ts` with the following content:
+
+```ts title="src/constants.ts"
+export const FIRST_PURCHASE_PROMOTION_CODE = "FIRST_PURCHASE"
+```
+
+You'll reference this constant in the next steps.
+
+### b. Create the Workflow
+
+Next, you'll create the workflow that implements the logic to apply the first-purchase promotion to a cart.
+
+A [workflow](!docs!/learn/fundamentals/workflows) is a series of actions, called steps, that complete a task with rollback and retry mechanisms. In Medusa, you build commerce features in workflows, then execute them in other customizations, such as subscribers, scheduled jobs, and API routes.
+
+The workflow you'll build will have the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "applyFirstPurchasePromoWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the cart's details, including its promotions and customer.",
+        depth: 1,
+        link: "/references/helper-steps/useQueryGraphStep"
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the details of the first-purchase promotion.",
+        depth: 2,
+        link: "/references/helper-steps/useQueryGraphStep"
+      },
+      {
+        type: "when",
+        steps: [
+          {
+            type: "step",
+            name: "updateCartPromotionsStep",
+            description: "Add the first-purchase promotion to the cart if the customer is a first-time customer.",
+            path: "/references/medusa-workflows/steps/updateCartPromotionsStep",
+          }
+        ],
+        depth: 3
+      },
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the updated cart's details, including its promotions.",
+        depth: 4,
+        link: "/references/helper-steps/useQueryGraphStep"
+      }
+    ]
+  }}
+/>
+
+Medusa provides all these steps in its `@medusajs/medusa/core-flows` package, so you can implement the workflow right away.
+
+To create the workflow, create the file `src/workflows/apply-first-purchase-promo.ts` with the following content:
+
+export const workflowHighlights = [
+  ["7", "cart_id", "Receive cart ID as input."],
+  ["13", "carts", "Retrieve the cart's details."],
+  ["21", "promotions", "Retrieve the first-purchase promotion's details."],
+  ["29", "when", "Check if the first-purchase promotion can be applied."],
+  ["39", "updateCartPromotionsStep", "Add the first-purchase promotion to the cart."],
+  ["47", "updatedCarts", "Retrieve the updated cart's details."],
+  ["55", "WorkflowResponse", "Return the updated cart's details."]
+]
+
+```ts title="src/workflows/apply-first-purchase-promo.ts" highlights={workflowHighlights}
+import { createWorkflow, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { updateCartPromotionsStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { FIRST_PURCHASE_PROMOTION_CODE } from "../constants"
+import { PromotionActions } from "@medusajs/framework/utils"
+
+type WorkflowInput = {
+  cart_id: string
+}
+
+export const applyFirstPurchasePromoWorkflow = createWorkflow(
+  "apply-first-purchase-promo",
+  (input: WorkflowInput) => {
+    const { data: carts } = useQueryGraphStep({
+      entity: "cart",
+      fields: ["promotions.*", "customer.*", "customer.orders.*"],
+      filters: {
+        id: input.cart_id,
+      },
+    })
+
+    const { data: promotions } = useQueryGraphStep({
+      entity: "promotion",
+      fields: ["code"],
+      filters: {
+        code: FIRST_PURCHASE_PROMOTION_CODE,
+      },
+    }).config({ name: "retrieve-promotions" })
+
+    when({ 
+      carts,
+      promotions,
+    }, (data) => {
+      return data.promotions.length > 0 && 
+        !data.carts[0].promotions?.some((promo) => promo?.id === data.promotions[0].id) && 
+        data.carts[0].customer !== null && 
+        data.carts[0].customer.orders?.length === 0
+    })
+    .then(() => {
+      updateCartPromotionsStep({
+        id: carts[0].id,
+        promo_codes: [promotions[0].code!],
+        action: PromotionActions.ADD,
+      })
+    })
+
+    // retrieve updated cart
+    const { data: updatedCarts } = useQueryGraphStep({
+      entity: "cart",
+      fields: ["*", "promotions.*"],
+      filters: {
+        id: input.cart_id,
+      },
+    }).config({ name: "retrieve-updated-cart" })
+
+    return new WorkflowResponse(updatedCarts[0])
+  }
+)
+```
+
+You create a workflow using `createWorkflow` from the Workflows SDK. It accepts the workflow's unique name as a first parameter.
+
+`createWorkflow` accepts as a second parameter a constructor function, which is the workflow's implementation. The function accepts as an input an object with the ID of the cart to apply the first-purchase promotion to.
+
+In the workflow's constructor function, you:
+
+- Retrieve the cart's details, including its promotions and customer, using the [useQueryGraphStep](/references/helper-steps/useQueryGraphStep).
+- Retrieve the details of the first-purchase promotion using the `useQueryGraphStep`.
+    - You pass the `FIRST_PURCHASE_PROMOTION_CODE` constant to the `filters` option to retrieve the promotion.
+- Use the [when-then](!docs!/learn/fundamentals/workflows/conditions) utility to only apply the promotion if the first-purchase promotion exists, the cart doesn't have the promotion, and the customer doesn't have any orders. `when` receives two parameters:
+    - An object to use in the condition function.
+    - A condition function that receives the first parameter object and returns a boolean indicating whether to execute the steps in the `then` block.
+- Retrieve the updated cart's details, including its promotions, using the `useQueryGraphStep` again.
+
+Finally, you return a `WorkflowResponse` with the updated cart's details.
+
+<Note title="Why use when-then?">
+
+You can't perform data manipulation in a workflow's constructor function. Instead, the Workflows SDK includes utility functions like `when` to perform typical operations that require accessing data values. Learn more about workflow constraints in the [Workflow Constraints](!docs!/learn/fundamentals/workflows/constructor-constraints) documentation.
+
+</Note>
+
+### c. Create the Subscriber
+
+Next, you'll create a subscriber that executes the workflow when a cart is created or transferred to a customer.
+
+<Note title="Tip">
+
+A cart can be transferred to a customer when they sign up or log in, or in B2B use cases.
+
+</Note>
+
+A [subscriber](!docs!/learn/fundamentals/events-and-subscribers) is an asynchronous function that listens to events to perform a task. In this case, you'll create a subscriber that listens to the `cart.created` and `cart.customer_transferred` events to execute the workflow.
+
+To create the subscriber, create the file `src/subscribers/apply-first-purchase.ts` with the following content:
+
+```ts title="src/subscribers/apply-first-purchase.ts"
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { applyFirstPurchasePromoWorkflow } from "../workflows/apply-first-purchase-promo"
+
+export default async function cartCreatedHandler({
+  event: { data },
+  container,
+}: SubscriberArgs<{
+  id: string
+}>) {
+  await applyFirstPurchasePromoWorkflow(container)
+  .run({
+    input: {
+      cart_id: data.id,
+    },
+  })
+}
+
+export const config: SubscriberConfig = {
+  event: ["cart.created", "cart.customer_transferred"],
+}
+```
+
+A subscriber file must export:
+
+1. An asynchronous function, which is the subscriber that is executed when the event is emitted.
+2. A configuration object that holds the names of the events the subscriber listens to, which are `cart.created` and `cart.customer_transferred` in this case.
+
+The subscriber function receives an object as a parameter that has a `container` property, which is the [Medusa container](!docs!/learn/fundamentals/medusa-container). The Medusa container holds Framework and commerce tools that you can resolve and use in your customizations.
+
+In the subscriber function, you execute the `applyFirstPurchasePromoWorkflow` by invoking it, passing it the Medusa container, then calling its `run` method. You pass the `cart_id` from the event payload as an input to the workflow.
+
+### Test it Out
+
+You can now test the automatic application of the first-purchase promotion to a cart. To do that, you'll use the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx) you installed in the first step.
+
+<Note title="Reminder" forceMultiline>
+
+The Next.js Starter Storefront was installed in a separate directory from Medusa. The directory's name is `{your-project}-storefront`.
+
+So, if your Medusa application's directory is `medusa-first-promo`, you can find the storefront by going back to the parent directory and changing to the `medusa-first-promo-storefront` directory:
+
+```bash
+cd ../medusa-first-promo-storefront # change based on your project name
+```
+
+</Note>
+
+First, start the Medusa application with the following command:
+
+```bash npm2yarn badgeLabel="Medusa Application" badgeColor="green"
+npm run dev
+```
+
+Then, start the Next.js Starter Storefront with the following command:
+
+```bash npm2yarn badgeLabel="Storefront" badgeColor="blue"
+npm run dev
+```
+
+The storefront will run at `http://localhost:8000`. Open it in your browser and click on Account at the top right to register.
+
+After you register, add a product to the cart, then go to the cart page. You'll find that the `FIRST_PURCHASE` promotion has been applied to the cart automatically.
+
+![Cart page with first-purchase promotion applied](https://res.cloudinary.com/dza7lstvk/image/upload/v1750842319/Medusa%20Resources/CleanShot_2025-06-25_at_12.02.17_2x_bbu8vt.png)
+
+---
+
+## Step 4: Validate First-Purchase Discount Usage
+
+You now automatically apply the first-purchase promotion to a cart, but any customer can use the promotion code at the moment.
+
+So, you need to add custom validation to ensure that the first-purchase promotion is only used by first-time customers.
+
+In this step, you'll customize Medusa's existing workflows to validate the first-purchase promotion usage. You can do that by consuming the [workflows' hooks](!docs!/learn/fundamentals/workflows/workflow-hooks). A workflow hook is a point in a workflow where you can inject custom functionality as a step function.
+
+You'll consume the hooks of the following workflows:
+
+- [updateCartPromotionsWorkflow](/references/medusa-workflows/updateCartPromotionsWorkflow): This workflow is used to add or remove promotions from a cart. You'll check that the customer is a first-time customer before allowing the promotion to be added.
+- [completeCartWorkflow](/references/medusa-workflows/completeCartWorkflow): This workflow is used to complete a cart and place an order. You'll validate that the first-purchase promotion is only used by first-time customers before allowing the order to be placed.
+
+### a. Consume `updateCartPromotionsWorkflow.validate` Hook
+
+You'll start by consuming the `validate` hook of the `updateCartPromotionsWorkflow`. This hook is called before any operations are performed in the workflow.
+
+To consume the hook, create the file `src/workflows/hooks/validate-promotion.ts` with the following content:
+
+export const validatePromotionHighlights = [
+  ["9", "hasFirstPurchasePromo", "Check if the first-purchase promotion is being applied."],
+  ["17", "", "Throw an error if the cart isn't associated with a customer."],
+  ["25", "customer", "Retrieve the customer associated with the cart."],
+  ["33", "", "Throw an error if the customer doesn't have an account or has previous orders."],
+]
+
+```ts title="src/workflows/hooks/validate-promotion.ts" highlights={validatePromotionHighlights}
+import { 
+  updateCartPromotionsWorkflow,
+} from "@medusajs/medusa/core-flows"
+import { FIRST_PURCHASE_PROMOTION_CODE } from "../../constants"
+import { MedusaError } from "@medusajs/framework/utils"
+
+updateCartPromotionsWorkflow.hooks.validate(
+  (async ({ input, cart }, { container }) => {
+    const hasFirstPurchasePromo = input.promo_codes?.some(
+      (code) => code === FIRST_PURCHASE_PROMOTION_CODE
+    )
+
+    if (!hasFirstPurchasePromo) {
+      return
+    }
+
+    if (!cart.customer_id) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "First purchase discount can only be applied to carts with a customer"
+      )
+    }
+    const query = container.resolve("query")
+
+    const { data: [customer] } = await query.graph({
+      entity: "customer",
+      fields: ["orders.*", "has_account"],
+      filters: {
+        id: cart.customer_id,
+      },
+    })
+
+    if (!customer.has_account || (customer?.orders?.length || 0) > 0) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "First purchase discount can only be applied to carts with no previous orders"
+      )
+    }
+  })
+)
+```
+
+You consume a workflow's hook by calling the `hooks` property of the workflow, then calling the hook you want to consume. In this case, you call the `validate` hook of the `updateCartPromotionsWorkflow`.
+
+The `validate` hook receives a step function as a parameter. The function receives two parameters:
+
+- The hook's input, which differs based on the workflow. In this case, it receives the following properties:
+  - `input`: The input of the `updateCartPromotionsWorkflow`, which includes the `promo_codes` to add or remove from the cart.
+  - `cart`: The cart being updated.
+- The hook or step context object. Most notably, it has a `container` property, which is the Medusa container.
+
+In the step function, you check if the `FIRST_PURCHASE_PROMOTION_CODE` is being applied to the cart. If so, you validate that:
+
+- The cart is associated with a customer.
+- The customer has an account.
+- The customer has no previous orders.
+
+If any of these validations fail, you throw a `MedusaError` with the appropriate error message. This will prevent the promotion from being applied to the cart.
+
+<Note title="Tip">
+
+To retrieve the customer's details, you use [Query](!docs!/learn/fundamentals/module-links/query). Query allows you to retrieve data across modules in your Medusa application.
+
+</Note>
+
+### b. Consume `completeCartWorkflow.validate` Hook
+
+Next, you'll consume the `validate` hook of the `completeCartWorkflow`. This workflow is used to complete a cart and place an order. You'll validate that the first-purchase promotion is only used by first-time customers before allowing the order to be placed.
+
+In the same `src/workflows/hooks/validate-promotion.ts` file, add the following import at the top of the file:
+
+```ts title="src/workflows/hooks/validate-promotion.ts"
+import { 
+  completeCartWorkflow,
+} from "@medusajs/medusa/core-flows"
+```
+
+Then, consume the hook at the end of the file:
+
+export const validateCartCompletionHighlights = [
+  ["3", "hasFirstPurchasePromo", "Check if the first-purchase promotion is being applied."],
+  ["11", "", "Throw an error if the cart isn't associated with a customer."],
+  ["20", "customer", "Retrieve the customer associated with the cart."],
+  ["28", "", "Throw an error if the customer doesn't have an account or has previous orders."],
+]
+
+```ts title="src/workflows/hooks/validate-promotion.ts" highlights={validateCartCompletionHighlights}
+completeCartWorkflow.hooks.validate(
+  (async ({ input, cart }, { container }) => {
+    const hasFirstPurchasePromo = cart.promotions?.some(
+      (promo) => promo?.code === FIRST_PURCHASE_PROMOTION_CODE
+    )
+
+    if (!hasFirstPurchasePromo) {
+      return
+    }
+
+    if (!cart.customer_id) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "First purchase discount can only be applied to carts with a customer"
+      )
+    }
+
+    const query = container.resolve("query")
+
+    const { data: [customer] } = await query.graph({
+      entity: "customer",
+      fields: ["orders.*", "has_account"],
+      filters: {
+        id: cart.customer_id,
+      },
+    })
+
+    if (!customer.has_account || (customer?.orders?.length || 0) > 0) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "First purchase discount can only be applied to carts with no previous orders"
+      )
+    }
+  })
+)
+```
+
+You consume the `validate` hook of the `completeCartWorkflow` in the same way as the previous hook. The step function receives the cart being completed as an input.
+
+In the step function, you check if the `FIRST_PURCHASE_PROMOTION_CODE` is applied to the cart. If so, you validate that:
+
+- The cart is associated with a customer.
+- The customer has an account.
+- The customer has no previous orders.
+
+If any of these validations fail, you throw a `MedusaError` with the appropriate error message. This will prevent the order from being placed if the first-purchase promotion is used by a customer who is not a first-time customer.
+
+### Test it Out
+
+To test the custom validation, start the Medusa application and the Next.js Starter Storefront as you did in the previous steps.
+
+Then, register a new customer in the storefront, and place an order. The first-purchase promotion will be applied to the cart automatically and the order will be placed successfully.
+
+Try to place another order with the same customer. The first-purchase promotion will not be automatically applied to the cart. If you also try to apply the first-purchase promotion manually, you'll receive an error message indicating that the promotion can only be applied to first-time customers.
+
+---
+
+## Step 5: Show Discount Pop-Up in Storefront
+
+The first-time purchase promotion is now fully functional. However, you need to inform first-time customers about the discount and encourage them to sign up.
+
+To do that, you'll customize the Next.js Starter Storefront to show a pop-up when a first-time customer visits the storefront.
+
+### a. Create the Pop-Up Component
+
+You'll first create the pop-up component that will be displayed to first-time customers.
+
+Create the file `src/modules/common/components/discount-popup/index.tsx` with the following content:
+
+```tsx title="src/modules/common/components/discount-popup/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+"use client"
+
+import { Button, Heading, Text } from "@medusajs/ui"
+import Modal from "@modules/common/components/modal"
+import useToggleState from "@lib/hooks/use-toggle-state"
+import { useEffect } from "react"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+
+const DISCOUNT_POPUP_KEY = "discount_popup_shown"
+
+const DiscountPopup = () => {
+  const { state, open, close } = useToggleState(false)
+
+  useEffect(() => {
+    // Check if the popup has been shown before
+    const hasBeenShown = localStorage.getItem(DISCOUNT_POPUP_KEY)
+    
+    if (!hasBeenShown) {
+      open()
+      // Mark as shown
+      localStorage.setItem(DISCOUNT_POPUP_KEY, "true")
+    }
+  }, [open])
+
+  return (
+    <Modal isOpen={state} close={close} size="small" data-testid="discount-popup">
+      <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100 rounded-t-lg px-6 pt-8 pb-6">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-20 h-20 bg-amber-200 rounded-full -mr-10 -mt-10 opacity-50"></div>
+        <div className="absolute bottom-0 left-0 w-16 h-16 bg-amber-200 rounded-full -ml-8 -mb-8 opacity-40"></div>
+        
+        <div className="relative">
+          {/* Sale tag */}
+          <div className="absolute -top-2 -right-2 bg-rose-500 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12 shadow-md">
+            SAVE 10%
+          </div>
+
+          <Heading level="h2" className="text-2xl font-bold text-center text-amber-900">
+            Limited Time Offer!
+          </Heading>
+          
+          <div className="flex justify-center my-4">
+            <div className="relative">
+              <div className="text-5xl font-bold text-rose-600">10%</div>
+              <div className="text-lg font-semibold text-amber-900 mt-1">OFF YOUR FIRST ORDER</div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-8xl text-amber-200 opacity-20 font-bold -z-10">
+                %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Modal.Body>
+        <div className="flex flex-col items-center gap-y-6 py-6 px-6 bg-white">
+          <Text className="text-center text-gray-700">
+            Sign up now to receive an exclusive 10% discount on your first purchase. Join our community of satisfied customers!
+          </Text>
+          
+          <div className="flex flex-col gap-y-4 w-full">
+            <LocalizedClientLink href="/account" className="w-full">
+              <Button 
+                variant="primary" 
+                className="w-full h-12 font-semibold text-base shadow-md hover:shadow-lg transition-all"
+                onClick={close}
+              >
+                Register & Save 10%
+              </Button>
+            </LocalizedClientLink>
+            
+            <Button 
+              variant="secondary" 
+              className="w-full h-10 font-medium"
+              onClick={close}
+            >
+              Maybe Later
+            </Button>
+          </div>
+
+          <div className="text-xs text-gray-400 text-center mt-2">
+            *Discount applies to your first order only
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal>
+  )
+}
+
+export default DiscountPopup
+```
+
+This component uses the `Modal` component that is already available in the Next.js Starter Storefront. It displays a pop-up with a discount offer and two buttons: one to register and save the discount, and another to close the pop-up.
+
+The pop-up will only be shown to first-time customers. Once the pop-up is shown, a `discount_popup_shown` key is stored in the local storage to prevent it from being shown again.
+
+### b. Add the Pop-Up to Layout
+
+To ensure that the pop-up is displayed when the customer visits the storefront, you need to add the `DiscountPopup` component to the main layout of the Next.js Starter Storefront.
+
+In `src/app/[countryCode]/(main)/layout.tsx`, add the following import at the top of the file:
+
+```tsx title="src/app/[countryCode]/(main)/layout.tsx" badgeLabel="Storefront" badgeColor="blue"
+import DiscountPopup from "@modules/common/components/discount-popup"
+```
+
+Then, in the return statement of the `PageLayout` component, add the `DiscountPopup` component before rendering `props.children`:
+
+```tsx title="src/app/[countryCode]/(main)/layout.tsx" badgeLabel="Storefront" badgeColor="blue"
+<>
+  {/* ... */}
+  {!customer && <DiscountPopup />}
+  {props.children}
+  {/* ... */}
+</>
+```
+
+Notice that you only display the pop-up if the customer is not logged in. This way, the pop-up will only be shown to first-time customers.
+
+### c. Show Registration Form Before Login
+
+If you go to the `/account` page in the Next.js Starter Storefront as a guest customer, you'll see the login form. However, in this case, you want to show the registration form first instead.
+
+To change this behavior, in `src/modules/account/templates/login-template.tsx`, change the default value of `currentView` to `"register"`:
+
+```tsx title="src/modules/account/templates/login-template.tsx" badgeLabel="Storefront" badgeColor="blue"
+const [currentView, setCurrentView] = useState("register")
+```
+
+This way, when a guest customer visits the `/account` page, they will see the registration form instead of the login form.
+
+### Test it Out
+
+To test the pop-up, start the Medusa application and the Next.js Starter Storefront as you did in the previous steps.
+
+Then, open the storefront in your browser. If you're a first-time customer, you'll see the discount pop-up encouraging you to sign up and receive the first-purchase discount.
+
+<Note title="Tip">
+
+If you don't see the pop-up, make sure that you're logged out.
+
+</Note>
+
+![Discount pop-up in the Next.js Starter Storefront](https://res.cloudinary.com/dza7lstvk/image/upload/v1750844087/Medusa%20Resources/CleanShot_2025-06-25_at_12.34.35_2x_f1f5jh.png)
+
+---
+
+## Next Steps
+
+You've now implemented the first-purchase discount feature in Medusa. You can add more features to build customer loyalty, such as a [loyalty points system](../loyalty-points/page.mdx) or [product reviews](../product-reviews/page.mdx).
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get a more in-depth understanding of all the concepts you've used in this guide and more.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during your development, check out the [troubleshooting guides](../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in the troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.

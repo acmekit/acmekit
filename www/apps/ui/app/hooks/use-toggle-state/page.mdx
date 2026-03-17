@@ -1,0 +1,38 @@
+import { HookValues } from "@/components/HookValues"
+import { ComponentExample } from "@/components/ComponentExample"
+
+export const metadata = {
+  title: `useToggleState`,
+}
+
+# {metadata.title}
+
+This hook tracks a boolean value and toggles between its two states.
+
+This guide explains how to use the `useToggleState` hook.
+
+For example, you can use this hook to display a checkbox or a [Switch](../../components/switch/page.mdx) that toggles a [Focus Modal](../../components/focus-modal/page.mdx).
+
+<ComponentExample name="use-toggle-state-demo" hideFeedback />
+
+## Usage
+
+```tsx
+import { useToggleState } from "@medusajs/ui"
+```
+
+```tsx
+const [state, open, close, toggle] = useToggleState()
+```
+
+---
+
+## API Reference
+
+### useToggleState Parameters
+
+<HookValues hook="useToggleStateProps" />
+
+### useToggleState Return Value
+
+<HookValues hook="useToggleStateReturn" hideFeedback />

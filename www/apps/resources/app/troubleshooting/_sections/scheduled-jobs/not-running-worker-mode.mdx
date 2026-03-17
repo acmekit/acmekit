@@ -1,0 +1,55 @@
+If your scheduled job isn't running at all, it may be because your Medusa application is not running in [worker mode](!docs!/learn/production/worker-mode).
+
+<Note>
+
+If you're a Cloud user and this issue is happening on your deployed Medusa application, contact support for assistance.
+
+</Note>
+
+### Why this Happens
+
+By default, the Medusa application runs both the server, which handles all incoming requests, and the worker, which processes background tasks, in a single process.
+
+In production, you should deploy two separate instances of your Medusa application: one for the server and one for the worker.
+
+However, if you deploy only a server instance, or if you accidentally set the worker mode to `server`, the scheduled jobs won't run because there is no worker process to handle them.
+
+### How to Fix it
+
+#### Deploy a Worker Instance
+
+If you haven't deployed a worker instance of your Medusa application, do so by following the steps in the [Worker Mode of Medusa Instance](!docs!/learn/production/worker-mode) guide.
+
+For example, you should have the following configuration in your `medusa-config.ts` file:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  projectConfig: {
+    workerMode: process.env.WORKER_MODE || "shared",
+    // ...
+  },
+  // ...
+})
+```
+
+In your deployed server Medusa instance, set `WORKER_MODE` to `server`, and in your deployed worker Medusa instance, set `WORKER_MODE` to `worker`.
+
+#### Set the Correct Worker Mode
+
+If this issue is happening locally, ensure that you set the correct worker mode in your `medusa-config.ts` file.
+
+When running the server locally, either don't set the `workerMode` configuration or set it to `shared` in `medusa-config.ts`:
+
+```ts title="medusa-config.ts"
+module.exports = defineConfig({
+  projectConfig: {
+    workerMode: "shared", // or don't set it at all
+    // ...
+  },
+  // ...
+})
+```
+
+#### Additional Resources
+
+- [Worker Mode](!docs!/learn/production/worker-mode)

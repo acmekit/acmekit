@@ -1,0 +1,97 @@
+---
+generate_toc: true
+---
+
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Code Block`,
+}
+
+# {metadata.title}
+
+A component for displaying code snippets with syntax highlighting and copy functionality.
+
+In this guide, you'll learn how to use the Code Block component.
+
+<ComponentExample name="code-block-demo" />
+
+## Usage
+
+```tsx
+import { CodeBlock } from "@medusajs/ui"
+```
+
+```tsx
+<CodeBlock 
+  snippets={[
+    { 
+      language: "tsx", 
+      label: "Label", 
+      code: "import { useProduct } from \"medusa-react\"",
+    },
+  ]}
+>
+  <CodeBlock.Header />
+  <CodeBlock.Body />
+</CodeBlock>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="CodeBlock" componentsToShow={[
+  "CodeBlock",
+  "CodeBlock.Header",
+  "CodeBlock.Header.Meta",
+  "CodeBlock.Body"
+]} />
+
+---
+
+## Usage Outside Medusa Admin
+
+If you're using the `CodeBlock` component in a project other than the Medusa Admin, make sure to include the `TooltipProvider` somewhere up in your component tree, as the `CodeBlock.Header` component uses a [Tooltip](../tooltip/page.mdx#usage-outside-medusa-admin):
+
+```tsx
+<TooltipProvider>
+  <CodeBlock 
+    snippets={[
+      { 
+        language: "tsx", 
+        label: "Label", 
+        code: "import { useProduct } from \"medusa-react\"",
+      },
+    ]}
+  >
+    <CodeBlock.Header />
+    <CodeBlock.Body />
+  </CodeBlock>
+</TooltipProvider>
+```
+
+---
+
+## Examples
+
+### Single Snippet
+
+If you want to only show a code sample for one language or API, you can choose to hide the snippet labels:
+
+<ComponentExample name="code-block-single" />
+
+### No Header
+
+You can also omit the header entirely:
+
+<ComponentExample name="code-block-no-header" />
+
+### No Line Numbers
+
+<ComponentExample name="code-block-no-lines" />
+
+### No Copy Button
+
+<ComponentExample name="code-block-no-copy" hideFeedback />

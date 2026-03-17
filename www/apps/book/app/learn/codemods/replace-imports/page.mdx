@@ -1,0 +1,279 @@
+export const metadata = {
+  title: `${pageNumber} Replace Imports Codemod (v2.11.0+)`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn about the codemod that helps you replace imports in your codebase when upgrading to Medusa v2.11.0.
+
+## What is the Replace Imports Codemod?
+
+[Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0) optimized the package structure by consolidating several external packages into the `@medusajs/framework` package.
+
+Previously, you had to install and manage packages related to MikroORM, Awilix, OpenTelemetry, and the `pg` package separately in your Medusa application. Starting with v2.11.0, these packages are included in the `@medusajs/framework` package.
+
+For example, instead of importing `@mikro-orm/core`, you now import it from `@medusajs/framework/mikro-orm/core`. This applies to all of the following packages:
+
+- `@mikro-orm/*` packages (for example, `@mikro-orm/core`, `@mikro-orm/migrations`, etc.) -> `@medusajs/framework/mikro-orm/{subpath}`
+- `awilix` -> `@medusajs/framework/awilix`
+- `pg` -> `@medusajs/framework/pg`
+- `@opentelemetry/instrumentation-pg` -> `@medusajs/framework/opentelemetry/instrumentation-pg`
+- `@opentelemetry/resources` -> `@medusajs/framework/opentelemetry/resources`
+- `@opentelemetry/sdk-node` -> `@medusajs/framework/opentelemetry/sdk-node`
+- `@opentelemetry/sdk-trace-node` -> `@medusajs/framework/opentelemetry/sdk-trace-node`
+
+To help you update your codebase to reflect these changes, Medusa provides a codemod that automatically replaces imports of these packages throughout your codebase.
+
+---
+
+## Using the Replace Imports Codemod
+
+To use the replace imports codemod, create the file `replace-imports.js` in the root of your Medusa application with the following content:
+
+```js
+#!/usr/bin/env node
+
+const fs = require("fs")
+const path = require("path")
+const { execSync } = require("child_process")
+
+/**
+ * Script to replace imports and require statements from mikro-orm/{subpath}, awilix, and pg
+ * to their @medusajs/framework equivalents
+ */
+
+// Define the replacement mappings
+const replacements = [
+  // MikroORM imports - replace mikro-orm/{subpath} with @medusajs/framework/mikro-orm/{subpath}
+  {
+    pattern: /from\s+['"]@?mikro-orm\/([^'"]+)['"]/g,
+    // eslint-disable-next-line quotes
+    replacement: 'from "@medusajs/framework/mikro-orm/$1"',
+  },
+  // Awilix imports - replace awilix with @medusajs/framework/awilix
+  {
+    pattern: /from\s+['"]awilix['"]/g,
+    // eslint-disable-next-line quotes
+    replacement: 'from "@medusajs/framework/awilix"',
+  },
+  // PG imports - replace pg with @medusajs/framework/pg
+  {
+    pattern: /from\s+['"]pg['"]/g,
+    // eslint-disable-next-line quotes
+    replacement: 'from "@medusajs/framework/pg"',
+  },
+  // OpenTelemetry imports - replace @opentelemetry/instrumentation-pg, @opentelemetry/resources, 
+  // @opentelemetry/sdk-node, and @opentelemetry/sdk-trace-node with @medusajs/framework/opentelemetry/{subpath}
+  {
+    pattern: /from\s+['"]@?opentelemetry\/(instrumentation-pg|resources|sdk-node|sdk-trace-node)['"]/g,
+    // eslint-disable-next-line quotes
+    replacement: 'from "@medusajs/framework/opentelemetry/$1"',
+  },
+  // MikroORM require statements - replace require('@?mikro-orm/{subpath}') with require('@medusajs/framework/mikro-orm/{subpath}')
+  {
+    pattern: /require\s*\(\s*['"]@?mikro-orm\/([^'"]+)['"]\s*\)/g,
+    // eslint-disable-next-line quotes
+    replacement: 'require("@medusajs/framework/mikro-orm/$1")',
+  },
+  // Awilix require statements - replace require('awilix') with require('@medusajs/framework/awilix')
+  {
+    pattern: /require\s*\(\s*['"]awilix['"]\s*\)/g,
+    // eslint-disable-next-line quotes
+    replacement: 'require("@medusajs/framework/awilix")',
+  },
+  // PG require statements - replace require('pg') with require('@medusajs/framework/pg')
+  {
+    pattern: /require\s*\(\s*['"]pg['"]\s*\)/g,
+    // eslint-disable-next-line quotes
+    replacement: 'require("@medusajs/framework/pg")',
+  },
+  // OpenTelemetry require statements - replace require('@opentelemetry/instrumentation-pg'), 
+  // require('@opentelemetry/resources'), require('@opentelemetry/sdk-node'), and 
+  // require('@opentelemetry/sdk-trace-node') with require('@medusajs/framework/opentelemetry/{subpath}')
+  {
+    pattern: /require\s*\(\s*['"]@?opentelemetry\/(instrumentation-pg|resources|sdk-node|sdk-trace-node)['"]\s*\)/g,
+    // eslint-disable-next-line quotes
+    replacement: 'require("@medusajs/framework/opentelemetry/$1")',
+  },
+]
+
+function processFile(filePath) {
+  try {
+    const content = fs.readFileSync(filePath, "utf8")
+    let modifiedContent = content
+    let wasModified = false
+
+    replacements.forEach(({ pattern, replacement }) => {
+      const newContent = modifiedContent.replace(pattern, replacement)
+      if (newContent !== modifiedContent) {
+        wasModified = true
+        modifiedContent = newContent
+      }
+    })
+
+    if (wasModified) {
+      fs.writeFileSync(filePath, modifiedContent)
+      console.log(`✓ Updated: ${filePath}`)
+      return true
+    }
+
+    return false
+  } catch (error) {
+    console.error(`✗ Error processing ${filePath}:`, error.message)
+    return false
+  }
+}
+
+function getTargetFiles() {
+  try {
+    // Get the current script's filename to exclude it from processing
+    const currentScript = path.basename(__filename)
+    
+    // Find TypeScript/JavaScript files, excluding common directories that typically don't contain target imports
+    const findCommand = `find . -name node_modules -prune -o -name .git -prune -o -name dist -prune -o -name build -prune -o -name coverage -prune -o -name "*.ts" -print -o -name "*.js" -print -o -name "*.tsx" -print -o -name "*.jsx" -print`
+    const files = execSync(findCommand, {
+      encoding: "utf8",
+      maxBuffer: 50 * 1024 * 1024, // 50MB buffer
+    })
+      .split("\n")
+      .filter((line) => line.trim())
+
+    console.log(files)
+
+    const targetFiles = []
+    let processedCount = 0
+
+    console.log(`📄 Scanning ${files.length} files for target imports and require statements...`)
+
+    for (const file of files) {
+      try {
+        // Skip the current script file
+        const fileName = path.basename(file)
+        if (fileName === currentScript) {
+          processedCount++
+          continue
+        }
+        const content = fs.readFileSync(file, "utf8")
+        if (
+          /from\s+['"]@?mikro-orm\//.test(content) ||
+          /from\s+['"]awilix['"]/.test(content) ||
+          /from\s+['"]pg['"]/.test(content) ||
+          /require\s*\(\s*['"]@?mikro-orm\//.test(content) ||
+          /require\s*\(\s*['"]awilix['"]/.test(content) ||
+          /require\s*\(\s*['"]pg['"]/.test(content)
+        ) {
+          targetFiles.push(file.startsWith("./") ? file.slice(2) : file)
+        }
+        processedCount++
+        if (processedCount % 100 === 0) {
+          process.stdout.write(
+            `\r📄 Processed ${processedCount}/${files.length} files...`
+          )
+        }
+      } catch (fileError) {
+        // Skip files that can't be read
+        continue
+      }
+    }
+
+    if (processedCount > 0) {
+      console.log(`\r📄 Processed ${processedCount} files.                    `)
+    }
+
+    return targetFiles
+  } catch (error) {
+    console.error("Error finding target files:", error.message)
+    return []
+  }
+}
+
+function main() {
+  console.log("🔄 Finding files with target imports and require statements...")
+
+  const targetFiles = getTargetFiles()
+
+  if (targetFiles.length === 0) {
+    console.log("ℹ️  No files found with target imports or require statements.")
+    return
+  }
+
+  console.log(`📁 Found ${targetFiles.length} files to process`)
+
+  let modifiedCount = 0
+  let errorCount = 0
+
+  targetFiles.forEach((filePath) => {
+    const fullPath = path.resolve(filePath)
+    if (fs.existsSync(fullPath)) {
+      if (processFile(fullPath)) {
+        modifiedCount++
+      }
+    } else {
+      console.warn(`⚠️  File not found: ${filePath}`)
+      errorCount++
+    }
+  })
+
+  console.log("\n📊 Summary:")
+  console.log(`   Files processed: ${targetFiles.length}`)
+  console.log(`   Files modified: ${modifiedCount}`)
+  console.log(`   Errors: ${errorCount}`)
+
+  if (modifiedCount > 0) {
+    console.log("\n✅ Import replacement completed successfully!")
+    console.log("\n💡 Next steps:")
+    console.log("   1. Review the changes with: git diff")
+    console.log("   2. Run your tests to ensure everything works correctly")
+    console.log("   3. Commit the changes if you're satisfied")
+  } else {
+    console.log(
+      "\n✅ No modifications needed - all imports are already correct!"
+    )
+  }
+}
+
+// Run if called directly
+if (require.main === module) {
+  main()
+}
+
+module.exports = { processFile, getTargetFiles, main }
+```
+
+This script scans your project for files that import from `mikro-orm/{subpath}`, `awilix`, or `pg`, and replaces those imports with their new equivalents from `@medusajs/framework`. It handles both ES module `import` statements and CommonJS `require` statements in JavaScript and TypeScript files.
+
+Next, run the following command in your terminal to make the script executable:
+
+<Note title="Windows Users">
+
+You can run the script using `node` without changing permissions.
+
+</Note>
+
+```bash
+chmod +x replace-imports.js
+```
+
+Finally, execute the script with the following command:
+
+```bash
+node replace-imports.js
+```
+
+This will scan your project files, apply the necessary import replacements, and provide a summary of the changes made.
+
+---
+
+## Next Steps
+
+After running the codemod, review the changes made to your codebase. You can use `git diff` to see the modifications. Additionally, run your tests to ensure everything works as expected.
+
+If everything is working correctly, you can remove the `replace-imports.js` file from your project. You can also remove the following packages from your `package.json`, as they're now included in the `@medusajs/framework` package:
+
+- `@mikro-orm/*` packages (for example, `@mikro-orm/core`, `@mikro-orm/migrations`, etc.)
+- `awilix`
+- `pg`
+- `@opentelemetry/instrumentation-pg`
+- `@opentelemetry/resources`
+- `@opentelemetry/sdk-node`
+- `@opentelemetry/sdk-trace-node`

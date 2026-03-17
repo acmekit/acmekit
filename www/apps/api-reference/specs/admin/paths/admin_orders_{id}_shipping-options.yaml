@@ -1,0 +1,62 @@
+get:
+  operationId: GetOrdersIdShippingOptions
+  summary: List Shipping Options for Order
+  x-sidebar-summary: List Shipping Options
+  description: >-
+    Retrieve a list of shipping options that can be used for outbound shipping
+    in an order. This is especially useful when adding outbound shipping to
+    order exchanges or claims.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The order's ID.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: ../code_samples/JavaScript/admin_orders_{id}_shipping-options/get.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_orders_{id}_shipping-options/get.sh
+  tags:
+    - Orders
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            description: The list of shipping options.
+            required:
+              - shipping_options
+            properties:
+              shipping_options:
+                type: array
+                description: The list of shipping options.
+                items:
+                  type: object
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: listShippingOptionsForOrderWorkflow
+  x-events: []
+  x-since: 2.10.0

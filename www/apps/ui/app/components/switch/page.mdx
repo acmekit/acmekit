@@ -1,0 +1,46 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Switch`,
+}
+
+# {metadata.title}
+
+A component for toggling between two states, typically on and off. It's essentially a checkbox in the form of a switch.
+
+In this guide, you'll learn how to use the Switch component.
+
+<ComponentExample name="switch-demo" />
+
+## Usage
+
+```tsx
+import { Switch } from "@medusajs/ui"
+```
+
+```tsx
+<Switch />
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Switch" />
+
+---
+
+## Examples
+
+### Switch Sizes
+
+<ComponentExample name="switch-all-sizes" />
+
+### Controlled Switch
+
+<ComponentExample name="switch-controlled" hideFeedback />
+
+### Disabled Switch
+
+<ComponentExample name="switch-disabled" />

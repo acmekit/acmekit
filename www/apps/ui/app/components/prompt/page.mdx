@@ -1,0 +1,66 @@
+---
+generate_toc: true
+---
+
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Prompt`,
+}
+
+# {metadata.title}
+
+A component that displays a dialog prompting the user for their approval. It's useful when confirming destructive actions.
+
+<Note>
+
+This component is useful if you want to control the prompt's content, format, and design. For a simpler approach that follows Medusa's prompt format, refer to the [usePrompt hook](../../hooks/use-prompt/page.mdx).
+
+</Note>
+
+In this guide, you'll learn how to use the Prompt component.
+
+<ComponentExample name="prompt-demo" />
+
+## Usage
+
+```tsx
+import { Prompt } from "@medusajs/ui"
+```
+
+```tsx
+<Prompt>
+  <Prompt.Trigger>Trigger</Prompt.Trigger>
+  <Prompt.Content>
+    <Prompt.Header>
+      <Prompt.Title>Title</Prompt.Title>
+      <Prompt.Description>Description</Prompt.Description>
+    </Prompt.Header>
+    <Prompt.Footer>
+      <Prompt.Cancel>Cancel</Prompt.Cancel>
+      <Prompt.Action>Delete</Prompt.Action>
+    </Prompt.Footer>
+  </Prompt.Content>
+</Prompt>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Prompt" componentsToShow={[
+  "Prompt",
+  "Prompt.Header",
+  "Prompt.Footer"
+]} />
+
+---
+
+## Examples
+
+### Confirmation Prompt Variant
+
+The `confirmation` variant is useful when confirming an operation that isn't destructive, such as deleting an item.
+
+<ComponentExample name="prompt-confirmation" hideFeedback />

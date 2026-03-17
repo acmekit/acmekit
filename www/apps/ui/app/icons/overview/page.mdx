@@ -1,0 +1,80 @@
+import { IconSearch } from "@/components/IconSearch"
+import { ComponentExample } from "@/components/ComponentExample"
+import { Prerequisites } from "docs-ui"
+
+export const metadata = {
+  title: `Icons`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to install and use Medusa UI icons.
+
+The Medusa UI icons package is a collection of React icon components from Medusa's design system. You can use these icons either in your Medusa Admin customizations, or in your standalone React projects.
+
+## Installation
+
+The Medusa UI icons package is available by default in your Medusa application, so you can use them in your Medusa Admin customizations without any additional installation steps.
+
+### Installation in Standalone Projects
+
+<Prerequisites
+  items={[
+    {
+      text: "React 16.8+ installed in your project.",
+      link: "https://react.dev/",
+    }
+  ]}
+/>
+
+To install the Medusa UI icons package in your React-based project, run the following command:
+
+```bash npm2yarn
+npm install @medusajs/icons
+```
+
+---
+
+## Usage
+
+You can import and use the icons in your React components:
+
+```tsx
+import { Sun } from "@medusajs/icons"
+
+export default function Component() {
+  return (
+    <Sun />
+  )
+}
+```
+
+---
+
+## Icons List
+
+Below is a list of all the icons available in the Medusa UI design system. Click on any icon to copy its component name.
+
+<IconSearch />
+
+---
+
+## Icon Props
+
+Icons accept all props that an `svg` element accepts.
+
+### Icon Color
+
+By default, outline icons' stroke color and solid icon's fill color are set to `currentColor`.
+
+You can set a different color by passing the `color` prop.
+
+<ComponentExample name="icon-color" />
+
+You can also use a CSS class by passing the `className` prop.
+
+<ComponentExample name="icon-color-classes" />
+
+### Icon Size
+
+All icon's width and height are `20px` and it's not possible to change them.

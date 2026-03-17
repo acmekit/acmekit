@@ -1,0 +1,542 @@
+---
+tags:
+  - customer
+  - storefront
+products:
+  - customer
+---
+
+import { CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `Manage Customer Addresses in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to manage a customer's addresses in a storefront. This is useful in the customer's profile page, or when the customer adds an address during checkout and you want to save it for future orders.
+
+## List Customer Addresses
+
+To retrieve the list of customer addresses, send a request to the [List Customer Addresses API route](!api!/store#customers_getcustomersmeaddressesaddress_id):
+
+<Note title="Tip">
+
+- Learn how to install and configure the JS SDK in the [JS SDK documentation](../../../js-sdk/page.mdx).
+- Since only authenticated customers can view their addresses, this example assumes that the JS SDK is already configured for authentication and the customer's authentication token was set as explained in the [Login in Storefront](../login/page.mdx) and [Third-Party Login](../third-party-login/page.mdx) guides.
+
+</Note>
+
+<CodeTabs group="store-request">
+  <CodeTab label="React" value="react">
+
+export const highlights = [
+  ["21", "offset", "Calculate the number of addresses to skip based on the current page and limit."],
+  ["23", "listAddress", "Send a request to retrieve the addresses."],
+  ["27", "count", "The total number of addresses in the Medusa application."],
+  ["39", "setHasMorePages", "Set whether there are more pages based on the total count."],
+  ["52", "", "Using only two address fields for simplicity."],
+  ["59", "button", "Show a button to load more addresses if there are more pages."]
+]
+
+  ```tsx highlights={highlights} collapsibleLines="50-77" expandButtonLabel="Show render"
+  "use client" // include with Next.js 13+
+
+  import { HttpTypes } from "@medusajs/types"
+  import { useEffect, useState } from "react"
+  import { sdk } from "@/lib/sdk"
+
+  export default function Addresses() {
+    const [addresses, setAddresses] = useState<
+      HttpTypes.StoreCustomerAddress[]
+    >([])
+    const [loading, setLoading] = useState(true)
+    const limit = 20
+    const [currentPage, setCurrentPage] = useState(1)
+    const [hasMorePages, setHasMorePages] = useState(false)
+
+    useEffect(() => {
+      if (!loading) {
+        return
+      }
+
+      const offset = (currentPage - 1) * limit
+
+      sdk.store.customer.listAddress({
+        limit,
+        offset,
+      })
+      .then(({ addresses: addressesData, count }) => {
+        setAddresses((prev) => {
+          if (prev.length > offset) {
+            // addresses already added because 
+            // the same request has already been sent
+            return prev
+          }
+          return [
+            ...prev,
+            ...addressesData,
+          ]
+        })
+        setHasMorePages(count > limit * currentPage)
+      })
+      .finally(() => setLoading(false))
+    }, [loading])
+
+    return (
+      <div>
+        {loading && <span>Loading...</span>}
+        {!loading && !addresses.length && (
+          <span>You have no addresses</span>
+        )}
+        <ul>
+          {addresses.map((address) => (
+            <li key={address.id}>
+              City: {address.city} - 
+              Country: {address.country_code}
+            </li>
+          ))}
+        </ul>
+        {!loading && hasMorePages && (
+          <button 
+            onClick={() => {
+              setCurrentPage((prev) => prev + 1)
+              setLoading(true)
+            }}
+            disabled={loading}
+          >
+            Load More
+          </button>
+        )}
+      </div>
+    )
+  }
+  ```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+
+export const fetchHighlights = [
+  ["2", "limit", "The number of addresses to retrieve"],
+  ["3", "offset", "The number of addresses to skip before those retrieved."],
+]
+
+  ```ts highlights={fetchHighlights}
+  sdk.store.customer.listAddress({
+    limit,
+    offset,
+  })
+  .then(({ addresses, count }) => {
+    // use addresses...
+    console.log(addresses, count)
+  })
+  ```
+
+  </CodeTab>
+</CodeTabs>
+
+The [List Customer Addresses API route](!api!/store#customers_getcustomersmeaddresses) accepts pagination parameters to paginate the address.
+
+The request returns in the response the `addresses` field, which is an array of addresses. You can check its structure in the [customer schema](!api!/store#customers_customer_schema).
+
+The request also returns the `count` field, which is the total number of addresses in the Medusa application. You can use it to check if there are more addresses to retrieve.
+
+---
+
+## Add Customer Address
+
+To add a new address for the customer, send a request to the [Add Customer Address API route](!api!/store#customers_postcustomersmeaddresses):
+
+<Note title="Tip">
+
+- This example uses the `useRegion` hook defined in the [Region Context guide](../../regions/context/page.mdx).
+- This example uses the `useCustomer` hook defined in the [Customer Context guide](../context/page.mdx).
+- Since only authenticated customers can add addresses, this example assumes that the JS SDK is already configured for authentication and the customer's authentication token was set as explained in the [Login in Storefront](../login/page.mdx) and [Third-Party Login](../third-party-login/page.mdx) guides.
+
+</Note>
+
+<CodeTabs group="store-request">
+  <CodeTab label="React" value="react">
+
+export const addHighlights = [
+  ["4", "useRegion", "Use the hook defined in the Region Context guide."],
+  ["5", "useCustomer", "Use the hook defined in the Customer Context guide."],
+]
+
+  ```tsx highlights={addHighlights} collapsibleLines="46-117" expandButtonLabel="Show form"
+  "use client" // include with Next.js 13+
+
+  import { useState } from "react"
+  import { useRegion } from "@/providers/region"
+  import { useCustomer } from "@/providers/customer"
+  import { sdk } from "@/lib/sdk"
+
+  export default function AddAddress() {
+    const { region } = useRegion()
+    const { setCustomer } = useCustomer()
+
+    const [loading, setLoading] = useState(false)
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [address1, setAddress1] = useState("")
+    const [company, setCompany] = useState("")
+    const [postalCode, setPostalCode] = useState("")
+    const [city, setCity] = useState("")
+    const [countryCode, setCountryCode] = useState("")
+    const [province, setProvince] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+
+    const handleAdd = (
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
+      e.preventDefault()
+      setLoading(false)
+
+      sdk.store.customer.createAddress({
+        first_name: firstName,
+        last_name: lastName,
+        address_1: address1,
+        company,
+        postal_code: postalCode,
+        city,
+        country_code: countryCode,
+        province,
+        phone: phoneNumber,
+      })
+      .then(({ customer }) => {
+        setCustomer(customer)
+      })
+      .finally(() => setLoading(false))
+    }
+
+    return (
+      <form>
+        <input 
+          type="text" 
+          placeholder="First Name" 
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="Last Name" 
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="Address Line" 
+          value={address1}
+          onChange={(e) => setAddress1(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="Company" 
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="Postal Code" 
+          value={postalCode}
+          onChange={(e) => setPostalCode(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="City" 
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <select
+          value={countryCode}
+          onChange={(e) => setCountryCode(e.target.value)}
+        >
+          {region?.countries?.map((country) => (
+            <option 
+              key={country.iso_2}
+              value={country.iso_2}
+            >
+              {country.display_name}
+            </option>
+          ))}
+        </select>
+        <input 
+          type="text" 
+          placeholder="Province" 
+          value={province}
+          onChange={(e) => setProvince(e.target.value)}
+        />
+        <input 
+          type="tel" 
+          placeholder="Phone Number" 
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+        <button
+          disabled={loading}
+          onClick={handleAdd}
+        >
+          Add
+        </button>
+      </form>
+    )
+  }
+  ```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+
+  ```ts
+  sdk.store.customer.createAddress({
+    first_name: firstName,
+    last_name: lastName,
+    address_1: address1,
+    company,
+    postal_code: postalCode,
+    city,
+    country_code: countryCode,
+    province,
+    phone: phoneNumber,
+  })
+  .then(({ customer }) => {
+    // use customer
+    console.log(customer)
+  })
+  ```
+
+  </CodeTab>
+</CodeTabs>
+
+In this example, you send a request to the [Add Customer Address API route](!api!/store#customers_postcustomersmeaddresses) to add a new address for the customer.
+
+The response of the request has a `customer` field, which is a [customer object](!api!/store#customers_customer_schema). You can access the new address in the `addresses` property of the customer object.
+
+---
+
+## Edit an Address
+
+To edit an address, send a request to the [Update Customer Address API route](!api!/store#customers_postcustomersmeaddressesaddress_id):
+
+<Note title="Tip">
+
+- This example uses the `useRegion` hook defined in the [Region Context guide](../../regions/context/page.mdx).
+- This example uses the `useCustomer` hook defined in the [Customer Context guide](../context/page.mdx).
+- Since only authenticated customers can edit their addresses, this example assumes that the JS SDK is already configured for authentication and the customer's authentication token was set as explained in the [Login in Storefront](../login/page.mdx) and [Third-Party Login](../third-party-login/page.mdx) guides.
+
+</Note>
+
+<CodeTabs group="store-request">
+  <CodeTab label="React" value="react">
+
+export const editHighlights = [
+  ["4", "useRegion", "Use the hook defined in the Region Context guide."],
+  ["5", "useCustomer", "Use the hook defined in the Customer Context guide."],
+  ["18", "address", "Retrieve the address from the customer's `addresses` property."],
+]
+
+  ```tsx highlights={editHighlights} collapsibleLines="76-147" expandButtonLabel="Show form"
+  "use client" // include with Next.js 13+
+
+  import { useState } from "react"
+  import { useRegion } from "@/providers/region"
+  import { useCustomer } from "@/providers/customer"
+  import { sdk } from "@/lib/sdk"
+
+  type Props = {
+    id: string
+  }
+
+  export default function EditAddress(
+    { id }: Props
+  ) {
+    const { customer, setCustomer } = useCustomer()
+    const { region } = useRegion()
+
+    const address = customer?.addresses.find(
+      (address) => address.id === id
+    )
+    const [loading, setLoading] = useState(false)
+    const [firstName, setFirstName] = useState(
+      address?.first_name || ""
+    )
+    const [lastName, setLastName] = useState(
+      address?.last_name || ""
+    )
+    const [address1, setAddress1] = useState(
+      address?.address_1 || ""
+    )
+    const [company, setCompany] = useState(
+      address?.company || ""
+    )
+    const [postalCode, setPostalCode] = useState(
+      address?.postal_code || ""
+    )
+    const [city, setCity] = useState(
+      address?.city || ""
+    )
+    const [countryCode, setCountryCode] = useState(
+      address?.country_code || ""
+    )
+    const [province, setProvince] = useState(
+      address?.province || ""
+    )
+    const [phoneNumber, setPhoneNumber] = useState(
+      address?.phone || ""
+    )
+
+    const handleEdit = (
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
+      e.preventDefault()
+      if (!customer || !address) {
+        return
+      }
+      setLoading(true)
+
+      sdk.store.customer.updateAddress(address.id, {
+        first_name: firstName,
+        last_name: lastName,
+        address_1: address1,
+        company,
+        postal_code: postalCode,
+        city,
+        country_code: countryCode,
+        province,
+        phone: phoneNumber,
+      })
+      .then(({ customer }) => {
+        setCustomer(customer)
+      })
+      .finally(() => setLoading(false))
+    }
+
+    return (
+      <form>
+        <input 
+          type="text" 
+          placeholder="First Name" 
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="Last Name" 
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="Address Line" 
+          value={address1}
+          onChange={(e) => setAddress1(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="Company" 
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="Postal Code" 
+          value={postalCode}
+          onChange={(e) => setPostalCode(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder="City" 
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <select
+          value={countryCode}
+          onChange={(e) => setCountryCode(e.target.value)}
+        >
+          {region?.countries?.map((country) => (
+            <option 
+              key={country.iso_2}
+              value={country.iso_2}
+            >
+              {country.display_name}
+            </option>
+          ))}
+        </select>
+        <input 
+          type="text" 
+          placeholder="Province" 
+          value={province}
+          onChange={(e) => setProvince(e.target.value)}
+        />
+        <input 
+          type="tel" 
+          placeholder="Phone Number" 
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+        <button
+          disabled={loading}
+          onClick={handleEdit}
+        >
+          Add
+        </button>
+      </form>
+    )
+  }
+  ```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+
+  ```ts
+  sdk.store.customer.updateAddress(address.id, {
+    first_name: firstName,
+    last_name: lastName,
+    address_1: address1,
+    company,
+    postal_code: postalCode,
+    city,
+    country_code: countryCode,
+    province,
+    phone: phoneNumber,
+  })
+  .then(({ customer }) => {
+    // use customer...
+    console.log(customer)
+  })
+  ```
+
+  </CodeTab>
+</CodeTabs>
+
+In this example, you send a request to the [Update Customer Address API route](!api!/store#customers_postcustomersmeaddressesaddress_id) to edit an address.
+
+The response of the request has a `customer` field, which is a [customer object](!api!/store#customers_customer_schema). You can access the updated address in the `addresses` property of the customer object.
+
+---
+
+## Delete Customer Address
+
+To delete a customer's address, send a request to the [Delete Customer Address API route](!api!/store#customers_deletecustomersmeaddressesaddress_id):
+
+<Note title="Tip">
+
+Since only authenticated customers can delete their addresses, this example assumes that the JS SDK is already configured for authentication and the customer's authentication token was set as explained in the [Login in Storefront](../login/page.mdx) and [Third-Party Login](../third-party-login/page.mdx) guides.
+
+</Note>
+
+export const deleteHighlights = [
+  ["1", "addrId", "The ID of the address to delete."],
+  ["2", "parent", "The updated customer object."]
+]
+
+```ts highlights={deleteHighlights}
+sdk.store.customer.deleteAddress(addrId)
+.then(({ parent: customer }) => {
+  // use customer...
+  console.log(customer)
+})
+```
+
+In this example, you send a request to the [Delete Customer Address API route](!api!/store#customers_deletecustomersmeaddressesaddress_id) to delete an address.
+
+The response of the request has a `parent` field, which is a [customer object](!api!/store#customers_customer_schema). You can access the updated customer in the `parent` property of the response.

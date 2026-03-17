@@ -1,0 +1,48 @@
+/**
+ * @schema IndexInfo
+ * type: object
+ * description: The index's metadata information.
+ * x-schemaName: IndexInfo
+ * required:
+ *   - id
+ *   - entity
+ *   - status
+ *   - fields
+ *   - updated_at
+ *   - last_synced_key
+ * properties:
+ *   id:
+ *     type: string
+ *     title: id
+ *     description: The index's ID.
+ *   entity:
+ *     type: string
+ *     title: entity
+ *     description: The index's entity.
+ *   status:
+ *     type: string
+ *     description: The index's syncing or ingesting status.
+ *     enum:
+ *       - pending
+ *       - error
+ *       - done
+ *       - processing
+ *   fields:
+ *     type: array
+ *     description: The index's fields.
+ *     items:
+ *       type: string
+ *       title: fields
+ *       description: The index's fields.
+ *   updated_at:
+ *     type: string
+ *     format: date-time
+ *     title: updated_at
+ *     description: The date the index was last updated.
+ *   last_synced_key:
+ *     type: string
+ *     title: last_synced_key
+ *     description: The key of the last index sync.
+ * 
+*/
+

@@ -1,0 +1,193 @@
+---
+products:
+  - product
+  - order
+---
+
+import { ChildDocs } from "docs-ui"
+import { AcademicCapSolid } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Marketplace Recipe`,
+}
+
+# {metadata.title}
+
+This recipe provides the general steps to implement a marketplace in your Medusa application.
+
+## Example Guides
+
+<ChildDocs type="item" onlyTopLevel={true} />
+
+## Overview
+
+A marketplace is an online commerce store that allows different vendors to sell their products within the same commerce system. Customers can purchase products from any of these vendors, and vendors can manage their orders separately.
+
+Medusa's [Framework](!docs!/learn/fundamentals/framework) for customizations facilitates building a marketplace. You can create a Marketplace Module that implements custom data models, such as vendors or sellers, and link those data models to existing ones such as products and orders. You also expose custom features using API routes, and implement complex flows using workflows.
+
+<Note title="Related use-case">
+
+[How Foraged built a custom marketplace with Medusa](https://medusajs.com/blog/foraged/).
+
+</Note>
+
+---
+
+## Create Custom Module with Data Models
+
+In a marketplace, a business or a vendor has a user, and they can use that user to authenticate and manage the vendor's data.
+
+You can create a marketplace module that implements data models for vendors, their admins, and any other data models that fit your use case.
+
+<CardList items={[
+  {
+    href: "!docs!/learn/fundamentals/modules",
+    title: "Create a Module",
+    text: "Learn how to create a module.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/modules#1-create-data-model",
+    title: "Create Data Models",
+    text: "Create data models in the module.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+---
+
+## Link Custom and Existing Data Models
+
+Since a vendor has products, orders, and other models based on your use case, you can define module links between your module's data models and the Commerce Module's data models.
+
+For example, if you defined a vendor data model in a marketplace module, you can define a module link between the vendor and the Product Module's product data model. This builds an association between a vendor and their products, allowing you to query and manage products based on the vendor.
+
+<Card
+  href="!docs!/learn/fundamentals/module-links"
+  title="Define a Module Link"
+  text="Learn how to define a module link."
+  icon={AcademicCapSolid}
+/>
+
+---
+
+## Create Vendor API Routes
+
+Your marketplace will most likely provide custom features for vendors, such as managing their products and orders. You can create API routes that expose these features to the vendors.
+
+When you build these API routes, it's essential that you protect them to only allow authenticated vendors. For example, only a vendor's admin should be able to manage their products and orders.
+
+Medusa supports creating custom actor types that can be authenticated with your custom API routes.
+
+<CardList items={[
+  {
+    href: "!docs!/learn/fundamentals/api-routes",
+    title: "Create API Routes",
+    text: "Learn how to create an API Route in Medusa.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "/commerce-modules/auth/create-actor-type",
+    title: "Create an Actor Type",
+    text: "Learn how to create an actor type and authenticate it.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+---
+
+## Split Orders Based on Vendors
+
+If your use case allows a customer's orders to have items from different vendors, you can replicate the [Complete Cart API route](!api!/store#carts_postcartsidcomplete) to customize the order creation process.
+
+In the API route, you can create a workflow that splits the order into multiple orders, one for each vendor. A workflow is a series of steps that provide features like rollback and retry mechanisms.
+
+<CardList items={[
+  {
+    href: "!docs!/learn/fundamentals/api-routes/override",
+    title: "Replicate API Routes",
+    text: "Learn how to replicate an existing API route.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/workflows",
+    title: "Create a Workflow",
+    text: "Learn how to create a workflow in Medusa.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+---
+
+## Customize Admin Dashboard
+
+Based on your use case, you may need to customize the Medusa Admin to add new widgets or pages.
+
+For example, you can create a page that lists all vendors or a widget that shows a product's vendor information.
+
+The Medusa Admin is an extensible application within your Medusa application. You can customize it by:
+
+- **Widgets**: Adding widgets to existing pages, such as the product page.
+- **UI Routes**: Adding new pages to the Medusa Admin, such as a page to manage vendors.
+- **Settings Pages**: Adding new pages to the Medusa Admin settings, such as a page to manage marketplace settings.
+
+<CardList items={[
+  {
+    href: "!docs!/learn/fundamentals/admin/widgets",
+    title: "Create Admin Widget",
+    text: "Add widgets into existing admin pages.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/admin/ui-routes",
+    title: "Create Admin UI Routes",
+    text: "Add new pages to your Medusa Admin.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+<Card
+  href="!docs!/learn/fundamentals/admin/ui-routes#create-settings-page"
+  title="Create Admin Setting Page"
+  text="Add new page to the Medusa Admin settings."
+  icon={AcademicCapSolid}
+  className="mt-1"
+/>
+
+---
+
+## Build Dashboard for Vendors
+
+For more complex use cases, customizing the Medusa Admin may not be enough to allow vendors to manage their data.
+
+In that case, you can build a custom dashboard for vendors that allows them to manage their data. This dashboard can interact with Medusa's Admin API and the custom API routes you created for vendors to provide a seamless experience.
+
+<Card
+  href="!api!/admin"
+  title="Medusa Admin APIs"
+  text="Learn about available APIs for the Medusa Admin."
+  icon={AcademicCapSolid}
+/>
+
+---
+
+## Customize or Build Storefront
+
+Medusa provides a Next.js Starter Storefront to use with your application. You can customize it for your marketplace use case, such as showing products by vendor.
+
+Alternatively, you can build your own storefront using the Medusa APIs. This headless approach gives you the flexibility to build a custom storefront without limitations on which tech stack you use, or the design of the storefront.
+
+<CardList items={[
+  {
+    href: "/nextjs-starter",
+    title: "Next.js Starter Storefront",
+    text: "Learn how to install and customize the Next.js Starter Storefront.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "/storefront-development",
+    title: "Storefront Development",
+    text: "Find useful guides for creating a custom storefront.",
+    icon: AcademicCapSolid,
+  },
+]} />

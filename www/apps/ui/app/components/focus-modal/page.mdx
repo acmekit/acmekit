@@ -1,0 +1,66 @@
+---
+generate_toc: true
+---
+
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Focus Modal`,
+}
+
+# {metadata.title}
+
+A component for rendering a modal dialog shown over the main content.
+
+In this guide, you'll learn how to use the Focus Modal component.
+
+<ComponentExample name="focus-modal-demo" />
+
+## Usage
+
+```tsx
+import { FocusModal } from "@medusajs/ui"
+```
+
+```tsx
+<FocusModal>
+  <FocusModal.Trigger>Trigger</FocusModal.Trigger>
+  <FocusModal.Content>
+    <FocusModal.Header>Title</FocusModal.Header>
+    <FocusModal.Body>Content</FocusModal.Body>
+  </FocusModal.Content>
+</FocusModal>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="FocusModal" componentsToShow={[
+  "FocusModal",
+  "FocusModal.Trigger",
+  "FocusModal.Content",
+  "FocusModal.Header",
+  "FocusModal.Body",
+  "FocusModal.Footer"
+]} />
+
+---
+
+
+## Examples
+
+### Control Focus Modal Open State
+
+<ComponentExample name="focus-modal-controlled" />
+
+### Using Form in Focus Modal
+
+<ComponentExample name="focus-modal-form" />
+
+### Nested Focus Modals
+
+A focus modal can open another focus modal. These focus modals will be stacked on top of each other. You can nest as many focus modals as you want.
+
+<ComponentExample name="focus-modal-nested" hideFeedback />

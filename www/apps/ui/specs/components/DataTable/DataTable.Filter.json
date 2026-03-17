@@ -1,0 +1,69 @@
+{
+  "description": "",
+  "methods": [],
+  "displayName": "DataTable.Filter",
+  "props": {
+    "id": {
+      "required": true,
+      "tsType": {
+        "name": "string"
+      },
+      "description": ""
+    },
+    "filter": {
+      "required": true,
+      "tsType": {
+        "name": "unknown"
+      },
+      "description": ""
+    },
+    "isNew": {
+      "required": false,
+      "tsType": {
+        "name": "boolean"
+      },
+      "description": "",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      }
+    },
+    "onUpdate": {
+      "required": false,
+      "tsType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(value: unknown) => void",
+        "signature": {
+          "arguments": [
+            {
+              "type": {
+                "name": "unknown"
+              },
+              "name": "value"
+            }
+          ],
+          "return": {
+            "name": "void"
+          }
+        }
+      },
+      "description": ""
+    },
+    "onRemove": {
+      "required": false,
+      "tsType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "() => void",
+        "signature": {
+          "arguments": [],
+          "return": {
+            "name": "void"
+          }
+        }
+      },
+      "description": ""
+    }
+  }
+}

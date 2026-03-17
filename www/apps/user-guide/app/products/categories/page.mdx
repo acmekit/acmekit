@@ -1,0 +1,193 @@
+---
+sidebar_position: 5
+sidebar_label: "Manage Product Categories"
+tags:
+    - user guide
+    - product
+products:
+  - product
+---
+
+import { DotsSix, TriangleRightMini, EllipsisHorizontal, ArrowUpRightOnBox, EllipsisVertical } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Manage Product Categories in Medusa Admin`,
+}
+
+# {metadata.title}
+
+In this guide, you’ll learn how to create and manage product categories.
+
+## Product Categories to Organize Products
+
+A product category is a group of products that belong to a similar type or theme. For example, a "Shoes" category can include products like sneakers, boots, and sandals. Categories help customers find products that are relevant to them and make it easier to browse your store.
+
+Categories can be nested within other categories to create a hierarchy. For example, you can have a "Shoes" category nested within a "Women's" category.
+
+A product can be in multiple categories. You can learn how to set the categories of a product in [this guide](../edit/page.mdx#manage-product-organization).
+
+### Product Categories List
+
+To view all product categories, go to the Product → Categories page. From here, you can see a list, filter, and search through all categories.
+
+![Product Categories List](https://res.cloudinary.com/dza7lstvk/image/upload/v1739874267/User%20Guide/Screenshot_2025-02-18_at_12.24.12_PM_y9ua61.png)
+
+---
+
+## Create a Product Category
+
+To create a product category:
+
+1. Go to the Product → Categories page.
+2. Click on the "Create" button in the main section's header.
+3. In the form that opens, there are two steps:
+    1. Details Step:
+      1. Enter the category's name in the Title field. This is the only required field.
+      2. The value of the Handle field is used in the category's URL on the storefront. It allows you to create a human-readable URL for the category. The handle must be unique across all categories, and it must contain lowercase letters, numbers, and hyphens (`-`). If not specified, Medusa will generate a handle from the title.
+      3. Optionally set the category's description in the Description field.
+      4. In the Status field, you can change the status to "Inactive" if you don't want the category to be shown on the storefront.
+      5. In the Visibility field, you can change the visibility to "Private" if you’re creating an internal category that shouldn’t be shown to the customer.
+      6. Once you're done, click the "Continue" button.
+    2. In the second step, you can organize the category's ranking among other categories:
+      - To move the category around, use the <InlineIcon Icon={DotsSix} alt="drag" /> icon to drag categories to their correct position.
+      - To nest the category, drag it under another category and move it slightly to the side.
+4. Once you’re done, click the Save button.
+
+![Create Category Form](https://res.cloudinary.com/dza7lstvk/image/upload/v1739874884/User%20Guide/Screenshot_2025-02-18_at_12.30.06_PM_z53wwi.png)
+
+---
+
+## View Product Category Details
+
+To view a category's details:
+
+1. Go to the Product → Categories page.
+2. From the list, choose the category you want to view.
+
+![Category details page](https://res.cloudinary.com/dza7lstvk/image/upload/v1739874959/User%20Guide/Screenshot_2025-02-18_at_12.35.43_PM_wfijxl.png)
+
+### Product Category Status and Visibility
+
+In the first section's header, you'll find two badges:
+
+- The first badge shows the category's status:
+  - **Active**: The category is active and shown on the storefront.
+  - **Inactive**: The category is inactive and not shown on the storefront.
+- The second badge shows the category's visibility:
+  - **Public**: The category is visible to customers on the storefront.
+  - **Private**: The category is not visible to customers on the storefront. It's only used by admin users.
+
+---
+
+## Edit Product Category's Details
+
+To edit a product category:
+
+1. Go to the Product → Categories page.
+2. Click on the category to edit. If the category is nested in another, you may need to expand the parent category by clicking the <InlineIcon Icon={TriangleRightMini} alt="expand" /> icon.
+3. Click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the first section of the category page.
+4. Choose Edit from the dropdown.
+4. In the side window that opens, you can edit the category's title, handle, description, status, and visibility.
+5. Once you’re done, click the Save button.
+
+![Edit category details](https://res.cloudinary.com/dza7lstvk/image/upload/v1739875051/User%20Guide/Screenshot_2025-02-18_at_12.37.20_PM_onbpgn.png)
+
+---
+
+## Manage Product Category's Translations
+
+<Note>
+
+Locales are available from [Medusa v2.12.3](https://github.com/medusajs/medusa/releases/tag/v2.12.3). If you don't see the translation management in your Medusa Admin, request your technical team to [upgrade your Medusa application](!docs!/learn/update).
+
+</Note>
+
+Product categories can be translated to locales (languages) [supported by your store](../../settings/store/page.mdx#manage-store-locales). You can either manage translations [in bulk](../../settings/translations/page.mdx), or manage translations for an individual product category from its details page.
+
+To manage translations for the product category:
+
+1. Click on the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the first section's header.
+2. Choose "Manage translations" from the dropdown.
+3. In the [bulk editor](../../tips/bulk-editor/page.mdx) that opens, you can view and edit translations for the product category's title and description in each locale supported by your store.
+    - To edit text with multi-line support, double click the respective cell to open a larger text area.
+4. Once you're done editing, click the Save button to apply the changes.
+
+---
+
+## Edit Product Category Metadata
+
+Metadata is custom data that can be associated with the product category in key-value pairs. This is usually used by developers for custom integrations or to store additional information about the product category.
+
+To edit the product category's metadata:
+
+1. Go to the product category's details page.
+2. Click the <InlineIcon Icon={ArrowUpRightOnBox} alt="arrow" /> icon in the "Metadata" section.
+3. In the side window that opens:
+    - Manage the key-value pairs in the table.
+    - To add a new row of key-value pairs before or after a row:
+        - Hover over the row and click the <InlineIcon Icon={EllipsisVertical} alt="three-dots" /> icon at its end.
+        - Choose "Insert row above" or "Insert row below" from the dropdown.
+    - To delete a row of key-value pairs:
+        - Hover over the row and click the <InlineIcon Icon={EllipsisVertical} alt="three-dots" /> icon at its end.
+        - Choose "Delete row" from the dropdown.
+4. Once you're done, click the Save button.
+
+---
+
+## Manage Category's Products
+
+From the product category's details page, you can manage the products in the category.
+
+### Add Products to a Category
+
+To add products to a category:
+
+1. Go to the category's details page.
+2. In the Products section, click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon.
+3. Choose "Add" from the dropdown.
+4. In the list that opens, check the products you want to add to the category.
+5. Once you’re done, click the Save button.
+
+![Add products to category form](https://res.cloudinary.com/dza7lstvk/image/upload/v1739875239/User%20Guide/Screenshot_2025-02-18_at_12.40.28_PM_ffenap.png)
+
+### Remove Products from a Category
+
+To remove products from a category:
+
+1. Go to the category's details page.
+2. In the Products section, check the products you want to remove from the category.
+3. Once you're done, either press <Kbd>R</Kbd> or click "Remove" at the bottom center of the page.
+4. Confirm removing the products by clicking the "Remove" button in the pop-up.
+
+![Remove products from category](https://res.cloudinary.com/dza7lstvk/image/upload/v1739875474/User%20Guide/Screenshot_2025-02-18_at_12.44.16_PM_vji2v1.png)
+
+---
+
+## Edit Categories Ranking
+
+To change the categories' ranking and hierarchy:
+
+1. Go to the Product → Categories page.
+2. Click on the "Edit ranking" button.
+3. In the form that opens, you can change the ranking and hierarchy of the categories:
+    - Changes are saved every time you move a category.
+    - To move categories around, use the <InlineIcon Icon={DotsSix} alt="drag" /> icon to drag categories to their new position.
+    - To nest a category in another, drag it under the other category and move it slightly to the side.
+4. Once done, you can close the form as the changes have been saved.
+
+![Edit categories ranking form](https://res.cloudinary.com/dza7lstvk/image/upload/v1739875802/User%20Guide/Screenshot_2025-02-18_at_12.49.47_PM_s3lnpc.png)
+
+---
+
+## Delete a Category
+
+<Note type="warning">
+
+Deleting a category is irreversible.
+
+</Note>
+
+1. Go to the Product → Categories page.
+2. Click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon in the category's row.
+3. Choose Delete from the dropdown.
+4. Confirm deleting the category by clicking the "Delete" button in the pop-up.

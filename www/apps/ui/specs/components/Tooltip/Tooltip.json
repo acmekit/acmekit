@@ -1,0 +1,127 @@
+{
+  "description": "This component is based on the [Radix UI Tooltip](https://www.radix-ui.com/primitives/docs/components/tooltip) primitive.",
+  "methods": [],
+  "displayName": "Tooltip",
+  "props": {
+    "content": {
+      "required": true,
+      "tsType": {
+        "name": "ReactReactNode",
+        "raw": "React.ReactNode"
+      },
+      "description": "The content to display in the tooltip."
+    },
+    "onClick": {
+      "required": false,
+      "tsType": {
+        "name": "ReactMouseEventHandler",
+        "raw": "React.MouseEventHandler<HTMLButtonElement>",
+        "elements": [
+          {
+            "name": "HTMLButtonElement"
+          }
+        ]
+      },
+      "description": "A function that is triggered when the tooltip is clicked."
+    },
+    "side": {
+      "required": false,
+      "tsType": {
+        "name": "union",
+        "raw": "\"bottom\" | \"left\" | \"top\" | \"right\"",
+        "elements": [
+          {
+            "name": "literal",
+            "value": "\"bottom\""
+          },
+          {
+            "name": "literal",
+            "value": "\"left\""
+          },
+          {
+            "name": "literal",
+            "value": "\"top\""
+          },
+          {
+            "name": "literal",
+            "value": "\"right\""
+          }
+        ]
+      },
+      "description": "The side to position the tooltip.\n\n",
+      "defaultValue": {
+        "value": "top",
+        "computed": false
+      }
+    },
+    "maxWidth": {
+      "required": false,
+      "tsType": {
+        "name": "number"
+      },
+      "description": "The maximum width of the tooltip.",
+      "defaultValue": {
+        "value": "220",
+        "computed": false
+      }
+    },
+    "sideOffset": {
+      "defaultValue": {
+        "value": "8",
+        "computed": false
+      },
+      "description": "The distance in pixels between the tooltip and its trigger.",
+      "tsType": {
+        "name": "number"
+      },
+      "required": false
+    },
+    "children": {
+      "description": "The element to trigger the tooltip."
+    },
+    "open": {
+      "description": "Whether the tooltip is currently open.",
+      "tsType": {
+        "name": "boolean"
+      }
+    },
+    "defaultOpen": {
+      "description": "Whether the tooltip is open by default.",
+      "tsType": {
+        "name": "boolean"
+      }
+    },
+    "onOpenChange": {
+      "description": "A function that is called when the tooltip's open state changes.",
+      "tsType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(open: boolean) => void",
+        "signature": {
+          "arguments": [
+            {
+              "name": "open",
+              "type": {
+                "name": "boolean"
+              },
+              "rest": false
+            }
+          ],
+          "return": {
+            "name": "void"
+          }
+        }
+      }
+    },
+    "delayDuration": {
+      "description": "The time in milliseconds to delay the tooltip's appearance.",
+      "tsType": {
+        "name": "number"
+      }
+    }
+  },
+  "composes": [
+    "Omit",
+    "Pick"
+  ]
+}

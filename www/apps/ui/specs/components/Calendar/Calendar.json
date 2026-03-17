@@ -1,0 +1,109 @@
+{
+  "description": "Calendar component used to select a date.\nIts props are based on [React Aria Calendar](https://react-spectrum.adobe.com/react-aria/Calendar.html#calendar-1).",
+  "methods": [],
+  "displayName": "Calendar",
+  "props": {
+    "value": {
+      "required": false,
+      "tsType": {
+        "name": "union",
+        "raw": "Date | null",
+        "elements": [
+          {
+            "name": "Date"
+          },
+          {
+            "name": "null"
+          }
+        ]
+      },
+      "description": "The currently selected date."
+    },
+    "defaultValue": {
+      "required": false,
+      "tsType": {
+        "name": "union",
+        "raw": "Date | null",
+        "elements": [
+          {
+            "name": "Date"
+          },
+          {
+            "name": "null"
+          }
+        ]
+      },
+      "description": "The date that is selected when the calendar first mounts (uncontrolled)."
+    },
+    "onChange": {
+      "required": false,
+      "tsType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(value: Date | null) => void",
+        "signature": {
+          "arguments": [
+            {
+              "type": {
+                "name": "union",
+                "raw": "Date | null",
+                "elements": [
+                  {
+                    "name": "Date"
+                  },
+                  {
+                    "name": "null"
+                  }
+                ]
+              },
+              "name": "value"
+            }
+          ],
+          "return": {
+            "name": "void"
+          }
+        }
+      },
+      "description": "A function that is triggered when the selected date changes."
+    },
+    "isDateUnavailable": {
+      "required": false,
+      "tsType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(date: Date) => boolean",
+        "signature": {
+          "arguments": [
+            {
+              "type": {
+                "name": "Date"
+              },
+              "name": "date"
+            }
+          ],
+          "return": {
+            "name": "boolean"
+          }
+        }
+      },
+      "description": "A function that determines whether a date is unavailable for selection."
+    },
+    "minValue": {
+      "required": false,
+      "tsType": {
+        "name": "Date"
+      },
+      "description": "The minimum date that can be selected."
+    },
+    "maxValue": {
+      "required": false,
+      "tsType": {
+        "name": "Date"
+      },
+      "description": "The maximum date that can be selected."
+    }
+  },
+  "composes": [
+    "Omit"
+  ]
+}

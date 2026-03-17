@@ -1,0 +1,74 @@
+---
+generate_toc: true
+---
+
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Progress Tabs`,
+}
+
+# {metadata.title}
+
+A component that renders tabbed content, specifically designed for implementing multi-step tasks.
+
+In this guide, you'll learn how to use the Progress Tabs component.
+
+<ComponentExample name="progress-tabs-demo" />
+
+## Usage
+
+```tsx
+import { ProgressTabs } from "@medusajs/ui"
+```
+
+```tsx
+<ProgressTabs defaultValue="general">
+  <ProgressTabs.List>
+    <ProgressTabs.Trigger value="general">
+      General
+    </ProgressTabs.Trigger>
+    <ProgressTabs.Trigger value="shipping">
+      Shipping
+    </ProgressTabs.Trigger>
+    <ProgressTabs.Trigger value="payment">
+      Payment
+    </ProgressTabs.Trigger>
+  </ProgressTabs.List>
+  <ProgressTabs.Content value="general">
+    {/* Content */}
+  </ProgressTabs.Content>
+  <ProgressTabs.Content value="shipping">
+    {/* Content */}
+  </ProgressTabs.Content>
+  <ProgressTabs.Content value="payment">
+    {/* Content */}
+  </ProgressTabs.Content>
+</ProgressTabs>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="ProgressTabs" componentsToShow={[
+  "ProgressTabs",
+  "ProgressTabs.Trigger",
+]} />
+
+---
+
+## Examples
+
+### Set Status Indicator
+
+<ComponentExample name="progress-tabs-status" />
+
+### Controlled Active Tab
+
+<ComponentExample name="progress-tabs-controlled" />
+
+### Disabled Tab
+
+<ComponentExample name="progress-tabs-disabled" hideFeedback />

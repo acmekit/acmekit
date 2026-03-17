@@ -1,0 +1,76 @@
+/**
+ * @schema AdminCreateFulfillment
+ * type: object
+ * description: The filfillment's details.
+ * x-schemaName: AdminCreateFulfillment
+ * required:
+ *   - location_id
+ *   - provider_id
+ *   - delivery_address
+ *   - items
+ *   - labels
+ *   - order_id
+ * properties:
+ *   location_id:
+ *     type: string
+ *     title: location_id
+ *     description: The ID of the location the items are fulfilled from.
+ *   provider_id:
+ *     type: string
+ *     title: provider_id
+ *     description: The ID of the provider handling this fulfillment.
+ *   delivery_address:
+ *     $ref: "#/components/schemas/AdminFulfillmentDeliveryAddress"
+ *   items:
+ *     type: array
+ *     description: The items to fulfill.
+ *     items:
+ *       $ref: "#/components/schemas/AdminCreateFulfillmentItem"
+ *   labels:
+ *     type: array
+ *     description: The labels for the fulfillment's shipments.
+ *     items:
+ *       $ref: "#/components/schemas/AdminCreateFulfillmentLabel"
+ *   order_id:
+ *     type: string
+ *     title: order_id
+ *     description: The ID of the order this fulfillment is created for.
+ *   shipping_option_id:
+ *     type: string
+ *     title: shipping_option_id
+ *     description: The ID of the shipping option used in the order.
+ *   data:
+ *     type: object
+ *     description: Any data useful for the fulfillment provider to handle the fulfillment.
+ *     externalDocs:
+ *       url: https://docs.medusajs.com/resources/commerce-modules/fulfillment/shipping-option#data-property
+ *       description: Learn more about the data property.
+ *   packed_at:
+ *     type: string
+ *     title: packed_at
+ *     description: The date and time the fulfillment was packed.
+ *     format: date-time
+ *   shipped_at:
+ *     type: string
+ *     title: shipped_at
+ *     description: The date and time the fulfillment was shipped.
+ *     format: date-time
+ *   delivered_at:
+ *     type: string
+ *     title: delivered_at
+ *     description: The date and time the fulfillment was delivered.
+ *     format: date-time
+ *   canceled_at:
+ *     type: string
+ *     title: canceled_at
+ *     description: The date and time the fulfillment was canceled.
+ *     format: date-time
+ *   metadata:
+ *     type: object
+ *     description: The fulfillment's metadata, used to store custom key-value pairs.
+ *     externalDocs:
+ *       url: https://docs.medusajs.com/api/admin#manage-metadata
+ *       description: Learn how to manage metadata
+ * 
+*/
+

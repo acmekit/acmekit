@@ -1,0 +1,54 @@
+import { asValue } from "@medusajs/framework/awilix"
+import { LoaderOptions } from "@medusajs/framework/types"
+import Redis from "ioredis"
+import { EOL } from "os"
+import { EventBusRedisModuleOptions } from "../types"
+
+export default async ({
+  container,
+  logger,
+  options,
+}: LoaderOptions): Promise<void> => {
+  const {
+    redisUrl,
+    redisOptions,
+    queueName,
+    queueOptions,
+    workerOptions,
+    jobOptions,
+  } = options as EventBusRedisModuleOptions
+
+  if (!redisUrl) {
+    throw Error(
+      "No `redisUrl` provided in project config. It is required for the Redis Event Bus."
+    )
+  }
+
+  const connection = new Redis(redisUrl, {
+    // Required config. See: https://github.com/OptimalBits/bull/blob/develop/CHANGELOG.md#breaking-changes
+    maxRetriesPerRequest: null,
+    enableReadyCheck: false,
+    // Lazy connect to properly handle connection errors
+    lazyConnect: true,
+    ...(redisOptions ?? {}),
+  })
+
+  try {
+    await new Promise(async (resolve) => {
+      await connection.connect(resolve)
+    })
+    logger?.info(`Connection to Redis in module 'event-bus-redis' established`)
+  } catch (err) {
+    logger?.error(
+      `An error occurred while connecting to Redis in module 'event-bus-redis':${EOL} ${err}`
+    )
+  }
+
+  container.register({
+    eventBusRedisConnection: asValue(connection),
+    eventBusRedisQueueName: asValue(queueName ?? "events-queue"),
+    eventBusRedisQueueOptions: asValue(queueOptions ?? {}),
+    eventBusRedisWorkerOptions: asValue(workerOptions ?? {}),
+    eventBusRedisJobOptions: asValue(jobOptions ?? {}),
+  })
+}

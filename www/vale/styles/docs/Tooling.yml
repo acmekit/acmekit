@@ -1,0 +1,42 @@
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: error
+action:
+  name: replace
+swap:
+  "Workflow SDK": Workflows SDK
+  "Admin Extensions SDK": Admin Extension SDK
+  "Module SDK": Modules SDK
+  "Data Modeling Language": "Data Model Language"
+  '(?:[\w\d'']+) framework': $1 Framework
+  "Medusa's Framework": "Medusa Framework"
+  "Architecural Module[s]?": "Infrastructure Module"
+  "Architectural module[s]?": "Infrastructure module"
+  "architectural module[s]?": "infrastructure module"
+  "Infrastructure module[s]?": "Infrastructure Module"
+  "infrastructure module[s]?": "Infrastructure Module"
+  "Commerce module[s]?": "Commerce Module"
+  "commerce module[s]?": "Commerce Module"
+  "Next.js starter storefront": "Next.js Starter Storefront"
+  "Next.js storefront": "Next.js Starter Storefront"
+  "Next.js Storefront": "Next.js Starter Storefront"
+  '(?:[\w\d\s'']+) Medusa Cloud': "$1 Cloud"
+  " cloud ": " Cloud "
+  "flex usage": "Flex Usage"
+exceptions:
+  - 'storefront framework'
+  - 'Storefront Framework'
+  - 'Storefront framework'
+  - 'storefront''s framework'
+  - 'Storfront''s framework'
+  - 'Storefront''s Framework'
+  - 'JavaScript framework'
+  - 'frontend framework'
+  - 'Frontend Framework'
+  - 'Frontend framework'
+  - 'frontend''s framework'
+  - 'Frontend''s Framework'
+  - 'Frontend''s framework'
+  - 'your framework'
+  - 'Log in with Medusa Cloud'
+  - 'different framework'

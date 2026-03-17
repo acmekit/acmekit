@@ -1,0 +1,178 @@
+---
+sidebar_label: "update"
+---
+
+export const metadata = {
+  title: `update Method - Service Factory Reference`,
+}
+
+# {metadata.title}
+
+This method of a module's service updates one or more records.
+
+The method's name is `updateDataModel`, where `DataModel` is the plural pascal-case name of the data model.
+
+## Update One Record
+
+```ts
+const post = await postModuleService.updatePosts({
+  id: "123",
+  name: "My Post",
+})
+```
+
+### Parameters
+
+To update one record, pass an object that has at least an `id` property, identifying the ID of the record to update.
+
+You can pass in the same object any other properties to update.
+
+### Returns
+
+The method returns the updated record as an object.
+
+---
+
+## Update Multiple Records
+
+```ts
+const posts = await postModuleService.updatePosts([
+  {
+    id: "123",
+    name: "My Post",
+  },
+  {
+    id: "321",
+    published_at: new Date(),
+  },
+])
+```
+
+### Parameters
+
+To update multiple records, pass an array of objects. Each object must have at least an `id` property, identifying the ID of the record to update.
+
+You can pass in each object any other properties to update.
+
+### Returns
+
+The method returns an array of updated record objects.
+
+---
+
+## Update Records Matching a Filter
+
+```ts
+const posts = await postModuleService.updatePosts({
+  selector: {
+    name: "My Post",
+  },
+  data: {
+    published_at: new Date(),
+  },
+})
+```
+
+### Parameters
+
+To update records that match specified filters, pass an object with two properties as a parameter:
+
+- `selector`: An object of filters that a record must match to be updated.
+- `data`: An object of the properties to update in every record that match the filters in `selector`.
+
+In the example above, you update the `published_at` property of every post record whose name is `My Post`.
+
+<Note>
+
+Refer to the [Filtering](../../tips/filtering/page.mdx) reference for more information on accepted filters and examples.
+
+</Note>
+
+### Returns
+
+The method returns an array of updated record objects.
+
+---
+
+## Multiple Record Updates with Filters
+
+```ts
+const posts = await postModuleService.updatePosts([
+  {
+    selector: {
+      name: "My Post",
+    },
+    data: {
+      published_at: new Date(),
+    },
+  },
+  {
+    selector: {
+      name: "Another Post",
+    },
+    data: {
+      metadata: {
+        external_id: "123",
+      },
+    },
+  },
+])
+```
+
+### Parameters
+
+To update records matching different sets of filters, pass an array of objects, each having two properties:
+
+- `selector`: An object of filters that a record must match to be updated.
+- `data`: An object of the properties to update in every record that match the filters in `selector`.
+
+In the example above, you update the `published_at` property of post records whose name is `My Post`, and update the `metadata` property of post records whose name is `Another Post`.
+
+<Note>
+
+Refer to the [Filtering](../../tips/filtering/page.mdx) reference for more information on accepted filters and examples.
+
+</Note>
+
+### Returns
+
+The method returns an array of updated record objects.
+
+---
+
+## Update a JSON Property
+
+export const highlights = [
+  ["4", "metadata", "`metadata` is a JSON property."]
+]
+
+```ts highlights={highlights}
+const post = await postModuleService.updatePosts({
+  id: "123",
+  name: "My Post",
+  metadata: {
+    category: "news",
+    tags: ["update", "json"],
+  },
+})
+```
+
+When you have a [JSON property](!docs!/learn/fundamentals/data-models/json-properties) in your data model, you can update it by adding, updating, or removing properties within that JSON object. Medusa will merge the properties you pass in the `update` method with the existing JSON object.
+
+### Remove a Property from the JSON Property
+
+```ts highlights={highlights}
+const post = await postModuleService.updatePosts({
+  id: "123",
+  name: "My Post",
+  metadata: {
+    is_featured: "",
+  },
+})
+```
+
+To remove a property from the JSON object, you can set its value to an empty string.
+
+### Learn More about Updating JSON Properties
+
+Refer to the [JSON Properties](!docs!/learn/fundamentals/data-models/json-properties) documentation to learn more about how JSON properties work in Medusa and how to update them.

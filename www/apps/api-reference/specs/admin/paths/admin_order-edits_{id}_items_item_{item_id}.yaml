@@ -1,0 +1,67 @@
+post:
+  operationId: PostOrderEditsIdItemsItemItem_id
+  summary: Update Order Item Quantity of Order Edit
+  x-sidebar-summary: Update Item Quantity
+  description: >
+    Update an existing order item's quantity of an order edit.
+
+    You can also use this API route to remove an item from an order by setting
+    its quantity to `0`.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The ID of the order that is being edited.
+      required: true
+      schema:
+        type: string
+    - name: item_id
+      in: path
+      description: The order edit's item id.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: >-
+            ../components/schemas/AdminPostOrderEditsUpdateItemQuantityReqSchema.yaml
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: >-
+          ../code_samples/JavaScript/admin_order-edits_{id}_items_item_{item_id}/post.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: >-
+          ../code_samples/Shell/admin_order-edits_{id}_items_item_{item_id}/post.sh
+  tags:
+    - Order Edits
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AdminOrderEditPreviewResponse.yaml
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: orderEditUpdateItemQuantityWorkflow
+  x-events: []

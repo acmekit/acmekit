@@ -1,0 +1,406 @@
+import { Table } from "docs-ui"
+
+export const metadata = {
+  title: `Cloud vs Self-Hosting`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn about the main differences between hosting your Medusa application on Cloud and self-hosting it. By the end of this guide, you'll be able to make an informed decision about which option is best for your use case.
+
+## What is Self-Hosting?
+
+Self-hosting means deploying and managing your Medusa application on your own infrastructure or a hosting provider of your choice, such as AWS, Railway, or DigitalOcean.
+
+Developers with infrastructure management experience may consider self-hosting their Medusa application to have greater control over their deployment environment and potentially reduce costs.
+
+However, before choosing self-hosting, it's important to understand the challenges that come with it, the efforts it requires, and whether Cloud can provide a better solution for your needs.
+
+---
+
+## Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Concern
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Self-Hosting
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Cloud
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        [Code Ownership](#code-ownership)
+      </Table.Cell>
+      <Table.Cell>
+        You own and manage your Medusa application code.
+      </Table.Cell>
+      <Table.Cell>
+        You own and manage your Medusa application code.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Configurations](#configurations)
+      </Table.Cell>
+      <Table.Cell>
+        Requires manual configuration of servers, databases, and other services.
+      </Table.Cell>
+      <Table.Cell>
+        Provides pre-configured environments, reducing setup time.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Deployment & Production Readiness](#deployment--production-readiness)
+      </Table.Cell>
+      <Table.Cell>
+        Requires complex setup of the deployment environment and ensuring production readiness.
+      </Table.Cell>
+      <Table.Cell>
+        Provides automated deployment and scaling, making it easier to manage production environments.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Auto-Scaling](#auto-scaling)
+      </Table.Cell>
+      <Table.Cell>
+        Requires manual setup and management of scaling policies and infrastructure.
+      </Table.Cell>
+      <Table.Cell>
+        Automatically scales based on traffic, ensuring optimal performance.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [High-Availability](#high-availability)
+      </Table.Cell>
+      <Table.Cell>
+        Requires manual setup and management of redundancy and failover mechanisms.
+      </Table.Cell>
+      <Table.Cell>
+        Provides real-time monitoring and failover mechanisms to ensure high availability.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Performance](#performance)
+      </Table.Cell>
+      <Table.Cell>
+        Requires manual optimization and monitoring to ensure optimal performance.
+      </Table.Cell>
+      <Table.Cell>
+        Provides continuous performance monitoring and optimization, with built-in cacheing support.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Developer Experience](#developer-experience)
+      </Table.Cell>
+      <Table.Cell>
+        Limited developer experience due to the lack of features like code previews and staging environments.
+      </Table.Cell>
+      <Table.Cell>
+        Offers GitHub integration, preview and staging environments, and push-to-deploy features, enhancing developer experience and productivity.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Storefront](#storefront)
+      </Table.Cell>
+      <Table.Cell>
+        Requires separate deployment and manual configuration to connect to the backend.
+      </Table.Cell>
+      <Table.Cell>
+        Deploy storefront alongside your backend with zero configuration and automatic environment setup.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Email](#email)
+      </Table.Cell>
+      <Table.Cell>
+        Requires setting up and managing your own email infrastructure or third-party service.
+      </Table.Cell>
+      <Table.Cell>
+        Built-in email sending service with monitoring and domain verification.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Data Backup](#data-backup)
+      </Table.Cell>
+      <Table.Cell>
+        Requires manual setup of reliable data backup and recovery processes.
+      </Table.Cell>
+      <Table.Cell>
+        Provides automated backups and recovery options based on your plan.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Support](#support)
+      </Table.Cell>
+      <Table.Cell>
+        Relies on community support and documentation.
+      </Table.Cell>
+      <Table.Cell>
+        Offers dedicated support, ensuring timely assistance.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        [Cost](#cost)
+      </Table.Cell>
+      <Table.Cell>
+        Complex pricing and often expensive as you scale.
+      </Table.Cell>
+      <Table.Cell>
+        Transparent plans with competitive pricing.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+---
+
+## Code Ownership
+
+Both self-hosting and Cloud allow you to own and manage your Medusa application codebase.
+
+When you deploy your Medusa application on Cloud, you deploy it from your own GitHub repository. The code remains entirely yours. Cloud only manages the deployment and hosting of your application.
+
+---
+
+## Configurations
+
+### Self-Hosting: Manual Configurations
+
+When you **self-host**, you must manually configure the server for production. You also need to configure database connections, storefront hosting, email services, event services, locking mechanisms, and other [Infrastructure Modules](!resources!/infrastructure-modules) that your Medusa application may use.
+
+There may also be platform-specific configurations, adding another layer of complexity that will slow down your time to launch. You'll also need to maintain these configurations over time as Medusa updates are released.
+
+### Cloud: Pre-configured Environments
+
+On **Cloud**, Medusa offers:
+
+- Pre-configured environments optimized for Medusa applications with no configuration required on your end.
+- Automated setup and management of infrastructure components.
+Integrated services like [PostgreSQL](../database/page.mdx), [Redis](../redis/page.mdx), [S3](../s3/page.mdx), and [Medusa Emails](../emails/page.mdx) that work out-of-the-box.
+- [Storefront deployment](../storefront/page.mdx) alongside your Medusa application with zero configuration and automatic environment setup.
+
+All of these features are available out-of-the-box in your Cloud projects. By using Cloud, you can reduce the time and effort required to get your application up and running, allowing you to focus on building and shipping features.
+
+---
+
+## Deployment & Production Readiness
+
+### Self-Hosting: Complex and Time-Consuming Setup
+
+When you **self-host**, you need to manually set up the production environment, including scaling, monitoring, and logging. You'll need to build deployment pipelines and processes to ensure smooth deployments and rollbacks.
+
+Additionally, your self-hosted environment must be production-ready with best security practices, performance optimizations, and high-availability configurations.
+
+Supporting this setup requires extensive knowledge of infrastructure management. You must also dedicate time and resources to maintain the infrastructure.
+
+### Cloud: Automated Deployment
+
+On **Cloud**, Medusa manages your deployment environment and ensures it's optimized for production. Medusa:
+
+- Handles scaling automatically based on your traffic. More information in the [Auto-Scaling](#auto-scaling) section.
+- Rolls out your code updates with zero downtime, ensuring a smooth experience for your users.
+- Provides [logging](../logs/page.mdx) features to track your application's performance without additional setup.
+
+---
+
+## Auto-Scaling
+
+### Self-Hosting: Manual Setup and Management
+
+Auto-scaling is essential to maintain performance and availability during high traffic periods, such as sales or promotions.
+
+When you **self-host**, you must set up and manage scaling policies and infrastructure manually. You must configure load balancers, auto-scaling groups, and monitoring tools to ensure your application can handle traffic spikes.
+
+If not set up correctly, your application may experience performance degradation or downtime during high traffic periods.
+
+### Cloud: Automatic Scaling
+
+On **Cloud**, Medusa automatically scales your application based on traffic. This ensures optimal performance without manual intervention.
+
+Medusa adjusts the number of instances running your application based on demand, ensuring your users have a seamless experience even during traffic spikes. You don't need to configure or manage any scaling policies or infrastructure, as Medusa handles everything for you.
+
+---
+
+## High-Availability
+
+### Self-Hosting: Risk of Downtime
+
+When you **self-host**, you are responsible for setting up and managing redundancy and failover mechanisms to ensure high availability. You must monitor your application's health and respond to incidents manually.
+
+If your infrastructure fails and you don't have proper failover mechanisms in place, your application may experience downtime, leading to a poor user experience.
+
+### Cloud: Highly Reliable with 24/7 Monitoring
+
+Medusa provides high-availability features on **Cloud** to ensure your application remains online and responsive. Medusa:
+
+- Monitors your application's health 24/7 and automatically responds to incidents.
+- Implements failover mechanisms to minimize downtime and ensures your application is always available.
+- Offers [SLA-backed response and uptime](../pricing/page.mdx) based on your plan to guarantee your application's availability.
+
+By using Cloud, you can focus on building your application without worrying about downtime or availability issues.
+
+---
+
+## Performance
+
+### Self-Hosting: Manual Optimization
+
+When you **self-host**, you are responsible for optimizing and monitoring your application's performance. You must configure caching mechanisms, database optimizations, and other performance-enhancing techniques.
+
+If not optimized correctly, your application may experience slow response times, leading to a poor user experience.
+
+### Cloud: Continuous Performance Monitoring
+
+Medusa provides continuous performance monitoring and optimization on **Cloud**. Medusa continuously monitors applications to identify performance bottlenecks and build tooling to resolve them. Medusa also provides a direct [cache](../cache/page.mdx) integration to [improve performance of business-critical APIs](../cache/page.mdx#performance-benchmark-comparisons).
+
+Cloud users benefit from these optimizations without any additional effort or configuration, ensuring their applications run smoothly and efficiently.
+
+---
+
+## Developer Experience
+
+### Self-Hosting: Slower Developer Experience
+
+When you **self-host**, you may miss out on features like code previews and push-to-deploy, making it difficult to review and ship changes quickly.
+
+You'll also find it challenging to reproduce production issues, as you'll need to set up staging environments manually, adding to the complexity.
+
+### Cloud: Enhanced Developer Experience
+
+Medusa enhances the developer experience on **Cloud** by providing features like:
+
+- GitHub integration for [push-to-deploy](../deployments/page.mdx#how-are-deployments-created).
+- [Preview environments](../environments/preview/page.mdx) to test changes in pull requests before merging.
+- [Staging environments](../environments/page.mdx) to test new features and reproduce issues in a production-like setting.
+- [Storefront deployment](../storefront/page.mdx) alongside your Medusa application with aligned configurations across environments. You can preview changes in your storefront while previewing backend changes.
+
+By using Cloud, you streamline your development workflow and reduce the time and effort required to manage and ship features.
+
+---
+
+## Storefront
+
+### Self-Hosting: Separate Deployment and Manual Configuration
+
+When you **self-host**, you need to deploy your storefront separately from your Medusa application. This requires:
+
+- Setting up a separate hosting environment for your frontend in a separate provider like Vercel or Netlify.
+- Manually configuring URLs, API keys, and CORS settings to connect the storefront to the backend.
+- Managing different deployments for each environment (production, staging, previews), and ensuring they connect to the correct backend instances.
+- Setting up SSL certificates and custom domains independently.
+- Configuring CDN and performance optimizations manually.
+
+This separation adds complexity and increases the chances of configuration errors that can affect your application's functionality. Without proper configuration, you may compromise on developer experience as you won't have integrated previews or staging environments.
+
+### Cloud: End-to-End Deployment with Zero Configuration
+
+On **Cloud**, Medusa allows you to deploy your [storefront](../storefront/page.mdx) alongside your Medusa application, enabling you to host and manage both backend and frontend in a single platform. Medusa provides:
+
+- **Zero-configuration deployment**: Automatically configures URLs, API keys, and CORS settings to ensure seamless connectivity between your storefront and backend.
+- **Environment-specific storefronts**: Deploys separate storefront instances for production, staging, and preview environments, with each automatically connected to the corresponding backend.
+- **Framework agnostic**: [supports various frontend frameworks](../storefront/page.mdx#supported-storefront-frameworks) like Next.js and Tanstack Start.
+- **Custom domains and SSL**: Set up custom domains with automatically provisioned and renewed SSL certificates.
+- **Global CDN**: Storefronts are served via a global Content Delivery Network, ensuring fast load times for customers worldwide.
+
+By using Cloud's storefront hosting, you reduce deployment complexity and ensure all components of your commerce application work together seamlessly. You also enhance the developer experience with integrated previews and staging environments.
+
+---
+
+## Email
+
+### Self-Hosting: Complex Email Infrastructure Setup
+
+When you **self-host**, sending transactional and marketing emails requires:
+
+- Setting up and managing your own email infrastructure or integrating a third-party email service provider.
+- Manually configuring notification module providers like SendGrid, Mailgun, or AWS SES.
+- Managing email authentication records (SPF, DKIM, DMARC) in your DNS settings.
+- Monitoring email deliverability, open rates, and bounce rates manually or through separate analytics tools.
+- Handling email sending limits and managing costs as your volume grows.
+- Troubleshooting delivery issues without built-in monitoring tools.
+
+This setup requires technical expertise and ongoing maintenance to ensure reliable email delivery.
+
+### Cloud: Built-in Email Service with Zero Configuration
+
+On **Cloud**, Medusa provides [Medusa Emails](../emails/page.mdx), a built-in email sending service that works out-of-the-box with zero configuration. Medusa Emails offers:
+
+- **Instant setup**: Available by default for all Cloud projects without manual configuration or provider setup.
+- **Email monitoring**: Track email delivery rates, open rates, click rates, bounce rates, and complaint rates through the Cloud dashboard.
+- **Domain verification**: Verify your own email sender domains to send emails from branded addresses.
+- **Organization-wide management**: Monitor email activity across all projects in your organization from a centralized dashboard.
+- **Detailed email tracking**: View individual email event histories and preview email content as it was sent to recipients.
+- **Plan-based limits**: Different sending limits based on your [plan](../pricing/page.mdx), with the flexibility to scale as needed.
+
+By using Medusa Emails, you eliminate the need to set up and manage email infrastructure, allowing you to focus on building and sending effective email communications to your customers.
+
+---
+
+## Data Backup
+
+### Self-Hosting: Risky if Not Done Properly
+
+When you **self-host**, you need to set up data backup and recovery processes manually. This includes scheduling regular backups, storing them securely, and testing recovery procedures. Failing to implement a robust backup strategy can lead to data loss in the event of errors or disasters.
+
+### Cloud: Automated Backups and Recovery
+
+Medusa provides automated backups and recovery options on **Cloud** based on your [plan](../pricing/page.mdx). Backups are performed reliably and stored securely, reducing the risk of data loss. You can restore your data if needed without affecting your application's availability.
+
+---
+
+## Support
+
+### Self-Hosting: Community Support
+
+When you **self-host**, you rely on community support and documentation for assistance. While the Medusa community is active and helpful, you may not receive timely responses to critical issues or answers that are specific to your business use case. Limited support may slow down your development and affect your application's reliability.
+
+### Cloud: Dedicated Support
+
+Medusa offers dedicated [support](https://medusajs.com/medusa-support/) options for **Cloud** users based on their [plan](../pricing/page.mdx). You receive timely assistance to help resolve issues, upgrade your application, and improve performance. Medusa provides the necessary resources to maintain and grow your application.
+
+---
+
+## Cost
+
+### Self-Hosting: Variable Costs
+
+When you **self-host**, your costs vary based on your chosen infrastructure and usage patterns. At minimum, you'll need server and worker instances, a PostgreSQL database, and a Redis instance. You'll likely need additional services like S3 for file storage or monitoring tools.
+
+Depending on your traffic and usage, costs can add up quickly, especially if the infrastructure isn't optimized for cost efficiency.
+
+### Cloud: Cost-Competitive Pricing
+
+Medusa offers a cost-competitive pricing model on **Cloud** compared to self-hosting. You can choose a [plan](../pricing/page.mdx) that fits your needs and budget, with the flexibility to scale as your application grows.
+
+---
+
+## Get Started with Cloud
+
+[Sign Up](../sign-up/page.mdx) on Cloud to get started and deploy your first application in minutes.
+
+### Migrate in Two Steps
+
+If you have an existing self-hosted Medusa application, you can migrate it to Cloud by:
+
+1. [Creating a project](../projects/page.mdx) and connecting it to your existing GitHub repository.
+2. [Importing your production database](../database/page.mdx#importexport-database-dumps) to Cloud.
+
+You'll then have a fully managed Medusa application deployed on Cloud, with all the benefits mentioned above, including automated deployment, scaling, and enhanced developer experience.

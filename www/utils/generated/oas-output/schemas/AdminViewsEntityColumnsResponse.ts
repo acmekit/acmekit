@@ -1,0 +1,16 @@
+/**
+ * @schema AdminViewsEntityColumnsResponse
+ * type: object
+ * description: The view's columns.
+ * x-schemaName: AdminViewsEntityColumnsResponse
+ * required:
+ *   - columns
+ * properties:
+ *   columns:
+ *     type: array
+ *     description: The view's columns.
+ *     items:
+ *       $ref: "#/components/schemas/AdminColumn"
+ * 
+*/
+

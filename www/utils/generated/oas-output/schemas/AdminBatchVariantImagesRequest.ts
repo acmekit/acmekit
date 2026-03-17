@@ -1,0 +1,23 @@
+/**
+ * @schema AdminBatchVariantImagesRequest
+ * type: object
+ * description: Details of the associations between images and a product variant to manage.
+ * x-schemaName: AdminBatchVariantImagesRequest
+ * properties:
+ *   add:
+ *     type: array
+ *     description: The IDs of product images to add to the variant.
+ *     items:
+ *       type: string
+ *       title: add
+ *       description: The ID of the image to add.
+ *   remove:
+ *     type: array
+ *     description: The IDs of product images to remove from the variant.
+ *     items:
+ *       type: string
+ *       title: remove
+ *       description: The ID of the image to remove.
+ * 
+*/
+

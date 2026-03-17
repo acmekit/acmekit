@@ -1,0 +1,96 @@
+name: CLI Pipeline
+on:
+  pull_request:
+
+jobs:
+  test-cli-with-database:
+    env:
+      NODE_ENV: CI
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+      REDIS_URL: redis://localhost:6379
+      DATABASE_URL: "postgres://postgres:postgres@localhost/cli-test"
+      NPM_CONFIG_LOGLEVEL: error
+      NPM_CONFIG_AUDIT: false
+      NPM_CONFIG_FUND: false
+      NPM_CONFIG_UPDATE_NOTIFIER: false
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 1s
+          --health-timeout 10s
+          --health-retries 10
+        ports:
+          - 6379:6379
+
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: cli-test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 1s
+          --health-timeout 10s
+          --health-retries 10
+        ports:
+          - 5432:5432
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        uses: ./.github/actions/cache-deps
+        with:
+          extension: cli-database
+
+      - name: Install Medusa cli
+        run: npm i -g @medusajs/cli@preview
+
+      - name: Create Medusa project
+        working-directory: ..
+        run: |
+          medusa new cli-test --skip-db --skip-migrations --v2 --branch ci-custom
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install new app dependencies (via resolutions)
+        run: rm -f package-lock.json && yarn install --inline-builds --silent
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false
+        working-directory: ../cli-test
+
+      - name: Run migrations
+        run: npx medusa db:migrate
+        working-directory: ../cli-test
+
+      - name: Create admin user
+        run: npx medusa user -e test@test.com -p password -i admin_123
+        working-directory: ../cli-test
+
+      - name: Run development server
+        run: npx medusa develop &
+        working-directory: ../cli-test
+
+      - name: Testing development server
+        uses: ./.github/actions/test-server
+
+      - name: Starting medusa
+        run: npx medusa start &
+        working-directory: ../cli-test
+
+      - name: Testing server
+        uses: ./.github/actions/test-server

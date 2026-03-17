@@ -1,0 +1,153 @@
+---
+tags:
+  - product
+  - storefront
+products:
+  - product
+---
+
+import { CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `Select Product Variants in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to select a product variant to be added to the cart in the storefront.
+
+## Overview
+
+Before a customer can add a product to the cart, they have to select from the product's available options.
+
+Then, since a variant is a combination of the product options' values (for example, size `S` and color `Blue`), you must find the product variant that matches the chosen option values.
+
+Finally, when the customer adds the product to the cart, you must add the selected variant to the cart.
+
+In this guide, you'll learn how to show the product options and find the selected variant in a React-based storefront.
+
+<Note>
+
+Refer to the [Manage Cart's Items](../../cart/manage-items/page.mdx) guide to learn how to add a product variant to the cart.
+
+</Note>
+
+---
+
+## Example: React-Based Storefront
+
+Here's an example of a React component that shows the product options and allows the customer to select a variant:
+
+<Note title="Tip">
+
+Learn how to install and configure the JS SDK in the [JS SDK documentation](../../../js-sdk/page.mdx).
+
+</Note>
+
+export const highlights = [
+  ["16", "selectedOptions", "Store the options the customer selects."],
+  ["30", "selectedVariant", "Compute the selected variant based on the chosen option values combinations."],
+  ["59", "setSelectedOptions", "When an option's value is selected, add it to the selected options, which re-computes the selected variant."],
+  ["74", "selectedVariant", "Show the selected variant's ID, if computed."]
+]
+
+```tsx highlights={highlights}
+"use client" // include with Next.js 13+
+
+import { useEffect, useMemo, useState } from "react"
+import { HttpTypes } from "@medusajs/types"
+import { sdk } from "@/lib/sdk"
+
+type Props = {
+  id: string
+}
+
+export default function Product({ id }: Props) {
+  const [loading, setLoading] = useState(true)
+  const [product, setProduct] = useState<
+    HttpTypes.StoreProduct | undefined
+  >()
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({})
+
+  useEffect(() => {
+    if (!loading) {
+      return 
+    }
+
+    sdk.store.product.retrieve(id)
+    .then(({ product: dataProduct }) => {
+      setProduct(dataProduct)
+      setLoading(false)
+    })
+  }, [loading])
+
+  const selectedVariant = useMemo(() => {
+    if (
+      !product?.variants ||
+      !product.options || 
+      Object.keys(selectedOptions).length !== product.options?.length
+    ) {
+      return
+    }
+
+    return product.variants.find((variant) => variant.options?.every(
+      (optionValue) => optionValue.id === selectedOptions[optionValue.option_id!]
+    ))
+  }, [selectedOptions, product])
+
+  return (
+    <div>
+      {loading && <span>Loading...</span>}
+      {product && (
+        <>
+          <h1>{product.title}</h1>
+          {(product.options?.length || 0) > 0 && (
+            <ul>
+              {product.options!.map((option) => (
+                <li key={option.id}>
+                  {option.title}
+                  {option.values?.map((optionValue) => (
+                    <button 
+                      key={optionValue.id}
+                      onClick={() => {
+                        setSelectedOptions((prev) => {
+                          return {
+                            ...prev,
+                            [option.id!]: optionValue.value!,
+                          }
+                        })
+                      }}
+                    >
+                      {optionValue.value}
+                    </button>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          )}
+          {selectedVariant && (
+            <>
+              <span>Selected Variant: {selectedVariant.id}</span>
+              {/* TODO: Show add to cart button */}
+            </>
+          )}
+          {product.images?.map((image) => (
+            <img src={image.url} key={image.id} />
+          ))}
+        </>
+      )}
+    </div>
+  )
+}
+```
+
+In this example, you:
+
+- Retrieve the product details from Medusa.
+- Show the product's options and allow the customer to select an option value.
+- Store the selected options in the `selectedOptions` state variable. It's an object whose keys are options' ID, and values are the selected value of that option.
+- Compute the selected variable whenever the selected option is changed. When the customer chooses a value for all options, you find a product variant that has the same chosen option-value combinations.
+- Show the ID of the selected variant when it's found.
+
+In your storefront, you should show the add-to-cart button instead of the variant ID. Refer to the [Manage Cart's Items](../../cart/manage-items/page.mdx) guide to learn how to add a product variant to the cart.
+

@@ -1,0 +1,262 @@
+import axios from "axios"
+import fs from "fs/promises"
+import { S3FileService } from "../../src/services/s3-file"
+jest.setTimeout(100000)
+
+// Note: This test hits the S3 service, and it is mainly meant to be run manually after setting all the envvars below.
+// We can also set up some test buckets in our pipeline to run this test, but it is not really that important to do so for now.
+describe.skip("S3 File Plugin", () => {
+  let s3Service: S3FileService
+  let fixtureImagePath: string
+  beforeAll(() => {
+    fixtureImagePath =
+      process.cwd() + "/integration-tests/__fixtures__/catphoto.jpg"
+
+    s3Service = new S3FileService(
+      {
+        logger: console as any,
+      },
+      {
+        endpoint: process.env.S3_TEST_ENDPOINT ?? "",
+        file_url: process.env.S3_TEST_FILE_URL ?? "",
+        access_key_id: process.env.S3_TEST_ACCESS_KEY_ID ?? "",
+        secret_access_key: process.env.S3_TEST_SECRET_ACCESS_KEY ?? "",
+        region: process.env.S3_TEST_REGION ?? "",
+        bucket: process.env.S3_TEST_BUCKET ?? "",
+        prefix: "tests/",
+        additional_client_config: process.env.S3_TEST_ENDPOINT?.includes(
+          "localhost"
+        )
+          ? {
+              sslEnabled: false,
+              s3ForcePathStyle: true,
+            }
+          : {},
+      }
+    )
+  })
+  ;(["public", "private"] as const).forEach((access) => {
+    it("uploads, reads, and then deletes a file successfully", async () => {
+      const fileContent = await fs.readFile(fixtureImagePath)
+      const fixtureAsBinary = fileContent.toString("binary")
+
+      const resp = await s3Service.upload({
+        filename: "catphoto.jpg",
+        mimeType: "image/jpeg",
+        content: fixtureAsBinary,
+        access,
+      })
+
+      expect(resp).toEqual({
+        key: expect.stringMatching(/tests\/catphoto.*\.jpg/),
+        url: expect.stringMatching(/https?:\/\/.*\.jpg/),
+      })
+
+      const urlResp = await axios.get(resp.url).catch((e) => e.response)
+      expect(urlResp.status).toEqual(access === "public" ? 200 : 403)
+
+      const signedUrl = await s3Service.getPresignedDownloadUrl({
+        fileKey: resp.key,
+      })
+
+      const signedUrlFile = Buffer.from(
+        await axios
+          .get(signedUrl, { responseType: "arraybuffer" })
+          .then((r) => r.data)
+      )
+
+      expect(signedUrlFile.toString("binary")).toEqual(fixtureAsBinary)
+
+      await s3Service.delete({ fileKey: resp.key })
+
+      // TODO: Currently the presignedURL will be returned even if the file doesn't exist. Should we check for existence first?
+      const deletedFileUrl = await s3Service.getPresignedDownloadUrl({
+        fileKey: resp.key,
+      })
+
+      const { response } = await axios
+        .get(deletedFileUrl, { responseType: "arraybuffer" })
+        .catch((e) => e)
+
+      expect(response.status).toEqual(404)
+    })
+  })
+
+  it("uploads a file with non-ascii characters in the name", async () => {
+    const fileContent = await fs.readFile(fixtureImagePath)
+    const fixtureAsBinary = fileContent.toString("base64")
+
+    const resp = await s3Service.upload({
+      filename: "catphoto-か.jpg",
+      mimeType: "image/jpeg",
+      content: fixtureAsBinary,
+      access: "private",
+    })
+
+    expect(resp).toEqual({
+      key: expect.stringMatching(/tests\/catphoto-か.*\.jpg/),
+      url: expect.stringMatching(/https?:\/\/.*\/catphoto-%E3%81%8B.*\.jpg/),
+    })
+  })
+
+  it("uploads a file with special URL characters in the name", async () => {
+    const fileContent = await fs.readFile(fixtureImagePath)
+    const fixtureAsBinary = fileContent.toString("base64")
+
+    const resp = await s3Service.upload({
+      filename: "cat?photo.jpg",
+      mimeType: "image/jpeg",
+      content: fixtureAsBinary,
+      access: "private",
+    })
+
+    expect(resp).toEqual({
+      key: expect.stringMatching(/tests\/catphoto.*\.jpg/),
+      url: expect.stringMatching(/https?:\/\/.*\/cat%3Fphoto.*\.jpg/),
+    })
+  })
+
+  it("gets a presigned upload URL and uploads a file successfully", async () => {
+    const fileContent = await fs.readFile(fixtureImagePath)
+    const fixtureAsBinary = fileContent.toString("binary")
+
+    const resp = await s3Service.getPresignedUploadUrl({
+      filename: "catphoto.jpg",
+      mimeType: "image/jpeg",
+      access: "private",
+    })
+
+    expect(resp).toEqual({
+      key: expect.stringMatching(/tests\/catphoto.*\.jpg/),
+      url: expect.stringMatching(/https?:\/\/.*catphoto\.jpg/),
+    })
+
+    const uploadResp = await axios.put(resp.url, fileContent, {
+      headers: {
+        // On Digitalocean, among others, despite the ACL set on the upload URL, the caller can set the acl to anything they want.
+        // On AWS passing the ACL in the upload will fail since it's set on the signed URL.
+        // "x-amz-acl": "private",
+        "Content-Type": "image/jpeg",
+      },
+    })
+
+    expect(uploadResp.status).toEqual(200)
+
+    const signedUrl = await s3Service.getPresignedDownloadUrl({
+      fileKey: resp.key,
+    })
+
+    const signedUrlFile = Buffer.from(
+      await axios
+        .get(signedUrl, { responseType: "arraybuffer" })
+        .then((r) => r.data)
+    )
+
+    expect(signedUrlFile.toString("binary")).toEqual(fixtureAsBinary)
+
+    await s3Service.delete({ fileKey: resp.key })
+  })
+
+  it("gets a presigned upload URL for a nested filename structure and uploads a file successfully", async () => {
+    const fileContent = await fs.readFile(fixtureImagePath)
+    const fixtureAsBinary = fileContent.toString("binary")
+
+    const resp = await s3Service.getPresignedUploadUrl({
+      filename: "testfolder/catphoto.jpg",
+      mimeType: "image/jpeg",
+      access: "private",
+    })
+
+    expect(resp).toEqual({
+      key: expect.stringMatching(/tests\/testfolder\/catphoto.*\.jpg/),
+      url: expect.stringMatching(/https?:\/\/.*testfolder\/catphoto\.jpg/),
+    })
+
+    const uploadResp = await axios.put(resp.url, fileContent, {
+      headers: {
+        "Content-Type": "image/jpeg",
+      },
+    })
+
+    expect(uploadResp.status).toEqual(200)
+
+    const signedUrl = await s3Service.getPresignedDownloadUrl({
+      fileKey: resp.key,
+    })
+
+    const signedUrlFile = Buffer.from(
+      await axios
+        .get(signedUrl, { responseType: "arraybuffer" })
+        .then((r) => r.data)
+    )
+
+    expect(signedUrlFile.toString("binary")).toEqual(fixtureAsBinary)
+
+    await s3Service.delete({ fileKey: resp.key })
+  })
+
+  it("deletes multiple files in bulk", async () => {
+    const fileContent = await fs.readFile(fixtureImagePath)
+    const fixtureAsBinary = fileContent.toString("binary")
+
+    const cat = await s3Service.upload({
+      filename: "catphoto.jpg",
+      mimeType: "image/jpeg",
+      content: fixtureAsBinary,
+    })
+    const cat1 = await s3Service.upload({
+      filename: "catphoto-1.jpg",
+      mimeType: "image/jpeg",
+      content: fixtureAsBinary,
+    })
+    const cat2 = await s3Service.upload({
+      filename: "catphoto-2.jpg",
+      mimeType: "image/jpeg",
+      content: fixtureAsBinary,
+    })
+
+    await s3Service.delete([
+      { fileKey: cat.key },
+      { fileKey: cat1.key },
+      { fileKey: cat2.key },
+    ])
+  })
+
+  it("uploads using stream", async () => {
+    const fileContent = await fs.readFile(fixtureImagePath)
+    const fixtureAsBinary = fileContent.toString("binary")
+
+    const { writeStream, promise } = await s3Service.getUploadStream({
+      filename: "catphoto-stream.jpg",
+      mimeType: "image/jpeg",
+      access: "public",
+    })
+
+    writeStream.write(fileContent)
+    writeStream.end()
+
+    const resp = await promise
+
+    expect(resp).toEqual({
+      key: expect.stringMatching(/tests\/catphoto-stream.*\.jpg/),
+      url: expect.stringMatching(/https?:\/\/.*\.jpg/),
+    })
+
+    const urlResp = await axios.get(resp.url).catch((e) => e.response)
+    expect(urlResp.status).toEqual(200)
+
+    const signedUrl = await s3Service.getPresignedDownloadUrl({
+      fileKey: resp.key,
+    })
+
+    const signedUrlFile = Buffer.from(
+      await axios
+        .get(signedUrl, { responseType: "arraybuffer" })
+        .then((r) => r.data)
+    )
+
+    expect(signedUrlFile.toString("binary")).toEqual(fixtureAsBinary)
+
+    await s3Service.delete({ fileKey: resp.key })
+  })
+})

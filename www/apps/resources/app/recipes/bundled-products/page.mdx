@@ -1,0 +1,190 @@
+---
+products:
+  - product
+  - cart
+---
+
+import { AcademicCapSolid, PuzzleSolid } from "@medusajs/icons";
+
+export const metadata = {
+  title: `Bundled Products Recipe`,
+};
+
+# {metadata.title}
+
+This recipe provides the general steps to implement bundled products in your Medusa application.
+
+<Note>
+
+Follow the step-by-step [Bundled Products Example](./examples/standard/page.mdx) to learn how to implement bundled products in your Medusa application.
+
+</Note>
+
+## Overview
+
+Bundled products allow you to group multiple products into a single bundle that customers can purchase together. By using bundled products, you can offer items at a discounted price or fulfill items within the same bundle separately, among other features.
+
+Medusa provides an [inventory kit](../../commerce-modules/inventory/inventory-kit/page.mdx) feature that allows you to create bundled products. However, it doesn't support all bundled-product features. For example, you can't set a different price for the bundle, or fulfill items within the same bundle separately.
+
+To support more bundled-product features, you can customize the Medusa application by creating a Bundled Product Module and building flows around it.
+
+---
+
+## Create Bundled Product Module
+
+Your custom features and functionalities are implemented inside modules. The module is integrated into the Medusa application without any implications on existing functionalities.
+
+The module will hold your custom data models and the service implementing bundled-product-related features.
+
+<Card
+  href="!docs!/learn/fundamentals/modules"
+  title="How to Create a Module"
+  text="Learn how to create a module."
+  icon={AcademicCapSolid}
+/>
+
+### Create Custom Data Models
+
+A data model represents a table in the database. You can define in your module data models to store data related to your custom features, such as a bundled product.
+
+For example, you can define:
+
+- A `Bundle` model for the bundle itself.
+- A `BundleItem` model for the items in the bundle.
+
+Then, you can link your custom data model to data models from other modules. For example, you can link the `BundleItem` model to the Product Module's `Product` data model.
+
+<CardList itemsPerRow={2} items={[
+  {
+    href: "!docs!/learn/fundamentals/modules#1-create-data-model",
+    title: "How to Create a Data Model",
+    text: "Learn how to create a data model.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/module-links",
+    title: "Define Module Links",
+    text: "Define links between data models.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+### Implement Data Management Features
+
+Your module’s main service holds data-management and other related features. Then, in other resources, such as an API route, you can resolve the service from the Medusa container and use its functionalities.
+
+Medusa facilitates implementing data-management features using the service factory. Your module's main service can extend this service factory, and it generates data-management methods for your data models.
+
+<Card
+  href="!docs!/learn/fundamentals/modules/service-factory"
+  title="Service Factory"
+  text="Learn about the service factory and how to use it."
+  icon={AcademicCapSolid}
+/>
+
+---
+
+## Implement Workflows
+
+You implement the features in your use case using workflows. A workflow is a series of queries and actions, called steps, that complete a task.
+
+By using workflows, you benefit from features like rollback mechanism, error handling, and retrying failed steps.
+
+You can implement workflows that create a bundled product, add bundled product to the cart, and more. In the workflow's steps, you can resolve the Bundled Product Module's service and use its data-management methods to manage bundled products.
+
+Then, you can utilize these workflows in other resources, such as an API route.
+
+<Card
+  href="!docs!/learn/fundamentals/workflows"
+  title="Workflows"
+  text="Learn how to create a workflow."
+  icon={AcademicCapSolid}
+/>
+
+---
+
+## Add Custom API Routes
+
+API routes expose your features to external applications, such as the admin dashboard or the storefront.
+
+You can create custom API routes that expose the features you've built as workflows. For example, you can create an API route that allows merchants to list and create bundled products.
+
+<Card
+  href="!docs!/learn/fundamentals/api-routes"
+  title="API Routes"
+  text="Learn how to create an API route."
+  icon={AcademicCapSolid}
+/>
+
+---
+
+## Manage Linked Records
+
+If you've defined links between data models of two modules, you can manage them through two tools: Link and Query.
+
+Use Link to create a link between two records, and use Query to fetch data across linked data models.
+
+For example, you can define a link between a `Bundle` and a `Product` from the [Product Module](../../commerce-modules/product/page.mdx). Later, you can retrieve the product associated with the bundle using Query.
+
+<CardList itemsPerRow={2} items={[
+  {
+    href: "!docs!/learn/fundamentals/module-links/link",
+    title: "How to Use Link",
+    text: "Learn how to link data models of different modules.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/module-links/query",
+    title: "How to Use Query",
+    text: "Learn how to fetch data across modules with Medusa's Query.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+---
+
+## Customize Admin Dashboard
+
+You can extend the Medusa Admin to provide merchants with an interface to manage bundled products. You can inject widgets into existing pages or create new pages.
+
+In your customizations, you send requests to the API routes you created to manage bundled products.
+
+<CardList items={[
+  {
+    href: "!docs!/learn/fundamentals/admin/widgets",
+    title: "Create a Widget",
+    text: "Learn how to create a widget in the Medusa Admin.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/admin/ui-routes",
+    title: "Create UI Route",
+    text: "Learn how to create a UI route in the Medusa Admin.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+---
+
+## Customize or Build Storefront
+
+Customers use your storefront to browse your bundled products and purchase them. You can also provide other helpful features, such as displaying the bundle's details and allowing customers to select options for the items in the bundle.
+
+Medusa provides a Next.js Starter Storefront with standard commerce features including listing products, placing orders, and managing accounts. You can customize the storefront and cater its functionalities to support bundled products.
+
+Alternatively, you can build the storefront with your preferred tech stack.
+
+<CardList items={[
+  {
+    href: "/nextjs-starter",
+    title: "Next.js Starter Storefront",
+    text: "Learn how to install and use the Next.js Starter Storefront.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "/storefront-development",
+    title: "Storefront Guides",
+    text: "Learn how to build a storefront for your Medusa application.",
+    icon: AcademicCapSolid,
+  },
+]} />

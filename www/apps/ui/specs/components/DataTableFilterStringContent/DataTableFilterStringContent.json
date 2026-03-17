@@ -1,0 +1,54 @@
+{
+  "description": "",
+  "methods": [],
+  "displayName": "DataTableFilterStringContent",
+  "props": {
+    "id": {
+      "required": true,
+      "tsType": {
+        "name": "string"
+      },
+      "description": ""
+    },
+    "filter": {
+      "required": false,
+      "tsType": {
+        "name": "string"
+      },
+      "description": ""
+    },
+    "placeholder": {
+      "required": false,
+      "tsType": {
+        "name": "string"
+      },
+      "description": "",
+      "defaultValue": {
+        "value": "\"Enter value...\"",
+        "computed": false
+      }
+    },
+    "onUpdate": {
+      "required": false,
+      "tsType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(value: unknown) => void",
+        "signature": {
+          "arguments": [
+            {
+              "type": {
+                "name": "unknown"
+              },
+              "name": "value"
+            }
+          ],
+          "return": {
+            "name": "void"
+          }
+        }
+      },
+      "description": ""
+    }
+  }
+}

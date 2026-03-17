@@ -1,0 +1,50 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Command`,
+}
+
+# {metadata.title}
+
+A component that renders an unhighlighted code block, useful for one-liners or API routes.
+
+In this guide, you'll learn how to use the Command component.
+
+<ComponentExample name="command-demo" />
+
+## Usage
+
+```tsx
+import { Command } from "@medusajs/ui"
+```
+
+```tsx
+<Command>
+  <code>yarn add @medusajs/ui</code>
+</Command>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Command" />
+
+---
+
+## Usage Outside Medusa Admin
+
+If you're using the `Command` component in a project other than the Medusa Admin, make sure to include the `TooltipProvider` somewhere up in your component tree, as the `Command.Copy` component uses a [Tooltip](../tooltip/page.mdx#usage-outside-medusa-admin):
+
+```tsx
+<TooltipProvider>
+  <Command>
+    <code>yarn add @medusajs/ui</code>
+    <Command.Copy
+      content="yarn add @medusajs/ui"
+      className="ml-auto"
+    />
+  </Command>
+</TooltipProvider>
+```

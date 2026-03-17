@@ -1,0 +1,46 @@
+---
+sidebar_label: "create"
+---
+
+export const metadata = {
+  title: `create Method - Service Factory Reference`,
+}
+
+# {metadata.title}
+
+This method of a module's service creates one or more records of a data model.
+
+The method's name is of the format `createDataModel`, where `DataModel` is the plural pascal-case name of the data model.
+
+## Create One Record
+
+```ts
+const post = await postModuleService.createPosts({
+  name: "My Post",
+  published_at: new Date(),
+  metadata: {
+     external_id: "1234",
+  },
+})
+```
+
+If an object is passed to the method, the created record object is returned.
+
+---
+
+## Create Multiple Records
+
+```ts
+const posts = await postModuleService.createPosts([
+  {
+    name: "My Post",
+    published_at: new Date(),
+  },
+  {
+    name: "My Other Post",
+    published_at: new Date(),
+  },
+])
+```
+
+If an array of objects is passed to the method, an array containing the created records is returned.

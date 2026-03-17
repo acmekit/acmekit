@@ -1,0 +1,193 @@
+/**
+ * @schema StoreCart
+ * type: object
+ * description: The cart's details.
+ * x-schemaName: StoreCart
+ * required:
+ *   - promotions
+ *   - id
+ *   - currency_code
+ *   - original_item_total
+ *   - original_item_subtotal
+ *   - original_item_tax_total
+ *   - item_total
+ *   - item_subtotal
+ *   - item_tax_total
+ *   - original_total
+ *   - original_subtotal
+ *   - original_tax_total
+ *   - total
+ *   - subtotal
+ *   - tax_total
+ *   - discount_total
+ *   - discount_tax_total
+ *   - gift_card_total
+ *   - gift_card_tax_total
+ *   - shipping_total
+ *   - shipping_subtotal
+ *   - shipping_tax_total
+ *   - original_shipping_total
+ *   - original_shipping_subtotal
+ *   - original_shipping_tax_total
+ * properties:
+ *   id:
+ *     type: string
+ *     title: id
+ *     description: The cart's ID.
+ *   region:
+ *     $ref: "#/components/schemas/StoreRegion"
+ *   region_id:
+ *     type: string
+ *     title: region_id
+ *     description: The ID of the region the cart belongs to.
+ *   customer_id:
+ *     type: string
+ *     title: customer_id
+ *     description: The ID of the customer the cart belongs to.
+ *   sales_channel_id:
+ *     type: string
+ *     title: sales_channel_id
+ *     description: The ID of the cart's sales channel. Only products that belong to the same sales channel can be added to the cart. The created order will be associated with the same sales channel.
+ *   email:
+ *     type: string
+ *     title: email
+ *     description: The email of the customer the cart belongs to.
+ *     format: email
+ *   currency_code:
+ *     type: string
+ *     title: currency_code
+ *     description: The cart's currency code.
+ *     example: usd
+ *   shipping_address:
+ *     $ref: "#/components/schemas/StoreCartAddress"
+ *   billing_address:
+ *     $ref: "#/components/schemas/StoreCartAddress"
+ *   items:
+ *     type: array
+ *     description: The cart's items.
+ *     items:
+ *       $ref: "#/components/schemas/StoreCartLineItem"
+ *   shipping_methods:
+ *     type: array
+ *     description: The cart's shipping methods.
+ *     items:
+ *       $ref: "#/components/schemas/StoreCartShippingMethod"
+ *   payment_collection:
+ *     $ref: "#/components/schemas/StorePaymentCollection"
+ *   metadata:
+ *     type: object
+ *     description: The cart's metadata, can hold custom key-value pairs.
+ *     externalDocs:
+ *       url: https://docs.medusajs.com/api/store#manage-metadata
+ *       description: Learn how to manage metadata
+ *   created_at:
+ *     type: string
+ *     format: date-time
+ *     title: created_at
+ *     description: The date the cart was created.
+ *   updated_at:
+ *     type: string
+ *     format: date-time
+ *     title: updated_at
+ *     description: The date the cart was updated.
+ *   original_item_total:
+ *     type: number
+ *     title: original_item_total
+ *     description: The sum of all line items' original totals before discounts, including taxes.
+ *   original_item_subtotal:
+ *     type: number
+ *     title: original_item_subtotal
+ *     description: The sum of all line items' original subtotals before discounts, excluding taxes.
+ *   original_item_tax_total:
+ *     type: number
+ *     title: original_item_tax_total
+ *     description: The sum of all line items' original tax totals before discounts.
+ *   item_total:
+ *     type: number
+ *     title: item_total
+ *     description: The sum of all line items' totals after discounts, including taxes.
+ *   item_subtotal:
+ *     type: number
+ *     title: item_subtotal
+ *     description: The sum of all line items' subtotals before discounts, excluding taxes.
+ *   item_tax_total:
+ *     type: number
+ *     title: item_tax_total
+ *     description: The sum of all line items' tax totals after discounts.
+ *   original_total:
+ *     type: number
+ *     title: original_total
+ *     description: The cart's total before discounts, including taxes. Calculated as the sum of `original_item_total` and `original_shipping_total`.
+ *   original_subtotal:
+ *     type: number
+ *     title: original_subtotal
+ *     description: The cart's subtotal before discounts, excluding taxes. Calculated as the sum of `original_item_subtotal` and `original_shipping_subtotal`.
+ *   original_tax_total:
+ *     type: number
+ *     title: original_tax_total
+ *     description: The cart's tax total before discounts. Calculated as the sum of `original_item_tax_total` and `original_shipping_tax_total`.
+ *   total:
+ *     type: number
+ *     title: total
+ *     description: The cart's final total after discounts and credit lines, including taxes.
+ *   subtotal:
+ *     type: number
+ *     title: subtotal
+ *     description: The cart's subtotal before discounts, excluding taxes. Calculated as the sum of `item_subtotal` and `shipping_subtotal`.
+ *   tax_total:
+ *     type: number
+ *     title: tax_total
+ *     description: The cart's tax total after discounts. Calculated as the sum of `item_tax_total` and `shipping_tax_total`.
+ *   discount_total:
+ *     type: number
+ *     title: discount_total
+ *     description: The total amount of discounts applied to the cart, including the tax portion of discounts.
+ *   discount_tax_total:
+ *     type: number
+ *     title: discount_tax_total
+ *     description: The total amount of discounts applied to the cart's tax. Represents the tax portion of discounts.
+ *   gift_card_total:
+ *     type: number
+ *     title: gift_card_total
+ *     description: The total gift card amount applied on the cart.
+ *   gift_card_tax_total:
+ *     type: number
+ *     title: gift_card_tax_total
+ *     description: The total taxes applied on the gift card amount.
+ *   shipping_total:
+ *     type: number
+ *     title: shipping_total
+ *     description: The sum of all shipping methods' totals after discounts, including taxes.
+ *   shipping_subtotal:
+ *     type: number
+ *     title: shipping_subtotal
+ *     description: The sum of all shipping methods' subtotals before discounts, excluding taxes.
+ *   shipping_tax_total:
+ *     type: number
+ *     title: shipping_tax_total
+ *     description: The sum of all shipping methods' tax totals after discounts.
+ *   original_shipping_total:
+ *     type: number
+ *     title: original_shipping_total
+ *     description: The sum of all shipping methods' original totals before discounts, including taxes.
+ *   original_shipping_subtotal:
+ *     type: number
+ *     title: original_shipping_subtotal
+ *     description: The sum of all shipping methods' original subtotals before discounts, excluding taxes.
+ *   original_shipping_tax_total:
+ *     type: number
+ *     title: original_shipping_tax_total
+ *     description: The sum of all shipping methods' original tax totals before discounts.
+ *   promotions:
+ *     type: array
+ *     description: The cart's promotions.
+ *     items:
+ *       $ref: "#/components/schemas/StoreCartPromotion"
+ *   completed_at:
+ *     type: string
+ *     title: completed_at
+ *     description: The date the cart was completed.
+ *     format: date-time
+ * 
+*/
+

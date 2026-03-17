@@ -1,0 +1,688 @@
+---
+sidebar_label: "Add Gift Message"
+tags:
+    - cart
+    - order
+    - server
+    - nextjs
+    - tutorial
+products:
+  - cart
+  - order
+---
+
+import { Github } from "@medusajs/icons"
+import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
+
+export const metadata = {
+  title: `Add Gift Message to Line Items in Medusa`,
+}
+
+# {metadata.title}
+
+In this tutorial, you will learn how to add a gift message to items in carts and orders in Medusa.
+
+When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](../../../commerce-modules/page.mdx), which are available out-of-the-box. These features include cart and order management capabilities.
+
+You can customize the Medusa application and storefront to add a gift message to items in the cart. This feature allows customers to add a personalized message to their gifts, enhancing the shopping experience.
+
+## Summary
+
+By following this tutorial, you will learn how to:
+
+- Install and set up Medusa and the Next.js Starter Storefront.
+- Customize the storefront to support gift messages on cart items during checkout.
+- Customize the Medusa Admin to show gift items with messages in an order.
+
+You can follow this tutorial whether you're new to Medusa or an advanced Medusa developer.
+
+<Card
+  title="View on Github"
+  icon={Github}
+  href="https://github.com/medusajs/examples/tree/main/order-gift-message"
+  text="Find the full code for this tutorial."
+/>
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Start by installing the Medusa application on your machine with the following command:
+
+```bash npx2yarnExec
+npx create-medusa-app@latest
+```
+
+First, you'll be asked for the project's name. Then, when prompted about installing the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx), choose "Yes."
+
+Afterward, the installation process will start, which will install the Medusa application in a directory with your project's name and the Next.js Starter Storefront in a separate directory named `{project-name}-storefront`.
+
+<Note title="Why is the storefront installed separately?">
+
+The Medusa application is composed of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Afterward, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors?">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Add Gift Inputs to Cart Item
+
+In this step, you'll customize the Next.js Starter Storefront to allow customers to specify that an item is a gift and add a gift message to it.
+
+You'll store the gift option and message in the cart item's `metadata` property, which is a key-value `jsonb` object that can hold any additional information about the item. When the customer places the order, the `metadata` is copied to the `metadata` of the order's line items.
+
+So, you only need to customize the storefront to add the gift message input and update the cart item metadata.
+
+### a. Changes to Update Item Function
+
+The Next.js Starter Storefront has an `updateLineItem` function that sends a request to the Medusa server to update the cart item. However, it doesn't support updating the `metadata` property.
+
+So, in `src/lib/data/cart.ts`, find the `updateLineItem` function and add a `metadata` property to its object parameter:
+
+```ts title="src/lib/data/cart.ts" badgeLabel="Storefront" badgeColor="blue" highlights={[["4"], ["8"]]}
+export async function updateLineItem({
+  lineId,
+  quantity,
+  metadata,
+}: {
+  lineId: string
+  quantity: number
+  metadata?: Record<string, any>
+}) {
+  // ...
+}
+```
+
+Next, change the usage of `await sdk.store.cart.updateLineItem` in the function to pass the `metadata` property:
+
+```ts title="src/lib/data/cart.ts" badgeLabel="Storefront" badgeColor="blue"
+const updateData: any = { quantity }
+if (metadata) {
+  updateData.metadata = metadata
+}
+
+await sdk.store.cart
+  .updateLineItem(cartId, lineId, updateData, {}, headers)
+// ...
+```
+
+You pass the `metadata` property to the Medusa server, which will update the cart item with the new metadata.
+
+### b. Add Gift Inputs
+
+Next, you'll modify the cart item component that's shown in the cart and checkout pages to show two inputs: one to specify that the item is a gift and another to add a gift message.
+
+In `src/modules/cart/components/item/index.tsx`, add the following imports at the top of the file:
+
+```tsx title="src/modules/cart/components/item/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+import { Checkbox, Textarea, Button, Label } from "@medusajs/ui"
+```
+
+You import components from the [Medusa UI library](!ui!) that will be useful for the gift inputs.
+
+Next, in the `Item` component, add the following variables before the `changeQuantity` function:
+
+export const giftVarsHighlights = [
+  ["1", "giftUpdating", "Track whether the gift message is being updated"],
+  ["2", "newGiftMessage", "Hold the new gift message input value."],
+  ["5", "isEditingGiftMessage", "Track whether the gift message input is being edited."],
+  ["7", "isGift", "Indicate whether the item is a gift."],
+  ["8", "giftMessage", "Current gift message from item's metadata."]
+]
+
+```tsx title="src/modules/cart/components/item/index.tsx" badgeLabel="Storefront" badgeColor="blue" highlights={giftVarsHighlights}
+const [giftUpdating, setGiftUpdating] = useState(false)
+const [newGiftMessage, setNewGiftMessage] = useState(
+  item.metadata?.gift_message as string || ""
+)
+const [isEditingGiftMessage, setIsEditingGiftMessage] = useState(false)
+
+const isGift = item.metadata?.is_gift === "true"
+const giftMessage = item.metadata?.gift_message as string
+```
+
+You define the following variables:
+
+- `giftUpdating`: A state variable to track whether the gift message is being updated. This will be useful to handle loading and disabled states.
+- `newGiftMessage`: A state variable to hold the new gift message input value.
+- `isEditingGiftMessage`: A state variable to track whether the gift message input is being edited. This will be useful to show or hide the input field.
+- `isGift`: A boolean indicating whether the item is a gift based on the `metadata.is_gift` property.
+- `giftMessage`: The current gift message from the item's `metadata.gift_message` property.
+
+Next, add the following functions before the `return` statement to handle updates to the gift inputs:
+
+export const giftFunctionsHighlights = [
+  ["1", "handleGiftToggle", "Handle the gift checkbox toggle."],
+  ["22", "handleSaveGiftMessage", "Handle saving the gift message."],
+  ["44", "handleStartEdit", "Enable editing the gift message input."],
+  ["48", "handleCancelEdit", "Cancel editing the gift message input."]
+]
+
+```tsx title="src/modules/cart/components/item/index.tsx" badgeLabel="Storefront" badgeColor="blue" highlights={giftFunctionsHighlights}
+const handleGiftToggle = async (checked: boolean) => {
+  setGiftUpdating(true)
+  
+  try {
+    const newMetadata = {
+      is_gift: checked.toString(),
+      gift_message: checked ? newGiftMessage : "",
+    }
+    
+    await updateLineItem({
+      lineId: item.id,
+      quantity: item.quantity,
+      metadata: newMetadata,
+    })
+  } catch (error) {
+    console.error("Error updating gift status:", error)
+  } finally {
+    setGiftUpdating(false)
+  }
+}
+
+const handleSaveGiftMessage = async () => {
+  setGiftUpdating(true)
+  
+  try {
+    const newMetadata = {
+      is_gift: "true",
+      gift_message: newGiftMessage,
+    }
+    
+    await updateLineItem({
+      lineId: item.id,
+      quantity: item.quantity,
+      metadata: newMetadata,
+    })
+    setIsEditingGiftMessage(false)
+  } catch (error) {
+    console.error("Error updating gift message:", error)
+  } finally {
+    setGiftUpdating(false)
+  }
+}
+
+const handleStartEdit = () => {
+  setIsEditingGiftMessage(true)
+}
+
+const handleCancelEdit = () => {
+  setNewGiftMessage(giftMessage || "")
+  setIsEditingGiftMessage(false)
+}
+```
+
+You define the following functions:
+
+- `handleGiftToggle`: Used when the gift checkbox is toggled. It updates the cart item's metadata to set the `is_gift` and `gift_message` properties based on the checkbox state.
+- `handleSaveGiftMessage`: Used to save the gift message when the customer clicks the "Save" button. It updates the cart item's metadata with the new gift message.
+- `handleStartEdit`: Used to start editing the gift message input by setting the `isEditingGiftMessage` state to `true`.
+- `handleCancelEdit`: Used to cancel the gift message editing and reset the input value to the current gift message.
+
+Finally, you'll change the `return` statement to include the gift inputs. Replace the existing return statement with the following:
+
+```tsx title="src/modules/cart/components/item/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+return (
+  <div className="bg-white border border-gray-200 rounded-lg p-4">
+    <div className="flex gap-4">
+      {/* Product Image */}
+      <div className="flex-shrink-0">
+        <LocalizedClientLink
+          href={`/products/${item.product_handle}`}
+          className={clx("flex", {
+            "w-16": type === "preview",
+            "w-20": type === "full",
+          })}
+        >
+          <Thumbnail
+            thumbnail={item.thumbnail}
+            images={item.variant?.product?.images}
+            size="square"
+          />
+        </LocalizedClientLink>
+      </div>
+
+      {/* Product Details */}
+      <div className="flex-1 min-w-0">
+        <div className="flex justify-between items-start mb-2">
+          <div className="flex-1 min-w-0">
+            <Text
+              className="txt-medium-plus text-ui-fg-base truncate"
+              data-testid="product-title"
+            >
+              {item.product_title}
+            </Text>
+            <LineItemOptions variant={item.variant} data-testid="product-variant" />
+          </div>
+        </div>
+
+        {/* Gift Options */}
+        <div className="mb-3">
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-full border hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <Checkbox
+              checked={isGift}
+              onCheckedChange={handleGiftToggle}
+              disabled={giftUpdating}
+              className="w-4 h-4"
+              id="is-gift"
+            />
+            <Label htmlFor="is-gift">
+              This is a gift
+            </Label>
+          </div>
+          
+          {isGift && (
+            <div className="mt-3">
+              {isEditingGiftMessage ? (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Text className="text-sm font-medium text-ui-fg-base">
+                      Gift Message:
+                    </Text>
+                    <Text className="text-xs text-ui-fg-subtle">(optional)</Text>
+                  </div>
+                  <Textarea
+                    placeholder="Add a personal message..."
+                    value={newGiftMessage}
+                    onChange={(e) => setNewGiftMessage(e.target.value)}
+                    disabled={giftUpdating}
+                    className="w-full"
+                    rows={2}
+                  />
+                  <div className="flex justify-end gap-2">
+                    <Button
+                      size="small"
+                      variant="secondary"
+                      onClick={handleCancelEdit}
+                      disabled={giftUpdating}
+                      className="text-xs px-3 py-1"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      size="small"
+                      variant="primary"
+                      onClick={handleSaveGiftMessage}
+                      disabled={giftUpdating || newGiftMessage === giftMessage}
+                      className="text-xs px-3 py-1"
+                    >
+                      {giftUpdating ? <Spinner /> : "Save"}
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Text className="text-sm font-medium text-ui-fg-base">
+                      Gift Message:
+                    </Text>
+                    {giftMessage ? (
+                      <Text className="text-sm text-ui-fg-subtle">
+                        {giftMessage}
+                      </Text>
+                    ) : (
+                      <Text className="text-sm text-ui-fg-subtle italic">
+                        No message added
+                      </Text>
+                    )}
+                  </div>
+                  <Button
+                    size="small"
+                    variant="secondary"
+                    onClick={handleStartEdit}
+                    className="text-xs px-2 py-1"
+                  >
+                    {giftMessage ? "Edit" : "Add"}
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Quantity and Actions */}
+        {type === "full" && (
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <DeleteButton id={item.id} data-testid="product-delete-button" />
+              <CartItemSelect
+                value={item.quantity}
+                onChange={(value) => changeQuantity(parseInt(value.target.value))}
+                className="w-16 h-8 p-2"
+                data-testid="product-select-button"
+              >
+                {/* TODO: Update this with the v2 way of managing inventory */}
+                {Array.from(
+                  {
+                    length: Math.min(maxQuantity, 10),
+                  },
+                  (_, i) => (
+                    <option value={i + 1} key={i}>
+                      {i + 1}
+                    </option>
+                  )
+                )}
+              </CartItemSelect>
+              {updating && <Spinner />}
+            </div>
+          </div>
+        )}
+
+        {/* Preview Mode */}
+        {type === "preview" && (
+          <div className="flex items-center justify-between">
+            <Text className="text-sm text-ui-fg-subtle">
+              Qty: {item.quantity}
+            </Text>
+            <LineItemUnitPrice
+              item={item}
+              style="tight"
+              currencyCode={currencyCode}
+            />
+          </div>
+        )}
+
+        <ErrorMessage error={error} data-testid="product-error-message" />
+      </div>
+    </div>
+  </div>
+)
+```
+
+You replace the previous table row design with a card. In the card, you show the item's image, title, variant options, quantity, and price.
+
+You also show a checkbox to toggle the gift status of the item. If the item is a gift, you show a text area to add or edit the gift message. You only show the gift message input if the user clicks an "Add" or "Edit" button.
+
+The gift message input has a "Save" button to save the message and a "Cancel" button to cancel the editing.
+
+### c. Update Cart and Checkout Templates
+
+The items are previously shown on the cart and checkout pages in a table. However, since you've changed the item component to a card, you'll need to update the cart and checkout templates to replace the table with a list of items.
+
+In `src/modules/cart/templates/items.tsx`, which shows the items on the cart page, change the `return` statement to the following:
+
+```tsx title="src/modules/cart/templates/items.tsx" badgeLabel="Storefront" badgeColor="blue"
+return (
+  <div>
+    <div className="pb-3 flex items-center">
+      <Heading className="text-[2rem] leading-[2.75rem]">Cart</Heading>
+    </div>
+    <div className="space-y-4">
+      {items
+        ? items
+            .sort((a, b) => {
+              return (a.created_at ?? "") > (b.created_at ?? "") ? -1 : 1
+            })
+            .map((item) => {
+              return (
+                <Item
+                  key={item.id}
+                  item={item}
+                  currencyCode={cart?.currency_code}
+                />
+              )
+            })
+        : repeat(5).map((i) => {
+            return <SkeletonLineItem key={i} />
+          })}
+    </div>
+  </div>
+)
+```
+
+You replace the table that was wrapping the items with a `div` that contains a list of `Item` components.
+
+Next, in `src/modules/cart/templates/preview.tsx` that shows the items in the checkout summary, change the `return` statement to the following:
+
+```tsx title="src/modules/cart/templates/preview.tsx" badgeLabel="Storefront" badgeColor="blue"
+return (
+  <div
+    className={clx("space-y-3 mt-4", {
+      "pl-[1px] overflow-y-scroll overflow-x-hidden no-scrollbar max-h-[420px]":
+        hasOverflow,
+    })}
+  >
+    {items
+      ? items
+          .sort((a, b) => {
+            return (a.created_at ?? "") > (b.created_at ?? "") ? -1 : 1
+          })
+          .map((item) => {
+            return (
+              <Item
+                key={item.id}
+                item={item}
+                type="preview"
+                currencyCode={cart.currency_code}
+              />
+            )
+          })
+      : repeat(5).map((i) => {
+          return <SkeletonLineItem key={i} />
+        })}
+  </div>
+)
+```
+
+Similarly, you replace the table that was wrapping the items with a `div` that contains a list of `Item` components.
+
+### Test the Changes
+
+You can now test the gift inputs during checkout.
+
+First, start the Medusa application by running the following command in the Medusa application directory:
+
+```bash npm2yarn badgeLabel="Medusa Application" badgeColor="green"
+npm run dev
+```
+
+Then, start the Next.js Starter Storefront by running the following command in the storefront directory:
+
+```bash npm2yarn badgeLabel="Storefront" badgeColor="blue"
+npm run dev
+```
+
+Open the storefront in your browser at `http://localhost:8000`. Add a product to the cart, and proceed to the checkout page. You'll find a checkbox to mark the item as a gift for each item.
+
+![Gift checkbox on checkout page](https://res.cloudinary.com/dza7lstvk/image/upload/v1750923117/Medusa%20Resources/CleanShot_2025-06-26_at_10.31.25_2x_wcqiff.png)
+
+If you check the box, you can also add and edit the gift message. The gift message will be saved in the cart item's `metadata`.
+
+![Gift item with message added](https://res.cloudinary.com/dza7lstvk/image/upload/v1750924150/Medusa%20Resources/CleanShot_2025-06-26_at_10.32.52_2x_qir2t5.png)
+
+---
+
+## Step 3: Show Gift Options in Order Confirmation Page
+
+Next, you'll customize the storefront to show the gift message of items in the order confirmation page.
+
+In `src/modules/order/components/item/index.tsx`, add in the `Item` component the following variables:
+
+```tsx title="src/modules/order/components/item/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+const isGift = item.metadata?.is_gift === "true"
+const giftMessage = item.metadata?.gift_message as string
+```
+
+You define the following variables:
+
+- `isGift`: A boolean indicating whether the item is a gift based on the `metadata.is_gift` property.
+- `giftMessage`: The item's gift message from the `metadata.gift_message` property.
+
+Next, in the `return` statement, add the following below the `LineItemOptions` component:
+
+```tsx title="src/modules/order/components/item/index.tsx" badgeLabel="Storefront" badgeColor="blue"
+{isGift && <Text
+  className="inline-block txt-medium text-ui-fg-subtle w-full overflow-hidden text-ellipsis"
+>
+  Gift Message: {giftMessage || "No gift message provided"}
+</Text>}
+```
+
+If the item is a gift, you show the gift message below the variant options. If no gift message is provided, you show "No gift message provided."
+
+### Test the Changes
+
+To test this change, place an order with a gift item. On the order confirmation page, you should see the gift message displayed below the variant options.
+
+![Gift message on order confirmation page](https://res.cloudinary.com/dza7lstvk/image/upload/v1750924429/Medusa%20Resources/CleanShot_2025-06-26_at_10.53.32_2x_htzvtw.png)
+
+---
+
+## Step 4: Show Gift Options in Admin Dashboard
+
+In this step, you'll customize the Medusa Admin dashboard to show the gift items with their messages in an order.
+
+### What is a Widget?
+
+The Medusa Admin dashboard's pages are customizable to insert [widgets](!docs!/learn/fundamentals/admin/widgets) of custom content in predefined injection zones. You create these widgets as React components that allow admin users to perform custom actions.
+
+So, to show the gift items with their messages in an order, you'll create a custom widget that shows the gift items in the order details page.
+
+### Create the Widget
+
+You create a widget in a `.tsx` file under the `src/admin/widgets` directory. So, in the Medusa application directory, create the file `src/admin/widgets/order-gift-items-widget.tsx` with the following content:
+
+```tsx title="src/admin/widgets/order-gift-items-widget.tsx" badgeLabel="Medusa Application" badgeColor="green"
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { Container, Text } from "@medusajs/ui"
+import { DetailWidgetProps, AdminOrder } from "@medusajs/framework/types"
+
+const OrderGiftItemsWidget = ({ data }: DetailWidgetProps<AdminOrder>) => {
+  const giftItems = data.items?.filter(
+    (item: any) => item.metadata?.is_gift === "true"
+  )
+
+  if (!giftItems?.length) {
+    return null
+  }
+
+  return (
+    <Container className="mb-4">
+      <Text className="font-medium h2-core mb-2">Gift Items & Messages</Text>
+      <div className="flex flex-col gap-4">
+        {giftItems.map((item: any) => (
+          <div key={item.id} className="border-b last:border-b-0 pb-2">
+            <Text className="font-medium">{item.title} (x{item.quantity})</Text>
+            <Text className="text-sm text-gray-600">
+              Gift Message: {item.metadata?.gift_message || "(No message)"}
+            </Text>
+          </div>
+        ))}
+      </div>
+    </Container>
+  )
+}
+
+export const config = defineWidgetConfig({
+  zone: "order.details.side.after",
+})
+
+export default OrderGiftItemsWidget 
+```
+
+A widget file must export:
+
+- A React component that renders the widget content.
+- A configuration object created with `defineWidgetConfig` that defines the widget's [injection zone](/admin-widget-injection-zones).
+
+You define the `OrderGiftItemsWidget` component that is injected in the `order.details.side.after` zone. Because it's injected in the order details page, it receives the order details as a `data` prop.
+
+In the component, you filter the order items to get only the gift items by checking if the `metadata.is_gift` property is set to `"true"`. Then, you render the gift items with their messages in a new "Gift Items & Messages" section.
+
+### Test Medusa Admin Changes
+
+To test out the Medusa Admin widget, start the Medusa application by running the following command in the Medusa application directory:
+
+```bash npm2yarn badgeLabel="Medusa Application" badgeColor="green"
+npm run dev
+```
+
+Then, open the Medusa Admin at `http://localhost:9000/app` and log in with the user you created earlier.
+
+Go to the Orders page and click on an order that has gift items. You'll find a new section called "Gift Items & Messages" that shows the gift items with their messages.
+
+![Order details page in the Medusa Admin with the "Gift Items & Messages" section highlighted](https://res.cloudinary.com/dza7lstvk/image/upload/v1750925501/Medusa%20Resources/CleanShot_2025-06-26_at_11.11.18_2x_jrrc2s.png)
+
+---
+
+## Optional: Handle Gift Items in Fulfillment Provider
+
+If you have a custom fulfillment provider and you want to handle gift items in it, you can do so in the `createFulfillment` method of the [Fulfillment Module Provider's service](/references/fulfillment/provider).
+
+For example:
+
+export const createFulfillmentHighlights = [
+  ["9", "itemsWithGiftMessage", "Filter order items to find gift items."],
+]
+
+```ts title="Fulfillment Module Provider's Service" badgeLabel="Medusa Application" badgeColor="green" highlights={createFulfillmentHighlights}
+class ManualFulfillmentService extends utils_1.AbstractFulfillmentProviderService {
+  // ...
+  async createFulfillment(
+    data: Record<string, unknown>,
+    items: Partial<Omit<FulfillmentItemDTO, "fulfillment">>[],
+    order: Partial<FulfillmentOrderDTO> | undefined,
+    fulfillment: Partial<Omit<FulfillmentDTO, "provider_id" | "data" | "items">>
+  ): Promise<CreateFulfillmentResult> {
+    const itemsWithGiftMessage = order.items?.filter((lineItem) => {
+      const isInFulfillment = items.find(
+        (item) => item.line_item_id === lineItem.id
+      )
+      if (!isInFulfillment) {
+        return false
+      }
+      return lineItem.metadata?.is_gift === "true"
+    })
+
+    // TODO pass gift items to third-party provider
+  }
+}
+```
+
+You filter the order items to find the items that are part of the fulfillment and are gift items. You can then process or pass them differently to your third-party provider.
+
+---
+
+## Next Steps
+
+You've now added gift messages to items in carts and orders in Medusa.
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get a more in-depth understanding of all the concepts you've used in this guide and more.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).
+
+### Troubleshooting
+
+If you encounter issues during your development, check out the [troubleshooting guides](../../../troubleshooting/page.mdx).
+
+### Getting Help
+
+If you encounter issues not covered in the troubleshooting guides:
+
+1. Visit the [Medusa GitHub repository](https://github.com/medusajs/medusa) to report issues or ask questions.
+2. Join the [Medusa Discord community](https://discord.gg/medusajs) for real-time support from community members.

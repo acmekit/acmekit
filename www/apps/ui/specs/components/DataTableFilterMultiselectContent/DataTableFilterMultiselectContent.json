@@ -1,0 +1,83 @@
+{
+  "description": "",
+  "methods": [],
+  "displayName": "DataTableFilterMultiselectContent",
+  "props": {
+    "id": {
+      "required": true,
+      "tsType": {
+        "name": "string"
+      },
+      "description": ""
+    },
+    "filter": {
+      "required": false,
+      "tsType": {
+        "name": "Array",
+        "elements": [
+          {
+            "name": "string"
+          }
+        ],
+        "raw": "string[]"
+      },
+      "description": "",
+      "defaultValue": {
+        "value": "[]",
+        "computed": false
+      }
+    },
+    "options": {
+      "required": true,
+      "tsType": {
+        "name": "Array",
+        "elements": [
+          {
+            "name": "DataTableFilterOption",
+            "elements": [
+              {
+                "name": "string"
+              }
+            ],
+            "raw": "DataTableFilterOption<string>"
+          }
+        ],
+        "raw": "DataTableFilterOption<string>[]"
+      },
+      "description": ""
+    },
+    "searchable": {
+      "required": false,
+      "tsType": {
+        "name": "boolean"
+      },
+      "description": "",
+      "defaultValue": {
+        "value": "true",
+        "computed": false
+      }
+    },
+    "onUpdate": {
+      "required": false,
+      "tsType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(value: unknown) => void",
+        "signature": {
+          "arguments": [
+            {
+              "type": {
+                "name": "unknown"
+              },
+              "name": "value"
+            }
+          ],
+          "return": {
+            "name": "void"
+          }
+        }
+      },
+      "description": ""
+    }
+  }
+}

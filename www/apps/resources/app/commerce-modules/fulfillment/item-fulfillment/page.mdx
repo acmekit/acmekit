@@ -1,0 +1,57 @@
+export const metadata = {
+  title: `Item Fulfillment Concepts`,
+}
+
+# {metadata.title}
+
+In this document, you’ll learn about the concepts related to item fulfillment.
+
+## Fulfillment Data Model
+
+A fulfillment is the shipping and delivery of one or more items to the customer. It’s represented by the [Fulfillment data model](/references/fulfillment/models/Fulfillment).
+
+A fulfillment can be created to fulfill orders, [returns](../../order/return/), [exchanges](../../order/exchange/page.mdx), and [claims](../../order/claim/page.mdx).
+
+---
+
+## Fulfillment Processing by a Fulfillment Provider
+
+A fulfillment is associated with a [fulfillment provider](../fulfillment-provider/page.mdx) that handles all its processing, such as creating a shipment for the fulfillment’s items.
+
+The fulfillment is also associated with a [shipping option](../shipping-option/page.mdx) of that provider, which determines how the item is shipped.
+
+![A diagram showcasing the relation between a fulfillment, fulfillment provider, and shipping option](https://res.cloudinary.com/dza7lstvk/image/upload/v1712331947/Medusa%20Resources/fulfillment-shipping-option_jk9ndp.jpg)
+
+---
+
+## data Property of Fulfillment Data Model
+
+The `Fulfillment` data model has a `data` property that holds any necessary data for the third-party fulfillment provider to process the fulfillment.
+
+For example, the `data` property can hold the ID of the fulfillment in the third-party provider. The associated fulfillment provider then uses it whenever it retrieves the fulfillment’s details. 
+
+---
+
+## Fulfillment Items
+
+A fulfillment is used to fulfill one or more items. Each item is represented by the [FulfillmentItem data model](/references/fulfillment/models/FulfillmentItem).
+
+The fulfillment item holds details relevant to fulfilling the item, such as barcode, SKU, and quantity to fulfill.
+
+![A diagram showcasing the relation between fulfillment and fulfillment items.](https://res.cloudinary.com/dza7lstvk/image/upload/v1712332114/Medusa%20Resources/fulfillment-item_etzxb0.jpg)
+
+---
+
+## Fulfillment Label
+
+Once a shipment is created for the fulfillment, you can store its tracking number, URL, or other related details as a label, represented by the [FulfillmentLabel data model](/references/fulfillment/models/FulfillmentLabel).
+
+---
+
+## Fulfillment Status
+
+The [Fulfillment data model](/references/fulfillment/models/Fulfillment) has three properties to determine the current status of the fulfillment:
+
+- `packed_at`: The date the fulfillment was packed. If set, the fulfillment has been packed.
+- `shipped_at`: The date the fulfillment was shipped. If set, the fulfillment has been shipped.
+- `delivered_at`: The date the fulfillment was delivered. If set, the fulfillment has been delivered.

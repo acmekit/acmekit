@@ -1,0 +1,66 @@
+import { CardList, Card } from "docs-ui"
+
+export const metadata = {
+  title: `Deployments`,
+}
+
+# {metadata.title}
+
+Find guides to deploy your Medusa application, Medusa Admin, and Next.js Starter Storefront.
+
+## Cloud
+
+Cloud is our managed services offering for Medusa applications. Cloud hosts your server, Admin dashboard, database, and Redis instance. The infrastructure is security-compliant and optimized for Medusa and supports:
+
+- Zero configuration.
+- Built-in autoscaling.
+- Deploy to regions around the world.
+- 99.99% uptime guarantee.
+
+With Cloud, you maintain full customization control as you deploy your own modules and customizations directly from GitHub:
+
+- Push to deploy.
+- Multiple testing environments.
+- Preview environments for new PRs.
+- Test on production-like data.
+- Storefront deployment.
+- Emails setup.
+- [And more](!cloud!#cloud-features).
+
+[Sign up and learn more about Cloud](!cloud!/sign-up).
+
+---
+
+## Self-hosting Medusa
+
+<Note title="Considering Self-Hosting?">
+
+Consider reading the [Cloud vs. Self-Hosting comparison guide](!cloud!/comparison) first. By using Cloud, you can avoid the complexities and challenges of self-hosting, while benefiting from automated deployment, scaling, and maintenance.
+
+</Note>
+
+To host and maintain Medusa on your own, check out the following guides.
+
+<Card
+  title="General Guide"
+  href="https://docs.medusajs.com/learn/deployment/general"
+  text="General steps to deploy Medusa."
+/>
+
+---
+
+## Deploy Next.js Starter Storefront
+
+<Note>
+
+Cloud supports deploying storefronts alongside your Medusa application. Learn more in the [Storefront Deployment on Cloud](!cloud!/storefront) guide.
+
+</Note>
+
+Learn how to deploy the Next.js Starter Storefront.
+
+<Card
+  title="Vercel"
+  href="/deployment/storefront/vercel"
+  text="Deploy the Next.js Starter Storefront on Vercel."
+/>

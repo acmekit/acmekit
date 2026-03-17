@@ -1,0 +1,45 @@
+get:
+  operationId: GetGiftCardsIdOrders
+  summary: List Gift Card's Orders
+  x-sidebar-summary: List Orders
+  description: Retrieve the list of orders that a gift card was used in.
+  x-authenticated: true
+  x-ignoreCleanup: true
+  parameters:
+    - name: id
+      in: path
+      description: The gift card's ID.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_gift-cards_{id}_orders/get.sh
+  tags:
+    - Gift Cards
+  responses:
+    '200':
+      description: OK
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-badges:
+    - text: Cloud
+      description: >
+        This API route is only available in [Medusa
+        Cloud](https://docs.medusajs.com/cloud/loyalty-plugin).

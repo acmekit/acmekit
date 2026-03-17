@@ -1,0 +1,659 @@
+---
+sidebar_label: "Re-Order"
+tags:
+    - name: order
+      label: "Implement Re-Order"
+    - server
+    - tutorial
+products:
+  - order
+---
+
+import { Github, PlaySolid } from "@medusajs/icons"
+import { Prerequisites, WorkflowDiagram } from "docs-ui"
+
+export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1742389227/Medusa%20Resources/product-reviews_zia79g.jpg"
+
+export const metadata = {
+  title: `Implement Quick Re-Order Functionality in Medusa`,
+  openGraph: {
+    images: [
+      {
+        url: ogImage,
+        width: 1600,
+        height: 836,
+        type: "image/jpeg"
+      }
+    ],
+  },
+  twitter: {
+    images: [
+      {
+        url: ogImage,
+        width: 1600,
+        height: 836,
+        type: "image/jpeg"
+      }
+    ]
+  }
+}
+
+# {metadata.title}
+
+In this tutorial, you'll learn how to implement a re-order functionality in Medusa.
+
+When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](../../../commerce-modules/page.mdx) which are available out-of-the-box. The features include order-management features.
+
+The Medusa Framework facilitates building custom features that are necessary for your business use case. In this tutorial, you'll learn how to implement a re-order functionality in Medusa. This feature is useful for businesses whose customers are likely to repeat their orders, such as B2B or food delivery businesses.
+
+You can follow this guide whether you're new to Medusa or an advanced Medusa developer.
+
+## Summary
+
+By following this tutorial, you'll learn how to:
+
+- Install and set up Medusa.
+- Define the logic to re-order an order.
+- Customize the Next.js Starter Storefront to add a re-order button.
+
+![Diagram showcasing the re-order logic](https://res.cloudinary.com/dza7lstvk/image/upload/v1746451309/Medusa%20Resources/reorder-summary_wnbbws.jpg)
+
+<CardList items={[
+  {
+    href: "https://github.com/medusajs/examples/tree/main/re-order",
+    title: "Re-Order Repository",
+    text: "Find the full code for this guide in this repository.",
+    icon: Github,
+  },
+  {
+    // TODO update link
+    href: "https://res.cloudinary.com/dza7lstvk/raw/upload/v1741941475/OpenApi/product-reviews_jh8ohj.yaml",
+    title: "OpenApi Specs for Postman",
+    text: "Import this OpenApi Specs file into tools like Postman.",
+    icon: PlaySolid,
+  },
+]} />
+
+---
+
+## Step 1: Install a Medusa Application
+
+<Prerequisites items={[
+  {
+    text: "Node.js v20+",
+    link: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Git CLI tool",
+    link: "https://git-scm.com/downloads"
+  },
+  {
+    text: "PostgreSQL",
+    link: "https://www.postgresql.org/download/"
+  }
+]} />
+
+Start by installing the Medusa application on your machine with the following command:
+
+```bash npx2yarnExec
+npx create-medusa-app@latest
+```
+
+You'll first be asked for the project's name. Then, when asked whether you want to install the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx), choose Yes.
+
+Afterwards, the installation process will start, which will install the Medusa application in a directory with your project's name, and the Next.js Starter Storefront in a separate directory with the `{project-name}-storefront` name.
+
+<Note title="Why is the storefront installed separately?">
+
+The Medusa application is composed of a headless Node.js server and an admin dashboard. The storefront is installed or custom-built separately and connects to the Medusa application through its REST endpoints, called [API routes](!docs!/learn/fundamentals/api-routes). Learn more in [Medusa's Architecture documentation](!docs!/learn/introduction/architecture).
+
+</Note>
+
+Once the installation finishes successfully, the Medusa Admin dashboard will open with a form to create a new user. Enter the user's credentials and submit the form. Afterwards, you can log in with the new user and explore the dashboard.
+
+<Note title="Ran into Errors?">
+
+Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-app-errors/page.mdx) for help.
+
+</Note>
+
+---
+
+## Step 2: Implement Re-Order Workflow
+
+To build custom commerce features in Medusa, you create a [workflow](!docs!/learn/fundamentals/workflows). A workflow is a series of queries and actions, called steps, that complete a task.
+
+By using workflows, you can track their executions' progress, define roll-back logic, and configure other advanced features. Then, you execute the workflow from other customizations, such as in an API Route.
+
+In this section, you'll implement the re-order functionality in a workflow. Later, you'll execute the workflow in a custom API route.
+
+<Note>
+
+Refer to the [Workflows documentation](!docs!/learn/fundamentals/workflows) to learn more.
+
+</Note>
+
+The workflow will have the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "reorderWorkflow",
+    steps: [
+      {
+        name: "useQueryGraphStep",
+        type: "step",
+        description: "Retrieve the order's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1,
+      },
+      {
+        name: "createCartWorkflow",
+        type: "step",
+        description: "Create a cart for the re-order.",
+        link: "/references/medusa-workflows/createCartWorkflow",
+        depth: 1,
+      },
+      {
+        name: "addShippingMethodToCartWorkflow",
+        type: "step",
+        description: "Add the order's shipping method(s) to the cart.",
+        link: "/references/medusa-workflows/addShippingMethodToCartWorkflow",
+        depth: 1,
+      },
+      {
+        name: "useQueryGraphStep",
+        type: "step",
+        description: "Retrieve the cart's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1,
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+This workflow uses steps from Medusa's `@medusajs/medusa/core-flows` package. So, you can implement the workflow without implementing custom steps.
+
+### a. Create the Workflow
+
+To create the workflow, create the file `src/workflows/reorder.ts` with the following content:
+
+export const workflowHighlights1 = [
+  ["19", "useQueryGraphStep", "Retrieve the order's details."],
+]
+
+```ts title="src/workflows/reorder.ts" highlights={workflowHighlights1}
+import { 
+  createWorkflow, 
+  transform, 
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { 
+  addShippingMethodToCartWorkflow, 
+  createCartWorkflow, 
+  useQueryGraphStep,
+} from "@medusajs/medusa/core-flows"
+
+type ReorderWorkflowInput = {
+  order_id: string
+}
+
+export const reorderWorkflow = createWorkflow(
+  "reorder",
+  ({ order_id }: ReorderWorkflowInput) => {
+    const { data: orders } = useQueryGraphStep({
+      entity: "order",
+      fields: [
+        "*",
+        "items.*",
+        "shipping_address.*",
+        "billing_address.*",
+        "region.*",
+        "sales_channel.*",
+        "shipping_methods.*",
+        "customer.*",
+      ],
+      filters: {
+        id: order_id,
+      },
+    })
+
+    // TODO create a cart with the order's items
+  }
+)
+```
+
+You create a workflow using `createWorkflow` from the Workflows SDK. It accepts the workflow's unique name as a first parameter.
+
+It accepts as a second parameter a constructor function, which is the workflow's implementation. The function can accept input, which in this case is an object holding the ID of the order to re-order.
+
+In the workflow's constructor function, so far you use the `useQueryGraphStep` step to retrieve the order's details. This step uses [Query](!docs!/learn/fundamentals/module-links/query) under the hood, which allows you to query data across [modules](!docs!/learn/fundamentals/modules).
+
+<Note>
+
+Refer to the [Query documentation](!docs!/learn/fundamentals/module-links/query) to learn more about how to use it.
+
+</Note>
+
+### b. Create a Cart
+
+Next, you need to create a cart using the old order's details. You can use the `createCartWorkflow` step to create a cart, but you first need to prepare its input data.
+
+Replace the `TODO` in the workflow with the following:
+
+export const workflowHighlights2 = [
+  ["1", "transform", "Prepare the input for cart creation."],
+  ["37", "createCartWorkflow", "Create the cart."],
+]
+
+```ts title="src/workflows/reorder.ts" highlights={workflowHighlights2}
+const createInput = transform({
+  orders,
+}, (data) => {
+  return {
+    region_id: data.orders[0].region_id!,
+    sales_channel_id: data.orders[0].sales_channel_id!,
+    customer_id: data.orders[0].customer_id!,
+    email: data.orders[0].email!,
+    billing_address: {
+      first_name: data.orders[0].billing_address?.first_name!,
+      last_name: data.orders[0].billing_address?.last_name!,
+      address_1: data.orders[0].billing_address?.address_1!,
+      city: data.orders[0].billing_address?.city!,
+      country_code: data.orders[0].billing_address?.country_code!,
+      province: data.orders[0].billing_address?.province!,
+      postal_code: data.orders[0].billing_address?.postal_code!,
+      phone: data.orders[0].billing_address?.phone!,
+    },
+    shipping_address: {
+      first_name: data.orders[0].shipping_address?.first_name!,
+      last_name: data.orders[0].shipping_address?.last_name!,
+      address_1: data.orders[0].shipping_address?.address_1!,
+      city: data.orders[0].shipping_address?.city!,
+      country_code: data.orders[0].shipping_address?.country_code!,
+      province: data.orders[0].shipping_address?.province!,
+      postal_code: data.orders[0].shipping_address?.postal_code!,
+      phone: data.orders[0].shipping_address?.phone!,
+    },
+    items: data.orders[0].items?.map((item) => ({
+      variant_id: item?.variant_id!,
+      quantity: item?.quantity!,
+      unit_price: item?.unit_price!,
+    })),
+  }
+})
+
+const { id: cart_id } = createCartWorkflow.runAsStep({
+  input: createInput,
+})
+
+// TODO add the shipping method to the cart
+```
+
+Data manipulation is not allowed in a workflow, as Medusa stores its definition before executing it. Instead, you can use `transform` from the Workflows SDK to manipulate the data.
+
+<Note>
+
+Learn more about why you can't manipulate data in a workflow and the `transform` function in the [Data Manipulation in Workflows documentation](!docs!/learn/fundamentals/workflows/variable-manipulation).
+
+</Note>
+
+`transform` accepts the following parameters:
+
+1. The data to use in the transformation function.
+2. A transformation function that accepts the data from the first parameter and returns the transformed data.
+
+In the above code snippet, you use `transform` to create the input for the `createCartWorkflow` step. The input is an object that holds the cart's details, including its items, shipping and billing addresses, and more.
+
+<Note>
+
+Learn about other input parameters you can pass in the [createCartWorkflow reference](/references/medusa-workflows/createCartWorkflow).
+
+</Note>
+
+After that, you execute the `createCartWorkflow` passing it the transformed input. The workflow returns the cart's details, including its ID.
+
+### c. Add Shipping Methods
+
+Next, you need to add the order's shipping method(s) to the cart. This saves the customer from having to select a shipping method again.
+
+You can use the `addShippingMethodToCartWorkflow` step to add the shipping method(s) to the cart.
+
+Replace the `TODO` in the workflow with the following:
+
+export const workflowHighlights3 = [
+  ["1", "transform", "Prepare the input for adding shipping methods to the cart."],
+  ["14", "addShippingMethodToCartWorkflow", "Add the shipping methods to the cart."],
+]
+
+```ts title="src/workflows/reorder.ts" highlights={workflowHighlights3}
+const addShippingMethodToCartInput = transform({
+  cart_id,
+  orders,
+}, (data) => {
+  return {
+    cart_id: data.cart_id,
+    options: data.orders[0].shipping_methods?.map((method) => ({
+      id: method?.shipping_option_id!,
+      data: method?.data!,
+    })) ?? [],
+  }
+})
+
+addShippingMethodToCartWorkflow.runAsStep({
+  input: addShippingMethodToCartInput,
+})
+
+// TODO retrieve and return the cart's details
+```
+
+Again, you use `transform` to prepare the input for the `addShippingMethodToCartWorkflow`. The input includes the cart's ID and the shipping method(s) to add to the cart.
+
+Then, you execute the `addShippingMethodToCartWorkflow` to add the shipping method(s) to the cart.
+
+### d. Retrieve and Return the Cart's Details
+
+Finally, you need to retrieve the cart's details and return them as the workflow's output.
+
+Replace the `TODO` in the workflow with the following:
+
+export const workflowHighlights4 = [
+  ["1", "useQueryGraphStep", "Retrieve the cart's details."],
+  ["27", "WorkflowResponse", "Return the cart's details."],
+]
+
+```ts title="src/workflows/reorder.ts" highlights={workflowHighlights4}
+const { data: carts } = useQueryGraphStep({
+  entity: "cart",
+  fields: [
+    "*",
+    "items.*",
+    "shipping_methods.*",
+    "shipping_address.*",
+    "billing_address.*",
+    "region.*",
+    "sales_channel.*",
+    "promotions.*",
+    "currency_code",
+    "subtotal",
+    "item_total",
+    "total",
+    "item_subtotal",
+    "shipping_subtotal",
+    "customer.*",
+    "payment_collection.*",
+    
+  ],
+  filters: {
+    id: cart_id,
+  },
+}).config({ name: "retrieve-cart" })
+
+return new WorkflowResponse(carts[0])
+```
+
+You execute the `useQueryGraphStep` again to retrieve the cart's details. Since you're re-using a step, you have to rename it using the `config` method.
+
+Finally, you return the cart's details. A workflow must return an instance of `WorkflowResponse`.
+
+The `WorkflowResponse` constructor accepts the workflow's output as a parameter, which is the cart's details in this case.
+
+In the next step, you'll create an API route that exposes the re-order functionality.
+
+---
+
+## Step 3: Create Re-Order API Route
+
+Now that you have the logic to re-order, you need to expose it so that frontend clients, such as a storefront, can use it. You do this by creating an [API route](!docs!/learn/fundamentals/api-routes).
+
+An API Route is an endpoint that exposes commerce features to external applications and clients, such as storefronts. You'll create an API route at the path `/store/customers/me/orders/:id` that executes the workflow from the previous step.
+
+<Note>
+
+Refer to the [API Routes documentation](!docs!/learn/fundamentals/api-routes) to learn more.
+
+</Note>
+
+An API route is created in a `route.ts` file under a sub-directory of the `src/api` directory. The path of the API route is the file's path relative to `src/api`.
+
+So, create the file `src/api/store/customers/me/orders/[id]/route.ts` with the following content:
+
+```ts title="src/api/store/customers/me/orders/[id]/route.ts"
+import { 
+  AuthenticatedMedusaRequest, 
+  MedusaResponse,
+} from "@medusajs/framework/http"
+import { reorderWorkflow } from "../../../../../../workflows/reorder"
+
+export async function POST(
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) {
+  const { id } = req.params
+
+  const { result } = await reorderWorkflow(req.scope).run({
+    input: {
+      order_id: id,
+    },
+  })
+
+  return res.json({
+    cart: result,
+  })
+}
+```
+
+Since you export a `POST` route handler function, you expose a `POST` API route at `/store/customers/me/orders/:id`.
+
+<Note>
+
+API routes that start with `/store/customers/me` are protected by default, meaning that only authenticated customers can access them. Learn more in the [Protected API Routes documentation](!docs!/learn/fundamentals/api-routes/protected-routes).
+
+</Note>
+
+The route handler function accepts two parameters:
+
+1. A request object with details and context on the request, such as path parameters or authenticated customer details.
+2. A response object to manipulate and send the response.
+
+In the route handler function, you execute the `reorderWorkflow`. To execute a workflow, you:
+
+- Invoke it, passing it the [Medusa container](!docs!/learn/fundamentals/medusa-container) available in the `req.scope` property.
+    - The Medusa container is a registry of Framework and commerce resources that you can resolve and use in your customizations.
+- Call the `run` method, passing it an object with the workflow's input.
+
+You pass the order ID from the request's path parameters as the workflow's input. Finally, you return the created cart's details in the response.
+
+You'll test out this API route after you customize the Next.js Starter Storefront.
+
+---
+
+## Step 4: Customize the Next.js Starter Storefront
+
+In this step, you'll customize the [Next.js Starter Storefront](../../../nextjs-starter/page.mdx) to add a re-order button. You installed the Next.js Starter Storefront in the first step with the Medusa application, but you can also install it separately as explained in the [Next.js Starter Storefront documentation](../../../nextjs-starter/page.mdx).
+
+The Next.js Starter Storefront provides rich commerce features and a sleek design. You can use it as-is or build on top of it to tailor it for your business's unique use case, design, and customer experience.
+
+<Note title="Reminder" forceMultiline>
+
+The Next.js Starter Storefront was installed in a separate directory from Medusa. The directory's name is `{your-project}-storefront`.
+
+So, if your Medusa application's directory is `medusa-reorder`, you can find the storefront by going back to the parent directory and changing to the `medusa-reorder-storefront` directory:
+
+```bash
+cd ../medusa-reorder-storefront # change based on your project name
+```
+
+</Note>
+
+To add the re-order button, you will:
+
+- Add a server function that re-orders an order using the API route from the previous step.
+- Add a button to the order details page that calls the server function.
+
+### a. Add the Server Function
+
+You'll add the server function for the re-order functionality in the `src/lib/data/orders.ts` file.
+
+First, add the following import statement to the top of the file:
+
+```ts title="src/lib/data/orders.ts" badgeLabel="Storefront" badgeColor="blue"
+import { setCartId } from "./cookies"
+```
+
+Then, add the function at the end of the file:
+
+```ts title="src/lib/data/orders.ts" badgeLabel="Storefront" badgeColor="blue"
+export const reorder = async (id: string) => {
+  const headers = await getAuthHeaders()
+
+  const { cart } = await sdk.client.fetch<HttpTypes.StoreCartResponse>(
+    `/store/customers/me/orders/${id}`,
+    {
+      method: "POST",
+      headers,
+    }
+  )
+
+  await setCartId(cart.id)
+
+  return cart
+}
+```
+
+You add a function that accepts the order ID as a parameter.
+
+The function uses the `client.fetch` method of the [JS SDK](../../../js-sdk/page.mdx) to send a request to the API route you created in the previous step.
+
+<Note>
+
+The JS SDK is already configured in the Next.js Starter Storefront. Refer to the [JS SDK documentation](../../../js-sdk/page.mdx) to learn more about it.
+
+</Note>
+
+Once the request succeeds, you use the `setCartId` function that's defined in the storefront to set the cart ID in a cookie. This ensures the cart is used across the storefront.
+
+Finally, you return the cart's details.
+
+### b. Add the Re-Order Button Component
+
+Next, you'll add the component that shows the re-order button. You'll later add the component to the order details page.
+
+To create the component, create the file `src/modules/order/components/reorder-action/index.tsx` with the following content:
+
+export const componentHighlights = [
+  ["14", "handleReorder", "Re-order the order."],
+  ["21", "push", "Redirect to the checkout page."],
+  ["24", "toast.error", "Show the error message."],
+]
+
+```tsx title="src/modules/order/components/reorder-action/index.tsx" badgeLabel="Storefront" badgeColor="blue" highlights={componentHighlights}
+import { Button, toast } from "@medusajs/ui"
+import { reorder } from "../../../../lib/data/orders"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+
+type ReorderActionProps = {
+  orderId: string
+}
+
+export default function ReorderAction({ orderId }: ReorderActionProps) {
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+
+  const handleReorder = async () => {
+    setIsLoading(true)
+    try {
+      const cart = await reorder(orderId)
+
+      setIsLoading(false)
+      toast.success("Prepared cart to reorder. Proceeding to checkout...")
+      router.push(`/${cart.shipping_address!.country_code}/checkout?step=payment`)
+    } catch (error) {
+      setIsLoading(false)
+      toast.error(`Error reordering: ${error}`)
+    }
+  }
+
+  return (
+    <Button
+      variant="primary"
+      size="small"
+      onClick={handleReorder}
+      disabled={isLoading}
+    >
+      Reorder
+    </Button>
+  )
+}
+```
+
+You create a `ReorderAction` component that accepts the order ID as a prop.
+
+In the component, you render a button that, when clicked, calls a `handleReorder` function. The function calls the `reorder` function you created in the previous step to re-order the order.
+
+If the re-order succeeds, you redirect the user to the payment step of the checkout page. If it fails, you show an error message.
+
+### c. Show Re-Order Button on Order Details Page
+
+Finally, you'll show the `ReorderAction` component on the order details page.
+
+In `src/modules/order/templates/order-details-template.tsx`, add the following import statement to the top of the file:
+
+```tsx title="src/modules/order/templates/order-details-template.tsx" badgeLabel="Storefront" badgeColor="blue"
+import ReorderAction from "../components/reorder-action"
+```
+
+Then, in the return statement of the `OrderDetailsTemplate` component, find the `OrderDetails` component and add the `ReorderAction` component below it:
+
+```tsx title="src/modules/order/templates/order-details-template.tsx" badgeLabel="Storefront" badgeColor="blue"
+<ReorderAction orderId={order.id} />
+```
+
+The re-order button will now be shown on the order details page.
+
+### Test it Out
+
+You'll now test out the re-order functionality.
+
+First, to start the Medusa application, run the following command in the Medusa application's directory:
+
+```bash npm2yarn badgeLabel="Medusa application" badgeColor="green"
+npm run dev
+```
+
+Then, in the Next.js Starter Storefront directory, run the following command to start the storefront:
+
+```bash npm2yarn badgeLabel="Storefront" badgeColor="blue"
+npm run dev
+```
+
+The storefront will be running at `http://localhost:8000`. Open it in your browser.
+
+To test out the re-order functionality:
+
+- Create an account in the storefront.
+- Add a product to the cart and complete the checkout process to place an order.
+- Go to Account -> Orders, and click on the "See details" button.
+
+![Orders page on customer account](https://res.cloudinary.com/dza7lstvk/image/upload/v1746449666/Medusa%20Resources/Screenshot_2025-05-05_at_3.52.46_PM_ae4e78.png)
+
+On the order's details page, you'll find a "Reorder" button.
+
+![Reorder button on order details page](https://res.cloudinary.com/dza7lstvk/image/upload/v1746450255/Medusa%20Resources/Screenshot_2025-05-05_at_4.03.51_PM_xaslqo.png)
+
+When you click on the button, a new cart will be created with the order's details, and you'll be redirected to the checkout page where you can complete the purchase.
+
+![Checkout page showing the payment step](https://res.cloudinary.com/dza7lstvk/image/upload/v1746450342/Medusa%20Resources/Screenshot_2025-05-05_at_4.05.29_PM_vqpdqo.png)
+
+---
+
+## Next Steps
+
+You now have a re-order functionality in your Medusa application and Next.js Starter Storefront. You can expand more on this feature based on your use case.
+
+For example, you can add quick orders on the storefront's homepage, allowing customers to quickly re-order their last orders.
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get a more in-depth learning of all the concepts you've used in this guide and more.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).

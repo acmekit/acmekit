@@ -1,0 +1,77 @@
+---
+generate_toc: true
+---
+
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Select`,
+}
+
+# {metadata.title}
+
+A component that displays a select form input using Medusa's design system.
+
+In this guide, you'll learn how to use the Select component.
+
+<ComponentExample name="select-demo" />
+
+## Usage
+
+```tsx
+import { Select } from "@medusajs/ui"
+```
+
+```tsx
+<Select>
+  <Select.Trigger>
+    <Select.Value placeholder="Placeholder" />
+  </Select.Trigger>
+  <Select.Content>
+    {items.map((item) => (
+      <Select.Item key={item.value} value={item.value}>
+        {item.label}
+      </Select.Item>
+    ))}
+  </Select.Content>
+</Select>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Select" componentsToShow={[
+  "Select",
+  "Select.Trigger",
+  "Select.Value",
+  "Select.Group",
+  "Select.Label",
+  "Select.Item",
+  "Select.Content"
+]} />
+
+---
+
+## Examples
+
+### Small Select
+
+<ComponentExample name="select-small" />
+
+### Select Item-Aligned Position
+
+<ComponentExample name="select-item-aligned" />
+
+### Disabled Select
+
+<ComponentExample name="select-disabled" />
+
+### Select with Grouped Items
+
+<ComponentExample name="select-grouped-items" />
+
+### Controlled Select
+
+<ComponentExample name="select-controlled" hideFeedback />

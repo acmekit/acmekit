@@ -1,0 +1,69 @@
+---
+sidebar_label: "retrieve"
+---
+
+export const metadata = {
+  title: `retrieve Method - Service Factory Reference`,
+}
+
+# {metadata.title}
+
+This method retrieves one record of a data model by its ID.
+
+The method's name is `retrieveDataModel`, where `DataModel` is the singular pascal-case name of the data model.
+
+## Retrieve a Record
+
+```ts
+const post = await postModuleService.retrievePost("123")
+```
+
+### Parameters
+
+Pass the ID of the record to retrieve.
+
+### Returns
+
+The method returns the record as an object.
+
+---
+
+## Retrieve a Record's Relations
+
+<Note>
+
+This applies to relations between data models of the same module. To retrieve linked records of different modules, use [Query](!docs!/learn/fundamentals/module-links/query).
+
+</Note>
+
+```ts
+const post = await postModuleService.retrievePost("123", {
+  relations: ["author"],
+})
+```
+
+### Parameters
+
+To retrieve the data model with relations, pass an object with the property `relations` as the second parameter. `relations`'s value is an array of relation names.
+
+### Returns
+
+The method returns the record as an object.
+
+---
+
+## Select Properties to Retrieve
+
+```ts
+const post = await postModuleService.retrievePost("123", {
+  select: ["id", "name"],
+})
+```
+
+### Parameters
+
+By default, all of the record's properties are retrieved. To select specific ones, pass a `select` property in the second object parameter. Its value is an array of property names.
+
+### Returns
+
+The method returns the record as an object.

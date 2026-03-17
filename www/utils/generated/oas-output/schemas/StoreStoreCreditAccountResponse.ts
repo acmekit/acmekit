@@ -1,0 +1,13 @@
+/**
+ * @schema StoreStoreCreditAccountResponse
+ * type: object
+ * description: The store credit account's details.
+ * x-schemaName: StoreStoreCreditAccountResponse
+ * required:
+ *   - store_credit_account
+ * properties:
+ *   store_credit_account:
+ *     $ref: "#/components/schemas/StoreStoreCreditAccount"
+ * 
+*/
+

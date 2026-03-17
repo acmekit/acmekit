@@ -1,0 +1,188 @@
+---
+products:
+  - order
+  - payment
+---
+
+import { AcademicCapSolid, Github } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Subscriptions Recipe`,
+}
+
+# {metadata.title}
+
+This recipe provides the general steps to build subscription-based purchase with Medusa.
+
+## Overview
+
+Subscription-based purchase allows customers to purchase products for a specified period, and the payment and fulfillment is processed within a regular interval in that period.
+
+For example, a customer can purchase a book subscription box for a period of three months. Each month, the payment is captured for that order and, if the payment is successful, the fulfillment is processed.
+
+Medusa's [Framework](!docs!/learn/fundamentals/framework) for customizations facilitates building subscription-based purchases. You can create a Subscription Module that implements data models for subscriptions, and link those data models to existing ones such as products and orders.
+
+You can also expose custom features using API routes, and implement complex flows using workflows.
+
+<Note title="Related use-case">
+
+[How Goodchef built subscription-based purchases with Medusa](https://medusajs.com/blog/goodchef/).
+
+</Note>
+
+---
+
+## Save Subscription Details
+
+Subscriptions have details related to the subscription interval, subscription period, and more.
+
+To store the subscription details, you can create a data model in a new subscription module. The module's main service provides data management feature of the data model.
+
+You can link the subscription data model to models of other modules, such as the Order Module's `Order` data model.
+
+<CardList items={[
+  {
+    href: "!docs!/learn/fundamentals/modules",
+    title: "Create a Module",
+    text: "Learn how to create a module.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/modules#1-create-data-model",
+    title: "Create a Data Model",
+    text: "Learn how to create a data model.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+---
+
+## Link Subscription to Existing Data Models
+
+Define a module link that links a data model from your subscription module with a data model from another module.
+
+For example, you can link the subscription data model to the Order Module's `Order` data model.
+
+If you want to create subscriptions on the product level, you can link the subscription data model to the Product Module's `Product` data model.
+
+<Card
+  href="!docs!/learn/fundamentals/module-links"
+  title="Define a Module Link"
+  text="Learn how to define a module link."
+  icon={AcademicCapSolid}
+/>
+
+---
+
+## Implement Subscription Approach
+
+There are different ways to implement subscriptions in your Medusa application. This recipe covers two options.
+
+### Option 1: Custom Subscription Logic
+
+By implementing the subscription logic within your application, you have full control over the subscription logic. You'll also be independent of payment providers, providing customers with more than one payment provider.
+
+Implementing the logic depends on your use case, but you'll mainly implement the following:
+
+1. Create a workflow that completes a cart and creates a subscription for the order.
+1. Create an API route that executes the workflow.
+2. Create a scheduled job that checks daily for subscriptions that need renewal.
+3. Create another scheduled job that checks daily for subscriptions that are expired.
+
+<CardList itemsPerRow={2} items={[
+  {
+    href: "!docs!/learn/fundamentals/workflows",
+    title: "Create a Workflow",
+    text: "Learn how to create a workflow.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/api-routes",
+    title: "Create an API Route",
+    text: "Learn how to create an API route.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+<Card
+  href="!docs!/learn/fundamentals/scheduled-jobs#1-create-a-scheduled-job"
+  title="Create a Scheduled Job"
+  text="Learn how to create a scheduled job."
+  icon={AcademicCapSolid}
+  className="mt-1"
+/>
+
+### Option 2: Using Stripe Subscriptions
+
+Stripe provides a [subscription payments feature](https://stripe.com/docs/billing/subscriptions/overview) that allows you to authorize payment on a subscription basis within Stripe. Stripe then handles checking for recurring payments and capturing payment at the specified interval.
+
+This approach allows you to delegate the complications of implementing the subscription logic to Stripe, but doesn't support using other payment providers.
+
+Although Medusa provides a [Stripe Payment Module Provider](../../commerce-modules/payment/payment-provider/stripe/page.mdx), it doesn't handle subscriptions. You can create a custom Stripe Subscription Module Provider instead.
+
+<Card
+  href="/references/payment/provider"
+  title="Create Payment Module Provider"
+  text="Learn how to create a payment module provider."
+  icon={AcademicCapSolid}
+/>
+
+---
+
+## Customize Admin Dashboard
+
+Based on your use case, you may need to customize the Medusa Admin to add new widgets or pages.
+
+For example, you can create a page that lists all subscriptions or a widget that shows an order's subscription information.
+
+The Medusa Admin is an extensible application within your Medusa application. You can customize it by:
+
+- **Widgets**: Adding widgets to existing pages, such as the order page.
+- **UI Routes**: Adding new pages to the Medusa Admin, such as a page to manage subscriptions.
+- **Settings Pages**: Adding new pages to the Medusa Admin settings, such as a page to manage subscription settings.
+
+<CardList items={[
+  {
+    href: "!docs!/learn/fundamentals/admin/widgets",
+    title: "Create Admin Widget",
+    text: "Add widgets into existing admin pages.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "!docs!/learn/fundamentals/admin/ui-routes",
+    title: "Create Admin UI Routes",
+    text: "Add new pages to your Medusa Admin.",
+    icon: AcademicCapSolid,
+  },
+]} />
+
+<Card
+  href="!docs!/learn/fundamentals/admin/ui-routes#create-settings-page"
+  title="Create Admin Setting Page"
+  text="Add new page to the Medusa Admin settings."
+  icon={AcademicCapSolid}
+  className="mt-1"
+/>
+
+---
+
+## Customize or Build Storefront
+
+Medusa provides a Next.js Starter Storefront to use with your application. You can customize it for your subscription use case, such as allowing customers to manage their subscriptions.
+
+Alternatively, you can build your own storefront using the Medusa APIs. This headless approach gives you the flexibility to build a custom storefront without limitations on which tech stack you use, or the design of the storefront.
+
+<CardList items={[
+  {
+    href: "/nextjs-starter",
+    title: "Next.js Starter Storefront",
+    text: "Learn how to install and customize the Next.js Starter Storefront.",
+    icon: AcademicCapSolid,
+  },
+  {
+    href: "/storefront-development",
+    title: "Storefront Development",
+    text: "Find guides to build your own storefront.",
+    icon: AcademicCapSolid,
+  },
+]} />

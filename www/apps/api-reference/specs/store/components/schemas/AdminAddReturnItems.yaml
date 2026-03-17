@@ -1,0 +1,11 @@
+type: object
+description: The items' details.
+x-schemaName: AdminAddReturnItems
+properties:
+  items:
+    type: array
+    description: The items' details.
+    items:
+      $ref: ./AdminAddReturnItem.yaml
+required:
+  - items

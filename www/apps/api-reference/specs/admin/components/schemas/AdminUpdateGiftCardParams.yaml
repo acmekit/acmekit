@@ -1,0 +1,37 @@
+type: object
+description: The details to update in the gift card.
+x-schemaName: AdminUpdateGiftCardParams
+properties:
+  status:
+    type: string
+    description: The gift card's status.
+    enum:
+      - pending
+      - redeemed
+  value:
+    type: number
+    title: value
+    description: The gift card's amount.
+  customer_id:
+    type: string
+    title: customer_id
+    description: The ID of the customer that the gift card belongs to.
+  currency_code:
+    type: string
+    title: currency_code
+    description: The gift card's currency code.
+    example: usd
+  note:
+    type: string
+    title: note
+    description: The gift card's note.
+  expires_at:
+    type: string
+    title: expires_at
+    description: The date the gift card expires at.
+  metadata:
+    type: object
+    description: The gift card's metadata.
+    externalDocs:
+      url: https://docs.medusajs.com/api/admin#manage-metadata
+      description: Learn how to manage metadata

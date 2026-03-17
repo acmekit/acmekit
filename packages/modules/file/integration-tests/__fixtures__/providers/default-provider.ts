@@ -1,0 +1,41 @@
+import { FileTypes } from "@medusajs/framework/types"
+import { AbstractFileProviderService } from "@medusajs/framework/utils"
+
+export class FileProviderServiceFixtures extends AbstractFileProviderService {
+  static identifier = "fixtures-file-provider"
+  protected storage = {}
+  async upload(
+    file: FileTypes.ProviderUploadFileDTO
+  ): Promise<FileTypes.ProviderFileResultDTO> {
+    this.storage[file.filename] = file.content
+    return {
+      url: file.filename,
+      key: file.filename,
+    }
+  }
+  async delete(file: FileTypes.ProviderDeleteFileDTO): Promise<void> {
+    delete this.storage[file.fileKey]
+    return
+  }
+
+  async getPresignedDownloadUrl(
+    fileData: FileTypes.ProviderGetFileDTO
+  ): Promise<string> {
+    if (this.storage[fileData.fileKey]) {
+      return this.storage[fileData.fileKey]
+    }
+
+    return ""
+  }
+
+  async getPresignedUploadUrl(
+    fileData: FileTypes.ProviderGetPresignedUploadUrlDTO
+  ): Promise<FileTypes.ProviderFileResultDTO> {
+    return {
+      url: "presigned-url/" + fileData.filename,
+      key: fileData.filename,
+    }
+  }
+}
+
+export const services = [FileProviderServiceFixtures]

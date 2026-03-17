@@ -1,0 +1,110 @@
+---
+tags:
+  - publishable api key
+  - api key
+  - storefront
+  - sales channel
+products:
+  - api key
+  - sales channel
+---
+
+export const metadata = {
+  title: `Use a Publishable API Key in the Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to create and use the publishable API key in your storefront to interact with the Medusa application's Store API routes.
+
+## What is a Publishable API Key?
+
+When sending requests to the `/store` API routes, you must pass a publishable API key in the header of your request.
+
+Publishable API keys specify the scope of a request. Admin users create them, and they can only be used on the client-side, such as in a storefront.
+
+Publishable API keys are associated with sales channels. Then, when the publishable API key is passed in the header of a request, the Medusa application automatically infers what sales channel is being used.
+
+---
+
+## How to Create a Publishable API Key?
+
+You create a publishable API key either using the [Medusa Admin](!user-guide!/settings/developer/publishable-api-keys) or the [Admin API routes](!api!/admin#api-keys_postapikeys).
+
+For example, using the [Create API Key API Route](!api!/admin#api-keys_postapikeys):
+
+```bash
+curl -X POST 'http://localhost:9000/admin/api-keys' \
+-H 'Authorization: Bearer {token}' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+  "title": "Storefront Key",
+  "type": "publishable"
+}'
+```
+
+<Note title="Tip">
+
+Learn how to send authenticated admin requests in the [Admin API reference](!api!/admin#authentication)
+
+</Note>
+
+### Add Sales Channels to the Publishable API Key's Scope
+
+To add sales channels to the publishable API key's scope, you can either use the [Medusa Admin](!user-guide!/settings/developer/publishable-api-keys#manage-publishable-api-keys-sales-channels), or send a request to the [Manage Sales Channels API route](!api!/admin#api-keys_postapikeysidsaleschannels):
+
+```bash
+curl -X POST 'http://localhost:9000/admin/api-keys/apk_123/sales-channels' \
+-H 'Authorization: Bearer {token}' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+  "add": ["sc_123"]
+}'
+```
+
+Make sure to replace `apk_123` with the ID of the publishable API key, and `sc_123` with the ID of the sales channel.
+
+---
+
+## How to Use Publishable API Key in Storefront Requests
+
+In your storefront, pass the `x-publishable-api-key` in the header of all your requests to the Medusa application.
+
+For example:
+
+```bash
+curl '{backend_url}/store/products' \
+-H 'x-publishable-api-key: {your_publishable_api_key}'
+```
+
+Where `{your_publishable_api_key}` is the token of your publishable API key.
+
+### Using the JS SDK
+
+When using the JS SDK, set the publishable API key as an environment variable and pass it to the JS SDK's configurations.
+
+For example:
+
+export const highlights = [
+  ["12", "NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY", "An environment variable that holds the publishable API key's token."]
+]
+
+```ts
+import Medusa from "@medusajs/js-sdk"
+
+let MEDUSA_BACKEND_URL = "http://localhost:9000"
+
+if (process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL) {
+  MEDUSA_BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
+}
+
+export const sdk = new Medusa({
+  baseUrl: MEDUSA_BACKEND_URL,
+  debug: process.env.NODE_ENV === "development",
+  publishableKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
+})
+```
+
+Where `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` is an environment variable that holds your publishable API key's token. Based on your storefront framework, make sure the environment variable is accessible in the browser. For example, in Next.js, prefix the variable name with `NEXT_PUBLIC_`.
+
+The JS SDK will now take care of passing the publishable API key in the header of all requests to the Medusa application.

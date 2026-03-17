@@ -1,0 +1,93 @@
+post:
+  operationId: PostOrdersIdFulfillmentsFulfillment_idCancel
+  summary: Cancel Fulfillment
+  description: >-
+    Cancel an order's fulfillment. The fulfillment can't be canceled if it's
+    shipped.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The order's ID.
+      required: true
+      schema:
+        type: string
+    - name: fulfillment_id
+      in: path
+      description: The order's fulfillment id.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+            - type: object
+              description: The cancelation details.
+              properties:
+                no_notification:
+                  type: boolean
+                  title: no_notification
+                  description: >-
+                    Whether the customer should receive a notification about
+                    this change.
+            - type: object
+              description: The cancelation details.
+              properties:
+                additional_data:
+                  type: object
+                  description: >-
+                    Pass additional custom data to the API route. This data is
+                    passed to the underlying workflow under the
+                    `additional_data` parameter.
+          description: The cancelation details.
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: >-
+          ../code_samples/JavaScript/admin_orders_{id}_fulfillments_{fulfillment_id}_cancel/post.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: >-
+          ../code_samples/Shell/admin_orders_{id}_fulfillments_{fulfillment_id}_cancel/post.sh
+  tags:
+    - Orders
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AdminOrderResponse.yaml
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: cancelOrderFulfillmentWorkflow
+  x-events:
+    - name: order.fulfillment_canceled
+      payload: |-
+        ```ts
+        {
+          order_id, // The ID of the order
+          fulfillment_id, // The ID of the fulfillment
+          no_notification, // (boolean) Whether to notify the customer
+        }
+        ```
+      description: Emitted when an order's fulfillment is canceled.
+      deprecated: false

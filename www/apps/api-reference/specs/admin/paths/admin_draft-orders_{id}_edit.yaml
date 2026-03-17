@@ -1,0 +1,94 @@
+post:
+  operationId: PostDraftOrdersIdEdit
+  summary: Create a Draft Order Edit
+  x-sidebar-summary: Create Edit
+  description: >-
+    Create an edit on a draft order. This will allow you to make changes to the
+    draft order's items, shipping methods, or promotions. Once you've made the
+    necessar changes, you can later either request the edit (which requires a
+    confirmation from the customer), or force-confirm the edit.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The draft order's ID.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: ../code_samples/JavaScript/admin_draft-orders_{id}_edit/post.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_draft-orders_{id}_edit/post.sh
+  tags:
+    - Draft Orders
+  responses:
+    '200':
+      description: OK
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: beginDraftOrderEditWorkflow
+  x-events: []
+delete:
+  operationId: DeleteDraftOrdersIdEdit
+  summary: Cancel Edit on Draft Order
+  x-sidebar-summary: Cancel Edit
+  description: Cancel an unconfirmed edit on a draft order.
+  x-authenticated: true
+  parameters:
+    - name: id
+      in: path
+      description: The draft order's ID.
+      required: true
+      schema:
+        type: string
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
+  x-codeSamples:
+    - lang: JavaScript
+      label: JS SDK
+      source:
+        $ref: ../code_samples/JavaScript/admin_draft-orders_{id}_edit/delete.js
+    - lang: Shell
+      label: cURL
+      source:
+        $ref: ../code_samples/Shell/admin_draft-orders_{id}_edit/delete.sh
+  tags:
+    - Draft Orders
+  responses:
+    '200':
+      description: OK
+    '400':
+      $ref: ../components/responses/400_error.yaml
+    '401':
+      $ref: ../components/responses/unauthorized.yaml
+    '404':
+      $ref: ../components/responses/not_found_error.yaml
+    '409':
+      $ref: ../components/responses/invalid_state_error.yaml
+    '422':
+      $ref: ../components/responses/invalid_request_error.yaml
+    '500':
+      $ref: ../components/responses/500_error.yaml
+  x-workflow: cancelDraftOrderEditWorkflow
+  x-events: []

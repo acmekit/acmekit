@@ -1,0 +1,86 @@
+export const metadata = {
+  title: `Fulfillment Module Provider`,
+}
+
+# {metadata.title}
+
+In this guide, you’ll learn about the Fulfillment Module Provider and how it's used.
+
+<Note title="Looking for no-code docs?">
+
+Refer to this [Medusa Admin User Guide](!user-guide!/settings/locations-and-shipping/locations#manage-fulfillment-providers) to learn how to add a fulfillment provider to a location using the dashboard.
+
+</Note>
+
+## What is a Fulfillment Module Provider?
+
+A Fulfillment Module Provider handles fulfilling items, typically using a third-party integration.
+
+Fulfillment Module Providers registered in the Fulfillment Module's [options](../module-options/page.mdx) are stored and represented by the [FulfillmentProvider data model](/references/fulfillment/models/FulfillmentProvider).
+
+![Diagram showcasing the communication between Medusa, the Fulfillment Module Provider, and the third-party fulfillment provider.](https://res.cloudinary.com/dza7lstvk/image/upload/v1746794800/Medusa%20Resources/fulfillment-provider-service_ljsqpq.jpg)
+
+---
+
+## Default Fulfillment Provider
+
+Medusa provides a Manual Fulfillment Provider that acts as a placeholder fulfillment provider. It doesn't process fulfillment and delegates that to the merchant.
+
+This provider is installed by default in your application and you can use it to fulfill items manually.
+
+<Note title="Tip">
+
+The identifier of the manual fulfillment provider is `fp_manual_manual`.
+
+</Note>
+
+---
+
+## How to Create a Custom Fulfillment Provider?
+
+A Fulfillment Module Provider is a module whose service implements the `IFulfillmentProvider` imported from `@medusajs/framework/types`.
+
+The module can have multiple fulfillment provider services, where each are registered as separate fulfillment providers.
+
+Refer to the [Create Fulfillment Module Provider](/references/fulfillment/provider) guide to learn how to create a Fulfillment Module Provider.
+
+{/* TODO add link to user guide */}
+
+After you create a fulfillment provider, you can choose it as the default Fulfillment Module Provider for a stock location in the Medusa Admin dashboard.
+
+---
+
+## How are Fulfillment Providers Registered?
+
+### Configure Fulfillment Module's Providers
+
+The Fulfillment Module accepts a `providers` option that allows you to configure the providers registered in your application.
+
+Learn more about this option in the [Module Options](../module-options/page.mdx) guide.
+
+### Registration on Application Start
+
+When the Medusa application starts, it registers the Fulfillment Module Providers defined in the `providers` option of the Fulfillment Module.
+
+For each Fulfillment Module Provider, the Medusa application finds all fulfillment provider services defined in them to register.
+
+### FulfillmentProvider Data Model
+
+A registered fulfillment provider is represented by the [FulfillmentProvider data model](/references/fulfillment/models/FulfillmentProvider) in the Medusa application.
+
+This data model is used to reference a service in the Fulfillment Module Provider and determine whether it's installed in the application.
+
+![Diagram showcasing the FulfillmentProvider data model](https://res.cloudinary.com/dza7lstvk/image/upload/v1746794803/Medusa%20Resources/fulfillment-provider-model_wo2ato.jpg)
+
+The `FulfillmentProvider` data model has the following properties:
+
+- `id`: The unique identifier of the fulfillment provider. The ID's format is `fp_{identifier}_{id}`, where:
+    - `identifier` is the value of the `identifier` property in the Fulfillment Module Provider's service.
+    - `id` is the value of the `id` property of the Fulfillment Module Provider in `medusa-config.ts`.
+- `is_enabled`: A boolean indicating whether the fulfillment provider is enabled.
+
+### How to Remove a Fulfillment Provider?
+
+You can remove a registered fulfillment provider from the Medusa application by removing it from the `providers` option in the Fulfillment Module's configuration.
+
+Then, the next time the Medusa application starts, it will set the `is_enabled` property of the `FulfillmentProvider`'s record to `false`. This allows you to re-enable the fulfillment provider later if needed by adding it back to the `providers` option.

@@ -1,0 +1,42 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Label`,
+}
+
+# {metadata.title}
+
+A component that renders an accessible label associated with input fields.
+
+In this guide, you'll learn how to use the Label component.
+
+<ComponentExample name="label-demo" />
+
+## Usage
+
+```tsx
+import { Label } from "@medusajs/ui"
+```
+
+```tsx
+<Label>Label</Label>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Label" />
+
+---
+
+## Examples
+
+### Label Sizes
+
+<ComponentExample name="label-all-sizes" />
+
+### Label with Form Inputs
+
+<ComponentExample name="label-with-inputs" hideFeedback />

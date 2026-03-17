@@ -1,0 +1,25 @@
+/**
+ * @schema AdminCreateFulfillmentLabel
+ * type: object
+ * description: Details of the fulfillment label to create.
+ * required:
+ *   - tracking_number
+ *   - tracking_url
+ *   - label_url
+ * properties:
+ *   tracking_number:
+ *     type: string
+ *     title: tracking_number
+ *     description: The label's tracking number.
+ *   tracking_url:
+ *     type: string
+ *     title: tracking_url
+ *     description: The label's tracking URL.
+ *   label_url:
+ *     type: string
+ *     title: label_url
+ *     description: The label's URL.
+ * x-schemaName: AdminCreateFulfillmentLabel
+ * 
+*/
+

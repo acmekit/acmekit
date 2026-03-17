@@ -1,0 +1,60 @@
+---
+sidebar_label: "build"
+sidebar_position: 5
+---
+
+import { Table } from "docs-ui"
+
+export const metadata = {
+  title: `build Command - Medusa CLI Reference`,
+}
+
+# {metadata.title}
+
+Create a standalone build of the Medusa application that you can deploy to production.
+
+This creates a build that:
+
+- Doesn't rely on the source TypeScript files.
+- Can be copied to a production server reliably.
+
+The build is output to a new `.medusa/server` directory.
+
+```bash npx2yarn
+npx medusa build
+```
+
+Refer to the [Build Medusa Application](!docs!/learn/build) guide for next steps.
+
+## Options
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>Option</Table.HeaderCell>
+      <Table.HeaderCell>Description</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+      
+      `--admin-only`
+      
+      </Table.Cell>
+      <Table.Cell>
+
+      Whether to build only the admin to host it separately. If this option is not passed, the admin is built to the `.medusa/server/public/admin` directory. When this option is passed, the admin is built to the `.medusa/admin` directory instead.
+      
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+---
+
+## Build Medusa Admin
+
+By default, the Medusa Admin is built to the `.medusa/server/public/admin` directory.
+
+If you want a separate build to host the admin as a standalone application, such as on Vercel, pass the `--admin-only` option as explained in the [Options](#options) section. This outputs the admin to the `.medusa/admin` directory instead.

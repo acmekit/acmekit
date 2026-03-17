@@ -1,0 +1,79 @@
+---
+generate_toc: true
+---
+
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+import { getOsShortcut, Kbd } from "docs-ui"
+
+export const osShortcut = getOsShortcut()
+
+export const metadata = {
+  title: `Dropdown Menu`,
+}
+
+# {metadata.title}
+
+A component for rendering dropdown menus that display a set of actions or options to users.
+
+In this guide, you'll learn how to use the Dropdown Menu component.
+
+<ComponentExample name="dropdown-menu-demo" />
+
+## Usage
+
+```tsx
+import { DropdownMenu } from "@medusajs/ui"
+```
+
+```tsx
+<DropdownMenu>
+  <DropdownMenu.Trigger>Trigger</DropdownMenu.Trigger>
+  <DropdownMenu.Content>
+    <DropdownMenu.Item>Edit</DropdownMenu.Item>
+    <DropdownMenu.Item>Add</DropdownMenu.Item>
+    <DropdownMenu.Item>Delete</DropdownMenu.Item>
+  </DropdownMenu.Content>
+</DropdownMenu>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="DropdownMenu" componentsToShow={[
+  "DropdownMenu",
+  "DropdownMenu.Trigger",
+  "DropdownMenu.Content",
+  "DropdownMenu.Item",
+  "DropdownMenu.Shortcut",
+  "DropdownMenu.Hint",
+  "DropdownMenu.RadioGroup",
+  "DropdownMenu.RadioItem"
+]} />
+
+---
+
+## Examples
+
+### Sorting
+
+This example shows how to display collection sorting choices using a Dropdown Menu.
+
+<ComponentExample name="dropdown-menu-sorting" />
+
+### Dropdown with Submenu
+
+<ComponentExample name="dropdown-menu-submenu" />
+
+### Disabled Items and Using Icons
+
+<ComponentExample name="dropdown-menu-disabled-icons" />
+
+### Keyboard Shortcuts (with handling)
+
+This example shows how to visually display keyboard shortcuts in the menu and handle them in your application logic.
+
+You can use the <Kbd>{osShortcut}E</Kbd> and <Kbd>{osShortcut}D</Kbd> shortcuts to trigger the actions of the dropdown items.
+
+<ComponentExample name="dropdown-menu-shortcuts" hideFeedback />

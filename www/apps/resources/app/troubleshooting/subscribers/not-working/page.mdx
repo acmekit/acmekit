@@ -1,0 +1,112 @@
+import NotRunningWorkerMode from "../../_sections/subscribers/not_running_workermode.mdx"
+import { CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `Subscribers Not Working`,
+}
+
+# {metadata.title}
+
+This troubleshooting guide helps you troubleshoot issues when subscribers in your Medusa application are not running.
+
+## Confirm Event is Emitted
+
+Make sure that the event you're trying to listen to is actually being emitted. You can do this by adding a console log or using a debugger in the part of your code where the event is emitted.
+
+For example:
+
+<CodeTabs group="emit_event">
+  <CodeTab label="In a Workflow" value="workflow">
+```ts title="src/workflows/your-workflow.ts"
+import { 
+  createWorkflow,
+  transform
+} from "@medusajs/framework/workflows-sdk"
+import {
+  emitEventStep,
+} from "@medusajs/medusa/core-flows"
+
+const helloWorldWorkflow = createWorkflow(
+  "hello-world",
+  () => {
+    // ...
+
+    emitEventStep({
+      eventName: "custom.created",
+      data: {
+        id: "123",
+        // other data payload
+      },
+    })
+
+    transform({}, () => {
+      // For debugging purposes
+      console.log("Event emitted: custom.created")
+    })
+  }
+)
+```
+
+  </CodeTab>
+  <CodeTab label="Using Event Module's Service" value="service">
+
+```ts
+eventBusService_.emit({
+  name: "custom.event",
+  data: {
+    id: "123",
+    // other data payload
+  },
+})
+
+console.log("Event emitted: custom.event")
+```
+
+  </CodeTab>
+</CodeTabs>
+
+If the event is not being emitted, check the logic in your code to ensure that the event emission is correctly implemented.
+
+---
+
+## Confirm Subscriber is Set Up Correctly
+
+Make sure that your subscriber is correctly set up to listen to the event you're emitting. Check the following:
+
+1. The subscriber is created under the `src/subscribers` directory.
+2. The subscriber exports an asynchronous function that handles the event. For example:
+
+```ts title="src/subscribers/your-subscriber.ts"
+import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+
+export default async function orderPlacedHandler({
+  event: { data },
+  container,
+}: SubscriberArgs<{ id: string }>) {
+  const logger = container.resolve("logger")
+
+  logger.info("Sending confirmation email...")
+
+  // ...
+}
+```
+
+3. The subscriber exports a configuration object with the correct event name. For example:
+
+```ts title="src/subscribers/your-subscriber.ts"
+export const config: SubscriberConfig = {
+  event: `order.placed`, // Confirm this name is correct
+}
+```
+
+If your subscriber is set up correctly, you'll see the following log in the terminal when the event is emitted:
+
+```bash
+info:    Processing order.placed which has 1 subscribers
+```
+
+---
+
+## Confirm Worker Mode is Set Up Correctly
+
+<NotRunningWorkerMode />

@@ -1,0 +1,16 @@
+import Medusa from "@medusajs/js-sdk"
+
+export const sdk = new Medusa({
+  baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
+  debug: import.meta.env.DEV,
+  auth: {
+    type: "session",
+  },
+})
+
+sdk.admin.priceList.linkProducts("plist_123", {
+  remove: ["prod_123"]
+})
+.then(({ price_list }) => {
+  console.log(price_list)
+})

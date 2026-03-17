@@ -1,0 +1,118 @@
+import { Table } from "docs-ui"
+
+export const metadata = {
+  title: `${pageNumber} Set Interval for Scheduled Jobs`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn the difference between using intervals and crons for scheduled jobs, and how to use intervals.
+
+## What is a Scheduled Job Interval?
+
+A scheduled job interval is a specific duration that must pass between the execution of scheduled jobs. The timer starts when the Medusa application starts, and it resets every time a job is executed.
+
+For example, if you have a scheduled job that runs on an interval of 5 minutes, the job will run after 5 minutes from application startup. Then, it will run again 5 minutes after the last execution, and so on.
+
+## How to Set an Interval for a Scheduled Job?
+
+To set an interval for a scheduled job, pass in the scheduled job configurations object the `schedule.interval` property with the desired duration.
+
+For example:
+
+export const highlights = [
+  ["12", "interval", "Set the interval in milliseconds"]
+]
+
+```ts title="src/jobs/hello-world.ts" highlights={highlights}
+import { MedusaContainer } from "@medusajs/framework/types"
+
+export default async function greetingJob(container: MedusaContainer) {
+  const logger = container.resolve("logger")
+
+  logger.info("Greeting!")
+}
+
+export const config = {
+  name: "greeting-every-minute",
+  schedule: {
+    interval: 60000, // 1 minute
+  },
+}
+```
+
+The `interval` property accepts a number indicating the duration in milliseconds.
+
+So, the above scheduled job will run every minute, starting one minute after the Medusa application starts.
+
+### Test the Scheduled Job Interval
+
+To test out your scheduled job, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+After a minute, the following message will be logged to the terminal:
+
+```bash
+info:    Greeting!
+```
+
+---
+
+## Scheduled Job Interval vs. Scheduled Job Cron
+
+In the [Scheduled Jobs](../page.mdx) chapter, you learned about using the `schedule` configuration to set the schedule for a job using a cron expression. For example, `*/5 * * * *` would run a job every 5 minutes.
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Comparison Aspect
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Cron Expression
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Interval
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+        Execution Timing
+      </Table.Cell>
+      <Table.Cell>
+        Specific times of the day. For example, at midnight.
+      </Table.Cell>
+      <Table.Cell>
+        After a specific duration between job executions. For example, every 5 minutes.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        Execution Consistency
+      </Table.Cell>
+      <Table.Cell>
+        May not run if the specified time is reached and the system is busy
+      </Table.Cell>
+      <Table.Cell>
+        Will run after the specified interval, even if the system is busy
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+While using a cron expression is ideal to ensure that the job runs at specific times of the day, the scheduled job will only run when the specified time is reached. So, if the events system is busy when the specified time is reached, the job will not run until the next scheduled time.
+
+For example, if you have a job scheduled with a cron expression to run every 5 minutes, but the system is under heavy load, it may miss the 5-minute mark and not execute the job until the next scheduled time.
+
+In contrast, a scheduled job interval is defined by a specific duration between job executions, regardless of the exact time they are scheduled to run. So, even if the system is busy, the job will still run after the specified interval has passed since the last execution.
+
+### When to Use Intervals for Scheduled Jobs
+
+If your scheduled job must run consistently but not at specific times of the day, use an **interval**. This ensures that the job runs after a defined duration, regardless of the system's state.
+
+If your scheduled job must be executed at specific times of the day, use a cron **expression**. This allows for precise control over when the job is executed, but may result in missed executions if the system is under heavy load.

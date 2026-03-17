@@ -1,0 +1,497 @@
+---
+sidebar_label: "Filtering"
+---
+
+import { Table } from "docs-ui"
+
+export const metadata = {
+  title: `Filter Records - Service Factory Reference`,
+}
+
+# {metadata.title}
+
+Many of the service factory's generated methods allow passing filters to perform an operation, such as to update or delete records matching the filters.
+
+This guide provides examples of using filters.
+
+<Note>
+
+The `list` method is used in the example snippets of this reference, but you can use the same filtering mechanism with any method that accepts filters.
+
+</Note>
+
+---
+
+## Match Exact Value
+
+```ts
+const posts = await postModuleService.listPosts({
+  title: "My Post 2",
+})
+```
+
+If you pass a property with its value, only records whose properties exactly match the value are selected.
+
+In the example above, only posts having the title `My Post 2` are retrieved.
+
+---
+
+## Doesn't Match Exact Value
+
+```ts
+const posts = await postModuleService.listPosts({
+  title: {
+    $ne: "My Post",
+  },
+})
+```
+
+To find records with a property that doesn't match a value, pass an object with a `$ne` property. Its value is the value that a record's property shouldn't match.
+
+In the example above, only posts that don't have the title `My Post` are retrieved.
+
+---
+
+## Match Multiple Values
+
+```ts
+const posts = await postModuleService.listPosts({
+  views: [
+    50,
+    100,
+  ],
+})
+```
+
+To find records with a property matching multiple values, pass an array of those values as the property's value in the filter.
+
+In the example above, only posts having either `50` or `100` views are retrieved.
+
+---
+
+## Don't Match Multiple Values
+
+```ts
+const posts = await postModuleService.listPosts({
+  title: {
+    $nin: [
+      "My Post",
+    ],
+  },
+})
+```
+
+To find records with a property that doesn't match one or more values, pass an object with a `$nin` property. Its value is an array of multiple values that a record's property shouldn't match.
+
+In the example above, only posts that don't have the title `My Post` are retrieved.
+
+---
+
+## Match Text Like Value
+
+<Note>
+
+This filter only applies to text-like properties, including `text`, `id`, and `enum` properties.
+
+</Note>
+
+```ts
+const posts = await postModuleService.listPosts({
+  title: {
+    $like: "My%",
+  },
+})
+```
+
+To perform a `like` filter on a record's property, set the property's value to an object with a `$like` property. Its value is the string to use when applying the `like` filter.
+
+The example above matches all posts whose title starts with `My`.
+
+---
+
+## Filter by Null or Not Null
+
+To retrieve records with a property that is `null`, set the property's value to `null`.
+
+For example:
+
+```ts
+const posts = await postModuleService.listPosts({
+  published_at: null,
+})
+```
+
+In the example above, only posts that have a `null` publish date are retrieved.
+
+On the other hand, to retrieve records with a property that isn't `null`, set the property's value to an object with a `$ne` property.
+
+For example:
+
+```ts
+const posts = await postModuleService.listPosts({
+  published_at: {
+    $ne: null,
+  },
+})
+```
+
+In the example above, only posts that have a publish date are retrieved.
+
+--
+
+## Filter by Relation's Property
+
+Consider that your module also has an `Author` data model, and the `Post` data model has a relation to the `Author` data model.
+
+To filter posts by a property of the `Author` data model, you can use nested objects.
+
+For example:
+
+```ts
+const posts = await postModuleService.listPosts({
+  author: {
+    name: "John",
+  },
+})
+```
+
+In the example above, you retrieve posts whose `author` relation has a `name` property equal to `John`.
+
+### Filter by Relation's Property Not Equal
+
+```ts
+const posts = await postModuleService.listPosts({
+  author: {
+    name: {
+      $or: [
+        {
+          name: {
+            $eq: null,
+          },
+        },
+        {
+          name: {
+            $ne: "John",
+          },
+        },
+      ],
+    },
+  },
+})
+```
+
+When you need to filter by a relationship property whose value doesn't match a specific condition, you must use an `$or` operator that applies the following conditions:
+
+1. The relationship's property is not set. This is necessary to exclude posts that don't have an author.
+2. The relationship's property is not equal to the specific value.
+
+So, in the example above, you retrieve posts either not having an author or having an author whose name is not "John".
+
+---
+
+## Apply Range Filters
+
+<Note>
+
+This filter only applies to the `number` and `dateTime` properties.
+
+</Note>
+
+```ts
+const posts = await postModuleService.listPosts({
+  published_at: {
+    $lt: new Date(),
+  },
+})
+```
+
+To filter a record's property to be within a range, set the property's value to an object with any of the following properties:
+
+1. `$lt`: The property's value must be less than the supplied value.
+2. `$lte`: The property's value must be less than or equal to the supplied value.
+3. `$gt`: The property's value must be greater than the supplied value.
+4. `$gte`: The property's value must be greater than or equal the supplied value.
+
+In the example above, only posts whose `published_at` property is before the current date and time are retrieved.
+
+### Example: Retrieve Posts Published Today
+
+```ts
+const startToday = new Date()
+startToday.setHours(0, 0, 0, 0)
+
+const endToday = new Date()
+endToday.setHours(23, 59, 59, 59)
+
+const posts = await postModuleService.listPosts({
+  published_at: {
+    $gte: startToday,
+    $lte: endToday,
+  },
+})
+```
+
+The `dateTime` property also stores the time. So, when matching for an exact day, you must set a range filter to be between the beginning and end of the day.
+
+In this example, you retrieve the current date twice: once to set its time to `00:00:00`, and another to set its time `23:59:59`. Then, you retrieve posts whose `published_at` property is between `00:00:00` and `23:59:59` of today.
+
+### Example: Range Filter on Number Property
+
+```ts
+const posts = await postModuleService.listPosts({
+  views: {
+    $gte: 50,
+    $lte: 100,
+  },
+})
+```
+
+In the example above, only posts with `views` between `50` and `100` are retrieved.
+
+---
+
+## Apply Or Condition
+
+```ts
+const posts = await postModuleService.listPosts({
+  $or: [
+    {
+      title: "My Post",
+    },
+    {
+      published_at: {
+        $lt: new Date(),
+      },
+    },
+  ],
+})
+```
+
+To use an `or` condition, pass to the filter object the `$or` property, whose value is an array of filters.
+
+In the example above, posts whose title is `My Post` or their `published_at` date is less than the current date and time are retrieved.
+
+---
+
+## Apply And Condition
+
+```ts
+const posts = await postModuleService.listPosts({
+  $and: [
+    {
+      title: "My Post",
+    },
+    {
+      published_at: {
+        $lt: new Date(),
+      },
+    },
+  ],
+})
+```
+
+To use an `and` condition, pass to the filter object the `$and` property, whose value is an array of filters.
+
+In the example above, only posts whose title is `My Post` and their `published_at` date is less than the current date and time are retrieved.
+
+---
+
+## Complex Filters Example
+
+```ts
+const posts = await postModuleService.listPosts({
+  $or: [
+    {
+      $and: [
+        { views: { $gte: 50 } },
+        { 
+          published_at: {
+            $gte: new Date(new Date().getFullYear(), 0, 1),
+          },
+        },
+      ],
+    },
+    {
+      title: {
+        $like: "%Featured%",
+      },
+    },
+  ],
+})
+```
+
+In the example above, posts are retrieved if they meet either of the following conditions:
+
+1. The post has at least `50` views and was published after the beginning of the current year.
+2. The post's title contains the word `Featured`.
+
+By combining `and` and `or` conditions, you can create complex filters to retrieve records that meet specific criteria.
+
+---
+
+## Supported Filter Operators List
+
+The following operators are supported by the service factory filtering mechanism:
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+        Operator
+      </Table.HeaderCell>
+      <Table.HeaderCell>
+        Description
+      </Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+
+  <Table.Body>
+    <Table.Row className="bg-medusa-bg-component">
+      <Table.Cell colSpan={2}>
+        Comparison Operators
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$eq`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values that are equal to a specified value.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$ne`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values that are not equal to a specified value.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$in`
+      </Table.Cell>
+      <Table.Cell>
+        Matches any of the values specified in an array.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$nin`
+      </Table.Cell>
+      <Table.Cell>
+        Matches none of the values specified in an array.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$like`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values containing a specified substring.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$lt`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values that are less than a specified value.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$lte`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values that are less than or equal to a specified value.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$gt`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values that are greater than a specified value.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$gte`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values that are greater than or equal to a specified value.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$re`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values that match a specified regular expression.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$ilike`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values containing a specified substring, case-insensitive.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$fulltext`
+      </Table.Cell>
+      <Table.Cell>
+        Performs a full-text search on a text property.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$overlap`
+      </Table.Cell>
+      <Table.Cell>
+        Matches values that have overlapping elements with the specified array.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$contains`
+      </Table.Cell>
+      <Table.Cell>
+        Performs an `@> value` comparison. Learn more in the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/functions-array.html).
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$contained`
+      </Table.Cell>
+      <Table.Cell>
+        Performs an `value @>` comparison. Learn more in the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/functions-array.html).
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row className="bg-medusa-bg-component">
+      <Table.Cell colSpan={2}>
+        Logical Operators
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$and`
+      </Table.Cell>
+      <Table.Cell>
+        Joins two or more conditions with a logical AND.
+      </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+        `$or`
+      </Table.Cell>
+      <Table.Cell>
+        Joins two or more conditions with a logical OR.
+      </Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+

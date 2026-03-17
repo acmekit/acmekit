@@ -1,0 +1,59 @@
+import { ComponentExample } from "@/components/ComponentExample"
+import { ComponentReference } from "@/components/ComponentReference"
+
+export const metadata = {
+  title: `Tooltip`,
+}
+
+# {metadata.title}
+
+
+A component that displays a pop-up with additional information when hovering over or focusing on an element.
+
+In this guide, you'll learn how to use the Tooltip component.
+
+<ComponentExample name="tooltip-demo" />
+
+## Usage
+
+```tsx
+import { Tooltip } from "@medusajs/ui"
+```
+
+```tsx
+<Tooltip content="Tooltip content">Trigger</Tooltip>
+```
+
+---
+
+## API Reference
+
+<ComponentReference mainComponent="Tooltip" />
+
+---
+
+## Usage Outside Medusa Admin with TooltipProvider
+
+If you're using the `Tooltip` component in a project other than the Medusa Admin, make sure to include the `TooltipProvider` somewhere up in your component tree:
+
+```tsx
+<TooltipProvider>
+  <Tooltip content="Tooltip content">Trigger</Tooltip>
+</TooltipProvider>
+```
+
+### TooltipProvider Reference
+
+<ComponentReference mainComponent="TooltipProvider" />
+
+---
+
+## Examples
+
+### Changing Tooltip Side
+
+<ComponentExample name="tooltip-sides" />
+
+### Set Tooltip Max Width
+
+<ComponentExample name="tooltip-maxwidth" />

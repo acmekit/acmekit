@@ -1,0 +1,1 @@
+export { default as SettingsModuleService } from "./settings-module-service"
