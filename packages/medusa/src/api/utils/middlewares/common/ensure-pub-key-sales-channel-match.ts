@@ -20,7 +20,7 @@ export async function ensurePublishableKeyAndSalesChannelMatch(
   res: MedusaResponse,
   next: NextFunction
 ) {
-  const pubKey = req.get("x-publishable-api-key")
+  const pubKey = req.get("x-client-api-key")
 
   if (pubKey) {
     const pubKeySalesChannels =

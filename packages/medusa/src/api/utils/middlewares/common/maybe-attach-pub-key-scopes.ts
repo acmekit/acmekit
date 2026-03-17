@@ -22,7 +22,7 @@ export async function maybeAttachPublishableKeyScopes(
   res: MedusaResponse,
   next: NextFunction
 ) {
-  const pubKey = req.get("x-publishable-api-key")
+  const pubKey = req.get("x-client-api-key")
 
   if (pubKey) {
     const remoteQuery = req.scope.resolve<RemoteQueryFunction>(
