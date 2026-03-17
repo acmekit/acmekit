@@ -312,9 +312,9 @@ export const navDropdownItems: NavigationItem[] = [
       },
       {
         type: "link",
-        title: "Store API",
-        link: "/api/store",
-        sidebar_id: "store",
+        title: "Client API",
+        link: "/api/client",
+        sidebar_id: "client",
       },
       {
         type: "divider",

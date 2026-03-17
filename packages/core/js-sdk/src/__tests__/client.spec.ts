@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw"
 import { setupServer } from "msw/node"
 
-import { Client, FetchError, PUBLISHABLE_KEY_HEADER } from "../client"
+import { Client, FetchError, CLIENT_KEY_HEADER } from "../client"
 
 const baseUrl = "https://someurl.com"
 const token = "token-123"
@@ -62,7 +62,7 @@ const server = setupServer(
     })
   }),
   http.get(`${baseUrl}/pubkey`, ({ request }) => {
-    if (request.headers.get(PUBLISHABLE_KEY_HEADER) === "test-pub-key") {
+    if (request.headers.get(CLIENT_KEY_HEADER) === "test-pub-key") {
       return HttpResponse.json({
         test: "test",
       })
@@ -168,7 +168,7 @@ describe("Client", () => {
     it("should allow setting a publishable key", async () => {
       const pubClient = new Client({
         baseUrl,
-        publishableKey: "test-pub-key",
+        clientKey: "test-pub-key",
       })
 
       const resp = await pubClient.fetch<any>("pubkey")

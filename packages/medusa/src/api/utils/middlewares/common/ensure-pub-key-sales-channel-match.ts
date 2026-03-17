@@ -1,6 +1,6 @@
 import { NextFunction } from "express"
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { StoreCreateCartType } from "../../../store/carts/validators"
+import { StoreCreateCartType } from "../../../client/carts/validators"
 
 /**
  * If a publishable key (PK) is passed in the header of the request AND

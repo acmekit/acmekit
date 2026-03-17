@@ -37,7 +37,7 @@ export const ApiKeySalesChannelSection = ({
   })
 
   const { sales_channels, count, isPending } = useSalesChannels(
-    { ...searchParams, publishable_key_id: apiKey.id },
+    { ...searchParams, client_key_id: apiKey.id },
     {
       placeholderData: keepPreviousData,
     }

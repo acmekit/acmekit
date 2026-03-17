@@ -821,7 +821,7 @@ export type ProjectConfigOptions = {
      * module.exports = defineConfig({
      *   projectConfig: {
      *     http: {
-     *       storeCors: process.env.STORE_CORS,
+     *       clientCors: process.env.STORE_CORS,
      *     }
      *     // ...
      *   },
@@ -835,7 +835,7 @@ export type ProjectConfigOptions = {
      * module.exports = defineConfig({
      *   projectConfig: {
      *     http: {
-     *       storeCors: "/vercel\\.app$/",
+     *       clientCors: "/vercel\\.app$/",
      *     }
      *     // ...
      *   },
@@ -843,7 +843,7 @@ export type ProjectConfigOptions = {
      * })
      * ```
      */
-    storeCors: string
+    clientCors: string
 
     /**
      * The Medusa application's API Routes are protected by Cross-Origin Resource Sharing (CORS). So, only allowed URLs or URLs matching a specified pattern can send requests to the backend’s API Routes.

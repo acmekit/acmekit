@@ -6,7 +6,7 @@ import {
   refetchEntity,
 } from "@medusajs/framework/http"
 import { MedusaError } from "@medusajs/framework/utils"
-import { StoreRequestWithContext } from "../../../store/types"
+import { StoreRequestWithContext } from "../../../client/types"
 import { DEFAULT_PRICE_FIELD_PATHS } from "./constants"
 
 type TaxContextOptions = {
