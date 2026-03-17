@@ -17,8 +17,6 @@ import { OrderEdit } from "./order-edit"
 import { Payment } from "./payment"
 import { PaymentCollection } from "./payment-collection"
 import { Plugin } from "./plugin"
-import { PriceList } from "./price-list"
-import { PricePreference } from "./price-preference"
 import { Product } from "./product"
 import { ProductCategory } from "./product-category"
 import { ProductCollection } from "./product-collection"
@@ -59,14 +57,6 @@ export class Admin {
    * @tags product
    */
   public productCategory: ProductCategory
-  /**
-   * @tags pricing
-   */
-  public priceList: PriceList
-  /**
-   * @tags pricing
-   */
-  public pricePreference: PricePreference
   /**
    * @tags product
    */
@@ -219,8 +209,6 @@ export class Admin {
     this.customer = new Customer(client)
     this.productCollection = new ProductCollection(client)
     this.productCategory = new ProductCategory(client)
-    this.priceList = new PriceList(client)
-    this.pricePreference = new PricePreference(client)
     this.product = new Product(client)
     this.productType = new ProductType(client)
     this.upload = new Upload(client)

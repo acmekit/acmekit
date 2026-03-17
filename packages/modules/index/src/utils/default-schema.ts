@@ -22,13 +22,6 @@ export const defaultSchema = `
     product_id: String
     sku: String
 
-    prices: [Price]
-  }
-  
-  type Price @Listeners(values: ["${Modules.PRICING}.price.created", "${Modules.PRICING}.price.updated", "${Modules.PRICING}.price.deleted"]) {
-    id: ID
-    amount: Float
-    currency_code: String
   }
 
   type SalesChannel @Listeners(values: ["${Modules.SALES_CHANNEL}.sales-channel.created", "${Modules.SALES_CHANNEL}.sales-channel.updated", "${Modules.SALES_CHANNEL}.sales-channel.deleted"]) {

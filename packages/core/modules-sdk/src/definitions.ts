@@ -75,17 +75,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.PRICING]: {
-    key: Modules.PRICING,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.PRICING),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [Modules.EVENT_BUS, ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.PROMOTION]: {
     key: Modules.PROMOTION,
     defaultPackage: false,

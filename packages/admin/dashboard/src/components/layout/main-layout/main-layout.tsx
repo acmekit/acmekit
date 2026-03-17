@@ -3,7 +3,6 @@ import {
   Buildings,
   ChevronDownMini,
   CogSixTooth,
-  CurrencyDollar,
   EllipsisHorizontal,
   MagnifyingGlass,
   MinusMini,
@@ -245,11 +244,6 @@ const useCoreRoutes = (): Omit<INavItem, "pathname">[] => {
           to: "/campaigns",
         },
       ],
-    },
-    {
-      icon: <CurrencyDollar />,
-      label: t("priceLists.domain"),
-      to: "/price-lists",
     },
   ]
 }

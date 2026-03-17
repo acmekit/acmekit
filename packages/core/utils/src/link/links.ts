@@ -8,18 +8,6 @@ export const LINKS = {
     Modules.INVENTORY,
     "inventory_item_id"
   ),
-  ProductVariantPriceSet: composeLinkName(
-    Modules.PRODUCT,
-    "variant_id",
-    Modules.PRICING,
-    "price_set_id"
-  ),
-  ShippingOptionPriceSet: composeLinkName(
-    Modules.FULFILLMENT,
-    "shipping_option_id",
-    Modules.PRICING,
-    "price_set_id"
-  ),
   CartPaymentCollection: composeLinkName(
     Modules.CART,
     "cart_id",
