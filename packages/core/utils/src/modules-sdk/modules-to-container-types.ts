@@ -18,7 +18,6 @@ const SERVICES_INTERFACES = {
   [Modules.CART]: "ICartModuleService",
   [Modules.CUSTOMER]: "ICustomerModuleService",
   [Modules.EVENT_BUS]: "IEventBusModuleService",
-  [Modules.INVENTORY]: "IInventoryService",
   [Modules.PAYMENT]: "IPaymentModuleService",
   [Modules.SALES_CHANNEL]: "ISalesChannelModuleService",
   [Modules.FULFILLMENT]: "IFulfillmentModuleService",

@@ -32,17 +32,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.INVENTORY]: {
-    key: Modules.INVENTORY,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.INVENTORY),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [Modules.EVENT_BUS],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.CACHE]: {
     key: Modules.CACHE,
     defaultPackage: MODULE_PACKAGE_NAMES[Modules.CACHE],

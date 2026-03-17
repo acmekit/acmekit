@@ -1,6 +1,5 @@
 export * from "./cart-customer"
 export * from "./cart-sales-channel"
 export * from "./cart-shipping-option"
-export * from "./inventory-level-stock-location"
 export * from "./order-customer"
 export * from "./order-sales-channel"

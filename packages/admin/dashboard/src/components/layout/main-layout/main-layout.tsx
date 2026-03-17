@@ -1,6 +1,5 @@
 import {
   BuildingStorefront,
-  Buildings,
   ChevronDownMini,
   CogSixTooth,
   EllipsisHorizontal,
@@ -188,17 +187,6 @@ const useCoreRoutes = (): Omit<INavItem, "pathname">[] => {
         //   label: t("draftOrders.domain"),
         //   to: "/draft-orders",
         // },
-      ],
-    },
-    {
-      icon: <Buildings />,
-      label: t("inventory.domain"),
-      to: "/inventory",
-      items: [
-        {
-          label: t("reservations.domain"),
-          to: "/reservations",
-        },
       ],
     },
     {

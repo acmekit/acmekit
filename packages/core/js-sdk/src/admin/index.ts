@@ -8,7 +8,6 @@ import { Exchange } from "./exchange"
 import { Fulfillment } from "./fulfillment"
 import { FulfillmentProvider } from "./fulfillment-provider"
 import { FulfillmentSet } from "./fulfillment-set"
-import { InventoryItem } from "./inventory-item"
 import { Invite } from "./invite"
 import { Notification } from "./notification"
 import { Order } from "./order"
@@ -17,7 +16,6 @@ import { Payment } from "./payment"
 import { PaymentCollection } from "./payment-collection"
 import { Plugin } from "./plugin"
 import { RefundReason } from "./refund-reasons"
-import Reservation from "./reservation"
 import { Return } from "./return"
 import { ReturnReason } from "./return-reason"
 import { SalesChannel } from "./sales-channel"
@@ -77,10 +75,6 @@ export class Admin {
    */
   public shippingProfile: ShippingProfile
   /**
-   * @tags inventory
-   */
-  public inventoryItem: InventoryItem
-  /**
    * @tags notification
    */
   public notification: Notification
@@ -138,10 +132,6 @@ export class Admin {
    */
   public workflowExecution: WorkflowExecution
   /**
-   * @tags inventory
-   */
-  public reservation: Reservation
-  /**
    * @tags customer
    */
   public customerGroup: CustomerGroup
@@ -171,7 +161,6 @@ export class Admin {
     this.shippingOption = new ShippingOption(client)
     this.shippingOptionType = new ShippingOptionType(client)
     this.shippingProfile = new ShippingProfile(client)
-    this.inventoryItem = new InventoryItem(client)
     this.notification = new Notification(client)
     this.order = new Order(client)
     this.draftOrder = new DraftOrder(client)
@@ -187,7 +176,6 @@ export class Admin {
     this.paymentCollection = new PaymentCollection(client)
     this.apiKey = new ApiKey(client)
     this.workflowExecution = new WorkflowExecution(client)
-    this.reservation = new Reservation(client)
     this.customerGroup = new CustomerGroup(client)
     this.plugin = new Plugin(client)
     this.views = new Views(client)

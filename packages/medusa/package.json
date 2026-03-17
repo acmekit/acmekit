@@ -79,7 +79,6 @@
     "@medusajs/fulfillment": "2.13.4",
     "@medusajs/fulfillment-manual": "2.13.4",
     "@medusajs/index": "2.13.4",
-    "@medusajs/inventory": "2.13.4",
     "@medusajs/link-modules": "2.13.4",
     "@medusajs/locking": "2.13.4",
     "@medusajs/locking-postgres": "2.13.4",
