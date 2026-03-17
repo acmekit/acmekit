@@ -27,7 +27,6 @@ import { ProductType } from "./product-type"
 import { ProductVariant } from "./product-variant"
 import { Promotion } from "./promotion"
 import { RefundReason } from "./refund-reasons"
-import { Region } from "./region"
 import Reservation from "./reservation"
 import { Return } from "./return"
 import { ReturnReason } from "./return-reason"
@@ -80,10 +79,6 @@ export class Admin {
    * @tags file
    */
   public upload: Upload
-  /**
-   * @tags region
-   */
-  public region: Region
   /**
    * @tags order
    */
@@ -229,7 +224,6 @@ export class Admin {
     this.product = new Product(client)
     this.productType = new ProductType(client)
     this.upload = new Upload(client)
-    this.region = new Region(client)
     this.returnReason = new ReturnReason(client)
     this.stockLocation = new StockLocation(client)
     this.salesChannel = new SalesChannel(client)

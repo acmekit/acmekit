@@ -20,12 +20,8 @@ export const exportProductsStep = createStep(
   ) => {
     const query = container.resolve(ContainerRegistrationKeys.QUERY)
     const fileModule = container.resolve(Modules.FILE)
-    const regionModule = container.resolve(Modules.REGION)
 
-    const regions = await regionModule.listRegions(
-      {},
-      { select: ["id", "name", "currency_code"] }
-    )
+    const regions: any[] = []
 
     const filename = `${Date.now()}-product-exports.csv`
     const { writeStream, promise, fileKey } = await fileModule.getUploadStream({

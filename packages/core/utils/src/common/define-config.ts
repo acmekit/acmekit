@@ -187,7 +187,6 @@ function resolveModules(
     { resolve: MODULE_PACKAGE_NAMES[Modules.SALES_CHANNEL] },
 
     { resolve: MODULE_PACKAGE_NAMES[Modules.CART] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.REGION] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.API_KEY] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.PAYMENT] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.ORDER] },

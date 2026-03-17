@@ -1,7 +1,6 @@
 import {
   IFulfillmentModuleService,
   IProductModuleService,
-  IRegionModuleService,
   ISalesChannelModuleService,
 } from "@medusajs/framework/types"
 import { MedusaError, Modules } from "@medusajs/framework/utils"
@@ -26,9 +25,6 @@ export const parseProductCsvStepId = "parse-product-csv"
 export const parseProductCsvStep = createStep(
   parseProductCsvStepId,
   async (fileContent: ParseProductCsvStepInput, { container }) => {
-    const regionService = container.resolve<IRegionModuleService>(
-      Modules.REGION
-    )
     const productService = container.resolve<IProductModuleService>(
       Modules.PRODUCT
     )
@@ -67,16 +63,13 @@ export const parseProductCsvStep = createStep(
       }
     })
 
-    const [allRegions, allTags] = await Promise.all([
-      regionService.listRegions(
-        {},
-        { select: ["id", "name", "currency_code"] }
-      ),
-      productService.listProductTags({}, { select: ["id", "value"] }),
-    ])
+    const allTags = await productService.listProductTags(
+      {},
+      { select: ["id", "value"] }
+    )
 
     const normalizedData = normalizeForImport(v1Normalized, {
-      regions: allRegions,
+      regions: [],
       tags: allTags,
     })
     return new StepResponse(normalizedData)

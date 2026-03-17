@@ -2,7 +2,6 @@ import {
   CreatePriceSetDTO,
   CreatePriceSetPriceRules,
   IPricingModuleService,
-  IRegionModuleService,
   PriceRule,
 } from "@medusajs/framework/types"
 import { isString, Modules } from "@medusajs/framework/utils"
@@ -140,33 +139,7 @@ export const createShippingOptionsPriceSetsStep = createStep(
       return new StepResponse([], [])
     }
 
-    const regionIds = data
-      .map((input) => input.prices)
-      .flat()
-      .filter((price): price is ShippingOptionsPriceRegionId => {
-        return "region_id" in price
-      })
-      .map((price) => price.region_id)
-
-    let regionToCurrencyMap: Map<string, string> = new Map()
-
-    if (regionIds.length) {
-      const regionService = container.resolve<IRegionModuleService>(
-        Modules.REGION
-      )
-      const regions = await regionService.listRegions(
-        {
-          id: [...new Set(regionIds)],
-        },
-        {
-          select: ["id", "currency_code"],
-        }
-      )
-
-      regionToCurrencyMap = new Map(
-        regions.map((region) => [region.id, region.currency_code])
-      )
-    }
+    const regionToCurrencyMap: Map<string, string> = new Map()
 
     const priceSetsData = data.map((input) =>
       buildPriceSet(input.prices, regionToCurrencyMap)

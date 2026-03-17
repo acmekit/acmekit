@@ -30,10 +30,6 @@ const useSettingRoutes = (): INavItem[] => {
         to: "/settings/users",
       },
       {
-        label: t("regions.domain"),
-        to: "/settings/regions",
-      },
-      {
         label: t("returnReasons.domain"),
         to: "/settings/return-reasons",
       },

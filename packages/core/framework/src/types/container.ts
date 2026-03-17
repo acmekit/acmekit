@@ -21,7 +21,6 @@ import {
   IProductModuleService,
   IPromotionModuleService,
   IRbacModuleService,
-  IRegionModuleService,
   ISalesChannelModuleService,
   ISettingsModuleService,
   IStockLocationService,
@@ -67,7 +66,6 @@ declare module "@medusajs/types" {
     [Modules.STOCK_LOCATION]: IStockLocationService
     [Modules.USER]: IUserModuleService
     [Modules.WORKFLOW_ENGINE]: IWorkflowEngineService
-    [Modules.REGION]: IRegionModuleService
     [Modules.ORDER]: IOrderModuleService
     [Modules.API_KEY]: IApiKeyModuleService
     [Modules.FILE]: IFileModuleService

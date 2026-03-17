@@ -186,17 +186,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.REGION]: {
-    key: Modules.REGION,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.REGION),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.ORDER]: {
     key: Modules.ORDER,
     defaultPackage: false,

@@ -4,7 +4,6 @@ import {
   CreatePricesDTO,
   FulfillmentWorkflow,
   IPricingModuleService,
-  IRegionModuleService,
   PriceDTO,
   PriceSetDTO,
   RemoteQueryFunction,
@@ -150,31 +149,7 @@ export const setShippingOptionsPricesStep = createStep(
       return
     }
 
-    const regionIds = data
-      .map((input) => input.prices)
-      .flat()
-      .filter((price): price is PriceRegionId => "region_id" in (price ?? {}))
-      .map((price) => price.region_id)
-
-    let regionToCurrencyMap: Map<string, string> = new Map()
-
-    if (regionIds.length) {
-      const regionService = container.resolve<IRegionModuleService>(
-        Modules.REGION
-      )
-      const regions = await regionService.listRegions(
-        {
-          id: [...new Set(regionIds)],
-        },
-        {
-          select: ["id", "currency_code"],
-        }
-      )
-
-      regionToCurrencyMap = new Map(
-        regions.map((region) => [region.id, region.currency_code])
-      )
-    }
+    const regionToCurrencyMap: Map<string, string> = new Map()
 
     const remoteQuery = container.resolve<RemoteQueryFunction>(
       ContainerRegistrationKeys.REMOTE_QUERY

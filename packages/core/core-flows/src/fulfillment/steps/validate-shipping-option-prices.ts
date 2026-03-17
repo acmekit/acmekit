@@ -110,35 +110,6 @@ export const validateShippingOptionPricesStep = createStep(
       )
     }
 
-    const regionIdSet = new Set<string>()
-
-    flatRatePrices.forEach((price) => {
-      if ("region_id" in price && price.region_id) {
-        regionIdSet.add(price.region_id)
-      }
-    })
-
-    if (regionIdSet.size === 0) {
-      return new StepResponse(void 0)
-    }
-
-    const regionService = container.resolve(Modules.REGION)
-    const regionList = await regionService.listRegions({
-      id: Array.from(regionIdSet),
-    })
-
-    if (regionList.length !== regionIdSet.size) {
-      const missingRegions = Array.from(regionIdSet).filter(
-        (id) => !regionList.some((region) => region.id === id)
-      )
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
-        `Cannot create prices for non-existent regions. Region with ids [${missingRegions.join(
-          ", "
-        )}] were not found.`
-      )
-    }
-
     return new StepResponse(void 0)
   }
 )
