@@ -218,17 +218,6 @@ function resolveModules(
       },
     },
     {
-      resolve: MODULE_PACKAGE_NAMES[Modules.FULFILLMENT],
-      options: {
-        providers: [
-          {
-            resolve: "@medusajs/medusa/fulfillment-manual",
-            id: "manual",
-          },
-        ],
-      },
-    },
-    {
       resolve: MODULE_PACKAGE_NAMES[Modules.NOTIFICATION],
       options: {
         providers: [
