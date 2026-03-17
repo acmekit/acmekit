@@ -709,7 +709,7 @@ const transformMap: TransformMap = {
       id: apiKey.id,
       title: apiKey.title,
       subtitle: apiKey.redacted,
-      to: `/publishable-api-keys/${apiKey.id}`,
+      to: `/client-api-keys/${apiKey.id}`,
       value: `publishableApiKey:${apiKey.id}`,
     }),
   },

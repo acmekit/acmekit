@@ -64,7 +64,7 @@ export const ApiKeyCreateForm = ({ keyType }: ApiKeyCreateFormProps) => {
 
           switch (keyType) {
             case ApiKeyType.PUBLISHABLE:
-              handleSuccess(`/settings/publishable-api-keys/${api_key.id}`)
+              handleSuccess(`/settings/client-api-keys/${api_key.id}`)
               break
             case ApiKeyType.SECRET:
               setCreatedKey(api_key)

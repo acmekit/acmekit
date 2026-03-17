@@ -1511,7 +1511,7 @@ export function getRouteMap({
               ],
             },
             {
-              path: "publishable-api-keys",
+              path: "client-api-keys",
               element: <Outlet />,
               handle: {
                 breadcrumb: () => t("apiKeyManagement.domain.publishable"),

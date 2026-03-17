@@ -278,7 +278,7 @@ export const useGlobalShortcuts = () => {
       },
       label: t("app.keyboardShortcuts.settings.goToPublishableApiKeys"),
       type: "settingShortcut",
-      to: "/settings/publishable-api-keys",
+      to: "/settings/client-api-keys",
     },
     {
       keys: {

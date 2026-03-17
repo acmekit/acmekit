@@ -191,7 +191,7 @@
         "productTag": "Product Tags",
         "location": "Locations",
         "shippingProfile": "Shipping Profiles",
-        "publishableApiKey": "Publishable API Keys",
+        "publishableApiKey": "Client API Keys",
         "secretApiKey": "Secret API Keys",
         "command": "Commands",
         "navigation": "Navigation"
@@ -224,7 +224,7 @@
         "goToSalesChannels": "Sales Channels",
         "goToProductTypes": "Product Types",
         "goToLocations": "Locations",
-        "goToPublishableApiKeys": "Publishable API Keys",
+        "goToPublishableApiKeys": "Client API Keys",
         "goToSecretApiKeys": "Secret API Keys",
         "goToWorkflows": "Workflows",
         "goToProfile": "Profile",
@@ -2790,7 +2790,7 @@
   },
   "apiKeyManagement": {
     "domain": {
-      "publishable": "Publishable API Keys",
+      "publishable": "Client API Keys",
       "secret": "Secret API Keys"
     },
     "subtitle": {
@@ -2802,12 +2802,12 @@
       "revoked": "Revoked"
     },
     "type": {
-      "publishable": "Publishable",
+      "publishable": "Client",
       "secret": "Secret"
     },
     "create": {
-      "createPublishableHeader": "Create Publishable API Key",
-      "createPublishableHint": "Create a new publishable API key to limit the scope of requests to specific sales channels.",
+      "createPublishableHeader": "Create Client API Key",
+      "createPublishableHint": "Create a new client API key to limit the scope of requests to specific sales channels.",
       "createSecretHeader": "Create Secret API Key",
       "createSecretHint": "Create a new secret API key to access the Medusa API as an authenticated admin user.",
       "secretKeyCreatedHeader": "Secret Key Created",
@@ -2828,7 +2828,7 @@
       "successToast_other": "{{count}} sales channels were successfully added to the API key.",
       "alreadyAddedTooltip": "The sales channel has already been added to the API key.",
       "list": {
-        "noRecordsMessage": "There are no sales channels in the publishable API key's scope."
+        "noRecordsMessage": "There are no sales channels in the client API key's scope."
       }
     },
     "delete": {
