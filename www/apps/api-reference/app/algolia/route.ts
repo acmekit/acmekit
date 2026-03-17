@@ -19,7 +19,7 @@ export async function GET() {
 
   // retrieve tags and their operations to index them
   const indices: Record<string, any>[] = []
-  for (const area of ["store", "admin"]) {
+  for (const area of ["client", "admin"]) {
     const defaultIndexData = {
       version: ["current"],
       lang: "en",

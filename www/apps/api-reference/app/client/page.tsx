@@ -7,11 +7,11 @@ import { getBaseSpecs } from "../../lib"
 import BaseSpecsProvider from "../../providers/base-specs"
 
 const StorePage = async () => {
-  const data = await getBaseSpecs("store")
+  const data = await getBaseSpecs("client")
 
   return (
     <BaseSpecsProvider baseSpecs={data}>
-      <AreaProvider area={"store"}>
+      <AreaProvider area={"client"}>
         <PageTitleProvider>
           {/* @ts-ignore React v19 doesn't see MDX as valid component */}
           <StoreContent />
@@ -26,7 +26,7 @@ export default StorePage
 
 export function generateMetadata() {
   return {
-    title: `Medusa Store API Reference`,
+    title: `AcmeKit Client API Reference`,
     description: `REST API reference for the Medusa v2 store API, with code snippets and examples.`,
     metadataBase: process.env.NEXT_PUBLIC_BASE_URL,
   }

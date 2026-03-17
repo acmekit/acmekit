@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const area = searchParams.get("area")
   const expand = searchParams.get("expand")
-  if (area !== "admin" && area !== "store") {
+  if (area !== "admin" && area !== "client") {
     return NextResponse.json(
       {
         success: false,

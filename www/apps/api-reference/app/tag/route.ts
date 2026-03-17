@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const tagName = searchParams.get("tagName") || ""
   const area = searchParams.get("area")
 
-  if (area !== "admin" && area !== "store") {
+  if (area !== "admin" && area !== "client") {
     return NextResponse.json(
       {
         success: false,

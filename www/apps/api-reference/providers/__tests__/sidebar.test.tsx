@@ -19,7 +19,7 @@ const mockPathname = vi.fn(() => "/store/test")
 const mockUsePathname = vi.fn(() => mockPathname())
 
 const mockStoreSidebar: Sidebar.Sidebar = {
-  sidebar_id: "store-sidebar",
+  sidebar_id: "client-sidebar",
   title: "Store Sidebar",
   items: [],
 }
@@ -79,7 +79,7 @@ vi.mock("next/navigation", () => ({
 vi.mock("@/config", () => ({
   config: {
     sidebars: [{
-      sidebar_id: "store-sidebar",
+      sidebar_id: "client-sidebar",
       title: "Store Sidebar",
       items: [],
     }],

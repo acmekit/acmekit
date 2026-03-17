@@ -69,7 +69,7 @@ describe("PageTitleProvider", () => {
           <div>Test</div>
         </PageTitleProvider>
       )
-      expect(document.title).toBe("Medusa Store API Reference")
+      expect(document.title).toBe("AcmeKit Client API Reference")
     })
 
     test("sets title to suffix when activePath is empty string", () => {
@@ -86,7 +86,7 @@ describe("PageTitleProvider", () => {
           <div>Test</div>
         </PageTitleProvider>
       )
-      expect(document.title).toBe("Medusa Store API Reference")
+      expect(document.title).toBe("AcmeKit Client API Reference")
     })
 
     test("sets title with activeItem title when activeItem.path matches activePath", () => {
@@ -106,7 +106,7 @@ describe("PageTitleProvider", () => {
         </PageTitleProvider>
       )
 
-      expect(document.title).toBe("Test Item - Medusa Store API Reference")
+      expect(document.title).toBe("Test Item - AcmeKit Client API Reference")
     })
 
     test("sets title with child item title when activeItem has matching child", () => {
@@ -132,7 +132,7 @@ describe("PageTitleProvider", () => {
         </PageTitleProvider>
       )
 
-      expect(document.title).toBe("Child Item - Medusa Store API Reference")
+      expect(document.title).toBe("Child Item - AcmeKit Client API Reference")
     })
 
     test("sets title to suffix when activeItem has no matching child", () => {
@@ -159,7 +159,7 @@ describe("PageTitleProvider", () => {
         </PageTitleProvider>
       )
 
-      expect(document.title).toBe("Medusa Store API Reference")
+      expect(document.title).toBe("AcmeKit Client API Reference")
     })
 
     test("updates title when displayedArea changes", () => {
@@ -181,7 +181,7 @@ describe("PageTitleProvider", () => {
         </PageTitleProvider>
       )
 
-      expect(document.title).toBe("Test Item - Medusa Store API Reference")
+      expect(document.title).toBe("Test Item - AcmeKit Client API Reference")
 
       const mockItem: Sidebar.SidebarItemLink = {
         type: "link",
@@ -199,7 +199,7 @@ describe("PageTitleProvider", () => {
         </PageTitleProvider>
       )
 
-      expect(document.title).toBe("New Item - Medusa Store API Reference")
+      expect(document.title).toBe("New Item - AcmeKit Client API Reference")
     })
   })
 })

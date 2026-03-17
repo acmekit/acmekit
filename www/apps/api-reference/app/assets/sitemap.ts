@@ -21,7 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  for (const area of ["store", "admin"]) {
+  for (const area of ["client", "admin"]) {
     const baseSpecs = (await OpenAPIParser.parse(
       path.join(process.cwd(), `specs/${area}/openapi.yaml`)
     )) as OpenAPI.ExpandedDocument

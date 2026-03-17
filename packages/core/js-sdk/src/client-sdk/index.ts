@@ -39,7 +39,7 @@ export class ClientSdk {
      * To retrieve the list of regions:
      *
      * ```ts
-     * sdk.store.region.list()
+     * sdk.client.region.list()
      * .then(({ regions, count, limit, offset }) => {
      *   console.log(regions)
      * })
@@ -50,7 +50,7 @@ export class ClientSdk {
      * For example, to retrieve only 10 items and skip 10 items:
      *
      * ```ts
-     * sdk.store.region.list({
+     * sdk.client.region.list({
      *   limit: 10,
      *   offset: 10
      * })
@@ -63,7 +63,7 @@ export class ClientSdk {
      * in each region:
      *
      * ```ts
-     * sdk.store.region.list({
+     * sdk.client.region.list({
      *   fields: "id,*countries"
      * })
      * .then(({ regions, count, limit, offset }) => {
@@ -100,7 +100,7 @@ export class ClientSdk {
      * To retrieve a region by its ID:
      *
      * ```ts
-     * sdk.store.region.retrieve("reg_123")
+     * sdk.client.region.retrieve("reg_123")
      * .then(({ region }) => {
      *   console.log(region)
      * })
@@ -109,7 +109,7 @@ export class ClientSdk {
      * To specify the fields and relations to retrieve:
      *
      * ```ts
-     * sdk.store.region.retrieve(
+     * sdk.client.region.retrieve(
      *   "reg_123",
      *   {
      *     fields: "id,*countries"
@@ -155,7 +155,7 @@ export class ClientSdk {
      * To retrieve the list of collections:
      *
      * ```ts
-     * sdk.store.collection.list()
+     * sdk.client.collection.list()
      * .then(({ collections, count, limit, offset }) => {
      *   console.log(collections)
      * })
@@ -166,7 +166,7 @@ export class ClientSdk {
      * For example, to retrieve only 10 items and skip 10 items:
      *
      * ```ts
-     * sdk.store.collection.list({
+     * sdk.client.collection.list({
      *   limit: 10,
      *   offset: 10
      * })
@@ -179,7 +179,7 @@ export class ClientSdk {
      * in each collection:
      *
      * ```ts
-     * sdk.store.collection.list({
+     * sdk.client.collection.list({
      *   fields: "id,handle"
      * })
      * .then(({ collections, count, limit, offset }) => {
@@ -216,7 +216,7 @@ export class ClientSdk {
      * To retrieve a collection by its ID:
      *
      * ```ts
-     * sdk.store.collection.retrieve("pcol_123")
+     * sdk.client.collection.retrieve("pcol_123")
      * .then(({ collection }) => {
      *   console.log(collection)
      * })
@@ -225,7 +225,7 @@ export class ClientSdk {
      * To specify the fields and relations to retrieve:
      *
      * ```ts
-     * sdk.store.collection.retrieve("pcol_123", {
+     * sdk.client.collection.retrieve("pcol_123", {
      *   fields: "id,handle"
      * })
      * .then(({ collection }) => {
@@ -268,7 +268,7 @@ export class ClientSdk {
      * To retrieve the list of categories:
      *
      * ```ts
-     * sdk.store.category.list()
+     * sdk.client.category.list()
      * .then(({ product_categories, count, offset, limit }) => {
      *   console.log(product_categories)
      * })
@@ -279,7 +279,7 @@ export class ClientSdk {
      * For example, to retrieve only 10 items and skip 10 items:
      *
      * ```ts
-     * sdk.store.category.list({
+     * sdk.client.category.list({
      *   limit: 10,
      *   offset: 10
      * })
@@ -292,7 +292,7 @@ export class ClientSdk {
      * in each category:
      *
      * ```ts
-     * sdk.store.category.list({
+     * sdk.client.category.list({
      *   fields: "id,*parent_category"
      * })
      * .then(({ product_categories, count, offset, limit }) => {
@@ -329,7 +329,7 @@ export class ClientSdk {
      * To retrieve a category by its ID:
      *
      * ```ts
-     * sdk.store.category.retrieve("pcat_123")
+     * sdk.client.category.retrieve("pcat_123")
      * .then(({ product_category }) => {
      *   console.log(product_category)
      * })
@@ -338,7 +338,7 @@ export class ClientSdk {
      * To specify the fields and relations to retrieve:
      *
      * ```ts
-     * sdk.store.category.retrieve("pcat_123", {
+     * sdk.client.category.retrieve("pcat_123", {
      *   fields: "id,*parent_category"
      * })
      * .then(({ product_category }) => {
@@ -384,7 +384,7 @@ export class ClientSdk {
      * To retrieve the list of products:
      *
      * ```ts
-     * sdk.store.product.list()
+     * sdk.client.product.list()
      * .then(({ products, count, offset, limit }) => {
      *   console.log(products)
      * })
@@ -395,7 +395,7 @@ export class ClientSdk {
      * For example, to retrieve only 10 items and skip 10 items:
      *
      * ```ts
-     * sdk.store.product.list({
+     * sdk.client.product.list({
      *   limit: 10,
      *   offset: 10
      * })
@@ -408,7 +408,7 @@ export class ClientSdk {
      * in each product:
      *
      * ```ts
-     * sdk.store.product.list({
+     * sdk.client.product.list({
      *   fields: "id,*collection"
      * })
      * .then(({ products, count, offset, limit }) => {
@@ -448,7 +448,7 @@ export class ClientSdk {
      * To retrieve a product by its ID:
      *
      * ```ts
-     * sdk.store.product.retrieve("prod_123")
+     * sdk.client.product.retrieve("prod_123")
      * .then(({ product }) => {
      *   console.log(product)
      * })
@@ -457,7 +457,7 @@ export class ClientSdk {
      * To specify the fields and relations to retrieve:
      *
      * ```ts
-     * sdk.store.product.retrieve("prod_123", {
+     * sdk.client.product.retrieve("prod_123", {
      *   fields: "id,*collection"
      * })
      * .then(({ product }) => {
@@ -500,7 +500,7 @@ export class ClientSdk {
      * @returns The created cart.
      *
      * @example
-     * sdk.store.cart.create({
+     * sdk.client.cart.create({
      *   region_id: "reg_123"
      * })
      * .then(({ cart }) => {
@@ -532,7 +532,7 @@ export class ClientSdk {
      * @returns The updated cart.
      *
      * @example
-     * sdk.store.cart.update("cart_123", {
+     * sdk.client.cart.update("cart_123", {
      *   region_id: "reg_123"
      * })
      * .then(({ cart }) => {
@@ -570,7 +570,7 @@ export class ClientSdk {
      * To retrieve a cart by its ID:
      *
      * ```ts
-     * sdk.store.cart.retrieve("cart_123")
+     * sdk.client.cart.retrieve("cart_123")
      * .then(({ cart }) => {
      *   console.log(cart)
      * })
@@ -579,7 +579,7 @@ export class ClientSdk {
      * To specify the fields and relations to retrieve:
      *
      * ```ts
-     * sdk.store.cart.retrieve("cart_123", {
+     * sdk.client.cart.retrieve("cart_123", {
      *   fields: "id,*items"
      * })
      * .then(({ cart }) => {
@@ -615,7 +615,7 @@ export class ClientSdk {
      * @returns The cart's details.
      *
      * @example
-     * sdk.store.cart.createLineItem("cart_123", {
+     * sdk.client.cart.createLineItem("cart_123", {
      *   variant_id: "variant_123",
      *   quantity: 1
      * })
@@ -653,7 +653,7 @@ export class ClientSdk {
      * @returns The cart's details.
      *
      * @example
-     * sdk.store.cart.updateLineItem(
+     * sdk.client.cart.updateLineItem(
      *   "cart_123",
      *   "li_123",
      *   {
@@ -694,7 +694,7 @@ export class ClientSdk {
      * @returns The deletion's details.
      *
      * @example
-     * sdk.store.cart.deleteLineItem(
+     * sdk.client.cart.deleteLineItem(
      *   "cart_123",
      *   "li_123"
      * )
@@ -730,7 +730,7 @@ export class ClientSdk {
      * @returns The cart's details.
      *
      * @example
-     * sdk.store.cart.addShippingMethod("cart_123", {
+     * sdk.client.cart.addShippingMethod("cart_123", {
      *   option_id: "so_123",
      *   data: {
      *     // custom data for fulfillment provider.
@@ -769,7 +769,7 @@ export class ClientSdk {
      * @returns The order's details, if it was placed successfully. Otherwise, the cart is returned with an error.
      *
      * @example
-     * sdk.store.cart.complete("cart_123")
+     * sdk.client.cart.complete("cart_123")
      * .then((data) => {
      *   if(data.type === "cart") {
      *     // an error occurred
@@ -805,7 +805,7 @@ export class ClientSdk {
      *
      * @example
      * // TODO must be authenticated as the customer to set the cart's customer
-     * sdk.store.cart.transferCart("cart_123")
+     * sdk.client.cart.transferCart("cart_123")
      * .then(({ cart }) => {
      *   console.log(cart)
      * })
@@ -842,7 +842,7 @@ export class ClientSdk {
      * @returns The shipping options that can be used for the cart.
      *
      * @example
-     * sdk.store.fulfillment.listCartOptions({
+     * sdk.client.fulfillment.listCartOptions({
      *   cart_id: "cart_123"
      * })
      * .then(({ shipping_options }) => {
@@ -874,7 +874,7 @@ export class ClientSdk {
      * @returns The shipping option's details.
      *
      * @example
-     * sdk.store.fulfillment.calculate("so_123", {
+     * sdk.client.fulfillment.calculate("so_123", {
      *   cart_id: "cart_123"
      * })
      * .then(({ shipping_option }) => {
@@ -919,7 +919,7 @@ export class ClientSdk {
      * To retrieve the list of payment providers for a region:
      *
      * ```ts
-     * sdk.store.payment.listPaymentProviders({
+     * sdk.client.payment.listPaymentProviders({
      *   region_id: "reg_123"
      * })
      * .then(({ payment_providers, count, offset, limit }) => {
@@ -932,7 +932,7 @@ export class ClientSdk {
      * For example, to retrieve only 10 items and skip 10 items:
      *
      * ```ts
-     * sdk.store.payment.listPaymentProviders({
+     * sdk.client.payment.listPaymentProviders({
      *   region_id: "reg_123",
      *   limit: 10,
      *   offset: 10
@@ -946,7 +946,7 @@ export class ClientSdk {
      * in each provider:
      *
      * ```ts
-     * sdk.store.payment.listPaymentProviders({
+     * sdk.client.payment.listPaymentProviders({
      *   region_id: "reg_123",
      *   limit: 10,
      *   offset: 10,
@@ -990,7 +990,7 @@ export class ClientSdk {
      * @returns The payment collection's details.
      *
      * @example
-     * sdk.store.payment.initiatePaymentSession(
+     * sdk.client.payment.initiatePaymentSession(
      *   cart, // assuming you already have the cart object.
      *   {
      *     provider_id: "pp_stripe_stripe",
@@ -1056,7 +1056,7 @@ export class ClientSdk {
      *
      * ```ts
      * // TODO must be authenticated as the customer to list their orders
-     * sdk.store.order.list()
+     * sdk.client.order.list()
      * .then(({ orders, count, offset, limit }) => {
      *   console.log(orders)
      * })
@@ -1068,7 +1068,7 @@ export class ClientSdk {
      *
      * ```ts
      * // TODO must be authenticated as the customer to list their orders
-     * sdk.store.order.list({
+     * sdk.client.order.list({
      *   limit: 10,
      *   offset: 10
      * })
@@ -1082,7 +1082,7 @@ export class ClientSdk {
      *
      * ```ts
      * // TODO must be authenticated as the customer to list their orders
-     * sdk.store.order.list({
+     * sdk.client.order.list({
      *   fields: "id,*items"
      * })
      * .then(({ orders, count, offset, limit }) => {
@@ -1117,7 +1117,7 @@ export class ClientSdk {
      * To retrieve an order by its ID:
      *
      * ```ts
-     * sdk.store.order.retrieve("order_123")
+     * sdk.client.order.retrieve("order_123")
      * .then(({ order }) => {
      *   console.log(order)
      * })
@@ -1126,7 +1126,7 @@ export class ClientSdk {
      * To specify the fields and relations to retrieve:
      *
      * ```ts
-     * sdk.store.order.retrieve("order_123", {
+     * sdk.client.order.retrieve("order_123", {
      *   fields: "id,*items"
      * })
      * .then(({ order }) => {
@@ -1162,7 +1162,7 @@ export class ClientSdk {
      *
      * @example
      * // TODO must be authenticated as the customer to request the order transfer
-     * sdk.store.order.requestTransfer(
+     * sdk.client.order.requestTransfer(
      *   "order_123",
      *   {
      *     description: "I want to transfer this order to my friend."
@@ -1204,7 +1204,7 @@ export class ClientSdk {
      *
      * @example
      * // TODO must be authenticated as the customer to cancel the order transfer
-     * sdk.store.order.cancelTransfer(
+     * sdk.client.order.cancelTransfer(
      *   "order_123",
      *   {},
      *   {
@@ -1239,7 +1239,7 @@ export class ClientSdk {
      * @returns The order details.
      *
      * @example
-     * sdk.store.order.acceptTransfer(
+     * sdk.client.order.acceptTransfer(
      *   "order_123",
      *   {
      *     token: "transfer_token"
@@ -1278,7 +1278,7 @@ export class ClientSdk {
      * @returns The order details.
      *
      * @example
-     * sdk.store.order.declineTransfer(
+     * sdk.client.order.declineTransfer(
      *   "order_123",
      *   {
      *     token: "transfer_token"
@@ -1333,7 +1333,7 @@ export class ClientSdk {
      *   "password": "supersecret"
      * })
      *
-     * sdk.store.customer.create(
+     * sdk.client.customer.create(
      *   {
      *     "email": "customer@gmail.com"
      *   },
@@ -1377,7 +1377,7 @@ export class ClientSdk {
      *
      * @example
      * // TODO must be authenticated as the customer to update their details
-     * sdk.store.customer.update({
+     * sdk.client.customer.update({
      *   first_name: "John"
      * })
      * .then(({ customer }) => {
@@ -1412,7 +1412,7 @@ export class ClientSdk {
      *
      * @example
      * // TODO must be authenticated as the customer to retrieve their details
-     * sdk.store.customer.retrieve()
+     * sdk.client.customer.retrieve()
      * .then(({ customer }) => {
      *   console.log(customer)
      * })
@@ -1442,7 +1442,7 @@ export class ClientSdk {
      *
      * @example
      * // TODO must be authenticated as the customer to create an address
-     * sdk.store.customer.createAddress({
+     * sdk.client.customer.createAddress({
      *   country_code: "us"
      * })
      * .then(({ customer }) => {
@@ -1481,7 +1481,7 @@ export class ClientSdk {
      *
      * @example
      * // TODO must be authenticated as the customer to update their address
-     * sdk.store.customer.updateAddress(
+     * sdk.client.customer.updateAddress(
      *   "caddr_123",
      *   {
      *     country_code: "us"
@@ -1525,7 +1525,7 @@ export class ClientSdk {
      *
      * ```ts
      * // TODO must be authenticated as the customer to list their addresses
-     * sdk.store.customer.listAddress()
+     * sdk.client.customer.listAddress()
      * .then(({ addresses, count, offset, limit }) => {
      *   console.log(addresses)
      * })
@@ -1537,7 +1537,7 @@ export class ClientSdk {
      *
      * ```ts
      * // TODO must be authenticated as the customer to list their addresses
-     * sdk.store.customer.listAddress({
+     * sdk.client.customer.listAddress({
      *   limit: 10,
      *   offset: 10
      * })
@@ -1551,7 +1551,7 @@ export class ClientSdk {
      *
      * ```ts
      * // TODO must be authenticated as the customer to list their addresses
-     * sdk.store.customer.listAddress({
+     * sdk.client.customer.listAddress({
      *   fields: "id,country_code"
      * })
      * .then(({ addresses, count, offset, limit }) => {
@@ -1592,7 +1592,7 @@ export class ClientSdk {
      *
      * ```ts
      * // TODO must be authenticated as the customer to retrieve their address
-     * sdk.store.customer.retrieveAddress(
+     * sdk.client.customer.retrieveAddress(
      *   "caddr_123"
      * )
      * .then(({ address }) => {
@@ -1604,7 +1604,7 @@ export class ClientSdk {
      *
      * ```ts
      * // TODO must be authenticated as the customer to retrieve their address
-     * sdk.store.customer.retrieveAddress(
+     * sdk.client.customer.retrieveAddress(
      *   "caddr_123",
      *   {
      *     fields: "id,country_code"
@@ -1645,7 +1645,7 @@ export class ClientSdk {
      *
      * @example
      * // TODO must be authenticated as the customer to delete their address
-     * sdk.store.customer.deleteAddress("caddr_123")
+     * sdk.client.customer.deleteAddress("caddr_123")
      * .then(({ deleted, parent: customer }) => {
      *   console.log(customer)
      * })
@@ -1673,7 +1673,7 @@ export class ClientSdk {
      * @returns The list of supported locales.
      * 
      * @example
-     * sdk.store.locale.list()
+     * sdk.client.locale.list()
      * .then(({ locales }) => {
      *   console.log(locales)
      * })

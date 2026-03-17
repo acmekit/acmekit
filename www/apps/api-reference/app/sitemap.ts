@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const markdownPath = path.join(process.cwd(), "markdown")
 
-  for (const area of ["store", "admin"]) {
+  for (const area of ["client", "admin"]) {
     // find and parse static headers from pages
     const markdownContent = await readFile(
       path.join(markdownPath, `${area}.mdx`),
