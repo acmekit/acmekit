@@ -7,9 +7,6 @@ import { adminCustomerGroupRoutesMiddlewares } from "./admin/customer-groups/mid
 import { adminCustomerRoutesMiddlewares } from "./admin/customers/middlewares"
 import { adminDraftOrderRoutesMiddlewares } from "./admin/draft-orders/middlewares"
 import { adminExchangeRoutesMiddlewares } from "./admin/exchanges/middlewares"
-import { adminFulfillmentProvidersRoutesMiddlewares } from "./admin/fulfillment-providers/middlewares"
-import { adminFulfillmentSetsRoutesMiddlewares } from "./admin/fulfillment-sets/middlewares"
-import { adminFulfillmentsRoutesMiddlewares } from "./admin/fulfillments/middlewares"
 import { adminInventoryRoutesMiddlewares } from "./admin/inventory-items/middlewares"
 import { adminInviteRoutesMiddlewares } from "./admin/invites/middlewares"
 import { adminNotificationRoutesMiddlewares } from "./admin/notifications/middlewares"
@@ -32,8 +29,6 @@ import { adminReservationRoutesMiddlewares } from "./admin/reservations/middlewa
 import { adminReturnReasonRoutesMiddlewares } from "./admin/return-reasons/middlewares"
 import { adminReturnRoutesMiddlewares } from "./admin/returns/middlewares"
 import { adminSalesChannelRoutesMiddlewares } from "./admin/sales-channels/middlewares"
-import { adminShippingOptionRoutesMiddlewares } from "./admin/shipping-options/middlewares"
-import { adminShippingProfilesMiddlewares } from "./admin/shipping-profiles/middlewares"
 import { adminStoreRoutesMiddlewares } from "./admin/stores/middlewares"
 import { adminTaxProviderRoutesMiddlewares } from "./admin/tax-providers/middlewares"
 import { adminTaxRateRoutesMiddlewares } from "./admin/tax-rates/middlewares"
@@ -61,8 +56,6 @@ import { storeProductVariantRoutesMiddlewares } from "./client/product-variants/
 import { storeProductRoutesMiddlewares } from "./client/products/middlewares"
 import { storeRegionRoutesMiddlewares } from "./client/regions/middlewares"
 import { storeReturnReasonRoutesMiddlewares } from "./client/return-reasons/middlewares"
-import { storeShippingOptionRoutesMiddlewares } from "./client/shipping-options/middlewares"
-import { adminShippingOptionTypeRoutesMiddlewares } from "./admin/shipping-option-types/middlewares"
 import { adminIndexRoutesMiddlewares } from "./admin/index/middlewares"
 import { setSecretApiKeyContext } from "@medusajs/framework"
 import { adminLocalesRoutesMiddlewares } from "./admin/locales/middlewares"
@@ -84,7 +77,6 @@ export default defineMiddlewares([
   ...storeProductTagRoutesMiddlewares,
   ...storeProductTypeRoutesMiddlewares,
   ...storePaymentProvidersMiddlewares,
-  ...storeShippingOptionRoutesMiddlewares,
   ...storePaymentCollectionsMiddlewares,
   ...storeOrderRoutesMiddlewares,
   ...authRoutesMiddlewares,
@@ -111,21 +103,15 @@ export default defineMiddlewares([
   ...adminPricePreferencesRoutesMiddlewares,
   ...adminInventoryRoutesMiddlewares,
   ...adminCollectionRoutesMiddlewares,
-  ...adminShippingOptionRoutesMiddlewares,
   ...adminDraftOrderRoutesMiddlewares,
   ...adminSalesChannelRoutesMiddlewares,
-  ...adminShippingOptionTypeRoutesMiddlewares,
   ...adminProductTypeRoutesMiddlewares,
   ...adminProductTagRoutesMiddlewares,
   ...adminUploadRoutesMiddlewares,
-  ...adminFulfillmentSetsRoutesMiddlewares,
   ...adminNotificationRoutesMiddlewares,
   ...adminOrderRoutesMiddlewares,
   ...adminReservationRoutesMiddlewares,
   ...adminProductCategoryRoutesMiddlewares,
-  ...adminShippingProfilesMiddlewares,
-  ...adminFulfillmentsRoutesMiddlewares,
-  ...adminFulfillmentProvidersRoutesMiddlewares,
   ...storeProductRoutesMiddlewares,
   ...storeProductVariantRoutesMiddlewares,
   ...storeReturnReasonRoutesMiddlewares,

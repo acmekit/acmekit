@@ -5,9 +5,6 @@ import { Customer } from "./customer"
 import { CustomerGroup } from "./customer-group"
 import { DraftOrder } from "./draft-order"
 import { Exchange } from "./exchange"
-import { Fulfillment } from "./fulfillment"
-import { FulfillmentProvider } from "./fulfillment-provider"
-import { FulfillmentSet } from "./fulfillment-set"
 import { Invite } from "./invite"
 import { Notification } from "./notification"
 import { Order } from "./order"
@@ -19,12 +16,9 @@ import { RefundReason } from "./refund-reasons"
 import { Return } from "./return"
 import { ReturnReason } from "./return-reason"
 import { SalesChannel } from "./sales-channel"
-import { ShippingOption } from "./shipping-option"
-import { ShippingProfile } from "./shipping-profile"
 import { User } from "./user"
 import { Views } from "./views"
 import { WorkflowExecution } from "./workflow-execution"
-import { ShippingOptionType } from "./shipping-option-type"
 import { Locale } from "./locale"
 import { Translation } from "./translation"
 
@@ -45,30 +39,6 @@ export class Admin {
    * @tags sales channel
    */
   public salesChannel: SalesChannel
-  /**
-   * @tags fulfillment
-   */
-  public fulfillmentSet: FulfillmentSet
-  /**
-   * @tags fulfillment
-   */
-  public fulfillment: Fulfillment
-  /**
-   * @tags fulfillment
-   */
-  public fulfillmentProvider: FulfillmentProvider
-  /**
-   * @tags fulfillment
-   */
-  public shippingOption: ShippingOption
-  /**
-   * @tags fulfillment
-   */
-  public shippingOptionType: ShippingOptionType
-  /**
-   * @tags fulfillment
-   */
-  public shippingProfile: ShippingProfile
   /**
    * @tags notification
    */
@@ -149,12 +119,6 @@ export class Admin {
     this.customer = new Customer(client)
     this.returnReason = new ReturnReason(client)
     this.salesChannel = new SalesChannel(client)
-    this.fulfillmentSet = new FulfillmentSet(client)
-    this.fulfillment = new Fulfillment(client)
-    this.fulfillmentProvider = new FulfillmentProvider(client)
-    this.shippingOption = new ShippingOption(client)
-    this.shippingOptionType = new ShippingOptionType(client)
-    this.shippingProfile = new ShippingProfile(client)
     this.notification = new Notification(client)
     this.order = new Order(client)
     this.draftOrder = new DraftOrder(client)

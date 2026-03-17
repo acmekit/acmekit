@@ -10,7 +10,6 @@ import {
   ICustomerModuleService,
   IEventBusModuleService,
   IFileModuleService,
-  IFulfillmentModuleService,
   IIndexService,
   ILockingModule,
   INotificationModuleService,
@@ -53,7 +52,6 @@ declare module "@medusajs/types" {
     [Modules.EVENT_BUS]: IEventBusModuleService
     [Modules.PAYMENT]: IPaymentModuleService
     [Modules.SALES_CHANNEL]: ISalesChannelModuleService
-    [Modules.FULFILLMENT]: IFulfillmentModuleService
     [Modules.USER]: IUserModuleService
     [Modules.WORKFLOW_ENGINE]: IWorkflowEngineService
     [Modules.ORDER]: IOrderModuleService

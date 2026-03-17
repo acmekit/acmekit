@@ -76,8 +76,6 @@
     "@medusajs/file": "2.13.4",
     "@medusajs/file-local": "2.13.4",
     "@medusajs/file-s3": "2.13.4",
-    "@medusajs/fulfillment": "2.13.4",
-    "@medusajs/fulfillment-manual": "2.13.4",
     "@medusajs/index": "2.13.4",
     "@medusajs/link-modules": "2.13.4",
     "@medusajs/locking": "2.13.4",

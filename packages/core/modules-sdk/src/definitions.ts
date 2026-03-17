@@ -76,17 +76,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.FULFILLMENT]: {
-    key: Modules.FULFILLMENT,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.FULFILLMENT),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER, Modules.EVENT_BUS],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.CART]: {
     key: Modules.CART,
     defaultPackage: false,

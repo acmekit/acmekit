@@ -1,5 +1,4 @@
 export * from "./cart-customer"
 export * from "./cart-sales-channel"
-export * from "./cart-shipping-option"
 export * from "./order-customer"
 export * from "./order-sales-channel"
