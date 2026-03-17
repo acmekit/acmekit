@@ -64,17 +64,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.PRODUCT]: {
-    key: Modules.PRODUCT,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.PRODUCT),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [Modules.EVENT_BUS, ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.AUTH]: {
     key: Modules.AUTH,
     defaultPackage: false,

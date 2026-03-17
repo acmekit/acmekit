@@ -16,12 +16,6 @@ import { OrderEdit } from "./order-edit"
 import { Payment } from "./payment"
 import { PaymentCollection } from "./payment-collection"
 import { Plugin } from "./plugin"
-import { Product } from "./product"
-import { ProductCategory } from "./product-category"
-import { ProductCollection } from "./product-collection"
-import { ProductTag } from "./product-tag"
-import { ProductType } from "./product-type"
-import { ProductVariant } from "./product-variant"
 import { RefundReason } from "./refund-reasons"
 import Reservation from "./reservation"
 import { Return } from "./return"
@@ -30,7 +24,6 @@ import { SalesChannel } from "./sales-channel"
 import { ShippingOption } from "./shipping-option"
 import { ShippingProfile } from "./shipping-profile"
 import { StockLocation } from "./stock-location"
-import { Upload } from "./upload"
 import { User } from "./user"
 import { Views } from "./views"
 import { WorkflowExecution } from "./workflow-execution"
@@ -47,26 +40,6 @@ export class Admin {
    * @tags customer
    */
   public customer: Customer
-  /**
-   * @tags product
-   */
-  public productCollection: ProductCollection
-  /**
-   * @tags product
-   */
-  public productCategory: ProductCategory
-  /**
-   * @tags product
-   */
-  public product: Product
-  /**
-   * @tags product
-   */
-  public productType: ProductType
-  /**
-   * @tags file
-   */
-  public upload: Upload
   /**
    * @tags order
    */
@@ -136,10 +109,6 @@ export class Admin {
    */
   public exchange: Exchange
   /**
-   * @tags product
-   */
-  public productTag: ProductTag
-  /**
    * @tags user
    */
   public user: User
@@ -152,10 +121,6 @@ export class Admin {
    * @tags payment
    */
   public payment: Payment
-  /**
-   * @tags product
-   */
-  public productVariant: ProductVariant
   /**
    * @tags order
    */
@@ -197,11 +162,6 @@ export class Admin {
   constructor(client: Client) {
     this.invite = new Invite(client)
     this.customer = new Customer(client)
-    this.productCollection = new ProductCollection(client)
-    this.productCategory = new ProductCategory(client)
-    this.product = new Product(client)
-    this.productType = new ProductType(client)
-    this.upload = new Upload(client)
     this.returnReason = new ReturnReason(client)
     this.stockLocation = new StockLocation(client)
     this.salesChannel = new SalesChannel(client)
@@ -219,11 +179,9 @@ export class Admin {
     this.return = new Return(client)
     this.claim = new Claim(client)
     this.translation = new Translation(client)
-    this.productTag = new ProductTag(client)
     this.user = new User(client)
     this.locale = new Locale(client)
     this.payment = new Payment(client)
-    this.productVariant = new ProductVariant(client)
     this.refundReason = new RefundReason(client)
     this.exchange = new Exchange(client)
     this.paymentCollection = new PaymentCollection(client)

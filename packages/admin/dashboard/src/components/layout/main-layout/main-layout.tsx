@@ -9,7 +9,6 @@ import {
   OpenRectArrowOut,
   ShoppingCart,
   SquaresPlus,
-  Tag,
   Users,
 } from "@medusajs/icons"
 import { Avatar, Divider, DropdownMenu, Text, clx } from "@medusajs/ui"
@@ -188,26 +187,6 @@ const useCoreRoutes = (): Omit<INavItem, "pathname">[] => {
         // {
         //   label: t("draftOrders.domain"),
         //   to: "/draft-orders",
-        // },
-      ],
-    },
-    {
-      icon: <Tag />,
-      label: t("products.domain"),
-      to: "/products",
-      items: [
-        {
-          label: t("collections.domain"),
-          to: "/collections",
-        },
-        {
-          label: t("categories.domain"),
-          to: "/categories",
-        },
-        // TODO: Enable when domin is introduced
-        // {
-        //   label: t("giftCards.domain"),
-        //   to: "/gift-cards",
         // },
       ],
     },
