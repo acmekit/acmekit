@@ -18,7 +18,6 @@ import {
   IOrderModuleService,
   IPaymentModuleService,
   IProductModuleService,
-  IPromotionModuleService,
   IRbacModuleService,
   ISalesChannelModuleService,
   ISettingsModuleService,
@@ -58,7 +57,6 @@ declare module "@medusajs/types" {
     [Modules.INVENTORY]: IInventoryService
     [Modules.PAYMENT]: IPaymentModuleService
     [Modules.PRODUCT]: IProductModuleService
-    [Modules.PROMOTION]: IPromotionModuleService
     [Modules.SALES_CHANNEL]: ISalesChannelModuleService
     [Modules.FULFILLMENT]: IFulfillmentModuleService
     [Modules.STOCK_LOCATION]: IStockLocationService

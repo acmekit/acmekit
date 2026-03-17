@@ -1,6 +1,5 @@
 import { defineMiddlewares } from "../utils/define-middlewares"
 import { adminApiKeyRoutesMiddlewares } from "./admin/api-keys/middlewares"
-import { adminCampaignRoutesMiddlewares } from "./admin/campaigns/middlewares"
 import { adminClaimRoutesMiddlewares } from "./admin/claims/middlewares"
 import { adminCollectionRoutesMiddlewares } from "./admin/collections/middlewares"
 import { adminCurrencyRoutesMiddlewares } from "./admin/currencies/middlewares"
@@ -26,7 +25,6 @@ import { adminProductTagRoutesMiddlewares } from "./admin/product-tags/middlewar
 import { adminProductTypeRoutesMiddlewares } from "./admin/product-types/middlewares"
 import { adminProductVariantRoutesMiddlewares } from "./admin/product-variants/middlewares"
 import { adminProductRoutesMiddlewares } from "./admin/products/middlewares"
-import { adminPromotionRoutesMiddlewares } from "./admin/promotions/middlewares"
 import { adminRbacRoutesMiddlewares } from "./admin/rbac/middlewares"
 import { adminRefundReasonsRoutesMiddlewares } from "./admin/refund-reasons/middlewares"
 import { adminRegionRoutesMiddlewares } from "./admin/regions/middlewares"
@@ -79,8 +77,6 @@ export default defineMiddlewares([
   },
   ...adminCustomerGroupRoutesMiddlewares,
   ...adminCustomerRoutesMiddlewares,
-  ...adminPromotionRoutesMiddlewares,
-  ...adminCampaignRoutesMiddlewares,
   ...storeCartRoutesMiddlewares,
   ...storeCustomerRoutesMiddlewares,
   ...storeCartRoutesMiddlewares,

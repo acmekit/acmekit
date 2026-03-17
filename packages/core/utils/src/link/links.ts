@@ -14,12 +14,6 @@ export const LINKS = {
     Modules.PAYMENT,
     "payment_collection_id"
   ),
-  CartPromotion: composeLinkName(
-    Modules.CART,
-    "cart_id",
-    Modules.PROMOTION,
-    "promotion_id"
-  ),
   SalesChannelLocation: composeLinkName(
     Modules.SALES_CHANNEL,
     "sales_channel_id",
@@ -37,12 +31,6 @@ export const LINKS = {
     "stock_location_id",
     Modules.FULFILLMENT,
     "fulfillment_set_id"
-  ),
-  OrderPromotion: composeLinkName(
-    Modules.ORDER,
-    "order_id",
-    Modules.PROMOTION,
-    "promotion_id"
   ),
   OrderCart: composeLinkName(
     Modules.ORDER,

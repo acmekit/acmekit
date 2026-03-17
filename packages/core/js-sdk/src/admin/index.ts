@@ -1,6 +1,5 @@
 import { Client } from "../client"
 import { ApiKey } from "./api-key"
-import { Campaign } from "./campaign"
 import { Claim } from "./claim"
 import { Customer } from "./customer"
 import { CustomerGroup } from "./customer-group"
@@ -23,7 +22,6 @@ import { ProductCollection } from "./product-collection"
 import { ProductTag } from "./product-tag"
 import { ProductType } from "./product-type"
 import { ProductVariant } from "./product-variant"
-import { Promotion } from "./promotion"
 import { RefundReason } from "./refund-reasons"
 import Reservation from "./reservation"
 import { Return } from "./return"
@@ -183,17 +181,9 @@ export class Admin {
    */
   public customerGroup: CustomerGroup
   /**
-   * @tags promotion
-   */
-  public promotion: Promotion
-  /**
    * @tags translations
    */
   public translation: Translation
-  /**
-   * @tags promotion
-   */
-  public campaign: Campaign
   /**
    * @tags plugin
    */
@@ -241,8 +231,6 @@ export class Admin {
     this.workflowExecution = new WorkflowExecution(client)
     this.reservation = new Reservation(client)
     this.customerGroup = new CustomerGroup(client)
-    this.promotion = new Promotion(client)
-    this.campaign = new Campaign(client)
     this.plugin = new Plugin(client)
     this.views = new Views(client)
   }

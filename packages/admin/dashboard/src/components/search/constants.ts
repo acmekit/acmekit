@@ -8,8 +8,6 @@ export const SEARCH_AREAS = [
   "inventory",
   "customer",
   "customerGroup",
-  "promotion",
-  "campaign",
   "priceList",
   "user",
   "region",

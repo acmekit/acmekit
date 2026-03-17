@@ -5,7 +5,6 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import {
   useApiKeys,
-  useCampaigns,
   useCollections,
   useCustomerGroups,
   useCustomers,
@@ -16,7 +15,6 @@ import {
   useProducts,
   useProductTags,
   useProductTypes,
-  usePromotions,
   useRegions,
   useSalesChannels,
   useShippingProfiles,
@@ -200,29 +198,6 @@ const useDynamicSearchResults = (
     }
   )
 
-  const promotionResponse = usePromotions(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,code,status",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "promotion"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const campaignResponse = useCampaigns(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,name",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "campaign"),
-      placeholderData: keepPreviousData,
-    }
-  )
 
   const priceListResponse = usePriceLists(
     {
@@ -380,8 +355,6 @@ const useDynamicSearchResults = (
       inventory: inventoryResponse,
       customer: customerResponse,
       customerGroup: customerGroupResponse,
-      promotion: promotionResponse,
-      campaign: campaignResponse,
       priceList: priceListResponse,
       user: userResponse,
       region: regionResponse,
@@ -404,8 +377,6 @@ const useDynamicSearchResults = (
       collectionResponse,
       customerResponse,
       customerGroupResponse,
-      promotionResponse,
-      campaignResponse,
       priceListResponse,
       userResponse,
       regionResponse,
@@ -588,24 +559,6 @@ const transformMap: TransformMap = {
       title: collection.title,
       to: `/collections/${collection.id}`,
       value: `collection:${collection.id}`,
-    }),
-  },
-  promotion: {
-    dataKey: "promotions",
-    transform: (promotion: HttpTypes.AdminPromotion) => ({
-      id: promotion.id,
-      title: promotion.code!,
-      to: `/promotions/${promotion.id}`,
-      value: `promotion:${promotion.id}`,
-    }),
-  },
-  campaign: {
-    dataKey: "campaigns",
-    transform: (campaign: HttpTypes.AdminCampaign) => ({
-      id: campaign.id,
-      title: campaign.name,
-      to: `/campaigns/${campaign.id}`,
-      value: `campaign:${campaign.id}`,
     }),
   },
   priceList: {

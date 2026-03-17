@@ -75,17 +75,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.PROMOTION]: {
-    key: Modules.PROMOTION,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.PROMOTION),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.AUTH]: {
     key: Modules.AUTH,
     defaultPackage: false,

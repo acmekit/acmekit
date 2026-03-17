@@ -7,7 +7,6 @@ import {
   MagnifyingGlass,
   MinusMini,
   OpenRectArrowOut,
-  ReceiptPercent,
   ShoppingCart,
   SquaresPlus,
   Tag,
@@ -231,17 +230,6 @@ const useCoreRoutes = (): Omit<INavItem, "pathname">[] => {
         {
           label: t("customerGroups.domain"),
           to: "/customer-groups",
-        },
-      ],
-    },
-    {
-      icon: <ReceiptPercent />,
-      label: t("promotions.domain"),
-      to: "/promotions",
-      items: [
-        {
-          label: t("campaigns.domain"),
-          to: "/campaigns",
         },
       ],
     },

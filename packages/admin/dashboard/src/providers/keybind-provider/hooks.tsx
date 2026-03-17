@@ -183,22 +183,6 @@ export const useGlobalShortcuts = () => {
       type: "pageShortcut",
       to: "/price-lists",
     },
-    {
-      keys: {
-        Mac: ["G", "M"],
-      },
-      label: t("app.keyboardShortcuts.navigation.goToPromotions"),
-      type: "pageShortcut",
-      to: "/promotions",
-    },
-    {
-      keys: {
-        Mac: ["G", "K"],
-      },
-      label: t("app.keyboardShortcuts.navigation.goToCampaigns"),
-      type: "pageShortcut",
-      to: "/campaigns",
-    },
     // Settings
     {
       keys: {

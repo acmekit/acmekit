@@ -50,10 +50,6 @@ export interface DefaultPolicyResources {
   product_category: "product_category"
   product_collection: "product_collection"
 
-  // Promotion resources
-  campaign: "campaign"
-  promotion: "promotion"
-
   // Region resources
   region: "region"
 

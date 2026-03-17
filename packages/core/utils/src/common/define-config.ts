@@ -181,7 +181,6 @@ function resolveModules(
     { resolve: MODULE_PACKAGE_NAMES[Modules.STOCK_LOCATION] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.INVENTORY] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.PRODUCT] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.PROMOTION] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.CUSTOMER] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.SALES_CHANNEL] },
 
