@@ -14,7 +14,6 @@ export const defaultSchema = `
     updated_at: DateTime
 
     variants: [ProductVariant]
-    sales_channels: [SalesChannel]
   }
 
   type ProductVariant @Listeners(values: ["${Modules.PRODUCT}.product-variant.created", "${Modules.PRODUCT}.product-variant.updated", "${Modules.PRODUCT}.product-variant.deleted"]) {
@@ -22,10 +21,5 @@ export const defaultSchema = `
     product_id: String
     sku: String
 
-  }
-
-  type SalesChannel @Listeners(values: ["${Modules.SALES_CHANNEL}.sales-channel.created", "${Modules.SALES_CHANNEL}.sales-channel.updated", "${Modules.SALES_CHANNEL}.sales-channel.deleted"]) {
-    id: ID
-    is_disabled: Boolean
   }
 `

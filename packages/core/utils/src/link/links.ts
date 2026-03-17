@@ -8,12 +8,6 @@ export const LINKS = {
     Modules.INVENTORY,
     "inventory_item_id"
   ),
-  SalesChannelLocation: composeLinkName(
-    Modules.SALES_CHANNEL,
-    "sales_channel_id",
-    Modules.STOCK_LOCATION,
-    "location_id"
-  ),
   LocationFulfillmentProvider: composeLinkName(
     Modules.STOCK_LOCATION,
     "stock_location_id",
@@ -25,24 +19,6 @@ export const LINKS = {
     "stock_location_id",
     Modules.FULFILLMENT,
     "fulfillment_set_id"
-  ),
-  OrderSalesChannel: composeLinkName(
-    Modules.ORDER,
-    "order_id",
-    Modules.SALES_CHANNEL,
-    "sales_channel_id"
-  ),
-  PublishableApiKeySalesChannel: composeLinkName(
-    Modules.API_KEY,
-    "api_key_id",
-    Modules.SALES_CHANNEL,
-    "sales_channel_id"
-  ),
-  ProductSalesChannel: composeLinkName(
-    Modules.PRODUCT,
-    "product_id",
-    Modules.SALES_CHANNEL,
-    "sales_channel_id"
   ),
   OrderFulfillment: composeLinkName(
     Modules.ORDER,

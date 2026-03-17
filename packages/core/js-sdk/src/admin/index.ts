@@ -6,7 +6,6 @@ import { DraftOrder } from "./draft-order"
 import { Invite } from "./invite"
 import { Notification } from "./notification"
 import { Plugin } from "./plugin"
-import { SalesChannel } from "./sales-channel"
 import { User } from "./user"
 import { Views } from "./views"
 import { WorkflowExecution } from "./workflow-execution"
@@ -22,10 +21,6 @@ export class Admin {
    * @tags customer
    */
   public customer: Customer
-  /**
-   * @tags sales channel
-   */
-  public salesChannel: SalesChannel
   /**
    * @tags notification
    */
@@ -72,7 +67,6 @@ export class Admin {
   constructor(client: Client) {
     this.invite = new Invite(client)
     this.customer = new Customer(client)
-    this.salesChannel = new SalesChannel(client)
     this.notification = new Notification(client)
     this.draftOrder = new DraftOrder(client)
     this.translation = new Translation(client)

@@ -65,17 +65,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.SALES_CHANNEL]: {
-    key: Modules.SALES_CHANNEL,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.SALES_CHANNEL),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.CUSTOMER]: {
     key: Modules.CUSTOMER,
     defaultPackage: false,

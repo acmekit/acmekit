@@ -180,8 +180,6 @@ function resolveModules(
   const sharedModules = [
     { resolve: MODULE_PACKAGE_NAMES[Modules.PRODUCT] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.CUSTOMER] },
-    { resolve: MODULE_PACKAGE_NAMES[Modules.SALES_CHANNEL] },
-
     { resolve: MODULE_PACKAGE_NAMES[Modules.API_KEY] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.SETTINGS] },
 

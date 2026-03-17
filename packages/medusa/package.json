@@ -84,7 +84,6 @@
     "@medusajs/notification-local": "2.13.4",
     "@medusajs/notification-sendgrid": "2.13.4",
     "@medusajs/rbac": "2.13.4",
-    "@medusajs/sales-channel": "2.13.4",
     "@medusajs/settings": "2.13.4",
     "@medusajs/telemetry": "2.13.4",
     "@medusajs/translation": "2.13.4",
