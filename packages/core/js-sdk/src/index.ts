@@ -1,39 +1,39 @@
 import { Admin } from "./admin"
 import { Auth } from "./auth"
 import { Client } from "./client"
-import { Store } from "./store"
+import { ClientSdk } from "./client-sdk"
 import { Config } from "./types"
 
 class Medusa {
-  public client: Client
+  public httpClient: Client
 
   public admin: Admin
-  public store: Store
+  public client: ClientSdk
   public auth: Auth
 
   constructor(config: Config) {
-    this.client = new Client(config)
+    this.httpClient = new Client(config)
 
-    this.admin = new Admin(this.client)
-    this.store = new Store(this.client)
-    this.auth = new Auth(this.client, config)
+    this.admin = new Admin(this.httpClient)
+    this.client = new ClientSdk(this.httpClient)
+    this.auth = new Auth(this.httpClient, config)
   }
 
   setLocale(locale: string) {
-    this.client.setLocale(locale)
+    this.httpClient.setLocale(locale)
   }
 
   getLocale() {
-    return this.client.locale
+    return this.httpClient.locale
   }
 }
 
 export default Medusa
 
-export { FetchError, Client } from "./client"
+export { FetchError, Client as HttpClient } from "./client"
 export { Admin } from "./admin"
 export { Auth } from "./auth"
-export { Store } from "./store"
+export { ClientSdk } from "./client-sdk"
 export {
   Config,
   ClientHeaders,

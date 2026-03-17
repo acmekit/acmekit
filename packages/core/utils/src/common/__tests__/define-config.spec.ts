@@ -162,7 +162,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -344,7 +344,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -534,7 +534,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -725,7 +725,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -904,7 +904,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1086,7 +1086,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1320,7 +1320,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1556,7 +1556,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -1808,7 +1808,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -2090,7 +2090,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -2320,7 +2320,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -2541,7 +2541,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],
@@ -2771,7 +2771,7 @@ describe("defineConfig", function () {
                 )},
               ],
             },
-            "storeCors": "http://localhost:8000",
+            "clientCors": "http://localhost:8000",
           },
           "redisOptions": {
             "retryStrategy": [Function],

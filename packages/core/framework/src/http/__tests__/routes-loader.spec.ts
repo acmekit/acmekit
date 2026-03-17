@@ -19,7 +19,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/fail/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/orders/[id]/route.ts",
@@ -31,7 +31,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/orders/[id]/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/orders/[id]/route.ts",
@@ -43,7 +43,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/orders/[id]/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/orders/route.ts",
@@ -55,7 +55,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/orders/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/[id]/route.ts",
@@ -67,7 +67,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/[id]/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -79,7 +79,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -91,7 +91,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -103,7 +103,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -115,7 +115,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -127,7 +127,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -139,7 +139,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -151,7 +151,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/route.ts",
@@ -163,7 +163,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/route.ts",
@@ -175,7 +175,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/customers/[customer_id]/orders/[order_id]/route.ts",
@@ -187,7 +187,7 @@ describe("Routes loader", () => {
           "relativePath": "/customers/[customer_id]/orders/[order_id]/route.ts",
           "shouldAppendAdminCors": false,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/customers/route.ts",
@@ -199,7 +199,7 @@ describe("Routes loader", () => {
           "relativePath": "/customers/route.ts",
           "shouldAppendAdminCors": false,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/store/custom/route.ts",
@@ -211,7 +211,7 @@ describe("Routes loader", () => {
           "relativePath": "/store/custom/route.ts",
           "shouldAppendAdminCors": false,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": true,
+          "shouldAppendClientCors": true,
         },
       ]
     `)
@@ -239,7 +239,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/fail/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/orders/[id]/route.ts",
@@ -251,7 +251,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/orders/[id]/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/orders/[id]/route.ts",
@@ -263,7 +263,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/orders/[id]/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/orders/route.ts",
@@ -275,7 +275,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/orders/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR_2}/admin/products/[id]/route.ts",
@@ -287,7 +287,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/[id]/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -299,7 +299,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR_2}/admin/products/route.ts",
@@ -311,7 +311,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -323,7 +323,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -335,7 +335,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -347,7 +347,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR_2}/admin/products/route.ts",
@@ -359,7 +359,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/products/route.ts",
@@ -371,7 +371,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/products/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/route.ts",
@@ -383,7 +383,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/admin/route.ts",
@@ -395,7 +395,7 @@ describe("Routes loader", () => {
           "relativePath": "/admin/route.ts",
           "shouldAppendAdminCors": true,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/customers/[customer_id]/orders/[order_id]/route.ts",
@@ -407,7 +407,7 @@ describe("Routes loader", () => {
           "relativePath": "/customers/[customer_id]/orders/[order_id]/route.ts",
           "shouldAppendAdminCors": false,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/customers/route.ts",
@@ -419,7 +419,7 @@ describe("Routes loader", () => {
           "relativePath": "/customers/route.ts",
           "shouldAppendAdminCors": false,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": false,
+          "shouldAppendClientCors": false,
         },
         {
           "absolutePath": "${BASE_DIR}/store/custom/route.ts",
@@ -431,7 +431,7 @@ describe("Routes loader", () => {
           "relativePath": "/store/custom/route.ts",
           "shouldAppendAdminCors": false,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": true,
+          "shouldAppendClientCors": true,
         },
         {
           "absolutePath": "${BASE_DIR_2}/store/[customer_id]/orders/[order_id]/route.ts",
@@ -443,7 +443,7 @@ describe("Routes loader", () => {
           "relativePath": "/store/[customer_id]/orders/[order_id]/route.ts",
           "shouldAppendAdminCors": false,
           "shouldAppendAuthCors": false,
-          "shouldAppendStoreCors": true,
+          "shouldAppendClientCors": true,
         },
       ]
     `)

@@ -9,7 +9,7 @@ export const config = {
     databaseLogging: false,
     http: {
       authCors: "http://localhost:9000",
-      storeCors: "http://localhost:8000",
+      clientCors: "http://localhost:8000",
       adminCors: "http://localhost:7001",
       jwtSecret: "supersecret",
       cookieSecret: "superSecret",

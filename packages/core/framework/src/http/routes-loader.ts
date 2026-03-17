@@ -32,10 +32,10 @@ const PARAM_SEGMENT_MATCHER = /\[(\w+)\]/
 
 /**
  * Regexes to use to identify if a route is prefixed
- * with "/admin", "/store", or "/auth".
+ * with "/admin", "/client", or "/auth".
  */
 const ADMIN_ROUTE_MATCH = /(\/admin$|\/admin\/)/
-const STORE_ROUTE_MATCH = /(\/store$|\/store\/)/
+const CLIENT_ROUTE_MATCH = /(\/client$|\/client\/)/
 const AUTH_ROUTE_MATCH = /(\/auth$|\/auth\/)/
 
 /**
@@ -101,8 +101,8 @@ export class RoutesLoader {
      */
     const routeType = ADMIN_ROUTE_MATCH.test(routePath)
       ? "admin"
-      : STORE_ROUTE_MATCH.test(routePath)
-      ? "store"
+      : CLIENT_ROUTE_MATCH.test(routePath)
+      ? "client"
       : AUTH_ROUTE_MATCH.test(routePath)
       ? "auth"
       : undefined
@@ -149,7 +149,7 @@ export class RoutesLoader {
           optedOutOfAuth: !shouldAuthenticate,
           shouldAppendAdminCors: shouldApplyCors && routeType === "admin",
           shouldAppendAuthCors: shouldApplyCors && routeType === "auth",
-          shouldAppendStoreCors: shouldApplyCors && routeType === "store",
+          shouldAppendClientCors: shouldApplyCors && routeType === "client",
         } satisfies RouteDescriptor
       })
   }

@@ -3,7 +3,7 @@ import {
   ContainerRegistrationKeys,
   isPresent,
   MedusaError,
-  PUBLISHABLE_KEY_HEADER,
+  CLIENT_KEY_HEADER,
 } from "@medusajs/utils"
 import type {
   MedusaNextFunction,
@@ -16,12 +16,12 @@ export async function ensurePublishableApiKeyMiddleware(
   _: MedusaResponse,
   next: MedusaNextFunction
 ) {
-  const publishableApiKey = req.get(PUBLISHABLE_KEY_HEADER)
+  const publishableApiKey = req.get(CLIENT_KEY_HEADER)
 
   if (!isPresent(publishableApiKey)) {
     const error = new MedusaError(
       MedusaError.Types.NOT_ALLOWED,
-      `Publishable API key required in the request header: ${PUBLISHABLE_KEY_HEADER}. You can manage your keys in settings in the dashboard.`
+      `Client API key required in the request header: ${CLIENT_KEY_HEADER}. You can manage your keys in settings in the dashboard.`
     )
     return next(error)
   }
@@ -70,7 +70,7 @@ export async function ensurePublishableApiKeyMiddleware(
     try {
       throw new MedusaError(
         MedusaError.Types.NOT_ALLOWED,
-        `A valid publishable key is required to proceed with the request`
+        `A valid client API key is required to proceed with the request`
       )
     } catch (e) {
       return next(e)

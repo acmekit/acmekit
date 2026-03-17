@@ -417,7 +417,7 @@ function normalizeProjectConfig(
     ...(isCloud ? { redisUrl: process.env.REDIS_URL } : {}),
     databaseUrl: process.env.DATABASE_URL || DEFAULT_DATABASE_URL,
     http: {
-      storeCors: process.env.STORE_CORS || DEFAULT_STORE_CORS,
+      clientCors: process.env.STORE_CORS || DEFAULT_STORE_CORS,
       adminCors: process.env.ADMIN_CORS || DEFAULT_ADMIN_CORS,
       authCors: process.env.AUTH_CORS || DEFAULT_ADMIN_CORS,
       jwtSecret: process.env.JWT_SECRET || DEFAULT_SECRET,

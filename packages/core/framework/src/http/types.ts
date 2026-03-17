@@ -94,7 +94,7 @@ export type RouteDescriptor = {
   absolutePath?: string
   relativePath?: string
   shouldAppendAdminCors: boolean
-  shouldAppendStoreCors: boolean
+  shouldAppendClientCors: boolean
   shouldAppendAuthCors: boolean
 }
 

@@ -224,7 +224,7 @@ export class ApiLoader {
    * Registers the middleware for restricted fields
    */
   #assignRestrictedFields(baseRestrictedFields: string[]) {
-    this.#app.use("/store", ((
+    this.#app.use("/client", ((
       req: MedusaRequest,
       _: MedusaResponse,
       next: MedusaNextFunction
@@ -264,7 +264,7 @@ export class ApiLoader {
     toggleKey:
       | "shouldAppendAdminCors"
       | "shouldAppendAuthCors"
-      | "shouldAppendStoreCors",
+      | "shouldAppendClientCors",
     corsOptions: CorsOptions
   ) {
     const logger = this.#logger
@@ -406,11 +406,11 @@ export class ApiLoader {
 
   /**
    * Applies the middleware to authenticate the headers to contain
-   * a `x-publishable-key` header
+   * a `x-client-api-key` header
    */
-  #applyStorePublishableKeyMiddleware(namespace: string) {
+  #applyClientKeyMiddleware(namespace: string) {
     this.#logger.debug(
-      `Registering publishable key middleware for namespace ${namespace}`
+      `Registering client key middleware for namespace ${namespace}`
     )
     let middleware = ApiLoader.traceMiddleware
       ? ApiLoader.traceMiddleware(ensurePublishableApiKeyMiddleware, {
@@ -500,20 +500,20 @@ export class ApiLoader {
 
     this.#applyCorsMiddleware(
       routesFinder,
-      "/store",
-      "shouldAppendStoreCors",
-      this.#createCorsOptions(configManager.config.projectConfig.http.storeCors)
+      "/client",
+      "shouldAppendClientCors",
+      this.#createCorsOptions(configManager.config.projectConfig.http.clientCors)
     )
     /**
-     * Publishable key check, CORS and auth setup for store routes.
+     * Client key check, CORS and auth setup for client routes.
      */
-    this.#applyStorePublishableKeyMiddleware("/store")
+    this.#applyClientKeyMiddleware("/client")
 
-    this.#applyLocaleMiddleware("/store")
+    this.#applyLocaleMiddleware("/client")
 
     this.#applyAuthMiddleware(
       routesFinder,
-      "/store",
+      "/client",
       "customer",
       ["bearer", "session"],
       {

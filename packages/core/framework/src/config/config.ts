@@ -81,7 +81,7 @@ export class ConfigManager {
 
     http.jwtExpiresIn = http?.jwtExpiresIn ?? "1d"
     http.authCors = http.authCors ?? ""
-    http.storeCors = http.storeCors ?? ""
+    http.clientCors = http.clientCors ?? ""
     http.adminCors = http.adminCors ?? ""
 
     http.jwtOptions ??= {}
