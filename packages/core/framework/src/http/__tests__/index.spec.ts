@@ -76,7 +76,7 @@ describe("RoutesLoader", function () {
     })
 
     it("should not succeed on cors preflight store request failing", async function () {
-      const res = await request("OPTIONS", "/store/custom", {
+      const res = await request("OPTIONS", "/client/custom", {
         headers: {
           origin: "http://localhost:3000",
           "access-control-request-method": "GET",
@@ -112,7 +112,7 @@ describe("RoutesLoader", function () {
     })
 
     it("should succeed on cors preflight store request", async function () {
-      const res = await request("OPTIONS", "/store/custom", {
+      const res = await request("OPTIONS", "/client/custom", {
         headers: {
           origin: "http://localhost:8000",
           "access-control-request-method": "GET",
@@ -220,8 +220,8 @@ describe("RoutesLoader", function () {
       expect(customersCreateMiddlewareValidatorMock).toHaveBeenCalled()
     })
 
-    it("should call store global middleware on `/store/*` routes", async function () {
-      const res = await request("POST", "/store/products/1000/sync")
+    it("should call store global middleware on `/client/*` routes", async function () {
+      const res = await request("POST", "/client/products/1000/sync")
 
       expect(res.status).toBe(200)
       expect(res.text).toBe("sync product 1000")
@@ -293,7 +293,7 @@ describe("RoutesLoader", function () {
     })
 
     it("should return 405 when NOT_ALLOWED error is thrown", async () => {
-      const res = await request("GET", "/store")
+      const res = await request("GET", "/client")
 
       expect(res.status).toBe(405)
       expect(res.body).toEqual({
@@ -303,7 +303,7 @@ describe("RoutesLoader", function () {
     })
 
     it("should return 400 when INVALID_DATA error is thrown", async () => {
-      const res = await request("POST", "/store")
+      const res = await request("POST", "/client")
 
       expect(res.status).toBe(400)
       expect(res.body).toEqual({
@@ -313,7 +313,7 @@ describe("RoutesLoader", function () {
     })
 
     it("should return 409 when CONFLICT error is thrown", async () => {
-      const res = await request("PUT", "/store")
+      const res = await request("PUT", "/client")
 
       expect(res.status).toBe(409)
       expect(res.body).toEqual({
@@ -323,7 +323,7 @@ describe("RoutesLoader", function () {
     })
 
     it("should return 418 when TEAPOT error is thrown", async () => {
-      const res = await request("DELETE", "/store")
+      const res = await request("DELETE", "/client")
 
       expect(res.status).toBe(418)
       expect(res.body).toEqual({

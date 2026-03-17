@@ -78,7 +78,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreRegionListResponse>(
-        `/store/regions`,
+        `/client/regions`,
         {
           query,
           headers,
@@ -128,7 +128,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreRegionResponse>(
-        `/store/regions/${id}`,
+        `/client/regions/${id}`,
         {
           query,
           headers,
@@ -194,7 +194,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCollectionListResponse>(
-        `/store/collections`,
+        `/client/collections`,
         {
           query,
           headers,
@@ -241,7 +241,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCollectionResponse>(
-        `/store/collections/${id}`,
+        `/client/collections/${id}`,
         {
           query,
           headers,
@@ -307,7 +307,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreProductCategoryListResponse>(
-        `/store/product-categories`,
+        `/client/product-categories`,
         {
           query,
           headers,
@@ -354,7 +354,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreProductCategoryResponse>(
-        `/store/product-categories/${id}`,
+        `/client/product-categories/${id}`,
         {
           query,
           headers,
@@ -423,7 +423,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreProductListResponse>(
-        `/store/products`,
+        `/client/products`,
         {
           query,
           headers,
@@ -473,7 +473,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreProductResponse>(
-        `/store/products/${id}`,
+        `/client/products/${id}`,
         {
           query,
           headers,
@@ -512,7 +512,7 @@ export class ClientSdk {
       query?: SelectParams,
       headers?: ClientHeaders
     ) => {
-      return this.client.fetch<HttpTypes.StoreCartResponse>(`/store/carts`, {
+      return this.client.fetch<HttpTypes.StoreCartResponse>(`/client/carts`, {
         method: "POST",
         headers,
         body,
@@ -546,7 +546,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCartResponse>(
-        `/store/carts/${id}`,
+        `/client/carts/${id}`,
         {
           method: "POST",
           headers,
@@ -595,7 +595,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCartResponse>(
-        `/store/carts/${id}`,
+        `/client/carts/${id}`,
         {
           headers,
           query,
@@ -630,7 +630,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCartResponse>(
-        `/store/carts/${cartId}/line-items`,
+        `/client/carts/${cartId}/line-items`,
         {
           method: "POST",
           headers,
@@ -672,7 +672,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCartResponse>(
-        `/store/carts/${cartId}/line-items/${lineItemId}`,
+        `/client/carts/${cartId}/line-items/${lineItemId}`,
         {
           method: "POST",
           headers,
@@ -709,7 +709,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreLineItemDeleteResponse>(
-        `/store/carts/${cartId}/line-items/${lineItemId}`,
+        `/client/carts/${cartId}/line-items/${lineItemId}`,
         {
           method: "DELETE",
           query,
@@ -747,7 +747,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCartResponse>(
-        `/store/carts/${cartId}/shipping-methods`,
+        `/client/carts/${cartId}/shipping-methods`,
         {
           method: "POST",
           headers,
@@ -786,7 +786,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCompleteCartResponse>(
-        `/store/carts/${cartId}/complete`,
+        `/client/carts/${cartId}/complete`,
         {
           method: "POST",
           headers,
@@ -816,7 +816,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCartResponse>(
-        `/store/carts/${id}/customer`,
+        `/client/carts/${id}/customer`,
         {
           method: "POST",
           headers,
@@ -854,7 +854,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreShippingOptionListResponse>(
-        `/store/shipping-options`,
+        `/client/shipping-options`,
         {
           headers,
           query,
@@ -888,7 +888,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return await this.client.fetch<HttpTypes.StoreShippingOptionResponse>(
-        `/store/shipping-options/${id}/calculate`,
+        `/client/shipping-options/${id}/calculate`,
         {
           method: "POST",
           headers,
@@ -964,7 +964,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StorePaymentProviderListResponse>(
-        `/store/payment-providers`,
+        `/client/payment-providers`,
         {
           headers,
           query,
@@ -1016,7 +1016,7 @@ export class ClientSdk {
         }
         paymentCollectionId = (
           await this.client.fetch<HttpTypes.StorePaymentCollectionResponse>(
-            `/store/payment-collections`,
+            `/client/payment-collections`,
             {
               method: "POST",
               headers,
@@ -1027,7 +1027,7 @@ export class ClientSdk {
       }
 
       return this.client.fetch<HttpTypes.StorePaymentCollectionResponse>(
-        `/store/payment-collections/${paymentCollectionId}/payment-sessions`,
+        `/client/payment-collections/${paymentCollectionId}/payment-sessions`,
         {
           method: "POST",
           headers,
@@ -1097,7 +1097,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreOrderListResponse>(
-        `/store/orders`,
+        `/client/orders`,
         {
           query,
           headers,
@@ -1142,7 +1142,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<{ order: HttpTypes.StoreOrder }>(
-        `/store/orders/${id}`,
+        `/client/orders/${id}`,
         {
           headers,
           query,
@@ -1183,7 +1183,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreOrderResponse>(
-        `/store/orders/${id}/transfer/request`,
+        `/client/orders/${id}/transfer/request`,
         {
           method: "POST",
           headers,
@@ -1221,7 +1221,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreOrderResponse>(
-        `/store/orders/${id}/transfer/cancel`,
+        `/client/orders/${id}/transfer/cancel`,
         {
           method: "POST",
           headers,
@@ -1259,7 +1259,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreOrderResponse>(
-        `/store/orders/${id}/transfer/accept`,
+        `/client/orders/${id}/transfer/accept`,
         {
           method: "POST",
           headers,
@@ -1298,7 +1298,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreOrderResponse>(
-        `/store/orders/${id}/transfer/decline`,
+        `/client/orders/${id}/transfer/decline`,
         {
           method: "POST",
           headers,
@@ -1352,7 +1352,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCustomerResponse>(
-        `/store/customers`,
+        `/client/customers`,
         {
           method: "POST",
           headers,
@@ -1390,7 +1390,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCustomerResponse>(
-        `/store/customers/me`,
+        `/client/customers/me`,
         {
           method: "POST",
           headers,
@@ -1419,7 +1419,7 @@ export class ClientSdk {
      */
     retrieve: async (query?: SelectParams, headers?: ClientHeaders) => {
       return this.client.fetch<HttpTypes.StoreCustomerResponse>(
-        `/store/customers/me`,
+        `/client/customers/me`,
         {
           query,
           headers,
@@ -1455,7 +1455,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCustomerResponse>(
-        `/store/customers/me/addresses`,
+        `/client/customers/me/addresses`,
         {
           method: "POST",
           headers,
@@ -1498,7 +1498,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCustomerResponse>(
-        `/store/customers/me/addresses/${addressId}`,
+        `/client/customers/me/addresses/${addressId}`,
         {
           method: "POST",
           headers,
@@ -1566,7 +1566,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCustomerAddressListResponse>(
-        `/store/customers/me/addresses`,
+        `/client/customers/me/addresses`,
         {
           query,
           headers,
@@ -1623,7 +1623,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreCustomerAddressResponse>(
-        `/store/customers/me/addresses/${addressId}`,
+        `/client/customers/me/addresses/${addressId}`,
         {
           query,
           headers,
@@ -1652,7 +1652,7 @@ export class ClientSdk {
      */
     deleteAddress: async (addressId: string, headers?: ClientHeaders) => {
       return this.client.fetch<HttpTypes.StoreCustomerAddressDeleteResponse>(
-        `/store/customers/me/addresses/${addressId}`,
+        `/client/customers/me/addresses/${addressId}`,
         {
           method: "DELETE",
           headers,
@@ -1682,7 +1682,7 @@ export class ClientSdk {
       headers?: ClientHeaders
     ) => {
       return this.client.fetch<HttpTypes.StoreLocaleListResponse>(
-        `/store/locales`,
+        `/client/locales`,
         {
           headers,
         }

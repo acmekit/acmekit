@@ -2343,7 +2343,7 @@
   },
   "apiKeyManagement": {
     "domain": {
-      "publishable": "Publishable API Keys",
+      "publishable": "Client API Keys",
       "secret": "Secret API Keys"
     },
     "subtitle": {

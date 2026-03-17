@@ -61,7 +61,7 @@ const middlewares = defineMiddlewares([
     middlewares: [customersCreateMiddleware],
   },
   {
-    matcher: "/store/*",
+    matcher: "/client/*",
     middlewares: [storeGlobal],
   },
   {
