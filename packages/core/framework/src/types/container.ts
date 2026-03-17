@@ -12,7 +12,6 @@ import {
   IIndexService,
   ILockingModule,
   INotificationModuleService,
-  IOrderModuleService,
   IRbacModuleService,
   ISalesChannelModuleService,
   ISettingsModuleService,
@@ -50,7 +49,6 @@ declare module "@medusajs/types" {
     [Modules.SALES_CHANNEL]: ISalesChannelModuleService
     [Modules.USER]: IUserModuleService
     [Modules.WORKFLOW_ENGINE]: IWorkflowEngineService
-    [Modules.ORDER]: IOrderModuleService
     [Modules.API_KEY]: IApiKeyModuleService
     [Modules.FILE]: IFileModuleService
     [Modules.NOTIFICATION]: INotificationModuleService

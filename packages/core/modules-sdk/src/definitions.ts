@@ -98,17 +98,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.ORDER]: {
-    key: Modules.ORDER,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.ORDER),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER, Modules.EVENT_BUS],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.API_KEY]: {
     key: Modules.API_KEY,
     defaultPackage: false,
