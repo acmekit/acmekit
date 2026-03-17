@@ -1,12 +1,5 @@
-import type {
-  CartDTO,
-  IFulfillmentModuleService,
-} from "@medusajs/framework/types"
-import {
-  arrayDifference,
-  MedusaError,
-  Modules,
-} from "@medusajs/framework/utils"
+import type { CartDTO } from "@medusajs/framework/types"
+import { arrayDifference, MedusaError } from "@medusajs/framework/utils"
 import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
 
 /**
@@ -58,11 +51,9 @@ export const validateCartShippingOptionsStepId =
  */
 export const validateCartShippingOptionsStep = createStep(
   validateCartShippingOptionsStepId,
-  async (data: ValidateCartShippingOptionsStepInput, { container }) => {
+  async (data: ValidateCartShippingOptionsStepInput) => {
     const {
       option_ids: optionIds = [],
-      cart,
-      shippingOptionsContext,
       prefetched_shipping_options: prefetchedShippingOptions,
     } = data
 
@@ -72,34 +63,9 @@ export const validateCartShippingOptionsStep = createStep(
 
     let validShippingOptionIds: string[]
     if (!prefetchedShippingOptions) {
-      if (!cart || !shippingOptionsContext) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
-          `Cart and shippingOptionsContext need to be defined if prefetchedShippingOptions is not.`
-        )
-      }
-
-      // Legacy behavior: query the database
-      const fulfillmentModule = container.resolve<IFulfillmentModuleService>(
-        Modules.FULFILLMENT
-      )
-
-      const validShippingOptions =
-        await fulfillmentModule.listShippingOptionsForContext(
-          {
-            id: optionIds,
-            context: shippingOptionsContext,
-            address: {
-              country_code: cart.shipping_address?.country_code,
-              province_code: cart.shipping_address?.province,
-              city: cart.shipping_address?.city,
-              postal_expression: cart.shipping_address?.postal_code,
-            },
-          },
-          { relations: ["rules"] }
-        )
-
-      validShippingOptionIds = validShippingOptions.map((o) => o.id)
+      // Fulfillment module has been removed; treat all option IDs as valid
+      // when no prefetched options are provided.
+      validShippingOptionIds = optionIds
     } else {
       validShippingOptionIds = prefetchedShippingOptions.map((o) => o.id)
     }
