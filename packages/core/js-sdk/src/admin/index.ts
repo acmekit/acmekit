@@ -2,7 +2,6 @@ import { Client } from "../client"
 import { ApiKey } from "./api-key"
 import { Campaign } from "./campaign"
 import { Claim } from "./claim"
-import { Currency } from "./currency"
 import { Customer } from "./customer"
 import { CustomerGroup } from "./customer-group"
 import { DraftOrder } from "./draft-order"
@@ -173,10 +172,6 @@ export class Admin {
    */
   public user: User
   /**
-   * @tags currency
-   */
-  public currency: Currency
-  /**
    * @tags locale
    * @since 2.12.3
    */
@@ -272,7 +267,6 @@ export class Admin {
     this.productTag = new ProductTag(client)
     this.user = new User(client)
     this.locale = new Locale(client)
-    this.currency = new Currency(client)
     this.payment = new Payment(client)
     this.productVariant = new ProductVariant(client)
     this.refundReason = new RefundReason(client)

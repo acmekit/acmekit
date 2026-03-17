@@ -7,7 +7,6 @@ import {
   ICacheService,
   ICachingModuleService,
   ICartModuleService,
-  ICurrencyModuleService,
   ICustomerModuleService,
   IEventBusModuleService,
   IFileModuleService,
@@ -73,7 +72,6 @@ declare module "@medusajs/types" {
     [Modules.REGION]: IRegionModuleService
     [Modules.ORDER]: IOrderModuleService
     [Modules.API_KEY]: IApiKeyModuleService
-    [Modules.CURRENCY]: ICurrencyModuleService
     [Modules.FILE]: IFileModuleService
     [Modules.NOTIFICATION]: INotificationModuleService
     [Modules.LOCKING]: ILockingModule
