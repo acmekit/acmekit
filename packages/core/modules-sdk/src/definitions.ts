@@ -76,17 +76,6 @@ export const ModulesDefinition: {
       scope: MODULE_SCOPE.INTERNAL,
     },
   },
-  [Modules.CART]: {
-    key: Modules.CART,
-    defaultPackage: false,
-    label: upperCaseFirst(Modules.CART),
-    isRequired: false,
-    isQueryable: true,
-    dependencies: [ContainerRegistrationKeys.LOGGER],
-    defaultModuleDeclaration: {
-      scope: MODULE_SCOPE.INTERNAL,
-    },
-  },
   [Modules.CUSTOMER]: {
     key: Modules.CUSTOMER,
     defaultPackage: false,

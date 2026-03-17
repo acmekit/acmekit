@@ -31,9 +31,9 @@ export const deleteEntitiesStepId = "delete-entities-step"
  * 
  * @example
  * deleteEntitiesStep({
- *   moduleRegistrationName: Modules.CART,
- *   invokeMethod: "softDeleteCreditLines",
- *   compensateMethod: "restoreCreditLines",
+ *   moduleRegistrationName: Modules.ORDER,
+ *   invokeMethod: "softDeleteEntities",
+ *   compensateMethod: "restoreEntities",
  *   data: input.id,
  * })
  */

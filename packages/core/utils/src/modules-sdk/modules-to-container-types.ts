@@ -15,7 +15,6 @@ import { Modules } from "./definition"
 const SERVICES_INTERFACES = {
   [Modules.AUTH]: "IAuthModuleService",
   [Modules.CACHE]: "ICacheService",
-  [Modules.CART]: "ICartModuleService",
   [Modules.CUSTOMER]: "ICustomerModuleService",
   [Modules.EVENT_BUS]: "IEventBusModuleService",
   [Modules.SALES_CHANNEL]: "ISalesChannelModuleService",

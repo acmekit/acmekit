@@ -6,7 +6,6 @@ import {
   IAuthModuleService,
   ICacheService,
   ICachingModuleService,
-  ICartModuleService,
   ICustomerModuleService,
   IEventBusModuleService,
   IFileModuleService,
@@ -46,7 +45,6 @@ declare module "@medusajs/types" {
     [Modules.ANALYTICS]: IAnalyticsModuleService
     [Modules.AUTH]: IAuthModuleService
     [Modules.CACHE]: ICacheService
-    [Modules.CART]: ICartModuleService
     [Modules.CUSTOMER]: ICustomerModuleService
     [Modules.EVENT_BUS]: IEventBusModuleService
     [Modules.SALES_CHANNEL]: ISalesChannelModuleService

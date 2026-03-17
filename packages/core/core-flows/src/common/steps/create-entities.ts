@@ -30,18 +30,10 @@ export const createEntitiesStepId = "create-entities-step"
  * 
  * @example
  * createEntitiesStep({
- *   moduleRegistrationName: Modules.CART,
- *   invokeMethod: "createCreditLines",
- *   compensateMethod: "deleteCreditLines",
- *   data: {
- *     cart_id: "cart_123",
- *     amount: 10,
- *     reference: "payment",
- *     reference_id: "payment_123",
- *     metadata: {
- *       key: "value",
- *     },
- *   },
+ *   moduleRegistrationName: Modules.ORDER,
+ *   invokeMethod: "createEntities",
+ *   compensateMethod: "deleteEntities",
+ *   data: [],
  * })
  */
 export const createEntitiesStep = createStep(

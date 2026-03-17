@@ -67,7 +67,6 @@
     "@medusajs/cache-redis": "2.13.4",
     "@medusajs/caching": "2.13.4",
     "@medusajs/caching-redis": "2.13.4",
-    "@medusajs/cart": "2.13.4",
     "@medusajs/core-flows": "2.13.4",
 "@medusajs/customer": "2.13.4",
     "@medusajs/draft-order": "2.13.4",
