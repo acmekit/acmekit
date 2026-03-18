@@ -5,25 +5,10 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import {
   useApiKeys,
-  useCollections,
   useCustomerGroups,
   useCustomers,
-  useInventoryItems,
-  useOrders,
-  usePriceLists,
-  useProductCategories,
-  useProducts,
-  useProductTags,
-  useProductTypes,
-  useRegions,
-  useSalesChannels,
-  useShippingProfiles,
-  useStockLocations,
-  useTaxRegions,
   useUsers,
-  useVariants,
 } from "../../hooks/api"
-import { useReturnReasons } from "../../hooks/api/return-reasons"
 import { Shortcut, ShortcutType } from "../../providers/keybind-provider"
 import { useGlobalShortcuts } from "../../providers/keybind-provider/hooks"
 import { DynamicSearchResult, SearchArea } from "./types"
@@ -99,69 +84,6 @@ const useDynamicSearchResults = (
 
   const debouncedSearch = useDebouncedSearch(q, 300)
 
-  const orderResponse = useOrders(
-    {
-      q: debouncedSearch?.replace(/^#/, ""), // Since we display the ID with a # prefix, it's natural for the user to include it in the search. This will however cause no results to be returned, so we remove the # prefix from the search query.
-      limit,
-      fields: "id,display_id,email",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "order"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const productResponse = useProducts(
-    {
-      q: debouncedSearch,
-      limit,
-      // TODO: Remove exclusion once we avoid including unnecessary relations by default in the query config
-      fields:
-        "id,title,thumbnail,-type,-collection,-options,-tags,-images,-variants,-sales_channels",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "product"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const productVariantResponse = useVariants(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,title,sku,product_id",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "productVariant"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const categoryResponse = useProductCategories(
-    {
-      // TODO: Remove the OR condition once the list endpoint does not throw when q equals an empty string
-      q: debouncedSearch || undefined,
-      limit,
-      fields: "id,name",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "category"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const collectionResponse = useCollections(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,title",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "collection"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
   const customerResponse = useCustomers(
     {
       q: debouncedSearch,
@@ -186,31 +108,6 @@ const useDynamicSearchResults = (
     }
   )
 
-  const inventoryResponse = useInventoryItems(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,title,sku",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "inventory"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-
-  const priceListResponse = usePriceLists(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,title",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "priceList"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
   const userResponse = useUsers(
     {
       q: debouncedSearch,
@@ -219,102 +116,6 @@ const useDynamicSearchResults = (
     },
     {
       enabled: isAreaEnabled(currentArea, "user"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const regionResponse = useRegions(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,name",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "region"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const taxRegionResponse = useTaxRegions(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,country_code,province_code",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "taxRegion"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const returnReasonResponse = useReturnReasons(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,label,value",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "returnReason"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const salesChannelResponse = useSalesChannels(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,name",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "salesChannel"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const productTypeResponse = useProductTypes(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,value",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "productType"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const productTagResponse = useProductTags(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,value",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "productTag"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const locationResponse = useStockLocations(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,name",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "location"),
-      placeholderData: keepPreviousData,
-    }
-  )
-
-  const shippingProfileResponse = useShippingProfiles(
-    {
-      q: debouncedSearch,
-      limit,
-      fields: "id,name",
-    },
-    {
-      enabled: isAreaEnabled(currentArea, "shippingProfile"),
       placeholderData: keepPreviousData,
     }
   )
@@ -347,46 +148,16 @@ const useDynamicSearchResults = (
 
   const responseMap = useMemo(
     () => ({
-      order: orderResponse,
-      product: productResponse,
-      productVariant: productVariantResponse,
-      collection: collectionResponse,
-      category: categoryResponse,
-      inventory: inventoryResponse,
       customer: customerResponse,
       customerGroup: customerGroupResponse,
-      priceList: priceListResponse,
       user: userResponse,
-      region: regionResponse,
-      taxRegion: taxRegionResponse,
-      returnReason: returnReasonResponse,
-      salesChannel: salesChannelResponse,
-      productType: productTypeResponse,
-      productTag: productTagResponse,
-      location: locationResponse,
-      shippingProfile: shippingProfileResponse,
       publishableApiKey: publishableApiKeyResponse,
       secretApiKey: secretApiKeyResponse,
     }),
     [
-      orderResponse,
-      productResponse,
-      productVariantResponse,
-      inventoryResponse,
-      categoryResponse,
-      collectionResponse,
       customerResponse,
       customerGroupResponse,
-      priceListResponse,
       userResponse,
-      regionResponse,
-      taxRegionResponse,
-      returnReasonResponse,
-      salesChannelResponse,
-      productTypeResponse,
-      productTagResponse,
-      locationResponse,
-      shippingProfileResponse,
       publishableApiKeyResponse,
       secretApiKeyResponse,
     ]
@@ -479,55 +250,6 @@ type TransformMap = {
 }
 
 const transformMap: TransformMap = {
-  order: {
-    dataKey: "orders",
-    transform: (order: HttpTypes.AdminOrder) => ({
-      id: order.id,
-      title: `#${order.display_id}`,
-      subtitle: order.email ?? undefined,
-      to: `/orders/${order.id}`,
-      value: `order:${order.id}`,
-    }),
-  },
-  product: {
-    dataKey: "products",
-    transform: (product: HttpTypes.AdminProduct) => ({
-      id: product.id,
-      title: product.title,
-      to: `/products/${product.id}`,
-      thumbnail: product.thumbnail ?? undefined,
-      value: `product:${product.id}`,
-    }),
-  },
-  productVariant: {
-    dataKey: "variants",
-    transform: (variant: HttpTypes.AdminProductVariant) => ({
-      id: variant.id,
-      title: variant.title!,
-      subtitle: variant.sku ?? undefined,
-      to: `/products/${variant.product_id}/variants/${variant.id}`,
-      value: `variant:${variant.id}`,
-    }),
-  },
-  category: {
-    dataKey: "product_categories",
-    transform: (category: HttpTypes.AdminProductCategory) => ({
-      id: category.id,
-      title: category.name,
-      to: `/categories/${category.id}`,
-      value: `category:${category.id}`,
-    }),
-  },
-  inventory: {
-    dataKey: "inventory_items",
-    transform: (inventory: HttpTypes.AdminInventoryItem) => ({
-      id: inventory.id,
-      title: inventory.title ?? "",
-      subtitle: inventory.sku ?? undefined,
-      to: `/inventory/${inventory.id}`,
-      value: `inventory:${inventory.id}`,
-    }),
-  },
   customer: {
     dataKey: "customers",
     transform: (customer: HttpTypes.AdminCustomer) => {
@@ -552,24 +274,6 @@ const transformMap: TransformMap = {
       value: `customerGroup:${customerGroup.id}`,
     }),
   },
-  collection: {
-    dataKey: "collections",
-    transform: (collection: HttpTypes.AdminCollection) => ({
-      id: collection.id,
-      title: collection.title,
-      to: `/collections/${collection.id}`,
-      value: `collection:${collection.id}`,
-    }),
-  },
-  priceList: {
-    dataKey: "price_lists",
-    transform: (priceList: HttpTypes.AdminPriceList) => ({
-      id: priceList.id,
-      title: priceList.title,
-      to: `/price-lists/${priceList.id}`,
-      value: `priceList:${priceList.id}`,
-    }),
-  },
   user: {
     dataKey: "users",
     transform: (user: HttpTypes.AdminUser) => ({
@@ -578,82 +282,6 @@ const transformMap: TransformMap = {
       subtitle: user.email,
       to: `/users/${user.id}`,
       value: `user:${user.id}`,
-    }),
-  },
-  region: {
-    dataKey: "regions",
-    transform: (region: HttpTypes.AdminRegion) => ({
-      id: region.id,
-      title: region.name,
-      to: `/regions/${region.id}`,
-      value: `region:${region.id}`,
-    }),
-  },
-  taxRegion: {
-    dataKey: "tax_regions",
-    transform: (taxRegion: HttpTypes.AdminTaxRegion) => ({
-      id: taxRegion.id,
-      title:
-        taxRegion.province_code?.toUpperCase() ??
-        taxRegion.country_code!.toUpperCase(),
-      subtitle: taxRegion.province_code ? taxRegion.country_code! : undefined,
-      to: `/tax-regions/${taxRegion.id}`,
-      value: `taxRegion:${taxRegion.id}`,
-    }),
-  },
-  returnReason: {
-    dataKey: "return_reasons",
-    transform: (returnReason: HttpTypes.AdminReturnReason) => ({
-      id: returnReason.id,
-      title: returnReason.label,
-      subtitle: returnReason.value,
-      to: `/return-reasons/${returnReason.id}/edit`,
-      value: `returnReason:${returnReason.id}`,
-    }),
-  },
-  salesChannel: {
-    dataKey: "sales_channels",
-    transform: (salesChannel: HttpTypes.AdminSalesChannel) => ({
-      id: salesChannel.id,
-      title: salesChannel.name,
-      to: `/sales-channels/${salesChannel.id}`,
-      value: `salesChannel:${salesChannel.id}`,
-    }),
-  },
-  productType: {
-    dataKey: "product_types",
-    transform: (productType: HttpTypes.AdminProductType) => ({
-      id: productType.id,
-      title: productType.value,
-      to: `/product-types/${productType.id}`,
-      value: `productType:${productType.id}`,
-    }),
-  },
-  productTag: {
-    dataKey: "product_tags",
-    transform: (productTag: HttpTypes.AdminProductTag) => ({
-      id: productTag.id,
-      title: productTag.value,
-      to: `/product-tags/${productTag.id}`,
-      value: `productTag:${productTag.id}`,
-    }),
-  },
-  location: {
-    dataKey: "stock_locations",
-    transform: (location: HttpTypes.AdminStockLocation) => ({
-      id: location.id,
-      title: location.name,
-      to: `/locations/${location.id}`,
-      value: `location:${location.id}`,
-    }),
-  },
-  shippingProfile: {
-    dataKey: "shipping_profiles",
-    transform: (shippingProfile: HttpTypes.AdminShippingProfile) => ({
-      id: shippingProfile.id,
-      title: shippingProfile.name,
-      to: `/shipping-profiles/${shippingProfile.id}`,
-      value: `shippingProfile:${shippingProfile.id}`,
     }),
   },
   publishableApiKey: {

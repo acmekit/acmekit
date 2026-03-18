@@ -1,5 +1,4 @@
 import {
-  BuildingStorefront,
   ChevronDownMini,
   CogSixTooth,
   EllipsisHorizontal,
@@ -13,10 +12,9 @@ import { Avatar, Divider, DropdownMenu, Text, clx } from "@medusajs/ui"
 import { Collapsible as RadixCollapsible } from "radix-ui"
 import { useTranslation } from "react-i18next"
 
-import { useStore } from "../../../hooks/api/store"
-import { Skeleton } from "../../common/skeleton"
 import { INavItem, NavItem } from "../../layout/nav-item"
 import { Shell } from "../../layout/shell"
+
 
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useLogout } from "../../../hooks/api"
@@ -89,23 +87,14 @@ const Logout = () => {
 
 const Header = () => {
   const { t } = useTranslation()
-  const { store, isPending, isError, error } = useStore()
   const direction = useDocumentDirection()
-  const name = store?.name
-  const fallback = store?.name?.slice(0, 1).toUpperCase()
-
-  const isLoaded = !isPending && !!store && !!name && !!fallback
-
-  if (isError) {
-    throw error
-  }
+  const appName = "AcmeKit"
+  const fallback = appName.slice(0, 1).toUpperCase()
 
   return (
     <div className="w-full p-3">
-    <DropdownMenu
-          dir={direction}>
+      <DropdownMenu dir={direction}>
         <DropdownMenu.Trigger
-          disabled={!isLoaded}
           className={clx(
             "bg-ui-bg-subtle transition-fg grid w-full grid-cols-[24px_1fr_15px] items-center gap-x-3 rounded-md p-0.5 pe-2 outline-none",
             "hover:bg-ui-bg-subtle-hover",
@@ -113,60 +102,43 @@ const Header = () => {
             "focus-visible:shadow-borders-focus"
           )}
         >
-          {fallback ? (
-            <Avatar variant="squared" size="xsmall" fallback={fallback} />
-          ) : (
-            <Skeleton className="h-6 w-6 rounded-md" />
-          )}
+          <Avatar variant="squared" size="xsmall" fallback={fallback} />
           <div className="block overflow-hidden text-start">
-            {name ? (
+            <Text
+              size="small"
+              weight="plus"
+              leading="compact"
+              className="truncate"
+            >
+              {appName}
+            </Text>
+          </div>
+          <EllipsisHorizontal className="text-ui-fg-muted" />
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content className="w-[var(--radix-dropdown-menu-trigger-width)] min-w-0">
+          <div className="flex items-center gap-x-3 px-2 py-1">
+            <Avatar variant="squared" size="small" fallback={fallback} />
+            <div className="flex flex-col overflow-hidden">
               <Text
                 size="small"
                 weight="plus"
                 leading="compact"
                 className="truncate"
               >
-                {store.name}
+                {appName}
               </Text>
-            ) : (
-              <Skeleton className="h-[9px] w-[120px]" />
-            )}
-          </div>
-          <EllipsisHorizontal className="text-ui-fg-muted" />
-        </DropdownMenu.Trigger>
-        {isLoaded && (
-          <DropdownMenu.Content className="w-[var(--radix-dropdown-menu-trigger-width)] min-w-0">
-            <div className="flex items-center gap-x-3 px-2 py-1">
-              <Avatar variant="squared" size="small" fallback={fallback} />
-              <div className="flex flex-col overflow-hidden">
-                <Text
-                  size="small"
-                  weight="plus"
-                  leading="compact"
-                  className="truncate"
-                >
-                  {name}
-                </Text>
-                <Text
-                  size="xsmall"
-                  leading="compact"
-                  className="text-ui-fg-subtle"
-                >
-                  {t("app.nav.main.store")}
-                </Text>
-              </div>
+              <Text
+                size="xsmall"
+                leading="compact"
+                className="text-ui-fg-subtle"
+              >
+                {t("app.nav.settings.header")}
+              </Text>
             </div>
-            <DropdownMenu.Separator />
-            <DropdownMenu.Item className="gap-x-2" asChild>
-              <Link to="/settings/store">
-                <BuildingStorefront className="text-ui-fg-subtle" />
-                {t("app.nav.main.storeSettings")}
-              </Link>
-            </DropdownMenu.Item>
-            <DropdownMenu.Separator />
-            <Logout />
-          </DropdownMenu.Content>
-        )}
+          </div>
+          <DropdownMenu.Separator />
+          <Logout />
+        </DropdownMenu.Content>
       </DropdownMenu>
     </div>
   )
