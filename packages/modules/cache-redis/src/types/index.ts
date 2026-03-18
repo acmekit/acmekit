@@ -26,7 +26,7 @@ export type RedisCacheModuleOptions = {
   namespace?: string
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/cache-redis": RedisCacheModuleOptions
     "/medusa/cache-redis": RedisCacheModuleOptions

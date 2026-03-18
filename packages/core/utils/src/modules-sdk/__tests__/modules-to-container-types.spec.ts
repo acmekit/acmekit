@@ -36,7 +36,7 @@ describe("generateContainerTypes", function () {
       .toMatchInlineSnapshot(`
       "import type FooCache from '@acmekit/foo-cache'
 
-      declare module '/framework/types' {
+      declare module "@acmekit/framework/types' {
         interface ModulesImplementations {
           'foo-cache': InstanceType<(typeof FooCache)['service']>
         }
@@ -71,7 +71,7 @@ describe("generateContainerTypes", function () {
       .toMatchInlineSnapshot(`
       "import type { ICacheService } from '@acmekit/framework/types'
 
-      declare module '/framework/types' {
+      declare module "@acmekit/framework/types' {
         interface ModulesImplementations {
           'cache': ICacheService
         }
@@ -106,7 +106,7 @@ describe("generateContainerTypes", function () {
       .toMatchInlineSnapshot(`
       "import type Bar from '../../foo/bar'
 
-      declare module '/framework/types' {
+      declare module "@acmekit/framework/types' {
         interface ModulesImplementations {
           'bar': InstanceType<(typeof Bar)['service']>
         }

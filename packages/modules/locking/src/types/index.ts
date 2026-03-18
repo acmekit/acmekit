@@ -32,7 +32,7 @@ export type LockingModuleOptions = Partial<ModuleServiceInitializeOptions> & {
   }[]
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/locking": LockingModuleOptions
     "/medusa/locking": LockingModuleOptions

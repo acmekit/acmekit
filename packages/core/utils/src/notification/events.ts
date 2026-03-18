@@ -11,7 +11,7 @@ export const NotificationEvents = buildEventNamesFromEntityName(
 )
 
 // TODO: Comment temporarely and we will re enable it in the near future #14478
-// declare module "/types" {
+// declare module "@acmekit/types" {
 //   export interface EventBusEventsOptions {
 //     // Notification events
 //     [NotificationEvents.NOTIFICATION_CREATED]?: EventOptions

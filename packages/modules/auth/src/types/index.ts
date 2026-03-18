@@ -47,7 +47,7 @@ export interface AcmeKitCloudAuthProviderOptions {
   disabled: boolean
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/auth": AuthModuleOptions
     "/medusa/auth": AuthModuleOptions

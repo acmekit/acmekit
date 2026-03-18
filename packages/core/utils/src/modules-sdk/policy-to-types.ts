@@ -79,7 +79,7 @@ declare const Policy: PolicyType;
 
 // Module augmentation for /framework/utils
 // Types and globals are defined in policy-types.d.ts
-declare module "/framework/utils" {
+declare module "@acmekit/framework/utils" {
   export const PolicyResource: PolicyResourceType;
   export const PolicyOperation: PolicyOperationType;
   export const Policy: PolicyType;

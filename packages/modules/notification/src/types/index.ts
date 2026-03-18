@@ -46,7 +46,7 @@ export type AcmeKitCloudEmailOptions = {
   sandbox_handle?: string
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/notification": NotificationModuleOptions
     "/medusa/notification": NotificationModuleOptions

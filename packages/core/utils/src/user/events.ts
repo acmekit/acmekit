@@ -11,7 +11,7 @@ export const UserEvents = {
 } as const
 
 // TODO: Comment temporarely and we will re enable it in the near future #14478
-// declare module "/types" {
+// declare module "@acmekit/types" {
 //   export interface EventBusEventsOptions {
 //     // User events
 //     [UserEvents.USER_CREATED]?: EventOptions

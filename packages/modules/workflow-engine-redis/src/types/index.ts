@@ -178,7 +178,7 @@ export type RedisWorkflowsOptions = {
   }
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/workflow-engine-redis": RedisWorkflowsOptions
     "/medusa/workflow-engine-redis": RedisWorkflowsOptions

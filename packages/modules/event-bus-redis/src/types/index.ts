@@ -79,7 +79,7 @@ export type EventBusRedisModuleOptions = {
   // eventOptions?: EventBusEventsOptions
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/event-bus-redis": EventBusRedisModuleOptions
     "/medusa/event-bus-redis": EventBusRedisModuleOptions

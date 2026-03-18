@@ -89,7 +89,7 @@ export type CachingModuleOptions = Partial<ModuleServiceInitializeOptions> & {
   }[]
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/caching": CachingModuleOptions
     "/medusa/caching": CachingModuleOptions

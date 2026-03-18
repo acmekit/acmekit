@@ -123,7 +123,7 @@ export async function generateContainerTypes(
   const fileName = "modules-bindings.d.ts"
   const fileContents = `${imports.join(
     "\n"
-  )}\n\ndeclare module '/framework/types' {
+  )}\n\ndeclare module "@acmekit/framework/types' {
   interface ${interfaceName} {
     ${mappings.join(",\n    ")}
   }

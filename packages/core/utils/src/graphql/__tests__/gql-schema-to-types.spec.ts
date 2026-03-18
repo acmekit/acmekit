@@ -46,7 +46,7 @@ describe("gqlSchemaToTypes", () => {
 
     export type Test = | 'test-a' | 'Test_B';
 
-    declare module '/framework/types' {
+    declare module "@acmekit/framework/types' {
       interface RemoteQueryEntryPoints {
 
       }

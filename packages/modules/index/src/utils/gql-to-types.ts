@@ -30,7 +30,7 @@ export async function gqlSchemaToTypes(
   const entryPoints = buildEntryPointsTypeMap(content)
 
   const indexEntryPoints = `
-declare module '/framework/types' {
+declare module "@acmekit/framework/types' {
   interface IndexServiceEntryPoints  {
 ${entryPoints
   .map((entry) => `    ${entry.entryPoint}: ${entry.entityType}`)

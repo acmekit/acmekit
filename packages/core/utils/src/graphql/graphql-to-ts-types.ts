@@ -66,7 +66,7 @@ async function generateTypes({
   const entryPoints = buildEntryPointsTypeMap({ schema: output, joinerConfigs })
 
   const remoteQueryEntryPoints = `
-declare module '/framework/types' {
+declare module "@acmekit/framework/types' {
   interface ${interfaceName} {
 ${entryPoints
   .map((entry) => `    ${entry.entryPoint}: ${entry.entityType}`)

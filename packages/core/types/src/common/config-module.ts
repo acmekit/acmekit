@@ -18,7 +18,7 @@ import type { Logger } from "../logger"
  * @example
  * ```ts
  * // In /translation module:
- * declare module "/types" {
+ * declare module "@acmekit/types" {
  *   interface ModuleOptions {
  *     "/translation": {
  *       entities?: { type: string; fields: string[] }[]

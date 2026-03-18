@@ -16,7 +16,7 @@ export type InMemoryCacheModuleOptions = {
   ttl?: number
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/cache-inmemory": InMemoryCacheModuleOptions
     "/medusa/cache-inmemory": InMemoryCacheModuleOptions

@@ -25,7 +25,7 @@ import { ContainerRegistrationKeys, Modules } from "@acmekit/utils"
 import { AwilixContainer, ResolveOptions } from "../deps/awilix"
 import { Knex } from "../deps/mikro-orm-knex"
 
-declare module "/types" {
+declare module "@acmekit/types" {
   export interface ModuleImplementations {
     /**
      * @deprecated use {@link ContainerRegistrationKeys.LINK} instead.

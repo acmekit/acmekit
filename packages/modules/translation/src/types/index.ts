@@ -42,7 +42,7 @@ export type TranslationModuleOptions = {
 }
 
 // Augment the global ModuleOptions registry
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/translation": TranslationModuleOptions
     "/medusa/translation": TranslationModuleOptions

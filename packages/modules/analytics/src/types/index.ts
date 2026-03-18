@@ -23,7 +23,7 @@ export type AnalyticsModuleOptions = Partial<ModuleServiceInitializeOptions> & {
   }[]
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/analytics": AnalyticsModuleOptions
     "/medusa/analytics": AnalyticsModuleOptions

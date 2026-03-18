@@ -477,6 +477,6 @@ export interface FixtureEntryPoints {
   shipping_option_price_sets: LinkShippingOptionPriceSet
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   export interface RemoteQueryEntryPoints extends FixtureEntryPoints {}
 }

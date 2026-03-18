@@ -28,7 +28,7 @@ export type FileModuleOptions = Partial<ModuleServiceInitializeOptions> & {
   }
 }
 
-declare module "/types" {
+declare module "@acmekit/types" {
   interface ModuleOptions {
     "/file": FileModuleOptions
     "/medusa/file": FileModuleOptions
