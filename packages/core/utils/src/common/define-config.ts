@@ -29,14 +29,7 @@ const DEFAULT_DATABASE_URL = "postgres://localhost/medusa-starter-default"
 const DEFAULT_ADMIN_CORS =
   "http://localhost:7000,http://localhost:7001,http://localhost:5173"
 
-export const DEFAULT_STORE_RESTRICTED_FIELDS = [
-  "order",
-  "orders",
-  /*"customer",
-  "customers",
-  "payment_collection",
-  "payment_collections"*/
-]
+export const DEFAULT_CLIENT_RESTRICTED_FIELDS: string[] = []
 
 /**
  * The "defineConfig" helper can be used to define the configuration
@@ -173,7 +166,6 @@ function resolveModules(
   projectConfig: InputConfig["projectConfig"]
 ): Exclude<ConfigModule["modules"], undefined> {
   const sharedModules = [
-    { resolve: MODULE_PACKAGE_NAMES[Modules.PRODUCT] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.CUSTOMER] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.API_KEY] },
     { resolve: MODULE_PACKAGE_NAMES[Modules.SETTINGS] },
@@ -395,7 +387,7 @@ function normalizeProjectConfig(
       jwtPublicKey: process.env.JWT_PUBLIC_KEY,
       cookieSecret: process.env.COOKIE_SECRET || DEFAULT_SECRET,
       restrictedFields: {
-        store: DEFAULT_STORE_RESTRICTED_FIELDS,
+        client: DEFAULT_CLIENT_RESTRICTED_FIELDS,
       },
       ...http,
     },
