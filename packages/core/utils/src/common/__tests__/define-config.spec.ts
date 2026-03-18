@@ -1,5 +1,5 @@
 import { Modules } from "../../modules-sdk"
-import { DEFAULT_CLIENT_RESTRICTED_FIELDS, defineConfig } from "../define-config"
+import { defineConfig } from "../define-config"
 
 describe("defineConfig", function () {
   it("should merge empty config with the defaults", function () {

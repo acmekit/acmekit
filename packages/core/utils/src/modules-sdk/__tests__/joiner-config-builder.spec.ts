@@ -31,7 +31,7 @@ import {
 describe("joiner-config-builder", () => {
   describe("defineJoiner | Mikro orm objects", () => {
     it("should return a full joiner configuration", () => {
-      const joinerConfig = defineJoinerConfig(Modules.FULFILLMENT, {
+      const joinerConfig = defineJoinerConfig(Modules.AUTH, {
         models: [
           FulfillmentSet,
           ShippingOption,
@@ -45,7 +45,7 @@ describe("joiner-config-builder", () => {
       })
 
       expect(joinerConfig).toEqual({
-        serviceName: Modules.FULFILLMENT,
+        serviceName: Modules.AUTH,
         primaryKeys: ["id"],
         schema: "",
         idPrefixToEntityName: {},
@@ -121,7 +121,7 @@ describe("joiner-config-builder", () => {
     })
 
     it("should return a full joiner configuration with custom aliases", () => {
-      const joinerConfig = defineJoinerConfig(Modules.FULFILLMENT, {
+      const joinerConfig = defineJoinerConfig(Modules.AUTH, {
         alias: [
           {
             name: ["custom", "customs"],
@@ -134,7 +134,7 @@ describe("joiner-config-builder", () => {
       })
 
       expect(joinerConfig).toEqual({
-        serviceName: Modules.FULFILLMENT,
+        serviceName: Modules.AUTH,
         primaryKeys: ["id"],
         schema: "",
         idPrefixToEntityName: {},
@@ -152,7 +152,7 @@ describe("joiner-config-builder", () => {
     })
 
     it("should return a full joiner configuration with custom aliases and models", () => {
-      const joinerConfig = defineJoinerConfig(Modules.FULFILLMENT, {
+      const joinerConfig = defineJoinerConfig(Modules.AUTH, {
         models: [
           FulfillmentSet,
           ShippingOption,
@@ -175,7 +175,7 @@ describe("joiner-config-builder", () => {
       })
 
       expect(joinerConfig).toEqual({
-        serviceName: Modules.FULFILLMENT,
+        serviceName: Modules.AUTH,
         primaryKeys: ["id"],
         schema: "",
         idPrefixToEntityName: {},
@@ -258,7 +258,7 @@ describe("joiner-config-builder", () => {
     })
 
     it("should return a full joiner configuration with custom aliases without method suffix", () => {
-      const joinerConfig = defineJoinerConfig(Modules.FULFILLMENT, {
+      const joinerConfig = defineJoinerConfig(Modules.AUTH, {
         alias: [
           {
             name: ["custom", "customs"],
@@ -269,7 +269,7 @@ describe("joiner-config-builder", () => {
       })
 
       expect(joinerConfig).toEqual({
-        serviceName: Modules.FULFILLMENT,
+        serviceName: Modules.AUTH,
         primaryKeys: ["id"],
         schema: "",
         idPrefixToEntityName: {},
@@ -287,7 +287,7 @@ describe("joiner-config-builder", () => {
     })
 
     it("should return a full joiner configuration with custom aliases overriding defaults", () => {
-      const joinerConfig = defineJoinerConfig(Modules.FULFILLMENT, {
+      const joinerConfig = defineJoinerConfig(Modules.AUTH, {
         models: [FulfillmentSet],
         alias: [
           {
@@ -301,7 +301,7 @@ describe("joiner-config-builder", () => {
       })
 
       expect(joinerConfig).toEqual({
-        serviceName: Modules.FULFILLMENT,
+        serviceName: Modules.AUTH,
         primaryKeys: ["id"],
         schema: "",
         idPrefixToEntityName: {},
@@ -323,7 +323,7 @@ describe("joiner-config-builder", () => {
 
   describe("defineJoiner | DML objects", () => {
     it("should return a full joiner configuration", () => {
-      const joinerConfig = defineJoinerConfig(Modules.FULFILLMENT, {
+      const joinerConfig = defineJoinerConfig(Modules.AUTH, {
         models: [
           dmlFulfillmentSet,
           dmlShippingOption,
@@ -337,7 +337,7 @@ describe("joiner-config-builder", () => {
       })
 
       expect(joinerConfig).toEqual({
-        serviceName: Modules.FULFILLMENT,
+        serviceName: Modules.AUTH,
         primaryKeys: ["id"],
         schema: expect.any(String),
         idPrefixToEntityName: {},

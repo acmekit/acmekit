@@ -97,7 +97,7 @@ export async function mikroOrmCreateConnection(
   }
 
   const { MikroORM, defineConfig } = await import(
-    "/deps/mikro-orm/postgresql"
+    "@acmekit/deps/mikro-orm/postgresql"
   )
   const mikroOrmConfig = defineConfig({
     discovery: { disableDynamicFileAccess: true, warnWhenNoEntities: false },

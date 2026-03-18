@@ -65,7 +65,7 @@ export default async ({ app, container, plugins }: Options) => {
     await new ApiLoader({
       app: app,
       sourceDir: sourcePaths,
-      baseRestrictedFields: restrictedFields?.store,
+      baseRestrictedFields: restrictedFields?.client,
       container,
     }).load()
   } catch (err) {

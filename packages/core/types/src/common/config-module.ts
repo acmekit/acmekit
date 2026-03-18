@@ -944,7 +944,7 @@ export type ProjectConfigOptions = {
      * ```
      */
     restrictedFields?: {
-      store?: string[]
+      client?: string[]
       /*admin?: string[]*/
     }
   }
