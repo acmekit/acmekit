@@ -1,10 +1,10 @@
 import { LoaderFunctionArgs } from "react-router-dom"
-import { productsQueryKeys } from "../../../hooks/api/products"
+import { customersQueryKeys } from "../../../hooks/api/customers"
 import { sdk } from "../../../lib/client"
 import { queryClient } from "../../../lib/query-client"
 
 const customerDetailQuery = (id: string) => ({
-  queryKey: productsQueryKeys.detail(id),
+  queryKey: customersQueryKeys.detail(id),
   queryFn: async () =>
     sdk.admin.customer.retrieve(id, {
       fields: "+*addresses",
