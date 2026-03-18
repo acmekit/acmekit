@@ -1,10 +1,10 @@
 import { HttpTypes } from "/framework/types"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import { generateEntityColumns } from "./helpers"
 import { ENTITY_MAPPINGS } from "./entity-mappings"
@@ -15,7 +15,7 @@ import { ENTITY_MAPPINGS } from "./entity-mappings"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse<HttpTypes.AdminViewsEntityColumnsResponse>
+  res: AcmeKitResponse<HttpTypes.AdminViewsEntityColumnsResponse>
 ) => {
   const entity = req.params.entity
 
@@ -36,8 +36,8 @@ export const GET = async (
       })
     }
   } catch (schemaError) {
-    throw new MedusaError(
-      MedusaError.Types.UNEXPECTED_STATE,
+    throw new AcmeKitError(
+      AcmeKitError.Types.UNEXPECTED_STATE,
       `Schema introspection failed for entity: ${entity}. Please check if the entity exists in the schema.`
     )
   }

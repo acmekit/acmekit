@@ -1,8 +1,8 @@
 export const SymbolMedusaWorkflowComposerContext = Symbol.for(
-  "MedusaWorkflowComposerContext"
+  "AcmeKitWorkflowComposerContext"
 ).toString()
 export const SymbolMedusaWorkflowComposerCondition = Symbol.for(
-  "MedusaWorkflowComposerCondition"
+  "AcmeKitWorkflowComposerCondition"
 ).toString()
 export const SymbolInputReference = Symbol.for(
   "WorkflowInputReference"
@@ -20,5 +20,5 @@ export const SymbolWorkflowStepTransformer = Symbol.for(
   "WorkflowStepTransformer"
 ).toString()
 export const SymbolMedusaWorkflowResponse = Symbol.for(
-  "MedusaWorkflowResponse"
+  "AcmeKitWorkflowResponse"
 ).toString()

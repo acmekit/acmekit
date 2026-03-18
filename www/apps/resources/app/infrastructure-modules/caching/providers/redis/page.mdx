@@ -172,10 +172,10 @@ export const cacheProductsWorkflow = createWorkflow(
 Next, execute that workflow in an [API route](!docs!/learn/fundamentals/api-routes). For example, create a route at `src/api/cache-product/route.ts` with the following content:
 
 ```ts title="src/api/cache-product/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { cacheProductsWorkflow } from "../../workflows/cache-products"
 
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+export const GET = async (req: AcmeKitRequest, res: MedusaResponse) => {
   const { result } = await cacheProductsWorkflow(req.scope)
     .run({})
 

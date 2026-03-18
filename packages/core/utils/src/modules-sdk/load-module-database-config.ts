@@ -1,5 +1,5 @@
 import { ModulesSdkTypes } from "/types"
-import { MedusaError } from "../common"
+import { AcmeKitError } from "../common"
 
 function getEnv(key: string, moduleName: string): string {
   const value =
@@ -101,8 +101,8 @@ export function loadDatabaseConfig(
   }
 
   if (!database.clientUrl && !silent && !database.connection) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_ARGUMENT,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_ARGUMENT,
       "No database clientUrl provided. Please provide the clientUrl through the [MODULE]_DATABASE_URL, MEDUSA_DATABASE_URL or DATABASE_URL environment variable or the options object in the initialize function."
     )
   }

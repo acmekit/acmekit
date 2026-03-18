@@ -36,10 +36,10 @@ export type NotificationModuleOptions =
      * Options for the default AcmeKit Cloud Email provider
      * @private
      */
-    cloud?: MedusaCloudEmailOptions
+    cloud?: AcmeKitCloudEmailOptions
   }
 
-export type MedusaCloudEmailOptions = {
+export type AcmeKitCloudEmailOptions = {
   api_key: string
   endpoint: string
   environment_handle?: string

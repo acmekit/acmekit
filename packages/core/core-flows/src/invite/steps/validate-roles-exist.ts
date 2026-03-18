@@ -1,4 +1,4 @@
-import { MedusaError, Modules } from "/framework/utils"
+import { AcmeKitError, Modules } from "/framework/utils"
 import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 /**
@@ -32,8 +32,8 @@ export const validateRolesExistStep = createStep(
     const missingRoles = roleIds.filter((id) => !existingRoleIds.has(id))
 
     if (missingRoles.length) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `The following role IDs do not exist: ${missingRoles.join(", ")}`
       )
     }

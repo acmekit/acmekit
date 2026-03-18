@@ -6,7 +6,7 @@ import {
   AuthModuleOptions,
   AuthProviderRegistrationPrefix,
 } from "@types"
-import { MedusaCloudAuthService } from "../providers/medusa-cloud-auth"
+import { AcmeKitCloudAuthService } from "../providers/medusa-cloud-auth"
 
 const validateCloudOptions = (options: AuthModuleOptions["cloud"]) => {
   const {
@@ -61,7 +61,7 @@ export default async ({
     AuthModuleOptions
 >): Promise<void> => {
   if (validateCloudOptions(options?.cloud) && !options?.cloud?.disabled) {
-    await registrationFn(MedusaCloudAuthService, container, {
+    await registrationFn(AcmeKitCloudAuthService, container, {
       options: options?.cloud,
       id: "cloud",
     })

@@ -31,13 +31,13 @@ to create a shipping method for a return in your custom flows.
     
 ```ts title="src/api/workflow/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { createReturnShippingMethodWorkflow } from "/medusa/core-flows"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await createReturnShippingMethodWorkflow(req.scope)
@@ -86,11 +86,11 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { createReturnShippingMethodWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const { result } = await createReturnShippingMethodWorkflow(container)
     .run({

@@ -17,7 +17,7 @@ import {
   ContainerRegistrationKeys,
   GraphQLUtils,
   InjectManager,
-  MedusaContext,
+  AcmeKitContext,
   Modules,
   ModulesSdkUtils,
   promiseAll,
@@ -48,7 +48,7 @@ type InjectedDependencies = {
 }
 
 export default class IndexModuleService
-  extends ModulesSdkUtils.MedusaService({})
+  extends ModulesSdkUtils.AcmeKitService({})
   implements IndexTypes.IIndexService
 {
   #isWorkerMode: boolean = false
@@ -268,7 +268,7 @@ export default class IndexModuleService
    */
   @InjectManager()
   async getInfo(
-    @MedusaContext() sharedContext?: Context
+    @AcmeKitContext() sharedContext?: Context
   ): Promise<IndexTypes.IndexInfo[]> {
     const listArguments = [
       {} as FilterQuery<InferEntityType<typeof IndexMetadata>>,

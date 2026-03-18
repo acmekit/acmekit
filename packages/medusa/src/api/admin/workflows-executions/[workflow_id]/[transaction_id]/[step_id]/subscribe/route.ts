@@ -1,14 +1,14 @@
 import { IWorkflowEngineService } from "/framework/types"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 import { Modules } from "/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const workflowEngineService: IWorkflowEngineService = req.scope.resolve(
     Modules.WORKFLOW_ENGINE

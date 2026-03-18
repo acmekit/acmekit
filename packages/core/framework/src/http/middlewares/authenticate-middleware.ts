@@ -12,8 +12,8 @@ import { ConfigModule } from "../../config"
 import {
   AuthContext,
   AuthenticatedMedusaRequest,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitRequest,
+  AcmeKitResponse,
 } from "../types"
 
 const SESSION_AUTH = "session"
@@ -28,7 +28,7 @@ export type AuthType =
   | typeof BEARER_AUTH
   | typeof API_KEY_AUTH
 
-type MedusaSession = {
+type AcmeKitSession = {
   auth_context: AuthContext
 }
 
@@ -38,8 +38,8 @@ export const authenticate = (
   options: { allowUnauthenticated?: boolean; allowUnregistered?: boolean } = {}
 ): RequestHandler => {
   const authenticateMiddleware = async (
-    req: MedusaRequest,
-    res: MedusaResponse,
+    req: AcmeKitRequest,
+    res: AcmeKitResponse,
     next: NextFunction
   ): Promise<void> => {
     const authTypes = Array.isArray(authType) ? authType : [authType]
@@ -117,7 +117,7 @@ export const authenticate = (
   return authenticateMiddleware as unknown as RequestHandler
 }
 
-const getApiKeyInfo = async (req: MedusaRequest): Promise<ApiKeyDTO | null> => {
+const getApiKeyInfo = async (req: AcmeKitRequest): Promise<ApiKeyDTO | null> => {
   const authHeader = req.headers.authorization
   if (!authHeader) {
     return null
@@ -161,7 +161,7 @@ const getApiKeyInfo = async (req: MedusaRequest): Promise<ApiKeyDTO | null> => {
 }
 
 const getAuthContextFromSession = (
-  session: Partial<MedusaSession> = {},
+  session: Partial<AcmeKitSession> = {},
   authTypes: AuthType[],
   actorTypes: string[]
 ): AuthContext | null => {

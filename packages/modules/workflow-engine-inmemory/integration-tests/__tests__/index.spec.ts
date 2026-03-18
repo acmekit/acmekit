@@ -1,4 +1,4 @@
-import { MedusaContainer } from "/framework"
+import { AcmeKitContainer } from "/framework"
 import { asFunction } from "/framework/awilix"
 import {
   DistributedTransactionType,
@@ -96,7 +96,7 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
   testSuite: ({ service: workflowOrcModule, medusaApp }) => {
     describe("Workflow Orchestrator module", function () {
       let query: RemoteQueryFunction
-      let sharedContainer_: MedusaContainer
+      let sharedContainer_: AcmeKitContainer
 
       beforeEach(() => {
         query = medusaApp.query

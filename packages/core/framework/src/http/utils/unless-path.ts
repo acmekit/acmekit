@@ -1,7 +1,7 @@
 import {
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
   MiddlewareFunction,
 } from "../types"
 
@@ -13,7 +13,7 @@ import {
  */
 export const unlessPath =
   (onPath: RegExp, middleware: MiddlewareFunction) =>
-  (req: MedusaRequest, res: MedusaResponse, next: MedusaNextFunction) => {
+  (req: AcmeKitRequest, res: AcmeKitResponse, next: AcmeKitNextFunction) => {
     if (onPath.test(req.path)) {
       return next()
     } else {

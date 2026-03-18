@@ -2,9 +2,9 @@ import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 import { HttpTypes } from "/framework/types"
 import TranslationFeatureFlag from "../../../../feature-flags/translation"
 
@@ -13,8 +13,8 @@ import TranslationFeatureFlag from "../../../../feature-flags/translation"
  * @featureFlag translation
  */
 export const GET = async (
-  req: MedusaRequest<HttpTypes.AdminLocaleParams>,
-  res: MedusaResponse<HttpTypes.AdminLocaleResponse>
+  req: AcmeKitRequest<HttpTypes.AdminLocaleParams>,
+  res: AcmeKitResponse<HttpTypes.AdminLocaleResponse>
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
@@ -34,8 +34,8 @@ export const GET = async (
   )
 
   if (!locale) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Locale with code: ${req.params.code} was not found`
     )
   }

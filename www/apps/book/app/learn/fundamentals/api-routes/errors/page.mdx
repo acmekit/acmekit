@@ -8,25 +8,25 @@ export const metadata = {
 
 In this guide, you'll learn how to throw errors in your Medusa application, how it affects an API route's response, and how to change the default error handler of your Medusa application.
 
-## Throw MedusaError
+## Throw AcmeKitError
 
-When throwing an error in your API routes, middlewares, workflows, or any customization, throw a `MedusaError` from the Medusa Framework.
+When throwing an error in your API routes, middlewares, workflows, or any customization, throw a `AcmeKitError` from the Medusa Framework.
 
 The Medusa application's API route error handler then wraps your thrown error in a uniform object and returns it in the response.
 
 For example:
 
 ```ts
-import { MedusaRequest, MedusaResponse } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitError } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   if (!req.query.q) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "The `q` query parameter is required."
     )
   }
@@ -35,9 +35,9 @@ export const GET = async (
 }
 ```
 
-The `MedusaError` class accepts two parameters in its constructor:
+The `AcmeKitError` class accepts two parameters in its constructor:
 
-1. The first is the error's type. `MedusaError` has a static property `Types` that you can use. `Types` is an enum whose possible values are explained in the next section.
+1. The first is the error's type. `AcmeKitError` has a static property `Types` that you can use. `Types` is an enum whose possible values are explained in the next section.
 2. The second is the message to show in the error response.
 
 ### Error Object in Response
@@ -51,9 +51,9 @@ The error object returned in the response has three properties:
     - `api_error` for the `DB_ERROR` type.
     - `invalid_state_error` for the `CONFLICT` error type.
     - `unknown_error` for any unidentified error type.
-    - For other error types, this property won't be available unless you provide a code as a third parameter to the `MedusaError` constructor.
+    - For other error types, this property won't be available unless you provide a code as a third parameter to the `AcmeKitError` constructor.
 
-### MedusaError Types
+### AcmeKitError Types
 
 <Table>
   <Table.Header>
@@ -255,15 +255,15 @@ For example, create `src/api/middlewares.ts` with the following:
 import { 
   defineMiddlewares, 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 export default defineMiddlewares({
   errorHandler: (
-    error: MedusaError | any, 
-    req: MedusaRequest, 
+    error: AcmeKitError | any, 
+    req: AcmeKitRequest, 
     res: MedusaResponse, 
     next: MedusaNextFunction
   ) => {
@@ -276,8 +276,8 @@ export default defineMiddlewares({
 
 The `errorHandler` property's value is a function that accepts four parameters:
 
-1. The error thrown. Its type can be `MedusaError` or any other error type.
-2. A request object of type `MedusaRequest`.
+1. The error thrown. Its type can be `AcmeKitError` or any other error type.
+2. A request object of type `AcmeKitRequest`.
 3. A response object of type `MedusaResponse`.
 4. A function of type `MedusaNextFunction` that executes the next middleware in the stack.
 
@@ -302,10 +302,10 @@ import {
   defineMiddlewares, 
   errorHandler, 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 // assuming you have Sentry set up in your project
 import * as Sentry from "@sentry/node"
 
@@ -313,8 +313,8 @@ const originalErrorHandler = errorHandler()
 
 export default defineMiddlewares({
   errorHandler: (
-    error: MedusaError | any, 
-    req: MedusaRequest, 
+    error: AcmeKitError | any, 
+    req: AcmeKitRequest, 
     res: MedusaResponse, 
     next: MedusaNextFunction
   ) => {

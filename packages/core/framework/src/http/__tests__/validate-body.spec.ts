@@ -1,6 +1,6 @@
-import { MedusaError } from "/utils"
+import { AcmeKitError } from "/utils"
 import { z, ZodNullable, ZodObject, ZodOptional } from "/deps/zod"
-import { MedusaRequest, MedusaResponse } from "../types"
+import { AcmeKitRequest, AcmeKitResponse } from "../types"
 import { validateAndTransformBody } from "../utils/validate-body"
 
 const createLinkBody = () => {
@@ -21,9 +21,9 @@ describe("validateAndTransformBody", () => {
       body: {
         additional_data: {},
       },
-    } as MedusaRequest
+    } as AcmeKitRequest
 
-    const mockResponse = {} as MedusaResponse
+    const mockResponse = {} as AcmeKitResponse
     const nextFunction = jest.fn()
 
     mockRequest.additionalDataValidator = z
@@ -46,7 +46,7 @@ describe("validateAndTransformBody", () => {
 
     await middleware(mockRequest, mockResponse, nextFunction)
     expect(nextFunction.mock.calls[0]).toEqual([
-      new MedusaError(
+      new AcmeKitError(
         "invalid_data",
         `Invalid request: Field 'additional_data, brand_id' is required`
       ),
@@ -57,9 +57,9 @@ describe("validateAndTransformBody", () => {
     let mockRequest = {
       query: {},
       body: {},
-    } as MedusaRequest
+    } as AcmeKitRequest
 
-    const mockResponse = {} as MedusaResponse
+    const mockResponse = {} as AcmeKitResponse
     const nextFunction = jest.fn()
 
     mockRequest.additionalDataValidator = z
@@ -90,9 +90,9 @@ describe("validateAndTransformBody", () => {
       body: {
         additional_data: {},
       },
-    } as MedusaRequest
+    } as AcmeKitRequest
 
-    const mockResponse = {} as MedusaResponse
+    const mockResponse = {} as AcmeKitResponse
     const nextFunction = jest.fn()
 
     mockRequest.additionalDataValidator = z

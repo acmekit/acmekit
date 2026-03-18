@@ -2,7 +2,7 @@ import { Link } from "/framework/modules-sdk"
 import type { LinkDefinition } from "/framework/types"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import { StepResponse, createStep } from "/framework/workflows-sdk"
 
@@ -47,8 +47,8 @@ export const updateRemoteLinksStep = createStep(
     const unequal = dataBeforeUpdate.length !== data.length
 
     if (unequal) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `Could not find all existing links from data`
       )
     }

@@ -28,7 +28,7 @@ import terminalLink from "terminal-link"
 const slugify = slugifyType.default
 
 // Medusa Project Creator
-export class MedusaProjectCreator
+export class AcmeKitProjectCreator
   extends BaseProjectCreator
   implements ProjectCreator
 {

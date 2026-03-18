@@ -1,8 +1,8 @@
 import { validateAndTransformBody } from "/framework"
 import {
   AuthenticatedMedusaRequest,
-  MedusaNextFunction,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitResponse,
   MiddlewareRoute,
 } from "/framework/http"
 import { Logger } from "/framework/types"
@@ -17,8 +17,8 @@ import { AdminIndexSyncPayload } from "./validator"
 
 const isIndexEnabledMiddleware = (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse,
-  next: MedusaNextFunction
+  res: AcmeKitResponse,
+  next: AcmeKitNextFunction
 ) => {
   const indexService = req.scope.resolve(Modules.INDEX, {
     allowUnregistered: true,

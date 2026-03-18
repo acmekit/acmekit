@@ -49,10 +49,10 @@ Learn more about [middlewares](../middlewares/page.mdx).
 You can then access the raw body data in your API route handler:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   console.log(req.rawBody)
@@ -147,19 +147,19 @@ Then, you apply the `upload.array("files")` middleware to the route to accept fi
 You can then access the uploaded files in your API route handler:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitError } from "/framework/utils"
 import { uploadFilesWorkflow } from "/medusa/core-flows"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const files = req.files as Express.Multer.File[]
 
   if (!files?.length) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "No files were uploaded"
     )
   }

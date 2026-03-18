@@ -1,5 +1,5 @@
-import { MedusaStoreRequest } from "/framework/http"
-import { arrayDifference, MedusaError } from "/framework/utils"
+import { AcmeKitStoreRequest } from "/framework/http"
+import { arrayDifference, AcmeKitError } from "/framework/utils"
 import { NextFunction } from "express"
 
 /**
@@ -8,7 +8,7 @@ import { NextFunction } from "express"
  * @returns The transformed and validated sales channel ids
  */
 export function transformAndValidateSalesChannelIds(
-  req: MedusaStoreRequest
+  req: AcmeKitStoreRequest
 ): string[] {
   const { sales_channel_ids: idsFromPublishableKey = [] } =
     req.publishable_key_context
@@ -29,8 +29,8 @@ export function transformAndValidateSalesChannelIds(
     )
 
     if (uniqueInParams.length) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `Requested sales channel is not part of the publishable key`
       )
     }
@@ -50,12 +50,12 @@ export function transformAndValidateSalesChannelIds(
 // - If a sales channel id is passed through query params, we use that
 // - If not, we use the default sales channel for the store
 export function filterByValidSalesChannels() {
-  return async (req: MedusaStoreRequest, _, next: NextFunction) => {
+  return async (req: AcmeKitStoreRequest, _, next: NextFunction) => {
     const salesChannelIds = transformAndValidateSalesChannelIds(req)
 
     if (!salesChannelIds.length) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `Publishable key needs to have a sales channel configured`
       )
     }

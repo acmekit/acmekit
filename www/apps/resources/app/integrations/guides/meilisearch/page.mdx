@@ -124,7 +124,7 @@ To create the Meilisearch Module's service, create the file `src/modules/meilise
 
 ```ts title="src/modules/meilisearch/service.ts"
 const { Meilisearch } = require("meilisearch")
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 type MeilisearchOptions = {
   host: string;
@@ -140,8 +140,8 @@ export default class MeilisearchModuleService {
 
   constructor({}, options: MeilisearchOptions) {
     if (!options.host || !options.apiKey || !options.productIndexName) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT, 
         "Meilisearch options are required"
       )
     }
@@ -786,11 +786,11 @@ An API route is created in a `route.ts` file under a subdirectory of the `src/ap
 So, to create an API route at the path `/admin/meilisearch/sync`, create the file `src/api/admin/meilisearch/sync/route.ts` with the following content:
 
 ```ts title="src/api/admin/meilisearch/sync/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { Modules } from "/framework/utils"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const eventModuleService = req.scope.resolve(Modules.EVENT_BUS)

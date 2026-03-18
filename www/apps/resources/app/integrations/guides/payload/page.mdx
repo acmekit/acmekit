@@ -863,7 +863,7 @@ Create the file `src/modules/payload/service.ts` with the following content:
 import {
   PayloadModuleOptions,
 } from "./types"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 type InjectedDependencies = {
   // inject any dependencies you need here
@@ -893,15 +893,15 @@ export default class PayloadModuleService {
 
   validateOptions(options: Record<any, any>): void | never {
     if (!options.serverUrl) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Payload server URL is required"
       )
     }
     
     if (!options.apiKey) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Payload API key is required"
       )
     }
@@ -946,8 +946,8 @@ export default class PayloadModuleService {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           `Payload API error: ${response.status} ${response.statusText}. ${
             errorData.message || ""
           }`
@@ -956,8 +956,8 @@ export default class PayloadModuleService {
 
       return await response.json()
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to communicate with Payload: ${JSON.stringify(error)}`
       )
     }
@@ -967,7 +967,7 @@ export default class PayloadModuleService {
 
 The `makeRequest` method receives the endpoint to call and the options for the request. It constructs the full URL, makes the request, and returns the response data as JSON.
 
-If the request fails, it throws a `MedusaError` with the error message.
+If the request fails, it throws a `AcmeKitError` with the error message.
 
 #### create Method
 
@@ -1695,10 +1695,10 @@ Refer to the [API routes](!docs!/learn/fundamentals/api-routes) to learn more ab
 Create the file `src/api/admin/payload/sync/[collection]/route.ts` with the following content:
 
 ```ts title="src/api/admin/payload/sync/[collection]/route.ts" badgeLabel="Medusa application" badgeColor="green"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
 export const POST = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const { collection } = req.params

@@ -1,7 +1,7 @@
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { ContainerRegistrationKeys } from "/framework/utils"
 
-export async function ensureDbExists(container: MedusaContainer) {
+export async function ensureDbExists(container: AcmeKitContainer) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
   const pgConnection = container.resolve(
     ContainerRegistrationKeys.PG_CONNECTION
@@ -21,7 +21,7 @@ export async function ensureDbExists(container: MedusaContainer) {
 }
 
 export async function isPgstreamEnabled(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ): Promise<boolean> {
   const pgConnection = container.resolve(
     ContainerRegistrationKeys.PG_CONNECTION

@@ -1,4 +1,4 @@
-import { MedusaInternalService } from "/framework/utils"
+import { AcmeKitInternalService } from "/framework/utils"
 import { IndexData } from "@models"
 
-export class IndexDataService extends MedusaInternalService(IndexData) {}
+export class IndexDataService extends AcmeKitInternalService(IndexData) {}

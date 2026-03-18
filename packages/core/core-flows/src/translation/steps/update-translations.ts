@@ -5,8 +5,8 @@ import {
   UpdateTranslationDTO,
 } from "/framework/types"
 import {
-  MedusaError,
-  MedusaErrorTypes,
+  AcmeKitError,
+  AcmeKitErrorTypes,
   Modules,
 } from "/framework/utils"
 import { StepResponse, createStep } from "/framework/workflows-sdk"
@@ -73,8 +73,8 @@ export const updateTranslationsStep = createStep(
 
     if ("translations" in data) {
       if (data.translations.some((t) => !t.id)) {
-        throw new MedusaError(
-          MedusaErrorTypes.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitErrorTypes.INVALID_DATA,
           "Translation ID is required when doing a batch update of translations"
         )
       }

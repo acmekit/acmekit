@@ -3,8 +3,8 @@ import logger from "/cli/dist/reporter"
 import { json, NextFunction, RequestHandler, text, urlencoded } from "express"
 
 import type {
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitRequest,
+  AcmeKitResponse,
   MiddlewareVerb,
   ParserConfigArgs,
   MiddlewareFunction,
@@ -20,7 +20,7 @@ const parsers = {
     return json({
       limit: options?.sizeLimit,
       verify: options?.preserveRawBody
-        ? (req: MedusaRequest, res: MedusaResponse, buf: Buffer) => {
+        ? (req: AcmeKitRequest, res: AcmeKitResponse, buf: Buffer) => {
             req.rawBody = buf
           }
         : undefined,
@@ -57,8 +57,8 @@ export function createBodyParserMiddlewaresStack(
   return (["json", "text", "urlencoded"] as (keyof typeof parsers)[]).map(
     (parser) => {
       function bodyParser(
-        req: MedusaRequest,
-        res: MedusaResponse,
+        req: AcmeKitRequest,
+        res: AcmeKitResponse,
         next: NextFunction
       ) {
         const matchingRoute = routesFinder.find(

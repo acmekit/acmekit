@@ -1,10 +1,10 @@
 import checkbox from "@inquirer/checkbox"
-import { MedusaAppLoader } from "/framework"
+import { AcmeKitAppLoader } from "/framework"
 import { LinkLoader } from "/framework/links"
 import {
   LinkMigrationsPlannerAction,
   Logger,
-  MedusaContainer,
+  AcmeKitContainer,
 } from "/framework/types"
 import {
   ContainerRegistrationKeys,
@@ -97,7 +97,7 @@ async function askForLinkActionsToPerform(
  * by the migrate command as-well.
  */
 export async function syncLinks(
-  medusaAppLoader: MedusaAppLoader,
+  medusaAppLoader: AcmeKitAppLoader,
   {
     executeAll,
     executeSafe,
@@ -108,7 +108,7 @@ export async function syncLinks(
     executeSafe: boolean
     executeAll: boolean
     directory: string
-    container: MedusaContainer
+    container: AcmeKitContainer
     concurrency?: number
   }
 ) {
@@ -221,7 +221,7 @@ const main = async function ({
       ContainerRegistrationKeys.CONFIG_MODULE
     )
 
-    const medusaAppLoader = new MedusaAppLoader()
+    const medusaAppLoader = new AcmeKitAppLoader()
 
     const plugins = await getResolvedPlugins(directory, configModule, true)
     mergePluginModules(configModule, plugins)

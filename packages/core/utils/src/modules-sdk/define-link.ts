@@ -476,7 +476,7 @@ ${serviceBObj.module}: {
     return linkDefinition
   }
 
-  global.MedusaModule.setCustomLink(register)
+  global.AcmeKitModule.setCustomLink(register)
 
   return output
 }
@@ -559,5 +559,5 @@ ${serviceBObj.module}: {
     }
   }
 
-  global.MedusaModule.setCustomLink(register)
+  global.AcmeKitModule.setCustomLink(register)
 }

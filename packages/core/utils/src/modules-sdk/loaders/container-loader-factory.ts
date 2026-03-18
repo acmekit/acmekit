@@ -1,14 +1,14 @@
 import {
   Constructor,
   LoaderOptions,
-  MedusaContainer,
+  AcmeKitContainer,
   ModuleServiceInitializeCustomDataLayerOptions,
   ModuleServiceInitializeOptions,
   RepositoryService,
 } from "/types"
 
 import { asClass } from "/deps/awilix"
-import { MedusaInternalService } from "../medusa-internal-service"
+import { AcmeKitInternalService } from "../medusa-internal-service"
 import { lowerCaseFirst } from "../../common"
 import {
   MikroOrmBaseRepository,
@@ -19,13 +19,13 @@ type RepositoryLoaderOptions = {
   moduleModels: Record<string, any>
   moduleRepositories?: Record<string, any>
   customRepositories: Record<string, any>
-  container: MedusaContainer
+  container: AcmeKitContainer
 }
 
 type ServiceLoaderOptions = {
   moduleModels: Record<string, any>
   moduleServices: Record<string, any>
-  container: MedusaContainer
+  container: AcmeKitContainer
 }
 
 /**
@@ -100,7 +100,7 @@ export function loadModuleServices({
     const finalService = moduleServicesMap.get(mappedServiceName)
 
     if (!finalService) {
-      moduleServicesMap.set(mappedServiceName, MedusaInternalService(Model))
+      moduleServicesMap.set(mappedServiceName, AcmeKitInternalService(Model))
     }
   })
 

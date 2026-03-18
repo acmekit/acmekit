@@ -1,6 +1,6 @@
 import { z } from "/deps/zod"
 import { NextFunction } from "express"
-import { MedusaRequest, MedusaResponse } from "../types"
+import { AcmeKitRequest, AcmeKitResponse } from "../types"
 import { zodValidator } from "../../zod"
 
 export function validateAndTransformBody(
@@ -11,13 +11,13 @@ export function validateAndTransformBody(
         customSchema?: z.ZodOptional<z.ZodNullable<z.ZodObject<any, any>>>
       ) => z.ZodObject<any, any> | z.ZodEffects<any, any>)
 ): (
-  req: MedusaRequest,
-  res: MedusaResponse,
+  req: AcmeKitRequest,
+  res: AcmeKitResponse,
   next: NextFunction
 ) => Promise<void> {
   return async function validateBody(
-    req: MedusaRequest,
-    _: MedusaResponse,
+    req: AcmeKitRequest,
+    _: AcmeKitResponse,
     next: NextFunction
   ) {
     try {

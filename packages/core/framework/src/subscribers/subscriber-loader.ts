@@ -1,7 +1,7 @@
 import {
   Event,
   IEventBusModuleService,
-  MedusaContainer,
+  AcmeKitContainer,
   Subscriber,
 } from "/types"
 import {
@@ -41,7 +41,7 @@ export class SubscriberLoader extends ResourceLoader {
   constructor(
     sourceDir: string | string[],
     options: Record<string, unknown> = {},
-    container: MedusaContainer
+    container: AcmeKitContainer
   ) {
     super(sourceDir, container)
     this.#pluginOptions = options

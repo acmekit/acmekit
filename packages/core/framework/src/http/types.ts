@@ -8,10 +8,10 @@ import type { NextFunction, Request, Response } from "express"
 
 import {
   FindConfig,
-  MedusaPricingContext,
+  AcmeKitPricingContext,
   RequestQueryFields,
 } from "/types"
-import { MedusaContainer } from "../container"
+import { AcmeKitContainer } from "../container"
 import { PolicyAction } from "./middlewares/check-permissions"
 import { RestrictedFields } from "./utils/restricted-fields"
 
@@ -31,24 +31,24 @@ export const HTTP_METHODS = [
 export type RouteVerb = (typeof HTTP_METHODS)[number]
 export type MiddlewareVerb = "USE" | "ALL" | RouteVerb
 
-type SyncRouteHandler = (req: MedusaRequest, res: MedusaResponse) => void
+type SyncRouteHandler = (req: AcmeKitRequest, res: AcmeKitResponse) => void
 
 export type AsyncRouteHandler = (
-  req: MedusaRequest,
-  res: MedusaResponse
+  req: AcmeKitRequest,
+  res: AcmeKitResponse
 ) => Promise<void>
 
 export type RouteHandler = SyncRouteHandler | AsyncRouteHandler
 
 export type MiddlewareFunction =
-  | MedusaRequestHandler
+  | AcmeKitRequestHandler
   | ((...args: any[]) => any)
 
-export type MedusaErrorHandlerFunction = (
+export type AcmeKitErrorHandlerFunction = (
   error: any,
-  req: MedusaRequest,
-  res: MedusaResponse,
-  next: MedusaNextFunction
+  req: AcmeKitRequest,
+  res: AcmeKitResponse,
+  next: AcmeKitNextFunction
 ) => Promise<void> | void
 
 export type ParserConfigArgs = {
@@ -75,7 +75,7 @@ export type MiddlewareRoute = {
 }
 
 export type MiddlewaresConfig = {
-  errorHandler?: false | MedusaErrorHandlerFunction
+  errorHandler?: false | AcmeKitErrorHandlerFunction
   routes?: MiddlewareRoute[]
 }
 
@@ -127,7 +127,7 @@ export type GlobalMiddlewareDescriptor = {
   config?: MiddlewaresConfig
 }
 
-export interface MedusaRequest<
+export interface AcmeKitRequest<
   Body = unknown,
   QueryFields = Record<string, unknown>
 > extends Request<{ [key: string]: string }, any, Body> {
@@ -160,7 +160,7 @@ export interface MedusaRequest<
   /**
    * @deprecated Use {@link queryConfig} instead.
    */
-  remoteQueryConfig: MedusaRequest["queryConfig"]
+  remoteQueryConfig: AcmeKitRequest["queryConfig"]
 
   /**
    * An object containing the fields that are filterable e.g `{ id: Any<String> }`
@@ -175,7 +175,7 @@ export interface MedusaRequest<
    */
   allowed?: string[]
   errors: string[]
-  scope: MedusaContainer
+  scope: AcmeKitContainer
   session?: any
   rawBody?: any
   requestId?: string
@@ -185,7 +185,7 @@ export interface MedusaRequest<
   /**
    * An object that carries the context that is used to calculate prices for variants
    */
-  pricingContext?: MedusaPricingContext
+  pricingContext?: AcmeKitPricingContext
   /**
    * A generic context object that can be used across the request lifecycle
    */
@@ -226,28 +226,28 @@ export interface SecretKeyContext {
 export interface AuthenticatedMedusaRequest<
   Body = unknown,
   QueryFields = Record<string, unknown>
-> extends MedusaRequest<Body, QueryFields> {
+> extends AcmeKitRequest<Body, QueryFields> {
   auth_context: AuthContext
   publishable_key_context?: PublishableKeyContext
   secret_key_context?: SecretKeyContext
   policies?: PolicyAction[]
 }
 
-export interface MedusaStoreRequest<
+export interface AcmeKitStoreRequest<
   Body = unknown,
   QueryFields = Record<string, unknown>
-> extends MedusaRequest<Body, QueryFields> {
+> extends AcmeKitRequest<Body, QueryFields> {
   auth_context?: AuthContext
   publishable_key_context: PublishableKeyContext
   policies?: PolicyAction | PolicyAction[]
 }
 
-export type MedusaResponse<Body = unknown> = Response<Body>
+export type AcmeKitResponse<Body = unknown> = Response<Body>
 
-export type MedusaNextFunction = NextFunction
+export type AcmeKitNextFunction = NextFunction
 
-export type MedusaRequestHandler<Body = unknown, Res = unknown> = (
-  req: MedusaRequest<Body>,
-  res: MedusaResponse<Res>,
-  next: MedusaNextFunction
+export type AcmeKitRequestHandler<Body = unknown, Res = unknown> = (
+  req: AcmeKitRequest<Body>,
+  res: AcmeKitResponse<Res>,
+  next: AcmeKitNextFunction
 ) => Promise<void> | void

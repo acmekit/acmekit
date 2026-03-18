@@ -1,10 +1,10 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { AdminUpdateViewConfigurationType } from "../validators"
 import { HttpTypes } from "/framework/types"
-import { MedusaError, Modules } from "/framework/utils"
+import { AcmeKitError, Modules } from "/framework/utils"
 import { updateViewConfigurationWorkflow } from "/core-flows"
 
 /**
@@ -13,7 +13,7 @@ import { updateViewConfigurationWorkflow } from "/core-flows"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminGetViewConfigurationParams>,
-  res: MedusaResponse<HttpTypes.AdminViewConfigurationResponse>
+  res: AcmeKitResponse<HttpTypes.AdminViewConfigurationResponse>
 ) => {
   const settingsService = req.scope.resolve(Modules.SETTINGS)
 
@@ -27,8 +27,8 @@ export const GET = async (
     viewConfiguration.user_id !== req.auth_context.actor_id &&
     !req.auth_context.app_metadata?.admin
   ) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       "You don't have access to this view configuration"
     )
   }
@@ -42,7 +42,7 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminUpdateViewConfigurationType>,
-  res: MedusaResponse<HttpTypes.AdminViewConfigurationResponse>
+  res: AcmeKitResponse<HttpTypes.AdminViewConfigurationResponse>
 ) => {
   const settingsService = req.scope.resolve(Modules.SETTINGS)
 
@@ -53,8 +53,8 @@ export const POST = async (
   )
 
   if (existing.user_id && existing.user_id !== req.auth_context.actor_id) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       "You can only update your own view configurations"
     )
   }
@@ -77,7 +77,7 @@ export const POST = async (
  */
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse<HttpTypes.AdminViewConfigurationDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminViewConfigurationDeleteResponse>
 ) => {
   const settingsService = req.scope.resolve(Modules.SETTINGS)
 
@@ -88,8 +88,8 @@ export const DELETE = async (
   )
 
   if (existing.user_id && existing.user_id !== req.auth_context.actor_id) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       "You can only delete your own view configurations"
     )
   }

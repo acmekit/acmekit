@@ -1035,9 +1035,9 @@ To verify that the caching is working, you can create a simple [API route](!docs
 To create an API route, create a new file at `src/api/test-cache/route.ts` with the following content:
 
 ```ts title="src/api/test-cache/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+export const GET = async (req: AcmeKitRequest, res: MedusaResponse) => {
   const query = req.scope.resolve("query")
     
   // Test caching with a simple query

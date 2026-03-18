@@ -172,9 +172,9 @@ To emit a service event:
 
 ```ts title="src/modules/blog/service.ts" highlights={["9"]}
 import { IEventBusService } from "/framework/types"
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   protected eventBusService_: AbstractEventBusModuleService

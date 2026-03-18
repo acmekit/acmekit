@@ -228,15 +228,15 @@ An API route is created in a `route.ts` file under a sub-directory of the `src/a
 So, to create an API route at the path `/test-sentry`, create the file `src/api/test-sentry/route.ts` with the following content:
 
 ```ts title="src/api/test-sentry/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitError } from "/framework/utils"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
-  throw new MedusaError(
-    MedusaError.Types.UNEXPECTED_STATE,
+  throw new AcmeKitError(
+    AcmeKitError.Types.UNEXPECTED_STATE,
     "This is a test error for Sentry integration."
   )
 }
@@ -247,7 +247,7 @@ Since you export a `GET` route handler function, you expose a `GET` API route at
 1. A request object with details and context on the request, such as body parameters.
 2. A response object to manipulate and send the response.
 
-In the route handler, you throw a `MedusaError` with a custom message. This error will be returned as a response to the request. Later, when you configure error capturing in Sentry, this error will be captured and displayed in the Sentry dashboard.
+In the route handler, you throw a `AcmeKitError` with a custom message. This error will be returned as a response to the request. Later, when you configure error capturing in Sentry, this error will be captured and displayed in the Sentry dashboard.
 
 To test the API route, make sure your Medusa application is running, then go to `http://localhost:9000/test-sentry` in your browser or use `curl`:
 
@@ -304,18 +304,18 @@ import {
   defineMiddlewares, 
   errorHandler, 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import * as Sentry from "@sentry/node"
 
 const originalErrorHandler = errorHandler()
 
 export default defineMiddlewares({
   errorHandler: (
-    error: MedusaError | any, 
-    req: MedusaRequest, 
+    error: AcmeKitError | any, 
+    req: AcmeKitRequest, 
     res: MedusaResponse, 
     next: MedusaNextFunction
   ) => {

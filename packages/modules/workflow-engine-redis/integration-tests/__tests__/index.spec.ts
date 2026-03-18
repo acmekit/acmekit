@@ -10,7 +10,7 @@ import {
 import {
   IWorkflowEngineService,
   Logger,
-  MedusaContainer,
+  AcmeKitContainer,
   RemoteQueryFunction,
 } from "/framework/types"
 import {
@@ -111,7 +111,7 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
       })
 
       let query: RemoteQueryFunction
-      let sharedContainer_: MedusaContainer
+      let sharedContainer_: AcmeKitContainer
 
       it(`should export the appropriate linkable configuration`, () => {
         const linkable = Module(Modules.WORKFLOW_ENGINE, {

@@ -3,17 +3,17 @@ import {
   updateCustomersWorkflow,
 } from "/core-flows"
 import { AdditionalData, HttpTypes } from "/framework/types"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { refetchCustomer } from "../helpers"
 import { AdminUpdateCustomerType } from "../validators"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<{}, HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.AdminCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerResponse>
 ) => {
   const customer = await refetchCustomer(
     req.params.id,
@@ -22,8 +22,8 @@ export const GET = async (
   )
 
   if (!customer) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Customer with id: ${req.params.id} not found`
     )
   }
@@ -36,14 +36,14 @@ export const POST = async (
     AdminUpdateCustomerType & AdditionalData,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerResponse>
 ) => {
   const existingCustomer = await refetchCustomer(req.params.id, req.scope, [
     "id",
   ])
   if (!existingCustomer) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Customer with id "${req.params.id}" not found`
     )
   }
@@ -68,7 +68,7 @@ export const POST = async (
 
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse<HttpTypes.AdminCustomerDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerDeleteResponse>
 ) => {
   const id = req.params.id
 

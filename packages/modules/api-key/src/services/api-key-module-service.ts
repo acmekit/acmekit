@@ -18,9 +18,9 @@ import {
   isObject,
   isPresent,
   isString,
-  MedusaContext,
-  MedusaError,
-  MedusaService,
+  AcmeKitContext,
+  AcmeKitError,
+  AcmeKitService,
   promiseAll,
 } from "/framework/utils"
 import { ApiKey } from "@models"
@@ -42,7 +42,7 @@ type InjectedDependencies = {
 }
 
 export class ApiKeyModuleService
-  extends MedusaService<{
+  extends AcmeKitService<{
     ApiKey: { dto: ApiKeyTypes.ApiKeyDTO }
   }>({ ApiKey })
   implements IApiKeyModuleService
@@ -71,7 +71,7 @@ export class ApiKeyModuleService
   // @ts-expect-error
   async deleteApiKeys(
     ids: string | string[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ) {
     return await this.deleteApiKeys_(ids, sharedContext)
   }
@@ -79,7 +79,7 @@ export class ApiKeyModuleService
   @InjectTransactionManager()
   protected async deleteApiKeys_(
     ids: string | string[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ) {
     const apiKeyIds = Array.isArray(ids) ? ids : [ids]
 
@@ -98,8 +98,8 @@ export class ApiKeyModuleService
     ).map((apiKey) => apiKey.id)
 
     if (isPresent(unrevokedApiKeys)) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `Cannot delete api keys that are not revoked - ${unrevokedApiKeys.join(
           ", "
         )}`
@@ -125,7 +125,7 @@ export class ApiKeyModuleService
   //@ts-expect-error
   async createApiKeys(
     data: ApiKeyTypes.CreateApiKeyDTO | ApiKeyTypes.CreateApiKeyDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<ApiKeyTypes.ApiKeyDTO | ApiKeyTypes.ApiKeyDTO[]> {
     const [createdApiKeys, generatedTokens] = await this.createApiKeys_(
       Array.isArray(data) ? data : [data],
@@ -153,7 +153,7 @@ export class ApiKeyModuleService
   @InjectTransactionManager()
   protected async createApiKeys_(
     data: ApiKeyTypes.CreateApiKeyDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<[InferEntityType<typeof ApiKey>[], TokenDTO[]]> {
     const normalizedInput: CreateApiKeyDTO[] = []
     const generatedTokens: TokenDTO[] = []
@@ -195,7 +195,7 @@ export class ApiKeyModuleService
   @EmitEvents()
   async upsertApiKeys(
     data: ApiKeyTypes.UpsertApiKeyDTO | ApiKeyTypes.UpsertApiKeyDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<ApiKeyTypes.ApiKeyDTO | ApiKeyTypes.ApiKeyDTO[]> {
     const result = await this.upsertApiKeys_(data, sharedContext)
 
@@ -205,7 +205,7 @@ export class ApiKeyModuleService
   @InjectTransactionManager()
   protected async upsertApiKeys_(
     data: ApiKeyTypes.UpsertApiKeyDTO | ApiKeyTypes.UpsertApiKeyDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<ApiKeyTypes.ApiKeyDTO | ApiKeyTypes.ApiKeyDTO[]> {
     const input = Array.isArray(data) ? data : [data]
     const forUpdate = input.filter(
@@ -273,7 +273,7 @@ export class ApiKeyModuleService
   async updateApiKeys(
     idOrSelector: string | FilterableApiKeyProps,
     data: ApiKeyTypes.UpdateApiKeyDTO,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<ApiKeyTypes.ApiKeyDTO[] | ApiKeyTypes.ApiKeyDTO> {
     let normalizedInput = await this.normalizeUpdateInput_<UpdateApiKeyInput>(
       idOrSelector,
@@ -298,7 +298,7 @@ export class ApiKeyModuleService
   @InjectTransactionManager()
   protected async updateApiKeys_(
     normalizedInput: UpdateApiKeyInput[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<InferEntityType<typeof ApiKey>[]> {
     const updateRequest = normalizedInput.map((k) => ({
       id: k.id,
@@ -390,7 +390,7 @@ export class ApiKeyModuleService
   async revoke(
     idOrSelector: string | FilterableApiKeyProps,
     data: ApiKeyTypes.RevokeApiKeyDTO,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<ApiKeyTypes.ApiKeyDTO[] | ApiKeyTypes.ApiKeyDTO> {
     const normalizedInput = await this.normalizeUpdateInput_<RevokeApiKeyInput>(
       idOrSelector,
@@ -411,7 +411,7 @@ export class ApiKeyModuleService
   @InjectTransactionManager()
   async revoke_(
     normalizedInput: RevokeApiKeyInput[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<InferEntityType<typeof ApiKey>[]> {
     await this.validateRevokeApiKeys_(normalizedInput)
 
@@ -439,7 +439,7 @@ export class ApiKeyModuleService
   @InjectManager()
   async authenticate(
     token: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<ApiKeyTypes.ApiKeyDTO | false> {
     const result = await this.authenticate_(token, sharedContext)
     if (!result) {
@@ -457,7 +457,7 @@ export class ApiKeyModuleService
   @InjectTransactionManager()
   protected async authenticate_(
     token: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<InferEntityType<typeof ApiKey> | false> {
     const secretKeys = await this.apiKeyService_.list(
       {
@@ -536,15 +536,15 @@ export class ApiKeyModuleService
     }
 
     if (data.some((k) => !k.id)) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `You must provide an api key id field when revoking a key.`
       )
     }
 
     if (data.some((k) => !k.revoked_by)) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `You must provide a revoked_by field when revoking a key.`
       )
     }
@@ -560,8 +560,8 @@ export class ApiKeyModuleService
     )
 
     if (revokedApiKeys.length) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `There are ${revokedApiKeys.length} secret keys that are already revoked.`
       )
     }

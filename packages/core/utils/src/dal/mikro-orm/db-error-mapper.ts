@@ -5,7 +5,7 @@ import {
   NotNullConstraintViolationException,
   UniqueConstraintViolationException,
 } from "/deps/mikro-orm/core"
-import { MedusaError, upperCaseFirst } from "../../common"
+import { AcmeKitError, upperCaseFirst } from "../../common"
 
 function parseValue(value: string) {
   switch (value) {
@@ -20,7 +20,7 @@ function parseValue(value: string) {
 
 export const dbErrorMapper = (err: Error) => {
   if (err instanceof NotFoundError) {
-    throw new MedusaError(MedusaError.Types.NOT_FOUND, err.message)
+    throw new AcmeKitError(AcmeKitError.Types.NOT_FOUND, err.message)
   }
 
   if (
@@ -32,8 +32,8 @@ export const dbErrorMapper = (err: Error) => {
       throw err
     }
 
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       `${upperCaseFirst(info.table.split("_").join(" "))} with ${info.keys
         .map((key, i) => `${key}: ${parseValue(info.values[i])}`)
         .join(", ")}, already exists.`
@@ -44,8 +44,8 @@ export const dbErrorMapper = (err: Error) => {
     err instanceof NotNullConstraintViolationException ||
     (err as any).code === "23502"
   ) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       `Cannot set field '${(err as any).column}' of ${upperCaseFirst(
         (err as any).table.split("_").join(" ")
       )} to null`
@@ -57,8 +57,8 @@ export const dbErrorMapper = (err: Error) => {
     (err as any).code === "42703"
   ) {
     const userFriendlyMessage = err.message.match(/(column.*)/)?.[0]
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       userFriendlyMessage ?? err.message
     )
   }
@@ -68,8 +68,8 @@ export const dbErrorMapper = (err: Error) => {
     (err as any).code === "23503"
   ) {
     const info = getConstraintInfo(err)
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `You tried to set relationship ${info?.keys.map(
         (key, i) => `${key}: ${info.values[i]}`
       )}, but such entity does not exist`

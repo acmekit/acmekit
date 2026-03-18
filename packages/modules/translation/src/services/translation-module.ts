@@ -18,10 +18,10 @@ import {
   DmlEntity,
   EmitEvents,
   InjectManager,
-  MedusaContext,
-  MedusaError,
-  MedusaErrorTypes,
-  MedusaService,
+  AcmeKitContext,
+  AcmeKitError,
+  AcmeKitErrorTypes,
+  AcmeKitService,
   normalizeLocale,
   toSnakeCase,
 } from "/framework/utils"
@@ -41,7 +41,7 @@ type InjectedDependencies = {
 }
 
 export default class TranslationModuleService
-  extends MedusaService<{
+  extends AcmeKitService<{
     Locale: {
       dto: TranslationTypes.LocaleDTO
     }
@@ -134,7 +134,7 @@ export default class TranslationModuleService
   @InjectManager()
   async getTranslatableFields(
     entityType?: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<Record<string, string[]>> {
     const filters = entityType ? { entity_type: entityType } : {}
     const settings = await this.settingsService_.list(
@@ -153,7 +153,7 @@ export default class TranslationModuleService
   @InjectManager()
   async getInactiveTranslatableFields(
     entityType?: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<Record<string, string[]>> {
     const translatableFields = await this.getTranslatableFields(
       entityType,
@@ -195,7 +195,7 @@ export default class TranslationModuleService
   async retrieveTranslation(
     id: string,
     config: FindConfig<TranslationTypes.TranslationDTO> = {},
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<TranslationTypes.TranslationDTO> {
     const configWithReference =
       TranslationModuleService.ensureReferenceFieldInConfig(config)
@@ -243,7 +243,7 @@ export default class TranslationModuleService
   async listTranslations(
     filters: FilterableTranslationProps = {},
     config: FindConfig<TranslationTypes.TranslationDTO> = {},
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<TranslationTypes.TranslationDTO[]> {
     const preparedFilters = TranslationModuleService.prepareFilters(filters)
     const configWithReference =
@@ -272,7 +272,7 @@ export default class TranslationModuleService
   async listAndCountTranslations(
     filters: FilterableTranslationProps = {},
     config: FindConfig<TranslationTypes.TranslationDTO> = {},
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<[TranslationTypes.TranslationDTO[], number]> {
     const preparedFilters = TranslationModuleService.prepareFilters(filters)
     const configWithReference =
@@ -315,7 +315,7 @@ export default class TranslationModuleService
   // @ts-expect-error
   async createLocales(
     data: TranslationTypes.CreateLocaleDTO | TranslationTypes.CreateLocaleDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<TranslationTypes.LocaleDTO | TranslationTypes.LocaleDTO[]> {
     const dataArray = Array.isArray(data) ? data : [data]
     const normalizedData = dataArray.map((locale) => ({
@@ -351,7 +351,7 @@ export default class TranslationModuleService
   // @ts-expect-error
   async createTranslations(
     data: CreateTranslationDTO | CreateTranslationDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<
     TranslationTypes.TranslationDTO | TranslationTypes.TranslationDTO[]
   > {
@@ -399,7 +399,7 @@ export default class TranslationModuleService
     data:
       | TranslationTypes.UpdateTranslationDTO
       | TranslationTypes.UpdateTranslationDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<
     TranslationTypes.TranslationDTO | TranslationTypes.TranslationDTO[]
   > {
@@ -462,7 +462,7 @@ export default class TranslationModuleService
   // @ts-expect-error
   async createTranslationSettings(
     data: CreateTranslationSettingsDTO[] | CreateTranslationSettingsDTO,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<
     | TranslationTypes.TranslationSettingsDTO
     | TranslationTypes.TranslationSettingsDTO[]
@@ -484,7 +484,7 @@ export default class TranslationModuleService
   // @ts-expect-error
   async updateTranslationSettings(
     data: UpdateTranslationSettingsDTO | UpdateTranslationSettingsDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<
     | TranslationTypes.TranslationSettingsDTO[]
     | TranslationTypes.TranslationSettingsDTO
@@ -537,20 +537,20 @@ export default class TranslationModuleService
   @InjectManager()
   async getStatistics(
     input: TranslationTypes.TranslationStatisticsInput,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<TranslationTypes.TranslationStatisticsOutput> {
     const { locales, entities } = input
 
     if (!locales || !locales.length) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "At least one locale must be provided"
       )
     }
 
     if (!entities || !Object.keys(entities).length) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "At least one entity type must be provided"
       )
     }
@@ -693,8 +693,8 @@ export default class TranslationModuleService
     }
 
     if (invalidSettings.length) {
-      throw new MedusaError(
-        MedusaErrorTypes.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitErrorTypes.INVALID_DATA,
         "Invalid translation settings:\n" +
           invalidSettings
             .map(
@@ -720,7 +720,7 @@ export default class TranslationModuleService
    */
   protected async ensureEntityType_(
     settings: (CreateTranslationSettingsDTO | UpdateTranslationSettingsDTO)[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<
     (
       | CreateTranslationSettingsDTO

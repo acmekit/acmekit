@@ -34,13 +34,13 @@ use this within a [seed script](https://docs.medusajs.com/learn/fundamentals/cus
     
 ```ts title="src/api/workflow/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { batchProductVariantsWorkflow } from "/medusa/core-flows"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await batchProductVariantsWorkflow(req.scope)
@@ -117,11 +117,11 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { batchProductVariantsWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const { result } = await batchProductVariantsWorkflow(container)
     .run({

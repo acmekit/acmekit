@@ -1,4 +1,4 @@
-import { isPresent, MedusaError } from "/framework/utils"
+import { isPresent, AcmeKitError } from "/framework/utils"
 import { createStep } from "/framework/workflows-sdk"
 
 /**
@@ -24,8 +24,8 @@ export const validatePresenceOfStep = createStep(
     if (invalid.length) {
       const invalidFields = invalid.join(", ")
 
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `Field(s) are required to have value to continue - ${invalidFields}`
       )
     }

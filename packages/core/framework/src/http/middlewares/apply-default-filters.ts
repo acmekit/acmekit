@@ -1,17 +1,17 @@
 import { isObject, isPresent } from "/utils"
 import type {
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
 } from "../types"
 
 export function applyDefaultFilters<TFilter extends object>(
   filtersToApply: TFilter
 ) {
   return async function defaultFiltersMiddleware(
-    req: MedusaRequest,
-    _: MedusaResponse,
-    next: MedusaNextFunction
+    req: AcmeKitRequest,
+    _: AcmeKitResponse,
+    next: AcmeKitNextFunction
   ) {
     for (const [filter, filterValue] of Object.entries(filtersToApply)) {
       let valueToApply = filterValue

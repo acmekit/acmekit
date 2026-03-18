@@ -1,4 +1,4 @@
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 import { ContainerRegistrationKeys, useCache } from "/utils"
 import { FlagRouter } from "../feature-flags/flag-router"
 
@@ -17,7 +17,7 @@ export type PermissionAction = {
 export type HasPermissionInput = {
   roles: string | string[]
   actions: PermissionAction | PermissionAction[]
-  container: MedusaContainer
+  container: AcmeKitContainer
 }
 
 type RolePoliciesCache = Map<string, Map<string, Set<string>>>
@@ -100,7 +100,7 @@ export async function hasPermission(
  */
 async function fetchSingleRolePolicies(
   roleId: string,
-  container: MedusaContainer
+  container: AcmeKitContainer
 ): Promise<Map<string, Set<string>>> {
   const query = container.resolve(ContainerRegistrationKeys.QUERY)
 
@@ -149,7 +149,7 @@ async function fetchSingleRolePolicies(
  */
 async function fetchRolePolicies(
   roleIds: string[],
-  container: MedusaContainer
+  container: AcmeKitContainer
 ): Promise<RolePoliciesCache> {
   const rolePoliciesMap: RolePoliciesCache = new Map()
 

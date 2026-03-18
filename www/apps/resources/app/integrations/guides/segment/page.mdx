@@ -134,7 +134,7 @@ export const serviceHighlights = [
 ```ts title="src/modules/segment/service.ts" highlights={serviceHighlights}
 import { 
   AbstractAnalyticsProviderService,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import { Analytics } from "@segment/analytics-node"
 
@@ -151,8 +151,8 @@ class SegmentAnalyticsProviderService extends AbstractAnalyticsProviderService {
   constructor(container: InjectedDependencies, options: Options) {
     super()
     if (!options.writeKey) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Segment write key is required"
       )
     }
@@ -258,8 +258,8 @@ class SegmentAnalyticsProviderService extends AbstractAnalyticsProviderService {
       data.properties.anonymousId : undefined
 
     if (!userId && !anonymousId) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA, 
         `Actor or group ID is required for event ${data.event}`
       )
     }

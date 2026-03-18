@@ -258,7 +258,7 @@ You add an `accessToken` property to store the access token and its expiration d
 Next, add the following `authenticate` method to the `MagentoModuleService` class:
 
 ```ts title="src/modules/magento/service.ts"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 export default class MagentoModuleService {
   // ...
@@ -274,7 +274,7 @@ export default class MagentoModuleService {
     const token = await response.text()
 
     if (!response.ok) {
-      throw new MedusaError(MedusaError.Types.UNAUTHORIZED, `Failed to authenticate with Magento: ${token}`)
+      throw new AcmeKitError(AcmeKitError.Types.UNAUTHORIZED, `Failed to authenticate with Magento: ${token}`)
     }
 
     this.accessToken = {
@@ -287,7 +287,7 @@ export default class MagentoModuleService {
 
 You create an `authenticate` method that sends a POST request to the Magento server's `/rest/{storeCode}/V1/integration/admin/token` endpoint, passing the username and password in the request body. 
 
-If the request is successful, you store the access token and its expiration date in the `accessToken` property. If the request fails, you throw a `MedusaError` with the error message returned by Magento.
+If the request is successful, you store the access token and its expiration date in the `accessToken` property. If the request fails, you throw a `AcmeKitError` with the error message returned by Magento.
 
 Lastly, add an `isAccessTokenExpired` method that checks if the access token has expired:
 
@@ -456,8 +456,8 @@ const { items: products, ...pagination }: MagentoPaginatedResponse<MagentoProduc
 ).then((res) => res.json())
 .catch((err) => {
   console.log(err)
-  throw new MedusaError(
-    MedusaError.Types.INVALID_DATA, 
+  throw new AcmeKitError(
+    AcmeKitError.Types.INVALID_DATA, 
     `Failed to get products from Magento: ${err.message}`
   )
 })
@@ -484,8 +484,8 @@ await promiseAll(
       }
     ).then((res) => res.json())
     .catch((err) => {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA, 
         `Failed to get product children from Magento: ${err.message}`
       )
     })
@@ -553,8 +553,8 @@ export default class MagentoModuleService {
       }
     ).then((res) => res.json())
     .catch((err) => {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA, 
         `Failed to get attributes from Magento: ${err.message}`
       )
     })
@@ -1083,11 +1083,11 @@ To create a scheduled job, in your plugin, create the file `src/jobs/migrate-mag
 ![Diagram showcasing the migrate-magento file to create](https://res.cloudinary.com/dza7lstvk/image/upload/v1739358924/Medusa%20Resources/magento-7_rqoodo.jpg)
 
 ```ts title="src/jobs/migrate-magento.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { migrateProductsFromMagentoWorkflow } from "../workflows"
 
 export default async function migrateMagentoJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const logger = container.resolve("logger")
     logger.info("Migrating products from Magento...")

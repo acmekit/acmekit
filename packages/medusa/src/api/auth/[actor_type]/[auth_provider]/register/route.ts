@@ -1,4 +1,4 @@
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 import {
   AuthenticationInput,
   ConfigModule,
@@ -6,12 +6,12 @@ import {
 } from "/framework/types"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
   Modules,
 } from "/framework/utils"
 import { generateJwtTokenForAuthIdentity } from "../../../utils/generate-jwt-token"
 
-export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
+export const POST = async (req: AcmeKitRequest, res: AcmeKitResponse) => {
   const { actor_type, auth_provider } = req.params
   const config: ConfigModule = req.scope.resolve(
     ContainerRegistrationKeys.CONFIG_MODULE
@@ -52,8 +52,8 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
     return res.status(200).json({ token })
   }
 
-  throw new MedusaError(
-    MedusaError.Types.UNAUTHORIZED,
+  throw new AcmeKitError(
+    AcmeKitError.Types.UNAUTHORIZED,
     error || "Authentication failed"
   )
 }

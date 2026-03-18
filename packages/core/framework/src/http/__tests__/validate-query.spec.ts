@@ -1,5 +1,5 @@
 import { z } from "/deps/zod"
-import { MedusaNextFunction, MedusaRequest, MedusaResponse } from "../types"
+import { AcmeKitNextFunction, AcmeKitRequest, AcmeKitResponse } from "../types"
 import { RestrictedFields } from "../utils/restricted-fields"
 import { validateAndTransformQuery } from "../utils/validate-query"
 
@@ -62,9 +62,9 @@ describe("validateAndTransformQuery", () => {
     let mockRequest = {
       restrictedFields: new RestrictedFields(),
       query: {},
-    } as MedusaRequest
-    const mockResponse = {} as MedusaResponse
-    const nextFunction: MedusaNextFunction = jest.fn()
+    } as AcmeKitRequest
+    const mockResponse = {} as AcmeKitResponse
+    const nextFunction: AcmeKitNextFunction = jest.fn()
 
     const expectations = ({
       offset,
@@ -155,7 +155,7 @@ describe("validateAndTransformQuery", () => {
         offset: "5",
         order: "created_at",
       },
-    } as unknown as MedusaRequest
+    } as unknown as AcmeKitRequest
 
     middleware = validateAndTransformQuery(createFindParams(), queryConfig)
 
@@ -175,7 +175,7 @@ describe("validateAndTransformQuery", () => {
         offset: "5",
         order: "created_at",
       },
-    } as unknown as MedusaRequest
+    } as unknown as AcmeKitRequest
 
     queryConfig = {
       defaults: [
@@ -209,9 +209,9 @@ describe("validateAndTransformQuery", () => {
       query: {
         fields: "id",
       },
-    } as unknown as MedusaRequest
-    const mockResponse = {} as MedusaResponse
-    const nextFunction: MedusaNextFunction = jest.fn()
+    } as unknown as AcmeKitRequest
+    const mockResponse = {} as AcmeKitResponse
+    const nextFunction: AcmeKitNextFunction = jest.fn()
 
     let queryConfig: any = {
       defaults: [
@@ -242,7 +242,7 @@ describe("validateAndTransformQuery", () => {
       query: {
         fields: "+test_prop,-prop-test-something",
       },
-    } as unknown as MedusaRequest
+    } as unknown as AcmeKitRequest
 
     queryConfig = {
       defaults: [
@@ -284,7 +284,7 @@ describe("validateAndTransformQuery", () => {
       query: {
         fields: "+test_prop,-updated_at",
       },
-    } as unknown as MedusaRequest
+    } as unknown as AcmeKitRequest
 
     queryConfig = {
       defaults: [
@@ -327,12 +327,12 @@ describe("validateAndTransformQuery", () => {
       query: {
         fields: "product.*, *product.variants,+product.id",
       },
-    } as unknown as MedusaRequest
+    } as unknown as AcmeKitRequest
 
     restrictedFields.add(["product"])
 
-    const mockResponse = {} as MedusaResponse
-    const nextFunction: MedusaNextFunction = jest.fn()
+    const mockResponse = {} as AcmeKitResponse
+    const nextFunction: AcmeKitNextFunction = jest.fn()
 
     let queryConfig: any = {
       defaults: [
@@ -407,7 +407,7 @@ describe("validateAndTransformQuery", () => {
       query: {
         fields: "store.name",
       },
-    } as unknown as MedusaRequest
+    } as unknown as AcmeKitRequest
 
     queryConfig = {
       defaults: [

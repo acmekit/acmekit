@@ -1,10 +1,10 @@
 import { isDate } from "./is-date"
-import { MedusaError } from "./errors"
+import { AcmeKitError } from "./errors"
 
 export const GetIsoStringFromDate = (date: Date | string) => {
   if (!isDate(date)) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       `Cannot format date to ISO string: ${date}`
     )
   }

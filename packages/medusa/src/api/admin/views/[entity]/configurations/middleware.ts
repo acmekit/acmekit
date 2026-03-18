@@ -1,15 +1,15 @@
 import {
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
 } from "/framework/http"
 import { ContainerRegistrationKeys } from "/framework/utils"
 import ViewConfigurationsFeatureFlag from "../../../../../feature-flags/view-configurations"
 
 export const ensureViewConfigurationsEnabled = async (
-  req: MedusaRequest,
-  res: MedusaResponse,
-  next: MedusaNextFunction
+  req: AcmeKitRequest,
+  res: AcmeKitResponse,
+  next: AcmeKitNextFunction
 ) => {
   const flagRouter = req.scope.resolve(
     ContainerRegistrationKeys.FEATURE_FLAG_ROUTER

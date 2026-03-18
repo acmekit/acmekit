@@ -1,8 +1,8 @@
 import { ErrorRequestHandler, NextFunction, Response } from "express"
 import { fromZodIssue } from "zod-validation-error"
 
-import { ContainerRegistrationKeys, MedusaError } from "/utils"
-import { MedusaRequest } from "../types"
+import { ContainerRegistrationKeys, AcmeKitError } from "/utils"
+import { AcmeKitRequest } from "../types"
 import { formatException } from "./exception-formatter"
 
 const QUERY_RUNNER_RELEASED = "QueryRunnerAlreadyReleasedError"
@@ -15,8 +15,8 @@ const INVALID_STATE_ERROR = "invalid_state_error"
 
 export function errorHandler() {
   return function coreErrorHandler(
-    err: MedusaError,
-    req: MedusaRequest,
+    err: AcmeKitError,
+    req: AcmeKitRequest,
     res: Response,
     _: NextFunction
   ) {
@@ -44,38 +44,38 @@ export function errorHandler() {
       case QUERY_RUNNER_RELEASED:
       case TRANSACTION_STARTED:
       case TRANSACTION_NOT_STARTED:
-      case MedusaError.Types.CONFLICT:
+      case AcmeKitError.Types.CONFLICT:
         statusCode = 409
         errObj.code = INVALID_STATE_ERROR
         errObj.message =
           "The request conflicted with another request. You may retry the request with the provided Idempotency-Key."
         break
-      case MedusaError.Types.UNAUTHORIZED:
+      case AcmeKitError.Types.UNAUTHORIZED:
         statusCode = 401
         break
-      case MedusaError.Types.FORBIDDEN:
+      case AcmeKitError.Types.FORBIDDEN:
         statusCode = 403
         break
-      case MedusaError.Types.PAYMENT_AUTHORIZATION_ERROR:
+      case AcmeKitError.Types.PAYMENT_AUTHORIZATION_ERROR:
         statusCode = 422
         break
-      case MedusaError.Types.DUPLICATE_ERROR:
+      case AcmeKitError.Types.DUPLICATE_ERROR:
         statusCode = 422
         errObj.code = INVALID_REQUEST_ERROR
         break
-      case MedusaError.Types.NOT_ALLOWED:
-      case MedusaError.Types.INVALID_DATA:
+      case AcmeKitError.Types.NOT_ALLOWED:
+      case AcmeKitError.Types.INVALID_DATA:
         statusCode = 400
         break
-      case MedusaError.Types.NOT_FOUND:
+      case AcmeKitError.Types.NOT_FOUND:
         statusCode = 404
         break
-      case MedusaError.Types.DB_ERROR:
+      case AcmeKitError.Types.DB_ERROR:
         statusCode = 500
         errObj.code = API_ERROR
         break
-      case MedusaError.Types.UNEXPECTED_STATE:
-      case MedusaError.Types.INVALID_ARGUMENT:
+      case AcmeKitError.Types.UNEXPECTED_STATE:
+      case AcmeKitError.Types.INVALID_ARGUMENT:
         break
       default:
         errObj.code = "unknown_error"
@@ -93,7 +93,7 @@ export function errorHandler() {
     if ("issues" in err && Array.isArray(err.issues)) {
       const messages = err.issues.map((issue) => fromZodIssue(issue).toString())
       res.status(statusCode).json({
-        type: MedusaError.Types.INVALID_DATA,
+        type: AcmeKitError.Types.INVALID_DATA,
         message: messages.join("\n"),
       })
       return

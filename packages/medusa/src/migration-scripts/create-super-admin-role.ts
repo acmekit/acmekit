@@ -9,7 +9,7 @@
  * Usage: npx tsx packages/medusa/src/migration-scripts/create-super-admin-role.ts
  */
 
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import { ExecArgs } from "/framework/types"
 import {
   ContainerRegistrationKeys,
@@ -160,9 +160,9 @@ async function assignSuperAdminRoleToUsers(container: any): Promise<void> {
 
 export default async function createSuperAdminRole({ container }: ExecArgs) {
   if (
-    !MedusaModule.isInstalled(Modules.USER) ||
-    !MedusaModule.isInstalled(Modules.AUTH) ||
-    !MedusaModule.isInstalled(Modules.RBAC)
+    !AcmeKitModule.isInstalled(Modules.USER) ||
+    !AcmeKitModule.isInstalled(Modules.AUTH) ||
+    !AcmeKitModule.isInstalled(Modules.RBAC)
   ) {
     const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
     logger.info(

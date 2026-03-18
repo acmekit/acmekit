@@ -5,6 +5,6 @@
  * automatically just like we usually do for the classic migrations actions
  */
 export async function clearInstances() {
-  const { MedusaModule } = require("/framework/modules-sdk")
-  MedusaModule.clearInstances()
+  const { AcmeKitModule } = require("/framework/modules-sdk")
+  AcmeKitModule.clearInstances()
 }

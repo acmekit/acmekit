@@ -50,7 +50,7 @@ export const resolveRepoHighlights = [
 ]
 
 ```ts highlights={resolveRepoHighlights}
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import { InferTypeOf, DAL } from "/framework/types"
 import Post from "./models/post"
 
@@ -60,7 +60,7 @@ type InjectedDependencies = {
   postRepository: DAL.RepositoryService<Post>
 }
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   protected postRepository_: DAL.RepositoryService<Post>

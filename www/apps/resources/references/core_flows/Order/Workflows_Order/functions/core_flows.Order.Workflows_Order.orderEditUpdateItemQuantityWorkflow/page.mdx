@@ -43,13 +43,13 @@ If you use this workflow in another, you must acquire a lock before running it a
     
 ```ts title="src/api/workflow/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { orderEditUpdateItemQuantityWorkflow } from "/medusa/core-flows"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await orderEditUpdateItemQuantityWorkflow(req.scope)
@@ -104,11 +104,11 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { orderEditUpdateItemQuantityWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const { result } = await orderEditUpdateItemQuantityWorkflow(container)
     .run({

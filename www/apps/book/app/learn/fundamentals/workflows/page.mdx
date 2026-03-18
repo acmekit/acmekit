@@ -131,13 +131,13 @@ To execute the workflow, invoke it passing the [Medusa container](../medusa-cont
     
     ```ts title="src/api/workflow/route.ts" highlights={[["11"], ["12"], ["13"], ["14"], ["15"], ["16"]]} collapsibleLines="1-6" expandButtonLabel="Show Imports"
     import type {
-      MedusaRequest,
+      AcmeKitRequest,
       MedusaResponse,
     } from "/framework/http"
     import myWorkflow from "../../workflows/hello-world"
 
     export async function GET(
-      req: MedusaRequest,
+      req: AcmeKitRequest,
       res: MedusaResponse
     ) {
       const { result } = await myWorkflow(req.scope)
@@ -184,11 +184,11 @@ To execute the workflow, invoke it passing the [Medusa container](../medusa-cont
   <CodeTab label="Scheduled Job" value="scheduled-job">
     
     ```ts title="src/jobs/message-daily.ts" highlights={[["7"], ["8"], ["9"], ["10"], ["11"], ["12"]]}
-    import { MedusaContainer } from "/framework/types"
+    import { AcmeKitContainer } from "/framework/types"
     import myWorkflow from "../workflows/hello-world"
 
     export default async function myCustomJob(
-      container: MedusaContainer
+      container: AcmeKitContainer
     ) {
       const { result } = await myWorkflow(container)
         .run({

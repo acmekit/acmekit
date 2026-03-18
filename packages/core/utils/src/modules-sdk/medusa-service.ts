@@ -22,7 +22,7 @@ import {
 import { DmlEntity } from "../dml"
 import { CommonEvents } from "../event-bus"
 import { createMedusaMikroOrmEventSubscriber } from "./create-medusa-mikro-orm-event-subscriber"
-import { EmitEvents, InjectManager, MedusaContext } from "./decorators"
+import { EmitEvents, InjectManager, AcmeKitContext } from "./decorators"
 import { Modules } from "./definition"
 import { moduleEventBuilderFactory } from "./event-builder-factory"
 import { buildModelsNameToLinkableKeysMap } from "./joiner-config-builder"
@@ -30,7 +30,7 @@ import { isMedusaInternalService } from "./medusa-internal-service"
 import {
   BaseMethods,
   ExtractKeysFromConfig,
-  MedusaServiceReturnType,
+  AcmeKitServiceReturnType,
   ModelConfigurationsToConfigTemplate,
   ModelEntries,
   ModelsConfigTemplate,
@@ -76,23 +76,23 @@ function buildMethodNamesFromModel(
 }
 
 /**
- * Accessible from the MedusaService, holds the model objects when provided
+ * Accessible from the AcmeKitService, holds the model objects when provided
  */
-export const MedusaServiceModelObjectsSymbol = Symbol.for(
-  "MedusaServiceModelObjectsSymbol"
+export const AcmeKitServiceModelObjectsSymbol = Symbol.for(
+  "AcmeKitServiceModelObjectsSymbol"
 )
 
 /**
  * Symbol to mark a class as a Medusa service
  */
-export const MedusaServiceSymbol = Symbol.for("MedusaServiceSymbol")
+export const AcmeKitServiceSymbol = Symbol.for("AcmeKitServiceSymbol")
 
 /**
- * Accessible from the MedusaService, holds the model name to linkable keys map
+ * Accessible from the AcmeKitService, holds the model name to linkable keys map
  * to be used for softDelete and restore methods
  */
-export const MedusaServiceModelNameToLinkableKeysMapSymbol = Symbol.for(
-  "MedusaServiceModelNameToLinkableKeysMapSymbol"
+export const AcmeKitServiceModelNameToLinkableKeysMapSymbol = Symbol.for(
+  "AcmeKitServiceModelNameToLinkableKeysMapSymbol"
 )
 
 /**
@@ -101,8 +101,8 @@ export const MedusaServiceModelNameToLinkableKeysMapSymbol = Symbol.for(
  */
 export function isMedusaService(
   value: any
-): value is MedusaServiceReturnType<any> {
-  return value && value?.prototype[MedusaServiceSymbol]
+): value is AcmeKitServiceReturnType<any> {
+  return value && value?.prototype[AcmeKitServiceSymbol]
 }
 
 /**
@@ -123,18 +123,18 @@ export function isMedusaService(
  *   RuleType,
  * }
  *
- * class MyService extends ModulesSdkUtils.MedusaService(models) {}
+ * class MyService extends ModulesSdkUtils.AcmeKitService(models) {}
  *
  * @param models
  */
-export function MedusaService<
+export function AcmeKitService<
   const ModelsConfig extends ModelsConfigTemplate = { __empty: any },
   const TModels extends ModelEntries<
     ExtractKeysFromConfig<ModelsConfig>
   > = ModelEntries<ExtractKeysFromConfig<ModelsConfig>>
 >(
   models: TModels
-): MedusaServiceReturnType<
+): AcmeKitServiceReturnType<
   ModelsConfig extends { __empty: any }
     ? ModelConfigurationsToConfigTemplate<TModels>
     : ModelsConfig
@@ -155,7 +155,7 @@ export function MedusaService<
       }
 
       // The order of the decorators is important, do not change it
-      MedusaContext()(klassPrototype, methodName, contextIndex)
+      AcmeKitContext()(klassPrototype, methodName, contextIndex)
       EmitEvents()(klassPrototype, methodName, descriptorMockRef)
       InjectManager()(klassPrototype, methodName, descriptorMockRef)
 
@@ -285,7 +285,7 @@ export function MedusaService<
           // eg: product.id = product_id, variant.id = variant_id
           const mappedCascadedModelsMap = mapObjectTo(
             cascadedModelsMap,
-            this[MedusaServiceModelNameToLinkableKeysMapSymbol],
+            this[AcmeKitServiceModelNameToLinkableKeysMapSymbol],
             {
               pick: config.returnLinkableKeys,
             }
@@ -317,7 +317,7 @@ export function MedusaService<
           // eg: product.id = product_id, variant.id = variant_id
           mappedCascadedModelsMap = mapObjectTo(
             cascadedModelsMap,
-            this[MedusaServiceModelNameToLinkableKeysMapSymbol],
+            this[AcmeKitServiceModelNameToLinkableKeysMapSymbol],
             {
               pick: config.returnLinkableKeys,
             }
@@ -333,16 +333,16 @@ export function MedusaService<
   }
 
   class AbstractModuleService_ {
-    [MedusaServiceSymbol] = true
+    [AcmeKitServiceSymbol] = true
 
-    static [MedusaServiceModelObjectsSymbol] =
-      models as unknown as MedusaServiceReturnType<
+    static [AcmeKitServiceModelObjectsSymbol] =
+      models as unknown as AcmeKitServiceReturnType<
         ModelsConfig extends { __empty: any }
           ? ModelConfigurationsToConfigTemplate<TModels>
           : ModelsConfig
       >["$modelObjects"];
 
-    [MedusaServiceModelNameToLinkableKeysMapSymbol]: MapToConfig
+    [AcmeKitServiceModelNameToLinkableKeysMapSymbol]: MapToConfig
 
     readonly __container__: Record<any, any>
     readonly baseRepository_: RepositoryService
@@ -397,7 +397,7 @@ export function MedusaService<
         ? this.__container__[Modules.EVENT_BUS]
         : undefined
 
-      this[MedusaServiceModelNameToLinkableKeysMapSymbol] =
+      this[AcmeKitServiceModelNameToLinkableKeysMapSymbol] =
         buildModelsNameToLinkableKeysMap(joinerConfig?.linkableKeys ?? {})
     }
 
@@ -411,7 +411,7 @@ export function MedusaService<
      *
      * @example
      *
-     * class MyService extends ModulesSdkUtils.MedusaService(models) {
+     * class MyService extends ModulesSdkUtils.AcmeKitService(models) {
      *   interceptEntityMutationEvents(event: "afterCreate" | "afterUpdate" | "afterUpsert" | "afterDelete", args: EventArgs<any>, context: Context) {
      *     console.log("interceptEntityMutationEvents", event, args.entity)
      *   }

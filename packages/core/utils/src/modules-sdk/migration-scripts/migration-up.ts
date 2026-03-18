@@ -2,7 +2,7 @@ import { LoaderOptions, Logger, ModulesSdkTypes } from "/types"
 import { mikroOrmCreateConnection } from "../../dal"
 import { loadDatabaseConfig } from "../load-module-database-config"
 import { Migrations } from "../../migrations"
-import { MedusaError } from "../../common/errors"
+import { AcmeKitError } from "../../common/errors"
 
 const TERMINAL_SIZE = process.stdout.columns
 
@@ -54,7 +54,7 @@ export function buildMigrationScript({ moduleName, pathToMigrations }) {
       return result
     } catch (error) {
       logger.error(`Failed with error ${error.message}`, error)
-      throw new MedusaError(MedusaError.Types.DB_ERROR, error.message)
+      throw new AcmeKitError(AcmeKitError.Types.DB_ERROR, error.message)
     }
   }
 }

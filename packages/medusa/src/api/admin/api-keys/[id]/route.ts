@@ -4,16 +4,16 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 import { refetchApiKey } from "../helpers"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { HttpTypes } from "/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.AdminApiKeyResponse>
+  res: AcmeKitResponse<HttpTypes.AdminApiKeyResponse>
 ) => {
   const apiKey = await refetchApiKey(
     req.params.id,
@@ -22,8 +22,8 @@ export const GET = async (
   )
 
   if (!apiKey) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `API Key with id: ${req.params.id} was not found`
     )
   }
@@ -36,7 +36,7 @@ export const POST = async (
     HttpTypes.AdminUpdateApiKey,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminApiKeyResponse>
+  res: AcmeKitResponse<HttpTypes.AdminApiKeyResponse>
 ) => {
   await updateApiKeysWorkflow(req.scope).run({
     input: {
@@ -56,7 +56,7 @@ export const POST = async (
 
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse<HttpTypes.AdminApiKeyDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminApiKeyDeleteResponse>
 ) => {
   const id = req.params.id
 

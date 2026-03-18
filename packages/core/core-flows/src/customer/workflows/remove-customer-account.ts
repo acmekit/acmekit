@@ -1,4 +1,4 @@
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
@@ -80,8 +80,8 @@ export const removeCustomerAccountWorkflow = createWorkflow(
           const authIdentity = authIdentities[0]
 
           if (!authIdentity) {
-            throw new MedusaError(
-              MedusaError.Types.NOT_FOUND,
+            throw new AcmeKitError(
+              AcmeKitError.Types.NOT_FOUND,
               "Auth identity not found"
             )
           }

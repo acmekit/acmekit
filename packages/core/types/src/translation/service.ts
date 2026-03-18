@@ -27,7 +27,7 @@ import {
  * The main service interface for the Translation Module.
  *
  * @privateRemarks
- * Method signatures match what MedusaService generates.
+ * Method signatures match what AcmeKitService generates.
  */
 export interface ITranslationModuleService extends IModuleService {
   /**

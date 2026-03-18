@@ -1,13 +1,13 @@
 import { readdir } from "fs/promises"
 import { join, normalize } from "path"
 import { dynamicImport, readDirRecursive } from "../common"
-import { MedusaPolicySymbol } from "../modules-sdk"
+import { AcmeKitPolicySymbol } from "../modules-sdk"
 
 const excludedFiles = ["index.js", "index.ts"]
 const excludedExtensions = [".d.ts", ".d.ts.map", ".js.map"]
 
 function isPolicyExport(value: unknown): boolean {
-  return !!value && typeof value === "object" && MedusaPolicySymbol in value
+  return !!value && typeof value === "object" && AcmeKitPolicySymbol in value
 }
 
 /**

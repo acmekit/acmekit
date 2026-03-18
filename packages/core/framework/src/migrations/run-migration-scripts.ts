@@ -1,4 +1,4 @@
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 import { dynamicImport, isFileSkipped, Modules } from "/utils"
 import { basename } from "path"
 import { logger } from "../logger"
@@ -7,7 +7,7 @@ import { Migrator } from "./migrator"
 export class MigrationScriptsMigrator extends Migrator {
   protected migration_table_name = "script_migrations"
 
-  constructor({ container }: { container: MedusaContainer }) {
+  constructor({ container }: { container: AcmeKitContainer }) {
     super({ container })
   }
 

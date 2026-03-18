@@ -1,6 +1,6 @@
 import { Context } from "/types"
 import { isPresent } from "../../common"
-import { MedusaContextType } from "./context-parameter"
+import { AcmeKitContextType } from "./context-parameter"
 
 export function InjectManager(managerProperty?: string): MethodDecorator {
   return function (
@@ -8,16 +8,16 @@ export function InjectManager(managerProperty?: string): MethodDecorator {
     propertyKey: string | symbol,
     descriptor: any
   ): void {
-    if (!target.MedusaContextIndex_) {
+    if (!target.AcmeKitContextIndex_) {
       throw new Error(
-        `To apply @InjectManager you have to flag a parameter using @MedusaContext`
+        `To apply @InjectManager you have to flag a parameter using @AcmeKitContext`
       )
     }
 
     managerProperty ??= "baseRepository_"
 
     const originalMethod = descriptor.value
-    const argIndex = target.MedusaContextIndex_[propertyKey]
+    const argIndex = target.AcmeKitContextIndex_[propertyKey]
 
     descriptor.value = function (...args: any[]) {
       const originalContext = args[argIndex] ?? {}
@@ -58,7 +58,7 @@ export function InjectManager(managerProperty?: string): MethodDecorator {
         copiedContext.transactionManager = originalContext?.transactionManager
       }
 
-      copiedContext.__type = MedusaContextType
+      copiedContext.__type = AcmeKitContextType
 
       args[argIndex] = copiedContext
 

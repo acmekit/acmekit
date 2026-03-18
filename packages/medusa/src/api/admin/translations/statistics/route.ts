@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { HttpTypes, ITranslationModuleService } from "/framework/types"
 import {
@@ -21,7 +21,7 @@ export const GET = async (
     {},
     HttpTypes.AdminTranslationStatisticsParams
   >,
-  res: MedusaResponse<HttpTypes.AdminTranslationStatisticsResponse>
+  res: AcmeKitResponse<HttpTypes.AdminTranslationStatisticsResponse>
 ) => {
   const translationService = req.scope.resolve<ITranslationModuleService>(
     Modules.TRANSLATION

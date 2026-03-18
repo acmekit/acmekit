@@ -15,9 +15,9 @@ import {
   generateJwtToken,
   InjectManager,
   InjectTransactionManager,
-  MedusaContext,
-  MedusaError,
-  MedusaService,
+  AcmeKitContext,
+  AcmeKitError,
+  AcmeKitService,
   moduleEventBuilderFactory,
   Modules,
   UserEvents,
@@ -36,7 +36,7 @@ type InjectedDependencies = {
 
 const DEFAULT_VALID_INVITE_DURATION_SECONDS = 60 * 60 * 24
 export default class UserModuleService
-  extends MedusaService<{
+  extends AcmeKitService<{
     User: {
       dto: UserTypes.UserDTO
     }
@@ -88,8 +88,8 @@ export default class UserModuleService
     }
 
     if (!this.config.jwtSecret) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "No jwt_secret was provided in the UserModule's options. Please add one."
       )
     }
@@ -98,7 +98,7 @@ export default class UserModuleService
   @InjectManager()
   async validateInviteToken(
     token: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<UserTypes.InviteDTO> {
     const options = {
       ...(this.config.jwt_verify_options ?? this.config.jwtOptions),
@@ -123,8 +123,8 @@ export default class UserModuleService
     )
 
     if (invite.expires_at < new Date()) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "The invite has expired"
       )
     }
@@ -136,7 +136,7 @@ export default class UserModuleService
   @EmitEvents()
   async refreshInviteTokens(
     inviteIds: string[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<UserTypes.InviteDTO[]> {
     const invites = await this.refreshInviteTokens_(inviteIds, sharedContext)
 
@@ -160,7 +160,7 @@ export default class UserModuleService
   @InjectTransactionManager()
   async refreshInviteTokens_(
     inviteIds: string[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ) {
     const [invites, count] = await this.inviteService_.listAndCount(
       { id: inviteIds },
@@ -175,8 +175,8 @@ export default class UserModuleService
       )
 
       if (missing.length > 0) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `The following invites do not exist: ${missing.join(", ")}`
         )
       }
@@ -210,7 +210,7 @@ export default class UserModuleService
   // @ts-expect-error
   async createUsers(
     data: UserTypes.CreateUserDTO[] | UserTypes.CreateUserDTO,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<UserTypes.UserDTO | UserTypes.UserDTO[]> {
     const input = Array.isArray(data) ? data : [data]
 
@@ -239,7 +239,7 @@ export default class UserModuleService
   // @ts-expect-error
   async updateUsers(
     data: UserTypes.UpdateUserDTO | UserTypes.UpdateUserDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<UserTypes.UserDTO | UserTypes.UserDTO[]> {
     const input = Array.isArray(data) ? data : [data]
 
@@ -268,7 +268,7 @@ export default class UserModuleService
   // @ts-expect-error
   async createInvites(
     data: UserTypes.CreateInviteDTO[] | UserTypes.CreateInviteDTO,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<UserTypes.InviteDTO | UserTypes.InviteDTO[]> {
     const input = Array.isArray(data) ? data : [data]
 
@@ -294,15 +294,15 @@ export default class UserModuleService
   @InjectTransactionManager()
   private async createInvites_(
     data: UserTypes.CreateInviteDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<InferEntityType<typeof Invite>[]> {
     const alreadyExistingUsers = await this.listUsers({
       email: data.map((d) => d.email),
     })
 
     if (alreadyExistingUsers.length) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `User account for following email(s) already exist: ${alreadyExistingUsers
           .map((u) => u.email)
           .join(", ")}`
@@ -340,7 +340,7 @@ export default class UserModuleService
   // @ts-expect-error
   async updateInvites(
     data: UserTypes.UpdateInviteDTO | UserTypes.UpdateInviteDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<UserTypes.InviteDTO | UserTypes.InviteDTO[]> {
     const input = Array.isArray(data) ? data : [data]
 

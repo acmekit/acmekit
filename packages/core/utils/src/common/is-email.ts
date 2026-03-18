@@ -1,4 +1,4 @@
-import { MedusaError } from "./errors"
+import { AcmeKitError } from "./errors"
 
 const EMAIL_REGEX =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -20,8 +20,8 @@ export function validateEmail(email: string): string {
   const validatedEmail = isEmail(email)
 
   if (!validatedEmail) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "The email is not valid"
     )
   }

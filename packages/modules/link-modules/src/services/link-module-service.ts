@@ -17,8 +17,8 @@ import {
   isDefined,
   mapObjectTo,
   MapToConfig,
-  MedusaContext,
-  MedusaError,
+  AcmeKitContext,
+  AcmeKitError,
   moduleEventBuilderFactory,
   Modules,
   ModulesSdkUtils,
@@ -83,8 +83,8 @@ export default class LinkModuleService implements ILinkModule {
         !Array.isArray(primaryKeyData) ||
         primaryKeyData.length !== this.primaryKey_.length
       ) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `Primary key data must be an array ${this.primaryKey_.length} values`
         )
       }
@@ -107,8 +107,8 @@ export default class LinkModuleService implements ILinkModule {
     dataToValidate.forEach((d) => {
       const keys = Object.keys(d)
       if (keys.some((k) => !this.isValidKeyName(k))) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `Invalid field name provided. Valid field names are ${this.primaryKey_.concat(
             this.foreignKey_
           )}`
@@ -121,7 +121,7 @@ export default class LinkModuleService implements ILinkModule {
   async retrieve(
     primaryKeyData: string | string[],
     foreignKeyData: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<unknown> {
     const filter = this.buildData(primaryKeyData, foreignKeyData)
     const queryOptions = ModulesSdkUtils.buildQuery<unknown>(filter)
@@ -131,8 +131,8 @@ export default class LinkModuleService implements ILinkModule {
       const pk = this.primaryKey_.join(",")
       const errMessage = `${pk}[${primaryKeyData}] and ${this.foreignKey_}[${foreignKeyData}]`
 
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `Entry ${errMessage} was not found`
       )
     }
@@ -144,7 +144,7 @@ export default class LinkModuleService implements ILinkModule {
   async list(
     filters: Record<string, unknown> = {},
     config: FindConfig<unknown> = {},
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<unknown[]> {
     if (!isDefined(config.take)) {
       config.take = null
@@ -159,7 +159,7 @@ export default class LinkModuleService implements ILinkModule {
   async listAndCount(
     filters: Record<string, unknown> = {},
     config: FindConfig<unknown> = {},
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<[unknown[], number]> {
     if (!isDefined(config.take)) {
       config.take = null
@@ -185,7 +185,7 @@ export default class LinkModuleService implements ILinkModule {
       | [string | string[], string, Record<string, unknown>][],
     foreignKeyData?: string,
     extraFields?: Record<string, unknown>,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ) {
     const data: unknown[] = []
     if (foreignKeyData === undefined && Array.isArray(primaryKeyOrBulkData)) {
@@ -228,7 +228,7 @@ export default class LinkModuleService implements ILinkModule {
   async dismiss(
     primaryKeyOrBulkData: string | string[] | [string | string[], string][],
     foreignKeyData?: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ) {
     const data: unknown[] = []
     if (foreignKeyData === undefined && Array.isArray(primaryKeyOrBulkData)) {
@@ -263,7 +263,7 @@ export default class LinkModuleService implements ILinkModule {
   @EmitEvents()
   async delete(
     data: any,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<void> {
     this.validateFields(data)
 
@@ -286,7 +286,7 @@ export default class LinkModuleService implements ILinkModule {
   async softDelete(
     data: any,
     { returnLinkableKeys }: SoftDeleteReturn = {},
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<Record<string, unknown[]> | void> {
     const inputArray = Array.isArray(data) ? data : [data]
 
@@ -334,7 +334,7 @@ export default class LinkModuleService implements ILinkModule {
   @InjectTransactionManager()
   protected async softDelete_(
     data: any[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<[object[], Record<string, string[]>]> {
     return await this.linkService_.softDelete(data, sharedContext)
   }
@@ -344,7 +344,7 @@ export default class LinkModuleService implements ILinkModule {
   async restore(
     data: any,
     { returnLinkableKeys }: RestoreReturn = {},
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<Record<string, unknown[]> | void> {
     const inputArray = Array.isArray(data) ? data : [data]
     this.validateFields(inputArray)
@@ -391,7 +391,7 @@ export default class LinkModuleService implements ILinkModule {
   @InjectTransactionManager()
   async restore_(
     data: any,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<[object[], Record<string, string[]>]> {
     return await this.linkService_.restore(data, sharedContext)
   }

@@ -1,8 +1,8 @@
 import { ContainerRegistrationKeys } from "/utils"
 import type {
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
 } from "../types"
 
 export function maybeApplyLinkFilter({
@@ -12,9 +12,9 @@ export function maybeApplyLinkFilter({
   filterByField = "id",
 }) {
   return async function linkFilter(
-    req: MedusaRequest,
-    _: MedusaResponse,
-    next: MedusaNextFunction
+    req: AcmeKitRequest,
+    _: AcmeKitResponse,
+    next: AcmeKitNextFunction
   ) {
     const filterableFields = req.filterableFields
 

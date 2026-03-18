@@ -34,13 +34,13 @@ To start the import of a CSV file:
     
 ```ts title="src/api/workflow/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { importProductsAsChunksWorkflow } from "/medusa/core-flows"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result, transaction } = await importProductsAsChunksWorkflow(req
@@ -91,11 +91,11 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { importProductsAsChunksWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const { result, transaction } = await importProductsAsChunksWorkflow(
       container)

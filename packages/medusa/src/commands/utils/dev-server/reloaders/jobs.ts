@@ -1,5 +1,5 @@
 import { JobLoader } from "/framework/jobs"
-import { Logger, MedusaContainer } from "/framework/types"
+import { Logger, AcmeKitContainer } from "/framework/types"
 import { ModuleCacheManager } from "../module-cache-manager"
 import { ResourceRegistry } from "../resource-registry"
 import { CONFIG, DevServerGlobals, FileChangeAction } from "../types"
@@ -20,7 +20,7 @@ export class JobReloader extends BaseReloader {
   constructor(
     private workflowManager: DevServerGlobals["WorkflowManager"],
     cacheManager: ModuleCacheManager,
-    private container: MedusaContainer,
+    private container: AcmeKitContainer,
     private registry: ResourceRegistry,
     logSource: string,
     logger: Logger

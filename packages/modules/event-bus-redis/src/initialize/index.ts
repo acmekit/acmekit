@@ -1,4 +1,4 @@
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import {
   ExternalModuleDeclaration,
   IEventBusService,
@@ -11,7 +11,7 @@ export const initialize = async (
   options?: EventBusRedisModuleOptions | ExternalModuleDeclaration
 ): Promise<IEventBusService> => {
   const serviceKey = Modules.EVENT_BUS
-  const loaded = await MedusaModule.bootstrap<IEventBusService>({
+  const loaded = await AcmeKitModule.bootstrap<IEventBusService>({
     moduleKey: serviceKey,
     defaultPath: "/event-bus-redis",
     declaration: options as

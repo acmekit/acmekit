@@ -196,12 +196,12 @@ If your many-to-many relation is represented without a [pivotEntity](../relation
 
 </Note>
 
-If you have a many-to-many relation with a `pivotEntity` specified, make sure to pass the data model representing the pivot table to [MedusaService](../../modules/service-factory/page.mdx) that your module's service extends.
+If you have a many-to-many relation with a `pivotEntity` specified, make sure to pass the data model representing the pivot table to [AcmeKitService](../../modules/service-factory/page.mdx) that your module's service extends.
 
-For example, assuming you have the [Order, Product, and OrderProduct models from the previous chapter](../relationships/page.mdx#many-to-many-with-custom-columns), add `OrderProduct` to `MedusaService`'s object parameter:
+For example, assuming you have the [Order, Product, and OrderProduct models from the previous chapter](../relationships/page.mdx#many-to-many-with-custom-columns), add `OrderProduct` to `AcmeKitService`'s object parameter:
 
 ```ts highlights={["4"]}
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Order,
   Product,
   OrderProduct,

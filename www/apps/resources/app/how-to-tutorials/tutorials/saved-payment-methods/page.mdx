@@ -270,11 +270,11 @@ export const apiRouteHighlights = [
 ]
 
 ```ts title="src/api/store/payment-methods/[account_holder_id]/route.ts" highlights={apiRouteHighlights}
-import { MedusaError } from "/framework/utils"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitError } from "/framework/utils"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { account_holder_id } = req.params
@@ -293,8 +293,8 @@ export async function GET(
   })
 
   if (!accountHolder) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND, 
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND, 
       "Account holder not found"
     )
   }

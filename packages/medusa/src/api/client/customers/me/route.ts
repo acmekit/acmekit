@@ -1,26 +1,26 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 import {
   StoreGetCustomerParamsType,
 } from "../validators"
 import { refetchCustomer } from "../helpers"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { updateCustomersWorkflow } from "/core-flows"
 import { HttpTypes } from "/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<StoreGetCustomerParamsType>,
-  res: MedusaResponse<HttpTypes.StoreCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.StoreCustomerResponse>
 ) => {
   const id = req.auth_context.actor_id
   const customer = await refetchCustomer(id, req.scope, req.queryConfig.fields)
 
   if (!customer) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Customer with id: ${id} was not found`
     )
   }
@@ -33,7 +33,7 @@ export const POST = async (
     HttpTypes.StoreUpdateCustomer,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.StoreCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.StoreCustomerResponse>
 ) => {
   const customerId = req.auth_context.actor_id
   await updateCustomersWorkflow(req.scope).run({

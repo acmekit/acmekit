@@ -1,7 +1,7 @@
 import { createCustomerAddressesWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
@@ -13,7 +13,7 @@ import { AdditionalData, HttpTypes } from "/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminCustomerAddressFilters>,
-  res: MedusaResponse<HttpTypes.AdminCustomerAddressListResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerAddressListResponse>
 ) => {
   const customerId = req.params.id
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
@@ -42,7 +42,7 @@ export const POST = async (
     AdminCreateCustomerAddressType & AdditionalData,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerResponse>
 ) => {
   const { additional_data, ...rest } = req.validatedBody
   const customerId = req.params.id

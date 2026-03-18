@@ -1,4 +1,4 @@
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
@@ -6,7 +6,7 @@ import {
 
 export const refetchUser = async (
   userId: string,
-  scope: MedusaContainer,
+  scope: AcmeKitContainer,
   fields: string[]
 ) => {
   const remoteQuery = scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)

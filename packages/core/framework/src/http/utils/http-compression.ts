@@ -3,11 +3,11 @@ import type { ConfigModule } from "/types"
 import { ContainerRegistrationKeys } from "/utils"
 
 import { HttpCompressionOptions, ProjectConfigOptions } from "../../config"
-import type { MedusaRequest, MedusaResponse } from "../types"
+import type { AcmeKitRequest, AcmeKitResponse } from "../types"
 
 export function shouldCompressResponse(
-  req: MedusaRequest,
-  res: MedusaResponse
+  req: AcmeKitRequest,
+  res: AcmeKitResponse
 ) {
   const { projectConfig } = req.scope.resolve<ConfigModule>(
     ContainerRegistrationKeys.CONFIG_MODULE

@@ -2,12 +2,12 @@ import {
   configLoader,
   container,
   logger,
-  MedusaAppLoader,
+  AcmeKitAppLoader,
   Migrator,
 } from "/framework"
 import { asValue } from "/framework/awilix"
 import { EntityManager } from "/framework/mikro-orm/postgresql"
-import { MedusaAppOutput, MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitAppOutput, AcmeKitModule } from "/framework/modules-sdk"
 import { EventBusTypes, IndexTypes } from "/framework/types"
 import {
   ContainerRegistrationKeys,
@@ -102,7 +102,7 @@ const sendEvents = async (eventDataToEmit) => {
 }
 
 let isFirstTime = true
-let medusaAppLoader!: MedusaAppLoader
+let medusaAppLoader!: AcmeKitAppLoader
 let index!: IndexTypes.IIndexService
 
 const beforeAll_ = async () => {
@@ -122,7 +122,7 @@ const beforeAll_ = async () => {
       [ContainerRegistrationKeys.PG_CONNECTION]: asValue(dbUtils.pgConnection_),
     })
 
-    medusaAppLoader = new MedusaAppLoader(container as any)
+    medusaAppLoader = new AcmeKitAppLoader(container as any)
 
     // Migrations
     const migrator = new Migrator({ container })
@@ -134,7 +134,7 @@ const beforeAll_ = async () => {
     await linkPlanner.executePlan(plan)
 
     // Clear partially loaded instances
-    MedusaModule.clearInstances()
+    AcmeKitModule.clearInstances()
 
     // Bootstrap modules
     const globalApp = await medusaAppLoader.load()
@@ -185,7 +185,7 @@ const afterEach_ = async () => {
 }
 
 describe("IndexModuleService", function () {
-  let medusaApp: MedusaAppOutput
+  let medusaApp: AcmeKitAppOutput
   let onApplicationPrepareShutdown!: () => Promise<void>
   let onApplicationShutdown!: () => Promise<void>
 

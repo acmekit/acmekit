@@ -1,4 +1,4 @@
-import { Logger, MedusaContainer } from "/types"
+import { Logger, AcmeKitContainer } from "/types"
 import {
   ContainerRegistrationKeys,
   dynamicImport,
@@ -34,7 +34,7 @@ export abstract class ResourceLoader {
 
   protected logger: Logger
 
-  constructor(sourceDir: string | string[], container: MedusaContainer) {
+  constructor(sourceDir: string | string[], container: AcmeKitContainer) {
     this.#sourceDir = sourceDir
     this.logger = container.resolve(ContainerRegistrationKeys.LOGGER)
   }

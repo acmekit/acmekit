@@ -1,10 +1,10 @@
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 import { HttpTypes } from "/framework/types"
 import { ContainerRegistrationKeys, isString } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest<unknown>,
-  res: MedusaResponse<HttpTypes.AdminPluginsListResponse>
+  req: AcmeKitRequest<unknown>,
+  res: AcmeKitResponse<HttpTypes.AdminPluginsListResponse>
 ) => {
   const configModule = req.scope.resolve(
     ContainerRegistrationKeys.CONFIG_MODULE

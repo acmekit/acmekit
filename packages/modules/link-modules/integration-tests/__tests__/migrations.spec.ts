@@ -1,4 +1,4 @@
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import { ILinkModule, ModuleJoinerConfig } from "/framework/types"
 import { defineLink, isObject, Modules } from "/framework/utils"
 import { moduleIntegrationTestRunner } from "/test-utils"
@@ -16,9 +16,9 @@ import {
 
 jest.setTimeout(30000)
 
-MedusaModule.setJoinerConfig(userJoinerConfig.serviceName, userJoinerConfig)
-MedusaModule.setJoinerConfig(carJoinerConfig.serviceName, carJoinerConfig)
-MedusaModule.setJoinerConfig(
+AcmeKitModule.setJoinerConfig(userJoinerConfig.serviceName, userJoinerConfig)
+AcmeKitModule.setJoinerConfig(carJoinerConfig.serviceName, carJoinerConfig)
+AcmeKitModule.setJoinerConfig(
   longNameJoinerConfig.serviceName,
   longNameJoinerConfig
 )
@@ -36,9 +36,9 @@ moduleIntegrationTestRunner<ILinkModule>({
             .linkable.veryLongTableNameOfCustomModule
         )
 
-        MedusaModule.getCustomLinks().forEach((linkDefinition: any) => {
-          MedusaModule.setCustomLink(
-            linkDefinition(MedusaModule.getAllJoinerConfigs())
+        AcmeKitModule.getCustomLinks().forEach((linkDefinition: any) => {
+          AcmeKitModule.setCustomLink(
+            linkDefinition(AcmeKitModule.getAllJoinerConfigs())
           )
         })
 
@@ -46,7 +46,7 @@ moduleIntegrationTestRunner<ILinkModule>({
          * Expect a create plan
          */
 
-        let joinerConfigs = MedusaModule.getCustomLinks().filter(
+        let joinerConfigs = AcmeKitModule.getCustomLinks().filter(
           (link): link is ModuleJoinerConfig => isObject(link)
         )
 
@@ -105,7 +105,7 @@ moduleIntegrationTestRunner<ILinkModule>({
          * Expect an update plan
          */
         // @ts-ignore
-        MedusaModule.customLinks_.length = 0
+        AcmeKitModule.customLinks_.length = 0
 
         defineLink(UserModule.linkable.user, CarModule.linkable.car, {
           database: {
@@ -117,13 +117,13 @@ moduleIntegrationTestRunner<ILinkModule>({
           },
         })
 
-        MedusaModule.getCustomLinks().forEach((linkDefinition: any) => {
-          MedusaModule.setCustomLink(
-            linkDefinition(MedusaModule.getAllJoinerConfigs())
+        AcmeKitModule.getCustomLinks().forEach((linkDefinition: any) => {
+          AcmeKitModule.setCustomLink(
+            linkDefinition(AcmeKitModule.getAllJoinerConfigs())
           )
         })
 
-        joinerConfigs = MedusaModule.getCustomLinks().filter(
+        joinerConfigs = AcmeKitModule.getCustomLinks().filter(
           (link): link is ModuleJoinerConfig => isObject(link)
         )
 

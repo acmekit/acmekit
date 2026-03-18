@@ -38,10 +38,10 @@ Medusa also exposes [built-in workflows](!resources!/medusa-workflows-reference)
 For example, you can use Medusa's built-in [batchProductsWorkflow](!resources!/references/medusa-workflows/batchProductsWorkflow) to create or update products in batches:
 
 ```ts title="src/jobs/sync-products.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { batchProductsWorkflow } from "/medusa/core-flows"
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   // ...
   await batchProductsWorkflow(container).run({
     input: {
@@ -72,10 +72,10 @@ In the scheduled job or subscriber, you retrieve the data to be synced from the 
 For example, the following scheduled job fetches products from a third-party service and syncs them to Medusa using a workflow:
 
 ```ts title="src/jobs/sync-products.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { batchProductsWorkflow } from "/medusa/core-flows"
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   const productStream = streamProductsFromApi()
   const batchedProducts = batchProducts(productStream, 50)
 
@@ -108,8 +108,8 @@ The following sections cover best practices for implementing third-party syncing
 The following sections take snippets from this complete example of a high-performance, memory-efficient product synchronization job that incorporates all the best practices discussed:
 
 ```ts title="src/jobs/sync-products.ts"
-import { MedusaContainer } from "/framework/types"
-import { ContainerRegistrationKeys, MedusaError, Modules } from "/framework/utils"
+import { AcmeKitContainer } from "/framework/types"
+import { ContainerRegistrationKeys, AcmeKitError, Modules } from "/framework/utils"
 import { batchProductsWorkflow } from "/medusa/core-flows"
 import { Readable } from "stream"
 import { parser } from "stream-json"
@@ -214,8 +214,8 @@ async function* streamProductsFromApi() {
     } catch (streamError: any) {
       // Handle stream errors (socket closed mid-stream)
       if (streamError.code === "UND_ERR_SOCKET" || streamError.code === "ECONNRESET") {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           `Stream interrupted after ${productCount} products: ${streamError.message}`
         )
       }
@@ -256,7 +256,7 @@ async function* batchProducts(
   }
 }
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   const query = container.resolve(ContainerRegistrationKeys.QUERY)
   const workflowEngine = container.resolve(Modules.WORKFLOW_ENGINE)
 
@@ -455,7 +455,7 @@ async function* streamProductsFromApi() {
   }
 }
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   const productStream = streamProductsFromApi()
   // ...
 }
@@ -487,8 +487,8 @@ async function* streamProductsFromApi() {
         streamError.code === "UND_ERR_SOCKET" || 
         streamError.code === "ECONNRESET"
       ) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           `Stream interrupted after ${productCount} products: ${streamError.message}`
         )
       }
@@ -498,7 +498,7 @@ async function* streamProductsFromApi() {
   }
 }
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   // Initial setup...
 
   const productStream = streamProductsFromApi()
@@ -537,7 +537,7 @@ export const fieldsHighlights = [
 ]
 
 ```ts title="src/jobs/sync-products.ts" highlights={fieldsHighlights}
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   const query = container.resolve(ContainerRegistrationKeys.QUERY)
   
   // Initial setup...
@@ -641,7 +641,7 @@ async function* batchProducts(
   }
 }
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   // Initial setup...
 
   const productStream = streamProductsFromApi()
@@ -703,7 +703,7 @@ Handle backpressure by controlling the pace at which data is processed. One effe
 For example, you can implement backpressure handling in your scheduled job:
 
 ```ts title="src/jobs/sync-products.ts" highlights={[["7"]]}
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   // Initial setup...
 
   const productStream = streamProductsFromApi()
@@ -788,7 +788,7 @@ async function* streamProductsFromApi() {
   }
 }
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   // Initial setup...
 
   const productStream = streamProductsFromApi()
@@ -861,7 +861,7 @@ async function* streamProductsFromApi() {
   }
 }
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   // Initial setup...
 
   const productStream = streamProductsFromApi()
@@ -915,7 +915,7 @@ async function* streamProductsFromApi() {
   }
 }
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   const productStream = streamProductsFromApi()
   // Process and sync products...
 }

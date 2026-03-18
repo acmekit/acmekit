@@ -187,11 +187,11 @@ export const retryHighlights = [
 ]
 
 ```ts title="src/api/retry-step/route.ts" highlights={retryHighlights}
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { TransactionHandlerType } from "/framework/utils"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const workflowEngine = req.scope.resolve("workflows")

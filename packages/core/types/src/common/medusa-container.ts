@@ -10,7 +10,7 @@ export interface ModuleImplementations {}
  * The Medusa Container extends [Awilix](https://github.com/jeffijoe/awilix) to
  * provide dependency injection functionalities.
  */
-export type MedusaContainer<Cradle extends object = ModuleImplementations> =
+export type AcmeKitContainer<Cradle extends object = ModuleImplementations> =
   Omit<AwilixContainer, "resolve"> & {
     resolve<K extends keyof Cradle>(
       key: K,
@@ -21,11 +21,11 @@ export type MedusaContainer<Cradle extends object = ModuleImplementations> =
     /**
      * @ignore
      */
-    registerAdd: <T>(name: string, registration: T) => MedusaContainer
+    registerAdd: <T>(name: string, registration: T) => AcmeKitContainer
     /**
      * @ignore
      */
-    createScope: () => MedusaContainer
+    createScope: () => AcmeKitContainer
   }
 
 export type ContainerLike = {

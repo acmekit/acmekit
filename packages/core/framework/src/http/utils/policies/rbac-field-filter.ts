@@ -5,8 +5,8 @@ import {
   promiseAll,
   toSnakeCase,
 } from "/framework/utils"
-import { MedusaModule } from "/modules-sdk"
-import type { MedusaContainer } from "/types"
+import { AcmeKitModule } from "/modules-sdk"
+import type { AcmeKitContainer } from "/types"
 import { hasPermission } from "../../../policies/has-permission"
 import { FieldFilterContext, IFieldFilter } from "../field-filtering/index"
 
@@ -79,7 +79,7 @@ function getExecutableSchema(): GraphQLUtils.GraphQLSchema | null {
  * Maps all possible aliases (e.g., "variant", "variants") to canonical entity names (e.g., "ProductVariant")
  */
 function buildEntityAliasMap(): Map<string, string> {
-  const moduleJoinerConfigs = MedusaModule.getAllJoinerConfigs()
+  const moduleJoinerConfigs = AcmeKitModule.getAllJoinerConfigs()
   const aliasMap = new Map<string, string>()
 
   for (const config of moduleJoinerConfigs) {
@@ -129,7 +129,7 @@ function getSchemaFromJoinerConfigs(moduleJoinerConfigs: any[]): string {
 }
 
 function buildCompleteEntityMap(): Map<string, EntityMapping> {
-  const moduleJoinerConfigs = MedusaModule.getAllJoinerConfigs()
+  const moduleJoinerConfigs = AcmeKitModule.getAllJoinerConfigs()
   const entityMap = new Map<string, EntityMapping>()
 
   // base GraphQL schema
@@ -274,7 +274,7 @@ function getEntityMap(): Map<string, EntityMapping> {
  * Builds executable schema from all joiner configs
  */
 function buildExecutableSchema(): GraphQLUtils.GraphQLSchema | null {
-  const moduleJoinerConfigs = MedusaModule.getAllJoinerConfigs()
+  const moduleJoinerConfigs = AcmeKitModule.getAllJoinerConfigs()
 
   const schemaFromJoinerConfigs =
     getSchemaFromJoinerConfigs(moduleJoinerConfigs)
@@ -404,7 +404,7 @@ function collectUniqueEntityPaths(
 export class RBACFieldFilter implements IFieldFilter {
   private policies: PolicyDefinition[]
   private userRoles: string[]
-  private container: MedusaContainer
+  private container: AcmeKitContainer
 
   constructor({
     policies,
@@ -413,7 +413,7 @@ export class RBACFieldFilter implements IFieldFilter {
   }: {
     policies: PolicyDefinition[]
     userRoles: string[]
-    container: MedusaContainer
+    container: AcmeKitContainer
   }) {
     this.policies = policies
     this.userRoles = userRoles

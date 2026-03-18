@@ -1,5 +1,5 @@
 import { NextFunction } from "express"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 import { StoreCreateCartType } from "../../../client/carts/validators"
 
 /**
@@ -16,8 +16,8 @@ import { StoreCreateCartType } from "../../../client/carts/validators"
  *         sales channel id is passed in the request.
  */
 export async function ensurePublishableKeyAndSalesChannelMatch(
-  req: MedusaRequest<StoreCreateCartType> & { publishableApiKeyScopes },
-  res: MedusaResponse,
+  req: AcmeKitRequest<StoreCreateCartType> & { publishableApiKeyScopes },
+  res: AcmeKitResponse,
   next: NextFunction
 ) {
   const pubKey = req.get("x-client-api-key")

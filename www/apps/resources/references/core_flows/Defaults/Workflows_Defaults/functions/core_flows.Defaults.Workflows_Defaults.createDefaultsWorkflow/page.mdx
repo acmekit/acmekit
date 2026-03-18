@@ -33,13 +33,13 @@ create default data within your custom flows, such as seed scripts.
     
 ```ts title="src/api/workflow/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { createDefaultsWorkflow } from "/medusa/core-flows"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await createDefaultsWorkflow(req.scope)
@@ -78,11 +78,11 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { createDefaultsWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const { result } = await createDefaultsWorkflow(container)
     .run()

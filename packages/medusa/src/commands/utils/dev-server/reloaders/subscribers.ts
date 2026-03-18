@@ -2,7 +2,7 @@ import { SubscriberLoader } from "/framework/subscribers"
 import {
   IEventBusModuleService,
   Logger,
-  MedusaContainer,
+  AcmeKitContainer,
 } from "/framework/types"
 import { Modules } from "/framework/utils"
 import { ResourceRegistry } from "../resource-registry"
@@ -27,7 +27,7 @@ export class SubscriberReloader extends BaseReloader {
   #logger: Logger
 
   constructor(
-    private container: MedusaContainer,
+    private container: AcmeKitContainer,
     cacheManager: ModuleCacheManager,
     private registry: ResourceRegistry,
     logSource: string,

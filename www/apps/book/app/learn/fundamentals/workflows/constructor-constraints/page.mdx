@@ -386,13 +386,13 @@ const myWorkflow = createWorkflow(
 // Do
 // API route that calls the workflow
 import { 
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import myWorkflow from "../../workflows/my-workflow"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { items } = req.body
@@ -537,13 +537,13 @@ Then, in an API route that executes this workflow, you can recreate the buffer f
 
 ```ts
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import myWorkflow from "../../workflows/hello-world"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await myWorkflow(req.scope)

@@ -20,12 +20,12 @@ Create the file `src/api/hello-world/route.ts` with the following content:
 
 ```ts title="src/api/hello-world/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.json({
@@ -43,11 +43,11 @@ Learn more in [this documentation](!docs!/learn/fundamentals/api-routes).
 To resolve resources from the Medusa container in an API route:
 
 ```ts highlights={[["8", "resolve", "Resolve the Product Module's\nmain service from the Medusa container."]]}
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { Modules } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest, 
+  req: AcmeKitRequest, 
   res: MedusaResponse
 ) => {
   const productModuleService = req.scope.resolve(
@@ -79,12 +79,12 @@ export const singlePathHighlights = [
 
 ```ts title="src/api/hello-world/[id]/route.ts" highlights={singlePathHighlights}
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.json({
@@ -105,12 +105,12 @@ export const queryHighlights = [
 
 ```ts highlights={queryHighlights}
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.json({
@@ -132,7 +132,7 @@ export const bodyHighlights = [
 
 ```ts highlights={bodyHighlights}
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
@@ -141,7 +141,7 @@ type HelloWorldReq = {
 }
 
 export const POST = async (
-  req: MedusaRequest<HelloWorldReq>,
+  req: AcmeKitRequest<HelloWorldReq>,
   res: MedusaResponse
 ) => {
   res.json({
@@ -157,10 +157,10 @@ Learn more about request body parameters in [this documentation](!docs!/learn/fu
 You can change the response code of an API route:
 
 ```ts highlights={[["7", "status", "Change the response's status."]]}
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.status(200).json({
@@ -177,13 +177,13 @@ To execute a workflow in an API route:
 
 ```ts
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import myWorkflow from "../../workflows/hello-world"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await myWorkflow(req.scope)
@@ -210,10 +210,10 @@ export const responseContentTypeHighlights = [
 ]
 
 ```ts highlights={responseContentTypeHighlights}
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.writeHead(200, {
@@ -246,7 +246,7 @@ Create the file `src/api/middlewares.ts` with the following content:
 ```ts title="src/api/middlewares.ts"
 import type { 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse, 
   defineMiddlewares,
 } from "/framework/http"
@@ -257,7 +257,7 @@ export default defineMiddlewares({
       matcher: "/custom*",
       middlewares: [
         (
-          req: MedusaRequest, 
+          req: AcmeKitRequest, 
           res: MedusaResponse, 
           next: MedusaNextFunction
         ) => {
@@ -271,7 +271,7 @@ export default defineMiddlewares({
       matcher: "/custom/:id",
       middlewares: [
         (
-          req: MedusaRequest, 
+          req: AcmeKitRequest, 
           res: MedusaResponse, 
           next: MedusaNextFunction
         ) => {
@@ -298,7 +298,7 @@ export const middlewareMethodHighlights = [
 ```ts title="src/api/middlewares.ts" highlights={middlewareMethodHighlights}
 import type { 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse, 
   defineMiddlewares,
 } from "/framework/http"
@@ -360,7 +360,7 @@ export default defineMiddlewares({
 3. Use the validated body in the `/custom` API route:
 
 ```ts title="src/api/custom/route.ts" highlights={[["14", "validatedBody"]]}
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { z } from "/framework/zod"
 import { PostStoreCustomSchema } from "./validators"
 
@@ -369,7 +369,7 @@ type PostStoreCustomSchemaType = z.infer<
 >
 
 export const POST = async (
-  req: MedusaRequest<PostStoreCustomSchemaType>,
+  req: AcmeKitRequest<PostStoreCustomSchemaType>,
   res: MedusaResponse
 ) => {
   res.json({
@@ -572,19 +572,19 @@ Learn more in [this documentation](!docs!/learn/fundamentals/api-routes/protecte
 
 ### Throw Errors in API Route
 
-To throw errors in an API route, use `MedusaError` from the Medusa Framework:
+To throw errors in an API route, use `AcmeKitError` from the Medusa Framework:
 
-```ts highlights={[["9", "MedusaError"]]}
-import { MedusaRequest, MedusaResponse } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+```ts highlights={[["9", "AcmeKitError"]]}
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitError } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   if (!req.query.q) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "The `q` query parameter is required."
     )
   }
@@ -603,15 +603,15 @@ To override the error handler of API routes, create the file `src/api/middleware
 import { 
   defineMiddlewares, 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 export default defineMiddlewares({
   errorHandler: (
-    error: MedusaError | any, 
-    req: MedusaRequest, 
+    error: AcmeKitError | any, 
+    req: AcmeKitRequest, 
     res: MedusaResponse, 
     next: MedusaNextFunction
   ) => {
@@ -633,7 +633,7 @@ To configure CORS for routes under other prefixes, create the file `src/api/midd
 ```ts title="src/api/middlewares.ts"
 import type { 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse, 
   defineMiddlewares,
 } from "/framework/http"
@@ -647,7 +647,7 @@ export default defineMiddlewares({
       matcher: "/custom*",
       middlewares: [
         (
-          req: MedusaRequest, 
+          req: AcmeKitRequest, 
           res: MedusaResponse, 
           next: MedusaNextFunction
         ) => {
@@ -693,12 +693,12 @@ To access the raw body data in your route, use the `req.rawBody` property:
 
 ```ts title="src/api/webhooks/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const POST = (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   console.log(req.rawBody)
@@ -736,10 +736,10 @@ export default Post
 3. Create the file `src/modules/blog/service.ts` with the following service:
 
 ```ts title="src/modules/blog/service.ts"
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
 }
@@ -785,12 +785,12 @@ npx medusa db:migrate
 7. Use the module's main service in an API route:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import BlogModuleService from "../../modules/blog/service"
 import { BLOG_MODULE } from "../../modules/blog"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ): Promise<void> {
   const blogModuleService: BlogModuleService = req.scope.resolve(
@@ -828,7 +828,7 @@ export * from "./category"
 Finally, resolve the service in your module's main service or loader:
 
 ```ts title="src/modules/blog/service.ts"
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 import { CategoryService } from "./services"
 
@@ -836,7 +836,7 @@ type InjectedDependencies = {
   categoryService: CategoryService
 }
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   private categoryService: CategoryService
@@ -878,7 +878,7 @@ module.exports = defineConfig({
 2. Access the options in the module's main service:
 
 ```ts title="src/modules/blog/service.ts" highlights={[["14", "options"]]}
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
 // recommended to define type in another file
@@ -886,7 +886,7 @@ type ModuleOptions = {
   apiKey?: boolean
 }
 
-export default class BlogModuleService extends MedusaService({
+export default class BlogModuleService extends AcmeKitService({
   Post,
 }){
   protected options_: ModuleOptions
@@ -1488,15 +1488,15 @@ A service is the main resource in a module. It manages the records of your custo
 
 ### Extend Service Factory
 
-The service factory `MedusaService` generates data-management methods for your data models.
+The service factory `AcmeKitService` generates data-management methods for your data models.
 
 To extend the service factory in your module's service:
 
-```ts highlights={[["4", "MedusaService"]]}
-import { MedusaService } from "/framework/utils"
+```ts highlights={[["4", "AcmeKitService"]]}
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   // TODO implement custom methods
@@ -1520,14 +1520,14 @@ To resolve resources from the module's container in a service:
 
 ```ts highlights={[["14"]]}
 import { Logger } from "/framework/types"
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
 type InjectedDependencies = {
   logger: Logger
 }
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   protected logger_: Logger
@@ -1578,7 +1578,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/modules/container).
 To access options passed to a module in its service:
 
 ```ts highlights={[["14", "options"]]}
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
 // recommended to define type in another file
@@ -1586,7 +1586,7 @@ type ModuleOptions = {
   apiKey?: boolean
 }
 
-export default class BlogModuleService extends MedusaService({
+export default class BlogModuleService extends AcmeKitService({
   Post,
 }){
   protected options_: ModuleOptions
@@ -1613,7 +1613,7 @@ To run database query in your service:
 // other imports...
 import { 
   InjectManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 
 class BlogModuleService {
@@ -1621,14 +1621,14 @@ class BlogModuleService {
 
   @InjectManager()
   async getCount(
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<number> {
     return await sharedContext.manager.count("post")
   }
   
   @InjectManager()
   async getCountSql(
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<number> {
     const data = await sharedContext.manager.execute(
       "SELECT COUNT(*) as num FROM post"
@@ -1649,7 +1649,7 @@ To execute database operations within a transaction in your service:
 import { 
   InjectManager,
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -1662,7 +1662,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     const transactionManager = sharedContext.transactionManager
     await transactionManager.nativeUpdate(
@@ -1689,7 +1689,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ) {
     return await this.update_(input, sharedContext)
   }
@@ -1925,7 +1925,7 @@ To retrieve records using Query in an API route:
 
 ```ts highlights={[["15", "graph"]]}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import {
@@ -1933,7 +1933,7 @@ import {
 } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -1955,7 +1955,7 @@ To retrieve records linked to a data model:
 
 ```ts highlights={[["20"]]}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import {
@@ -1963,7 +1963,7 @@ import {
 } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -1989,7 +1989,7 @@ To filter the retrieved records:
 
 ```ts highlights={[["18", "filters"]]}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import {
@@ -1997,7 +1997,7 @@ import {
 } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -2025,7 +2025,7 @@ To paginate and sort retrieved records:
 
 ```ts highlights={[["21", "pagination"]]}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import {
@@ -2033,7 +2033,7 @@ import {
 } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -2138,13 +2138,13 @@ Learn more in [this documentation](!docs!/learn/fundamentals/workflows).
     
     ```ts title="src/api/workflow/route.ts" highlights={[["11"], ["12"], ["13"], ["14"], ["15"], ["16"]]} collapsibleLines="1-6" expandButtonLabel="Show Imports"
     import type {
-      MedusaRequest,
+      AcmeKitRequest,
       MedusaResponse,
     } from "/framework/http"
     import myWorkflow from "../../workflows/hello-world"
 
     export async function GET(
-      req: MedusaRequest,
+      req: AcmeKitRequest,
       res: MedusaResponse
     ) {
       const { result } = await myWorkflow(req.scope)
@@ -2200,11 +2200,11 @@ Learn more in [this documentation](!docs!/learn/fundamentals/workflows).
   <CodeTab label="Scheduled Job" value="scheduled-job">
     
     ```ts title="src/jobs/message-daily.ts" highlights={[["7"], ["8"], ["9"], ["10"], ["11"], ["12"]]}
-    import { MedusaContainer } from "/framework/types"
+    import { AcmeKitContainer } from "/framework/types"
     import myWorkflow from "../workflows/hello-world"
 
     export default async function myCustomJob(
-      container: MedusaContainer
+      container: AcmeKitContainer
     ) {
       const { result } = await myWorkflow(container)
         .run({
@@ -2610,11 +2610,11 @@ Use the Workflow Engine Module's `subscribe` and `unsubscribe` methods to access
 For example, in an API route:
 
 ```ts highlights={[["18", "subscribe", "Subscribe to the workflow's status changes."]]}
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import myWorkflow from "../../../workflows/hello-world"
 import { Modules } from "/framework/utils"
 
-export async function GET(req: MedusaRequest, res: MedusaResponse) {
+export async function GET(req: AcmeKitRequest, res: MedusaResponse) {
   const { transaction, result } = await myWorkflow(req.scope).run()
 
   const workflowEngineService = req.scope.resolve(
@@ -2825,11 +2825,11 @@ Learn more in [this documentation](!docs!/learn/fundamentals/scheduled-jobs).
 To resolve resources in a scheduled job, use the `container` accepted as a first parameter:
 
 ```ts highlights={[["5", "container"], ["7", "resolve", "Resolve the Product Module's main service."]]}
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { Modules } from "/framework/utils"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const productModuleService = container.resolve(Modules.PRODUCT)
 
@@ -2873,11 +2873,11 @@ Learn more in [this documentation](!docs!/learn/fundamentals/scheduled-jobs/exec
 To execute a workflow in a scheduled job:
 
 ```ts
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import myWorkflow from "../workflows/hello-world"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const { result } = await myWorkflow(container)
     .run({
@@ -3417,7 +3417,7 @@ import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import createManagerWorkflow from "../../workflows/create-manager"
 
 type RequestBody = {
@@ -3433,8 +3433,8 @@ export async function POST(
   // If `actor_id` is present, the request carries 
   // authentication for an existing manager
   if (req.auth_context.actor_id) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Request already authenticated as a manager."
     )
   }

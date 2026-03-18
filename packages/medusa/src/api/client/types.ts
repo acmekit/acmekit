@@ -1,14 +1,14 @@
-import { MedusaStoreRequest } from "/framework/http"
+import { AcmeKitStoreRequest } from "/framework/http"
 import {
-  MedusaPricingContext,
+  AcmeKitPricingContext,
   TaxCalculationContext,
 } from "/framework/types"
 
 export type StoreRequestWithContext<
   Body,
   QueryFields = Record<string, unknown>
-> = MedusaStoreRequest<Body, QueryFields> & {
-  pricingContext?: MedusaPricingContext
+> = AcmeKitStoreRequest<Body, QueryFields> & {
+  pricingContext?: AcmeKitPricingContext
   taxContext?: {
     taxLineContext?: TaxCalculationContext
     taxInclusivityContext?: {

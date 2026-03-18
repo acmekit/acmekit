@@ -1,4 +1,4 @@
-import { MedusaError, TransactionStepState } from "/utils"
+import { AcmeKitError, TransactionStepState } from "/utils"
 import {
   DistributedTransactionType,
   TransactionPayload,
@@ -119,8 +119,8 @@ export class TransactionStep {
       return
     }
 
-    throw new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       `Updating State from "${curState.state}" to "${toState}" is not allowed.`
     )
   }
@@ -149,8 +149,8 @@ export class TransactionStep {
       return
     }
 
-    throw new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       `Updating Status from "${curState.status}" to "${toStatus}" is not allowed.`
     )
   }

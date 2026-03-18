@@ -26,12 +26,12 @@ For example, to create a `GET` API route at `/hello-world`, create the file `src
 
 ```ts title="src/api/hello-world/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.json({

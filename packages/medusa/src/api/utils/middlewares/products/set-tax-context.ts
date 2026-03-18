@@ -2,10 +2,10 @@ import { TaxCalculationContext } from "/framework/types"
 import { NextFunction } from "express"
 import {
   AuthenticatedMedusaRequest,
-  MedusaRequest,
+  AcmeKitRequest,
   refetchEntity,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { StoreRequestWithContext } from "../../../client/types"
 import { DEFAULT_PRICE_FIELD_PATHS } from "./constants"
 
@@ -46,7 +46,7 @@ export function setTaxContext(options: TaxContextOptions = {}) {
   }
 }
 
-const getTaxInclusivityInfo = async (req: MedusaRequest) => {
+const getTaxInclusivityInfo = async (req: AcmeKitRequest) => {
   const region = await refetchEntity({
     entity: "region",
     idOrFilter: req.filterableFields.region_id as string,
@@ -55,8 +55,8 @@ const getTaxInclusivityInfo = async (req: MedusaRequest) => {
   })
 
   if (!region) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       `Region with id ${req.filterableFields.region_id} not found when populating the tax context`
     )
   }
@@ -66,7 +66,7 @@ const getTaxInclusivityInfo = async (req: MedusaRequest) => {
   }
 }
 
-const getTaxLinesContext = async (req: MedusaRequest) => {
+const getTaxLinesContext = async (req: AcmeKitRequest) => {
   if (!req.filterableFields.country_code) {
     return
   }

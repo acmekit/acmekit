@@ -4,11 +4,11 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 import { AdminUpdateRbacPolicyType } from "../validators"
@@ -19,7 +19,7 @@ import { AdminUpdateRbacPolicyType } from "../validators"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
   const { data: policies } = await query.graph({
@@ -31,8 +31,8 @@ export const GET = async (
   const policy = policies[0]
 
   if (!policy) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Policy with id: ${req.params.id} not found`
     )
   }
@@ -46,7 +46,7 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminUpdateRbacPolicyType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
   const { data: existing } = await query.graph({
@@ -57,8 +57,8 @@ export const POST = async (
 
   const existingPolicy = existing[0]
   if (!existingPolicy) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Policy with id "${req.params.id}" not found`
     )
   }
@@ -87,7 +87,7 @@ export const POST = async (
  */
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const id = req.params.id
 

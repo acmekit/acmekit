@@ -183,7 +183,7 @@ export const loaderHighlights = [
 import { LoaderOptions } from "/framework/types"
 import { asValue } from "/framework/awilix"
 import { createClient } from "contentful-management"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 const { createClient: createDeliveryClient } = require("contentful")
 
@@ -203,8 +203,8 @@ export default async function syncContentModelsLoader({
     !options?.management_access_token || !options?.delivery_token || 
     !options?.space_id || !options?.environment
   ) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Contentful access token, space ID and environment are required"
     )
   }
@@ -1177,7 +1177,7 @@ export const deleteProductHighlights = [
 
 ```ts title="src/modules/contentful/service.ts" highlights={deleteProductHighlights}
 // other imports...
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 export default class ContentfulModuleService {
   // ...
@@ -1242,8 +1242,8 @@ export default class ContentfulModuleService {
         })
       }
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `Failed to delete product from Contentful: ${error.message}`
       )
     }
@@ -1662,12 +1662,12 @@ export const syncProductsRouteHighlights = [
 
 ```ts title="src/api/admin/contentful/sync/route.ts" highlights={syncProductsRouteHighlights}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const POST = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const eventService = req.scope.resolve("event_bus")
@@ -1874,14 +1874,14 @@ export const getLocalesRouteHighlights = [
 
 ```ts title="src/api/store/locales/route.ts" highlights={getLocalesRouteHighlights}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { CONTENTFUL_MODULE } from "../../../modules/contentful"
 import ContentfulModuleService from "../../../modules/contentful/service"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const contentfulModuleService: ContentfulModuleService = req.scope.resolve(
@@ -2389,13 +2389,13 @@ export const getProductLocaleDetailsRouteHighlights = [
 
 ```ts title="src/api/store/products/[id]/[locale]/route.ts" highlights={getProductLocaleDetailsRouteHighlights}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { QueryContext } from "/framework/utils"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const { locale, id } = req.params
@@ -2804,8 +2804,8 @@ export default class ContentfulModuleService {
   // ...
   async verifyWebhook(request: CanonicalRequest) {
     if (!this.options.webhook_secret) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA, 
         "Webhook secret is not set"
       )
     }
@@ -3061,18 +3061,18 @@ export const contentfulHookRouteHighlights = [
 ]
 
 ```ts title="src/api/hooks/contentful/route.ts" highlights={contentfulHookRouteHighlights} collapsibleLines="1-10" expandButtonLabel="Show Imports"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { 
   handleContentfulHookWorkflow, 
   HandleContentfulHookWorkflowInput,
 } from "../../../workflows/handle-contentful-hook"
 import { CONTENTFUL_MODULE } from "../../../modules/contentful"
 import { CanonicalRequest } from "@contentful/node-apps-toolkit"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import ContentfulModuleService from "../../../modules/contentful/service"
 
 export const POST = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const contentfulModuleService: ContentfulModuleService = 
@@ -3086,8 +3086,8 @@ export const POST = async (
   } as unknown as CanonicalRequest)
   
   if (!isValid) {
-    throw new MedusaError(
-      MedusaError.Types.UNAUTHORIZED, 
+    throw new AcmeKitError(
+      AcmeKitError.Types.UNAUTHORIZED, 
       "Invalid webhook request"
     )
   }

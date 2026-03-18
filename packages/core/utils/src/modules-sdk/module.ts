@@ -6,7 +6,7 @@ import {
   buildLinkConfigFromModelObjects,
   defineJoinerConfig,
 } from "./joiner-config-builder"
-import { MedusaServiceModelObjectsSymbol } from "./medusa-service"
+import { AcmeKitServiceModelObjectsSymbol } from "./medusa-service"
 import { InfersLinksConfig } from "./types/links-config"
 
 /**
@@ -34,7 +34,7 @@ export function Module<
 ): ModuleExports<Service> & {
   linkable: Linkable
 } {
-  const modelObjects = service[MedusaServiceModelObjectsSymbol] ?? {}
+  const modelObjects = service[AcmeKitServiceModelObjectsSymbol] ?? {}
 
   service.prototype.__joinerConfig ??= () =>
     defineJoinerConfig(serviceName, {

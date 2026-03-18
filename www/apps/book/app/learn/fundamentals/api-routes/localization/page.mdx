@@ -148,7 +148,7 @@ Store API routes require a publishable API key in the request header. Learn more
 
 ## Access Request Locale in API Routes
 
-After applying the `applyLocale` middleware, you can access the request's locale from the `locale` property of the `MedusaRequest` object.
+After applying the `applyLocale` middleware, you can access the request's locale from the `locale` property of the `AcmeKitRequest` object.
 
 For example:
 
@@ -158,12 +158,12 @@ export const accessLocaleHighlights = [
 
 ```ts title="src/api/custom/route.ts" highlights={accessLocaleHighlights}
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const locale = req.locale
@@ -185,9 +185,9 @@ export const queryHighlights = [
 ]
 
 ```ts title="src/api/store/products/route.ts" highlights={queryHighlights}
-import type { MedusaRequest, MedusaResponse } from "/framework/http"
+import type { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+export const GET = async (req: AcmeKitRequest, res: MedusaResponse) => {
   const query = req.scope.resolve("query")
 
   const { data: products } = await query.graph(

@@ -1,4 +1,4 @@
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { GithubAuthService } from "../../src/services/github"
 import { http, HttpResponse } from "msw"
 import { setupServer } from "msw/node"
@@ -221,7 +221,7 @@ describe("Github auth provider", () => {
     const authServiceSpies = {
       ...defaultSpies,
       retrieve: jest.fn().mockImplementation(() => {
-        throw new MedusaError(MedusaError.Types.NOT_FOUND, "Not found")
+        throw new AcmeKitError(AcmeKitError.Types.NOT_FOUND, "Not found")
       }),
       create: jest.fn().mockImplementation(() => {
         return {
@@ -234,7 +234,7 @@ describe("Github auth provider", () => {
         }
       }),
       update: jest.fn().mockImplementation(() => {
-        throw new MedusaError(MedusaError.Types.NOT_FOUND, "Not found")
+        throw new AcmeKitError(AcmeKitError.Types.NOT_FOUND, "Not found")
       }),
     }
 

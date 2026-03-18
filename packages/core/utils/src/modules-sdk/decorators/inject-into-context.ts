@@ -6,13 +6,13 @@ export function InjectIntoContext(
     propertyKey: string | symbol,
     descriptor: any
   ): void {
-    if (!target.MedusaContextIndex_) {
+    if (!target.AcmeKitContextIndex_) {
       throw new Error(
-        `To apply @InjectIntoContext you have to flag a parameter using @MedusaContext`
+        `To apply @InjectIntoContext you have to flag a parameter using @AcmeKitContext`
       )
     }
 
-    const argIndex = target.MedusaContextIndex_[propertyKey]
+    const argIndex = target.AcmeKitContextIndex_[propertyKey]
     const original = descriptor.value
     descriptor.value = async function (...args: any[]) {
       for (const key of Object.keys(properties)) {

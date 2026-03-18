@@ -109,14 +109,14 @@ You might want to verify that a workflow throws an error in certain edge cases. 
 - Disable the `throwOnError` option when executing the workflow.
 - Use the returned `errors` property to check what errors were thrown.
 
-For example, if you have the following step in your workflow that throws a `MedusaError`:
+For example, if you have the following step in your workflow that throws a `AcmeKitError`:
 
 ```ts title="src/workflows/hello-world.ts"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { createStep } from "/framework/workflows-sdk"
 
 const step1 = createStep("step-1", () => {
-  throw new MedusaError(MedusaError.Types.NOT_FOUND, "Item doesn't exist")
+  throw new AcmeKitError(AcmeKitError.Types.NOT_FOUND, "Item doesn't exist")
 })
 ```
 
@@ -147,7 +147,7 @@ jest.setTimeout(60 * 1000)
 
 The `errors` property contains an array of errors thrown during the execution of the workflow. Each error item has an `error` object, which is the error thrown.
 
-If you threw a `MedusaError`, then you can check the error message in `errors[0].error.message`.
+If you threw a `AcmeKitError`, then you can check the error message in `errors[0].error.message`.
 
 ---
 

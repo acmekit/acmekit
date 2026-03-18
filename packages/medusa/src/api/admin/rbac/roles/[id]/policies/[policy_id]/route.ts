@@ -1,7 +1,7 @@
 import { deleteRbacRolePoliciesWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { defineFileConfig, FeatureFlag } from "/framework/utils"
 import RbacFeatureFlag from "../../../../../../../feature-flags/rbac"
@@ -12,7 +12,7 @@ import RbacFeatureFlag from "../../../../../../../feature-flags/rbac"
  */
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const { policy_id, id: role_id } = req.params
 

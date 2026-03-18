@@ -1,7 +1,7 @@
 import {
   ContainerRegistrationKeys,
-  MedusaError,
-  MedusaErrorTypes,
+  AcmeKitError,
+  AcmeKitErrorTypes,
 } from "/framework/utils"
 import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { CreateTranslationDTO, UpdateTranslationDataDTO, UpdateTranslationDTO } from "/types"
@@ -64,8 +64,8 @@ export const validateTranslationsStep = createStep(
       .filter((locale) => !enabledLocales.includes(locale))
 
     if (unsupportedLocales.length) {
-      throw new MedusaError(
-        MedusaErrorTypes.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitErrorTypes.INVALID_DATA,
         `The following locales are not supported in the store: ${unsupportedLocales.join(
           ", "
         )}`

@@ -1,4 +1,4 @@
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 import { HttpTypes } from "/framework/types"
 import {
   ContainerRegistrationKeys,
@@ -12,8 +12,8 @@ import TranslationFeatureFlag from "../../../feature-flags/translation"
  * @featureFlag translation
  */
 export const GET = async (
-  req: MedusaRequest<HttpTypes.AdminTranslationsListParams>,
-  res: MedusaResponse<HttpTypes.AdminTranslationsListResponse>
+  req: AcmeKitRequest<HttpTypes.AdminTranslationsListParams>,
+  res: AcmeKitResponse<HttpTypes.AdminTranslationsListResponse>
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 

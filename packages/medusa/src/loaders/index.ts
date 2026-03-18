@@ -1,4 +1,4 @@
-import { container, MedusaAppLoader, policiesLoader } from "/framework"
+import { container, AcmeKitAppLoader, policiesLoader } from "/framework"
 import { asValue } from "/framework/awilix"
 import { configLoader } from "/framework/config"
 import { pgConnectionLoader } from "/framework/database"
@@ -11,7 +11,7 @@ import { SubscriberLoader } from "/framework/subscribers"
 import {
   ConfigModule,
   LoadedModule,
-  MedusaContainer,
+  AcmeKitContainer,
   PluginDetails,
 } from "/framework/types"
 import {
@@ -49,7 +49,7 @@ const shouldLoadBackgroundProcessors = (configModule) => {
 
 async function subscribersLoader(
   plugins: PluginDetails[],
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const pluginSubscribersSourcePaths = [
     /**
@@ -68,7 +68,7 @@ async function subscribersLoader(
 
 async function jobsLoader(
   plugins: PluginDetails[],
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const pluginJobSourcePaths = [
     /**
@@ -83,7 +83,7 @@ async function jobsLoader(
 
 async function loadEntrypoints(
   plugins: PluginDetails[],
-  container: MedusaContainer,
+  container: AcmeKitContainer,
   expressApp: Express,
   rootDirectory: string
 ) {
@@ -100,7 +100,7 @@ async function loadEntrypoints(
    * middleware
    */
   expressApp.use((req: Request, res: Response, next: NextFunction) => {
-    req.scope = container.createScope() as MedusaContainer
+    req.scope = container.createScope() as AcmeKitContainer
     req.requestId = (req.headers["x-request-id"] as string) ?? v4()
     next()
   })
@@ -136,7 +136,7 @@ export async function initializeContainer(
     skipDbConnection?: boolean
     throwOnError?: boolean
   }
-): Promise<MedusaContainer> {
+): Promise<AcmeKitContainer> {
   await featureFlagsLoader(rootDirectory)
   const configDir = await configLoader(rootDirectory, "medusa-config", {
     throwOnError: options?.throwOnError,
@@ -165,7 +165,7 @@ export default async ({
   expressApp,
   skipLoadingEntryPoints = false,
 }: Options): Promise<{
-  container: MedusaContainer
+  container: AcmeKitContainer
   app: Express
   modules: Record<string, LoadedModule | LoadedModule[]>
   shutdown: () => Promise<void>
@@ -200,7 +200,7 @@ export default async ({
     onApplicationPrepareShutdown,
     modules,
     gqlSchema,
-  } = await new MedusaAppLoader().load()
+  } = await new AcmeKitAppLoader().load()
 
   const workflowsSourcePaths = plugins.map((p) => join(p.resolve, "workflows"))
   const workflowLoader = new WorkflowLoader(workflowsSourcePaths, container)

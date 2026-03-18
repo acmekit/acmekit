@@ -2,11 +2,11 @@ import { Logger } from "../logger"
 import {
   Constructor,
   InternalModuleDeclaration,
-  MedusaContainer,
+  AcmeKitContainer,
 } from "./index"
 
 export type ProviderLoaderOptions<TOptions = Record<string, unknown>> = {
-  container: MedusaContainer
+  container: AcmeKitContainer
   options?: TOptions
   logger?: Logger
   moduleOptions: Record<string, unknown>

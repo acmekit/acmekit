@@ -1,12 +1,12 @@
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 
 import { refreshInviteTokensWorkflow } from "/core-flows"
 import { HttpTypes } from "/framework/types"
 import { refetchInvite } from "../../helpers"
 
 export const POST = async (
-  req: MedusaRequest<{}, HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.AdminInviteResponse>
+  req: AcmeKitRequest<{}, HttpTypes.SelectParams>,
+  res: AcmeKitResponse<HttpTypes.AdminInviteResponse>
 ) => {
   const workflow = refreshInviteTokensWorkflow(req.scope)
 

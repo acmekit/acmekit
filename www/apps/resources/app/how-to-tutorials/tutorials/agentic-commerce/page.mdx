@@ -786,11 +786,11 @@ Create the file `src/jobs/sync-product-feed.ts` with the following content:
 
 ```ts title="src/jobs/sync-product-feed.ts"
 import {
-  MedusaContainer,
+  AcmeKitContainer,
 } from "/framework/types"
 import sendProductFeedWorkflow from "../workflows/send-product-feed"
 
-export default async function syncProductFeed(container: MedusaContainer) {
+export default async function syncProductFeed(container: AcmeKitContainer) {
   const logger = container.resolve("logger")
   const query = container.resolve("query")
 
@@ -1543,10 +1543,10 @@ As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0),
 </Note>
 
 ```ts title="src/api/checkout_sessions/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, MedusaResponse } from "/framework"
 import { z } from "/framework/zod"
 import { createCheckoutSessionWorkflow } from "../../workflows/create-checkout-session"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 export const PostCreateSessionSchema = z.object({
   items: z.array(z.object({
@@ -1571,7 +1571,7 @@ export const PostCreateSessionSchema = z.object({
 })
 
 export const POST = async (
-  req: MedusaRequest<
+  req: AcmeKitRequest<
     z.infer<typeof PostCreateSessionSchema>
   >,
   res: MedusaResponse
@@ -1592,7 +1592,7 @@ export const POST = async (
 
     res.set(responseHeaders).json(result)
   } catch (error) {
-    const medusaError = error as MedusaError
+    const medusaError = error as AcmeKitError
     logger.error(medusaError)
     res.set(responseHeaders).json({
       messages: [
@@ -1625,11 +1625,11 @@ Next, you'll create a [middleware](!docs!/learn/fundamentals/api-routes/middlewa
 Create the file `src/api/middlewares/validate-agentic-request.ts` with the following content:
 
 ```ts title="src/api/middlewares/validate-agentic-request.ts"
-import { MedusaNextFunction, MedusaRequest, MedusaResponse } from "/framework"
+import { MedusaNextFunction, AcmeKitRequest, MedusaResponse } from "/framework"
 import { AGENTIC_COMMERCE_MODULE } from "../../modules/agentic-commerce"
 
 export async function validateAgenticRequest(
-  req: MedusaRequest, 
+  req: AcmeKitRequest, 
   res: MedusaResponse, 
   next: MedusaNextFunction
 ) {
@@ -1762,11 +1762,11 @@ To test the `POST /checkout_sessions` API locally, you'll add an API route to re
 Create the file `src/api/signature/route.ts` with the following content:
 
 ```ts title="src/api/signature/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { AGENTIC_COMMERCE_MODULE } from "../../modules/agentic-commerce"
 
 export const POST = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const agenticCommerceModuleService = req.scope.resolve(AGENTIC_COMMERCE_MODULE)
@@ -2211,10 +2211,10 @@ Next, you'll create an API route that executes the `updateCheckoutSessionWorkflo
 Create the file `src/api/checkout_sessions/[id]/route.ts` with the following content:
 
 ```ts title="src/api/checkout_sessions/[id]/route.ts" collapsibleLines="1-7" expandButtonLabel="Show Imports"
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, MedusaResponse } from "/framework"
 import { updateCheckoutSessionWorkflow } from "../../../workflows/update-checkout-session"
 import { z } from "/framework/zod"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { prepareCheckoutSessionDataWorkflow } from "../../../workflows/prepare-checkout-session-data"
 import { refreshPaymentCollectionForCartWorkflow } from "/medusa/core-flows"
 
@@ -2242,7 +2242,7 @@ export const PostUpdateSessionSchema = z.object({
 })
 
 export const POST = async (
-  req: MedusaRequest<
+  req: AcmeKitRequest<
     z.infer<typeof PostUpdateSessionSchema>
   >,
   res: MedusaResponse
@@ -2265,7 +2265,7 @@ export const POST = async (
 
     res.set(responseHeaders).json(result)
   } catch (error) {
-    const medusaError = error as MedusaError
+    const medusaError = error as AcmeKitError
 
     await refreshPaymentCollectionForCartWorkflow(req.scope).run({
       input: {
@@ -2281,7 +2281,7 @@ export const POST = async (
           messages: [
             {
               type: "error",
-              code: medusaError.type === MedusaError.Types.PAYMENT_AUTHORIZATION_ERROR ? 
+              code: medusaError.type === AcmeKitError.Types.PAYMENT_AUTHORIZATION_ERROR ? 
                 "payment_declined" : "invalid",
               content_type: "plain",
               content: medusaError.message,
@@ -2392,7 +2392,7 @@ To create the API route, add the following function to `src/api/checkout_session
 
 ```ts title="src/api/checkout_sessions/[id]/route.ts"
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const responseHeaders = {
@@ -2412,8 +2412,8 @@ export const GET = async (
 
     res.set(responseHeaders).status(200).json(result)
   } catch (error) {
-    const medusaError = error as MedusaError
-    const statusCode = medusaError.type === MedusaError.Types.NOT_FOUND ? 404 : 500
+    const medusaError = error as AcmeKitError
+    const statusCode = medusaError.type === AcmeKitError.Types.NOT_FOUND ? 404 : 500
     res.set(responseHeaders).status(statusCode).json({
       type: "invalid_request",
       code: "request_not_idempotent",
@@ -2844,10 +2844,10 @@ Next, you'll create an API route at `POST /checkout_sessions/{id}/complete` that
 Create the file `src/api/checkout_sessions/[id]/complete/route.ts` with the following content:
 
 ```ts title="src/api/checkout_sessions/[id]/complete/route.ts" collapsibleLines="1-7" expandButtonLabel="Show Imports"
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, MedusaResponse } from "/framework"
 import { z } from "/framework/zod"
 import { completeCheckoutSessionWorkflow } from "../../../../workflows/complete-checkout-session"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { refreshPaymentCollectionForCartWorkflow } from "/medusa/core-flows"
 import { prepareCheckoutSessionDataWorkflow } from "../../../../workflows/prepare-checkout-session-data"
 
@@ -2874,7 +2874,7 @@ export const PostCompleteSessionSchema = z.object({
 })
 
 export const POST = async (
-  req: MedusaRequest<
+  req: AcmeKitRequest<
     z.infer<typeof PostCompleteSessionSchema>
   >,
   res: MedusaResponse
@@ -2897,7 +2897,7 @@ export const POST = async (
 
     res.set(responseHeaders).json(result)
   } catch (error) {
-    const medusaError = error as MedusaError
+    const medusaError = error as AcmeKitError
 
     await refreshPaymentCollectionForCartWorkflow(req.scope).run({
       input: {
@@ -2912,7 +2912,7 @@ export const POST = async (
           messages: [
             {
               type: "error",
-              code: medusaError.type === MedusaError.Types.PAYMENT_AUTHORIZATION_ERROR ? 
+              code: medusaError.type === AcmeKitError.Types.PAYMENT_AUTHORIZATION_ERROR ? 
                 "payment_declined" : "invalid",
               content_type: "plain",
               content: medusaError.message,
@@ -3155,7 +3155,7 @@ To create the step, create the file `src/workflows/steps/validate-cart-cancelati
 
 ```ts title="src/workflows/steps/validate-cart-cancelation.ts"
 import { CartDTO, OrderDTO, PaymentCollectionDTO } from "/framework/types"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { createStep } from "/framework/workflows-sdk"
 
 export type ValidateCartCancelationStepInput = {
@@ -3169,14 +3169,14 @@ export const validateCartCancelationStep = createStep(
   "validate-cart-cancelation",
   async ({ cart }: ValidateCartCancelationStepInput) => {
     if (cart.metadata?.checkout_session_canceled) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Cart is already canceled"
       )
     }
     if (!!cart.order) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Cart is already associated with an order"
       )
     }
@@ -3184,8 +3184,8 @@ export const validateCartCancelationStep = createStep(
       ?.some((session) => session.status === "authorized" || session.status === "canceled")
 
     if (!!cart.completed_at || !!invalidPaymentSessions) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Cart cannot be canceled"
       )
     }
@@ -3383,12 +3383,12 @@ Next, you'll create a `POST` API route at `/checkout_sessions/{id}/cancel` that 
 Create the file `src/api/checkout_sessions/[id]/cancel/route.ts` with the following content:
 
 ```ts title="src/api/checkout_sessions/[id]/cancel/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { cancelCheckoutSessionWorkflow } from "../../../../workflows/cancel-checkout-session"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 export const POST = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const responseHeaders = {
@@ -3408,7 +3408,7 @@ export const POST = async (
     
     res.set(responseHeaders).json(result)
   } catch (error) {
-    const medusaError = error as MedusaError
+    const medusaError = error as AcmeKitError
     res.set(responseHeaders).status(405).json({
       messages: [
         {

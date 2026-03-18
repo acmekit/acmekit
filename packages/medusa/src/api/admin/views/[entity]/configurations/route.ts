@@ -1,10 +1,10 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { AdminCreateViewConfigurationType } from "./validators"
 import { HttpTypes } from "/framework/types"
-import { MedusaError, Modules } from "/framework/utils"
+import { AcmeKitError, Modules } from "/framework/utils"
 import { createViewConfigurationWorkflow } from "/core-flows"
 
 /**
@@ -13,7 +13,7 @@ import { createViewConfigurationWorkflow } from "/core-flows"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminGetViewConfigurationsParams>,
-  res: MedusaResponse<HttpTypes.AdminViewConfigurationListResponse>
+  res: AcmeKitResponse<HttpTypes.AdminViewConfigurationListResponse>
 ) => {
   const settingsService = req.scope.resolve(Modules.SETTINGS)
 
@@ -43,12 +43,12 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminCreateViewConfigurationType>,
-  res: MedusaResponse<HttpTypes.AdminViewConfigurationResponse>
+  res: AcmeKitResponse<HttpTypes.AdminViewConfigurationResponse>
 ) => {
   // Validate: name is required unless creating a system default
   if (!req.body.is_system_default && !req.body.name) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Name is required unless creating a system default view"
     )
   }

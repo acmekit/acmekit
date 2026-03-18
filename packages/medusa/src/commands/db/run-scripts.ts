@@ -1,4 +1,4 @@
-import { MedusaAppLoader } from "/framework"
+import { AcmeKitAppLoader } from "/framework"
 import { LinkLoader } from "/framework/links"
 import { MigrationScriptsMigrator } from "/framework/migrations"
 import {
@@ -8,8 +8,8 @@ import {
 } from "/framework/utils"
 import { dirname, join } from "path"
 
-import { MedusaModule } from "/framework/modules-sdk"
-import { Logger, MedusaContainer, PluginDetails } from "/types"
+import { AcmeKitModule } from "/framework/modules-sdk"
+import { Logger, AcmeKitContainer, PluginDetails } from "/types"
 import { initializeContainer } from "../../loaders"
 import { ensureDbExists } from "../utils"
 
@@ -25,7 +25,7 @@ export async function runMigrationScripts({
   logger,
 }: {
   directory: string
-  container: MedusaContainer
+  container: AcmeKitContainer
   logger: Logger
 }): Promise<boolean> {
   let onApplicationPrepareShutdown: () => Promise<void> = async () =>
@@ -93,7 +93,7 @@ async function loadResources(
   /**
    * Clear all module instances to prevent cache from kicking in
    */
-  MedusaModule.clearInstances()
+  AcmeKitModule.clearInstances()
 
   /**
    * Setup
@@ -104,7 +104,7 @@ async function loadResources(
   )
   await new LinkLoader(linksSourcePaths, logger).load()
 
-  const medusaAppResources = await new MedusaAppLoader().load()
+  const medusaAppResources = await new AcmeKitAppLoader().load()
   const onApplicationPrepareShutdown =
     medusaAppResources.onApplicationPrepareShutdown
   const onApplicationShutdown = medusaAppResources.onApplicationShutdown
@@ -120,9 +120,9 @@ const main = async function ({
   directory,
 }: {
   directory: string
-  container?: MedusaContainer
+  container?: AcmeKitContainer
 }) {
-  process.env.MEDUSA_WORKER_MODE = "server"
+  process.env.ACMEKIT_WORKER_MODE = "server"
   const container = await initializeContainer(directory)
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
 

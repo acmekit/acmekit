@@ -1,14 +1,14 @@
 import { generateResetPasswordTokenWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { ContainerRegistrationKeys } from "/framework/utils"
 import { ResetPasswordRequestType } from "../../../validators"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<ResetPasswordRequestType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const { auth_provider, actor_type } = req.params
   const { identifier, metadata } = req.validatedBody

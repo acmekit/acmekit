@@ -293,9 +293,9 @@ module.exports = defineConfig({
 To test out your Caching Module Provider, create a simple API route that retrieves cached data with Query:
 
 ```ts title="src/api/test-caching/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+export const GET = async (req: AcmeKitRequest, res: MedusaResponse) => {
   const query = req.scope.resolve("query")
 
   const { data } = await query.graph({

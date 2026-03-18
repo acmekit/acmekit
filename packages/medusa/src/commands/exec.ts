@@ -15,7 +15,7 @@ type Options = {
 }
 
 export default async function exec({ file, args }: Options) {
-  process.env.MEDUSA_WORKER_MODE = "server"
+  process.env.ACMEKIT_WORKER_MODE = "server"
 
   const container = await initializeContainer(process.cwd(), {
     skipDbConnection: true,

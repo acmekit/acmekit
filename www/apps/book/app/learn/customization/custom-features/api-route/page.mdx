@@ -37,7 +37,7 @@ The route's path is the path of `route.{ts,js}` relative to `src/api`. So, to cr
 
 ```ts title="src/api/admin/brands/route.ts"
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { 
@@ -49,7 +49,7 @@ type PostAdminCreateBrandType = {
 }
 
 export const POST = async (
-  req: MedusaRequest<PostAdminCreateBrandType>,
+  req: AcmeKitRequest<PostAdminCreateBrandType>,
   res: MedusaResponse
 ) => {
   const { result } = await createBrandWorkflow(req.scope)
@@ -63,15 +63,15 @@ export const POST = async (
 
 You export a route handler function with its name (`POST`) being the HTTP method of the API route you're exposing.
 
-The function receives two parameters: a `MedusaRequest` object to access request details, and `MedusaResponse` object to return or manipulate the response. The `MedusaRequest` object's `scope` property is the [Medusa container](../../../fundamentals/medusa-container/page.mdx) that holds Framework tools and custom and core modules' services.
+The function receives two parameters: a `AcmeKitRequest` object to access request details, and `MedusaResponse` object to return or manipulate the response. The `AcmeKitRequest` object's `scope` property is the [Medusa container](../../../fundamentals/medusa-container/page.mdx) that holds Framework tools and custom and core modules' services.
 
 <Note title="Tip">
 
-`MedusaRequest` accepts the request body's type as a type argument.
+`AcmeKitRequest` accepts the request body's type as a type argument.
 
 </Note>
 
-In the API route's handler, you execute the `createBrandWorkflow` by invoking it and passing the Medusa container `req.scope` as a parameter, then invoking its `run` method. You pass the workflow's input in the `input` property of the `run` method's parameter. You pass the request body's parameters using the `validatedBody` property of `MedusaRequest`.
+In the API route's handler, you execute the `createBrandWorkflow` by invoking it and passing the Medusa container `req.scope` as a parameter, then invoking its `run` method. You pass the workflow's input in the `input` property of the `run` method's parameter. You pass the request body's parameters using the `validatedBody` property of `AcmeKitRequest`.
 
 You return a JSON response with the created brand using the `res.json` method.
 

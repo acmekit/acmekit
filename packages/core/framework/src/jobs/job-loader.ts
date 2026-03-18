@@ -1,10 +1,10 @@
 import type { SchedulerOptions } from "/orchestration"
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 import {
   dynamicImport,
   isFileSkipped,
   isObject,
-  MedusaError,
+  AcmeKitError,
   registerDevServerResource,
 } from "/utils"
 import {
@@ -20,12 +20,12 @@ type CronJobConfig = {
   numberOfExecutions?: SchedulerOptions["numberOfExecutions"]
 }
 
-type CronJobHandler = (container: MedusaContainer) => Promise<any>
+type CronJobHandler = (container: AcmeKitContainer) => Promise<any>
 
 export class JobLoader extends ResourceLoader {
   protected resourceName = "job"
 
-  constructor(sourceDir: string | string[], container: MedusaContainer) {
+  constructor(sourceDir: string | string[], container: AcmeKitContainer) {
     super(sourceDir, container)
   }
 
@@ -64,22 +64,22 @@ export class JobLoader extends ResourceLoader {
     name: string
   }) {
     if (!config) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Config is required for scheduled jobs."
       )
     }
 
     if (!config.schedule) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Cron schedule definition is required for scheduled jobs."
       )
     }
 
     if (!config.name) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Job name is required for scheduled jobs."
       )
     }

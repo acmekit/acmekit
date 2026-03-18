@@ -23,7 +23,7 @@ import {
   when,
   WorkflowResponse,
 } from ".."
-import { MedusaWorkflow } from "../../../medusa-workflow"
+import { AcmeKitWorkflow } from "../../../medusa-workflow"
 import { createHook } from "../create-hook"
 
 jest.setTimeout(30000)
@@ -47,7 +47,7 @@ WorkflowScheduler.setStorage(new MockSchedulerStorage())
 
 const afterEach_ = () => {
   jest.clearAllMocks()
-  MedusaWorkflow.workflows = {}
+  AcmeKitWorkflow.workflows = {}
   WorkflowManager.unregisterAll()
 }
 

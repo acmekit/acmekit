@@ -18,7 +18,7 @@ import { Logger, ModulesSdkTypes } from "/framework/types"
 import {
   isDefined,
   isPresent,
-  MedusaError,
+  AcmeKitError,
   promiseAll,
   TransactionState,
   TransactionStepState,
@@ -292,8 +292,8 @@ export class RedisDistributedTransactionStorage
               "[Workflow-engine-redis] Failed to reconnect to Redis",
               error
             )
-            throw new MedusaError(
-              MedusaError.Types.DB_ERROR,
+            throw new AcmeKitError(
+              AcmeKitError.Types.DB_ERROR,
               `Redis connection failed: ${error.message}`
             )
           })
@@ -317,8 +317,8 @@ export class RedisDistributedTransactionStorage
               "[Workflow-engine-redis] Failed to reconnect to Redis worker connection",
               error
             )
-            throw new MedusaError(
-              MedusaError.Types.DB_ERROR,
+            throw new AcmeKitError(
+              AcmeKitError.Types.DB_ERROR,
               `Redis worker connection failed: ${error.message}`
             )
           })
@@ -443,7 +443,7 @@ export class RedisDistributedTransactionStorage
         logOnError: true,
       })
     } catch (e) {
-      if (e instanceof MedusaError && e.type === MedusaError.Types.NOT_FOUND) {
+      if (e instanceof AcmeKitError && e.type === AcmeKitError.Types.NOT_FOUND) {
         this.logger_?.warn(
           `Tried to execute a scheduled workflow with ID ${jobId} that does not exist, removing it from the scheduler.`
         )

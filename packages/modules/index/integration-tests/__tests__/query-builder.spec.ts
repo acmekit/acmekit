@@ -2,12 +2,12 @@ import {
   configLoader,
   container,
   logger,
-  MedusaAppLoader,
+  AcmeKitAppLoader,
   Migrator,
 } from "/framework"
 import { asValue } from "/framework/awilix"
 import { EntityManager } from "/framework/mikro-orm/postgresql"
-import { MedusaAppOutput, MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitAppOutput, AcmeKitModule } from "/framework/modules-sdk"
 import { IndexTypes } from "/framework/types"
 import { ContainerRegistrationKeys, Modules } from "/framework/utils"
 import { initDb, TestDatabaseUtils } from "/test-utils"
@@ -26,7 +26,7 @@ const dbUtils = TestDatabaseUtils.dbTestUtilFactory()
 jest.setTimeout(300000)
 
 let isFirstTime = true
-let medusaAppLoader!: MedusaAppLoader
+let medusaAppLoader!: AcmeKitAppLoader
 
 const beforeAll_ = async () => {
   try {
@@ -45,7 +45,7 @@ const beforeAll_ = async () => {
       [ContainerRegistrationKeys.PG_CONNECTION]: asValue(dbUtils.pgConnection_),
     })
 
-    medusaAppLoader = new MedusaAppLoader(container as any)
+    medusaAppLoader = new AcmeKitAppLoader(container as any)
 
     // Migrations
     const migrator = new Migrator({ container })
@@ -57,7 +57,7 @@ const beforeAll_ = async () => {
     await linkPlanner.executePlan(plan)
 
     // Clear partially loaded instances
-    MedusaModule.clearInstances()
+    AcmeKitModule.clearInstances()
 
     // Bootstrap modules
     const globalApp = await medusaAppLoader.load()
@@ -103,7 +103,7 @@ const afterEach_ = async () => {
 }
 
 describe("IndexModuleService query", function () {
-  let medusaApp: MedusaAppOutput
+  let medusaApp: AcmeKitAppOutput
   let module: IndexTypes.IIndexService
   let onApplicationPrepareShutdown!: () => Promise<void>
   let onApplicationShutdown!: () => Promise<void>

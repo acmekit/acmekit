@@ -1,4 +1,4 @@
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import {
   IndexTypes,
   JoinerServiceConfigAlias,
@@ -166,7 +166,7 @@ function retrieveModuleAndAlias(entityName, moduleJoinerConfigs) {
     } else if (!moduleJoinerConfig.isLink) {
       /**
        * For modules that don't export a schema (e.g. custom modules using
-       * MedusaService without an explicit GraphQL schema), fall back to
+       * AcmeKitService without an explicit GraphQL schema), fall back to
        * matching the entity by its name appearing as a value in linkableKeys.
        */
       const linkableKeys = moduleJoinerConfig.linkableKeys ?? {}
@@ -1313,7 +1313,7 @@ export function buildSchemaObjectRepresentation(schema: string): {
   entitiesMap: Record<string, any>
   executableSchema: GraphQLUtils.GraphQLSchema
 } {
-  const moduleJoinerConfigs = MedusaModule.getAllJoinerConfigs()
+  const moduleJoinerConfigs = AcmeKitModule.getAllJoinerConfigs()
 
   const servicesEntityMap = getServicesEntityMap(moduleJoinerConfigs)
   const filterableEntities = buildSchemaFromFilterableLinks(

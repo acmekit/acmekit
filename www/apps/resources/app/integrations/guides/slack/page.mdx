@@ -188,21 +188,21 @@ So, add the `validateOptions` method to the `SlackNotificationProviderService` c
 ```ts title="src/modules/slack/service.ts"
 // other imports...
 import { 
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 class SlackNotificationProviderService extends AbstractNotificationProviderService {
   // ...
   static validateOptions(options: Record<any, any>): void | never {
     if (!options.webhook_url) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Webhook URL is required"
       )
     }
     if (!options.admin_url) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Admin URL is required"
       )
     }
@@ -262,8 +262,8 @@ class SlackNotificationProviderService extends AbstractNotificationProviderServi
   async sendOrderNotification(notification: ProviderSendNotificationDTO) {
     const order = notification.data?.order as OrderDTO
     if (!order) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         "Order not found"
       )
     }
@@ -378,8 +378,8 @@ class SlackNotificationProviderService extends AbstractNotificationProviderServi
       case "order-created":
         return this.sendOrderNotification(notification)
       default:
-        throw new MedusaError(
-          MedusaError.Types.NOT_FOUND,
+        throw new AcmeKitError(
+          AcmeKitError.Types.NOT_FOUND,
           `Template ${template} not supported`
         )
     }

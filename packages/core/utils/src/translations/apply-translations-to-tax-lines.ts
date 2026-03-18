@@ -1,7 +1,7 @@
 import { applyTranslations } from "./apply-translations"
 import {
   ItemTaxLineDTO,
-  MedusaContainer,
+  AcmeKitContainer,
   ShippingTaxLineDTO,
 } from "/types"
 
@@ -17,7 +17,7 @@ import {
 export const applyTranslationsToTaxLines = async (
   taxLines: ItemTaxLineDTO[] | ShippingTaxLineDTO[],
   locale: string | undefined,
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) => {
   const translatedTaxRates = taxLines.map(
     (taxLine: ItemTaxLineDTO | ShippingTaxLineDTO) => ({

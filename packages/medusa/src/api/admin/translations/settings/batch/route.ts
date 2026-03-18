@@ -1,5 +1,5 @@
 import { batchTranslationSettingsWorkflow } from "/core-flows"
-import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework"
+import { AuthenticatedMedusaRequest, AcmeKitResponse } from "/framework"
 import { defineFileConfig, FeatureFlag } from "/framework/utils"
 import { HttpTypes } from "/types"
 import TranslationFeatureFlag from "../../../../../feature-flags/translation"
@@ -10,7 +10,7 @@ import TranslationFeatureFlag from "../../../../../feature-flags/translation"
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminBatchTranslationSettings>,
-  res: MedusaResponse<HttpTypes.AdminBatchTranslationSettingsResponse>
+  res: AcmeKitResponse<HttpTypes.AdminBatchTranslationSettingsResponse>
 ) => {
   const { create = [], update = [], delete: deleteIds = [] } = req.validatedBody
 

@@ -1,11 +1,11 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   req.session.auth_context = req.auth_context
 
@@ -14,7 +14,7 @@ export const POST = async (
 
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   req.session.destroy()
   res.json({ success: true })

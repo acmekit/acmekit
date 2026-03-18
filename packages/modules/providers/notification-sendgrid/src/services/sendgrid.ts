@@ -5,7 +5,7 @@ import {
 } from "/framework/types"
 import {
   AbstractNotificationProviderService,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import sendgrid from "@sendgrid/mail"
 
@@ -43,8 +43,8 @@ export class SendgridNotificationService extends AbstractNotificationProviderSer
     notification: NotificationTypes.ProviderSendNotificationDTO
   ): Promise<NotificationTypes.ProviderSendNotificationResultsDTO> {
     if (!notification) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No notification information provided`
       )
     }
@@ -96,8 +96,8 @@ export class SendgridNotificationService extends AbstractNotificationProviderSer
     } catch (error) {
       const errorCode = error.code
       const responseError = error.response?.body?.errors?.[0]
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to send email: ${errorCode} - ${
           responseError?.message ?? "unknown error"
         }`

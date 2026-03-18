@@ -1,4 +1,4 @@
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import {
   Constructor,
   IAnalyticsProvider,
@@ -26,8 +26,8 @@ export default class AnalyticsProviderService {
     )
 
     if (analyticsProviderKeys.length !== 1) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `Analytics module should be initialized with exactly one provider`
       )
     }

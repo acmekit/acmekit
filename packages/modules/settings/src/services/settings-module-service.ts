@@ -10,9 +10,9 @@ import {
   EmitEvents,
   InjectManager,
   InjectTransactionManager,
-  MedusaContext,
-  MedusaError,
-  MedusaService,
+  AcmeKitContext,
+  AcmeKitError,
+  AcmeKitService,
 } from "/framework/utils"
 import { ViewConfiguration, UserPreference } from "@/models"
 
@@ -23,7 +23,7 @@ type InjectedDependencies = {
 }
 
 export default class SettingsModuleService
-  extends MedusaService<{
+  extends AcmeKitService<{
     ViewConfiguration: { dto: SettingsTypes.ViewConfigurationDTO }
     UserPreference: { dto: SettingsTypes.UserPreferenceDTO }
   }>({ ViewConfiguration, UserPreference })
@@ -58,7 +58,7 @@ export default class SettingsModuleService
     data:
       | SettingsTypes.CreateViewConfigurationDTO
       | SettingsTypes.CreateViewConfigurationDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<
     SettingsTypes.ViewConfigurationDTO | SettingsTypes.ViewConfigurationDTO[]
   > {
@@ -69,8 +69,8 @@ export default class SettingsModuleService
     // Validate system defaults
     for (const config of dataArray) {
       if (config.is_system_default && config.user_id) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "System default view configurations cannot have a user_id"
         )
       }
@@ -87,8 +87,8 @@ export default class SettingsModuleService
         )
 
         if (existingDefault.length > 0) {
-          throw new MedusaError(
-            MedusaError.Types.DUPLICATE_ERROR,
+          throw new AcmeKitError(
+            AcmeKitError.Types.DUPLICATE_ERROR,
             `A system default view configuration already exists for entity: ${config.entity}`
           )
         }
@@ -111,7 +111,7 @@ export default class SettingsModuleService
   async updateViewConfigurations(
     idOrSelector: string | SettingsTypes.FilterableViewConfigurationProps,
     data: SettingsTypes.UpdateViewConfigurationDTO,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<
     SettingsTypes.ViewConfigurationDTO | SettingsTypes.ViewConfigurationDTO[]
   > {
@@ -132,7 +132,7 @@ export default class SettingsModuleService
   protected async updateViewConfigurations_(
     idOrSelector: string | SettingsTypes.FilterableViewConfigurationProps,
     data: SettingsTypes.UpdateViewConfigurationDTO,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<InferEntityType<typeof ViewConfiguration>[]> {
     let selector: SettingsTypes.FilterableViewConfigurationProps = {}
 
@@ -205,7 +205,7 @@ export default class SettingsModuleService
   async getUserPreference(
     userId: string,
     key: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<SettingsTypes.UserPreferenceDTO | null> {
     const prefs = await this.userPreferenceService_.list(
       { user_id: userId, key },
@@ -228,7 +228,7 @@ export default class SettingsModuleService
     userId: string,
     key: string,
     value: any,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<SettingsTypes.UserPreferenceDTO> {
     const existing = await this.userPreferenceService_.list(
       { user_id: userId, key },
@@ -261,7 +261,7 @@ export default class SettingsModuleService
   async getActiveViewConfiguration(
     entity: string,
     userId: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<SettingsTypes.ViewConfigurationDTO | null> {
     // Check if user has an active view preference
     const activeViewPref = await this.getUserPreference(
@@ -319,7 +319,7 @@ export default class SettingsModuleService
     entity: string,
     userId: string,
     viewConfigurationId: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<void> {
     // Verify the view configuration exists and user has access
     const viewConfig = await this.retrieveViewConfiguration(
@@ -329,15 +329,15 @@ export default class SettingsModuleService
     )
 
     if (viewConfig.entity !== entity) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `View configuration ${viewConfigurationId} is not for entity ${entity}`
       )
     }
 
     if (viewConfig.user_id && viewConfig.user_id !== userId) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `User ${userId} does not have access to view configuration ${viewConfigurationId}`
       )
     }
@@ -353,7 +353,7 @@ export default class SettingsModuleService
   @InjectManager()
   async getSystemDefaultViewConfiguration(
     entity: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<SettingsTypes.ViewConfigurationDTO | null> {
     const systemDefaults = await this.listViewConfigurations(
       { entity, is_system_default: true },
@@ -369,7 +369,7 @@ export default class SettingsModuleService
   async clearActiveViewConfiguration(
     entity: string,
     userId: string,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<void> {
     // Instead of deleting, set the preference to null
     // This ensures we're using the same transaction pattern as setActiveViewConfiguration

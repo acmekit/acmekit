@@ -1,4 +1,4 @@
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 import { ContainerRegistrationKeys } from "/framework/utils"
 
 export const AUTHENTICATE = false
@@ -7,8 +7,8 @@ export const AUTHENTICATE = false
  * @since 2.10.0
  */
 export const GET = async (
-  req: MedusaRequest,
-  res: MedusaResponse<{ feature_flags: Record<string, boolean> }>
+  req: AcmeKitRequest,
+  res: AcmeKitResponse<{ feature_flags: Record<string, boolean> }>
 ) => {
   const featureFlagRouter = req.scope.resolve(
     ContainerRegistrationKeys.FEATURE_FLAG_ROUTER

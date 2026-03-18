@@ -7,7 +7,7 @@ import {
   TransactionStepsDefinition,
   WorkflowHandler,
 } from "/orchestration"
-import { Context, LoadedModule, MedusaContainer } from "/types"
+import { Context, LoadedModule, AcmeKitContainer } from "/types"
 import { ExportedWorkflow } from "../../helper"
 import { Hook } from "./create-hook"
 import { CompensateFn, InvokeFn } from "./create-step"
@@ -174,7 +174,7 @@ export interface StepExecutionContext {
   /**
    * The container used to access resources, such as services, in the step.
    */
-  container: MedusaContainer
+  container: AcmeKitContainer
   /**
    * Metadata passed in the input.
    */
@@ -243,14 +243,14 @@ export type WorkflowTransactionContext = StepExecutionContext &
  *
  * ```ts
  * import type {
- *   MedusaRequest,
- *   MedusaResponse
+ *   AcmeKitRequest,
+ *   AcmeKitResponse
  * } from "/medusa";
  * import myWorkflow from "../../../workflows/hello-world";
  *
  * export async function GET(
- *   req: MedusaRequest,
- *   res: MedusaResponse
+ *   req: AcmeKitRequest,
+ *   res: AcmeKitResponse
  * ) {
  *   const { result } = await myWorkflow(req.scope)
  *     .run({
@@ -265,7 +265,7 @@ export type WorkflowTransactionContext = StepExecutionContext &
  */
 export type ReturnWorkflow<TData, TResult, THooks extends any[]> = {
   <TDataOverride = undefined, TResultOverride = undefined>(
-    container?: LoadedModule[] | MedusaContainer
+    container?: LoadedModule[] | AcmeKitContainer
   ): Omit<
     LocalWorkflow,
     | "run"

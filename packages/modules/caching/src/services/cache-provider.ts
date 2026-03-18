@@ -3,7 +3,7 @@ import {
   ICachingProviderService,
   Logger,
 } from "/framework/types"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { CachingProviderRegistrationPrefix } from "../types"
 
 type InjectedDependencies = {
@@ -26,8 +26,8 @@ export default class CacheProviderService {
     providerClass: Constructor<ICachingProviderService>
   ) {
     if (!(providerClass as any).identifier) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         `Trying to register a caching provider without an identifier.`
       )
     }

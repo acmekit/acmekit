@@ -1,5 +1,5 @@
 import {
-  MedusaError,
+  AcmeKitError,
   TransactionStepState,
   TransactionStepStatus,
 } from "/utils"
@@ -796,7 +796,7 @@ describe("Transaction Orchestrator", () => {
   it("Should handle multiple types of errors", async () => {
     const errorTypes = [
       new Error("Regular error object"),
-      new MedusaError(MedusaError.Types.NOT_FOUND, "Not found error"),
+      new AcmeKitError(AcmeKitError.Types.NOT_FOUND, "Not found error"),
       { message: "Custom error object" },
       "String error",
       123,

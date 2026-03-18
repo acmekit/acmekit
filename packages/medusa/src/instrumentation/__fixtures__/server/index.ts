@@ -13,11 +13,11 @@ import {
   ApiLoader,
   container,
   featureFlagsLoader,
-  MedusaRequest,
+  AcmeKitRequest,
 } from "/framework"
 import { configManager } from "/framework/config"
 import { logger as defaultLogger } from "/framework/logger"
-import { ConfigModule, MedusaContainer } from "/types"
+import { ConfigModule, AcmeKitContainer } from "/types"
 import { config } from "../mocks"
 
 function asArray(resolvers) {
@@ -49,7 +49,7 @@ export const createServer = async (rootDir) => {
     baseDir: rootDir,
   })
 
-  container.registerAdd = function (this: MedusaContainer, name, registration) {
+  container.registerAdd = function (this: AcmeKitContainer, name, registration) {
     const storeKey = name + "_STORE"
 
     if (this.registrations[storeKey] === undefined) {
@@ -89,7 +89,7 @@ export const createServer = async (rootDir) => {
   await moduleLoader({ container, moduleResolutions, logger: defaultLogger })
 
   app.use((req, res, next) => {
-    ;(req as MedusaRequest).scope = container.createScope() as MedusaContainer
+    ;(req as AcmeKitRequest).scope = container.createScope() as AcmeKitContainer
     next()
   })
 

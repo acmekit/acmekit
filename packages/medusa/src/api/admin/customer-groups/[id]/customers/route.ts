@@ -1,7 +1,7 @@
 import { linkCustomersToCustomerGroupWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 import { HttpTypes } from "/framework/types"
@@ -12,7 +12,7 @@ export const POST = async (
     HttpTypes.AdminBatchLink,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminCustomerGroupResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerGroupResponse>
 ) => {
   const { id } = req.params
   const { add, remove } = req.validatedBody

@@ -1,13 +1,13 @@
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 import { isFileSkipped } from "/utils"
-import { MedusaWorkflow } from "/workflows-sdk"
+import { AcmeKitWorkflow } from "/workflows-sdk"
 import { logger } from "../logger"
 import { ResourceLoader } from "../utils/resource-loader"
 
 export class WorkflowLoader extends ResourceLoader {
   protected resourceName = "workflow"
 
-  constructor(sourceDir: string | string[], container: MedusaContainer) {
+  constructor(sourceDir: string | string[], container: AcmeKitContainer) {
     super(sourceDir, container)
   }
 
@@ -20,7 +20,7 @@ export class WorkflowLoader extends ResourceLoader {
       for (const exportedFn of exportedFns) {
         const fn = fileExports[exportedFn] as any
         if (fn?.getName?.()) {
-          MedusaWorkflow.unregisterWorkflow(fn.getName())
+          AcmeKitWorkflow.unregisterWorkflow(fn.getName())
         }
       }
       return

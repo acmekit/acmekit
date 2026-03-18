@@ -1,20 +1,20 @@
 import { uploadFilesWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { HttpTypes } from "/framework/types"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminUploadFile>,
-  res: MedusaResponse<HttpTypes.AdminFileListResponse>
+  res: AcmeKitResponse<HttpTypes.AdminFileListResponse>
 ) => {
   const input = req.files as Express.Multer.File[]
 
   if (!input?.length) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "No files were uploaded"
     )
   }

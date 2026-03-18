@@ -1,5 +1,5 @@
-import { MedusaStoreRequest } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitStoreRequest } from "/framework/http"
+import { AcmeKitError } from "/framework/utils"
 import { NextFunction } from "express"
 import {
   transformAndValidateSalesChannelIds,
@@ -8,7 +8,7 @@ import {
 
 describe("filter-by-valid-sales-channels", () => {
   describe("transformAndValidateSalesChannelIds", () => {
-    let req: Partial<MedusaStoreRequest>
+    let req: Partial<AcmeKitStoreRequest>
 
     beforeEach(() => {
       req = {
@@ -24,7 +24,7 @@ describe("filter-by-valid-sales-channels", () => {
       req.validatedQuery = { sales_channel_id: ["sc-1"] }
 
       const result = transformAndValidateSalesChannelIds(
-        req as MedusaStoreRequest
+        req as AcmeKitStoreRequest
       )
 
       expect(result).toEqual(["sc-1"])
@@ -34,7 +34,7 @@ describe("filter-by-valid-sales-channels", () => {
       req.validatedQuery = { sales_channel_id: "sc-2" }
 
       const result = transformAndValidateSalesChannelIds(
-        req as MedusaStoreRequest
+        req as AcmeKitStoreRequest
       )
 
       expect(result).toEqual(["sc-2"])
@@ -44,15 +44,15 @@ describe("filter-by-valid-sales-channels", () => {
       req.validatedQuery = { sales_channel_id: ["sc-3"] }
 
       expect(() => {
-        transformAndValidateSalesChannelIds(req as MedusaStoreRequest)
-      }).toThrow(MedusaError)
+        transformAndValidateSalesChannelIds(req as AcmeKitStoreRequest)
+      }).toThrow(AcmeKitError)
     })
 
     it("should return sales channel ids from publishable key when no ids in request", () => {
       req.validatedQuery = {}
 
       const result = transformAndValidateSalesChannelIds(
-        req as MedusaStoreRequest
+        req as AcmeKitStoreRequest
       )
 
       expect(result).toEqual(["sc-1", "sc-2"])
@@ -66,7 +66,7 @@ describe("filter-by-valid-sales-channels", () => {
       req.validatedQuery = {}
 
       const result = transformAndValidateSalesChannelIds(
-        req as MedusaStoreRequest
+        req as AcmeKitStoreRequest
       )
 
       expect(result).toEqual([])
@@ -74,7 +74,7 @@ describe("filter-by-valid-sales-channels", () => {
   })
 
   describe("filterByValidSalesChannels", () => {
-    let req: Partial<MedusaStoreRequest>
+    let req: Partial<AcmeKitStoreRequest>
     let res: any
     let next: NextFunction
     let middleware: ReturnType<typeof filterByValidSalesChannels>
@@ -95,7 +95,7 @@ describe("filter-by-valid-sales-channels", () => {
     })
 
     it("should set filterableFields.sales_channel_id and call next", async () => {
-      await middleware(req as MedusaStoreRequest, res, next)
+      await middleware(req as AcmeKitStoreRequest, res, next)
 
       expect(req.filterableFields!.sales_channel_id).toEqual(["sc-1", "sc-2"])
       expect(next).toHaveBeenCalled()
@@ -108,7 +108,7 @@ describe("filter-by-valid-sales-channels", () => {
       }
 
       await expect(
-        middleware(req as MedusaStoreRequest, res, next)
+        middleware(req as AcmeKitStoreRequest, res, next)
       ).rejects.toThrow(
         "Publishable key needs to have a sales channel configured"
       )
@@ -118,7 +118,7 @@ describe("filter-by-valid-sales-channels", () => {
     it("should use only sales channels from request that are in publishable key", async () => {
       req.validatedQuery = { sales_channel_id: ["sc-1"] }
 
-      await middleware(req as MedusaStoreRequest, res, next)
+      await middleware(req as AcmeKitStoreRequest, res, next)
 
       expect(req.filterableFields!.sales_channel_id).toEqual(["sc-1"])
       expect(next).toHaveBeenCalled()
@@ -127,7 +127,7 @@ describe("filter-by-valid-sales-channels", () => {
     it("should handle sales_channel_id as string in request", async () => {
       req.validatedQuery = { sales_channel_id: "sc-2" }
 
-      await middleware(req as MedusaStoreRequest, res, next)
+      await middleware(req as AcmeKitStoreRequest, res, next)
 
       expect(req.filterableFields!.sales_channel_id).toEqual(["sc-2"])
       expect(next).toHaveBeenCalled()

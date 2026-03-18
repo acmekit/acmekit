@@ -4,11 +4,11 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import {
   AdminAssignUserRolesType,
@@ -21,7 +21,7 @@ import {
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const userId = req.params.id
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -49,7 +49,7 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminAssignUserRolesType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const userId = req.params.id
   const { roles } = req.validatedBody
@@ -64,8 +64,8 @@ export const POST = async (
   })
 
   if (!user) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `User with id "${userId}" not found`
     )
   }
@@ -96,7 +96,7 @@ export const POST = async (
  */
 export const DELETE = async (
   req: AuthenticatedMedusaRequest<AdminRemoveUserRolesType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const userId = req.params.id
   const { roles } = req.validatedBody
@@ -111,8 +111,8 @@ export const DELETE = async (
   })
 
   if (!user) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `User with id "${userId}" not found`
     )
   }

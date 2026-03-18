@@ -1,8 +1,8 @@
 /**
- * @typedef MedusaErrorType
+ * @typedef AcmeKitErrorType
  *
  */
-export const MedusaErrorTypes = {
+export const AcmeKitErrorTypes = {
   /** Errors stemming from the database */
   DB_ERROR: "database_error",
   DUPLICATE_ERROR: "duplicate_error",
@@ -19,7 +19,7 @@ export const MedusaErrorTypes = {
   PAYMENT_REQUIRES_MORE_ERROR: "payment_requires_more_error",
 }
 
-export const MedusaErrorCodes = {
+export const AcmeKitErrorCodes = {
   INSUFFICIENT_INVENTORY: "insufficient_inventory",
   CART_INCOMPATIBLE_STATE: "cart_incompatible_state",
   UNKNOWN_MODULES: "unknown_modules",
@@ -29,15 +29,15 @@ export const MedusaErrorCodes = {
  * Standardized error to be used across AcmeKit project.
  * @extends Error
  */
-export class MedusaError extends Error {
+export class AcmeKitError extends Error {
   __isMedusaError = true
 
   public type: string
   public message: string
   public code?: string
   public date: Date
-  public static Types = MedusaErrorTypes
-  public static Codes = MedusaErrorCodes
+  public static Types = AcmeKitErrorTypes
+  public static Codes = AcmeKitErrorCodes
 
   /**
    * Creates a standardized error to be used across AcmeKit project.
@@ -50,7 +50,7 @@ export class MedusaError extends Error {
     super(...params)
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, MedusaError)
+      Error.captureStackTrace(this, AcmeKitError)
     }
 
     this.type = type
@@ -60,9 +60,9 @@ export class MedusaError extends Error {
   }
 
   /**
-   * Checks the object for the MedusaError type.
+   * Checks the object for the AcmeKitError type.
    */
-  static isMedusaError(error: any): error is MedusaError {
+  static isMedusaError(error: any): error is AcmeKitError {
     return !!error.__isMedusaError
   }
 }

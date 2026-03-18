@@ -1,4 +1,4 @@
-import { defineLink, MedusaService, model, Module } from "/utils"
+import { defineLink, AcmeKitService, model, Module } from "/utils"
 
 const model3 = model.define("model-3", {
   id: model.id().primaryKey(),
@@ -9,11 +9,11 @@ const model4 = model.define("model-4", {
 })
 
 const module3 = Module("module-3", {
-  service: class Service3 extends MedusaService({ model3 }) {},
+  service: class Service3 extends AcmeKitService({ model3 }) {},
 })
 
 const module4 = Module("module-4", {
-  service: class Service4 extends MedusaService({ model4 }) {},
+  service: class Service4 extends AcmeKitService({ model4 }) {},
 })
 
 export const module3And4Link = defineLink(

@@ -117,8 +117,8 @@ export abstract class AbstractAuthModuleProvider implements IAuthProvider {
    * class MyAuthProviderService extends AbstractAuthModuleProvider {
    *   static validateOptions(options: Record<any, any>) {
    *     if (!options.apiKey) {
-   *       throw new MedusaError(
-   *         MedusaError.Types.INVALID_DATA,
+   *       throw new AcmeKitError(
+   *         AcmeKitError.Types.INVALID_DATA,
    *         "API key is required in the provider's options."
    *       )
    *     }
@@ -263,7 +263,7 @@ export abstract class AbstractAuthModuleProvider implements IAuthProvider {
    *   AuthenticationInput,
    *   AuthenticationResponse
    * } from "/framework/types"
-   * import { MedusaError } from "/framework/utils"
+   * import { AcmeKitError } from "/framework/utils"
    * // ...
    *
    * class MyAuthProviderService extends AbstractAuthModuleProvider {
@@ -282,7 +282,7 @@ export abstract class AbstractAuthModuleProvider implements IAuthProvider {
    *         error: "Identity with email already exists",
    *       }
    *     } catch (error) {
-   *       if (error.type === MedusaError.Types.NOT_FOUND) {
+   *       if (error.type === AcmeKitError.Types.NOT_FOUND) {
    *         const createdAuthIdentity = await authIdentityProviderService.create({
    *           entity_id: data.body.email, // email or some ID
    *           provider: this.provider,
@@ -330,7 +330,7 @@ export abstract class AbstractAuthModuleProvider implements IAuthProvider {
    *   AuthenticationInput,
    *   AuthenticationResponse
    * } from "/framework/types"
-   * import { MedusaError } from "/framework/utils"
+   * import { AcmeKitError } from "/framework/utils"
    * // ...
    *
    * class MyAuthProviderService extends AbstractAuthModuleProvider {

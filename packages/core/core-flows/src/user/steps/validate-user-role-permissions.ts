@@ -1,6 +1,6 @@
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import { createStep, StepResponse } from "/framework/workflows-sdk"
 
@@ -62,8 +62,8 @@ export const validateUserRolePermissionsStep = createStep(
     })
 
     if (!actors?.[0]?.rbac_roles?.length) {
-      throw new MedusaError(
-        MedusaError.Types.FORBIDDEN,
+      throw new AcmeKitError(
+        AcmeKitError.Types.FORBIDDEN,
         "You do not have permission to assign these roles"
       )
     }
@@ -83,8 +83,8 @@ export const validateUserRolePermissionsStep = createStep(
     })
 
     if (missingPolicies.length > 0) {
-      throw new MedusaError(
-        MedusaError.Types.FORBIDDEN,
+      throw new AcmeKitError(
+        AcmeKitError.Types.FORBIDDEN,
         "You do not have permission to assign these roles"
       )
     }

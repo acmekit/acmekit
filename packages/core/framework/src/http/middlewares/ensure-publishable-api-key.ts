@@ -2,25 +2,25 @@ import {
   ApiKeyType,
   ContainerRegistrationKeys,
   isPresent,
-  MedusaError,
+  AcmeKitError,
   CLIENT_KEY_HEADER,
 } from "/utils"
 import type {
-  MedusaNextFunction,
-  MedusaResponse,
-  MedusaStoreRequest,
+  AcmeKitNextFunction,
+  AcmeKitResponse,
+  AcmeKitStoreRequest,
 } from "../../http"
 
 export async function ensurePublishableApiKeyMiddleware(
-  req: MedusaStoreRequest,
-  _: MedusaResponse,
-  next: MedusaNextFunction
+  req: AcmeKitStoreRequest,
+  _: AcmeKitResponse,
+  next: AcmeKitNextFunction
 ) {
   const publishableApiKey = req.get(CLIENT_KEY_HEADER)
 
   if (!isPresent(publishableApiKey)) {
-    const error = new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    const error = new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       `Client API key required in the request header: ${CLIENT_KEY_HEADER}. You can manage your keys in settings in the dashboard.`
     )
     return next(error)
@@ -68,8 +68,8 @@ export async function ensurePublishableApiKeyMiddleware(
 
   if (!apiKey) {
     try {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `A valid client API key is required to proceed with the request`
       )
     } catch (e) {

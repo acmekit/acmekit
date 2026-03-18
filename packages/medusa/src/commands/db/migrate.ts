@@ -1,4 +1,4 @@
-import { MEDUSA_CLI_PATH, MedusaAppLoader, Migrator } from "/framework"
+import { MEDUSA_CLI_PATH, AcmeKitAppLoader, Migrator } from "/framework"
 import { LinkLoader } from "/framework/links"
 import {
   ContainerRegistrationKeys,
@@ -6,7 +6,7 @@ import {
   isDefined,
   mergePluginModules,
 } from "/framework/utils"
-import { Logger, MedusaContainer } from "/types"
+import { Logger, AcmeKitContainer } from "/types"
 import { fork } from "child_process"
 import path, { join } from "path"
 import { initializeContainer } from "../../loaders"
@@ -40,7 +40,7 @@ export async function migrate({
   allOrNothing?: boolean
   concurrency?: number
   logger: Logger
-  container: MedusaContainer
+  container: AcmeKitContainer
 }): Promise<boolean> {
   /**
    * Setup
@@ -58,7 +58,7 @@ export async function migrate({
     process.env.DB_MIGRATION_CONCURRENCY = String(concurrency)
   }
 
-  const medusaAppLoader = new MedusaAppLoader()
+  const medusaAppLoader = new AcmeKitAppLoader()
   const configModule = container.resolve(
     ContainerRegistrationKeys.CONFIG_MODULE
   )
@@ -132,7 +132,7 @@ const main = async function ({
   concurrency,
   allOrNothing,
 }) {
-  process.env.MEDUSA_WORKER_MODE = "server"
+  process.env.ACMEKIT_WORKER_MODE = "server"
   const container = await initializeContainer(directory)
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
 

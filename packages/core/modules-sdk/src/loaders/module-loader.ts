@@ -1,4 +1,4 @@
-import { Logger, MedusaContainer, ModuleResolution } from "/types"
+import { Logger, AcmeKitContainer, ModuleResolution } from "/types"
 import { promiseAll } from "/utils"
 import { asValue } from "/deps/awilix"
 import { EOL } from "os"
@@ -13,7 +13,7 @@ export const moduleLoader = async ({
   loaderOnly,
   schemaOnly,
 }: {
-  container: MedusaContainer
+  container: AcmeKitContainer
   moduleResolutions: Record<string, ModuleResolution>
   logger: Logger
   migrationOnly?: boolean
@@ -46,7 +46,7 @@ export const moduleLoader = async ({
 }
 
 async function loadModule(
-  container: MedusaContainer,
+  container: AcmeKitContainer,
   resolution: ModuleResolution,
   logger: Logger,
   migrationOnly?: boolean,

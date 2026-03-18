@@ -9,7 +9,7 @@ import {
   InternalModuleDeclaration,
   LoadedModule,
   Logger,
-  MedusaContainer,
+  AcmeKitContainer,
   ModuleBootstrapDeclaration,
   ModuleDefinition,
   ModuleExports,
@@ -28,7 +28,7 @@ import {
   isObject,
   isSharedConnectionSymbol,
   isString,
-  MedusaError,
+  AcmeKitError,
   MODULE_PACKAGE_NAMES,
   Modules,
   ModulesSdkUtils,
@@ -37,7 +37,7 @@ import {
 } from "/utils"
 import { Link } from "./link"
 import {
-  MedusaModule,
+  AcmeKitModule,
   MigrationOptions,
   ModuleBootstrapOptions,
   RegisterModuleJoinerConfig,
@@ -54,7 +54,7 @@ export type RevertMigrationFn = (moduleNames: string[]) => Promise<void>
 export type GenerateMigrations = (moduleNames: string[]) => Promise<void>
 export type GetLinkExecutionPlanner = () => ILinkMigrationsPlanner
 
-export type MedusaModuleConfig = {
+export type AcmeKitModuleConfig = {
   [key: string | Modules]:
     | string
     | boolean
@@ -82,8 +82,8 @@ export type SharedResources = {
 }
 
 export async function loadModules(args: {
-  modulesConfig: MedusaModuleConfig
-  sharedContainer: MedusaContainer
+  modulesConfig: AcmeKitModuleConfig
+  sharedContainer: AcmeKitContainer
   sharedResourcesConfig?: SharedResources
   migrationOnly?: boolean
   schemaOnly?: boolean
@@ -108,7 +108,7 @@ export async function loadModules(args: {
     moduleKey: string
     defaultPath: string
     declaration: InternalModuleDeclaration | ExternalModuleDeclaration
-    sharedContainer: MedusaContainer
+    sharedContainer: AcmeKitContainer
     moduleDefinition: ModuleDefinition
     moduleExports?: ModuleExports
   }[] = []
@@ -164,7 +164,7 @@ export async function loadModules(args: {
     })
   }
 
-  const loaded = (await MedusaModule.bootstrapAll(modulesToLoad, {
+  const loaded = (await AcmeKitModule.bootstrapAll(modulesToLoad, {
     migrationOnly,
     schemaOnly,
     loaderOnly,
@@ -267,7 +267,7 @@ function cleanAndMergeSchema(loadedSchema) {
 }
 
 function getLoadedSchema(): string {
-  return MedusaModule.getAllJoinerConfigs()
+  return AcmeKitModule.getAllJoinerConfigs()
     .map((joinerConfig) => joinerConfig?.schema ?? "")
     .join("\n")
 }
@@ -278,11 +278,11 @@ function registerCustomJoinerConfigs(servicesConfig: ModuleJoinerConfig[]) {
       continue
     }
 
-    MedusaModule.setJoinerConfig(config.serviceName, config)
+    AcmeKitModule.setJoinerConfig(config.serviceName, config)
   }
 }
 
-export type MedusaAppOutput = {
+export type AcmeKitAppOutput = {
   modules: Record<string, LoadedModule | LoadedModule[]>
   link: Link | undefined
   query: RemoteQueryFunction
@@ -296,18 +296,18 @@ export type MedusaAppOutput = {
   onApplicationShutdown: () => Promise<void>
   onApplicationPrepareShutdown: () => Promise<void>
   onApplicationStart: () => Promise<void>
-  sharedContainer?: MedusaContainer
+  sharedContainer?: AcmeKitContainer
 }
 
-export type MedusaAppOptions = {
+export type AcmeKitAppOptions = {
   workerMode?: "shared" | "worker" | "server"
-  sharedContainer?: MedusaContainer
+  sharedContainer?: AcmeKitContainer
   sharedResourcesConfig?: SharedResources
   loadedModules?: LoadedModule[]
   servicesConfig?: ModuleJoinerConfig[]
   medusaConfigPath?: string
   modulesConfigFileName?: string
-  modulesConfig?: MedusaModuleConfig
+  modulesConfig?: AcmeKitModuleConfig
   linkModules?: RegisterModuleJoinerConfig | RegisterModuleJoinerConfig[]
   remoteFetchData?: RemoteFetchDataCallback
   injectedDependencies?: any
@@ -329,7 +329,7 @@ export type MedusaAppOptions = {
   cwd?: string
 }
 
-async function MedusaApp_({
+async function AcmeKitApp_({
   sharedContainer,
   sharedResourcesConfig,
   servicesConfig,
@@ -344,7 +344,7 @@ async function MedusaApp_({
   loaderOnly = false,
   workerMode = "shared",
   cwd = process.cwd(),
-}: MedusaAppOptions = {}): Promise<MedusaAppOutput> {
+}: AcmeKitAppOptions = {}): Promise<AcmeKitAppOutput> {
   const sharedContainer_ = createMedusaContainer({}, sharedContainer)
 
   const config = sharedContainer_.resolve(
@@ -369,20 +369,20 @@ async function MedusaApp_({
 
   const onApplicationShutdown = async () => {
     await promiseAll([
-      MedusaModule.onApplicationShutdown(),
+      AcmeKitModule.onApplicationShutdown(),
       sharedContainer_.dispose(),
     ])
   }
 
   const onApplicationPrepareShutdown = async () => {
-    await promiseAll([MedusaModule.onApplicationPrepareShutdown()])
+    await promiseAll([AcmeKitModule.onApplicationPrepareShutdown()])
   }
 
   const onApplicationStart = async () => {
-    await MedusaModule.onApplicationStart()
+    await AcmeKitModule.onApplicationStart()
   }
 
-  const modules: MedusaModuleConfig =
+  const modules: AcmeKitModuleConfig =
     modulesConfig ??
     (
       await dynamicImport(
@@ -488,9 +488,9 @@ async function MedusaApp_({
   if (!Array.isArray(linkModules)) {
     linkModules = [linkModules]
   }
-  linkModules.push(...MedusaModule.getCustomLinks())
+  linkModules.push(...AcmeKitModule.getCustomLinks())
 
-  const allLoadedJoinerConfigs = MedusaModule.getAllJoinerConfigs()
+  const allLoadedJoinerConfigs = AcmeKitModule.getAllJoinerConfigs()
   for (let linkIdx = 0; linkIdx < linkModules.length; linkIdx++) {
     const customLink: any = linkModules[linkIdx]
     if (typeof customLink === "function") {
@@ -530,7 +530,7 @@ async function MedusaApp_({
       (moduleName) => {
         return {
           moduleName,
-          resolution: MedusaModule.getModuleResolutions(moduleName),
+          resolution: AcmeKitModule.getModuleResolutions(moduleName),
         }
       }
     )
@@ -540,12 +540,12 @@ async function MedusaApp_({
       .map(({ moduleName }) => moduleName)
 
     if (missingModules.length) {
-      const error = new MedusaError(
-        MedusaError.Types.UNKNOWN_MODULES,
+      const error = new AcmeKitError(
+        AcmeKitError.Types.UNKNOWN_MODULES,
         `Cannot ${action} migrations for unknown module(s) ${missingModules.join(
           ","
         )}`,
-        MedusaError.Codes.UNKNOWN_MODULES
+        AcmeKitError.Codes.UNKNOWN_MODULES
       )
       error["allModules"] = Object.keys(allModules)
       throw error
@@ -578,9 +578,9 @@ async function MedusaApp_({
       }
 
       if (action === "revert") {
-        await MedusaModule.migrateDown(migrationOptions, migrationNames)
+        await AcmeKitModule.migrateDown(migrationOptions, migrationNames)
       } else if (action === "run") {
-        const ranMigrationsResult = await MedusaModule.migrateUp(
+        const ranMigrationsResult = await AcmeKitModule.migrateUp(
           migrationOptions
         )
 
@@ -590,7 +590,7 @@ async function MedusaApp_({
           ranMigrationsResult?.map((r) => r.name) ?? [],
         ])
       } else {
-        await MedusaModule.migrateGenerate(migrationOptions)
+        await AcmeKitModule.migrateGenerate(migrationOptions)
       }
     }
 
@@ -697,61 +697,61 @@ async function MedusaApp_({
   }
 }
 
-export async function MedusaApp(
-  options: MedusaAppOptions = {}
-): Promise<MedusaAppOutput> {
-  return await MedusaApp_(options)
+export async function AcmeKitApp(
+  options: AcmeKitAppOptions = {}
+): Promise<AcmeKitAppOutput> {
+  return await AcmeKitApp_(options)
 }
 
-export async function MedusaAppMigrateUp(
-  options: MedusaAppOptions & { allOrNothing?: boolean } = {}
+export async function AcmeKitAppMigrateUp(
+  options: AcmeKitAppOptions & { allOrNothing?: boolean } = {}
 ): Promise<void> {
   const migrationOnly = true
 
-  const { runMigrations } = await MedusaApp_({
+  const { runMigrations } = await AcmeKitApp_({
     ...options,
     migrationOnly,
   })
 
   await runMigrations({ allOrNothing: options.allOrNothing }).finally(
-    MedusaModule.clearInstances
+    AcmeKitModule.clearInstances
   )
 }
 
-export async function MedusaAppMigrateDown(
+export async function AcmeKitAppMigrateDown(
   moduleNames: string[],
-  options: MedusaAppOptions = {}
+  options: AcmeKitAppOptions = {}
 ): Promise<void> {
   const migrationOnly = true
 
-  const { revertMigrations } = await MedusaApp_({
+  const { revertMigrations } = await AcmeKitApp_({
     ...options,
     migrationOnly,
   })
 
-  await revertMigrations(moduleNames).finally(MedusaModule.clearInstances)
+  await revertMigrations(moduleNames).finally(AcmeKitModule.clearInstances)
 }
 
-export async function MedusaAppMigrateGenerate(
+export async function AcmeKitAppMigrateGenerate(
   moduleNames: string[],
-  options: MedusaAppOptions = {}
+  options: AcmeKitAppOptions = {}
 ): Promise<void> {
   const migrationOnly = true
 
-  const { generateMigrations } = await MedusaApp_({
+  const { generateMigrations } = await AcmeKitApp_({
     ...options,
     migrationOnly,
   })
 
-  await generateMigrations(moduleNames).finally(MedusaModule.clearInstances)
+  await generateMigrations(moduleNames).finally(AcmeKitModule.clearInstances)
 }
 
-export async function MedusaAppGetLinksExecutionPlanner(
-  options: MedusaAppOptions = {}
+export async function AcmeKitAppGetLinksExecutionPlanner(
+  options: AcmeKitAppOptions = {}
 ): Promise<ILinkMigrationsPlanner> {
   const migrationOnly = true
 
-  const { linkMigrationExecutionPlanner } = await MedusaApp_({
+  const { linkMigrationExecutionPlanner } = await AcmeKitApp_({
     ...options,
     migrationOnly,
   })

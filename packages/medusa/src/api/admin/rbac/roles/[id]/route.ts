@@ -4,11 +4,11 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 import { AdminUpdateRbacRoleType } from "../validators"
@@ -19,7 +19,7 @@ import { AdminUpdateRbacRoleType } from "../validators"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
   const { data: roles } = await query.graph({
@@ -31,8 +31,8 @@ export const GET = async (
   const role = roles[0]
 
   if (!role) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Role with id: ${req.params.id} not found`
     )
   }
@@ -46,7 +46,7 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminUpdateRbacRoleType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
   const { data: existing } = await query.graph({
@@ -57,8 +57,8 @@ export const POST = async (
 
   const existingRole = existing[0]
   if (!existingRole) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Role with id "${req.params.id}" not found`
     )
   }
@@ -89,7 +89,7 @@ export const POST = async (
  */
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const id = req.params.id
 

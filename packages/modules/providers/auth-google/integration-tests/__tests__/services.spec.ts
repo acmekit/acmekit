@@ -1,4 +1,4 @@
-import { generateJwtToken, MedusaError } from "/framework/utils"
+import { generateJwtToken, AcmeKitError } from "/framework/utils"
 import { GoogleAuthService } from "../../src/services/google"
 import { http, HttpResponse } from "msw"
 import { setupServer } from "msw/node"
@@ -221,7 +221,7 @@ describe("Google auth provider", () => {
     const authServiceSpies = {
       ...defaultSpies,
       retrieve: jest.fn().mockImplementation(() => {
-        throw new MedusaError(MedusaError.Types.NOT_FOUND, "Not found")
+        throw new AcmeKitError(AcmeKitError.Types.NOT_FOUND, "Not found")
       }),
       create: jest.fn().mockImplementation(() => {
         return {

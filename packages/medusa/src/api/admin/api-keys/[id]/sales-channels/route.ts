@@ -1,9 +1,9 @@
 import { linkSalesChannelsToApiKeyWorkflow } from "/core-flows"
 import { HttpTypes } from "/framework/types"
-import { ApiKeyType, MedusaError } from "/framework/utils"
+import { ApiKeyType, AcmeKitError } from "/framework/utils"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { refetchApiKey } from "../../helpers"
 
@@ -12,14 +12,14 @@ export const POST = async (
     HttpTypes.AdminBatchLink,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminApiKeyResponse>
+  res: AcmeKitResponse<HttpTypes.AdminApiKeyResponse>
 ) => {
   const { add, remove } = req.validatedBody
   const apiKey = await refetchApiKey(req.params.id, req.scope, ["id", "type"])
 
   if (apiKey.type !== ApiKeyType.PUBLISHABLE) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Sales channels can only be associated with publishable API keys"
     )
   }

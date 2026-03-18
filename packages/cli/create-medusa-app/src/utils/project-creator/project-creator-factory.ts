@@ -6,7 +6,7 @@ import logMessage from "../log-message.js"
 import { getNodeVersion, MIN_SUPPORTED_NODE_VERSION } from "../node-version.js"
 import { ProjectCreator, ProjectOptions } from "./creator.js"
 import { PluginProjectCreator } from "./medusa-plugin-creator.js"
-import { MedusaProjectCreator } from "./medusa-project-creator.js"
+import { AcmeKitProjectCreator } from "./medusa-project-creator.js"
 import terminalLink from "terminal-link"
 
 const slugify = slugifyType.default
@@ -26,7 +26,7 @@ export class ProjectCreatorFactory {
 
     return options.plugin
       ? new PluginProjectCreator(projectName, options, args)
-      : new MedusaProjectCreator(projectName, options, args)
+      : new AcmeKitProjectCreator(projectName, options, args)
   }
 
   private static validateNodeVersion(): void {

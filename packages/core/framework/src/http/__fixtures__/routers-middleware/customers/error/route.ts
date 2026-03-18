@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
-import { MedusaError } from "/utils"
+import { AcmeKitError } from "/utils"
 
 export const GET = async (req: Request, res: Response) => {
-  throw new MedusaError(MedusaError.Types.NOT_ALLOWED, "Not allowed")
+  throw new AcmeKitError(AcmeKitError.Types.NOT_ALLOWED, "Not allowed")
 }

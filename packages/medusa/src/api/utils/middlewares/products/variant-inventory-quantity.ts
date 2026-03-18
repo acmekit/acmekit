@@ -2,13 +2,13 @@ import {
   ContainerRegistrationKeys,
   getTotalVariantAvailability,
   getVariantAvailability,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
-import { MedusaRequest, MedusaStoreRequest } from "/framework/http"
+import { AcmeKitRequest, AcmeKitStoreRequest } from "/framework/http"
 import { transformAndValidateSalesChannelIds } from "./filter-by-valid-sales-channels"
 
 export const wrapVariantsWithTotalInventoryQuantity = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   variants: VariantInput[]
 ) => {
   const variantIds = (variants ?? []).map((variant) => variant.id).flat(1)
@@ -26,7 +26,7 @@ export const wrapVariantsWithTotalInventoryQuantity = async (
 }
 
 export const wrapVariantsWithInventoryQuantityForSalesChannel = async (
-  req: MedusaStoreRequest<unknown>,
+  req: AcmeKitStoreRequest<unknown>,
   variants: VariantInput[]
 ) => {
   const salesChannelIds = transformAndValidateSalesChannelIds(req)
@@ -41,8 +41,8 @@ export const wrapVariantsWithInventoryQuantityForSalesChannel = async (
   } else if (salesChannelIds.length === 1) {
     channelsToUse = salesChannelIds[0]
   } else {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       `Inventory availability cannot be calculated in the given context. Either provide a single sales channel id or configure a single sales channel in the publishable key`
     )
   }

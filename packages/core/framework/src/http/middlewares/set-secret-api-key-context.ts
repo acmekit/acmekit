@@ -1,18 +1,18 @@
 import {
   ContainerRegistrationKeys,
-  MedusaError,
-  MedusaErrorTypes,
+  AcmeKitError,
+  AcmeKitErrorTypes,
 } from "/utils"
 import {
   AuthenticatedMedusaRequest,
-  MedusaNextFunction,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitResponse,
 } from "../types"
 
 export async function setSecretApiKeyContext(
   req: AuthenticatedMedusaRequest,
-  _: MedusaResponse,
-  next: MedusaNextFunction
+  _: AcmeKitResponse,
+  next: AcmeKitNextFunction
 ) {
   const shouldSkip = req.auth_context?.actor_type !== "api-key"
   if (shouldSkip) {
@@ -39,8 +39,8 @@ export async function setSecretApiKeyContext(
   )
 
   if (!apiKey) {
-    throw new MedusaError(
-      MedusaErrorTypes.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitErrorTypes.NOT_FOUND,
       `API key with id ${req.auth_context.actor_id} not found`
     )
   }

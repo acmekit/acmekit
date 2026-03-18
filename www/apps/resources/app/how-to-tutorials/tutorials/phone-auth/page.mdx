@@ -231,15 +231,15 @@ So, add the `validateOptions` method to the `PhoneAuthService` class:
 ```ts title="src/modules/phone-auth/service.ts"
 // other imports...
 import { 
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 class PhoneAuthService extends AbstractAuthModuleProvider {
   // ...
   static validateOptions(options: Record<any, any>): void | never {
     if (!options.jwtSecret) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "JWT secret is required"
       )
     }

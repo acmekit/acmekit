@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
@@ -13,7 +13,7 @@ import { refetchInvite } from "./helpers"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminGetInvitesParams>,
-  res: MedusaResponse<HttpTypes.AdminInviteListResponse>
+  res: AcmeKitResponse<HttpTypes.AdminInviteListResponse>
 ) => {
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
   const queryObject = remoteQueryObjectFromString({
@@ -40,7 +40,7 @@ export const POST = async (
     HttpTypes.AdminCreateInvite,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminInviteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminInviteResponse>
 ) => {
   const workflow = createInvitesWorkflow(req.scope)
 

@@ -1,14 +1,14 @@
 import type {
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
 } from "../types"
 
 export function applyParamsAsFilters(mappings: { [param: string]: string }) {
   return async function paramsAsFiltersMiddleware(
-    req: MedusaRequest,
-    _: MedusaResponse,
-    next: MedusaNextFunction
+    req: AcmeKitRequest,
+    _: AcmeKitResponse,
+    next: AcmeKitNextFunction
   ) {
     for (const [param, paramValue] of Object.entries(req.params)) {
       if (mappings[param]) {

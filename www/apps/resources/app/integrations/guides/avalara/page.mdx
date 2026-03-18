@@ -173,7 +173,7 @@ export const serviceHighlights = [
 ```ts title="src/modules/avalara/service.ts" highlights={serviceHighlights}
 import { ITaxProvider } from "/framework/types"
 import Avatax from "avatax"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { ModuleOptions } from "./types"
 
 type InjectedDependencies = {
@@ -188,8 +188,8 @@ class AvalaraTaxModuleProvider implements ITaxProvider {
   constructor({}: InjectedDependencies, options: ModuleOptions) {
     this.options = options
     if (!options?.username || !options?.password || !options?.companyId) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Avalara module options are required: username, password and companyId"
       )
     }
@@ -249,8 +249,8 @@ class AvalaraTaxModuleProvider implements ITaxProvider {
 
       return response
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `An error occurred while creating transaction for Avalara: ${error}`
       )
     }
@@ -342,8 +342,8 @@ class AvalaraTaxModuleProvider implements ITaxProvider {
 
       // TODO return tax lines
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `An error occurred while getting tax lines from Avalara: ${error}`
       )
     }
@@ -598,8 +598,8 @@ class AvalaraTaxModuleProvider implements ITaxProvider {
       return response
     }
     catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `An error occurred while uncommitting transaction for Avalara: ${error}`
       )
     }
@@ -1004,8 +1004,8 @@ class AvalaraTaxModuleProvider implements ITaxProvider {
 
       return response
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `An error occurred while creating item classifications for Avalara: ${error}`
       )
     }
@@ -1020,8 +1020,8 @@ class AvalaraTaxModuleProvider implements ITaxProvider {
 
       return response
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `An error occurred while retrieving item classification from Avalara: ${error}`
       )
     }
@@ -1048,8 +1048,8 @@ class AvalaraTaxModuleProvider implements ITaxProvider {
 
       return response
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `An error occurred while updating item classifications for Avalara: ${error}`
       )
     }
@@ -1064,8 +1064,8 @@ class AvalaraTaxModuleProvider implements ITaxProvider {
 
       return response
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `An error occurred while deleting item classifications for Avalara: ${error}`
       )
     }

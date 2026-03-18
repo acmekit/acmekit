@@ -10,18 +10,18 @@ import {
   ContainerLike,
   Context,
   Logger,
-  MedusaContainer,
+  AcmeKitContainer,
 } from "/framework/types"
 import {
   isString,
-  MedusaError,
+  AcmeKitError,
   promiseAll,
   TransactionState,
 } from "/framework/utils"
 import {
   FlowCancelOptions,
   FlowRunOptions,
-  MedusaWorkflow,
+  AcmeKitWorkflow,
   resolveValue,
   ReturnWorkflow,
 } from "/framework/workflows-sdk"
@@ -114,7 +114,7 @@ export class WorkflowOrchestratorService {
   private instanceId = ulid()
   protected redisPublisher: Redis
   protected redisSubscriber: Redis
-  protected container_: MedusaContainer
+  protected container_: AcmeKitContainer
   private static subscribers: Subscribers = new Map()
 
   readonly #logger: Logger
@@ -133,7 +133,7 @@ export class WorkflowOrchestratorService {
     workflowOrchestratorService: WorkflowOrchestratorService
     redisPublisher: Redis
     redisSubscriber: Redis
-    sharedContainer: MedusaContainer
+    sharedContainer: AcmeKitContainer
   }) {
     this.container_ = sharedContainer
     this.redisPublisher = redisPublisher
@@ -239,8 +239,8 @@ export class WorkflowOrchestratorService {
       : workflowIdOrWorkflow.getName()
 
     if (!workflowId) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `Workflow ID is required`
       )
     }
@@ -251,10 +251,10 @@ export class WorkflowOrchestratorService {
       transactionId: context.transactionId,
     })
 
-    const exportedWorkflow = MedusaWorkflow.getWorkflow(workflowId)
+    const exportedWorkflow = AcmeKitWorkflow.getWorkflow(workflowId)
     if (!exportedWorkflow) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `Workflow with id "${workflowId}" not found.`
       )
     }
@@ -340,10 +340,10 @@ export class WorkflowOrchestratorService {
       throw new Error("Transaction ID is required")
     }
 
-    const exportedWorkflow = MedusaWorkflow.getWorkflow(workflowId)
+    const exportedWorkflow = AcmeKitWorkflow.getWorkflow(workflowId)
     if (!exportedWorkflow) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `Workflow with id "${workflowId}" not found.`
       )
     }
@@ -438,7 +438,7 @@ export class WorkflowOrchestratorService {
 
     context ??= {}
 
-    const exportedWorkflow: any = MedusaWorkflow.getWorkflow(workflowId)
+    const exportedWorkflow: any = AcmeKitWorkflow.getWorkflow(workflowId)
     if (!exportedWorkflow) {
       throw new Error(`Workflow with id "${workflowId}" not found.`)
     }
@@ -470,7 +470,7 @@ export class WorkflowOrchestratorService {
     const [idempotencyKey_, { workflowId, transactionId }] =
       this.buildIdempotencyKeyAndParts(idempotencyKey)
 
-    const exportedWorkflow: any = MedusaWorkflow.getWorkflow(workflowId)
+    const exportedWorkflow: any = AcmeKitWorkflow.getWorkflow(workflowId)
     if (!exportedWorkflow) {
       throw new Error(`Workflow with id "${workflowId}" not found.`)
     }
@@ -539,7 +539,7 @@ export class WorkflowOrchestratorService {
     const [idempotencyKey_, { workflowId, transactionId }] =
       this.buildIdempotencyKeyAndParts(idempotencyKey)
 
-    const exportedWorkflow: any = MedusaWorkflow.getWorkflow(workflowId)
+    const exportedWorkflow: any = AcmeKitWorkflow.getWorkflow(workflowId)
     if (!exportedWorkflow) {
       throw new Error(`Workflow with id "${workflowId}" not found.`)
     }
@@ -611,7 +611,7 @@ export class WorkflowOrchestratorService {
     const [idempotencyKey_, { workflowId, transactionId }] =
       this.buildIdempotencyKeyAndParts(idempotencyKey)
 
-    const exportedWorkflow: any = MedusaWorkflow.getWorkflow(workflowId)
+    const exportedWorkflow: any = AcmeKitWorkflow.getWorkflow(workflowId)
     if (!exportedWorkflow) {
       throw new Error(`Workflow with id "${workflowId}" not found.`)
     }

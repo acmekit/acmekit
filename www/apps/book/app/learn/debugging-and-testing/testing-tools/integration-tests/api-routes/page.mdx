@@ -22,10 +22,10 @@ In this chapter, you'll learn how to write integration tests for API routes usin
 Consider the following API route created at `src/api/custom/route.ts`:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ){
   res.json({
@@ -124,7 +124,7 @@ import { BLOG_MODULE } from "../../../modules/blog"
 // ...
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const blogModuleService: BlogModuleService = req.scope.resolve(
@@ -236,12 +236,12 @@ The `afterAll` hook resolves the `BlogModuleService` and use its `deletePosts` t
 Consider a `/custom/:id` API route created at `src/api/custom/[id]/route.ts`:
 
 ```ts title="src/api/custom/[id]/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import BlogModuleService from "../../../modules/blog/service"
 import { BLOG_MODULE } from "../../../modules/blog"
 
 export async function DELETE(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const blogModuleService: BlogModuleService = req.scope.resolve(

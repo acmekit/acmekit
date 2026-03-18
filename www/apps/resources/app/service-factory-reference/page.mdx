@@ -6,7 +6,7 @@ export const metadata = {
 
 # {metadata.title}
 
-This section of the documentation provides a reference to the methods generated for services extending the service factory (`MedusaService`) and how to use them.
+This section of the documentation provides a reference to the methods generated for services extending the service factory (`AcmeKitService`) and how to use them.
 
 <Note title="Tip">
 
@@ -18,15 +18,15 @@ Refer to the [Service Factory](!docs!/learn/fundamentals/modules/service-factory
 
 When your module's main service extends the service factory, Medusa will:
 
-1. Generate [data-management methods in your main service](#main-service-methods) for each of the data models passed to the `MedusaService` function.
-2. Generate [internal services](#internal-generated-service-methods) for each of the data models passed to the `MedusaService` function, which can be resolved in loaders.
+1. Generate [data-management methods in your main service](#main-service-methods) for each of the data models passed to the `AcmeKitService` function.
+2. Generate [internal services](#internal-generated-service-methods) for each of the data models passed to the `AcmeKitService` function, which can be resolved in loaders.
 
 ### Main Service Methods
 
 The names of the generated methods for a service extending the service factory are of the format `{operationName}{DataModelName}`, where:
 
 - `{operationName}` is the name of the operation. For example, `create`.
-- `{DataModelName}` is the pascal-case version of the data model's key that's passed in the object parameter of `MedusaService`. The name is pluralized for all operations except the `retrieve` operation.
+- `{DataModelName}` is the pascal-case version of the data model's key that's passed in the object parameter of `AcmeKitService`. The name is pluralized for all operations except the `retrieve` operation.
 
 Some examples of method names:
 

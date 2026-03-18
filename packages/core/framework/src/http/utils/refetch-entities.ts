@@ -1,12 +1,12 @@
 import type {
   GraphResultSet,
-  MedusaContainer,
+  AcmeKitContainer,
   RemoteJoinerOptions,
   RemoteQueryEntryPoints,
   RemoteQueryFunctionReturnPagination,
 } from "../../types"
 import { ContainerRegistrationKeys, isString } from "../../utils"
-import type { MedusaRequest } from "../types"
+import type { AcmeKitRequest } from "../types"
 
 export const refetchEntities = async <TEntry extends string>({
   entity,
@@ -19,9 +19,9 @@ export const refetchEntities = async <TEntry extends string>({
 }: {
   entity: TEntry
   idOrFilter?: string | object
-  scope: MedusaContainer
+  scope: AcmeKitContainer
   fields?: string[]
-  pagination?: MedusaRequest["queryConfig"]["pagination"]
+  pagination?: AcmeKitRequest["queryConfig"]["pagination"]
   withDeleted?: boolean
   options?: RemoteJoinerOptions
 }): Promise<
@@ -68,7 +68,7 @@ export const refetchEntity = async <TEntry extends string>({
 }: {
   entity: TEntry & string
   idOrFilter: string | object
-  scope: MedusaContainer
+  scope: AcmeKitContainer
   fields: string[]
   options?: RemoteJoinerOptions
 }): Promise<

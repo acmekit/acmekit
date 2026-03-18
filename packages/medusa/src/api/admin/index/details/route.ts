@@ -1,4 +1,4 @@
-import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework"
+import { AuthenticatedMedusaRequest, AcmeKitResponse } from "/framework"
 import { HttpTypes } from "/framework/types"
 import { Modules } from "/framework/utils"
 
@@ -10,7 +10,7 @@ import { Modules } from "/framework/utils"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest<void>,
-  res: MedusaResponse<HttpTypes.AdminIndexDetailsResponse>
+  res: AcmeKitResponse<HttpTypes.AdminIndexDetailsResponse>
 ) => {
   const indexModuleService = req.scope.resolve(Modules.INDEX)
   const indexInfo = await indexModuleService.getInfo()

@@ -1,5 +1,5 @@
-import { LinkLoader, MedusaAppLoader } from "/framework"
-import { MedusaModule } from "/framework/modules-sdk"
+import { LinkLoader, AcmeKitAppLoader } from "/framework"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import {
   ContainerRegistrationKeys,
   FileSystem,
@@ -9,7 +9,7 @@ import {
   mergePluginModules,
   validateModuleName,
 } from "/framework/utils"
-import { Logger, MedusaContainer } from "/types"
+import { Logger, AcmeKitContainer } from "/types"
 import path, { join } from "path"
 
 export async function generateTypes({
@@ -18,7 +18,7 @@ export async function generateTypes({
   logger,
 }: {
   directory: string
-  container: MedusaContainer
+  container: AcmeKitContainer
   logger: Logger
 }) {
   logger.info("Generating types...")
@@ -39,7 +39,7 @@ export async function generateTypes({
   )
   await new LinkLoader(linksSourcePaths, logger).load()
 
-  const { gqlSchema, modules } = await new MedusaAppLoader().load({
+  const { gqlSchema, modules } = await new AcmeKitAppLoader().load({
     registerInContainer: false,
     schemaOnly: true,
   })
@@ -63,7 +63,7 @@ export async function generateTypes({
       filename: "query-entry-points",
       interfaceName: "RemoteQueryEntryPoints",
       schema: gqlSchema,
-      joinerConfigs: MedusaModule.getAllJoinerConfigs(),
+      joinerConfigs: AcmeKitModule.getAllJoinerConfigs(),
     })
     logger.debug("Generated modules types")
   }

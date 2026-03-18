@@ -246,7 +246,7 @@ export const clientHighlights1 = [
 
 ```ts title="src/modules/shipstation/client.ts" highlights={clientHighlights1}
 import { ShipStationOptions } from "./service"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 export class ShipStationClient {
   options: ShipStationOptions
@@ -273,8 +273,8 @@ export class ShipStationClient {
     })
     .then((resp) => {
       if (typeof resp !== "string" && resp.errors?.length) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `An error occurred while sending a request to ShipStation: ${
             resp.errors.map((error) => error.message)
           }`
@@ -628,8 +628,8 @@ export class ShipStationClient {
       body: JSON.stringify(data),
     }).then((resp) => {
       if (resp.rate_response.errors?.length) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `An error occurred while retrieving rates from ShipStation: ${
             resp.rate_response.errors.map((error) => error.message)
           }`
@@ -662,7 +662,7 @@ export const serviceHighlights8 = [
 // other imports...
 import {
   // ...
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import { 
   // ...
@@ -698,8 +698,8 @@ class ShipStationProviderService extends AbstractFulfillmentProviderService {
     currency_code: string
   }): Promise<GetShippingRatesResponse> {
     if (!from_address?.address) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "from_location.address is required to calculate shipping rate"
       )
     }
@@ -714,8 +714,8 @@ class ShipStationProviderService extends AbstractFulfillmentProviderService {
       address_residential_indicator: "unknown",
     }
     if (!to_address) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "shipping_address is required to calculate shipping rate"
       )
     }

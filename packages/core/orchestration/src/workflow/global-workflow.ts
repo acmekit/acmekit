@@ -1,4 +1,4 @@
-import { Context, LoadedModule, MedusaContainer } from "/types"
+import { Context, LoadedModule, AcmeKitContainer } from "/types"
 import { createMedusaContainer } from "/utils"
 import { asValue } from "/deps/awilix"
 
@@ -10,12 +10,12 @@ import { WorkflowDefinition, WorkflowManager } from "./workflow-manager"
 
 export class GlobalWorkflow extends WorkflowManager {
   protected static workflows: Map<string, WorkflowDefinition> = new Map()
-  protected container: MedusaContainer
+  protected container: AcmeKitContainer
   protected context: Context
   protected subscribe: DistributedTransactionEvents
 
   constructor(
-    modulesLoaded?: LoadedModule[] | MedusaContainer,
+    modulesLoaded?: LoadedModule[] | AcmeKitContainer,
     context?: Context,
     subscribe?: DistributedTransactionEvents
   ) {

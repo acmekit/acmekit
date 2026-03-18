@@ -54,9 +54,9 @@ export type LoadModuleOptions =
       get: CustomFieldDisplayPath
     }
 
-export interface MedusaVitePluginOptions {
+export interface AcmeKitVitePluginOptions {
   sources?: string[]
   pluginMode?: boolean
 }
 
-export type MedusaVitePlugin = (config?: MedusaVitePluginOptions) => Vite.Plugin
+export type AcmeKitVitePlugin = (config?: AcmeKitVitePluginOptions) => Vite.Plugin

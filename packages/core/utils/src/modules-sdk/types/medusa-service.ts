@@ -290,7 +290,7 @@ type InferModelFromConfig<T> = {
     : never
 }
 
-export type MedusaServiceReturnType<ModelsConfig extends Record<string, any>> =
+export type AcmeKitServiceReturnType<ModelsConfig extends Record<string, any>> =
   {
     new (...args: any[]): AbstractModuleService<ModelsConfig>
     $modelObjects: InferModelFromConfig<ModelsConfig>

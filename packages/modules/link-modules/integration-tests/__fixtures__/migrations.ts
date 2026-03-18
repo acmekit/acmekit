@@ -1,6 +1,6 @@
 import {
   defineJoinerConfig,
-  MedusaService,
+  AcmeKitService,
   model,
   Module,
 } from "/framework/utils"
@@ -14,7 +14,7 @@ export const userJoinerConfig = defineJoinerConfig("user", {
   models: [User],
 })
 
-export class UserService extends MedusaService({ User }) {
+export class UserService extends AcmeKitService({ User }) {
   constructor() {
     super(...arguments)
   }
@@ -33,7 +33,7 @@ export const carJoinerConfig = defineJoinerConfig("car", {
   models: [Car],
 })
 
-export class CarService extends MedusaService({ Car }) {
+export class CarService extends AcmeKitService({ Car }) {
   constructor() {
     super(...arguments)
   }
@@ -58,7 +58,7 @@ export const longNameJoinerConfig = defineJoinerConfig(
   }
 )
 
-export class CustomModuleImplementationContainingAReallyBigNameThatExceedsPosgresLimitToNameATableService extends MedusaService(
+export class CustomModuleImplementationContainingAReallyBigNameThatExceedsPosgresLimitToNameATableService extends AcmeKitService(
   {
     CustomModuleImplementationContainingAReallyBigNameThatExceedsPosgresLimitToNameATable,
   }

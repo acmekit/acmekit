@@ -1,5 +1,5 @@
 import { Context } from "/types"
-import { MedusaContextType } from "./context-parameter"
+import { AcmeKitContextType } from "./context-parameter"
 
 export function InjectSharedContext(): MethodDecorator {
   return function (
@@ -7,18 +7,18 @@ export function InjectSharedContext(): MethodDecorator {
     propertyKey: string | symbol,
     descriptor: any
   ): void {
-    if (!target.MedusaContextIndex_) {
+    if (!target.AcmeKitContextIndex_) {
       throw new Error(
-        `To apply @InjectSharedContext you have to flag a parameter using @MedusaContext`
+        `To apply @InjectSharedContext you have to flag a parameter using @AcmeKitContext`
       )
     }
 
     const originalMethod = descriptor.value
-    const argIndex = target.MedusaContextIndex_[propertyKey]
+    const argIndex = target.AcmeKitContextIndex_[propertyKey]
 
     descriptor.value = function (...args: any[]) {
       const context: Context = {
-        ...(args[argIndex] ?? { __type: MedusaContextType }),
+        ...(args[argIndex] ?? { __type: AcmeKitContextType }),
       }
       args[argIndex] = context
 

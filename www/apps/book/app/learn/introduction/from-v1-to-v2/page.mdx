@@ -963,10 +963,10 @@ In Medusa v2, you can only create a service in a module, and the service either 
 For example, you create a `BrandService` in the Brand Module at `src/modules/brand/service.ts`:
 
 ```ts title="src/modules/brand/service.ts"
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import { Brand } from "./models/brand"
 
-class BrandModuleService extends MedusaService({
+class BrandModuleService extends AcmeKitService({
   Brand,
 }) {
 
@@ -975,7 +975,7 @@ class BrandModuleService extends MedusaService({
 export default BrandModuleService
 ```
 
-The service has automatically generated data-management methods by extending `MedusaService` from the Modules SDK. So, you now have methods like `retrieveBrand` and `createBrands` available in the service.
+The service has automatically generated data-management methods by extending `AcmeKitService` from the Modules SDK. So, you now have methods like `retrieveBrand` and `createBrands` available in the service.
 
 Learn more in the [Service Factory](../../fundamentals/modules/service-factory/page.mdx) chapter.
 
@@ -1218,12 +1218,12 @@ export const helloWorldWorkflow = createWorkflow(
 
 // in API route, for example:
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   // message is "Hello, world!"
@@ -1258,7 +1258,7 @@ In Medusa v2, you import them from the `/framework/http` package. For example:
 
 ```ts title="src/api/store/custom/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 ```
@@ -1339,7 +1339,7 @@ In Medusa v2, you create middlewares by exporting an object created with `define
 import { 
   defineMiddlewares,
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse, 
 } from "/framework/http"
 
@@ -1349,7 +1349,7 @@ export default defineMiddlewares({
       matcher: "/custom*",
       middlewares: [
         (
-          req: MedusaRequest, 
+          req: AcmeKitRequest, 
           res: MedusaResponse, 
           next: MedusaNextFunction
         ) => {
@@ -1578,9 +1578,9 @@ In Medusa v1, a scheduled job function received an object of parameters.
 In Medusa v2, a scheduled job function receives only the Medusa container as a parameter. For example:
 
 ```ts title="src/jobs/hello-world.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 
-export default async function greetingJob(container: MedusaContainer) {
+export default async function greetingJob(container: AcmeKitContainer) {
   const logger = container.resolve("logger")
 
   logger.info("Greeting!")
@@ -1609,10 +1609,10 @@ In Medusa v2, you should implement these functionalities in a [workflow](../../f
 For example:
 
 ```ts title="src/jobs/sync-products.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { syncProductToErpWorkflow } from "../workflows/sync-products-to-erp"
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   await syncProductToErpWorkflow(container)
     .run()
 }

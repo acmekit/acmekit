@@ -4,7 +4,7 @@ import {
   remoteQueryObjectFromString,
 } from "/framework/utils"
 import { NextFunction } from "express"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 
 /**
  * If a publishable key (PK) is passed in the header of the request, we attach
@@ -18,8 +18,8 @@ import { MedusaRequest, MedusaResponse } from "/framework/http"
  *         but that id is not in the scope defined by the PK from the header
  */
 export async function maybeAttachPublishableKeyScopes(
-  req: MedusaRequest & { publishableApiKeyScopes: any },
-  res: MedusaResponse,
+  req: AcmeKitRequest & { publishableApiKeyScopes: any },
+  res: AcmeKitResponse,
   next: NextFunction
 ) {
   const pubKey = req.get("x-client-api-key")

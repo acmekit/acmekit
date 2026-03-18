@@ -14,9 +14,9 @@ import type {
 import type {
   AdditionalDataValidatorRoute,
   BodyParserConfigRoute,
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
   MiddlewareDescriptor,
   MiddlewareFunction,
   MiddlewareVerb,
@@ -24,7 +24,7 @@ import type {
   RouteHandler,
 } from "./types"
 
-import { Logger, MedusaContainer } from "/types"
+import { Logger, AcmeKitContainer } from "/types"
 import { join } from "path"
 import { configManager } from "../config"
 import { MiddlewareFileLoader } from "./middleware-file-loader"
@@ -81,7 +81,7 @@ export class ApiLoader {
     app: Express
     sourceDir: string | string[]
     baseRestrictedFields?: string[]
-    container: MedusaContainer
+    container: AcmeKitContainer
   }) {
     this.#app = app
     this.#sourceDirs = Array.isArray(sourceDir) ? sourceDir : [sourceDir]
@@ -225,9 +225,9 @@ export class ApiLoader {
    */
   #assignRestrictedFields(baseRestrictedFields: string[]) {
     this.#app.use("/client", ((
-      req: MedusaRequest,
-      _: MedusaResponse,
-      next: MedusaNextFunction
+      req: AcmeKitRequest,
+      _: AcmeKitResponse,
+      next: AcmeKitNextFunction
     ) => {
       req.restrictedFields = new RestrictedFields()
       req.restrictedFields.add(baseRestrictedFields)
@@ -235,9 +235,9 @@ export class ApiLoader {
     }) as unknown as RequestHandler)
 
     this.#app.use("/admin", ((
-      req: MedusaRequest,
-      _: MedusaResponse,
-      next: MedusaNextFunction
+      req: AcmeKitRequest,
+      _: AcmeKitResponse,
+      next: AcmeKitNextFunction
     ) => {
       req.restrictedFields = new RestrictedFields()
       next()
@@ -377,9 +377,9 @@ export class ApiLoader {
     )
 
     const additionalDataValidator = function additionalDataValidator(
-      req: MedusaRequest,
-      _: MedusaResponse,
-      next: MedusaNextFunction
+      req: AcmeKitRequest,
+      _: AcmeKitResponse,
+      next: AcmeKitNextFunction
     ) {
       const matchingRoute = routesFinder.find(
         req.path,

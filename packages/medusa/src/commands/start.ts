@@ -20,8 +20,8 @@ import {
   promiseAll,
 } from "/framework/utils"
 
-import { MedusaModule } from "/framework/modules-sdk"
-import { Logger, MedusaContainer } from "/framework/types"
+import { AcmeKitModule } from "/framework/modules-sdk"
+import { Logger, AcmeKitContainer } from "/framework/types"
 import { parse } from "url"
 import RbacFeatureFlag from "../feature-flags/rbac"
 import loaders, { initializeContainer } from "../loaders"
@@ -109,7 +109,7 @@ function displayAdminUrl({
 }: {
   host?: string
   port: string | number
-  container: MedusaContainer
+  container: AcmeKitContainer
 }) {
   const isProduction = ["production", "prod"].includes(
     process.env.NODE_ENV || ""
@@ -294,7 +294,7 @@ async function start(args: {
               filename: "query-entry-points",
               interfaceName: "RemoteQueryEntryPoints",
               schema: gqlSchema,
-              joinerConfigs: MedusaModule.getAllJoinerConfigs(),
+              joinerConfigs: AcmeKitModule.getAllJoinerConfigs(),
             })
           )
         }
@@ -402,7 +402,7 @@ async function start(args: {
     } else {
       process.on("message", async (msg: any) => {
         if (msg.workerMode) {
-          process.env.MEDUSA_WORKER_MODE = msg.workerMode
+          process.env.ACMEKIT_WORKER_MODE = msg.workerMode
         }
 
         if (msg.index > 0) {

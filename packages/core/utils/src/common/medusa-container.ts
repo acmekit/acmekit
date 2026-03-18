@@ -1,4 +1,4 @@
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 import {
   asFunction,
   asValue,
@@ -18,7 +18,7 @@ function asArray(
 }
 
 function registerAdd(
-  this: MedusaContainer,
+  this: AcmeKitContainer,
   name: string,
   registration: typeof asFunction | typeof asValue
 ) {
@@ -40,14 +40,14 @@ function registerAdd(
   return this
 }
 
-export function createMedusaContainer(...args): MedusaContainer {
-  const container = createContainer.apply(null, args) as MedusaContainer
+export function createMedusaContainer(...args): AcmeKitContainer {
+  const container = createContainer.apply(null, args) as AcmeKitContainer
 
   container.registerAdd = registerAdd.bind(container)
 
   const originalScope = container.createScope
   container.createScope = () => {
-    const scoped = originalScope() as MedusaContainer
+    const scoped = originalScope() as AcmeKitContainer
     scoped.registerAdd = registerAdd.bind(scoped)
 
     return scoped

@@ -4,16 +4,16 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { refetchCustomerGroup } from "../helpers"
 import { HttpTypes } from "/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.AdminCustomerGroupResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerGroupResponse>
 ) => {
   const customerGroup = await refetchCustomerGroup(
     req.params.id,
@@ -22,8 +22,8 @@ export const GET = async (
   )
 
   if (!customerGroup) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Customer group with id: ${req.params.id} not found`
     )
   }
@@ -36,7 +36,7 @@ export const POST = async (
     HttpTypes.AdminUpdateCustomerGroup,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminCustomerGroupResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerGroupResponse>
 ) => {
   const existingCustomerGroup = await refetchCustomerGroup(
     req.params.id,
@@ -44,8 +44,8 @@ export const POST = async (
     ["id"]
   )
   if (!existingCustomerGroup) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Customer group with id "${req.params.id}" not found`
     )
   }
@@ -67,7 +67,7 @@ export const POST = async (
 
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse<HttpTypes.AdminCustomerGroupDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerGroupDeleteResponse>
 ) => {
   const id = req.params.id
   const deleteCustomerGroups = deleteCustomerGroupsWorkflow(req.scope)

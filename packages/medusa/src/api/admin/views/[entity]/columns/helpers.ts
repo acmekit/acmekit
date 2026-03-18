@@ -12,7 +12,7 @@ import {
   print,
 } from "/framework/utils"
 import { HttpTypes } from "/types"
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import { ENTITY_MAPPINGS } from "./entity-mappings"
 
 // Determine column category based on field characteristics
@@ -302,7 +302,7 @@ export const generateEntityColumns = (
   entity: string,
   entityMapping: (typeof ENTITY_MAPPINGS)[keyof typeof ENTITY_MAPPINGS]
 ): HttpTypes.AdminColumn[] | null => {
-  const joinerConfigs = MedusaModule.getAllJoinerConfigs()
+  const joinerConfigs = AcmeKitModule.getAllJoinerConfigs()
 
   const schemaFragments: string[] = []
   let hasEntityType = false

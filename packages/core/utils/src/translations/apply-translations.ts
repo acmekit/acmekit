@@ -1,4 +1,4 @@
-import { MedusaContainer, RemoteQueryFunction } from "/types"
+import { AcmeKitContainer, RemoteQueryFunction } from "/types"
 import { ContainerRegistrationKeys } from "../common/container"
 import { isObject } from "../common/is-object"
 import { FeatureFlag } from "../feature-flags/flag-router"
@@ -75,7 +75,7 @@ export async function applyTranslations({
 }: {
   localeCode: string | undefined
   objects: Record<string, any>[]
-  container: MedusaContainer
+  container: AcmeKitContainer
 }) {
   const isTranslationEnabled = FeatureFlag.isFeatureEnabled("translation")
 

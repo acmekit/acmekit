@@ -1,11 +1,11 @@
 import {
-  MedusaApp,
-  MedusaAppGetLinksExecutionPlanner,
-  MedusaAppMigrateDown,
-  MedusaAppMigrateGenerate,
-  MedusaAppMigrateUp,
-  MedusaAppOutput,
-  MedusaModule,
+  AcmeKitApp,
+  AcmeKitAppGetLinksExecutionPlanner,
+  AcmeKitAppMigrateDown,
+  AcmeKitAppMigrateGenerate,
+  AcmeKitAppMigrateUp,
+  AcmeKitAppOutput,
+  AcmeKitModule,
   ModulesDefinition,
   RegisterModuleJoinerConfig,
 } from "/modules-sdk"
@@ -33,15 +33,15 @@ import { configManager } from "./config"
 import {
   container,
   container as mainContainer,
-  MedusaContainer,
+  AcmeKitContainer,
 } from "./container"
 
-export class MedusaAppLoader {
+export class AcmeKitAppLoader {
   /**
    * Container from where to resolve resources
    * @private
    */
-  readonly #container: MedusaContainer
+  readonly #container: AcmeKitContainer
 
   /**
    * Extra links modules config which should be added manually to the links to be loaded
@@ -63,7 +63,7 @@ export class MedusaAppLoader {
     medusaConfigPath,
     cwd,
   }: {
-    container?: MedusaContainer
+    container?: AcmeKitContainer
     customLinksModules?:
       | RegisterModuleJoinerConfig
       | RegisterModuleJoinerConfig[]
@@ -187,11 +187,11 @@ export class MedusaAppLoader {
     }
 
     if (options.action === "revert") {
-      await MedusaAppMigrateDown(options.moduleNames!, migrationOptions)
+      await AcmeKitAppMigrateDown(options.moduleNames!, migrationOptions)
     } else if (options.action === "run") {
-      await MedusaAppMigrateUp(migrationOptions)
+      await AcmeKitAppMigrateUp(migrationOptions)
     } else if (options.action === "generate") {
-      await MedusaAppMigrateGenerate(options.moduleNames!, migrationOptions)
+      await AcmeKitAppMigrateGenerate(options.moduleNames!, migrationOptions)
     }
   }
 
@@ -213,7 +213,7 @@ export class MedusaAppLoader {
       cwd: this.#cwd,
     }
 
-    return await MedusaAppGetLinksExecutionPlanner(migrationOptions)
+    return await AcmeKitAppGetLinksExecutionPlanner(migrationOptions)
   }
 
   /**
@@ -224,7 +224,7 @@ export class MedusaAppLoader {
       this.prepareSharedResourcesAndDeps()
     const configModules = this.mergeDefaultModules(configManager.config.modules)
 
-    await MedusaApp({
+    await AcmeKitApp({
       modulesConfig: configModules,
       sharedContainer: this.#container,
       linkModules: this.#customLinksModules,
@@ -256,7 +256,7 @@ export class MedusaAppLoader {
     const configModule: ConfigModule = this.#container.resolve(
       ContainerRegistrationKeys.CONFIG_MODULE
     )
-    MedusaModule.unregisterModuleResolution(moduleKey)
+    AcmeKitModule.unregisterModuleResolution(moduleKey)
     if (serviceName) {
       this.#container.cache.delete(serviceName)
     }
@@ -274,7 +274,7 @@ export class MedusaAppLoader {
     })
     const moduleDefinition = mergedModules[moduleKey]
 
-    const result = await MedusaApp({
+    const result = await AcmeKitApp({
       modulesConfig: { [moduleKey]: moduleDefinition },
       sharedContainer: this.#container,
       linkModules: this.#customLinksModules,
@@ -320,7 +320,7 @@ export class MedusaAppLoader {
       schemaOnly: false,
       migrationOnly: false,
     }
-  ): Promise<MedusaAppOutput> {
+  ): Promise<AcmeKitAppOutput> {
     const configModule: ConfigModule = this.#container.resolve(
       ContainerRegistrationKeys.CONFIG_MODULE
     )
@@ -346,7 +346,7 @@ export class MedusaAppLoader {
 
     const configModules = this.mergeDefaultModules(configModule.modules)
 
-    const medusaApp = await MedusaApp({
+    const medusaApp = await AcmeKitApp({
       workerMode: configModule.projectConfig.workerMode,
       modulesConfig: configModules,
       sharedContainer: this.#container,

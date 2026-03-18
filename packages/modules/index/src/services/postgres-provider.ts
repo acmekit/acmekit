@@ -14,7 +14,7 @@ import {
   InjectManager,
   InjectTransactionManager,
   isDefined,
-  MedusaContext,
+  AcmeKitContext,
   toMikroORMEntity,
   unflattenObjectKeys,
 } from "/framework/utils"
@@ -233,7 +233,7 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
   @InjectManager()
   async query<const TEntry extends string>(
     config: IndexTypes.IndexQueryConfig<TEntry>,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<IndexTypes.QueryResultSet<TEntry>> {
     await this.#isReady_
 
@@ -331,7 +331,7 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
       data: TData | TData[]
       schemaEntityObjectRepresentation: IndexTypes.SchemaObjectEntityRepresentation
     },
-    @MedusaContext() sharedContext: Context<SqlEntityManager> = {}
+    @AcmeKitContext() sharedContext: Context<SqlEntityManager> = {}
   ) {
     const { transactionManager: em } = sharedContext
     const indexRepository = em!.getRepository(
@@ -456,7 +456,7 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
       data: TData | TData[]
       schemaEntityObjectRepresentation: IndexTypes.SchemaObjectEntityRepresentation
     },
-    @MedusaContext() sharedContext: Context<SqlEntityManager> = {}
+    @AcmeKitContext() sharedContext: Context<SqlEntityManager> = {}
   ) {
     const { transactionManager: em } = sharedContext
     const indexRepository = em!.getRepository(
@@ -507,7 +507,7 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
       data: TData | TData[]
       schemaEntityObjectRepresentation: IndexTypes.SchemaObjectEntityRepresentation
     },
-    @MedusaContext() sharedContext: Context<SqlEntityManager> = {}
+    @AcmeKitContext() sharedContext: Context<SqlEntityManager> = {}
   ) {
     const { transactionManager: em } = sharedContext
     const indexRepository = em!.getRepository(toMikroORMEntity(IndexData))
@@ -559,7 +559,7 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
       data: TData | TData[]
       schemaEntityObjectRepresentation: IndexTypes.SchemaObjectEntityRepresentation
     },
-    @MedusaContext() sharedContext: Context<SqlEntityManager> = {}
+    @AcmeKitContext() sharedContext: Context<SqlEntityManager> = {}
   ) {
     const { transactionManager: em } = sharedContext
     const indexRepository = em!.getRepository(toMikroORMEntity(IndexData))
@@ -698,7 +698,7 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
       data: TData | TData[]
       schemaEntityObjectRepresentation: IndexTypes.SchemaObjectEntityRepresentation
     },
-    @MedusaContext() sharedContext: Context<SqlEntityManager> = {}
+    @AcmeKitContext() sharedContext: Context<SqlEntityManager> = {}
   ) {
     const { transactionManager: em } = sharedContext
     const indexRepository = em!.getRepository(toMikroORMEntity(IndexData))

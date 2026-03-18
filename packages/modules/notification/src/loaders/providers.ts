@@ -13,7 +13,7 @@ import {
   NotificationModuleOptions,
   NotificationProviderRegistrationPrefix,
 } from "@types"
-import { MedusaCloudEmailNotificationProvider } from "../providers/medusa-cloud-email"
+import { AcmeKitCloudEmailNotificationProvider } from "../providers/medusa-cloud-email"
 
 const validateCloudOptions = (options: NotificationModuleOptions["cloud"]) => {
   const { api_key, endpoint, environment_handle, sandbox_handle } =
@@ -68,7 +68,7 @@ export default async ({
     )
 
     if (shouldRegisterMedusaCloudEmailProvider) {
-      await registrationFn(MedusaCloudEmailNotificationProvider, container, {
+      await registrationFn(AcmeKitCloudEmailNotificationProvider, container, {
         options: options?.cloud,
         id: "cloud",
       })

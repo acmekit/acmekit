@@ -1,19 +1,19 @@
 import { acceptInviteWorkflow } from "/core-flows"
 import { HttpTypes, InviteWorkflow } from "/framework/types"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { AdminInviteAcceptType } from "../validators"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminInviteAcceptType>,
-  res: MedusaResponse<HttpTypes.AdminAcceptInviteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminAcceptInviteResponse>
 ) => {
   if (req.auth_context.actor_id) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "The user is already authenticated and cannot accept an invite."
     )
   }

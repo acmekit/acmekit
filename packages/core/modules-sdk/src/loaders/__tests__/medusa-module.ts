@@ -2,7 +2,7 @@ import { InternalModuleDeclaration } from "/types"
 import { MODULE_SCOPE } from "../../types"
 
 import { asValue } from "/deps/awilix"
-import { MedusaModule } from "../../medusa-module"
+import { AcmeKitModule } from "../../medusa-module"
 
 const mockRegisterMedusaModule = jest.fn().mockImplementation(() => {
   return {
@@ -35,13 +35,13 @@ jest.mock("./../../loaders", () => ({
 
 describe("Medusa Modules", () => {
   beforeEach(() => {
-    MedusaModule.clearInstances()
+    AcmeKitModule.clearInstances()
     jest.resetModules()
     jest.clearAllMocks()
   })
 
   it("should create singleton instances", async () => {
-    await MedusaModule.bootstrap({
+    await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -56,7 +56,7 @@ describe("Medusa Modules", () => {
     expect(mockRegisterMedusaModule).toBeCalledTimes(1)
     expect(mockModuleLoader).toBeCalledTimes(1)
 
-    await MedusaModule.bootstrap({
+    await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -68,7 +68,7 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    await MedusaModule.bootstrap({
+    await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -89,7 +89,7 @@ describe("Medusa Modules", () => {
 
     for (let i = 5; i--; ) {
       load.push(
-        MedusaModule.bootstrap({
+        AcmeKitModule.bootstrap({
           moduleKey: "moduleKey",
           defaultPath: "@path",
           declaration: {
@@ -111,7 +111,7 @@ describe("Medusa Modules", () => {
   })
 
   it("getModuleInstance should return the first instance of the module if there is none flagged as 'main'", async () => {
-    const moduleA = await MedusaModule.bootstrap({
+    const moduleA = await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -123,7 +123,7 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    await MedusaModule.bootstrap({
+    await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -135,11 +135,11 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    expect(MedusaModule.getModuleInstance("moduleKey")).toEqual(moduleA)
+    expect(AcmeKitModule.getModuleInstance("moduleKey")).toEqual(moduleA)
   })
 
   it("should return the module flagged as 'main' when multiple instances are available", async () => {
-    await MedusaModule.bootstrap({
+    await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -151,7 +151,7 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    const moduleB = await MedusaModule.bootstrap({
+    const moduleB = await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -164,11 +164,11 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    expect(MedusaModule.getModuleInstance("moduleKey")).toEqual(moduleB)
+    expect(AcmeKitModule.getModuleInstance("moduleKey")).toEqual(moduleB)
   })
 
   it("should retrieve the module by their given alias", async () => {
-    const moduleA = await MedusaModule.bootstrap({
+    const moduleA = await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -181,7 +181,7 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    const moduleB = await MedusaModule.bootstrap({
+    const moduleB = await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -195,7 +195,7 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    const moduleC = await MedusaModule.bootstrap({
+    const moduleC = await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -209,21 +209,21 @@ describe("Medusa Modules", () => {
     })
 
     // main
-    expect(MedusaModule.getModuleInstance("moduleKey")).toEqual(moduleB)
+    expect(AcmeKitModule.getModuleInstance("moduleKey")).toEqual(moduleB)
 
-    expect(MedusaModule.getModuleInstance("moduleKey", "mod_A")).toEqual(
+    expect(AcmeKitModule.getModuleInstance("moduleKey", "mod_A")).toEqual(
       moduleA
     )
-    expect(MedusaModule.getModuleInstance("moduleKey", "mod_B")).toEqual(
+    expect(AcmeKitModule.getModuleInstance("moduleKey", "mod_B")).toEqual(
       moduleB
     )
-    expect(MedusaModule.getModuleInstance("moduleKey", "mod_C")).toEqual(
+    expect(AcmeKitModule.getModuleInstance("moduleKey", "mod_C")).toEqual(
       moduleC
     )
   })
 
   it("should prevent two main modules being set as 'main'", async () => {
-    await MedusaModule.bootstrap({
+    await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -236,7 +236,7 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    await MedusaModule.bootstrap({
+    await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -250,7 +250,7 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    const moduleC = MedusaModule.bootstrap({
+    const moduleC = AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -270,7 +270,7 @@ describe("Medusa Modules", () => {
   })
 
   it("should prevent the same alias be used for different instances of the same module", async () => {
-    await MedusaModule.bootstrap({
+    await AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {
@@ -283,7 +283,7 @@ describe("Medusa Modules", () => {
       } as InternalModuleDeclaration,
     })
 
-    const moduleC = MedusaModule.bootstrap({
+    const moduleC = AcmeKitModule.bootstrap({
       moduleKey: "moduleKey",
       defaultPath: "@path",
       declaration: {

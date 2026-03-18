@@ -251,12 +251,12 @@ Then, create the API route at `src/api/.well-known/jwks.json/route.ts` with the 
 
 ```ts title="src/api/.well-known/jwks.json/route.ts"
 import type { 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse, 
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest, 
+  req: AcmeKitRequest, 
   res: MedusaResponse
 ) => {
   if (!process.env.JWKS_CONTENT) {
@@ -277,13 +277,13 @@ For example, create the API route at `src/api/.well-known/jwks.json/route.ts` wi
 
 ```ts title="src/api/.well-known/jwks.json/route.ts"
 import type { 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse, 
 } from "/framework/http"
 import crypto from "crypto"
 
 export const GET = async (
-  req: MedusaRequest, 
+  req: AcmeKitRequest, 
   res: MedusaResponse
 ) => {
   const configModule = req.scope.resolve("configModule")
@@ -339,7 +339,7 @@ Create a [middleware](../../../fundamentals/api-routes/middlewares/page.mdx) fun
 
 ```ts title="src/api/middlewares/jwks-auth.ts"
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaNextFunction,
   MedusaResponse,
 } from "/framework/http"
@@ -421,7 +421,7 @@ export async function isValidJWTToken(token: string): Promise<boolean> {
 
 // Authentication middleware
 export const jwtAuthMiddleware = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse,
   next: MedusaNextFunction
 ) => {

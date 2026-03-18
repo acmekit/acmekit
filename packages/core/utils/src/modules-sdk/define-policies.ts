@@ -1,7 +1,7 @@
 import { getCallerFilePath, isFileDisabled, MEDUSA_SKIP_FILE } from "../common"
 import { toSnakeCase } from "../common/to-snake-case"
 
-export const MedusaPolicySymbol = Symbol.for("MedusaPolicy")
+export const AcmeKitPolicySymbol = Symbol.for("AcmeKitPolicy")
 
 export interface PolicyDefinition {
   name: string
@@ -11,7 +11,7 @@ export interface PolicyDefinition {
 }
 
 export interface definePoliciesExport {
-  [MedusaPolicySymbol]: boolean
+  [AcmeKitPolicySymbol]: boolean
   policies: PolicyDefinition[]
 }
 
@@ -123,7 +123,7 @@ export function definePolicies(
   }
 
   const output: definePoliciesExport = {
-    [MedusaPolicySymbol]: true,
+    [AcmeKitPolicySymbol]: true,
     policies: policiesArray,
   }
 

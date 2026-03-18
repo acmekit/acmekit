@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { ContainerRegistrationKeys } from "/framework/utils"
 import { HttpTypes } from "/types"
@@ -11,7 +11,7 @@ import { HttpTypes } from "/types"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest<{}, HttpTypes.AdminTranslationEntitiesParams>,
-  res: MedusaResponse<HttpTypes.AdminTranslationEntitiesResponse>
+  res: AcmeKitResponse<HttpTypes.AdminTranslationEntitiesResponse>
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
   const { type, id } = req.validatedQuery

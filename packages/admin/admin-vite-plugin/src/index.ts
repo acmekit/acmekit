@@ -1,5 +1,5 @@
 import { medusaVitePlugin } from "./plugin"
-import type { MedusaVitePlugin } from "./types"
+import type { AcmeKitVitePlugin } from "./types"
 
 export default medusaVitePlugin
-export type { MedusaVitePlugin }
+export type { AcmeKitVitePlugin }

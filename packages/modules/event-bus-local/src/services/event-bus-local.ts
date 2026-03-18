@@ -3,7 +3,7 @@ import {
   EventBusTypes,
   InternalModuleDeclaration,
   Logger,
-  MedusaContainer,
+  AcmeKitContainer,
   Message,
   Subscriber,
 } from "/framework/types"
@@ -27,7 +27,7 @@ export default class LocalEventBusService extends AbstractEventBusModuleService 
   protected groupedEventsMap_: StagingQueueType
 
   constructor(
-    { logger }: MedusaContainer & InjectedDependencies,
+    { logger }: AcmeKitContainer & InjectedDependencies,
     moduleOptions = {},
     moduleDeclaration: InternalModuleDeclaration
   ) {

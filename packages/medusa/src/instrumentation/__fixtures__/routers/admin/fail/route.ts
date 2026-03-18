@@ -1,6 +1,6 @@
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { Request, Response } from "express"
 
 export function GET(req: Request, res: Response) {
-  throw new MedusaError(MedusaError.Types.INVALID_DATA, "Failed")
+  throw new AcmeKitError(AcmeKitError.Types.INVALID_DATA, "Failed")
 }

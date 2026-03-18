@@ -2,11 +2,11 @@ import {
   configLoader,
   container,
   logger,
-  MedusaAppLoader,
+  AcmeKitAppLoader,
   Migrator,
 } from "/framework"
 import { asValue } from "/framework/awilix"
-import { MedusaAppOutput, MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitAppOutput, AcmeKitModule } from "/framework/modules-sdk"
 import { ContainerRegistrationKeys, Modules } from "/framework/utils"
 import { initDb, TestDatabaseUtils } from "/test-utils"
 import { IndexTypes, ModulesSdkTypes } from "/types"
@@ -28,7 +28,7 @@ const dbUtils = TestDatabaseUtils.dbTestUtilFactory()
 jest.setTimeout(300000)
 
 let isFirstTime = true
-let medusaAppLoader!: MedusaAppLoader
+let medusaAppLoader!: AcmeKitAppLoader
 let index: IndexTypes.IIndexService
 
 const beforeAll_ = async () => {
@@ -47,7 +47,7 @@ const beforeAll_ = async () => {
       [ContainerRegistrationKeys.PG_CONNECTION]: asValue(dbUtils.pgConnection_),
     })
 
-    medusaAppLoader = new MedusaAppLoader()
+    medusaAppLoader = new AcmeKitAppLoader()
 
     // Migrations
 
@@ -60,7 +60,7 @@ const beforeAll_ = async () => {
     await linkPlanner.executePlan(plan)
 
     // Clear partially loaded instances
-    MedusaModule.clearInstances()
+    AcmeKitModule.clearInstances()
 
     // Bootstrap modules
     const globalApp = await medusaAppLoader.load()
@@ -108,7 +108,7 @@ const afterEach_ = async () => {
 }
 
 describe("IndexModuleService syncIndexConfig", function () {
-  let medusaApp: MedusaAppOutput
+  let medusaApp: AcmeKitAppOutput
   let indexMetadataService: ModulesSdkTypes.IMedusaInternalService<any>
   let indexSyncService: ModulesSdkTypes.IMedusaInternalService<any>
   let dataSynchronizer: ModulesSdkTypes.IMedusaInternalService<any>

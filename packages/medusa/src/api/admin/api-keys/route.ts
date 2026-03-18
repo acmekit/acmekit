@@ -5,14 +5,14 @@ import {
 } from "/framework/utils"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { AdminCreateApiKeyType } from "./validators"
 import { HttpTypes } from "/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminGetApiKeysParams>,
-  res: MedusaResponse<HttpTypes.AdminApiKeyListResponse>
+  res: AcmeKitResponse<HttpTypes.AdminApiKeyListResponse>
 ) => {
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
 
@@ -37,7 +37,7 @@ export const GET = async (
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminCreateApiKeyType>,
-  res: MedusaResponse<HttpTypes.AdminApiKeyResponse>
+  res: AcmeKitResponse<HttpTypes.AdminApiKeyResponse>
 ) => {
   const input = [
     {

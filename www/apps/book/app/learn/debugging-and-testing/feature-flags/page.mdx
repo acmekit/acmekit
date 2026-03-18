@@ -123,11 +123,11 @@ export const apiRouteHighlights = [
 ]
 
 ```ts title="src/api/routes/custom.ts" highlights={apiRouteHighlights}
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, MedusaResponse } from "/framework"
 import { defineFileConfig, FeatureFlag } from "/framework/utils"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ): Promise<void> {
   res.json({

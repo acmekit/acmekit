@@ -6,7 +6,7 @@ import {
   EmailPassAuthProviderOptions,
   Logger,
 } from "/framework/types"
-import { AbstractAuthModuleProvider, isString, MedusaError, } from "/framework/utils"
+import { AbstractAuthModuleProvider, isString, AcmeKitError, } from "/framework/utils"
 import Scrypt from "scrypt-kdf"
 import { isPresent } from "/utils"
 
@@ -109,7 +109,7 @@ export class EmailPassAuthService extends AbstractAuthModuleProvider {
         entity_id: email,
       })
     } catch (error) {
-      if (error.type === MedusaError.Types.NOT_FOUND) {
+      if (error.type === AcmeKitError.Types.NOT_FOUND) {
         return {
           success: false,
           error: "Invalid email or password",
@@ -192,7 +192,7 @@ export class EmailPassAuthService extends AbstractAuthModuleProvider {
         error: "Identity with email already exists",
       }
     } catch (error) {
-      if (error.type === MedusaError.Types.NOT_FOUND) {
+      if (error.type === AcmeKitError.Types.NOT_FOUND) {
         const createdAuthIdentity = await this.upsertAuthIdentity('create', {
           email,
           password,

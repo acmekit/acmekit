@@ -1,12 +1,12 @@
 import { Modules } from "/framework/utils"
 import { moduleIntegrationTestRunner } from "/test-utils"
 import { ICachingModuleService } from "/framework/types"
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import { EventBusServiceMock } from "../__fixtures__/event-bus-mock"
 
 jest.setTimeout(30000)
 
-jest.spyOn(MedusaModule, "getAllJoinerConfigs").mockReturnValue([
+jest.spyOn(AcmeKitModule, "getAllJoinerConfigs").mockReturnValue([
   {
     schema: `
    type Product {

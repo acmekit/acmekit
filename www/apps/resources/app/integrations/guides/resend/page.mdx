@@ -268,7 +268,7 @@ So, add to the `ResendNotificationProviderService` the `validateOptions` method:
 // other imports...
 import { 
   // other imports...
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 // ...
@@ -277,14 +277,14 @@ class ResendNotificationProviderService extends AbstractNotificationProviderServ
   // ...
   static validateOptions(options: Record<any, any>) {
     if (!options.api_key) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Option `api_key` is required in the provider's options."
       )
     }
     if (!options.from) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Option `from` is required in the provider's options."
       )
     }
@@ -292,7 +292,7 @@ class ResendNotificationProviderService extends AbstractNotificationProviderServ
 }
 ```
 
-In the `validateOptions` method, you throw an error if the `api_key` or `from` options aren't passed to the module. To throw errors, you use `MedusaError` from the Modules SDK. This ensures errors follow Medusa's conventions and are displayed similar to Medusa's errors.
+In the `validateOptions` method, you throw an error if the `api_key` or `from` options aren't passed to the module. To throw errors, you use `AcmeKitError` from the Modules SDK. This ensures errors follow Medusa's conventions and are displayed similar to Medusa's errors.
 
 #### Implement Template Methods
 

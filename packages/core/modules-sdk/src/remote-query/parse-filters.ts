@@ -1,6 +1,6 @@
 import { JoinerServiceConfig, ModuleJoinerConfig } from "/types"
 import { isObject, isString } from "/utils"
-import { MedusaModule } from "../medusa-module"
+import { AcmeKitModule } from "../medusa-module"
 
 const joinerConfigMapCache = new Map()
 
@@ -26,7 +26,7 @@ export function parseAndAssignFilters(
   },
   entitiesMap: Map<string, any>
 ) {
-  const joinerConfigs = MedusaModule.getAllJoinerConfigs()
+  const joinerConfigs = AcmeKitModule.getAllJoinerConfigs()
 
   for (const [filterKey, filterValue] of Object.entries(filters)) {
     /*let entryAlias!: JoinerServiceConfigAlias*/

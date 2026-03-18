@@ -3,9 +3,9 @@ import {
   deepCopy,
   getTotalVariantAvailability,
   getVariantAvailability,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
-import { MedusaRequest, MedusaStoreRequest } from "/framework/http"
+import { AcmeKitRequest, AcmeKitStoreRequest } from "/framework/http"
 import {
   wrapVariantsWithInventoryQuantityForSalesChannel,
   wrapVariantsWithTotalInventoryQuantity,
@@ -46,7 +46,7 @@ describe("variant-inventory-quantity", () => {
 
   describe("wrapVariantsWithTotalInventoryQuantity", () => {
     it("should not call getTotalVariantAvailability when variants array is empty", async () => {
-      await wrapVariantsWithTotalInventoryQuantity(req as MedusaRequest, [])
+      await wrapVariantsWithTotalInventoryQuantity(req as AcmeKitRequest, [])
 
       expect(getTotalVariantAvailability).not.toHaveBeenCalled()
     })
@@ -62,7 +62,7 @@ describe("variant-inventory-quantity", () => {
       )
 
       await wrapVariantsWithTotalInventoryQuantity(
-        req as MedusaRequest,
+        req as AcmeKitRequest,
         variants
       )
 
@@ -91,7 +91,7 @@ describe("variant-inventory-quantity", () => {
       )
 
       await wrapVariantsWithTotalInventoryQuantity(
-        req as MedusaRequest,
+        req as AcmeKitRequest,
         _variants
       )
 
@@ -121,10 +121,10 @@ describe("variant-inventory-quantity", () => {
 
       await expect(
         wrapVariantsWithInventoryQuantityForSalesChannel(
-          req as MedusaStoreRequest<unknown>,
+          req as AcmeKitStoreRequest<unknown>,
           variants
         )
-      ).rejects.toThrow(MedusaError)
+      ).rejects.toThrow(AcmeKitError)
     })
 
     it("should use sales channel from query when single channel is specified", async () => {
@@ -143,7 +143,7 @@ describe("variant-inventory-quantity", () => {
       )
 
       await wrapVariantsWithInventoryQuantityForSalesChannel(
-        req as MedusaStoreRequest<unknown>,
+        req as AcmeKitStoreRequest<unknown>,
         variants
       )
 
@@ -164,7 +164,7 @@ describe("variant-inventory-quantity", () => {
       )
 
       await wrapVariantsWithInventoryQuantityForSalesChannel(
-        req as MedusaStoreRequest<unknown>,
+        req as AcmeKitStoreRequest<unknown>,
         variants
       )
 
@@ -194,7 +194,7 @@ describe("variant-inventory-quantity", () => {
       )
 
       await wrapVariantsWithInventoryQuantityForSalesChannel(
-        req as MedusaStoreRequest<unknown>,
+        req as AcmeKitStoreRequest<unknown>,
         variants
       )
 
@@ -218,7 +218,7 @@ describe("variant-inventory-quantity", () => {
       )
 
       await wrapVariantsWithInventoryQuantityForSalesChannel(
-        req as MedusaStoreRequest<unknown>,
+        req as AcmeKitStoreRequest<unknown>,
         variants
       )
 
@@ -229,7 +229,7 @@ describe("variant-inventory-quantity", () => {
 
     it("should not call getVariantAvailability when variants array is empty", async () => {
       await wrapVariantsWithInventoryQuantityForSalesChannel(
-        req as MedusaStoreRequest<unknown>,
+        req as AcmeKitStoreRequest<unknown>,
         []
       )
 

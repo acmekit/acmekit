@@ -18,7 +18,7 @@ export default async function ({
   track("CLI_USER", { with_id: !!id })
   const app = express()
   try {
-    process.env.MEDUSA_WORKER_MODE = "server"
+    process.env.ACMEKIT_WORKER_MODE = "server"
 
     const { container } = await loaders({
       directory,

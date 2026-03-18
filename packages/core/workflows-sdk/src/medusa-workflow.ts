@@ -1,12 +1,12 @@
 import { LocalWorkflow } from "/orchestration"
-import { LoadedModule, MedusaContainer } from "/types"
+import { LoadedModule, AcmeKitContainer } from "/types"
 import { ExportedWorkflow } from "./helper"
 
-class MedusaWorkflow {
+class AcmeKitWorkflow {
   static workflows: Record<
     string,
     (
-      container?: LoadedModule[] | MedusaContainer
+      container?: LoadedModule[] | AcmeKitContainer
     ) => Omit<
       LocalWorkflow,
       "run" | "registerStepSuccess" | "registerStepFailure" | "cancel"
@@ -15,23 +15,23 @@ class MedusaWorkflow {
   > = {}
 
   static registerWorkflow(workflowId, exportedWorkflow) {
-    if (workflowId in MedusaWorkflow.workflows) {
+    if (workflowId in AcmeKitWorkflow.workflows) {
       return
     }
 
-    MedusaWorkflow.workflows[workflowId] = exportedWorkflow
+    AcmeKitWorkflow.workflows[workflowId] = exportedWorkflow
   }
 
   static unregisterWorkflow(workflowId) {
-    delete MedusaWorkflow.workflows[workflowId]
+    delete AcmeKitWorkflow.workflows[workflowId]
   }
 
   static getWorkflow(workflowId): ExportedWorkflow {
-    return MedusaWorkflow.workflows[workflowId] as unknown as ExportedWorkflow
+    return AcmeKitWorkflow.workflows[workflowId] as unknown as ExportedWorkflow
   }
 }
 
-global.MedusaWorkflow ??= MedusaWorkflow
-const GlobalMedusaWorkflow = global.MedusaWorkflow
+global.AcmeKitWorkflow ??= AcmeKitWorkflow
+const GlobalMedusaWorkflow = global.AcmeKitWorkflow
 
-export { GlobalMedusaWorkflow as MedusaWorkflow }
+export { GlobalMedusaWorkflow as AcmeKitWorkflow }

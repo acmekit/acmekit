@@ -1,5 +1,5 @@
 import { batchTranslationsWorkflow } from "/core-flows"
-import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework"
+import { AuthenticatedMedusaRequest, AcmeKitResponse } from "/framework"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
@@ -21,7 +21,7 @@ export const POST = async (
   req: AuthenticatedMedusaRequest<
     BatchMethodRequest<AdminCreateTranslationType, AdminUpdateTranslationType>
   >,
-  res: MedusaResponse<HttpTypes.AdminTranslationsBatchResponse>
+  res: AcmeKitResponse<HttpTypes.AdminTranslationsBatchResponse>
 ) => {
   const { create = [], update = [], delete: deleteIds = [] } = req.validatedBody
 

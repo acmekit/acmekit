@@ -348,7 +348,7 @@ This is available starting from [Medusa v2.5.0](https://github.com/medusajs/medu
 #### Example
 
 ```ts
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 class MyPaymentProviderService extends AbstractPaymentProvider<
  Options
@@ -361,8 +361,8 @@ class MyPaymentProviderService extends AbstractPaymentProvider<
   }
 
   if (!customer) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Missing customer data."
     )
   }
@@ -409,7 +409,7 @@ This is available starting from [Medusa v2.5.0](https://github.com/medusajs/medu
 #### Example
 
 ```ts
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 class MyPaymentProviderService extends AbstractPaymentProvider<
  Options
@@ -418,8 +418,8 @@ class MyPaymentProviderService extends AbstractPaymentProvider<
     const { account_holder } = context
     const accountHolderId = account_holder?.data?.id as string | undefined
     if (!accountHolderId) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Missing account holder ID."
       )
     }
@@ -725,7 +725,7 @@ This is available starting from [Medusa v2.5.0](https://github.com/medusajs/medu
 #### Example
 
 ```ts
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 class MyPaymentProviderService extends AbstractPaymentProvider<
   Options
@@ -735,8 +735,8 @@ class MyPaymentProviderService extends AbstractPaymentProvider<
     const accountHolderId = account_holder?.data?.id as string | undefined
 
     if (!accountHolderId) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Missing account holder ID."
       )
     }
@@ -846,7 +846,7 @@ This is available starting from [Medusa v2.11.0](https://github.com/medusajs/med
 #### Example
 
 ```ts
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 class MyPaymentProviderService extends AbstractPaymentProvider<
  Options
@@ -931,7 +931,7 @@ This is available starting from [Medusa v2.5.0](https://github.com/medusajs/medu
 #### Example
 
 ```ts
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 class MyPaymentProviderService extends AbstractPaymentProvider<
   Options
@@ -942,8 +942,8 @@ class MyPaymentProviderService extends AbstractPaymentProvider<
       | undefined
 
     if (!accountHolderId) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Missing account holder ID."
       )
     }
@@ -994,7 +994,7 @@ This is available starting from [Medusa v2.5.1](https://github.com/medusajs/medu
 #### Example
 
 ```ts
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 class MyPaymentProviderService extends AbstractPaymentProvider<
  Options
@@ -1003,8 +1003,8 @@ class MyPaymentProviderService extends AbstractPaymentProvider<
   const { account_holder, customer } = context
 
   if (!account_holder?.data?.id) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Missing account holder ID."
     )
   }
@@ -1096,8 +1096,8 @@ If the options aren't valid, throw an error.
 class MyPaymentProviderService extends AbstractPaymentProvider<Options> {
   static validateOptions(options: Record<any, any>) {
     if (!options.apiKey) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "API key is required in the provider's options."
       )
     }

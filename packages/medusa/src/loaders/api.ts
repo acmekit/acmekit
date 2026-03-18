@@ -1,6 +1,6 @@
 import { ConfigModule } from "/framework/config"
 import { ApiLoader } from "/framework/http"
-import { MedusaContainer, PluginDetails } from "/framework/types"
+import { AcmeKitContainer, PluginDetails } from "/framework/types"
 import { FeatureFlag } from "/framework/utils"
 import { Express } from "express"
 import { join } from "path"
@@ -9,7 +9,7 @@ import qs from "qs"
 type Options = {
   app: Express
   plugins: PluginDetails[]
-  container: MedusaContainer
+  container: AcmeKitContainer
 }
 
 export default async ({ app, container, plugins }: Options) => {

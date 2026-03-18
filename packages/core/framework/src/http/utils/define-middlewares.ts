@@ -1,7 +1,7 @@
 import {
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
   MiddlewaresConfig,
   MiddlewareVerb,
   ParserConfig,
@@ -24,10 +24,10 @@ export function defineMiddlewares<
     bodyParser?: ParserConfig
     additionalDataValidator?: ZodRawShape
     // eslint-disable-next-line space-before-function-paren
-    middlewares?: (<Req extends MedusaRequest>(
+    middlewares?: (<Req extends AcmeKitRequest>(
       req: Req,
-      res: MedusaResponse,
-      next: MedusaNextFunction
+      res: AcmeKitResponse,
+      next: AcmeKitNextFunction
     ) => any)[]
   }
 >(

@@ -53,7 +53,7 @@ export async function initModules({
       sharedPgConnection
   }
 
-  const medusaApp = await moduleSdkImports.MedusaApp({
+  const medusaApp = await moduleSdkImports.AcmeKitApp({
     modulesConfig,
     servicesConfig: joinerConfig,
     injectedDependencies,
@@ -79,7 +79,7 @@ export async function initModules({
     }
 
     await promiseAll(promises)
-    moduleSdkImports.MedusaModule.clearInstances()
+    moduleSdkImports.AcmeKitModule.clearInstances()
   }
 
   return {

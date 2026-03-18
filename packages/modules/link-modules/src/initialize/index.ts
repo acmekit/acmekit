@@ -1,4 +1,4 @@
-import { MedusaModule, MODULE_SCOPE } from "/framework/modules-sdk"
+import { AcmeKitModule, MODULE_SCOPE } from "/framework/modules-sdk"
 import {
   ExternalModuleDeclaration,
   ILinkModule,
@@ -39,7 +39,7 @@ export const initialize = async (
   schemaOnly?: boolean
 ): Promise<{ [link: string]: ILinkModule }> => {
   const allLinks = {}
-  const modulesLoadedKeys = MedusaModule.getLoadedModules().map(
+  const modulesLoadedKeys = AcmeKitModule.getLoadedModules().map(
     (mod) => Object.keys(mod)[0]
   )
 
@@ -166,7 +166,7 @@ export const initialize = async (
         },
       }
 
-      const loaded = await MedusaModule.bootstrapLink({
+      const loaded = await AcmeKitModule.bootstrapLink({
         definition: linkModuleDefinition,
         declaration: options as InternalModuleDeclaration,
         moduleExports: moduleDefinition,
@@ -195,7 +195,7 @@ export function getMigrationPlanner(
   options: ModuleServiceInitializeOptions,
   pluginLinksDefinition?: ModuleJoinerConfig[]
 ) {
-  const modulesLoadedKeys = MedusaModule.getLoadedModules().map(
+  const modulesLoadedKeys = AcmeKitModule.getLoadedModules().map(
     (mod) => Object.keys(mod)[0]
   )
 

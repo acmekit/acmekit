@@ -21,7 +21,7 @@ import {
   createWorkflow,
   WorkflowResponse
 } from "/framework/workflows-sdk"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import {
   createProductStep,
   getProductStep,
@@ -43,7 +43,7 @@ const myWorkflow = createWorkflow(
 )
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result: product } = await myWorkflow(req.scope)

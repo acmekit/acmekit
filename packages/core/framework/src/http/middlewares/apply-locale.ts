@@ -1,8 +1,8 @@
 import { normalizeLocale } from "/utils"
 import type {
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
 } from "../types"
 
 const CONTENT_LANGUAGE_HEADER = "x-medusa-locale"
@@ -17,9 +17,9 @@ const CONTENT_LANGUAGE_HEADER = "x-medusa-locale"
  * The resolved locale is set on `req.locale`.
  */
 export async function applyLocale(
-  req: MedusaRequest,
-  _: MedusaResponse,
-  next: MedusaNextFunction
+  req: AcmeKitRequest,
+  _: AcmeKitResponse,
+  next: AcmeKitNextFunction
 ) {
   // 1. Check query parameter
   const queryLocale = req.query.locale as string | undefined

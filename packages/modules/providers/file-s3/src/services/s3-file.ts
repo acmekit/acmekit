@@ -16,7 +16,7 @@ import {
 } from "/framework/types"
 import {
   AbstractFileProviderService,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import path from "path"
 import { PassThrough, Readable, Writable } from "stream"
@@ -58,8 +58,8 @@ export class S3FileService extends AbstractFileProviderService {
       authenticationMethod === "access-key" &&
       (!options.access_key_id || !options.secret_access_key)
     ) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `Access key ID and secret access key are required when using access key authentication`
       )
     }
@@ -107,12 +107,12 @@ export class S3FileService extends AbstractFileProviderService {
     file: FileTypes.ProviderUploadFileDTO
   ): Promise<FileTypes.ProviderFileResultDTO> {
     if (!file) {
-      throw new MedusaError(MedusaError.Types.INVALID_DATA, `No file provided`)
+      throw new AcmeKitError(AcmeKitError.Types.INVALID_DATA, `No file provided`)
     }
 
     if (!file.filename) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No filename provided`
       )
     }
@@ -175,8 +175,8 @@ export class S3FileService extends AbstractFileProviderService {
     fileKey: string
   }> {
     if (!fileData.filename) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No filename provided`
       )
     }
@@ -266,8 +266,8 @@ export class S3FileService extends AbstractFileProviderService {
     fileData: FileTypes.ProviderGetPresignedUploadUrlDTO
   ): Promise<FileTypes.ProviderFileResultDTO> {
     if (!fileData?.filename) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No filename provided`
       )
     }
@@ -302,8 +302,8 @@ export class S3FileService extends AbstractFileProviderService {
     file: FileTypes.ProviderGetFileDTO
   ): Promise<Readable> {
     if (!file?.fileKey) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No fileKey provided`
       )
     }
@@ -321,8 +321,8 @@ export class S3FileService extends AbstractFileProviderService {
 
   async getAsBuffer(file: FileTypes.ProviderGetFileDTO): Promise<Buffer> {
     if (!file?.fileKey) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No fileKey provided`
       )
     }

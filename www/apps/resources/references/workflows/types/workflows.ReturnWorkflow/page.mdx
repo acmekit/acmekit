@@ -2,7 +2,7 @@ import { TypeList } from "docs-ui"
 
 # ReturnWorkflow
 
- **ReturnWorkflow**: `<TDataOverride, TResultOverride>`(`container?`: [MedusaContainer](../workflows.MedusaContainer/page.mdx) \| ``{ __joinerConfig: [ModuleJoinerConfig](../workflows.ModuleJoinerConfig/page.mdx) ; __definition: [ModuleDefinition](../workflows.ModuleDefinition/page.mdx)  }``[]) => Omit&#60;[LocalWorkflow](../../classes/workflows.LocalWorkflow/page.mdx), "run" \| "registerStepSuccess" \| "registerStepFailure" \| "cancel" \| "retryStep"&#62; & [ExportedWorkflow](../workflows.ExportedWorkflow/page.mdx)&#60;TData, TResult, TDataOverride, TResultOverride&#62; & `object`
+ **ReturnWorkflow**: `<TDataOverride, TResultOverride>`(`container?`: [AcmeKitContainer](../workflows.AcmeKitContainer/page.mdx) \| ``{ __joinerConfig: [ModuleJoinerConfig](../workflows.ModuleJoinerConfig/page.mdx) ; __definition: [ModuleDefinition](../workflows.ModuleDefinition/page.mdx)  }``[]) => Omit&#60;[LocalWorkflow](../../classes/workflows.LocalWorkflow/page.mdx), "run" \| "registerStepSuccess" \| "registerStepFailure" \| "cancel" \| "retryStep"&#62; & [ExportedWorkflow](../workflows.ExportedWorkflow/page.mdx)&#60;TData, TResult, TDataOverride, TResultOverride&#62; & `object`
 
 An exported workflow, which is the type of a workflow constructed by the [createWorkflow](../../functions/workflows.createWorkflow/page.mdx) function. The exported workflow can be invoked to create
 an executable workflow, optionally within a specified container. So, to execute the workflow, you must invoke the exported workflow, then run the
@@ -31,13 +31,13 @@ For example:
 
 ```ts
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse
 } from "/medusa";
 import myWorkflow from "../../../workflows/hello-world";
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await myWorkflow(req.scope)

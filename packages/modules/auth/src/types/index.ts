@@ -34,10 +34,10 @@ export type AuthModuleOptions = Partial<ModuleServiceInitializeOptions> & {
    * Options for the default AcmeKit Cloud Auth provider
    * @private
    */
-  cloud?: MedusaCloudAuthProviderOptions
+  cloud?: AcmeKitCloudAuthProviderOptions
 }
 
-export interface MedusaCloudAuthProviderOptions {
+export interface AcmeKitCloudAuthProviderOptions {
   oauth_authorize_endpoint: string
   oauth_token_endpoint: string
   environment_handle: string

@@ -31,7 +31,7 @@ export interface IAuthModuleService extends IModuleService {
    *
    * @example
    * The following example is in the context of an API route, where
-   * `req` is an instance of the `MedusaRequest` object:
+   * `req` is an instance of the `AcmeKitRequest` object:
    *
    * ```ts
    * const { success, authIdentity, location, error } =
@@ -62,7 +62,7 @@ export interface IAuthModuleService extends IModuleService {
    * 
    * @example
    * The following example is in the context of an API route, where
-   * `req` is an instance of the `MedusaRequest` object:
+   * `req` is an instance of the `AcmeKitRequest` object:
    * 
    * ```ts
    * const { success, authIdentity, location, error } =
@@ -91,7 +91,7 @@ export interface IAuthModuleService extends IModuleService {
    * 
    * @example
    * The following example is in the context of an API route, where
-   * `req` is an instance of the `MedusaRequest` object:
+   * `req` is an instance of the `AcmeKitRequest` object:
    * 
    * ```ts
    * const { success, authIdentity, location, error } =
@@ -128,7 +128,7 @@ export interface IAuthModuleService extends IModuleService {
    *
    * @example
    * The following example is in the context of an API route, where
-   * `req` is an instance of the `MedusaRequest` object:
+   * `req` is an instance of the `AcmeKitRequest` object:
    *
    * ```ts
    * const { success, authIdentity, error } =

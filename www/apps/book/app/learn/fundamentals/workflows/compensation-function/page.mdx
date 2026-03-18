@@ -89,13 +89,13 @@ Finally, execute the workflow from an API route:
 
 ```ts title="src/api/workflow/route.ts" collapsibleLines="1-6" expandButtonLabel="Show Imports"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import myWorkflow from "../../../workflows/hello-world"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await myWorkflow(req.scope)

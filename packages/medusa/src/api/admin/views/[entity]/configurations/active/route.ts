@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   AdminSetActiveViewConfigurationType,
@@ -15,7 +15,7 @@ import { Modules } from "/framework/utils"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest<AdminGetActiveViewConfigurationParamsType>,
-  res: MedusaResponse<
+  res: AcmeKitResponse<
     HttpTypes.AdminViewConfigurationResponse & {
       is_default_active?: boolean
       default_type?: "system" | "code"
@@ -51,7 +51,7 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminSetActiveViewConfigurationType>,
-  res: MedusaResponse<{ success: boolean }>
+  res: AcmeKitResponse<{ success: boolean }>
 ) => {
   const settingsService = req.scope.resolve(Modules.SETTINGS)
 

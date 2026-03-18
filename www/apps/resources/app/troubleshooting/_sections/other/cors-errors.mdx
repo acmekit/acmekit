@@ -57,7 +57,7 @@ For example, if you create a custom route at `/custom-routes`, add a middleware 
 import { defineMiddlewares } from "/framework/http"
 import type { 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse, 
 } from "/framework/http"
 import { ConfigModule } from "/framework/types"
@@ -70,7 +70,7 @@ export default defineMiddlewares({
       matcher: "/custom-routes*",
       middlewares: [
         (
-          req: MedusaRequest, 
+          req: AcmeKitRequest, 
           res: MedusaResponse, 
           next: MedusaNextFunction
         ) => {

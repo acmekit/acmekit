@@ -70,8 +70,8 @@ export class AbstractNotificationProviderService
    * class MyNotificationProviderService extends AbstractNotificationProviderService {
    *   static validateOptions(options: Record<any, any>) {
    *     if (!options.apiKey) {
-   *       throw new MedusaError(
-   *         MedusaError.Types.INVALID_DATA,
+   *       throw new AcmeKitError(
+   *         AcmeKitError.Types.INVALID_DATA,
    *         "API key is required in the provider's options."
    *       )
    *     }

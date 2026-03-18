@@ -12,9 +12,9 @@ import {
   EmitEvents,
   generateEntityId,
   InjectManager,
-  MedusaContext,
-  MedusaError,
-  MedusaService,
+  AcmeKitContext,
+  AcmeKitError,
+  AcmeKitService,
   NotificationStatus,
   promiseAll,
 } from "/framework/utils"
@@ -31,7 +31,7 @@ type InjectedDependencies = {
 }
 
 export default class NotificationModuleService
-  extends MedusaService<{
+  extends AcmeKitService<{
     Notification: { dto: NotificationTypes.NotificationDTO }
   }>({ Notification })
   implements INotificationModuleService
@@ -75,7 +75,7 @@ export default class NotificationModuleService
     data:
       | NotificationTypes.CreateNotificationDTO
       | NotificationTypes.CreateNotificationDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<
     NotificationTypes.NotificationDTO | NotificationTypes.NotificationDTO[]
   > {
@@ -96,7 +96,7 @@ export default class NotificationModuleService
   @InjectManager()
   protected async createNotifications_(
     data: NotificationTypes.CreateNotificationDTO[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<InferEntityType<typeof Notification>[]> {
     if (!data.length) {
       return []
@@ -192,7 +192,7 @@ export default class NotificationModuleService
               ? `Could not find a notification provider for channel: ${entry.data.channel} for notification id ${entry.data.id}`
               : `Notification provider ${provider.id} is not enabled. To enable it, configure it as a provider in the notification module options.`
 
-            throw new MedusaError(MedusaError.Types.NOT_FOUND, errorMessage)
+            throw new AcmeKitError(AcmeKitError.Types.NOT_FOUND, errorMessage)
           }
 
           const res = await this.notificationProviderService_
@@ -200,8 +200,8 @@ export default class NotificationModuleService
             .catch((e) => {
               entry.data.status = NotificationStatus.FAILURE
               notificationToUpdate.push(entry.data)
-              throw new MedusaError(
-                MedusaError.Types.UNEXPECTED_STATE,
+              throw new AcmeKitError(
+                AcmeKitError.Types.UNEXPECTED_STATE,
                 `Failed to send notification with id ${entry.data.id}:\n${e.message}`
               )
             })

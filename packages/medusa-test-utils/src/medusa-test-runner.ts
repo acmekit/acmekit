@@ -1,8 +1,8 @@
 import { asValue } from "/framework/awilix"
 import { logger } from "/framework/logger"
 import { Migrator } from "/framework/migrations"
-import { MedusaAppOutput } from "/framework/modules-sdk"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitAppOutput } from "/framework/modules-sdk"
+import { AcmeKitContainer } from "/framework/types"
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
@@ -24,9 +24,9 @@ import { waitWorkflowExecutions } from "./medusa-test-runner-utils/wait-workflow
 import { ulid } from "ulid"
 import { createDefaultsWorkflow } from "/core-flows"
 
-export interface MedusaSuiteOptions {
+export interface AcmeKitSuiteOptions {
   dbConnection: any // knex instance
-  getContainer: () => MedusaContainer
+  getContainer: () => AcmeKitContainer
   api: any
   dbUtils: {
     create: (dbName: string) => Promise<void>
@@ -38,7 +38,7 @@ export interface MedusaSuiteOptions {
     schema: string
     clientUrl: string
   }
-  getMedusaApp: () => MedusaAppOutput
+  getMedusaApp: () => AcmeKitAppOutput
   utils: {
     waitWorkflowExecutions: () => Promise<void>
   }
@@ -54,12 +54,12 @@ interface TestRunnerConfig {
   debug?: boolean
   inApp?: boolean
   hooks?: {
-    beforeServerStart?: (container: MedusaContainer) => Promise<void>
+    beforeServerStart?: (container: AcmeKitContainer) => Promise<void>
   }
   cwd?: string
 }
 
-class MedusaTestRunner {
+class AcmeKitTestRunner {
   private dbName: string
   private schema: string
   private modulesConfigPath: string
@@ -78,7 +78,7 @@ class MedusaTestRunner {
     debug: boolean
   }
 
-  private globalContainer: MedusaContainer | null = null
+  private globalContainer: AcmeKitContainer | null = null
   private apiUtils: any = null
   private loadedApplication: any = null
   private shutdown: () => Promise<void> = async () => void 0
@@ -158,8 +158,8 @@ class MedusaTestRunner {
   }
 
   private async setupApplication(): Promise<void> {
-    const { container, MedusaAppLoader } = await import("/framework")
-    const appLoader = new MedusaAppLoader({
+    const { container, AcmeKitAppLoader } = await import("/framework")
+    const appLoader = new AcmeKitAppLoader({
       medusaConfigPath: this.modulesConfigPath,
       cwd: this.cwd,
     })
@@ -285,12 +285,12 @@ class MedusaTestRunner {
 
     await this.afterEach()
 
-    const container = this.globalContainer as MedusaContainer
+    const container = this.globalContainer as AcmeKitContainer
     const copiedContainer = createMedusaContainer({}, container)
 
     try {
-      const { MedusaAppLoader } = await import("/framework")
-      const medusaAppLoader = new MedusaAppLoader({
+      const { AcmeKitAppLoader } = await import("/framework")
+      const medusaAppLoader = new AcmeKitAppLoader({
         container: copiedContainer,
         medusaConfigPath: this.modulesConfigPath,
         cwd: this.cwd,
@@ -307,7 +307,7 @@ class MedusaTestRunner {
 
   public async afterEach(): Promise<void> {
     try {
-      await waitWorkflowExecutions(this.globalContainer as MedusaContainer)
+      await waitWorkflowExecutions(this.globalContainer as AcmeKitContainer)
 
       if (!this.disableAutoTeardown) {
         // Perform automatic teardown
@@ -319,12 +319,12 @@ class MedusaTestRunner {
     }
   }
 
-  public getOptions(): MedusaSuiteOptions {
+  public getOptions(): AcmeKitSuiteOptions {
     return {
       api: this.createApiProxy(),
       dbConnection: this.createDbConnectionProxy(),
       getMedusaApp: () => this.loadedApplication,
-      getContainer: () => this.globalContainer as MedusaContainer,
+      getContainer: () => this.globalContainer as AcmeKitContainer,
       dbConfig: {
         dbName: this.dbName,
         schema: this.schema,
@@ -333,7 +333,7 @@ class MedusaTestRunner {
       dbUtils: this.dbUtils,
       utils: {
         waitWorkflowExecutions: () =>
-          waitWorkflowExecutions(this.globalContainer as MedusaContainer),
+          waitWorkflowExecutions(this.globalContainer as AcmeKitContainer),
       },
     }
   }
@@ -359,12 +359,12 @@ export function medusaIntegrationTestRunner({
   schema?: string
   debug?: boolean
   inApp?: boolean
-  testSuite: (options: MedusaSuiteOptions) => void
+  testSuite: (options: AcmeKitSuiteOptions) => void
   hooks?: TestRunnerConfig["hooks"]
   cwd?: string
   disableAutoTeardown?: boolean
 }) {
-  const runner = new MedusaTestRunner({
+  const runner = new AcmeKitTestRunner({
     moduleName,
     dbName,
     medusaConfigFile,
@@ -378,7 +378,7 @@ export function medusaIntegrationTestRunner({
   })
 
   return describe("", () => {
-    let testOptions: MedusaSuiteOptions
+    let testOptions: AcmeKitSuiteOptions
 
     beforeAll(async () => {
       await runner.beforeAll()

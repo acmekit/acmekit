@@ -26,7 +26,7 @@ import { SqlEntityManager } from "/deps/mikro-orm/postgresql"
 import {
   arrayDifference,
   isString,
-  MedusaError,
+  AcmeKitError,
   promiseAll,
 } from "../../common"
 import { toMikroORMEntity } from "../../dml"
@@ -650,8 +650,8 @@ export function mikroOrmBaseRepositoryFactory<const T extends object>(
       )
 
       if (nonexistentRelations.length) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `Nonexistent relations were passed during upsert: ${nonexistentRelations}`
         )
       }
@@ -1132,8 +1132,8 @@ export function mikroOrmBaseRepositoryFactory<const T extends object>(
 
         // We don't support creating many-to-one relations, so we want to throw if someone doesn't pass the ID
         if (!relationId) {
-          throw new MedusaError(
-            MedusaError.Types.INVALID_DATA,
+          throw new AcmeKitError(
+            AcmeKitError.Types.INVALID_DATA,
             `Many-to-one relation ${relation.name} must be set with an ID`
           )
         }

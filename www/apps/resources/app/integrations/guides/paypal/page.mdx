@@ -210,21 +210,21 @@ Add the following method to the `PayPalPaymentProviderService` class:
 
 ```ts title="src/modules/paypal/service.ts"
 import { 
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
   static validateOptions(options: Record<any, any>): void | never {
     if (!options.client_id) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA, 
         "Client ID is required"
       )
     }
     if (!options.client_secret) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA, 
         "Client secret is required"
       )
     }
@@ -298,8 +298,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const order = response.result
 
       if (!order?.id) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           "Failed to create PayPal order"
         )
       }
@@ -321,8 +321,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         },
       }
     } catch (error: any) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to initiate PayPal payment: ${error.result?.message || error}`
       )
     }
@@ -370,8 +370,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const orderId = input.data?.order_id as string | undefined
 
       if (!orderId || typeof orderId !== "string") {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "PayPal order ID is required"
         )
       }
@@ -386,8 +386,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         const capture = response.result
 
         if (!capture?.id) {
-          throw new MedusaError(
-            MedusaError.Types.UNEXPECTED_STATE,
+          throw new AcmeKitError(
+            AcmeKitError.Types.UNEXPECTED_STATE,
             "Failed to capture PayPal payment"
           )
         }
@@ -415,8 +415,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const authorization = response.result
 
       if (!authorization?.id) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           "Failed to authorize PayPal payment"
         )
       }
@@ -435,8 +435,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         status: "authorized" as PaymentSessionStatus,
       }
     } catch (error: any) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to authorize PayPal payment: ${error.message || error}`
       )
     }
@@ -486,8 +486,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const authorizationId = input.data?.authorization_id as string | undefined
 
       if (!authorizationId || typeof authorizationId !== "string") {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "PayPal authorization ID is required for capture"
         )
       }
@@ -500,8 +500,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const capture = response.result
 
       if (!capture?.id) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           "Failed to capture PayPal payment"
         )
       }
@@ -513,8 +513,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         },
       }
     } catch (error: any) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to capture PayPal payment: ${error.result?.message || error}`
       )
     }
@@ -559,8 +559,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const captureId = input.data?.capture_id as string | undefined
 
       if (!captureId || typeof captureId !== "string") {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "PayPal capture ID is required for refund"
         )
       }
@@ -582,8 +582,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const refund = response.result
 
       if (!refund?.id) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           "Failed to refund PayPal payment"
         )
       }
@@ -595,8 +595,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         },
       }
     } catch (error: any) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to refund PayPal payment: ${error.result?.message || error}`
       )
     }
@@ -646,8 +646,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const orderId = input.data?.order_id as string | undefined
 
       if (!orderId) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "PayPal order ID is required"
         )
       }
@@ -670,8 +670,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         },
       }
     } catch (error: any) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to update PayPal payment: ${error.result?.message || error}`
       )
     }
@@ -755,8 +755,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const orderId = input.data?.order_id as string | undefined
 
       if (!orderId || typeof orderId !== "string") {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "PayPal order ID is required"
         )
       }
@@ -768,8 +768,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const order = response.result
 
       if (!order?.id) {
-        throw new MedusaError(
-          MedusaError.Types.NOT_FOUND,
+        throw new AcmeKitError(
+          AcmeKitError.Types.NOT_FOUND,
           "PayPal order not found"
         )
       }
@@ -782,8 +782,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         },
       }
     } catch (error: any) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to retrieve PayPal payment: ${error.result?.message || error}`
       )
     }
@@ -829,8 +829,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const authorizationId = input.data?.authorization_id as string | undefined
 
       if (!authorizationId || typeof authorizationId !== "string") {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "PayPal authorization ID is required for cancellation"
         )
       }
@@ -843,8 +843,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         data: input.data,
       }
     } catch (error: any) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Failed to cancel PayPal payment: ${error.result?.message || error}`
       )
     }
@@ -950,8 +950,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   ): Promise<boolean> {
     try {
       if (!this.options_.webhook_id) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "PayPal webhook ID is required for webhook signature verification"
         )
       }
@@ -974,8 +974,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
         !authAlgo ||
         !transmissionSig
       ) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           "Missing required PayPal webhook headers"
         )
       }
@@ -1001,8 +1001,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       })
   
       if (!authResponse.ok) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           "Failed to get access token for webhook verification"
         )
       }
@@ -1011,8 +1011,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const accessToken = authData.access_token
   
       if (!accessToken) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           "Access token not received from PayPal"
         )
       }
@@ -1054,8 +1054,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       })
   
       if (!verifyResponse.ok) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           "Webhook verification API call failed"
         )
       }
@@ -1066,8 +1066,8 @@ class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
       const isValid = verifyData.verification_status === "SUCCESS"
   
       if (!isValid) {
-        throw new MedusaError(
-          MedusaError.Types.UNEXPECTED_STATE,
+        throw new AcmeKitError(
+          AcmeKitError.Types.UNEXPECTED_STATE,
           "Webhook signature verification failed"
         )
       }

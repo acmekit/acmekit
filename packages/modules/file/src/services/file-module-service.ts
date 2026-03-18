@@ -11,7 +11,7 @@ import {
 } from "/framework/types"
 import type { Readable, Writable } from "stream"
 
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { joinerConfig } from "../joiner-config"
 import FileProviderService from "./file-provider-service"
 
@@ -105,8 +105,8 @@ export default class FileModuleService implements FileTypes.IFileModuleService {
     sharedContext?: Context
   ): Promise<FileDTO[]> {
     if (!filters?.id) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Listing of files is only supported when filtering by ID."
       )
     }
@@ -131,8 +131,8 @@ export default class FileModuleService implements FileTypes.IFileModuleService {
     sharedContext?: Context
   ): Promise<[FileDTO[], number]> {
     if (!filters?.id) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Listing of files is only supported when filtering by ID."
       )
     }

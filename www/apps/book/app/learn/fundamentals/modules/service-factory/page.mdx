@@ -24,20 +24,20 @@ Your service provides data-management functionality for your data models.
 
 ## How to Extend the Service Factory?
 
-Medusa provides the service factory as a `MedusaService` function your service extends. The function creates and returns a service class with generated data-management methods.
+Medusa provides the service factory as a `AcmeKitService` function your service extends. The function creates and returns a service class with generated data-management methods.
 
 For example, create the file `src/modules/blog/service.ts` with the following content:
 
 export const highlights = [
-  ["4", "MedusaService", "The service factory function."],
+  ["4", "AcmeKitService", "The service factory function."],
   ["5", "Post", "The data model to generate data-management methods for."]
 ]
 
 ```ts title="src/modules/blog/service.ts" highlights={highlights}
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   // TODO implement custom methods
@@ -46,17 +46,17 @@ class BlogModuleService extends MedusaService({
 export default BlogModuleService
 ```
 
-### MedusaService Parameters
+### AcmeKitService Parameters
 
-The `MedusaService` function accepts one parameter, which is an object of data models for which to generate data-management methods.
+The `AcmeKitService` function accepts one parameter, which is an object of data models for which to generate data-management methods.
 
-In the example above, since the `BlogModuleService` extends `MedusaService`, it has methods to manage the `Post` data model, such as `createPosts`.
+In the example above, since the `BlogModuleService` extends `AcmeKitService`, it has methods to manage the `Post` data model, such as `createPosts`.
 
 ### Generated Methods
 
 The service factory generates methods to manage the records of each of the data models provided in the first parameter in the database.
 
-The method names are the operation name, suffixed by the data model's key in the object parameter passed to `MedusaService`.
+The method names are the operation name, suffixed by the data model's key in the object parameter passed to `AcmeKitService`.
 
 For example, the following methods are generated for the service above:
 
@@ -284,10 +284,10 @@ If you implement a `constructor` in your service, make sure to call `super` and 
 For example:
 
 ```ts highlights={[["8"]]}
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   constructor() {
@@ -302,15 +302,15 @@ export default BlogModuleService
 
 ## Generated Internal Services
 
-The service factory also generates internal services for each data model passed to the `MedusaService` function. These services are registered in the module's container and can be resolved using their camel-cased names.
+The service factory also generates internal services for each data model passed to the `AcmeKitService` function. These services are registered in the module's container and can be resolved using their camel-cased names.
 
 For example, if the `BlogModuleService` is defined as follows:
 
 ```ts
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
 }

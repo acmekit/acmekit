@@ -709,7 +709,7 @@ To create the loader that initializes the Strapi client, create the file `src/mo
 ```ts title="src/modules/strapi/loaders/init-client.ts" badgeLabel="Medusa application" badgeColor="green"
 import { LoaderOptions } from "/framework/types"
 import { asValue } from "/framework/awilix"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { strapi } from "@strapi/client"
 
 export type ModuleOptions = {
@@ -723,8 +723,8 @@ export default async function initStrapiClientLoader({
   options,
 }: LoaderOptions<ModuleOptions>) {
   if (!options?.apiUrl || !options?.apiToken) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Strapi API URL and token are required"
     )
   }
@@ -939,7 +939,7 @@ Next, you'll add a method to delete images from Strapi. This will be useful when
 In `src/modules/strapi/service.ts`, add the following import at the top of the file:
 
 ```ts title="src/modules/strapi/service.ts" badgeLabel="Medusa application" badgeColor="green"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 ```
 
 Then, add the following method to the `StrapiModuleService` class:
@@ -951,8 +951,8 @@ export default class StrapiModuleService {
     try {
       await this.client_.files.delete(imageId)
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         this.formatStrapiError(error, `Failed to delete image ${imageId} from Strapi`)
       )
     }
@@ -960,7 +960,7 @@ export default class StrapiModuleService {
 }
 ```
 
-This method takes an image ID as a parameter and deletes the corresponding image from Strapi using the Strapi client's files API. If the deletion fails, it throws a `MedusaError` with a formatted error message.
+This method takes an image ID as a parameter and deletes the corresponding image from Strapi using the Strapi client's files API. If the deletion fails, it throws a `AcmeKitError` with a formatted error message.
 
 #### Create Document Type Method
 
@@ -986,8 +986,8 @@ export default class StrapiModuleService {
     try {
       return await this.client_.collection(collection).create(data)
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         this.formatStrapiError(error, `Failed to create ${collection} in Strapi`)
       )
     }
@@ -1015,8 +1015,8 @@ export default class StrapiModuleService {
     try {
       return await this.client_.collection(collection).update(id, data)
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         this.formatStrapiError(error, `Failed to update ${collection} in Strapi`)
       )
     }
@@ -1045,8 +1045,8 @@ export default class StrapiModuleService {
     try {
       return await this.client_.collection(collection).delete(id)
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         this.formatStrapiError(error, `Failed to delete ${collection} in Strapi`)
       )
     }
@@ -1088,8 +1088,8 @@ export default class StrapiModuleService {
       return result.data[0]
     }
     catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         this.formatStrapiError(error, `Failed to find ${collection} in Strapi`)
       )
     }
@@ -3037,7 +3037,7 @@ Refer to the [API routes](!docs!/learn/fundamentals/api-routes) to learn more ab
 To create the API route, create the file `src/api/webhooks/strapi/route.ts` with the following content:
 
 ```ts title="src/api/webhooks/strapi/route.ts" badgeLabel="Medusa application" badgeColor="green"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { simpleHash, Modules } from "/framework/utils"
 import { 
   handleStrapiWebhookWorkflow, 
@@ -3045,7 +3045,7 @@ import {
 } from "../../../workflows/handle-strapi-webhook"
 
 export const POST = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const body = req.body as Record<string, unknown>
@@ -3116,7 +3116,7 @@ To add the middleware, create the file `src/api/middlewares.ts` with the followi
 import { 
   defineMiddlewares, 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
 import { Modules } from "/framework/utils"
@@ -3127,7 +3127,7 @@ export default defineMiddlewares({
       matcher: "/webhooks/strapi",
       middlewares: [
         async (
-          req: MedusaRequest,
+          req: AcmeKitRequest,
           res: MedusaResponse,
           next: MedusaNextFunction
         ) => {

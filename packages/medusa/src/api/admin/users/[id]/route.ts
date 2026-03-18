@@ -4,13 +4,13 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { HttpTypes, UpdateUserDTO } from "/framework/types"
 
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
   remoteQueryObjectFromString,
 } from "/framework/utils"
 import { refetchUser } from "../helpers"
@@ -18,7 +18,7 @@ import { refetchUser } from "../helpers"
 // Get user
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminUserParams>,
-  res: MedusaResponse<HttpTypes.AdminUserResponse>
+  res: AcmeKitResponse<HttpTypes.AdminUserResponse>
 ) => {
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
   const { id } = req.params
@@ -31,8 +31,8 @@ export const GET = async (
 
   const [user] = await remoteQuery(query)
   if (!user) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `User with id: ${id} was not found`
     )
   }
@@ -46,7 +46,7 @@ export const POST = async (
     HttpTypes.AdminUpdateUser,
     HttpTypes.AdminUserParams
   >,
-  res: MedusaResponse<HttpTypes.AdminUserResponse>
+  res: AcmeKitResponse<HttpTypes.AdminUserResponse>
 ) => {
   const workflow = updateUsersWorkflow(req.scope)
 
@@ -73,14 +73,14 @@ export const POST = async (
 // delete user
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse<HttpTypes.AdminUserDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminUserDeleteResponse>
 ) => {
   const { id } = req.params
   const { actor_id } = req.auth_context
 
   if (actor_id === id) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       "A user cannot delete itself"
     )
   }

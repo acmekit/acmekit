@@ -6,13 +6,13 @@ import {
 import { Modules } from "/framework/utils"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { AdminCreateWorkflowsRunType } from "../../validators"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminCreateWorkflowsRunType>,
-  res: MedusaResponse<HttpTypes.AdminWorkflowRunResponse>
+  res: AcmeKitResponse<HttpTypes.AdminWorkflowRunResponse>
 ) => {
   const workflowEngineService: IWorkflowEngineService = req.scope.resolve(
     Modules.WORKFLOW_ENGINE

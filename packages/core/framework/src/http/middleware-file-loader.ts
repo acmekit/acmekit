@@ -7,7 +7,7 @@ import {
   type AdditionalDataValidatorRoute,
   type BodyParserConfigRoute,
   HTTP_METHODS,
-  type MedusaErrorHandlerFunction,
+  type AcmeKitErrorHandlerFunction,
   type MiddlewareDescriptor,
   type MiddlewaresConfig,
 } from "./types"
@@ -26,7 +26,7 @@ export class MiddlewareFileLoader {
   /**
    * Global error handler exported from the middleware file loader
    */
-  #errorHandler?: MedusaErrorHandlerFunction
+  #errorHandler?: AcmeKitErrorHandlerFunction
 
   /**
    * Middleware collected manually or by scanning directories

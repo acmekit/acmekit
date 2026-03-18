@@ -72,7 +72,7 @@ For example, if you want to re-use brands across different products, it's better
 
 ### How Medusa Updates JSON Properties
 
-Consider a Brand Module with a `Brand` data model as shown [in the previous section](#what-is-a-json-property). The [module's service](../../modules/page.mdx#2-create-service) will extend `MedusaService`, which generates methods like [updateBrands](!resources!/service-factory-reference/methods/update) to update a brand.
+Consider a Brand Module with a `Brand` data model as shown [in the previous section](#what-is-a-json-property). The [module's service](../../modules/page.mdx#2-create-service) will extend `AcmeKitService`, which generates methods like [updateBrands](!resources!/service-factory-reference/methods/update) to update a brand.
 
 When you pass a JSON property in the `updateBrands` method, Medusa will merge the provided JSON object with the existing one in the database. So, only the properties you pass will be updated, and the rest will remain unchanged.
 

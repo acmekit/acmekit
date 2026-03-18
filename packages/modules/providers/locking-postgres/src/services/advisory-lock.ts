@@ -1,5 +1,5 @@
 import { ILockingProvider } from "/framework/types"
-import { isDefined, MedusaService } from "/framework/utils"
+import { isDefined, AcmeKitService } from "/framework/utils"
 import { EntityManager } from "/framework/mikro-orm/core"
 import { Locking } from "@models"
 
@@ -8,7 +8,7 @@ type InjectedDependencies = {
 }
 
 export class PostgresAdvisoryLockProvider
-  extends MedusaService({ Locking })
+  extends AcmeKitService({ Locking })
   implements ILockingProvider
 {
   static identifier = "locking-postgres"

@@ -26,11 +26,11 @@ export const highlights = [
 ]
 
 ```ts highlights={highlights}
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, MedusaResponse } from "/framework"
 import { ContainerRegistrationKeys } from "/framework/utils"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const query = req.scope.resolve("query")
@@ -114,11 +114,11 @@ export const scheduledJobHighlights = [
 ]
 
 ```ts highlights={scheduledJobHighlights}
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { ContainerRegistrationKeys } from "/framework/utils"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const query = container.resolve(ContainerRegistrationKeys.QUERY)
 

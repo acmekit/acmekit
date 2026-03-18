@@ -405,7 +405,7 @@ import {
   updateCartPromotionsWorkflow,
 } from "/medusa/core-flows"
 import { FIRST_PURCHASE_PROMOTION_CODE } from "../../constants"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 updateCartPromotionsWorkflow.hooks.validate(
   (async ({ input, cart }, { container }) => {
@@ -418,8 +418,8 @@ updateCartPromotionsWorkflow.hooks.validate(
     }
 
     if (!cart.customer_id) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "First purchase discount can only be applied to carts with a customer"
       )
     }
@@ -434,8 +434,8 @@ updateCartPromotionsWorkflow.hooks.validate(
     })
 
     if (!customer.has_account || (customer?.orders?.length || 0) > 0) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "First purchase discount can only be applied to carts with no previous orders"
       )
     }
@@ -458,7 +458,7 @@ In the step function, you check if the `FIRST_PURCHASE_PROMOTION_CODE` is being 
 - The customer has an account.
 - The customer has no previous orders.
 
-If any of these validations fail, you throw a `MedusaError` with the appropriate error message. This will prevent the promotion from being applied to the cart.
+If any of these validations fail, you throw a `AcmeKitError` with the appropriate error message. This will prevent the promotion from being applied to the cart.
 
 <Note title="Tip">
 
@@ -499,8 +499,8 @@ completeCartWorkflow.hooks.validate(
     }
 
     if (!cart.customer_id) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "First purchase discount can only be applied to carts with a customer"
       )
     }
@@ -516,8 +516,8 @@ completeCartWorkflow.hooks.validate(
     })
 
     if (!customer.has_account || (customer?.orders?.length || 0) > 0) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "First purchase discount can only be applied to carts with no previous orders"
       )
     }
@@ -533,7 +533,7 @@ In the step function, you check if the `FIRST_PURCHASE_PROMOTION_CODE` is applie
 - The customer has an account.
 - The customer has no previous orders.
 
-If any of these validations fail, you throw a `MedusaError` with the appropriate error message. This will prevent the order from being placed if the first-purchase promotion is used by a customer who is not a first-time customer.
+If any of these validations fail, you throw a `AcmeKitError` with the appropriate error message. This will prevent the order from being placed if the first-purchase promotion is used by a customer who is not a first-time customer.
 
 ### Test it Out
 

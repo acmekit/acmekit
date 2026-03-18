@@ -14,7 +14,7 @@ import {
   InjectManager,
   InjectSharedContext,
   isDefined,
-  MedusaContext,
+  AcmeKitContext,
   ModulesSdkUtils,
 } from "/framework/utils"
 import type {
@@ -37,7 +37,7 @@ export class WorkflowsModuleService<
   TWorkflowExecution extends InferEntityType<
     typeof WorkflowExecution
   > = InferEntityType<typeof WorkflowExecution>
-> extends ModulesSdkUtils.MedusaService<{
+> extends ModulesSdkUtils.AcmeKitService<{
   WorkflowExecution: { dto: InferEntityType<typeof WorkflowExecution> }
 }>({ WorkflowExecution }) {
   protected baseRepository_: DAL.RepositoryService
@@ -113,7 +113,7 @@ export class WorkflowsModuleService<
   async listWorkflowExecutions(
     filters: FilterableWorkflowExecutionProps = {},
     config?: FindConfig<WorkflowExecutionDTO>,
-    @MedusaContext() sharedContext?: Context
+    @AcmeKitContext() sharedContext?: Context
   ) {
     const filters_ = WorkflowsModuleService.prepareFilters(filters)
     return await super.listWorkflowExecutions(filters_, config, sharedContext)
@@ -124,7 +124,7 @@ export class WorkflowsModuleService<
   async listAndCountWorkflowExecutions(
     filters: FilterableWorkflowExecutionProps = {},
     config?: FindConfig<WorkflowExecutionDTO>,
-    @MedusaContext() sharedContext?: Context
+    @AcmeKitContext() sharedContext?: Context
   ) {
     const filters_ = WorkflowsModuleService.prepareFilters(filters)
     return await super.listAndCountWorkflowExecutions(
@@ -142,7 +142,7 @@ export class WorkflowsModuleService<
         ? UnwrapWorkflowInputDataType<TWorkflow>
         : unknown
     > = {},
-    @MedusaContext() context: Context = {}
+    @AcmeKitContext() context: Context = {}
   ) {
     const options_ = JSON.parse(JSON.stringify(options ?? {}))
 
@@ -198,7 +198,7 @@ export class WorkflowsModuleService<
   async getRunningTransaction(
     workflowId: string,
     transactionId: string,
-    @MedusaContext() context: Context = {}
+    @AcmeKitContext() context: Context = {}
   ) {
     return await this.workflowOrchestratorService_.getRunningTransaction(
       workflowId,
@@ -216,7 +216,7 @@ export class WorkflowsModuleService<
       idempotencyKey: string | IdempotencyKeyParts
       options?: Record<string, any>
     },
-    @MedusaContext() context: Context = {}
+    @AcmeKitContext() context: Context = {}
   ) {
     const options_ = JSON.parse(JSON.stringify(options ?? {}))
 
@@ -241,7 +241,7 @@ export class WorkflowsModuleService<
       stepResponse: unknown
       options?: Record<string, any>
     },
-    @MedusaContext() context: Context = {}
+    @AcmeKitContext() context: Context = {}
   ) {
     const options_ = JSON.parse(JSON.stringify(options ?? {}))
 
@@ -269,7 +269,7 @@ export class WorkflowsModuleService<
         forcePermanentFailure?: boolean
       }
     },
-    @MedusaContext() context: Context = {}
+    @AcmeKitContext() context: Context = {}
   ) {
     const options_ = JSON.parse(JSON.stringify(options ?? {}))
 

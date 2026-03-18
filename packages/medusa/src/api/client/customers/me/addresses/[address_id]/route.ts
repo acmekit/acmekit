@@ -4,12 +4,12 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
-import { HttpTypes, MedusaContainer } from "/framework/types"
+import { HttpTypes, AcmeKitContainer } from "/framework/types"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
   remoteQueryObjectFromString,
 } from "/framework/utils"
 import { refetchCustomer } from "../../../helpers"
@@ -19,7 +19,7 @@ import {
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<StoreGetCustomerAddressParamsType>,
-  res: MedusaResponse<HttpTypes.StoreCustomerAddressResponse>
+  res: AcmeKitResponse<HttpTypes.StoreCustomerAddressResponse>
 ) => {
   const customerId = req.auth_context.actor_id
 
@@ -34,8 +34,8 @@ export const GET = async (
 
   const [address] = await remoteQuery(queryObject)
   if (!address) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Address with id: ${req.params.address_id} was not found`
     )
   }
@@ -48,7 +48,7 @@ export const POST = async (
     HttpTypes.StoreUpdateCustomerAddress,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.StoreCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.StoreCustomerResponse>
 ) => {
   const id = req.auth_context.actor_id!
   await validateCustomerAddress(req.scope, id, req.params.address_id)
@@ -68,7 +68,7 @@ export const POST = async (
 
 export const DELETE = async (
   req: AuthenticatedMedusaRequest<{}, HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.StoreCustomerAddressDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.StoreCustomerAddressDeleteResponse>
 ) => {
   const id = req.auth_context.actor_id
   await validateCustomerAddress(req.scope, id, req.params.address_id)
@@ -89,7 +89,7 @@ export const DELETE = async (
 }
 
 const validateCustomerAddress = async (
-  scope: MedusaContainer,
+  scope: AcmeKitContainer,
   customerId: string,
   addressId: string
 ) => {
@@ -104,8 +104,8 @@ const validateCustomerAddress = async (
 
   const [address] = await remoteQuery(queryObject)
   if (!address) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Address with id: ${addressId} was not found`
     )
   }

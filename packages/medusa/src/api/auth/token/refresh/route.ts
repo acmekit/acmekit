@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { IAuthModuleService } from "/framework/types"
 import { ContainerRegistrationKeys, Modules } from "/framework/utils"
@@ -11,7 +11,7 @@ import { generateJwtTokenForAuthIdentity } from "../../utils/generate-jwt-token"
 // Note: We probably want to disallow refreshes if the password changes, and require reauth.
 export const POST = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const service: IAuthModuleService = req.scope.resolve(Modules.AUTH)
 

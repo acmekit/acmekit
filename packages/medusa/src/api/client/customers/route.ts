@@ -1,7 +1,7 @@
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 import { createCustomerAccountWorkflow } from "/core-flows"
@@ -13,12 +13,12 @@ export const POST = async (
     HttpTypes.StoreCreateCustomer,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.StoreCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.StoreCustomerResponse>
 ) => {
   // If `actor_id` is present, the request carries authentication for an existing customer
   if (req.auth_context.actor_id) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Request already authenticated as a customer."
     )
   }

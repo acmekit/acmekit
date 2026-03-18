@@ -6,9 +6,9 @@ import {
 } from "/framework/types"
 import {
   AbstractAuthModuleProvider,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
-import { MedusaCloudAuthProviderOptions } from "@types"
+import { AcmeKitCloudAuthProviderOptions } from "@types"
 import crypto from "crypto"
 import jwt, { type JwtPayload } from "jsonwebtoken"
 
@@ -16,16 +16,16 @@ type InjectedDependencies = {
   logger: Logger
 }
 
-export class MedusaCloudAuthService extends AbstractAuthModuleProvider {
+export class AcmeKitCloudAuthService extends AbstractAuthModuleProvider {
   static identifier = "cloud"
   static DISPLAY_NAME = "AcmeKit Cloud Authentication"
 
-  protected config_: MedusaCloudAuthProviderOptions
+  protected config_: AcmeKitCloudAuthProviderOptions
   protected logger_: Logger
 
   constructor(
     { logger }: InjectedDependencies,
-    options: MedusaCloudAuthProviderOptions
+    options: AcmeKitCloudAuthProviderOptions
   ) {
     // @ts-ignore
     super(...arguments)
@@ -34,8 +34,8 @@ export class MedusaCloudAuthService extends AbstractAuthModuleProvider {
   }
 
   async register(_): Promise<AuthenticationResponse> {
-    throw new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       "AcmeKit Cloud does not support registration. Use method `authenticate` instead."
     )
   }
@@ -109,8 +109,8 @@ export class MedusaCloudAuthService extends AbstractAuthModuleProvider {
               r.statusText
             }: response: ${JSON.stringify(r)}`
           )
-          throw new MedusaError(
-            MedusaError.Types.INVALID_DATA,
+          throw new AcmeKitError(
+            AcmeKitError.Types.INVALID_DATA,
             `Could not exchange token, ${r.status}, ${r.statusText}`
           )
         }
@@ -150,8 +150,8 @@ export class MedusaCloudAuthService extends AbstractAuthModuleProvider {
     const payload = jwtData.payload
 
     if (!payload.email_verified) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Email not verified, cannot proceed with authentication"
       )
     }
@@ -172,7 +172,7 @@ export class MedusaCloudAuthService extends AbstractAuthModuleProvider {
         entity_id,
       })
     } catch (error) {
-      if (error.type === MedusaError.Types.NOT_FOUND) {
+      if (error.type === AcmeKitError.Types.NOT_FOUND) {
         const createdAuthIdentity = await authIdentityService.create({
           entity_id,
           user_metadata: userMetadata,

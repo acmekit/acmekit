@@ -1,13 +1,13 @@
 import { Logger, NotificationTypes } from "/framework/types"
 import { AbstractNotificationProviderService } from "/framework/utils"
-import { MedusaCloudEmailOptions } from "@types"
+import { AcmeKitCloudEmailOptions } from "@types"
 
-export class MedusaCloudEmailNotificationProvider extends AbstractNotificationProviderService {
+export class AcmeKitCloudEmailNotificationProvider extends AbstractNotificationProviderService {
   static identifier = "notification-medusa-cloud-email"
-  protected options_: MedusaCloudEmailOptions
+  protected options_: AcmeKitCloudEmailOptions
   protected logger_: Logger
 
-  constructor({}, options: MedusaCloudEmailOptions) {
+  constructor({}, options: AcmeKitCloudEmailOptions) {
     super()
 
     this.options_ = options

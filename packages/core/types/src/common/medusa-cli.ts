@@ -1,6 +1,6 @@
-import { MedusaContainer } from "./medusa-container"
+import { AcmeKitContainer } from "./medusa-container"
 
 export type ExecArgs = {
-  container: MedusaContainer
+  container: AcmeKitContainer
   args: string[]
 }

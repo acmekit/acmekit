@@ -1,7 +1,7 @@
 import { createRbacRolePoliciesWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
@@ -17,7 +17,7 @@ import { AdminAddRolePoliciesType } from "../../validators"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const roleId = req.params.id
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -43,7 +43,7 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminAddRolePoliciesType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const roleId = req.params.id
   const { policies } = req.validatedBody

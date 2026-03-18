@@ -34,7 +34,7 @@ export function EmitEvents(
         )
       }
 
-      const argIndex = target.MedusaContextIndex_[propertyKey]
+      const argIndex = target.AcmeKitContextIndex_[propertyKey]
       const aggregator = args[argIndex].messageAggregator as MessageAggregator
 
       if (aggregator.count() > 0) {

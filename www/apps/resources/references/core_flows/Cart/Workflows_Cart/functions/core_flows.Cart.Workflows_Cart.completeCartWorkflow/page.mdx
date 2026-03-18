@@ -129,7 +129,7 @@ you can cancel the order if the validation fails. For example:
 
 ```ts
 import { createStep, StepResponse } from "/framework/workflows-sdk"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { cancelOrderWorkflow } from "/medusa/core-flows"
 
 type StepInput = {
@@ -143,8 +143,8 @@ export const customCartValidationStep = createStep(
     const isValid = true // replace with actual validation logic
 
     if (!isValid) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Custom cart validation failed"
       )
     }
@@ -249,13 +249,13 @@ If you use this workflow in another, you must acquire a lock before running it a
     
 ```ts title="src/api/workflow/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import { completeCartWorkflow } from "/medusa/core-flows"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result } = await completeCartWorkflow(req.scope)
@@ -302,11 +302,11 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { completeCartWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const { result } = await completeCartWorkflow(container)
     .run({

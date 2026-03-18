@@ -1,4 +1,4 @@
-import { MedusaError } from "/utils"
+import { AcmeKitError } from "/utils"
 import { IDistributedSchedulerStorage, SchedulerOptions } from "../transaction"
 import { WorkflowDefinition } from "./workflow-manager"
 
@@ -11,8 +11,8 @@ class WorkflowScheduler {
   public async scheduleWorkflow(workflow: WorkflowDefinition) {
     const schedule = workflow.options?.schedule
     if (!schedule) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Workflow schedule is not defined while registering a scheduled workflow"
       )
     }

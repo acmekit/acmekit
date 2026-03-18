@@ -1,6 +1,6 @@
 import {
   IModuleService,
-  MedusaContainer,
+  AcmeKitContainer,
   RemoteExpandProperty,
 } from "/types"
 import { lowerCaseFirst, toPascalCase } from "/utils"
@@ -18,7 +18,7 @@ const container = {
       },
     }
   },
-} as MedusaContainer
+} as AcmeKitContainer
 
 const fetchServiceDataCallback = async (
   expand: RemoteExpandProperty,

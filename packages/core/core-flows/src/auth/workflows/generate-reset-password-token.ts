@@ -2,7 +2,7 @@ import type { ProjectConfigOptions } from "/framework/types"
 import {
   AuthWorkflowEvents,
   generateJwtToken,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import {
   createWorkflow,
@@ -67,8 +67,8 @@ export const generateResetPasswordTokenWorkflow = createWorkflow(
         const providerIdentity = providerIdentities?.[0]
 
         if (!providerIdentity) {
-          throw new MedusaError(
-            MedusaError.Types.INVALID_DATA,
+          throw new AcmeKitError(
+            AcmeKitError.Types.INVALID_DATA,
             `Provider identity with entity_id ${input.entityId} and provider ${input.provider} not found`
           )
         }

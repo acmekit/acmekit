@@ -1,4 +1,4 @@
-import { MedusaService } from "../medusa-service"
+import { AcmeKitService } from "../medusa-service"
 import { model } from "../../dml"
 import { MessageAggregator } from "../../event-bus"
 import { ModuleJoinerConfig } from "/types"
@@ -11,12 +11,12 @@ const baseRepoMock = {
 }
 
 const defaultContext = {
-  __type: "MedusaContext",
+  __type: "AcmeKitContext",
   manager: baseRepoMock,
   messageAggregator: new MessageAggregator(),
 }
 const defaultTransactionContext = {
-  __type: "MedusaContext",
+  __type: "AcmeKitContext",
   manager: baseRepoMock,
   messageAggregator: new MessageAggregator(),
 }
@@ -54,7 +54,7 @@ describe("Abstract Module Service Factory", () => {
   class OtherModelMock1 {}
   class OtherModelMock2 {}
 
-  const medusaService = MedusaService({
+  const medusaService = AcmeKitService({
     MainModelMock,
     OtherModelMock1,
     OtherModelMock2,
@@ -227,7 +227,7 @@ describe("Abstract Module Service Factory", () => {
       id: model.id().primaryKey(),
     })
 
-    const medusaService = MedusaService({
+    const medusaService = AcmeKitService({
       MockModel,
       MockModel2,
       MockModel3,

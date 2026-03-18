@@ -34,7 +34,7 @@ import { Post } from "../models/post"
 
 type Post = InferTypeOf<typeof Post>
 
-class BlogModuleService extends MedusaService({ Post }) {
+class BlogModuleService extends AcmeKitService({ Post }) {
   async doSomething(): Promise<Post> {
     // ...
   }

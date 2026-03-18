@@ -1,9 +1,9 @@
-import { MedusaAppLoader, Migrator } from "/framework"
+import { AcmeKitAppLoader, Migrator } from "/framework"
 import { LinkLoader } from "/framework/links"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
-  MedusaError,
+  AcmeKitError,
   mergePluginModules,
 } from "/framework/utils"
 import { join } from "path"
@@ -23,7 +23,7 @@ const main = async function ({ directory, modules }) {
 
     await ensureDbExists(container)
 
-    const medusaAppLoader = new MedusaAppLoader()
+    const medusaAppLoader = new AcmeKitAppLoader()
     const configModule = container.resolve(
       ContainerRegistrationKeys.CONFIG_MODULE
     )
@@ -55,7 +55,7 @@ const main = async function ({ directory, modules }) {
     process.exit()
   } catch (error) {
     logger.log(new Array(TERMINAL_SIZE).join("-"))
-    if (error.code && error.code === MedusaError.Codes.UNKNOWN_MODULES) {
+    if (error.code && error.code === AcmeKitError.Codes.UNKNOWN_MODULES) {
       logger.error(error.message)
       const modulesList = error.allModules.map(
         (name: string) => `          - ${name}`

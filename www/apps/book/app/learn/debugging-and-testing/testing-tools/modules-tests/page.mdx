@@ -24,10 +24,10 @@ In this chapter, you'll learn about `moduleIntegrationTestRunner` from Medusa's 
 For example, consider a Blog Module with a `BlogModuleService` that has a `getMessage` method:
 
 ```ts title="src/modules/blog/service.ts"
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   async getMessage(): Promise<string> {

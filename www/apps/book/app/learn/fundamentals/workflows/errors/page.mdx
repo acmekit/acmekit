@@ -41,13 +41,13 @@ export const highlights = [
 
 ```ts title="src/api/workflows/route.ts" highlights={highlights} collapsibleLines="1-6" expandButtonLabel="Show Imports"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 import myWorkflow from "../../../workflows/hello-world"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { result, errors } = await myWorkflow(req.scope)

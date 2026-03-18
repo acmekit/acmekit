@@ -18,13 +18,13 @@ For example, if you have a Blog Module and you are trying to retrieve posts, Que
 
 To resolve this error, make sure that your module's service has a `listX` method that returns the records of your data model.
 
-This method is generated for you if your service extends `MedusaService`:
+This method is generated for you if your service extends `AcmeKitService`:
 
 ```ts title="src/modules/blog/service.ts"
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
 }
@@ -32,7 +32,7 @@ class BlogModuleService extends MedusaService({
 export default BlogModuleService
 ```
 
-In the above example, the `listPost` method is generated for you because the `BlogModuleService` extends `MedusaService`.
+In the above example, the `listPost` method is generated for you because the `BlogModuleService` extends `AcmeKitService`.
 
 ### Option 2: Implement the Method
 

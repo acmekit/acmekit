@@ -137,12 +137,12 @@ export const basicHighlights = [
 
 ```ts title="src/api/custom/products/route.ts" highlights={basicHighlights}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve("query")
@@ -231,12 +231,12 @@ You can now filter products by their brand, and vice versa. For example:
 
 ```ts title="src/api/custom/products/route.ts"
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve("query")
@@ -301,12 +301,12 @@ export const paginationHighlights = [
 
 ```ts title="src/api/custom/products/route.ts" highlights={paginationHighlights}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve("query")
@@ -761,12 +761,12 @@ The `index` method supports the same configurations. For example, if you add the
 
 ```ts title="src/api/custom/products/route.ts" highlights={[["17"]]}
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve("query")

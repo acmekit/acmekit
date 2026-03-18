@@ -5,7 +5,7 @@ import {
   InternalModuleDeclaration,
   LoaderOptions,
   Logger,
-  MedusaContainer,
+  AcmeKitContainer,
   ModuleExports,
   ModuleLoaderFunction,
   ModuleProvider,
@@ -24,8 +24,8 @@ import {
   getProviderRegistrationKey,
   isFileSkipped,
   isString,
-  MedusaModuleProviderType,
-  MedusaModuleType,
+  AcmeKitModuleProviderType,
+  AcmeKitModuleType,
   Modules,
   ModulesSdkUtils,
   stringifyCircular,
@@ -46,7 +46,7 @@ type ModuleResource = {
 }
 
 type LoadInternalArgs = {
-  container: MedusaContainer
+  container: AcmeKitContainer
   resolution: ModuleResolution
   logger: Logger
   migrationOnly?: boolean
@@ -179,7 +179,7 @@ async function loadInternalProvider(
 }
 
 export async function loadInternalModule(args: {
-  container: MedusaContainer
+  container: AcmeKitContainer
   resolution: ModuleResolution
   logger: Logger
   migrationOnly?: boolean
@@ -367,7 +367,7 @@ export async function loadInternalModule(args: {
         )
       }
 
-      modProvider_.__type = MedusaModuleProviderType
+      modProvider_.__type = AcmeKitModuleProviderType
 
       const registrationKey = getProviderRegistrationKey({
         providerId,
@@ -376,7 +376,7 @@ export async function loadInternalModule(args: {
 
       container.register({
         [registrationKey]: asFunction(() => {
-          ;(moduleProviderService as any).__type = MedusaModuleType
+          ;(moduleProviderService as any).__type = AcmeKitModuleType
           return new moduleProviderService(
             localContainer.cradle,
             resolution.options,
@@ -389,7 +389,7 @@ export async function loadInternalModule(args: {
     const moduleService = moduleResources.moduleService ?? loadedModule_.service
     container.register({
       [keyName]: asFunction((cradle) => {
-        ;(moduleService as any).__type = MedusaModuleType
+        ;(moduleService as any).__type = AcmeKitModuleType
         return new moduleService(
           localContainer.cradle,
           resolution.options,
@@ -408,7 +408,7 @@ export async function loadInternalModule(args: {
 }
 
 export async function loadModuleMigrations(
-  container: MedusaContainer,
+  container: AcmeKitContainer,
   resolution: ModuleResolution,
   moduleExports?: ModuleExports
 ): Promise<{
@@ -584,7 +584,7 @@ export async function loadResources({
   logger,
   loadedModuleLoaders,
 }: {
-  container: MedusaContainer
+  container: AcmeKitContainer
   moduleResolution: ModuleResolution
   discoveryPath: string
   logger?: Logger

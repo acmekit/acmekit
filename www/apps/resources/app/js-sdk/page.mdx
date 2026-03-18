@@ -405,10 +405,10 @@ The JS SDK supports streaming server-sent events (SSE) using the `client.fetchSt
 For example, consider you have the following custom API route at `src/api/admin/stream/route.ts`:
 
 ```ts title="src/api/admin/stream/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.writeHead(200, {

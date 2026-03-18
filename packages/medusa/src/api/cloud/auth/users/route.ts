@@ -4,30 +4,30 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
   // If user already exists for this auth identity, reject
   if (req.auth_context.actor_id) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "The user is already registered and cannot create a new account."
     )
   }
 
   if (!req.auth_context.user_metadata.email) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "Email is required to create a user account."
     )
   }
@@ -46,8 +46,8 @@ export const POST = async (
     providerIdentities?.length !== 1 ||
     providerIdentities[0].provider !== "cloud"
   ) {
-    throw new MedusaError(
-      MedusaError.Types.UNAUTHORIZED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.UNAUTHORIZED,
       "Only cloud identities can create a user account"
     )
   }

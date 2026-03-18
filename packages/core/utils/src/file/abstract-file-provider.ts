@@ -73,8 +73,8 @@ export class AbstractFileProviderService implements IFileProvider {
    * class MyFileProviderService extends AbstractFileProviderService {
    *   static validateOptions(options: Record<any, any>) {
    *     if (!options.apiKey) {
-   *       throw new MedusaError(
-   *         MedusaError.Types.INVALID_DATA,
+   *       throw new AcmeKitError(
+   *         AcmeKitError.Types.INVALID_DATA,
    *         "API key is required in the provider's options."
    *       )
    *     }

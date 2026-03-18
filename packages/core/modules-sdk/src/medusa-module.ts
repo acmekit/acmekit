@@ -4,7 +4,7 @@ import {
   InternalModuleDeclaration,
   LinkModuleDefinition,
   LoadedModule,
-  MedusaContainer,
+  AcmeKitContainer,
   ModuleBootstrapDeclaration,
   ModuleDefinition,
   ModuleExports,
@@ -36,7 +36,7 @@ const logger: any = {
 }
 
 declare global {
-  interface MedusaModule {
+  interface AcmeKitModule {
     getLoadedModules(
       aliases?: Map<string, string>
     ): { [key: string]: LoadedModule }[]
@@ -55,7 +55,7 @@ type ModuleAlias = {
 export type MigrationOptions = {
   moduleKey: string
   modulePath: string
-  container?: MedusaContainer
+  container?: AcmeKitContainer
   options?: Record<string, any>
   moduleExports?: ModuleExports
   cwd?: string
@@ -66,12 +66,12 @@ export type ModuleBootstrapOptions = {
   defaultPath: string
   declaration?: ModuleBootstrapDeclaration
   moduleExports?: ModuleExports
-  sharedContainer?: MedusaContainer
+  sharedContainer?: AcmeKitContainer
   moduleDefinition?: ModuleDefinition
   injectedDependencies?: Record<string, any>
   /**
    * In this mode, all instances are partially loaded, meaning that the module will not be fully loaded and the services will not be available.
-   * Don't forget to clear the instances (MedusaModule.clearInstances()) after the migration are done.
+   * Don't forget to clear the instances (AcmeKitModule.clearInstances()) after the migration are done.
    */
   migrationOnly?: boolean
   /**
@@ -98,7 +98,7 @@ export type RegisterModuleJoinerConfig =
   | ModuleJoinerConfig
   | ((modules: ModuleJoinerConfig[]) => ModuleJoinerConfig)
 
-class MedusaModule {
+class AcmeKitModule {
   private static instances_: Map<string, { [key: string]: IModuleService }> =
     new Map()
   private static modules_: Map<string, ModuleAlias[]> = new Map()
@@ -110,17 +110,17 @@ class MedusaModule {
   public static getLoadedModules(
     aliases?: Map<string, string>
   ): { [key: string]: LoadedModule }[] {
-    return [...MedusaModule.modules_.entries()].map(([key]) => {
+    return [...AcmeKitModule.modules_.entries()].map(([key]) => {
       if (aliases?.has(key)) {
-        return MedusaModule.getModuleInstance(key, aliases.get(key))
+        return AcmeKitModule.getModuleInstance(key, aliases.get(key))
       }
 
-      return MedusaModule.getModuleInstance(key)
+      return AcmeKitModule.getModuleInstance(key)
     })
   }
 
   public static onApplicationStart(onApplicationStartCb?: () => void): void {
-    for (const instances of MedusaModule.instances_.values()) {
+    for (const instances of AcmeKitModule.instances_.values()) {
       for (const instance of Object.values(instances) as IModuleService[]) {
         if (instance?.__hooks) {
           instance.__hooks?.onApplicationStart
@@ -138,7 +138,7 @@ class MedusaModule {
   }
   public static async onApplicationShutdown(): Promise<void> {
     await promiseAll(
-      [...MedusaModule.instances_.values()]
+      [...AcmeKitModule.instances_.values()]
         .map((instances) => {
           return Object.values(instances).map((instance: IModuleService) => {
             return instance.__hooks?.onApplicationShutdown
@@ -155,7 +155,7 @@ class MedusaModule {
 
   public static async onApplicationPrepareShutdown(): Promise<void> {
     await promiseAll(
-      [...MedusaModule.instances_.values()]
+      [...AcmeKitModule.instances_.values()]
         .map((instances) => {
           return Object.values(instances).map((instance: IModuleService) => {
             return instance.__hooks?.onApplicationPrepareShutdown
@@ -171,59 +171,59 @@ class MedusaModule {
   }
 
   public static clearInstances(): void {
-    MedusaModule.instances_.clear()
-    MedusaModule.modules_.clear()
-    MedusaModule.joinerConfig_.clear()
-    MedusaModule.moduleResolutions_.clear()
-    MedusaModule.customLinks_.length = 0
+    AcmeKitModule.instances_.clear()
+    AcmeKitModule.modules_.clear()
+    AcmeKitModule.joinerConfig_.clear()
+    AcmeKitModule.moduleResolutions_.clear()
+    AcmeKitModule.customLinks_.length = 0
   }
 
   public static isInstalled(moduleKey: string, alias?: string): boolean {
     if (alias) {
       return (
-        MedusaModule.modules_.has(moduleKey) &&
-        MedusaModule.modules_.get(moduleKey)!.some((m) => m.alias === alias)
+        AcmeKitModule.modules_.has(moduleKey) &&
+        AcmeKitModule.modules_.get(moduleKey)!.some((m) => m.alias === alias)
       )
     }
 
-    return MedusaModule.modules_.has(moduleKey)
+    return AcmeKitModule.modules_.has(moduleKey)
   }
 
   public static getJoinerConfig(moduleKey: string): ModuleJoinerConfig {
-    return MedusaModule.joinerConfig_.get(moduleKey)!
+    return AcmeKitModule.joinerConfig_.get(moduleKey)!
   }
 
   public static getAllJoinerConfigs(): ModuleJoinerConfig[] {
-    return [...MedusaModule.joinerConfig_.values()]
+    return [...AcmeKitModule.joinerConfig_.values()]
   }
 
   public static getModuleResolutions(moduleKey: string): ModuleResolution {
-    return MedusaModule.moduleResolutions_.get(moduleKey)!
+    return AcmeKitModule.moduleResolutions_.get(moduleKey)!
   }
 
   public static getAllModuleResolutions(): ModuleResolution[] {
-    return [...MedusaModule.moduleResolutions_.values()]
+    return [...AcmeKitModule.moduleResolutions_.values()]
   }
 
   public static unregisterModuleResolution(moduleKey: string): void {
-    MedusaModule.moduleResolutions_.delete(moduleKey)
-    MedusaModule.joinerConfig_.delete(moduleKey)
-    const moduleAliases = MedusaModule.modules_
+    AcmeKitModule.moduleResolutions_.delete(moduleKey)
+    AcmeKitModule.joinerConfig_.delete(moduleKey)
+    const moduleAliases = AcmeKitModule.modules_
       .get(moduleKey)
       ?.map((m) => m.alias || m.hash)
     if (moduleAliases) {
       for (const alias of moduleAliases) {
-        MedusaModule.instances_.delete(alias)
+        AcmeKitModule.instances_.delete(alias)
       }
     }
-    MedusaModule.modules_.delete(moduleKey)
+    AcmeKitModule.modules_.delete(moduleKey)
   }
 
   public static setModuleResolution(
     moduleKey: string,
     resolution: ModuleResolution
   ): ModuleResolution {
-    MedusaModule.moduleResolutions_.set(moduleKey, resolution)
+    AcmeKitModule.moduleResolutions_.set(moduleKey, resolution)
 
     return resolution
   }
@@ -232,49 +232,49 @@ class MedusaModule {
     moduleKey: string,
     config: ModuleJoinerConfig
   ): ModuleJoinerConfig {
-    MedusaModule.joinerConfig_.set(moduleKey, config)
+    AcmeKitModule.joinerConfig_.set(moduleKey, config)
 
     return config
   }
 
   public static setCustomLink(config: RegisterModuleJoinerConfig): void {
-    MedusaModule.customLinks_.push(config)
+    AcmeKitModule.customLinks_.push(config)
   }
 
   public static getCustomLinks(): RegisterModuleJoinerConfig[] {
-    return MedusaModule.customLinks_
+    return AcmeKitModule.customLinks_
   }
 
   public static getModuleInstance(
     moduleKey: string,
     alias?: string
   ): any | undefined {
-    if (!MedusaModule.modules_.has(moduleKey)) {
+    if (!AcmeKitModule.modules_.has(moduleKey)) {
       return
     }
 
     let mod
-    const modules = MedusaModule.modules_.get(moduleKey)!
+    const modules = AcmeKitModule.modules_.get(moduleKey)!
     if (alias) {
       mod = modules.find((m) => m.alias === alias)
 
-      return MedusaModule.instances_.get(mod?.hash)
+      return AcmeKitModule.instances_.get(mod?.hash)
     }
 
     mod = modules.find((m) => m.main) ?? modules[0]
 
-    return MedusaModule.instances_.get(mod?.hash)
+    return AcmeKitModule.instances_.get(mod?.hash)
   }
 
   private static registerModule(
     moduleKey: string,
     loadedModule: ModuleAlias
   ): void {
-    if (!MedusaModule.modules_.has(moduleKey)) {
-      MedusaModule.modules_.set(moduleKey, [])
+    if (!AcmeKitModule.modules_.has(moduleKey)) {
+      AcmeKitModule.modules_.set(moduleKey, [])
     }
 
-    const modules = MedusaModule.modules_.get(moduleKey)!
+    const modules = AcmeKitModule.modules_.get(moduleKey)!
 
     if (modules.some((m) => m.alias === loadedModule.alias)) {
       throw new Error(
@@ -289,7 +289,7 @@ class MedusaModule {
     }
 
     modules.push(loadedModule)
-    MedusaModule.modules_.set(moduleKey, modules!)
+    AcmeKitModule.modules_.set(moduleKey, modules!)
   }
 
   /**
@@ -322,7 +322,7 @@ class MedusaModule {
       [key: string]: any
     }[]
   > {
-    return await MedusaModule.bootstrap_(modulesOptions, {
+    return await AcmeKitModule.bootstrap_(modulesOptions, {
       migrationOnly,
       loaderOnly,
       workerMode,
@@ -359,7 +359,7 @@ class MedusaModule {
   }: ModuleBootstrapOptions): Promise<{
     [key: string]: T
   }> {
-    const [service] = await MedusaModule.bootstrap_(
+    const [service] = await AcmeKitModule.bootstrap_(
       [
         {
           moduleKey,
@@ -420,7 +420,7 @@ class MedusaModule {
       hashKey: string
       modDeclaration: InternalModuleDeclaration | ExternalModuleDeclaration
       moduleResolutions: Record<string, ModuleResolution>
-      container: MedusaContainer
+      container: AcmeKitContainer
       finishLoading: (arg: { [Key: string]: any }) => void
     }[] = []
 
@@ -450,18 +450,18 @@ class MedusaModule {
           errorLoading = reject
         })
 
-        if (!loaderOnly && MedusaModule.instances_.has(hashKey)) {
-          services.push(MedusaModule.instances_.get(hashKey)!)
+        if (!loaderOnly && AcmeKitModule.instances_.has(hashKey)) {
+          services.push(AcmeKitModule.instances_.get(hashKey)!)
           return
         }
 
-        if (!loaderOnly && MedusaModule.loading_.has(hashKey)) {
-          services.push(await MedusaModule.loading_.get(hashKey))
+        if (!loaderOnly && AcmeKitModule.loading_.has(hashKey)) {
+          services.push(await AcmeKitModule.loading_.get(hashKey))
           return
         }
 
         if (!loaderOnly) {
-          MedusaModule.loading_.set(hashKey, loadingPromise)
+          AcmeKitModule.loading_.set(hashKey, loadingPromise)
         }
 
         let modDeclaration =
@@ -546,16 +546,16 @@ class MedusaModule {
           container,
           finishLoading,
         }) => {
-          const service = await MedusaModule.resolveLoadedModule({
+          const service = await AcmeKitModule.resolveLoadedModule({
             hashKey,
             modDeclaration,
             moduleResolutions,
             container,
           })
 
-          MedusaModule.instances_.set(hashKey, service)
+          AcmeKitModule.instances_.set(hashKey, service)
           finishLoading(service)
-          MedusaModule.loading_.delete(hashKey)
+          AcmeKitModule.loading_.delete(hashKey)
           return service
         }
       )
@@ -585,7 +585,7 @@ class MedusaModule {
     hashKey: string
     modDeclaration: InternalModuleDeclaration | ExternalModuleDeclaration
     moduleResolutions: Record<string, ModuleResolution>
-    container: MedusaContainer
+    container: AcmeKitContainer
   }): Promise<{
     [key: string]: any
   }> {
@@ -637,12 +637,12 @@ class MedusaModule {
         }
 
         services[keyName].__joinerConfig = joinerConfig
-        MedusaModule.setJoinerConfig(keyName, joinerConfig)
+        AcmeKitModule.setJoinerConfig(keyName, joinerConfig)
       }
 
-      MedusaModule.setModuleResolution(keyName, resolution)
+      AcmeKitModule.setModuleResolution(keyName, resolution)
 
-      MedusaModule.registerModule(keyName, {
+      AcmeKitModule.registerModule(keyName, {
         key: keyName,
         hash: hashKey,
         alias: modDeclaration.alias ?? hashKey,
@@ -668,17 +668,17 @@ class MedusaModule {
     const moduleKey = definition.key
     const hashKey = simpleHash(stringifyCircular({ moduleKey, declaration }))
 
-    if (MedusaModule.instances_.has(hashKey)) {
-      return { [moduleKey]: MedusaModule.instances_.get(hashKey) }
+    if (AcmeKitModule.instances_.has(hashKey)) {
+      return { [moduleKey]: AcmeKitModule.instances_.get(hashKey) }
     }
 
-    if (MedusaModule.loading_.has(hashKey)) {
-      return await MedusaModule.loading_.get(hashKey)
+    if (AcmeKitModule.loading_.has(hashKey)) {
+      return await AcmeKitModule.loading_.get(hashKey)
     }
 
     let finishLoading: any
     let errorLoading: any
-    MedusaModule.loading_.set(
+    AcmeKitModule.loading_.set(
       hashKey,
       new Promise((resolve, reject) => {
         finishLoading = resolve
@@ -765,17 +765,17 @@ class MedusaModule {
         }
 
         services[keyName].__joinerConfig = joinerConfig
-        MedusaModule.setJoinerConfig(keyName, joinerConfig)
+        AcmeKitModule.setJoinerConfig(keyName, joinerConfig)
 
         if (!joinerConfig.isLink) {
           throw new Error(
-            "MedusaModule.bootstrapLink must be used only for Link Modules"
+            "AcmeKitModule.bootstrapLink must be used only for Link Modules"
           )
         }
       }
 
-      MedusaModule.setModuleResolution(keyName, resolution)
-      MedusaModule.registerModule(keyName, {
+      AcmeKitModule.setModuleResolution(keyName, resolution)
+      AcmeKitModule.registerModule(keyName, {
         key: keyName,
         hash: hashKey,
         alias: modDeclaration.alias ?? hashKey,
@@ -784,9 +784,9 @@ class MedusaModule {
       })
     }
 
-    MedusaModule.instances_.set(hashKey, services)
+    AcmeKitModule.instances_.set(hashKey, services)
     finishLoading(services)
-    MedusaModule.loading_.delete(hashKey)
+    AcmeKitModule.loading_.delete(hashKey)
 
     return services
   }
@@ -926,7 +926,7 @@ class MedusaModule {
   }
 }
 
-global.MedusaModule ??= MedusaModule
-const GlobalMedusaModule = global.MedusaModule as typeof MedusaModule
+global.AcmeKitModule ??= AcmeKitModule
+const GlobalMedusaModule = global.AcmeKitModule as typeof AcmeKitModule
 
-export { GlobalMedusaModule as MedusaModule }
+export { GlobalMedusaModule as AcmeKitModule }

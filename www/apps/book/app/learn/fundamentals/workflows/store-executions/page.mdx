@@ -98,11 +98,11 @@ export const retrieveHighlights = [
 ]
 
 ```ts title="src/workflows/[id]/route.ts" highlights={retrieveHighlights}
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, MedusaResponse } from "/framework"
 import { Modules } from "/framework/utils"
 
 export async function GET(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) {
   const { transaction_id } = req.params

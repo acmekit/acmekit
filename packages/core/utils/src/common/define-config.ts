@@ -6,7 +6,7 @@ import {
   InputConfigWithArrayModules,
   InputConfigWithObjectModules,
   InternalModuleDeclaration,
-  MedusaCloudOptions,
+  AcmeKitCloudOptions,
 } from "/types"
 import { FeatureFlag } from "../feature-flags/flag-router"
 import {
@@ -354,7 +354,7 @@ function normalizeProjectConfig(
   const { http, redisOptions, sessionOptions, cloud, ...restOfProjectConfig } =
     projectConfig || {}
 
-  const mergedCloudOptions: MedusaCloudOptions = {
+  const mergedCloudOptions: AcmeKitCloudOptions = {
     environmentHandle: process.env.MEDUSA_CLOUD_ENVIRONMENT_HANDLE,
     sandboxHandle: process.env.MEDUSA_CLOUD_SANDBOX_HANDLE,
     apiKey: process.env.MEDUSA_CLOUD_API_KEY,
@@ -463,7 +463,7 @@ function normalizeAdminConfig(
    * with the user defined config
    */
   return {
-    backendUrl: process.env.MEDUSA_BACKEND_URL || DEFAULT_ADMIN_URL,
+    backendUrl: process.env.ACMEKIT_BACKEND_URL || DEFAULT_ADMIN_URL,
     path: "/app",
     maxUploadFileSize: 1024 * 1024, // 1MB default
     ...adminConfig,
@@ -472,7 +472,7 @@ function normalizeAdminConfig(
 
 function applyCloudOptionsToModules(
   modules: Exclude<ConfigModule["modules"], undefined>,
-  config?: MedusaCloudOptions,
+  config?: AcmeKitCloudOptions,
   adminConfig?: AdminOptions
 ) {
   if (!config) {

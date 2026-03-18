@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 import { createCustomerAddressesWorkflow } from "/core-flows"
@@ -15,7 +15,7 @@ export const GET = async (
   req: AuthenticatedMedusaRequest<
     HttpTypes.StoreCustomerAddressFilters
   >,
-  res: MedusaResponse<HttpTypes.StoreCustomerAddressListResponse>
+  res: AcmeKitResponse<HttpTypes.StoreCustomerAddressListResponse>
 ) => {
   const customerId = req.auth_context.actor_id
 
@@ -44,7 +44,7 @@ export const POST = async (
     HttpTypes.StoreCreateCustomerAddress,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.StoreCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.StoreCustomerResponse>
 ) => {
   const customerId = req.auth_context.actor_id
 

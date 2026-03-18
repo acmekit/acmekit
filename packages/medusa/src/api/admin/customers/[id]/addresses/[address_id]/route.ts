@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   deleteCustomerAddressesWorkflow,
@@ -17,7 +17,7 @@ import { AdditionalData, HttpTypes } from "/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.AdminCustomerAddressResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerAddressResponse>
 ) => {
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
   const queryObject = remoteQueryObjectFromString({
@@ -38,7 +38,7 @@ export const POST = async (
     AdminCreateCustomerAddressType & AdditionalData,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerResponse>
 ) => {
   const { additional_data, ...rest } = req.validatedBody
 
@@ -62,7 +62,7 @@ export const POST = async (
 
 export const DELETE = async (
   req: AuthenticatedMedusaRequest<{}, HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.AdminCustomerAddressDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerAddressDeleteResponse>
 ) => {
   const id = req.params.address_id
   const deleteAddress = deleteCustomerAddressesWorkflow(req.scope)

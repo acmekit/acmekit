@@ -1,10 +1,10 @@
-import { MedusaRequest, MedusaResponse } from "../types"
+import { AcmeKitRequest, AcmeKitResponse } from "../types"
 import { applyLocale } from "../middlewares/apply-locale"
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 
 describe("applyLocale", () => {
-  let mockRequest: Partial<MedusaRequest>
-  let mockResponse: MedusaResponse
+  let mockRequest: Partial<AcmeKitRequest>
+  let mockResponse: AcmeKitResponse
   let nextFunction: jest.Mock
 
   beforeEach(() => {
@@ -17,9 +17,9 @@ describe("applyLocale", () => {
             data: [{ supported_locales: [{ locale_code: "en-US" }] }],
           }),
         }),
-      } as unknown as MedusaContainer,
+      } as unknown as AcmeKitContainer,
     }
-    mockResponse = {} as MedusaResponse
+    mockResponse = {} as AcmeKitResponse
     nextFunction = jest.fn()
   })
 
@@ -30,7 +30,7 @@ describe("applyLocale", () => {
   it("should set locale from query parameter", async () => {
     mockRequest.query = { locale: "en-US" }
 
-    await applyLocale(mockRequest as MedusaRequest, mockResponse, nextFunction)
+    await applyLocale(mockRequest as AcmeKitRequest, mockResponse, nextFunction)
 
     expect(mockRequest.locale).toBe("en-US")
     expect(nextFunction).toHaveBeenCalledTimes(1)
@@ -45,7 +45,7 @@ describe("applyLocale", () => {
       return undefined
     })
 
-    await applyLocale(mockRequest as MedusaRequest, mockResponse, nextFunction)
+    await applyLocale(mockRequest as AcmeKitRequest, mockResponse, nextFunction)
 
     expect(mockRequest.locale).toBe("fr-FR")
     expect(nextFunction).toHaveBeenCalledTimes(1)
@@ -60,7 +60,7 @@ describe("applyLocale", () => {
       return undefined
     })
 
-    await applyLocale(mockRequest as MedusaRequest, mockResponse, nextFunction)
+    await applyLocale(mockRequest as AcmeKitRequest, mockResponse, nextFunction)
 
     expect(mockRequest.locale).toBe("de-DE")
     expect(mockRequest.get).not.toHaveBeenCalled()
@@ -71,7 +71,7 @@ describe("applyLocale", () => {
     mockRequest.query = {}
     ;(mockRequest.get as jest.Mock).mockReturnValue(undefined)
 
-    await applyLocale(mockRequest as MedusaRequest, mockResponse, nextFunction)
+    await applyLocale(mockRequest as AcmeKitRequest, mockResponse, nextFunction)
 
     expect(mockRequest.locale).toBeUndefined()
     expect(nextFunction).toHaveBeenCalledTimes(1)
@@ -86,7 +86,7 @@ describe("applyLocale", () => {
       return undefined
     })
 
-    await applyLocale(mockRequest as MedusaRequest, mockResponse, nextFunction)
+    await applyLocale(mockRequest as AcmeKitRequest, mockResponse, nextFunction)
 
     // Empty string is falsy, so it should fall back to header
     expect(mockRequest.locale).toBe("es-ES")
@@ -101,7 +101,7 @@ describe("applyLocale", () => {
       mockRequest.locale = undefined
 
       await applyLocale(
-        mockRequest as MedusaRequest,
+        mockRequest as AcmeKitRequest,
         mockResponse,
         nextFunction
       )

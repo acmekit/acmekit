@@ -1,6 +1,6 @@
-import type { MedusaAppLoader } from "/framework"
+import type { AcmeKitAppLoader } from "/framework"
 import { logger } from "/framework/logger"
-import { Logger, MedusaContainer } from "/framework/types"
+import { Logger, AcmeKitContainer } from "/framework/types"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
@@ -21,7 +21,7 @@ export async function initDb() {
 /**
  * Migrates the database
  */
-export async function migrateDatabase(appLoader: MedusaAppLoader) {
+export async function migrateDatabase(appLoader: AcmeKitAppLoader) {
   try {
     await appLoader.runModulesMigrations()
   } catch (err) {
@@ -34,9 +34,9 @@ export async function migrateDatabase(appLoader: MedusaAppLoader) {
  * Syncs links with the databse
  */
 export async function syncLinks(
-  appLoader: MedusaAppLoader,
+  appLoader: AcmeKitAppLoader,
   directory: string,
-  container: MedusaContainer,
+  container: AcmeKitContainer,
   logger: Logger
 ) {
   try {
@@ -54,7 +54,7 @@ export async function syncLinks(
   }
 }
 
-async function loadCustomLinks(directory: string, container: MedusaContainer) {
+async function loadCustomLinks(directory: string, container: AcmeKitContainer) {
   const configModule = container.resolve(
     ContainerRegistrationKeys.CONFIG_MODULE
   )

@@ -80,7 +80,7 @@ export interface AdminOptions {
    * ```js title="medusa-config.ts"
    * module.exports = defineConfig({
    *   admin: {
-   *     backendUrl: process.env.MEDUSA_BACKEND_URL ||
+   *     backendUrl: process.env.ACMEKIT_BACKEND_URL ||
    *       "http://localhost:9000"
    *   },
    *   // ...
@@ -253,7 +253,7 @@ export type HttpCompressionOptions = {
  *
  * AcmeKit Cloud configurations.
  */
-export type MedusaCloudOptions = {
+export type AcmeKitCloudOptions = {
   /**
    * The environment handle of the AcmeKit Cloud environment.
    */
@@ -953,7 +953,7 @@ export type ProjectConfigOptions = {
    * This property holds configurations for running in AcmeKit Cloud.
    * It gets automatically populated in the cloud, and is not needed outside of it.
    */
-  cloud?: MedusaCloudOptions
+  cloud?: AcmeKitCloudOptions
 }
 
 /**
@@ -1020,7 +1020,7 @@ export type ConfigModule = {
    * ```ts title="medusa-config.ts"
    * module.exports = defineConfig({
    *   admin: {
-   *     backendUrl: process.env.MEDUSA_BACKEND_URL ||
+   *     backendUrl: process.env.ACMEKIT_BACKEND_URL ||
    *       "http://localhost:9000"
    *   },
    *   // ...

@@ -95,12 +95,12 @@ export const highlights = [
 ```ts title="src/api/admin/brands/route.ts" highlights={highlights}
 // other imports...
 import {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   const query = req.scope.resolve("query")

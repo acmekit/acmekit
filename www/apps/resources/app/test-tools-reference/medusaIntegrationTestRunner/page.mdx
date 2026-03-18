@@ -80,7 +80,7 @@ medusaIntegrationTestRunner({
           optional: true,
           children: [
             {
-              type: "`(container: MedusaContainer) => Promise<void>`",
+              type: "`(container: AcmeKitContainer) => Promise<void>`",
               name: "beforeServerStart",
               description: "A hook that runs before the Medusa server starts.",
           optional: true
@@ -130,7 +130,7 @@ The function passed to `testSuite` accepts the following parameters:
           ]
         },
         {
-          type: "`() => MedusaContainer`",
+          type: "`() => AcmeKitContainer`",
           name: "getContainer",
           description: "A function that returns the Medusa container.",
         },

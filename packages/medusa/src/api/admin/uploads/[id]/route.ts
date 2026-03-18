@@ -1,18 +1,18 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { deleteFilesWorkflow } from "/core-flows"
 import { HttpTypes } from "/framework/types"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
   remoteQueryObjectFromString,
 } from "/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.AdminFileResponse>
+  res: AcmeKitResponse<HttpTypes.AdminFileResponse>
 ) => {
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
   const variables = { id: req.params.id }
@@ -25,8 +25,8 @@ export const GET = async (
 
   const [file] = await remoteQuery(queryObject)
   if (!file) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `File with id: ${req.params.id} not found`
     )
   }
@@ -36,7 +36,7 @@ export const GET = async (
 
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse<HttpTypes.AdminFileDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminFileDeleteResponse>
 ) => {
   const id = req.params.id
 

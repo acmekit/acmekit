@@ -1513,7 +1513,7 @@ describe("defineConfig", function () {
 
   it("should add cloud options to the project config and relevant modules if the environment variables are set", function () {
     const originalEnv = { ...process.env }
-    process.env.MEDUSA_BACKEND_URL = "test-backend-url"
+    process.env.ACMEKIT_BACKEND_URL = "test-backend-url"
     process.env.MEDUSA_CLOUD_ENVIRONMENT_HANDLE = "test-environment"
     process.env.MEDUSA_CLOUD_API_KEY = "test-api-key"
     process.env.MEDUSA_CLOUD_EMAILS_ENDPOINT = "test-emails-endpoint"
@@ -1666,7 +1666,7 @@ describe("defineConfig", function () {
 
   it("should add cloud options to the project config and relevant modules if the environment variable is set for a sandbox", function () {
     const originalEnv = { ...process.env }
-    process.env.MEDUSA_BACKEND_URL = "test-backend-url"
+    process.env.ACMEKIT_BACKEND_URL = "test-backend-url"
     process.env.MEDUSA_CLOUD_SANDBOX_HANDLE = "test-sandbox"
     process.env.MEDUSA_CLOUD_API_KEY = "test-api-key"
     process.env.MEDUSA_CLOUD_EMAILS_ENDPOINT = "test-emails-endpoint"

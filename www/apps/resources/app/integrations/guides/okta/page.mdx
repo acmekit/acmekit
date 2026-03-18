@@ -214,35 +214,35 @@ The [validateOptions](/references/auth/provider#validateOptions) method ensures 
 Add the `validateOptions` method to the `OktaAuthProviderService` class:
 
 ```ts title="src/modules/okta/service.ts"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 class OktaAuthProviderService extends AbstractAuthModuleProvider {
   // ...
   static validateOptions(options: Record<any, any>): void | never {
     if (!options.oktaDomain) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Okta auth provider requires oktaDomain option"
       )
     }
 
     if (!options.clientId) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Okta auth provider requires clientId option"
       )
     }
 
     if (!options.clientSecret) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Okta auth provider requires clientSecret option"
       )
     }
 
     if (!options.redirectUri) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         "Okta auth provider requires redirectUri option"
       )
     }
@@ -404,8 +404,8 @@ class OktaAuthProviderService extends AbstractAuthModuleProvider {
 
       if (!tokenResponse.ok) {
         const errorText = await tokenResponse.text()
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `Failed to exchange code for tokens: ${errorText}`
         )
       }
@@ -428,8 +428,8 @@ class OktaAuthProviderService extends AbstractAuthModuleProvider {
 
       if (!userInfoResponse.ok) {
         const errorText = await userInfoResponse.text()
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `Failed to get user info: ${errorText}`
         )
       }
@@ -509,7 +509,7 @@ try {
     },
   })
 } catch (error) {
-  if (error.type === MedusaError.Types.NOT_FOUND) {
+  if (error.type === AcmeKitError.Types.NOT_FOUND) {
     // Auth identity doesn't exist, create it
     authIdentity = await authIdentityProviderService.create({
       entity_id: entityId,
@@ -894,7 +894,7 @@ import {
   MedusaResponse,
   MedusaNextFunction,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 export default async function validateOktaProvider(
   req: AuthenticatedMedusaRequest, 
@@ -902,8 +902,8 @@ export default async function validateOktaProvider(
   next: MedusaNextFunction
 ) {
   if (req.auth_context.actor_id) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_DATA,
       "User already exists"
     )
   }
@@ -924,8 +924,8 @@ export default async function validateOktaProvider(
   const isOkta = authIdentity.provider_identities.some((identity) => identity?.provider === "okta")
 
   if (!isOkta) {
-    throw new MedusaError(
-      MedusaError.Types.UNAUTHORIZED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.UNAUTHORIZED,
       "Invalid provider"
     )
   }

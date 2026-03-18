@@ -22,7 +22,7 @@ For example:
 
 ```ts collapsibleLines="1-9" expandButtonLabel="Show Imports"
 import { 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
 import { 
@@ -30,7 +30,7 @@ import {
 } from "/framework/utils"
 
 export async function POST(
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ): Promise<void> {
   const link = req.scope.resolve(

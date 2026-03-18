@@ -63,14 +63,14 @@ You define a service in a `service.ts` or `service.js` file at the root of your 
 ![Directory structure in module after adding the service](https://res.cloudinary.com/dza7lstvk/image/upload/v1732868984/Medusa%20Book/brand-dir-overview-3_jo7baj.jpg)
 
 export const serviceHighlights = [
-  ["4", "MedusaService", "A service factory that generates data-management methods."]
+  ["4", "AcmeKitService", "A service factory that generates data-management methods."]
 ]
 
 ```ts title="src/modules/brand/service.ts" highlights={serviceHighlights}
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import { Brand } from "./models/brand"
 
-class BrandModuleService extends MedusaService({
+class BrandModuleService extends AcmeKitService({
   Brand,
 }) {
 
@@ -79,9 +79,9 @@ class BrandModuleService extends MedusaService({
 export default BrandModuleService
 ```
 
-The `BrandModuleService` extends a class returned by `MedusaService` from the Modules SDK. This function generates a class with data-management methods for your module's data models.
+The `BrandModuleService` extends a class returned by `AcmeKitService` from the Modules SDK. This function generates a class with data-management methods for your module's data models.
 
-The `MedusaService` function receives an object of the module's data models as a parameter, and generates methods to manage those data models. So, the `BrandModuleService` now has methods like `createBrands` and `retrieveBrand` to manage the `Brand` data model.
+The `AcmeKitService` function receives an object of the module's data models as a parameter, and generates methods to manage those data models. So, the `BrandModuleService` now has methods like `createBrands` and `retrieveBrand` to manage the `Brand` data model.
 
 You'll use these methods in the [next chapter](../workflow/page.mdx).
 

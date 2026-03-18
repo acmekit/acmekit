@@ -59,12 +59,12 @@ export const highlights2 = [
 ]
 
 ```ts highlights={highlights2}
-import { MedusaContext, MedusaService } from "/framework/utils"
+import { AcmeKitContext, AcmeKitService } from "/framework/utils"
 import { Context, FindConfig } from "/framework/types"
 import Post from "./models/post"
 import Author from "./models/author"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
   Author,
 }){
@@ -72,7 +72,7 @@ class BlogModuleService extends MedusaService({
   async listPosts(
     filters?: any, 
     config?: FindConfig<any> | undefined, 
-    @MedusaContext() sharedContext?: Context | undefined
+    @AcmeKitContext() sharedContext?: Context | undefined
   ) {
     const context = filters.context ?? {}
     delete filters.context
@@ -108,12 +108,12 @@ If you pass pagination fields to `query.graph`, you must also override the [gene
 For example, following the previous example, you must override the `listAndCountPosts` method of the Blog Module's service:
 
 ```ts
-import { MedusaContext, MedusaService } from "/framework/utils"
+import { AcmeKitContext, AcmeKitService } from "/framework/utils"
 import { Context, FindConfig } from "/framework/types"
 import Post from "./models/post"
 import Author from "./models/author"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
   Author,
 }){
@@ -121,7 +121,7 @@ class BlogModuleService extends MedusaService({
   async listAndCountPosts(
     filters?: any, 
     config?: FindConfig<any> | undefined, 
-    @MedusaContext() sharedContext?: Context | undefined
+    @AcmeKitContext() sharedContext?: Context | undefined
   ) {
     const context = filters.context ?? {}
     delete filters.context
@@ -188,12 +188,12 @@ export const highlights4 = [
 ]
 
 ```ts highlights={highlights4}
-import { MedusaContext, MedusaService } from "/framework/utils"
+import { AcmeKitContext, AcmeKitService } from "/framework/utils"
 import { Context, FindConfig } from "/framework/types"
 import Post from "./models/post"
 import Author from "./models/author"
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
   Author,
 }){
@@ -201,7 +201,7 @@ class BlogModuleService extends MedusaService({
   async listPosts(
     filters?: any, 
     config?: FindConfig<any> | undefined, 
-    @MedusaContext() sharedContext?: Context | undefined
+    @AcmeKitContext() sharedContext?: Context | undefined
   ) {
     const context = filters.context ?? {}
     delete filters.context

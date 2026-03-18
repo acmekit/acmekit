@@ -8,14 +8,14 @@ import {
 
 import {
   isObject,
-  MedusaContext,
-  MedusaError,
-  MedusaModuleType,
+  AcmeKitContext,
+  AcmeKitError,
+  AcmeKitModuleType,
   Modules,
   promiseAll,
   toPascalCase,
 } from "/utils"
-import { MedusaModule } from "./medusa-module"
+import { AcmeKitModule } from "./medusa-module"
 import { convertRecordsToLinkDefinition } from "./utils/convert-data-to-link-definition"
 import { linkingErrorMessage } from "./utils/linking-error"
 
@@ -58,8 +58,8 @@ type LinkDataConfig = {
 }
 
 export class Link {
-  // To not lose the context chain, we need to set the type to MedusaModuleType
-  static __type = MedusaModuleType
+  // To not lose the context chain, we need to set the type to AcmeKitModuleType
+  static __type = AcmeKitModuleType
 
   private modulesMap: Map<string, LoadedLinkModule> = new Map()
   private relationsPairs: Map<string, LoadedLinkModule> = new Map()
@@ -67,7 +67,7 @@ export class Link {
 
   constructor(modulesLoaded?: LoadedModule[]) {
     if (!modulesLoaded?.length) {
-      modulesLoaded = MedusaModule.getLoadedModules().map(
+      modulesLoaded = AcmeKitModule.getLoadedModules().map(
         (mod) => Object.values(mod)[0]
       )
     }
@@ -178,7 +178,7 @@ export class Link {
   private async executeCascade(
     removedServices: DeleteEntityInput,
     executionMethod: "softDelete" | "restore",
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<[CascadeError[] | null, RemovedIds]> {
     const removedIds: RemovedIds = {}
     const returnIdsList: RemovedIds = {}
@@ -395,7 +395,7 @@ export class Link {
 
   async create(
     link: LinkDefinition | LinkDefinition[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<unknown[]> {
     const allLinks = Array.isArray(link) ? link : [link]
     const serviceLinks = new Map<
@@ -511,8 +511,8 @@ export class Link {
           const serviceA = data.linksToValidateForUniqueness.services[0]
           const serviceB = data.linksToValidateForUniqueness.services[1]
 
-          throw new MedusaError(
-            MedusaError.Types.INVALID_DATA,
+          throw new AcmeKitError(
+            AcmeKitError.Types.INVALID_DATA,
             `Cannot create multiple links between '${serviceA}' and '${serviceB}'`
           )
         }
@@ -532,7 +532,7 @@ export class Link {
 
   async dismiss(
     link: LinkDefinition | LinkDefinition[],
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<unknown[]> {
     const allLinks = Array.isArray(link) ? link : [link]
     const serviceLinks = new Map<string, [string | string[], string][]>()
@@ -569,7 +569,7 @@ export class Link {
 
   async delete(
     removedServices: DeleteEntityInput,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<[CascadeError[] | null, RemovedIds]> {
     return await this.executeCascade(
       removedServices,
@@ -580,7 +580,7 @@ export class Link {
 
   async restore(
     removedServices: DeleteEntityInput,
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<[CascadeError[] | null, RestoredIds]> {
     return await this.executeCascade(removedServices, "restore", sharedContext)
   }
@@ -588,7 +588,7 @@ export class Link {
   async list(
     link: LinkDefinition | LinkDefinition[],
     options?: { asLinkDefinition?: boolean },
-    @MedusaContext() sharedContext: Context = {}
+    @AcmeKitContext() sharedContext: Context = {}
   ): Promise<(object | LinkDefinition)[]> {
     const allLinks = Array.isArray(link) ? link : [link]
     const serviceLinks = new Map<string, object[]>()

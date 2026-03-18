@@ -3,7 +3,7 @@ import {
   ModulesDefinition,
   registerMedusaModule,
 } from "/modules-sdk"
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 import { ContainerRegistrationKeys, generateJwtToken } from "/utils"
 import { asValue } from "../../../deps/awilix"
 import express from "express"
@@ -14,7 +14,7 @@ import { container } from "../../../container"
 import { featureFlagsLoader } from "../../../feature-flags"
 import { logger as defaultLogger } from "../../../logger"
 import { ApiLoader } from "../../router"
-import { MedusaRequest } from "../../types"
+import { AcmeKitRequest } from "../../types"
 import { config } from "../mocks"
 
 function asArray(resolvers) {
@@ -47,7 +47,7 @@ export const createServer = async (rootDir) => {
     baseDir: rootDir,
   })
 
-  container.registerAdd = function (this: MedusaContainer, name, registration) {
+  container.registerAdd = function (this: AcmeKitContainer, name, registration) {
     const storeKey = name + "_STORE"
 
     if (this.registrations[storeKey] === undefined) {
@@ -87,7 +87,7 @@ export const createServer = async (rootDir) => {
   await moduleLoader({ container, moduleResolutions, logger: defaultLogger })
 
   app.use((req, res, next) => {
-    ;(req as MedusaRequest).scope = container.createScope() as MedusaContainer
+    ;(req as AcmeKitRequest).scope = container.createScope() as AcmeKitContainer
     next()
   })
 

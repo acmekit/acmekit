@@ -1,4 +1,4 @@
-import { container, MedusaAppLoader } from "/framework"
+import { container, AcmeKitAppLoader } from "/framework"
 import { IModuleService, Logger } from "/framework/types"
 import {
   ContainerRegistrationKeys,
@@ -238,7 +238,7 @@ export class ModuleReloader extends BaseReloader {
       const moduleDirectory = this.getModuleDirectory(moduleName)
       this.clearModuleFilesCache(moduleDirectory)
 
-      const medusaAppLoader = new MedusaAppLoader()
+      const medusaAppLoader = new AcmeKitAppLoader()
       const newModuleInstance = (await medusaAppLoader.reloadSingleModule({
         moduleKey,
         serviceName,

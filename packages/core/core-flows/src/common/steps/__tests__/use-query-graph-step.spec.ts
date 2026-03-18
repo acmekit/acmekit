@@ -1,4 +1,4 @@
-import { MedusaContainer } from "/framework"
+import { AcmeKitContainer } from "/framework"
 import { asFunction, createContainer } from "/framework/awilix"
 import { ContainerRegistrationKeys } from "/framework/utils"
 import { createWorkflow, WorkflowResponse } from "/workflows-sdk"
@@ -7,10 +7,10 @@ import { FixtureEntryPoints } from "../__fixtures__/remote-query"
 import { useQueryGraphStep } from "../use-query-graph"
 
 describe("useQueryGraphStep", () => {
-  let container!: MedusaContainer
+  let container!: AcmeKitContainer
 
   beforeAll(() => {
-    container = createContainer() as unknown as MedusaContainer
+    container = createContainer() as unknown as AcmeKitContainer
     container.register(
       ContainerRegistrationKeys.QUERY,
       asFunction(() => {

@@ -1,12 +1,12 @@
 import { QueryContext } from "/utils"
-import { MedusaModule } from "../../medusa-module"
+import { AcmeKitModule } from "../../medusa-module"
 import { getEntitiesMap } from "../__fixtures__/get-entities-map"
 import "../__fixtures__/parse-filters"
 import "../__fixtures__/remote-query-type"
 import { toRemoteQuery } from "../to-remote-query"
 
 const entitiesMap = getEntitiesMap(
-  MedusaModule.getAllJoinerConfigs()
+  AcmeKitModule.getAllJoinerConfigs()
     .map((m) => m.schema)
     .join("\n")
 )

@@ -1,14 +1,14 @@
 import {
   AuthenticatedMedusaRequest,
   getAuthContextFromJwtToken,
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
 } from "/framework/http"
 import { ConfigModule, IAuthModuleService } from "/framework/types"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
   Modules,
 } from "/framework/utils"
 import { HttpTypes } from "/types"
@@ -22,9 +22,9 @@ export interface UpdateProviderJwtPayload {
 // Middleware to validate that a token is valid
 export const validateToken = () => {
   return async (
-    req: MedusaRequest<HttpTypes.AdminUpdateProvider>,
-    res: MedusaResponse,
-    next: MedusaNextFunction
+    req: AcmeKitRequest<HttpTypes.AdminUpdateProvider>,
+    res: AcmeKitResponse,
+    next: AcmeKitNextFunction
   ) => {
     const { actor_type, auth_provider } = req.params
 
@@ -43,8 +43,8 @@ export const validateToken = () => {
       http.jwtVerifyOptions ?? http.jwtOptions
     ) as UpdateProviderJwtPayload | null
 
-    const errorObject = new MedusaError(
-      MedusaError.Types.UNAUTHORIZED,
+    const errorObject = new AcmeKitError(
+      AcmeKitError.Types.UNAUTHORIZED,
       `Invalid token`
     )
 

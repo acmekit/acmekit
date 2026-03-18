@@ -5,7 +5,7 @@ import type * as Vite from "vite"
 import { generateCustomFieldHashes } from "./custom-fields"
 import { generateI18nHash } from "./i18n"
 import { generateRouteHashes } from "./routes"
-import { MedusaVitePlugin } from "./types"
+import { AcmeKitVitePlugin } from "./types"
 import { AdminSubdirectory, isFileInAdminSubdirectory } from "./utils"
 import {
   generateVirtualDisplayModule,
@@ -30,7 +30,7 @@ enum Mode {
   APPLICATION = "application",
 }
 
-export const medusaVitePlugin: MedusaVitePlugin = (options) => {
+export const medusaVitePlugin: AcmeKitVitePlugin = (options) => {
   const hashMap = new Map<VirtualModule, string>()
   const _sources = new Set<string>(options?.sources ?? [])
 

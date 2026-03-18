@@ -20,7 +20,7 @@ type InjectedDependencies = {
 
 type Provider = InferEntityType<typeof NotificationProvider>
 
-export default class NotificationProviderService extends ModulesSdkUtils.MedusaInternalService<
+export default class NotificationProviderService extends ModulesSdkUtils.AcmeKitInternalService<
   InjectedDependencies,
   typeof NotificationProvider
 >(NotificationProvider) {

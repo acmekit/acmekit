@@ -1,19 +1,19 @@
-export function MedusaContext() {
+export function AcmeKitContext() {
   return function (
     target: any,
     propertyKey: string | symbol,
     parameterIndex: number
   ) {
-    target.MedusaContextIndex_ ??= {}
-    target.MedusaContextIndex_[propertyKey] = parameterIndex
+    target.AcmeKitContextIndex_ ??= {}
+    target.AcmeKitContextIndex_[propertyKey] = parameterIndex
   }
 }
 
-MedusaContext.getIndex = function (
+AcmeKitContext.getIndex = function (
   target: any,
   propertyKey: string
 ): number | undefined {
-  return target.MedusaContextIndex_?.[propertyKey]
+  return target.AcmeKitContextIndex_?.[propertyKey]
 }
 
-export const MedusaContextType = "MedusaContext"
+export const AcmeKitContextType = "AcmeKitContext"

@@ -1,4 +1,4 @@
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 import { NextFunction } from "express"
 import {
   AuthenticatedMedusaRequest,
@@ -92,8 +92,8 @@ export function normalizeDataForContext(options: PricingContextOptions = {}) {
 
     if (!regionId) {
       try {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `Missing required pricing context to calculate prices - region_id`
         )
       } catch (e) {

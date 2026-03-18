@@ -1,6 +1,6 @@
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 
-export default async function handler(container: MedusaContainer) {
+export default async function handler(container: AcmeKitContainer) {
   console.log(`You have received 5 orders today`)
 }
 

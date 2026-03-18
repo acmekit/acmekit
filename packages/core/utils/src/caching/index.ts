@@ -1,5 +1,5 @@
-import { ICachingModuleService, Logger, MedusaContainer } from "/types"
-import { MedusaContextType, Modules } from "../modules-sdk"
+import { ICachingModuleService, Logger, AcmeKitContainer } from "/types"
+import { AcmeKitContextType, Modules } from "../modules-sdk"
 import { FeatureFlag } from "../feature-flags"
 import { ContainerRegistrationKeys, isObject } from "../common"
 
@@ -22,7 +22,7 @@ export async function useCache<T>(
      */
     autoInvalidate?: boolean
     providers?: string[]
-    container: MedusaContainer
+    container: AcmeKitContainer
   }
 ): Promise<T> {
   const cachingModule = options.container.resolve<ICachingModuleService>(
@@ -139,7 +139,7 @@ export function Cached<
     | string[]
     | ((args: TargetMethodArgs<Target, PropertyKey>) => string[] | undefined)
 
-  container: MedusaContainer | ((this: Target) => MedusaContainer)
+  container: AcmeKitContainer | ((this: Target) => AcmeKitContainer)
 }) {
   return function (
     target: Target,
@@ -159,7 +159,7 @@ export function Cached<
         ? Parameters<Target[PropertyKey & keyof Target]>
         : never
     ) {
-      const container: MedusaContainer =
+      const container: AcmeKitContainer =
         typeof options.container === "function"
           ? options.container.call(this)
           : options.container
@@ -188,7 +188,7 @@ export function Cached<
                   __type,
                   ...rest
                 } = arg as any
-                if (__type === MedusaContextType) {
+                if (__type === AcmeKitContextType) {
                   return
                 }
                 return rest

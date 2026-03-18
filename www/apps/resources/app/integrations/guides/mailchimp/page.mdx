@@ -202,27 +202,27 @@ Add the `validateOptions` method to the `MailchimpNotificationProviderService` c
 ```ts title="src/modules/mailchimp/service.ts"
 // other imports...
 import { 
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 class MailchimpNotificationProviderService extends AbstractNotificationProviderService {
   // ...
   static validateOptions(options: Record<any, any>): void | never {
     if (!options.apiKey) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT, 
         "API key is required"
       )
     }
     if (!options.server) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT, 
         "Server is required"
       )
     }
     if (!options.listId) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT, 
         "List ID is required"
       )
     }
@@ -276,8 +276,8 @@ class MailchimpNotificationProviderService extends AbstractNotificationProviderS
         id: "id" in response ? response.id : "",
       }
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE, 
         `Failed to send newsletter signup: ${error.response.text}`
       )
     }
@@ -298,7 +298,7 @@ Learn about other properties in the object in the [Create Notification Module Pr
 
 In the method, you use the `mailchimp.lists.addListMember` method to subscribe an email address to the Mailchimp audience list. You pass the `listId` from the module's options and the email address along with optional first and last names.
 
-If the subscription is successful, the method returns an object with the `id` of the subscribed email. If it fails, it throws a `MedusaError` with the error message from Mailchimp.
+If the subscription is successful, the method returns an object with the `id` of the subscribed email. If it fails, it throws a `AcmeKitError` with the error message from Mailchimp.
 
 You don't do any email sending in this method because later, in the [Send Welcome Emails from Mailchimp](#optional-step-send-welcome-emails-from-mailchimp) section, you'll create an automation flow in Mailchimp that automatically sends a welcome email to new subscribers.
 
@@ -460,8 +460,8 @@ class MailchimpNotificationProviderService extends AbstractNotificationProviderS
         id: campaign.id,
       }
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE, 
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE, 
         `Failed to send new products newsletter: ${
           error.response?.text || error
         }`
@@ -487,7 +487,7 @@ In the method, you:
 4. Send the campaign using the `mailchimp.campaigns.send` method.
 5. Return the campaign ID if successful.
 
-You also throw a `MedusaError` if the method fails at any point, providing the error message from Mailchimp.
+You also throw a `AcmeKitError` if the method fails at any point, providing the error message from Mailchimp.
 
 #### Implement send Method
 
@@ -509,8 +509,8 @@ class MailchimpNotificationProviderService extends AbstractNotificationProviderS
       case "new-products":
         return this.sendNewProducts(notification)
       default:
-        throw new MedusaError(
-          MedusaError.Types.INVALID_ARGUMENT, 
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_ARGUMENT, 
           "Invalid template"
         )
     }
@@ -530,7 +530,7 @@ In the method, you perform an action based on the `template` value:
 
 - If the template is `newsletter-signup`, you call the `sendNewsletterSignup` method to add a new subscriber to the Mailchimp audience list.
 - If the template is `new-products`, you call the `sendNewProducts` method to create and send a campaign showcasing new products.
-- If the template is not recognized, you throw a `MedusaError` indicating that the template is invalid.
+- If the template is not recognized, you throw a `AcmeKitError` indicating that the template is invalid.
 
 ### f. Export Module Definition
 
@@ -849,7 +849,7 @@ As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0),
 </Note>
 
 ```ts title="src/api/store/newsletter/route.ts" highlights={apiRouteHighlights}
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import { z } from "/framework/zod"
 
 export const newsletterSignupSchema = z.object({
@@ -859,7 +859,7 @@ export const newsletterSignupSchema = z.object({
 })
 
 export async function POST(
-  req: MedusaRequest<z.infer<typeof newsletterSignupSchema>>,
+  req: AcmeKitRequest<z.infer<typeof newsletterSignupSchema>>,
   res: MedusaResponse
 ) {
   const eventModuleService = req.scope.resolve("event_bus")
@@ -1265,11 +1265,11 @@ To create a scheduled job, create the file `src/jobs/send-weekly-newsletter.ts` 
 
 ```ts title="src/jobs/send-weekly-newsletter.ts"
 import {
-  MedusaContainer,
+  AcmeKitContainer,
 } from "/framework/types"
 import { sendNewProductsNewsletter } from "../workflows/send-newsletter"
 
-export default async function myCustomJob(container: MedusaContainer) {
+export default async function myCustomJob(container: AcmeKitContainer) {
   const logger = container.resolve("logger")
 
   logger.info("Sending weekly newsletter...")

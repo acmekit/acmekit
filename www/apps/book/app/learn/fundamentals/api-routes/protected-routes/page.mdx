@@ -197,7 +197,7 @@ Learn more in the [Override API Routes](../override/page.mdx) chapter.
 
 ## Access Authentication Details in API Routes
 
-To access the authentication details in an API route, such as the logged-in user's ID, set the type of the first request parameter to `AuthenticatedMedusaRequest`. It extends `MedusaRequest`:
+To access the authentication details in an API route, such as the logged-in user's ID, set the type of the first request parameter to `AuthenticatedMedusaRequest`. It extends `AcmeKitRequest`:
 
 ```ts highlights={[["7", "AuthenticatedMedusaRequest"]]}
 import type {

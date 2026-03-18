@@ -50,12 +50,12 @@ For example:
 
 ```ts title="src/api/store/custom/route.ts" highlights={[["15"]]}
 import type { 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.json({
@@ -84,7 +84,7 @@ export const highlights = [["25", "parseCorsOrigins", "A utility function that p
 import { defineMiddlewares } from "/framework/http"
 import type { 
   MedusaNextFunction, 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse, 
 } from "/framework/http"
 import { ConfigModule } from "/framework/types"
@@ -97,7 +97,7 @@ export default defineMiddlewares({
       matcher: "/custom*",
       middlewares: [
         (
-          req: MedusaRequest, 
+          req: AcmeKitRequest, 
           res: MedusaResponse, 
           next: MedusaNextFunction
         ) => {

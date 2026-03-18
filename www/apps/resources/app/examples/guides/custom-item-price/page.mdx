@@ -218,7 +218,7 @@ The `MetalSymbols` enum defines the symbols for metals like Gold, Silver, Platin
 Next, add the method `getMetalPrices` to the `MetalPricesModuleService` class:
 
 ```ts title="src/modules/metal-prices/service.ts"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 // ...
 
@@ -240,8 +240,8 @@ export default class MetalPricesModuleService {
     }).then((response) => response.json())
     .then((response) => {
       if (response.error) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           response.error
         )
       }
@@ -254,7 +254,7 @@ export default class MetalPricesModuleService {
 
 The `getMetalPrice` method accepts the metal symbol and currency as parameters. You send a request to GoldAPI.io's `/api/{symbol}/{currency}` endpoint to retrieve the metal's price, also passing the access token in the request's headers.
 
-If the response contains an error, you throw a `MedusaError` with the error message. Otherwise, you return the response, which is of type `PriceResponse`.
+If the response contains an error, you throw a `AcmeKitError` with the error message. Otherwise, you return the response, which is of type `PriceResponse`.
 
 #### Add Helper Methods
 
@@ -471,7 +471,7 @@ In the step function, so far you only resolve the Metal Prices Module's service 
 Next, you'll validate that the specified variant can have its price calculated. Add the following import at the top of the file:
 
 ```ts title="src/workflows/steps/get-variant-metal-prices.ts"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 ```
 
 And replace the `TODO` in the step function with the following:
@@ -484,15 +484,15 @@ const metalSymbol = await metalPricesModuleService
   .getMetalSymbol(variantMetal || "")
 
 if (!metalSymbol) {
-  throw new MedusaError(
-    MedusaError.Types.INVALID_DATA,
+  throw new AcmeKitError(
+    AcmeKitError.Types.INVALID_DATA,
     "Variant doesn't have metal. Make sure the variant's SKU matches a metal symbol."
   )
 }
 
 if (!variant.weight) {
-  throw new MedusaError(
-    MedusaError.Types.INVALID_DATA,
+  throw new AcmeKitError(
+    AcmeKitError.Types.INVALID_DATA,
     "Variant doesn't have weight. Make sure the variant has weight to calculate its price."
   )
 }
@@ -725,12 +725,12 @@ The path of the API route is the file's path relative to `src/api`. So, to creat
 ![The directory structure after adding the API route file.](https://res.cloudinary.com/dza7lstvk/image/upload/v1738252712/Medusa%20Resources/custom-item-price-6_deecbu.jpg)
 
 ```ts title="src/api/store/carts/[id]/line-items-metals/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, MedusaResponse } from "/framework"
 import { HttpTypes } from "/framework/types"
 import { addCustomToCartWorkflow } from "../../../../../workflows/add-custom-to-cart"
 
 export const POST = async (
-  req: MedusaRequest<HttpTypes.StoreAddCartLineItem>, 
+  req: AcmeKitRequest<HttpTypes.StoreAddCartLineItem>, 
   res: MedusaResponse
 ) => {
   const { id } = req.params

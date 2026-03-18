@@ -79,15 +79,15 @@ Consider a module that has a main service `BrandModuleService`, and an internal 
 
 However, loaders are executed before any services are initialized and registered in the module's container. So, you can't resolve the `BrandModuleService` and `CmsService` in a loader.
 
-Instead, if your main service extends the `MedusaService` [service factory](../service-factory/page.mdx), you can resolve the internal services generated for each data model passed to the `MedusaService` function.
+Instead, if your main service extends the `AcmeKitService` [service factory](../service-factory/page.mdx), you can resolve the internal services generated for each data model passed to the `AcmeKitService` function.
 
 For example, if the `BrandModuleService` is defined as follows:
 
 ```ts
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Brand from "./models/brand"
 
-class BrandModuleService extends MedusaService({
+class BrandModuleService extends AcmeKitService({
   Brand,
 }) {
 }

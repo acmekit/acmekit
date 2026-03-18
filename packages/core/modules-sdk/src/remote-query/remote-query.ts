@@ -15,7 +15,7 @@ import {
   RemoteNestedExpands,
 } from "/types"
 import { isPresent, isString, toPascalCase } from "/utils"
-import { MedusaModule } from "../medusa-module"
+import { AcmeKitModule } from "../medusa-module"
 
 const BASE_PREFIX = ""
 const MAX_BATCH_SIZE = 4000
@@ -48,7 +48,7 @@ export class RemoteQuery {
     this.entitiesMap = entitiesMap
 
     if (!modulesLoaded?.length) {
-      modulesLoaded = MedusaModule.getLoadedModules().map(
+      modulesLoaded = AcmeKitModule.getLoadedModules().map(
         (mod) => Object.values(mod)[0]
       )
     }

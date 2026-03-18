@@ -3,8 +3,8 @@ import {
   refetchEntities,
   refetchEntity,
 } from "/framework/http"
-import { MedusaPricingContext } from "/framework/types"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitPricingContext } from "/framework/types"
+import { AcmeKitError } from "/framework/utils"
 import { NextFunction } from "express"
 import { DEFAULT_PRICE_FIELD_PATHS } from "./constants"
 
@@ -40,8 +40,8 @@ export function setPricingContext(options: PricingContextOptions = {}) {
 
     if (!region) {
       try {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
+        throw new AcmeKitError(
+          AcmeKitError.Types.INVALID_DATA,
           `Region with id ${req.filterableFields.region_id} not found when populating the pricing context`
         )
       } catch (e) {
@@ -49,7 +49,7 @@ export function setPricingContext(options: PricingContextOptions = {}) {
       }
     }
 
-    const pricingContext: MedusaPricingContext = {
+    const pricingContext: AcmeKitPricingContext = {
       region_id: region.id,
       currency_code: region.currency_code,
     }

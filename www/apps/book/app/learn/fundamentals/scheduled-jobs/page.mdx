@@ -42,9 +42,9 @@ export const highlights = [
 ]
 
 ```ts title="src/jobs/hello-world.ts" highlights={highlights}
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 
-export default async function greetingJob(container: MedusaContainer) {
+export default async function greetingJob(container: AcmeKitContainer) {
   const logger = container.resolve("logger")
 
   logger.info("Greeting!")
@@ -94,10 +94,10 @@ A workflow is a task made up of a series of steps, and you construct it like you
 You can learn how to create a workflow in the [Workflows](../workflows/page.mdx) chapter, but this example assumes you already have a `syncProductToErpWorkflow` implemented. To execute this workflow once a day, create a scheduled job at `src/jobs/sync-products.ts` with the following content:
 
 ```ts title="src/jobs/sync-products.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { syncProductToErpWorkflow } from "../workflows/sync-products-to-erp"
 
-export default async function syncProductsJob(container: MedusaContainer) {
+export default async function syncProductsJob(container: AcmeKitContainer) {
   await syncProductToErpWorkflow(container)
     .run()
 }

@@ -1,7 +1,7 @@
 import { removeUserRolesWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 /**
@@ -10,7 +10,7 @@ import {
  */
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const { id: userId, role_id: roleId } = req.params
 

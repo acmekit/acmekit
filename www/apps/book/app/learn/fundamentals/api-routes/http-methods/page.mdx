@@ -16,12 +16,12 @@ For example, create the file `src/api/hello-world/route.ts` with the following c
 
 ```ts title="src/api/hello-world/route.ts"
 import type {
-  MedusaRequest,
+  AcmeKitRequest,
   MedusaResponse,
 } from "/framework/http"
 
 export const GET = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.json({
@@ -30,7 +30,7 @@ export const GET = async (
 }
 
 export const POST = async (
-  req: MedusaRequest,
+  req: AcmeKitRequest,
   res: MedusaResponse
 ) => {
   res.json({

@@ -23,7 +23,7 @@ Medusa provides an `InjectManager` decorator from the Modules SDK that injects a
 So, to run database queries in a service:
 
 1. Add the `InjectManager` decorator to the method.
-2. Add as a last parameter an optional `sharedContext` parameter that has the `MedusaContext` decorator from the Modules SDK. This context holds database-related context, including the manager injected by `InjectManager`
+2. Add as a last parameter an optional `sharedContext` parameter that has the `AcmeKitContext` decorator from the Modules SDK. This context holds database-related context, including the manager injected by `InjectManager`
 
 For example, in your service, add the following methods:
 
@@ -42,7 +42,7 @@ export const methodsHighlight = [
 // other imports...
 import { 
   InjectManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -52,14 +52,14 @@ class BlogModuleService {
 
   @InjectManager()
   async getCount(
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<number | undefined> {
     return await sharedContext?.manager?.count("my_custom")
   }
   
   @InjectManager()
   async getCountSql(
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<number> {
     const data = await sharedContext?.manager?.execute(
       "SELECT COUNT(*) as num FROM my_custom"
@@ -70,7 +70,7 @@ class BlogModuleService {
 }
 ```
 
-You add two methods `getCount` and `getCountSql` that have the `InjectManager` decorator. Each of the methods also accept the `sharedContext` parameter which has the `MedusaContext` decorator.
+You add two methods `getCount` and `getCountSql` that have the `InjectManager` decorator. Each of the methods also accept the `sharedContext` parameter which has the `AcmeKitContext` decorator.
 
 The entity manager is injected to the `sharedContext.manager` property, which is an instance of [EntityManager from the `/framework/mikro-orm/knex` package](https://mikro-orm.io/api/knex/class/EntityManager).
 
@@ -102,13 +102,13 @@ To wrap database operations in a transaction, you create two methods:
 1. A private or protected method that's wrapped in a transaction. To wrap it in a transaction, you use the `InjectTransactionManager` decorator from the Modules SDK.
 2. A public method that calls the transactional method. You use on it the `InjectManager` decorator as explained in the previous section.
 
-Both methods must accept as a last parameter an optional `sharedContext` parameter that has the `MedusaContext` decorator from the Modules SDK. It holds database-related contexts passed through the Medusa application.
+Both methods must accept as a last parameter an optional `sharedContext` parameter that has the `AcmeKitContext` decorator from the Modules SDK. It holds database-related contexts passed through the Medusa application.
 
 For example:
 
 export const opHighlights = [
   ["11", "InjectTransactionManager", "A decorator that injects the a transactional entity manager into the `sharedContext` parameter."],
-  ["17", "MedusaContext", "A decorator to use Medusa's shared context."],
+  ["17", "AcmeKitContext", "A decorator to use Medusa's shared context."],
   ["24", "InjectManager", "A decorator that injects a forked entity manager into the context."],
 ]
 
@@ -116,7 +116,7 @@ export const opHighlights = [
 import { 
   InjectManager,
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -129,7 +129,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     const transactionManager = sharedContext?.transactionManager
     
@@ -142,7 +142,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ) {
     return await this.update_(input, sharedContext)
   }
@@ -177,7 +177,7 @@ For example, the `update` method may call other methods than `update_` to perfor
 import { 
   InjectManager,
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -196,7 +196,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ) {
     const newData = await this.update_(input, sharedContext)
 
@@ -224,7 +224,7 @@ export const anotherMethodHighlights = [
 // other imports...
 import { 
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -233,7 +233,7 @@ class BlogModuleService {
   // ...
   @InjectTransactionManager()
   protected async anotherMethod(
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ) {
     // ...
   }
@@ -244,7 +244,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     this.anotherMethod(sharedContext)
   }
@@ -294,7 +294,7 @@ export const serviceFactoryRepoHighlights = [
 ]
 
 ```ts highlights={serviceFactoryRepoHighlights}
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import { InferTypeOf, DAL } from "/framework/types"
 import Post from "./models/post"
 
@@ -304,7 +304,7 @@ type InjectedDependencies = {
   postRepository: DAL.RepositoryService<Post>
 }
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   protected postRepository_: DAL.RepositoryService<Post>
@@ -383,7 +383,7 @@ export const transactionalEntityManagerHighlights = [
 import { 
   InjectManager,
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -396,7 +396,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     const transactionManager = sharedContext?.transactionManager
     await transactionManager?.nativeUpdate(
@@ -423,7 +423,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ) {
     return await this.update_(input, sharedContext)
   }
@@ -454,7 +454,7 @@ export const baseRepoHighlights = [
 ]
 
 ```ts highlights={baseRepoHighlights}
-import { MedusaService } from "/framework/utils"
+import { AcmeKitService } from "/framework/utils"
 import Post from "./models/post"
 import { DAL } from "/framework/types"
 
@@ -462,7 +462,7 @@ type InjectedDependencies = {
   baseRepository: DAL.RepositoryService
 }
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   protected baseRepository_: DAL.RepositoryService
@@ -515,7 +515,7 @@ export const repoHighlights = [
 import { 
   InjectManager,
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -528,7 +528,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     return await this.baseRepository_.transaction(
       async (transactionManager) => {
@@ -561,7 +561,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ) {
     return await this.update_(input, sharedContext)
   }
@@ -591,7 +591,7 @@ The second parameter of the `baseRepository_.transaction` method is an object of
 import { EntityManager } from "/framework/mikro-orm/knex"
 import { 
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 
@@ -603,7 +603,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     return await this.baseRepository_.transaction<EntityManager>(
       async (transactionManager) => {
@@ -628,7 +628,7 @@ class BlogModuleService {
 // other imports...
 import { 
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -642,7 +642,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     return await this.baseRepository_.transaction<EntityManager>(
       async (transactionManager) => {
@@ -663,7 +663,7 @@ class BlogModuleService {
 // other imports...
 import { 
   InjectTransactionManager,
-  MedusaContext,
+  AcmeKitContext,
 } from "/framework/utils"
 import { Context } from "/framework/types"
 import { EntityManager } from "/framework/mikro-orm/knex"
@@ -676,7 +676,7 @@ class BlogModuleService {
       id: string,
       name: string
     },
-    @MedusaContext() sharedContext?: Context<EntityManager>
+    @AcmeKitContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     return await this.baseRepository_.transaction<EntityManager>(
       async (transactionManager) => {

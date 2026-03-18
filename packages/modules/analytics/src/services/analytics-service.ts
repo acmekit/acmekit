@@ -3,7 +3,7 @@ import {
   IdentifyAnalyticsEventDTO,
 } from "/types"
 import AnalyticsProviderService from "./provider-service"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 type InjectedDependencies = {
   analyticsProviderService: AnalyticsProviderService
@@ -30,8 +30,8 @@ export default class AnalyticsService {
     try {
       await this.analyticsProviderService_.track(data)
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Error tracking event for ${data.event}: ${error.message}`
       )
     }
@@ -41,8 +41,8 @@ export default class AnalyticsService {
     try {
       await this.analyticsProviderService_.identify(data)
     } catch (error) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new AcmeKitError(
+        AcmeKitError.Types.UNEXPECTED_STATE,
         `Error identifying event for ${
           "group" in data ? data.group.id : data.actor_id
         }: ${error.message}`

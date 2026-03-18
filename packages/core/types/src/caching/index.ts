@@ -574,7 +574,7 @@ export interface ICachingStrategy {
    * This method is called when the application starts. It can be useful to set up some auto
    * invalidation logic that reacts to something.
    *
-   * @param container MedusaContainer
+   * @param container AcmeKitContainer
    * @param schema GraphQLSchema
    * @param cacheModule ICachingModuleService
    */

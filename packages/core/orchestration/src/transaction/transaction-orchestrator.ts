@@ -24,7 +24,7 @@ import {
   isErrorLike,
   isObject,
   isString,
-  MedusaError,
+  AcmeKitError,
   promiseAll,
   serializeError,
   TransactionStepState,
@@ -1403,8 +1403,8 @@ export class TransactionOrchestrator extends EventEmitter {
    */
   public async resume(transaction: DistributedTransactionType): Promise<void> {
     if (transaction.modelId !== this.id) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `TransactionModel "${transaction.modelId}" cannot be orchestrated by "${this.id}" model.`
       )
     }
@@ -1462,16 +1462,16 @@ export class TransactionOrchestrator extends EventEmitter {
     options?: { preventExecuteNext?: boolean }
   ): Promise<void> {
     if (transaction.modelId !== this.id) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `TransactionModel "${transaction.modelId}" cannot be orchestrated by "${this.id}" model.`
       )
     }
 
     const flow = transaction.getFlow()
     if (flow.state === TransactionState.FAILED) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `Cannot revert a permanent failed transaction.`
       )
     }
@@ -1480,8 +1480,8 @@ export class TransactionOrchestrator extends EventEmitter {
       flow.state === TransactionState.COMPENSATING ||
       flow.state === TransactionState.WAITING_TO_COMPENSATE
     ) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `Cannot revert a transaction that is already compensating.`
       )
     }
@@ -1783,8 +1783,8 @@ export class TransactionOrchestrator extends EventEmitter {
       )
 
     if (!existingTransaction) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `Transaction ${transactionId} could not be found.`
       )
     }
@@ -1834,8 +1834,8 @@ export class TransactionOrchestrator extends EventEmitter {
         )
 
       if (existingTransaction === null) {
-        throw new MedusaError(
-          MedusaError.Types.NOT_FOUND,
+        throw new AcmeKitError(
+          AcmeKitError.Types.NOT_FOUND,
           `Transaction ${transactionId} could not be found.`
         )
       }
@@ -1899,8 +1899,8 @@ export class TransactionOrchestrator extends EventEmitter {
 
       await this.executeNext(curTransaction)
     } else {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `Cannot skip a step when status is ${step.getStates().status}`
       )
     }
@@ -1943,8 +1943,8 @@ export class TransactionOrchestrator extends EventEmitter {
 
       await TransactionOrchestrator.retryStep(curTransaction, step)
     } else {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `Cannot retry step when status is ${step.getStates().status}`
       )
     }
@@ -2000,8 +2000,8 @@ export class TransactionOrchestrator extends EventEmitter {
 
       await this.executeNext(curTransaction)
     } else {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `Cannot set step success when status is ${step.getStates().status}`
       )
     }
@@ -2063,8 +2063,8 @@ export class TransactionOrchestrator extends EventEmitter {
 
       await this.executeNext(curTransaction)
     } else {
-      throw new MedusaError(
-        MedusaError.Types.NOT_ALLOWED,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_ALLOWED,
         `Cannot set step failure when status is ${step.getStates().status}`
       )
     }

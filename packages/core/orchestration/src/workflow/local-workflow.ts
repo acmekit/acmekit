@@ -1,12 +1,12 @@
-import { Context, LoadedModule, MedusaContainer } from "/types"
+import { Context, LoadedModule, AcmeKitContainer } from "/types"
 import {
   createMedusaContainer,
   isDefined,
   isString,
-  MedusaContext,
-  MedusaContextType,
-  MedusaError,
-  MedusaModuleType,
+  AcmeKitContext,
+  AcmeKitContextType,
+  AcmeKitError,
+  AcmeKitModuleType,
 } from "/utils"
 import { asValue } from "/deps/awilix"
 import {
@@ -31,7 +31,7 @@ type StepHandler = {
 }
 
 export class LocalWorkflow {
-  protected container_: MedusaContainer
+  protected container_: AcmeKitContainer
   protected workflowId: string
   protected flow: OrchestratorBuilder
   protected customOptions: Partial<TransactionModelOptions> = {}
@@ -39,22 +39,22 @@ export class LocalWorkflow {
   protected handlers: Map<string, StepHandler>
   protected medusaContext?: Context
 
-  get container(): MedusaContainer {
+  get container(): AcmeKitContainer {
     return this.container_
   }
 
-  set container(modulesLoaded: LoadedModule[] | MedusaContainer) {
+  set container(modulesLoaded: LoadedModule[] | AcmeKitContainer) {
     this.resolveContainer(modulesLoaded)
   }
 
   constructor(
     workflowId: string,
-    modulesLoaded?: LoadedModule[] | MedusaContainer
+    modulesLoaded?: LoadedModule[] | AcmeKitContainer
   ) {
     const globalWorkflow = WorkflowManager.getWorkflow(workflowId)
     if (!globalWorkflow) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `Workflow with id "${workflowId}" not found.`
       )
     }
@@ -72,7 +72,7 @@ export class LocalWorkflow {
     this.resolveContainer(modulesLoaded)
   }
 
-  private resolveContainer(modulesLoaded?: LoadedModule[] | MedusaContainer) {
+  private resolveContainer(modulesLoaded?: LoadedModule[] | AcmeKitContainer) {
     let container
 
     if (!Array.isArray(modulesLoaded) && modulesLoaded) {
@@ -103,7 +103,7 @@ export class LocalWorkflow {
     const originalResolver = container.resolve
     container.resolve = function (keyName, opts) {
       const resolved = originalResolver(keyName, opts)
-      if (resolved?.constructor?.__type !== MedusaModuleType) {
+      if (resolved?.constructor?.__type !== AcmeKitModuleType) {
         return resolved
       }
 
@@ -114,12 +114,12 @@ export class LocalWorkflow {
           }
 
           return (...args) => {
-            const ctxIndex = MedusaContext.getIndex(target, prop as string)
+            const ctxIndex = AcmeKitContext.getIndex(target, prop as string)
 
-            const hasContext = args[ctxIndex!]?.__type === MedusaContextType
+            const hasContext = args[ctxIndex!]?.__type === AcmeKitContextType
             if (!hasContext && isDefined(ctxIndex)) {
               const context = this_.medusaContext
-              if (context?.__type === MedusaContextType) {
+              if (context?.__type === AcmeKitContextType) {
                 delete context?.manager
                 delete context?.transactionManager
 

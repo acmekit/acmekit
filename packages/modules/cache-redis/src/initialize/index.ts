@@ -1,4 +1,4 @@
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import {
   ExternalModuleDeclaration,
   ICacheService,
@@ -11,7 +11,7 @@ export const initialize = async (
   options?: RedisCacheModuleOptions | ExternalModuleDeclaration
 ): Promise<ICacheService> => {
   const serviceKey = Modules.CACHE
-  const loaded = await MedusaModule.bootstrap<ICacheService>({
+  const loaded = await AcmeKitModule.bootstrap<ICacheService>({
     moduleKey: serviceKey,
     defaultPath: "/cache-redis",
     declaration: options as

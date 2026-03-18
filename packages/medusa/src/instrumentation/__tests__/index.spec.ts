@@ -2,7 +2,7 @@ import { resolve } from "path"
 import { errorHandlerMock } from "../__fixtures__/routers/middlewares"
 import { createServer } from "../__fixtures__/server"
 import { instrumentHttpLayer } from "../index"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 jest.setTimeout(30000)
 
@@ -40,7 +40,7 @@ describe("HTTP Instrumentation", () => {
       expect(res.status).toBe(400)
       expect(errorHandlerMock).toHaveBeenCalled()
       expect(errorHandlerMock).toHaveBeenCalledWith(
-        new MedusaError(MedusaError.Types.INVALID_DATA, "Failed"),
+        new AcmeKitError(AcmeKitError.Types.INVALID_DATA, "Failed"),
         expect.anything(),
         expect.anything(),
         expect.anything()

@@ -1,23 +1,23 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { HttpTypes } from "/framework/types"
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
   remoteQueryObjectFromString,
 } from "/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminUserParams>,
-  res: MedusaResponse<HttpTypes.AdminUserResponse>
+  res: AcmeKitResponse<HttpTypes.AdminUserResponse>
 ) => {
   const id = req.auth_context.actor_id
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
 
   if (!id) {
-    throw new MedusaError(MedusaError.Types.NOT_FOUND, `User ID not found`)
+    throw new AcmeKitError(AcmeKitError.Types.NOT_FOUND, `User ID not found`)
   }
 
   const query = remoteQueryObjectFromString({
@@ -29,8 +29,8 @@ export const GET = async (
   const [user] = await remoteQuery(query)
 
   if (!user) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `User with id: ${id} was not found`
     )
   }

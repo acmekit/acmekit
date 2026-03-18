@@ -498,14 +498,14 @@ To run a task at a scheduled interval, you can use a [scheduled job](!docs!/lear
 You can create a scheduled job in a TypeScript or JavaScript file under the `src/jobs` directory. So, to create the scheduled job that sends the abandoned cart notifications, create the file `src/jobs/send-abandoned-cart-notification.ts` with the following content:
 
 ```ts title="src/jobs/send-abandoned-cart-notification.ts"
-import { MedusaContainer } from "/framework/types"
+import { AcmeKitContainer } from "/framework/types"
 import { 
   sendAbandonedCartsWorkflow, 
   SendAbandonedCartsWorkflowInput,
 } from "../workflows/send-abandoned-carts"
 
 export default async function abandonedCartJob(
-  container: MedusaContainer
+  container: AcmeKitContainer
 ) {
   const logger = container.resolve("logger")
   const query = container.resolve("query")

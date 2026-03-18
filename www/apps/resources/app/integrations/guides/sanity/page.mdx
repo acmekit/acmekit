@@ -1373,13 +1373,13 @@ Then, to create the API route, create the file `src/api/admin/sanity/documents/[
 
 ```ts title="src/api/admin/sanity/documents/[id]/route.ts"
 import { 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
 import SanityModuleService from "src/modules/sanity/service"
 import { SANITY_MODULE } from "../../../../../modules/sanity"
 
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+export const GET = async (req: AcmeKitRequest, res: MedusaResponse) => {
   const { id } = req.params
 
   const sanityModule: SanityModuleService = req.scope.resolve(
@@ -1423,14 +1423,14 @@ Create the file `src/api/admin/sanity/documents/[id]/sync/route.ts` with the fol
 
 ```ts title="src/api/admin/sanity/documents/[id]/sync/route.ts"
 import { 
-  MedusaRequest, 
+  AcmeKitRequest, 
   MedusaResponse,
 } from "/framework/http"
 import { 
   sanitySyncProductsWorkflow,
 } from "../../../../../../workflows/sanity-sync-products"
 
-export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
+export const POST = async (req: AcmeKitRequest, res: MedusaResponse) => {
   const { transaction } = await sanitySyncProductsWorkflow(req.scope)
     .run({
       input: { product_ids: [req.params.id] },
@@ -1711,13 +1711,13 @@ When you defined the `sanitySyncProductsWorkflow`, you set its `retentionTime` o
 Create the file `src/api/admin/sanity/syncs/route.ts` with the following content:
 
 ```ts title="src/api/admin/sanity/syncs/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, MedusaResponse } from "/framework"
 import { Modules } from "/framework/utils"
 import { 
   sanitySyncProductsWorkflow,
 } from "../../../../workflows/sanity-sync-products"
 
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+export const GET = async (req: AcmeKitRequest, res: MedusaResponse) => {
   const workflowEngine = req.scope.resolve(
     Modules.WORKFLOW_ENGINE
   )
@@ -1745,7 +1745,7 @@ In this section, you'll add another API route that triggers syncing all products
 In the same file `src/api/admin/sanity/syncs/route.ts`, add the following:
 
 ```ts title="api/admin/sanity/syncs/route.ts"
-export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
+export const POST = async (req: AcmeKitRequest, res: MedusaResponse) => {
   const { transaction } = await sanitySyncProductsWorkflow(req.scope).run({
     input: {},
   })

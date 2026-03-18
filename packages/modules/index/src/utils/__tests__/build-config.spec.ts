@@ -1,9 +1,9 @@
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import { buildSchemaObjectRepresentation } from "../build-config"
 
-// Mock MedusaModule only
+// Mock AcmeKitModule only
 jest.mock("/framework/modules-sdk", () => ({
-  MedusaModule: {
+  AcmeKitModule: {
     getAllJoinerConfigs: jest.fn(),
   },
 }))
@@ -15,8 +15,8 @@ describe("buildSchemaObjectRepresentation", () => {
   beforeEach(() => {
     jest.clearAllMocks()
 
-    // Mock MedusaModule.getAllJoinerConfigs
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([])
+    // Mock AcmeKitModule.getAllJoinerConfigs
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([])
   })
 
   afterEach(() => {
@@ -83,7 +83,7 @@ describe("buildSchemaObjectRepresentation", () => {
       ],
     }
 
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
       productModuleJoinerConfig,
     ])
 
@@ -164,7 +164,7 @@ describe("buildSchemaObjectRepresentation", () => {
       ],
     }
 
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
       productModuleJoinerConfig,
     ])
 
@@ -317,7 +317,7 @@ describe("buildSchemaObjectRepresentation", () => {
       ],
     }
 
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
       moduleJoinerConfig,
     ])
 
@@ -603,7 +603,7 @@ describe("buildSchemaObjectRepresentation", () => {
       ],
     }
 
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
       productModuleJoinerConfig,
     ])
 
@@ -736,7 +736,7 @@ describe("buildSchemaObjectRepresentation", () => {
       ],
     }
 
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
       productModuleJoinerConfig,
     ])
 
@@ -895,7 +895,7 @@ describe("buildSchemaObjectRepresentation", () => {
       ],
     }
 
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
       productModuleJoinerConfig,
       orderModuleJoinerConfig,
       orderItemLinkModuleJoinerConfig,
@@ -1213,7 +1213,7 @@ describe("buildSchemaObjectRepresentation", () => {
       ],
     }
 
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
       productModuleJoinerConfig,
       priceModuleJoinerConfig,
       productVariantPriceSetLinkModuleJoinerConfig,
@@ -1588,7 +1588,7 @@ describe("buildSchemaObjectRepresentation", () => {
       ],
     }
 
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([
       productModuleJoinerConfig,
       priceModuleJoinerConfig,
       productPriceLinkModuleJoinerConfig,
@@ -1845,7 +1845,7 @@ describe("buildSchemaObjectRepresentation", () => {
     `
 
     // Return empty array for getAllJoinerConfigs so there's no module for the Product entity
-    ;(MedusaModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([])
+    ;(AcmeKitModule.getAllJoinerConfigs as jest.Mock).mockReturnValue([])
 
     // The function should throw an error because the entity has listeners but no module
     expect(() => {

@@ -4,13 +4,13 @@ import {
 } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import RbacFeatureFlag from "../../../../../../feature-flags/rbac"
 import {
@@ -24,7 +24,7 @@ import {
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const roleId = req.params.id
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -52,7 +52,7 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminAssignRoleUsersType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const roleId = req.params.id
   const { users } = req.validatedBody
@@ -67,8 +67,8 @@ export const POST = async (
   })
 
   if (!role) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Role with id "${roleId}" not found`
     )
   }
@@ -99,7 +99,7 @@ export const POST = async (
  */
 export const DELETE = async (
   req: AuthenticatedMedusaRequest<AdminRemoveRoleUsersType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const roleId = req.params.id
   const { users } = req.validatedBody
@@ -114,8 +114,8 @@ export const DELETE = async (
   })
 
   if (!role) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Role with id "${roleId}" not found`
     )
   }

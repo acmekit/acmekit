@@ -6,7 +6,7 @@ import {
 import { StepResponse } from "/framework/workflows-sdk"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 
 import { IWorkflowEngineService } from "/framework/types"
@@ -14,7 +14,7 @@ import { AdminCreateWorkflowsAsyncResponseType } from "../../../validators"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminCreateWorkflowsAsyncResponseType>,
-  res: MedusaResponse<{ success: boolean }>
+  res: AcmeKitResponse<{ success: boolean }>
 ) => {
   const workflowEngineService: IWorkflowEngineService = req.scope.resolve(
     Modules.WORKFLOW_ENGINE

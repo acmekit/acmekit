@@ -1,4 +1,4 @@
-import { MedusaContainer } from "/types"
+import { AcmeKitContainer } from "/types"
 import * as utils from "/utils"
 import { Query } from "../query"
 
@@ -16,10 +16,10 @@ function createMockRemoteQuery(queryResult: any = []) {
   }
 }
 
-function createMockContainer(): MedusaContainer {
+function createMockContainer(): AcmeKitContainer {
   return {
     resolve: jest.fn(),
-  } as unknown as MedusaContainer
+  } as unknown as AcmeKitContainer
 }
 
 describe("Query.graph locale integration", () => {

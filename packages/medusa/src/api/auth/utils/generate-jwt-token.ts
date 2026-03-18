@@ -1,6 +1,6 @@
 import {
   AuthIdentityDTO,
-  MedusaContainer,
+  AcmeKitContainer,
   ProjectConfigOptions,
 } from "/framework/types"
 import {
@@ -21,7 +21,7 @@ export async function generateJwtTokenForAuthIdentity(
     authIdentity: AuthIdentityDTO
     actorType: string
     authProvider?: string
-    container?: MedusaContainer
+    container?: AcmeKitContainer
   },
   {
     secret,

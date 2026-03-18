@@ -1,4 +1,4 @@
-import { Context, MedusaContainer } from "/types"
+import { Context, AcmeKitContainer } from "/types"
 import {
   DistributedTransactionType,
   OrchestratorBuilder,
@@ -15,7 +15,7 @@ import { WorkflowScheduler } from "./scheduler"
 export interface WorkflowDefinition {
   id: string
   handler: (
-    container: MedusaContainer,
+    container: AcmeKitContainer,
     context?: Context
   ) => TransactionStepHandler
   orchestrator: TransactionOrchestrator
@@ -35,7 +35,7 @@ export type WorkflowHandler = Map<
 >
 
 export type WorkflowStepHandlerArguments = {
-  container: MedusaContainer
+  container: AcmeKitContainer
   payload: unknown
   invoke: { [actions: string]: unknown }
   compensate: { [actions: string]: unknown }
@@ -185,9 +185,9 @@ class WorkflowManager {
       string,
       { invoke: WorkflowStepHandler; compensate?: WorkflowStepHandler }
     >
-  ): (container: MedusaContainer, context?: Context) => TransactionStepHandler {
+  ): (container: AcmeKitContainer, context?: Context) => TransactionStepHandler {
     return (
-      container: MedusaContainer,
+      container: AcmeKitContainer,
       context?: Context
     ): TransactionStepHandler => {
       return async (

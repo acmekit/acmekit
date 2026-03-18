@@ -8,7 +8,7 @@ type Service = {
   ) => void
 }
 
-export type MedusaMikroOrmEventSubscriber = {
+export type AcmeKitMikroOrmEventSubscriber = {
   new (context: Context): EventSubscriber
 }
 
@@ -20,7 +20,7 @@ export type MedusaMikroOrmEventSubscriber = {
 export function createMedusaMikroOrmEventSubscriber(
   keys: string[],
   service: Service
-): MedusaMikroOrmEventSubscriber {
+): AcmeKitMikroOrmEventSubscriber {
   const klass = class MikroOrmEventSubscriber implements EventSubscriber {
     #context: Context
     #service: Service = service

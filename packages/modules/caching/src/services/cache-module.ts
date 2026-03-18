@@ -1,10 +1,10 @@
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import type {
   ICachingModuleService,
   ICachingStrategy,
   Logger,
 } from "/framework/types"
-import { GraphQLUtils, MedusaError } from "/framework/utils"
+import { GraphQLUtils, AcmeKitError } from "/framework/utils"
 import { CachingDefaultProvider, InjectedDependencies } from "@types"
 import CacheProviderService from "./cache-provider"
 
@@ -79,7 +79,7 @@ export default class CachingModuleService implements ICachingModuleService {
   }
 
   protected onApplicationStart() {
-    const loadedSchema = MedusaModule.getAllJoinerConfigs()
+    const loadedSchema = AcmeKitModule.getAllJoinerConfigs()
       .map((joinerConfig) => joinerConfig?.schema ?? "")
       .join("\n")
 
@@ -99,7 +99,7 @@ export default class CachingModuleService implements ICachingModuleService {
 
     this.strategy.onApplicationStart?.(
       schema,
-      MedusaModule.getAllJoinerConfigs()
+      AcmeKitModule.getAllJoinerConfigs()
     )
   }
 
@@ -164,8 +164,8 @@ export default class CachingModuleService implements ICachingModuleService {
     providers?: string[]
   }) {
     if (!key && !tags) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Either key or tags must be provided"
       )
     }
@@ -253,8 +253,8 @@ export default class CachingModuleService implements ICachingModuleService {
     }
   }) {
     if (!key) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "[CachingModuleService] Key must be provided"
       )
     }
@@ -350,8 +350,8 @@ export default class CachingModuleService implements ICachingModuleService {
     providers?: string[]
   }) {
     if (!key && !tags) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_ARGUMENT,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_ARGUMENT,
         "Either key or tags must be provided"
       )
     }

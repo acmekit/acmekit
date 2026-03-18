@@ -1,8 +1,8 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
-import { MedusaError } from "/framework/utils"
+import { AcmeKitError } from "/framework/utils"
 
 import { deleteInvitesWorkflow } from "/core-flows"
 import { HttpTypes } from "/framework/types"
@@ -10,14 +10,14 @@ import { refetchInvite } from "../helpers"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,
-  res: MedusaResponse<HttpTypes.AdminInviteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminInviteResponse>
 ) => {
   const { id } = req.params
   const invite = await refetchInvite(id, req.scope, req.queryConfig.fields)
 
   if (!invite) {
-    throw new MedusaError(
-      MedusaError.Types.NOT_FOUND,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_FOUND,
       `Invite with id: ${id} was not found`
     )
   }
@@ -27,7 +27,7 @@ export const GET = async (
 
 export const DELETE = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse<HttpTypes.AdminInviteDeleteResponse>
+  res: AcmeKitResponse<HttpTypes.AdminInviteDeleteResponse>
 ) => {
   const { id } = req.params
   const workflow = deleteInvitesWorkflow(req.scope)

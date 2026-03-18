@@ -8,7 +8,7 @@ import {
 } from "/framework/types"
 import {
   AbstractAuthModuleProvider,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 
 type InjectedDependencies = {
@@ -49,8 +49,8 @@ export class GithubAuthService extends AbstractAuthModuleProvider {
   }
 
   async register(_): Promise<AuthenticationResponse> {
-    throw new MedusaError(
-      MedusaError.Types.NOT_ALLOWED,
+    throw new AcmeKitError(
+      AcmeKitError.Types.NOT_ALLOWED,
       "Github does not support registration. Use method `authenticate` instead."
     )
   }
@@ -116,8 +116,8 @@ export class GithubAuthService extends AbstractAuthModuleProvider {
         },
       }).then((r) => {
         if (!r.ok) {
-          throw new MedusaError(
-            MedusaError.Types.INVALID_DATA,
+          throw new AcmeKitError(
+            AcmeKitError.Types.INVALID_DATA,
             `Could not exchange token, ${r.status}, ${r.statusText}`
           )
         }
@@ -190,7 +190,7 @@ export class GithubAuthService extends AbstractAuthModuleProvider {
         user_metadata: userMetadata,
       })
     } catch (error) {
-      if (error.type === MedusaError.Types.NOT_FOUND) {
+      if (error.type === AcmeKitError.Types.NOT_FOUND) {
         const createdAuthIdentity = await authIdentityService.create({
           entity_id,
           user_metadata: userMetadata,

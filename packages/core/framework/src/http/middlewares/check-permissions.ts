@@ -1,9 +1,9 @@
-import { MedusaError } from "/utils"
+import { AcmeKitError } from "/utils"
 import { hasPermission } from "../../policies/has-permission"
 import type {
   AuthenticatedMedusaRequest,
-  MedusaNextFunction,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitResponse,
   MiddlewareFunction,
 } from "../types"
 
@@ -31,7 +31,7 @@ async function checkPermissions(
   const roleIds = (authContext?.app_metadata?.roles as string[]) || []
 
   if (!roleIds.length) {
-    throw new MedusaError(MedusaError.Types.FORBIDDEN, "Forbidden")
+    throw new AcmeKitError(AcmeKitError.Types.FORBIDDEN, "Forbidden")
   }
 
   const hasAccess = await hasPermission({
@@ -45,8 +45,8 @@ async function checkPermissions(
       .map((p) => `${p.resource}:${p.operation}`)
       .join(", ")
 
-    throw new MedusaError(
-      MedusaError.Types.FORBIDDEN,
+    throw new AcmeKitError(
+      AcmeKitError.Types.FORBIDDEN,
       `Insufficient permissions. Required policies: ${policyKeys}`
     )
   }
@@ -66,8 +66,8 @@ export function wrapWithPoliciesCheck(
 ): MiddlewareFunction {
   return async (
     req: AuthenticatedMedusaRequest,
-    res: MedusaResponse,
-    next: MedusaNextFunction
+    res: AcmeKitResponse,
+    next: AcmeKitNextFunction
   ) => {
     try {
       req.policies ??= []

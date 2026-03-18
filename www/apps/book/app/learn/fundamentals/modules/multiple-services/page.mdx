@@ -56,7 +56,7 @@ type InjectedDependencies = {
   clientService: ClientService
 }
 
-class BlogModuleService extends MedusaService({
+class BlogModuleService extends AcmeKitService({
   Post,
 }){
   protected clientService_: ClientService

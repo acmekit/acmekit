@@ -1,7 +1,7 @@
-import { MedusaRequest, MedusaResponse } from "/framework"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework"
 import { ContainerRegistrationKeys } from "/framework/utils"
 
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
+export const GET = async (req: AcmeKitRequest, res: AcmeKitResponse) => {
   const config = req.scope.resolve(ContainerRegistrationKeys.CONFIG_MODULE)
 
   res.status(200).json({

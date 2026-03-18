@@ -281,14 +281,14 @@ export const highlights = [
 ]
 
 ```ts title="src/api/workflows/route.ts" highlights={highlights} collapsibleLines="1-11" expandButtonLabel="Show Imports"
-import type { MedusaRequest, MedusaResponse } from "/framework/http"
+import type { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import myWorkflow from "../../../workflows/hello-world"
 import { 
   IWorkflowEngineService,
 } from "/framework/types"
 import { Modules } from "/framework/utils"
 
-export async function GET(req: MedusaRequest, res: MedusaResponse) {
+export async function GET(req: AcmeKitRequest, res: MedusaResponse) {
   const { transaction, result } = await myWorkflow(req.scope).run()
 
   const workflowEngineService = req.scope.resolve<

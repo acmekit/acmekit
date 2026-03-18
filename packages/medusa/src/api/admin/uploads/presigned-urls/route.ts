@@ -1,20 +1,20 @@
 import { ulid } from "ulid"
 import { MIMEType } from "util"
 import type {
-  MedusaResponse,
+  AcmeKitResponse,
   AuthenticatedMedusaRequest,
 } from "/framework/http"
 import {
   Modules,
-  MedusaError,
-  MedusaErrorTypes,
+  AcmeKitError,
+  AcmeKitErrorTypes,
 } from "/framework/utils"
 import type { HttpTypes } from "/framework/types"
 import type { AdminUploadPreSignedUrlType } from "../validators"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminUploadPreSignedUrlType>,
-  res: MedusaResponse<HttpTypes.AdminUploadPreSignedUrlResponse>
+  res: AcmeKitResponse<HttpTypes.AdminUploadPreSignedUrlResponse>
 ) => {
   const fileProvider = req.scope.resolve(Modules.FILE)
   let type: MIMEType
@@ -22,10 +22,10 @@ export const POST = async (
   try {
     type = new MIMEType(req.validatedBody.mime_type)
   } catch {
-    throw new MedusaError(
-      MedusaErrorTypes.INVALID_DATA,
+    throw new AcmeKitError(
+      AcmeKitErrorTypes.INVALID_DATA,
       `Invalid file type "${req.validatedBody.mime_type}"`,
-      MedusaErrorTypes.INVALID_DATA
+      AcmeKitErrorTypes.INVALID_DATA
     )
   }
 

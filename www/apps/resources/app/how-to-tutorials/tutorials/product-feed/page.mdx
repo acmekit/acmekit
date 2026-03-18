@@ -491,11 +491,11 @@ An API route is created in a `route.ts` file under a sub-directory of the `src/a
 So, to create the API route, create the file `src/api/product-feed/route.ts` with the following content:
 
 ```ts title="src/api/product-feed/route.ts"
-import type { MedusaRequest, MedusaResponse } from "/framework/http"
+import type { AcmeKitRequest, MedusaResponse } from "/framework/http"
 import generateProductFeedWorkflow from "../../workflows/generate-product-feed"
 
 export async function GET(
-  req: MedusaRequest, 
+  req: AcmeKitRequest, 
   res: MedusaResponse
 ) {
   const { 

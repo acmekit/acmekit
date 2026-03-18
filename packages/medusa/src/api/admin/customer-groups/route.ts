@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { createCustomerGroupsWorkflow } from "/core-flows"
 import {
@@ -12,7 +12,7 @@ import { HttpTypes } from "/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminGetCustomerGroupsParams>,
-  res: MedusaResponse<HttpTypes.AdminCustomerGroupListResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerGroupListResponse>
 ) => {
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
 
@@ -40,7 +40,7 @@ export const POST = async (
     HttpTypes.AdminCreateCustomerGroup,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminCustomerGroupResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerGroupResponse>
 ) => {
   const createGroups = createCustomerGroupsWorkflow(req.scope)
   const customersData = [

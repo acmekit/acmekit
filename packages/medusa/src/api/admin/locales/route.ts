@@ -3,7 +3,7 @@ import {
   defineFileConfig,
   FeatureFlag,
 } from "/framework/utils"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
 import { HttpTypes } from "/framework/types"
 import TranslationFeatureFlag from "../../../feature-flags/translation"
 
@@ -12,8 +12,8 @@ import TranslationFeatureFlag from "../../../feature-flags/translation"
  * @featureFlag translation
  */
 export const GET = async (
-  req: MedusaRequest<HttpTypes.AdminLocaleListParams>,
-  res: MedusaResponse<HttpTypes.AdminLocaleListResponse>
+  req: AcmeKitRequest<HttpTypes.AdminLocaleListParams>,
+  res: AcmeKitResponse<HttpTypes.AdminLocaleListResponse>
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 

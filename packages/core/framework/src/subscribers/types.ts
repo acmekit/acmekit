@@ -1,4 +1,4 @@
-import { Event, MedusaContainer } from "/types"
+import { Event, AcmeKitContainer } from "/types"
 
 interface SubscriberContext extends Record<string, unknown> {
   subscriberId?: string
@@ -11,6 +11,6 @@ export type SubscriberConfig = {
 
 export type SubscriberArgs<T = unknown> = {
   event: Event<T>
-  container: MedusaContainer
+  container: AcmeKitContainer
   pluginOptions: Record<string, unknown>
 }

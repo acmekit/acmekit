@@ -1,4 +1,4 @@
-import { MedusaModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "/framework/modules-sdk"
 import {
   ModuleJoinerConfig,
   ModuleJoinerRelationship,
@@ -39,7 +39,7 @@ export function generateGraphQLSchema(
   let typeDef = ""
 
   for (const extend of joinerConfig.extends ?? []) {
-    const extendedModule = MedusaModule.getModuleInstance(extend.serviceName)
+    const extendedModule = AcmeKitModule.getModuleInstance(extend.serviceName)
     if (!extendedModule) {
       throw new Error(
         `Module ${extend.serviceName} not found. Please verify that the module is configured and installed, also the module must be loaded before the link modules.`
@@ -71,7 +71,7 @@ export function generateGraphQLSchema(
       }
 
       const rel = extend.relationship
-      const extendedService = MedusaModule.getModuleInstance(rel.serviceName)
+      const extendedService = AcmeKitModule.getModuleInstance(rel.serviceName)
 
       const hasGraphqlSchema =
         !!extendedService[rel.serviceName].__joinerConfig.schema
@@ -109,7 +109,7 @@ export function generateGraphQLSchema(
           return
         }
 
-        const targetEntityName = MedusaModule.getJoinerConfig(
+        const targetEntityName = AcmeKitModule.getJoinerConfig(
           targetEntityRelation.serviceName
         ).linkableKeys?.[targetEntityRelation.foreignKey]
 
@@ -168,10 +168,10 @@ export function generateGraphQLSchema(
   }
 
   // TODO: temporary, every module might always expose their schema
-  const doesPrimaryExportSchema = !!MedusaModule.getJoinerConfig(
+  const doesPrimaryExportSchema = !!AcmeKitModule.getJoinerConfig(
     primary.serviceName
   )?.schema
-  const doesForeignExportSchema = !!MedusaModule.getJoinerConfig(
+  const doesForeignExportSchema = !!AcmeKitModule.getJoinerConfig(
     foreign.serviceName
   )?.schema
 

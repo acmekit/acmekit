@@ -1,7 +1,7 @@
 import { createRbacPoliciesWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import {
   ContainerRegistrationKeys,
@@ -17,7 +17,7 @@ import { AdminCreateRbacPolicyType } from "./validators"
  */
 export const GET = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
@@ -42,7 +42,7 @@ export const GET = async (
  */
 export const POST = async (
   req: AuthenticatedMedusaRequest<AdminCreateRbacPolicyType>,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const input = [req.validatedBody]
 

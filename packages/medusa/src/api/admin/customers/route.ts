@@ -7,14 +7,14 @@ import {
 } from "/framework/utils"
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { refetchCustomer } from "./helpers"
 import { AdminCreateCustomerType } from "./validators"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminCustomerFilters>,
-  res: MedusaResponse<HttpTypes.AdminCustomerListResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerListResponse>
 ) => {
   const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
 
@@ -42,7 +42,7 @@ export const POST = async (
     AdminCreateCustomerType & AdditionalData,
     HttpTypes.SelectParams
   >,
-  res: MedusaResponse<HttpTypes.AdminCustomerResponse>
+  res: AcmeKitResponse<HttpTypes.AdminCustomerResponse>
 ) => {
   const { additional_data, ...rest } = req.validatedBody
   const createCustomers = createCustomersWorkflow(req.scope)

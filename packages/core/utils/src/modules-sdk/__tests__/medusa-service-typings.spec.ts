@@ -1,6 +1,6 @@
 import { expectTypeOf } from "expect-type"
 import { model } from "../../dml"
-import { MedusaService } from "../medusa-service"
+import { AcmeKitService } from "../medusa-service"
 import { InferTypeOf } from "/types"
 
 const Blog = model.define("Blog", {
@@ -74,7 +74,7 @@ const containerMock = {
 describe("Medusa Service typings", () => {
   describe("create<Service>", () => {
     test("type-hint model properties", () => {
-      class BlogService extends MedusaService({ Blog, Comment }) {}
+      class BlogService extends AcmeKitService({ Blog, Comment }) {}
       const blogService = new BlogService(containerMock)
 
       expectTypeOf(blogService.createBlogs).parameters.toEqualTypeOf<
@@ -133,7 +133,7 @@ describe("Medusa Service typings", () => {
     })
 
     test("type-hint DTO properties", () => {
-      class BlogService extends MedusaService<{ Blog: { dto: BlogDTO } }>({
+      class BlogService extends AcmeKitService<{ Blog: { dto: BlogDTO } }>({
         Blog,
       }) {}
       const blogService = new BlogService(containerMock)
@@ -148,7 +148,7 @@ describe("Medusa Service typings", () => {
     })
 
     test("type-hint force overridden properties", () => {
-      class BlogService extends MedusaService<{ Blog: { dto: BlogDTO } }>({
+      class BlogService extends AcmeKitService<{ Blog: { dto: BlogDTO } }>({
         Blog,
       }) {
         // @ts-expect-error
@@ -167,7 +167,7 @@ describe("Medusa Service typings", () => {
     })
 
     test("define custom DTO for inputs", () => {
-      class BlogService extends MedusaService<{
+      class BlogService extends AcmeKitService<{
         Blog: { dto: BlogDTO; inputDto: Omit<BlogDTO, "id"> }
       }>({
         Blog,
@@ -186,7 +186,7 @@ describe("Medusa Service typings", () => {
 
   describe("update<Service>", () => {
     test("type-hint model properties", () => {
-      class BlogService extends MedusaService({ Blog }) {}
+      class BlogService extends AcmeKitService({ Blog }) {}
       const blogService = new BlogService(containerMock)
 
       expectTypeOf(blogService.updateBlogs).parameters.toEqualTypeOf<
@@ -255,7 +255,7 @@ describe("Medusa Service typings", () => {
     })
 
     test("type-hint DTO properties", () => {
-      class BlogService extends MedusaService<{ Blog: { dto: BlogDTO } }>({
+      class BlogService extends AcmeKitService<{ Blog: { dto: BlogDTO } }>({
         Blog,
       }) {}
       const blogService = new BlogService(containerMock)
@@ -283,7 +283,7 @@ describe("Medusa Service typings", () => {
     })
 
     test("type-hint force overridden properties", () => {
-      class BlogService extends MedusaService<{ Blog: { dto: BlogDTO } }>({
+      class BlogService extends AcmeKitService<{ Blog: { dto: BlogDTO } }>({
         Blog,
       }) {
         // @ts-expect-error
@@ -302,7 +302,7 @@ describe("Medusa Service typings", () => {
     })
 
     test("define custom DTO for inputs", () => {
-      class BlogService extends MedusaService<{
+      class BlogService extends AcmeKitService<{
         Blog: { dto: BlogDTO; inputDto: Omit<BlogDTO, "id"> }
       }>({
         Blog,

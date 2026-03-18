@@ -1,7 +1,7 @@
-import { MedusaInternalService } from "../medusa-internal-service"
+import { AcmeKitInternalService } from "../medusa-internal-service"
 import { lowerCaseFirst } from "../../common"
 
-const defaultContext = { __type: "MedusaContext" }
+const defaultContext = { __type: "AcmeKitContext" }
 
 class Model {
   static __meta = {
@@ -41,7 +41,7 @@ describe("Internal Module Service Factory", () => {
     },
   }
 
-  const IMedusaInternalService = MedusaInternalService<any>(Model)
+  const IMedusaInternalService = AcmeKitInternalService<any>(Model)
 
   describe("Internal Module Service Methods", () => {
     let instance
@@ -68,7 +68,7 @@ describe("Internal Module Service Factory", () => {
       }
 
       const compositeIMedusaInternalService =
-        MedusaInternalService<any>(CompositeModel)
+        AcmeKitInternalService<any>(CompositeModel)
 
       const instance = new compositeIMedusaInternalService(containerMock)
 
@@ -101,7 +101,7 @@ describe("Internal Module Service Factory", () => {
       }
 
       const compositeIMedusaInternalService =
-        MedusaInternalService<any>(CompositeModel)
+        AcmeKitInternalService<any>(CompositeModel)
 
       const instance = new compositeIMedusaInternalService(containerMock)
 

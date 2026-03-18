@@ -17,7 +17,7 @@ import {
   isDefined,
   isObject,
   isString,
-  MedusaError,
+  AcmeKitError,
 } from "/utils"
 
 const BASE_PATH = "_root"
@@ -726,8 +726,8 @@ export class RemoteJoiner {
         expand.serviceConfig.args?.methodSuffix ??
         expand.serviceConfig.serviceName
 
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `${entityName} ${pkField} not found: ` + Array.from(notFound).join(", ")
       )
     }
@@ -1769,8 +1769,8 @@ export class RemoteJoiner {
     if (options?.throwIfKeyNotFound) {
       if (primaryKeyArg?.value == undefined) {
         if (!primaryKeyArg) {
-          throw new MedusaError(
-            MedusaError.Types.NOT_FOUND,
+          throw new AcmeKitError(
+            AcmeKitError.Types.NOT_FOUND,
             `${
               serviceConfig.entity ?? serviceConfig.serviceName
             }: Primary key(s) [${serviceConfig.primaryKeys.join(
@@ -1779,8 +1779,8 @@ export class RemoteJoiner {
           )
         }
 
-        throw new MedusaError(
-          MedusaError.Types.NOT_FOUND,
+        throw new AcmeKitError(
+          AcmeKitError.Types.NOT_FOUND,
           `${
             serviceConfig.entity ?? serviceConfig.serviceName
           }: Value for primary key ${primaryKeyArg.name} not found in filters`

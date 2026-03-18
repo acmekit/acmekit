@@ -1,5 +1,5 @@
 import jwt, { type Secret, type SignOptions } from "jsonwebtoken"
-import { MedusaError } from "../common"
+import { AcmeKitError } from "../common"
 
 export const generateJwtToken = (
   tokenPayload: Record<string, unknown>,
@@ -13,8 +13,8 @@ export const generateJwtToken = (
     !jwtConfig.secret ||
     (!jwtConfig.expiresIn && !jwtConfig.jwtOptions?.expiresIn)
   ) {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_ARGUMENT,
+    throw new AcmeKitError(
+      AcmeKitError.Types.INVALID_ARGUMENT,
       "JWT secret and expiresIn must be provided when generating a token"
     )
   }

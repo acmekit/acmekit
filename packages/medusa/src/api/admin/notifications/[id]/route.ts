@@ -1,6 +1,6 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
   refetchEntity,
 } from "/framework/http"
 import { AdminGetNotificationParamsType } from "../validators"
@@ -8,7 +8,7 @@ import { HttpTypes } from "/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<AdminGetNotificationParamsType>,
-  res: MedusaResponse<HttpTypes.AdminNotificationResponse>
+  res: AcmeKitResponse<HttpTypes.AdminNotificationResponse>
 ) => {
   const notification = await refetchEntity({
     entity: "notification",

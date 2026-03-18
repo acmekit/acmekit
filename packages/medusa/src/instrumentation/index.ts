@@ -1,7 +1,7 @@
 import {
-  MedusaNextFunction,
-  MedusaRequest,
-  MedusaResponse,
+  AcmeKitNextFunction,
+  AcmeKitRequest,
+  AcmeKitResponse,
   Query,
 } from "/framework"
 import { ApiLoader } from "/framework/http"
@@ -99,9 +99,9 @@ export function instrumentHttpLayer() {
    */
   ApiLoader.traceMiddleware = (handler) => {
     return async (
-      req: MedusaRequest<any>,
-      res: MedusaResponse,
-      next: MedusaNextFunction
+      req: AcmeKitRequest<any>,
+      res: AcmeKitResponse,
+      next: AcmeKitNextFunction
     ) => {
       if (shouldExcludeResource(req.originalUrl)) {
         return handler(req, res, next)

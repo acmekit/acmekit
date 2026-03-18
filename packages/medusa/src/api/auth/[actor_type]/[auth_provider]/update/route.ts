@@ -1,13 +1,13 @@
 import {
   AuthenticatedMedusaRequest,
-  MedusaResponse,
+  AcmeKitResponse,
 } from "/framework/http"
 import { IAuthModuleService } from "/framework/types"
-import { MedusaError, Modules } from "/framework/utils"
+import { AcmeKitError, Modules } from "/framework/utils"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest,
-  res: MedusaResponse
+  res: AcmeKitResponse
 ) => {
   const { auth_provider } = req.params
 
@@ -27,5 +27,5 @@ export const POST = async (
     return res.status(200).json({ success: true })
   }
 
-  throw new MedusaError(MedusaError.Types.UNAUTHORIZED, error || "Unauthorized")
+  throw new AcmeKitError(AcmeKitError.Types.UNAUTHORIZED, error || "Unauthorized")
 }

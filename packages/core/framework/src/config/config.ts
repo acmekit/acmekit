@@ -23,7 +23,7 @@ export class ConfigManager {
    */
   get #envWorkMode(): ConfigModule["projectConfig"]["workerMode"] {
     return process.env
-      .MEDUSA_WORKER_MODE as ConfigModule["projectConfig"]["workerMode"]
+      .ACMEKIT_WORKER_MODE as ConfigModule["projectConfig"]["workerMode"]
   }
 
   /**

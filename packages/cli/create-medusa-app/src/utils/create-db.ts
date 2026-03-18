@@ -230,7 +230,7 @@ export async function getDbClientAndCredentials({
   verbose?: boolean
   dbName?: string
 }> {
-  // Check the db-url first, because the dbName is always defined in MedusaProjectCreator->create()->initializeProject()->setupDatabase()
+  // Check the db-url first, because the dbName is always defined in AcmeKitProjectCreator->create()->initializeProject()->setupDatabase()
   if (dbUrl) {
     return await getForDbUrl({
       dbUrl,

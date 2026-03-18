@@ -1,4 +1,4 @@
-import { MedusaContainer, ModuleProvider } from "/types"
+import { AcmeKitContainer, ModuleProvider } from "/types"
 import {
   dynamicImport,
   isFileSkipped,
@@ -14,11 +14,11 @@ export async function moduleProviderLoader({
   providers,
   registerServiceFn,
 }: {
-  container: MedusaContainer
+  container: AcmeKitContainer
   providers: ModuleProvider[]
   registerServiceFn?: (
     klass,
-    container: MedusaContainer,
+    container: AcmeKitContainer,
     moduleDetails: any
   ) => Promise<void>
 }) {
@@ -34,7 +34,7 @@ export async function moduleProviderLoader({
 }
 
 export async function loadModuleProvider(
-  container: MedusaContainer,
+  container: AcmeKitContainer,
   provider: ModuleProvider,
   registerServiceFn?: (klass, container, moduleDetails) => Promise<void>
 ) {

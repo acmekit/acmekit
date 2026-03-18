@@ -1,6 +1,6 @@
 import {
   ContainerRegistrationKeys,
-  MedusaError,
+  AcmeKitError,
   toSnakeCase,
 } from "/framework/utils"
 import { createStep } from "/framework/workflows-sdk"
@@ -48,7 +48,7 @@ export const validateUserPermissionsStep = createStep(
     })
 
     if (!users?.[0]?.rbac_roles || users[0].rbac_roles.length === 0) {
-      throw new MedusaError(MedusaError.Types.FORBIDDEN, "Forbidden")
+      throw new AcmeKitError(AcmeKitError.Types.FORBIDDEN, "Forbidden")
     }
 
     const operationMap = new Map()
@@ -86,7 +86,7 @@ export const validateUserPermissionsStep = createStep(
     }
 
     if (unauthorizedPolicies.length) {
-      throw new MedusaError(MedusaError.Types.FORBIDDEN, "Forbidden")
+      throw new AcmeKitError(AcmeKitError.Types.FORBIDDEN, "Forbidden")
     }
   }
 )

@@ -4,13 +4,13 @@ import {
   FeatureFlag,
   isDefined,
   isPresent,
-  MedusaError,
+  AcmeKitError,
   pickDeep,
   PolicyDefinition,
   promiseAll,
   stringToSelectRelationObject,
 } from "/utils"
-import { AuthContext, MedusaRequest } from "../types"
+import { AuthContext, AcmeKitRequest } from "../types"
 import {
   AllowedFieldFilter,
   FieldParser,
@@ -38,7 +38,7 @@ export function pickByConfig<TModel>(
 export async function prepareListQuery<T extends RequestQueryFields, TEntity>(
   validated: T,
   queryConfig: QueryConfig<TEntity> & { restricted?: string[] } = {},
-  req?: MedusaRequest & {
+  req?: AcmeKitRequest & {
     policies?: PolicyDefinition[]
     auth_context?: AuthContext
   }
@@ -117,8 +117,8 @@ export async function prepareListQuery<T extends RequestQueryFields, TEntity>(
     }
 
     if (allowed.length && !allowed.includes(orderField)) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `Order field ${orderField} is not valid`
       )
     }
@@ -159,7 +159,7 @@ export async function prepareRetrieveQuery<
 >(
   validated: T,
   queryConfig?: QueryConfig<TEntity> & { restricted?: string[] },
-  req?: MedusaRequest & {
+  req?: AcmeKitRequest & {
     policies?: PolicyDefinition[]
     auth_context?: AuthContext
   }

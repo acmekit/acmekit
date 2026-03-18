@@ -1,7 +1,7 @@
 import { FileTypes, LocalFileServiceOptions } from "/framework/types"
 import {
   AbstractFileProviderService,
-  MedusaError,
+  AcmeKitError,
 } from "/framework/utils"
 import { createReadStream, createWriteStream } from "fs"
 import fs from "fs/promises"
@@ -31,12 +31,12 @@ export class LocalFileService extends AbstractFileProviderService {
     file: FileTypes.ProviderUploadFileDTO
   ): Promise<FileTypes.ProviderFileResultDTO> {
     if (!file) {
-      throw new MedusaError(MedusaError.Types.INVALID_DATA, `No file provided`)
+      throw new AcmeKitError(AcmeKitError.Types.INVALID_DATA, `No file provided`)
     }
 
     if (!file.filename) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No filename provided`
       )
     }
@@ -85,8 +85,8 @@ export class LocalFileService extends AbstractFileProviderService {
     fileKey: string
   }> {
     if (!fileData.filename) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No filename provided`
       )
     }
@@ -190,8 +190,8 @@ export class LocalFileService extends AbstractFileProviderService {
     try {
       await fs.access(filePath, fs.constants.F_OK)
     } catch {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
+      throw new AcmeKitError(
+        AcmeKitError.Types.NOT_FOUND,
         `File with key ${file.fileKey} not found`
       )
     }
@@ -208,8 +208,8 @@ export class LocalFileService extends AbstractFileProviderService {
     fileData: FileTypes.ProviderGetPresignedUploadUrlDTO
   ): Promise<FileTypes.ProviderFileResultDTO> {
     if (!fileData?.filename) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
+      throw new AcmeKitError(
+        AcmeKitError.Types.INVALID_DATA,
         `No filename provided`
       )
     }
