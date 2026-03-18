@@ -1,4 +1,4 @@
-import { ModuleExports } from "@medusajs/framework/types"
+import { ModuleExports } from "/framework/types"
 import Loader from "./loaders"
 import LocalEventBus from "./services/event-bus-local"
 

@@ -4,7 +4,7 @@ products:
   - payment
 ---
 
-import { Github, EllipsisHorizontal } from "@medusajs/icons"
+import { Github, EllipsisHorizontal } from "/icons"
 import { Card, Prerequisites, WorkflowDiagram, InlineIcon } from "docs-ui"
 
 export const metadata = {
@@ -118,8 +118,8 @@ A module has a service that contains its logic. For Payment Module Providers, th
 To create the service of the PayPal Payment Module Provider, create the file `src/modules/paypal/service.ts` with the following content:
 
 ```ts title="src/modules/paypal/service.ts"
-import { AbstractPaymentProvider } from "@medusajs/framework/utils"
-import { Logger } from "@medusajs/framework/types"
+import { AbstractPaymentProvider } from "/framework/utils"
+import { Logger } from "/framework/types"
 import {
   Client,
   Environment,
@@ -211,7 +211,7 @@ Add the following method to the `PayPalPaymentProviderService` class:
 ```ts title="src/modules/paypal/service.ts"
 import { 
   MedusaError,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
@@ -248,7 +248,7 @@ Add the following method to the `PayPalPaymentProviderService` class:
 import type {
   InitiatePaymentInput,
   InitiatePaymentOutput,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import {
   CheckoutPaymentIntent,
   OrderApplicationContextLandingPage,
@@ -359,7 +359,7 @@ import type {
   AuthorizePaymentInput,
   AuthorizePaymentOutput,
   PaymentSessionStatus,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
@@ -475,7 +475,7 @@ Add the following method to the `PayPalPaymentProviderService` class:
 import type {
   CapturePaymentInput,
   CapturePaymentOutput,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
@@ -549,8 +549,8 @@ Add the following method to the `PayPalPaymentProviderService` class:
 import type {
   RefundPaymentInput,
   RefundPaymentOutput,
-} from "@medusajs/framework/types"
-import { BigNumber } from "@medusajs/framework/utils"
+} from "/framework/types"
+import { BigNumber } from "/framework/utils"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
@@ -632,7 +632,7 @@ Add the following method to the `PayPalPaymentProviderService` class:
 import type {
   UpdatePaymentInput,
   UpdatePaymentOutput,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import {
   PatchOp,
 } from "@paypal/paypal-server-sdk"
@@ -706,7 +706,7 @@ Add the following method to the `PayPalPaymentProviderService` class:
 import type {
   DeletePaymentInput,
   DeletePaymentOutput,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
@@ -744,7 +744,7 @@ Add the following method to the `PayPalPaymentProviderService` class:
 import type {
   RetrievePaymentInput,
   RetrievePaymentOutput,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
@@ -818,7 +818,7 @@ Add the following method to the `PayPalPaymentProviderService` class:
 import type {
   CancelPaymentInput,
   CancelPaymentOutput,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
@@ -871,7 +871,7 @@ Add the following method to the `PayPalPaymentProviderService` class:
 import type {
   GetPaymentStatusInput,
   GetPaymentStatusOutput,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { OrderStatus } from "@paypal/paypal-server-sdk"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
@@ -1103,11 +1103,11 @@ The [getWebhookActionAndData](/references/payment/provider#getwebhookactionandda
 Add the following method to the `PayPalPaymentProviderService` class:
 
 ```ts title="src/modules/paypal/service.ts"
-import { PaymentActions } from "@medusajs/framework/utils"
+import { PaymentActions } from "/framework/utils"
 import type {
   ProviderWebhookPayload,
   WebhookActionResult,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 class PayPalPaymentProviderService extends AbstractPaymentProvider<Options> {
   // ...
@@ -1246,7 +1246,7 @@ To create the module's definition, create the file `src/modules/paypal/index.ts`
 
 ```ts title="src/modules/paypal/index.ts"
 import PayPalPaymentProviderService from "./service"
-import { ModuleProvider, Modules } from "@medusajs/framework/utils"
+import { ModuleProvider, Modules } from "/framework/utils"
 
 export default ModuleProvider(Modules.PAYMENT, {
   services: [PayPalPaymentProviderService],
@@ -1270,7 +1270,7 @@ module.exports = defineConfig({
   modules: [
     // ...
     {
-      resolve: "@medusajs/medusa/payment",
+      resolve: "/medusa/payment",
       options: {
         providers: [
           {
@@ -1459,7 +1459,7 @@ Create the file `src/modules/checkout/components/payment-wrapper/paypal-wrapper.
 "use client"
 
 import { PayPalScriptProvider } from "@paypal/react-paypal-js"
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { createContext } from "react"
 
 type PayPalWrapperProps = {
@@ -1544,8 +1544,8 @@ Create the file `src/modules/checkout/components/payment-button/paypal-payment-b
 
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js"
 import { placeOrder } from "@lib/data/cart"
-import { HttpTypes } from "@medusajs/types"
-import { Button } from "@medusajs/ui"
+import { HttpTypes } from "/types"
+import { Button } from "/ui"
 import React, { useState } from "react"
 import ErrorMessage from "../error-message"
 

@@ -80,11 +80,11 @@
 															"qualifiedName": "IdProperty"
 														},
 														"name": "IdProperty",
-														"package": "@medusajs/utils"
+														"package": "/utils"
 													}
 												],
 												"name": "PrimaryKeyModifier",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -117,7 +117,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -152,7 +152,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -185,7 +185,7 @@
 													"qualifiedName": "BooleanProperty"
 												},
 												"name": "BooleanProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -220,7 +220,7 @@
 													"qualifiedName": "JSONProperty"
 												},
 												"name": "JSONProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										}
@@ -249,7 +249,7 @@
 							}
 						],
 						"name": "DMLEntitySchemaBuilder",
-						"package": "@medusajs/utils"
+						"package": "/utils"
 					},
 					{
 						"type": "literal",
@@ -257,7 +257,7 @@
 					}
 				],
 				"name": "DmlEntity",
-				"package": "@medusajs/utils"
+				"package": "/utils"
 			},
 			"defaultValue": "..."
 		}
@@ -270,7 +270,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/sales-channel",
+	"packageName": "/sales-channel",
 	"symbolIdMap": {
 		"15229": {
 			"sourceFileName": "../../../../packages/modules/sales-channel/src/models/index.ts",

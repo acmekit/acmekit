@@ -1,4 +1,4 @@
-import { Select } from "@medusajs/ui"
+import { Select } from "/ui"
 
 export default function SelectDemo() {
   return (

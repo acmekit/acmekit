@@ -9,7 +9,7 @@ products:
   - order
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram } from "docs-ui"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1742389227/Medusa%20Resources/product-reviews_zia79g.jpg"
@@ -172,7 +172,7 @@ The workflow will have the following steps:
   hideLegend
 />
 
-This workflow uses steps from Medusa's `@medusajs/medusa/core-flows` package. So, you can implement the workflow without implementing custom steps.
+This workflow uses steps from Medusa's `/medusa/core-flows` package. So, you can implement the workflow without implementing custom steps.
 
 ### a. Create the Workflow
 
@@ -187,12 +187,12 @@ import {
   createWorkflow, 
   transform, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   addShippingMethodToCartWorkflow, 
   createCartWorkflow, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 type ReorderWorkflowInput = {
   order_id: string
@@ -422,7 +422,7 @@ So, create the file `src/api/store/customers/me/orders/[id]/route.ts` with the f
 import { 
   AuthenticatedMedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { reorderWorkflow } from "../../../../../../workflows/reorder"
 
 export async function POST(
@@ -548,7 +548,7 @@ export const componentHighlights = [
 ]
 
 ```tsx title="src/modules/order/components/reorder-action/index.tsx" badgeLabel="Storefront" badgeColor="blue" highlights={componentHighlights}
-import { Button, toast } from "@medusajs/ui"
+import { Button, toast } from "/ui"
 import { reorder } from "../../../../lib/data/orders"
 import { useState } from "react"
 import { useRouter } from "next/navigation"

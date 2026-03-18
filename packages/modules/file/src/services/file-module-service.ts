@@ -8,10 +8,10 @@ import {
   GetUploadFileUrlDTO,
   ModuleJoinerConfig,
   UploadFileUrlDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import type { Readable, Writable } from "stream"
 
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 import { joinerConfig } from "../joiner-config"
 import FileProviderService from "./file-provider-service"
 

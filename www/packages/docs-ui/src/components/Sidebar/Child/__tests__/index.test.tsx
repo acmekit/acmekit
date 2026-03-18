@@ -27,7 +27,7 @@ vi.mock("@/providers/Sidebar", () => ({
 }))
 
 // mock components
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   ArrowUturnLeft: () => <svg data-testid="arrow-icon" />,
 }))
 

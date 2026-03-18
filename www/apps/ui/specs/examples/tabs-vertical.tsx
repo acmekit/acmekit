@@ -1,4 +1,4 @@
-import { Tabs, Text } from "@medusajs/ui"
+import { Tabs, Text } from "/ui"
 
 export default function TabsVertical() {
   return (

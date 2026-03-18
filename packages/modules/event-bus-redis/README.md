@@ -4,7 +4,7 @@
   </a>
 </p>
 <h1 align="center">
-  @medusajs/event-bus-redis
+  /event-bus-redis
 </h1>
 
 <h4 align="center">
@@ -43,7 +43,7 @@ Redis Event Bus module for Medusa. When installed, the events system of Medusa i
 Install the module:
 
 ```bash
-yarn add @medusajs/event-bus-redis
+yarn add /event-bus-redis
 ```
 
 Add the module to your `medusa-config.js`:
@@ -53,7 +53,7 @@ module.exports = {
   // ...
   modules: [
     {
-      resolve: "@medusajs/event-bus-redis",
+      resolve: "/event-bus-redis",
       options: {
         redisUrl: "redis:..",
       },

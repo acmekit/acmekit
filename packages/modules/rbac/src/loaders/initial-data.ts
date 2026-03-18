@@ -2,7 +2,7 @@ import {
   InferEntityType,
   LoaderOptions,
   ModulesSdkTypes,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { RbacPolicy, RbacRole, RbacRolePolicy } from "@models"
 
 export default async ({

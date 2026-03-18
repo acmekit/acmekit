@@ -1,5 +1,5 @@
-import { Modules } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 export const releaseEventsStepId = "release-events-step"
 export const releaseEventsStep = createStep(

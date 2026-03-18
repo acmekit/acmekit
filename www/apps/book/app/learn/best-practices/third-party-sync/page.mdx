@@ -38,8 +38,8 @@ Medusa also exposes [built-in workflows](!resources!/medusa-workflows-reference)
 For example, you can use Medusa's built-in [batchProductsWorkflow](!resources!/references/medusa-workflows/batchProductsWorkflow) to create or update products in batches:
 
 ```ts title="src/jobs/sync-products.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { batchProductsWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaContainer } from "/framework/types"
+import { batchProductsWorkflow } from "/medusa/core-flows"
 
 export default async function syncProductsJob(container: MedusaContainer) {
   // ...
@@ -72,8 +72,8 @@ In the scheduled job or subscriber, you retrieve the data to be synced from the 
 For example, the following scheduled job fetches products from a third-party service and syncs them to Medusa using a workflow:
 
 ```ts title="src/jobs/sync-products.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { batchProductsWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaContainer } from "/framework/types"
+import { batchProductsWorkflow } from "/medusa/core-flows"
 
 export default async function syncProductsJob(container: MedusaContainer) {
   const productStream = streamProductsFromApi()
@@ -108,9 +108,9 @@ The following sections cover best practices for implementing third-party syncing
 The following sections take snippets from this complete example of a high-performance, memory-efficient product synchronization job that incorporates all the best practices discussed:
 
 ```ts title="src/jobs/sync-products.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { ContainerRegistrationKeys, MedusaError, Modules } from "@medusajs/framework/utils"
-import { batchProductsWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaContainer } from "/framework/types"
+import { ContainerRegistrationKeys, MedusaError, Modules } from "/framework/utils"
+import { batchProductsWorkflow } from "/medusa/core-flows"
 import { Readable } from "stream"
 import { parser } from "stream-json"
 import { pick } from "stream-json/filters/Pick"

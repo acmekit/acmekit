@@ -1,10 +1,10 @@
-import type { ApiKeyDTO, CreateApiKeyDTO } from "@medusajs/framework/types"
+import type { ApiKeyDTO, CreateApiKeyDTO } from "/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
   createHook,
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { createApiKeysStep } from "../steps"
 
 /**

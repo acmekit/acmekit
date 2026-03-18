@@ -6,7 +6,7 @@ import {
   useGenerateSnippet,
   UseGenerateSnippet,
 } from "@/hooks/use-generate-snippet"
-import { SquareTwoStack, CheckCircle } from "@medusajs/icons"
+import { SquareTwoStack, CheckCircle } from "/icons"
 
 export type CopyGeneratedSnippetButtonProps = UseGenerateSnippet & {
   tooltipText?: string

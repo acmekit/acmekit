@@ -39,7 +39,7 @@ vi.mock("@/components/Button", () => ({
   ),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   XMarkMini: () => <svg data-testid="x-mark-icon" />,
 }))
 

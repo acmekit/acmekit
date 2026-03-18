@@ -19,7 +19,7 @@
 					},
 					{
 						"kind": "code",
-						"text": "```ts\nimport { ILockingProvider } from \"@medusajs/framework/types\"\nimport { Logger } from \"@medusajs/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  url: string\n}\n\nclass MyLockingProviderService implements ILockingProvider {\n  static identifier = \"my-lock\"\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n\n  // ...\n}\n\nexport default MyLockingProviderService\n```"
+						"text": "```ts\nimport { ILockingProvider } from \"/framework/types\"\nimport { Logger } from \"/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  url: string\n}\n\nclass MyLockingProviderService implements ILockingProvider {\n  static identifier = \"my-lock\"\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n\n  // ...\n}\n\nexport default MyLockingProviderService\n```"
 					},
 					{
 						"kind": "text",
@@ -119,7 +119,7 @@
 											},
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport { Context } from \"@medusajs/framework/types\"\nimport { setTimeout } from \"node:timers/promises\"\n\nclass MyLockingProviderService implements ILockingProvider {\n  // ...\nasync execute<T>(\n    keys: string | string[], \n    job: () => Promise<T>, \n    args?: { timeout?: number }, \n    sharedContext?: Context\n  ): Promise<T> {\n    // TODO you can add actions using the third-party client you initialized in the constructor\n    const timeout = Math.max(args?.timeout ?? 5, 1)\n    const timeoutSeconds = Number.isNaN(timeout) ? 1 : timeout\n    const cancellationToken = { cancelled: false }\n    const promises: Promise<any>[] = []\n\n    if (timeoutSeconds > 0) {\n      promises.push(this.getTimeout(timeoutSeconds, cancellationToken))\n    }\n\n    promises.push(\n      this.acquire_(\n        keys,\n        {\n          expire: args?.timeout ? timeoutSeconds : 0,\n        },\n        cancellationToken\n      )\n    )\n\n    await Promise.race(promises)\n\n    try {\n      return await job()\n    } finally {\n      await this.release(keys)\n    }\n  }\n\n  private async getTimeout(\n    seconds: number,\n    cancellationToken: { cancelled: boolean }\n  ): Promise<void> {\n    return new Promise(async (_, reject) => {\n      await setTimeout(seconds * 1000)\n      cancellationToken.cancelled = true\n      reject(new Error(\"Timed-out acquiring lock.\"))\n    })\n  }\n}\n```"
+												"text": "```ts\n// other imports...\nimport { Context } from \"/framework/types\"\nimport { setTimeout } from \"node:timers/promises\"\n\nclass MyLockingProviderService implements ILockingProvider {\n  // ...\nasync execute<T>(\n    keys: string | string[], \n    job: () => Promise<T>, \n    args?: { timeout?: number }, \n    sharedContext?: Context\n  ): Promise<T> {\n    // TODO you can add actions using the third-party client you initialized in the constructor\n    const timeout = Math.max(args?.timeout ?? 5, 1)\n    const timeoutSeconds = Number.isNaN(timeout) ? 1 : timeout\n    const cancellationToken = { cancelled: false }\n    const promises: Promise<any>[] = []\n\n    if (timeoutSeconds > 0) {\n      promises.push(this.getTimeout(timeoutSeconds, cancellationToken))\n    }\n\n    promises.push(\n      this.acquire_(\n        keys,\n        {\n          expire: args?.timeout ? timeoutSeconds : 0,\n        },\n        cancellationToken\n      )\n    )\n\n    await Promise.race(promises)\n\n    try {\n      return await job()\n    } finally {\n      await this.release(keys)\n    }\n  }\n\n  private async getTimeout(\n    seconds: number,\n    cancellationToken: { cancelled: boolean }\n  ): Promise<void> {\n    return new Promise(async (_, reject) => {\n      await setTimeout(seconds * 1000)\n      cancellationToken.cancelled = true\n      reject(new Error(\"Timed-out acquiring lock.\"))\n    })\n  }\n}\n```"
 											},
 											{
 												"kind": "text",
@@ -298,7 +298,7 @@
 																"type": "reference",
 																"target": 65356,
 																"name": "T",
-																"package": "@medusajs/types",
+																"package": "/types",
 																"refersToTypeParameter": true
 															}
 														],
@@ -407,7 +407,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -422,7 +422,7 @@
 										"type": "reference",
 										"target": 65356,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
@@ -755,7 +755,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -856,7 +856,7 @@
 											},
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport { promiseAll } from \"@medusajs/framework/utils\"\n\nclass MyLockingProviderService implements ILockingProvider {\n  // ...\n  async release(\n    keys: string | string[], \n    args?: { ownerId?: string | null }, \n    sharedContext?: Context\n  ): Promise<boolean> {\n    const ownerId = args?.ownerId ?? \"*\"\n    keys = Array.isArray(keys) ? keys : [keys]\n\n    const releasePromises = keys.map(async (key) => {\n      // assuming your client has this method and it validates the owner\n      const result = await this.client.releaseLock(key, ownerId)\n      return result === 1\n    })\n\n    const results = await promiseAll(releasePromises)\n\n    return results.every((released) => released)\n  }\n}\n```"
+												"text": "```ts\n// other imports...\nimport { promiseAll } from \"/framework/utils\"\n\nclass MyLockingProviderService implements ILockingProvider {\n  // ...\n  async release(\n    keys: string | string[], \n    args?: { ownerId?: string | null }, \n    sharedContext?: Context\n  ): Promise<boolean> {\n    const ownerId = args?.ownerId ?? \"*\"\n    keys = Array.isArray(keys) ? keys : [keys]\n\n    const releasePromises = keys.map(async (key) => {\n      // assuming your client has this method and it validates the owner\n      const result = await this.client.releaseLock(key, ownerId)\n      return result === 1\n    })\n\n    const results = await promiseAll(releasePromises)\n\n    return results.every((released) => released)\n  }\n}\n```"
 											},
 											{
 												"kind": "text",
@@ -1020,7 +1020,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1237,7 +1237,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1485,7 +1485,7 @@
 																"type": "reference",
 																"target": 65389,
 																"name": "T",
-																"package": "@medusajs/types",
+																"package": "/types",
 																"refersToTypeParameter": true
 															}
 														],
@@ -1648,7 +1648,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1663,7 +1663,7 @@
 										"type": "reference",
 										"target": 65389,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
@@ -2012,7 +2012,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -2335,7 +2335,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -2594,7 +2594,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -2647,7 +2647,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"65352": {
 			"sourceFileName": "../../../../packages/core/types/src/locking/index.ts",

@@ -1,4 +1,4 @@
-import { ProgressTabs, Text } from "@medusajs/ui"
+import { ProgressTabs, Text } from "/ui"
 
 export default function ProgressTabsDisabled() {
   return (

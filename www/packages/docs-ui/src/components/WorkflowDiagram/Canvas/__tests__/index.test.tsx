@@ -74,7 +74,7 @@ vi.mock("@/components/WorkflowDiagram/Canvas/Depth", () => ({
   ),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   PlusMini: () => <svg data-testid="plus-icon" />,
   MinusMini: () => <svg data-testid="minus-icon" />,
   ArrowPathMini: () => <svg data-testid="arrow-path-icon" />,

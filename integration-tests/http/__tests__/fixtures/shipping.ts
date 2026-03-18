@@ -3,7 +3,7 @@ import {
   AdminStockLocation,
   AdminSalesChannel,
   MedusaContainer,
-} from "@medusajs/types"
+} from "/types"
 import { adminHeaders } from "../../../helpers/create-admin-user"
 
 export async function createShippingOptionSeeder({

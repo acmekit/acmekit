@@ -24,7 +24,7 @@ In this chapter, you'll learn about `moduleIntegrationTestRunner` from Medusa's 
 For example, consider a Blog Module with a `BlogModuleService` that has a `getMessage` method:
 
 ```ts title="src/modules/blog/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -41,7 +41,7 @@ export default BlogModuleService
 To create an integration test for the module's service, create the file `src/modules/blog/__tests__/service.spec.ts` with the following content:
 
 ```ts title="src/modules/blog/__tests__/service.spec.ts"
-import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
+import { moduleIntegrationTestRunner } from "/test-utils"
 import { BLOG_MODULE } from ".."
 import BlogModuleService from "../service"
 import Post from "../models/post"
@@ -108,7 +108,7 @@ If your module accepts options, you can set them using the `moduleOptions` prope
 For example:
 
 ```ts
-import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
+import { moduleIntegrationTestRunner } from "/test-utils"
 import BlogModuleService from "../service"
 
 moduleIntegrationTestRunner<BlogModuleService>({
@@ -130,9 +130,9 @@ If your module doesn't have a data model, pass a dummy model in the `moduleModel
 For example:
 
 ```ts
-import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
+import { moduleIntegrationTestRunner } from "/test-utils"
 import BlogModuleService from "../service"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const DummyModel = model.define("dummy_model", {
   id: model.id().primaryKey(),
@@ -165,11 +165,11 @@ export const mockDependenciesHighlights = [
 ]
 
 ```ts title="src/modules/blog/__tests__/service.spec.ts" highlights={mockDependenciesHighlights}
-import { MockEventBusService, moduleIntegrationTestRunner } from "@medusajs/test-utils"
+import { MockEventBusService, moduleIntegrationTestRunner } from "/test-utils"
 import { BLOG_MODULE } from ".."
 import BlogModuleService from "../service"
 import Post from "../models/post"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 moduleIntegrationTestRunner<BlogModuleService>({
   moduleName: BLOG_MODULE,

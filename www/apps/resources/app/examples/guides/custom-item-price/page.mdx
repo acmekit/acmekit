@@ -12,7 +12,7 @@ products:
   - product
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram } from "docs-ui"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1738682676/Medusa%20Resources/guide-custom-item-pricing_lrilmb.jpg"
@@ -218,7 +218,7 @@ The `MetalSymbols` enum defines the symbols for metals like Gold, Silver, Platin
 Next, add the method `getMetalPrices` to the `MetalPricesModuleService` class:
 
 ```ts title="src/modules/metal-prices/service.ts"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 // ...
 
@@ -292,7 +292,7 @@ So, create the file `src/modules/metal-prices/index.ts` with the following conte
 ![The directory structure of the Metal Prices Module after adding the definition file.](https://res.cloudinary.com/dza7lstvk/image/upload/v1738248049/Medusa%20Resources/custom-item-price-3_imtbuw.jpg)
 
 ```ts title="src/modules/metal-prices/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import MetalPricesModuleService from "./service"
 
 export const METAL_PRICES_MODULE = "metal-prices"
@@ -429,8 +429,8 @@ To create the step, create the file `src/workflows/steps/get-variant-metal-price
 ![The directory structure after adding the step file.](https://res.cloudinary.com/dza7lstvk/image/upload/v1738249036/Medusa%20Resources/custom-item-price-4_kumzdc.jpg)
 
 ```ts title="src/workflows/steps/get-variant-metal-prices.ts"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { ProductVariantDTO } from "@medusajs/framework/types"
+import { createStep } from "/framework/workflows-sdk"
+import { ProductVariantDTO } from "/framework/types"
 import { METAL_PRICES_MODULE } from "../../modules/metal-prices"
 import MetalPricesModuleService from "../../modules/metal-prices/service"
 
@@ -471,7 +471,7 @@ In the step function, so far you only resolve the Metal Prices Module's service 
 Next, you'll validate that the specified variant can have its price calculated. Add the following import at the top of the file:
 
 ```ts title="src/workflows/steps/get-variant-metal-prices.ts"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 ```
 
 And replace the `TODO` in the step function with the following:
@@ -537,9 +537,9 @@ export const workflowHighlights = [
 ]
 
 ```ts title="src/workflows/add-custom-to-cart.ts" highlights={workflowHighlights}
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
-import { QueryContext } from "@medusajs/framework/utils"
+import { createWorkflow } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
+import { QueryContext } from "/framework/utils"
 
 type AddCustomToCartWorkflowInput = {
   cart_id: string
@@ -623,11 +623,11 @@ You execute the `getVariantMetalPricesStep` passing it the variant's details, th
 Next, you'll add the item with the custom price to the cart. First, add the following imports at the top of the file:
 
 ```ts title="src/workflows/add-custom-to-cart.ts"
-import { transform } from "@medusajs/framework/workflows-sdk"
+import { transform } from "/framework/workflows-sdk"
 import { 
   acquireLockStep, 
   addToCartWorkflow, 
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 ```
 
 Then, replace the `TODO` in the workflow with the following:
@@ -672,10 +672,10 @@ A workflow's constructor function has some constraints in implementation, which 
 Lastly, you'll retrieve the cart's details again and return them. Add the following import at the beginning of the file:
 
 ```ts title="src/workflows/add-custom-to-cart.ts"
-import { WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { WorkflowResponse } from "/framework/workflows-sdk"
 import { 
   releaseLockStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 ```
 
 And replace the last `TODO` in the workflow with the following:
@@ -725,8 +725,8 @@ The path of the API route is the file's path relative to `src/api`. So, to creat
 ![The directory structure after adding the API route file.](https://res.cloudinary.com/dza7lstvk/image/upload/v1738252712/Medusa%20Resources/custom-item-price-6_deecbu.jpg)
 
 ```ts title="src/api/store/carts/[id]/line-items-metals/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { HttpTypes } from "@medusajs/framework/types"
+import { MedusaRequest, MedusaResponse } from "/framework"
+import { HttpTypes } from "/framework/types"
 import { addCustomToCartWorkflow } from "../../../../../workflows/add-custom-to-cart"
 
 export const POST = async (
@@ -779,10 +779,10 @@ To add a validation middleware to the custom API route, create the file `src/api
 import { 
   defineMiddlewares,
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   StoreAddCartLineItem,
-} from "@medusajs/medusa/api/store/carts/validators"
+} from "/medusa/api/store/carts/validators"
 
 export default defineMiddlewares({
   routes: [

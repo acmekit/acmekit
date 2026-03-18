@@ -1,14 +1,14 @@
-import { MedusaModule } from "@medusajs/framework/modules-sdk"
+import { MedusaModule } from "/framework/modules-sdk"
 import { buildSchemaObjectRepresentation } from "../build-config"
 
 // Mock MedusaModule only
-jest.mock("@medusajs/framework/modules-sdk", () => ({
+jest.mock("/framework/modules-sdk", () => ({
   MedusaModule: {
     getAllJoinerConfigs: jest.fn(),
   },
 }))
 
-// No need to mock @medusajs/framework/utils since we're using the actual implementations
+// No need to mock /framework/utils since we're using the actual implementations
 
 describe("buildSchemaObjectRepresentation", () => {
   // Setup mocks before each test

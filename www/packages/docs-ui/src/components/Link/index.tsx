@@ -2,7 +2,7 @@ import React from "react"
 import NextLink from "next/link"
 import type { LinkProps as NextLinkProps } from "next/link"
 import clsx from "clsx"
-import { TriangleRightMini } from "@medusajs/icons"
+import { TriangleRightMini } from "/icons"
 
 export type LinkProps = Partial<NextLinkProps> &
   React.AllHTMLAttributes<HTMLAnchorElement> & {

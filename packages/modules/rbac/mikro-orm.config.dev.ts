@@ -1,4 +1,4 @@
-import { defineMikroOrmCliConfig } from "@medusajs/framework/utils"
+import { defineMikroOrmCliConfig } from "/framework/utils"
 import * as entities from "./src/models"
 
 export default defineMikroOrmCliConfig("rbac", {

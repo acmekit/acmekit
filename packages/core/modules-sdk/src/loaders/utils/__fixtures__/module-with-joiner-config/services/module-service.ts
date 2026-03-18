@@ -1,5 +1,5 @@
-import { IModuleService, ModuleJoinerConfig } from "@medusajs/types"
-import { defineJoinerConfig } from "@medusajs/utils"
+import { IModuleService, ModuleJoinerConfig } from "/types"
+import { defineJoinerConfig } from "/utils"
 
 export class ModuleService implements IModuleService {
   __joinerConfig(): ModuleJoinerConfig {

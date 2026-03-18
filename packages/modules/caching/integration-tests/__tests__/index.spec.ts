@@ -1,7 +1,7 @@
-import { Modules } from "@medusajs/framework/utils"
-import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
-import { ICachingModuleService } from "@medusajs/framework/types"
-import { MedusaModule } from "@medusajs/framework/modules-sdk"
+import { Modules } from "/framework/utils"
+import { moduleIntegrationTestRunner } from "/test-utils"
+import { ICachingModuleService } from "/framework/types"
+import { MedusaModule } from "/framework/modules-sdk"
 
 jest.setTimeout(10000)
 

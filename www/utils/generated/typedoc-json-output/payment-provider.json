@@ -159,7 +159,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\nimport { AbstractPaymentProvider } from \"@medusajs/framework/utils\"\nimport { Logger } from \"@medusajs/framework/types\"\n\ntype Options = {\n  apiKey: string\n}\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<Options> {\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor(\n    container: InjectedDependencies,\n    options: Options\n  ) {\n    super(container, options)\n\n    this.logger_ = container.logger\n    this.options_ = options\n\n    // TODO initialize your client\n  }\n  // ...\n}\n\nexport default MyPaymentProviderService\n```"
+												"text": "```ts\nimport { AbstractPaymentProvider } from \"/framework/utils\"\nimport { Logger } from \"/framework/types\"\n\ntype Options = {\n  apiKey: string\n}\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<Options> {\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor(\n    container: InjectedDependencies,\n    options: Options\n  ) {\n    super(container, options)\n\n    this.logger_ = container.logger\n    this.options_ = options\n\n    // TODO initialize your client\n  }\n  // ...\n}\n\nexport default MyPaymentProviderService\n```"
 											}
 										]
 									}
@@ -253,13 +253,13 @@
 										"type": "reference",
 										"target": 49386,
 										"name": "TConfig",
-										"package": "@medusajs/utils",
+										"package": "/utils",
 										"qualifiedName": "AbstractPaymentProvider.TConfig",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "AbstractPaymentProvider",
-								"package": "@medusajs/utils"
+								"package": "/utils"
 							}
 						}
 					]
@@ -468,7 +468,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  CapturePaymentInput,\n  CapturePaymentOutput,\n} from \"@medusajs/framework/types\"\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async capturePayment(\n    input: CapturePaymentInput\n  ): Promise<CapturePaymentOutput> {\n    const externalId = input.data?.id\n\n      // assuming you have a client that captures the payment\n    const newData = await this.client.capturePayment(externalId)\n    return {\n      data: {\n        ...newData,\n        id: externalId,\n      }\n    }\n  }\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  CapturePaymentInput,\n  CapturePaymentOutput,\n} from \"/framework/types\"\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async capturePayment(\n    input: CapturePaymentInput\n  ): Promise<CapturePaymentOutput> {\n    const externalId = input.data?.id\n\n      // assuming you have a client that captures the payment\n    const newData = await this.client.capturePayment(externalId)\n    return {\n      data: {\n        ...newData,\n        id: externalId,\n      }\n    }\n  }\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -512,7 +512,7 @@
 											"qualifiedName": "CapturePaymentInput"
 										},
 										"name": "CapturePaymentInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -530,7 +530,7 @@
 											"qualifiedName": "CapturePaymentOutput"
 										},
 										"name": "CapturePaymentOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -678,7 +678,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  AuthorizePaymentInput,\n  AuthorizePaymentOutput,\n  PaymentSessionStatus\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async authorizePayment(\n    input: AuthorizePaymentInput\n  ): Promise<AuthorizePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that authorizes the payment\n    const paymentData = await this.client.authorizePayment(externalId)\n\n    return {\n      data: paymentData,\n      status: \"authorized\"\n    }\n  }\n\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  AuthorizePaymentInput,\n  AuthorizePaymentOutput,\n  PaymentSessionStatus\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async authorizePayment(\n    input: AuthorizePaymentInput\n  ): Promise<AuthorizePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that authorizes the payment\n    const paymentData = await this.client.authorizePayment(externalId)\n\n    return {\n      data: paymentData,\n      status: \"authorized\"\n    }\n  }\n\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -722,7 +722,7 @@
 											"qualifiedName": "AuthorizePaymentInput"
 										},
 										"name": "AuthorizePaymentInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -740,7 +740,7 @@
 											"qualifiedName": "AuthorizePaymentOutput"
 										},
 										"name": "AuthorizePaymentOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -870,7 +870,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  PaymentProviderError,\n  PaymentProviderSessionResponse,\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async cancelPayment(\n    input: CancelPaymentInput\n  ): Promise<CancelPaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that cancels the payment\n    const paymentData = await this.client.cancelPayment(externalId)\n    return { data: paymentData }\n  }\n\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  PaymentProviderError,\n  PaymentProviderSessionResponse,\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async cancelPayment(\n    input: CancelPaymentInput\n  ): Promise<CancelPaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that cancels the payment\n    const paymentData = await this.client.cancelPayment(externalId)\n    return { data: paymentData }\n  }\n\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -914,7 +914,7 @@
 											"qualifiedName": "CancelPaymentInput"
 										},
 										"name": "CancelPaymentInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -932,7 +932,7 @@
 											"qualifiedName": "CancelPaymentOutput"
 										},
 										"name": "CancelPaymentOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1044,7 +1044,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  InitiatePaymentInput,\n  InitiatePaymentOutput,\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async initiatePayment(\n    input: InitiatePaymentInput\n  ): Promise<InitiatePaymentOutput> {\n    const {\n      amount,\n      currency_code,\n      context: customerDetails\n    } = input\n\n    // assuming you have a client that initializes the payment\n    const response = await this.client.init(\n      amount, currency_code, customerDetails\n    )\n\n    return {\n      id: response.id,\n      data: response,\n    }\n  }\n\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  InitiatePaymentInput,\n  InitiatePaymentOutput,\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async initiatePayment(\n    input: InitiatePaymentInput\n  ): Promise<InitiatePaymentOutput> {\n    const {\n      amount,\n      currency_code,\n      context: customerDetails\n    } = input\n\n    // assuming you have a client that initializes the payment\n    const response = await this.client.init(\n      amount, currency_code, customerDetails\n    )\n\n    return {\n      id: response.id,\n      data: response,\n    }\n  }\n\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -1080,7 +1080,7 @@
 											"qualifiedName": "InitiatePaymentInput"
 										},
 										"name": "InitiatePaymentInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1098,7 +1098,7 @@
 											"qualifiedName": "InitiatePaymentOutput"
 										},
 										"name": "InitiatePaymentOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1220,7 +1220,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  DeletePaymentInput,\n  DeletePaymentOutput,\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async deletePayment(\n    input: DeletePaymentInput\n  ): Promise<DeletePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that cancels the payment\n    await this.client.cancelPayment(externalId)\n    return {\n      data: input.data\n    }\n  }\n\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  DeletePaymentInput,\n  DeletePaymentOutput,\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async deletePayment(\n    input: DeletePaymentInput\n  ): Promise<DeletePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that cancels the payment\n    await this.client.cancelPayment(externalId)\n    return {\n      data: input.data\n    }\n  }\n\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -1264,7 +1264,7 @@
 											"qualifiedName": "DeletePaymentInput"
 										},
 										"name": "DeletePaymentInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1282,7 +1282,7 @@
 											"qualifiedName": "DeletePaymentOutput"
 										},
 										"name": "DeletePaymentOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1354,7 +1354,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  GetPaymentStatusInput,\n  GetPaymentStatusOutput,\n  PaymentSessionStatus\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async getPaymentStatus(\n    input: GetPaymentStatusInput\n  ): Promise<GetPaymentStatusOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that retrieves the payment status\n    const status = await this.client.getStatus(externalId)\n\n    switch (status) {\n      case \"requires_capture\":\n          return {status: \"authorized\"}\n        case \"success\":\n          return {status: \"captured\"}\n        case \"canceled\":\n          return {status: \"canceled\"}\n        default:\n          return {status: \"pending\"}\n     }\n  }\n\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  GetPaymentStatusInput,\n  GetPaymentStatusOutput,\n  PaymentSessionStatus\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async getPaymentStatus(\n    input: GetPaymentStatusInput\n  ): Promise<GetPaymentStatusOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that retrieves the payment status\n    const status = await this.client.getStatus(externalId)\n\n    switch (status) {\n      case \"requires_capture\":\n          return {status: \"authorized\"}\n        case \"success\":\n          return {status: \"captured\"}\n        case \"canceled\":\n          return {status: \"canceled\"}\n        default:\n          return {status: \"pending\"}\n     }\n  }\n\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -1398,7 +1398,7 @@
 											"qualifiedName": "GetPaymentStatusInput"
 										},
 										"name": "GetPaymentStatusInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1416,7 +1416,7 @@
 											"qualifiedName": "GetPaymentStatusOutput"
 										},
 										"name": "GetPaymentStatusOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1564,7 +1564,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  RefundPaymentInput,\n  RefundPaymentOutput,\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async refundPayment(\n    input: RefundPaymentInput\n  ): Promise<RefundPaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that refunds the payment\n    const newData = await this.client.refund(\n        externalId,\n        input.amount\n      )\n\n    return {\n      data: input.data,\n    }\n  }\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  RefundPaymentInput,\n  RefundPaymentOutput,\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async refundPayment(\n    input: RefundPaymentInput\n  ): Promise<RefundPaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that refunds the payment\n    const newData = await this.client.refund(\n        externalId,\n        input.amount\n      )\n\n    return {\n      data: input.data,\n    }\n  }\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -1608,7 +1608,7 @@
 											"qualifiedName": "RefundPaymentInput"
 										},
 										"name": "RefundPaymentInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1626,7 +1626,7 @@
 											"qualifiedName": "RefundPaymentOutput"
 										},
 										"name": "RefundPaymentOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1690,7 +1690,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  RetrievePaymentInput,\n  RetrievePaymentOutput,\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async retrievePayment(\n    input: RetrievePaymentInput\n  ): Promise<RetrievePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that retrieves the payment\n    return await this.client.retrieve(externalId)\n  }\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  RetrievePaymentInput,\n  RetrievePaymentOutput,\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async retrievePayment(\n    input: RetrievePaymentInput\n  ): Promise<RetrievePaymentOutput> {\n    const externalId = input.data?.id\n\n    // assuming you have a client that retrieves the payment\n    return await this.client.retrieve(externalId)\n  }\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -1734,7 +1734,7 @@
 											"qualifiedName": "RetrievePaymentInput"
 										},
 										"name": "RetrievePaymentInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1752,7 +1752,7 @@
 											"qualifiedName": "RetrievePaymentOutput"
 										},
 										"name": "RetrievePaymentOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1834,7 +1834,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  UpdatePaymentInput,\n  UpdatePaymentOutput,\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async updatePayment(\n    input: UpdatePaymentInput\n  ): Promise<UpdatePaymentOutput> {\n    const { amount, currency_code, context } = input\n    const externalId = input.data?.id\n\n    // Validate context.customer\n    if (!context || !context.customer) {\n      throw new Error(\"Context must include a valid customer.\");\n    }\n\n    // assuming you have a client that updates the payment\n    const response = await this.client.update(\n      externalId,\n        {\n          amount,\n          currency_code,\n          customer: context.customer\n        }\n      )\n\n    return response\n  }\n\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  UpdatePaymentInput,\n  UpdatePaymentOutput,\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async updatePayment(\n    input: UpdatePaymentInput\n  ): Promise<UpdatePaymentOutput> {\n    const { amount, currency_code, context } = input\n    const externalId = input.data?.id\n\n    // Validate context.customer\n    if (!context || !context.customer) {\n      throw new Error(\"Context must include a valid customer.\");\n    }\n\n    // assuming you have a client that updates the payment\n    const response = await this.client.update(\n      externalId,\n        {\n          amount,\n          currency_code,\n          customer: context.customer\n        }\n      )\n\n    return response\n  }\n\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -1878,7 +1878,7 @@
 											"qualifiedName": "UpdatePaymentInput"
 										},
 										"name": "UpdatePaymentInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -1896,7 +1896,7 @@
 											"qualifiedName": "UpdatePaymentOutput"
 										},
 										"name": "UpdatePaymentOutput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1992,7 +1992,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport {\n  BigNumber\n} from \"@medusajs/framework/utils\"\nimport {\n  ProviderWebhookPayload,\n  WebhookActionResult\n} from \"@medusajs/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async getWebhookActionAndData(\n    payload: ProviderWebhookPayload[\"payload\"]\n  ): Promise<WebhookActionResult> {\n    const {\n      data,\n      rawData,\n      headers\n    } = payload\n\n    try {\n      switch(data.event_type) {\n        case \"authorized_amount\":\n          return {\n            action: \"authorized\",\n            data: {\n              // assuming the session_id is stored in the metadata of the payment\n              // in the third-party provider\n              session_id: (data.metadata as Record<string, any>).session_id,\n              amount: new BigNumber(data.amount as number)\n            }\n          }\n        case \"success\":\n          return {\n            action: \"captured\",\n            data: {\n              // assuming the session_id is stored in the metadata of the payment\n              // in the third-party provider\n              session_id: (data.metadata as Record<string, any>).session_id,\n              amount: new BigNumber(data.amount as number)\n            }\n          }\n        default:\n          return {\n            action: \"not_supported\",\n            data: {\n              session_id: \"\",\n              amount: new BigNumber(0)\n            }\n          }\n      }\n    } catch (e) {\n      return {\n        action: \"failed\",\n        data: {\n          // assuming the session_id is stored in the metadata of the payment\n          // in the third-party provider\n          session_id: (data.metadata as Record<string, any>).session_id,\n          amount: new BigNumber(data.amount as number)\n        }\n      }\n    }\n  }\n\n  // ...\n}\n```"
+												"text": "```ts\n// other imports...\nimport {\n  BigNumber\n} from \"/framework/utils\"\nimport {\n  ProviderWebhookPayload,\n  WebhookActionResult\n} from \"/framework/types\"\n\n\nclass MyPaymentProviderService extends AbstractPaymentProvider<\n  Options\n> {\n  async getWebhookActionAndData(\n    payload: ProviderWebhookPayload[\"payload\"]\n  ): Promise<WebhookActionResult> {\n    const {\n      data,\n      rawData,\n      headers\n    } = payload\n\n    try {\n      switch(data.event_type) {\n        case \"authorized_amount\":\n          return {\n            action: \"authorized\",\n            data: {\n              // assuming the session_id is stored in the metadata of the payment\n              // in the third-party provider\n              session_id: (data.metadata as Record<string, any>).session_id,\n              amount: new BigNumber(data.amount as number)\n            }\n          }\n        case \"success\":\n          return {\n            action: \"captured\",\n            data: {\n              // assuming the session_id is stored in the metadata of the payment\n              // in the third-party provider\n              session_id: (data.metadata as Record<string, any>).session_id,\n              amount: new BigNumber(data.amount as number)\n            }\n          }\n        default:\n          return {\n            action: \"not_supported\",\n            data: {\n              session_id: \"\",\n              amount: new BigNumber(0)\n            }\n          }\n      }\n    } catch (e) {\n      return {\n        action: \"failed\",\n        data: {\n          // assuming the session_id is stored in the metadata of the payment\n          // in the third-party provider\n          session_id: (data.metadata as Record<string, any>).session_id,\n          amount: new BigNumber(data.amount as number)\n        }\n      }\n    }\n  }\n\n  // ...\n}\n```"
 											}
 										]
 									}
@@ -2189,7 +2189,7 @@
 											"qualifiedName": "WebhookActionResult"
 										},
 										"name": "WebhookActionResult",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -2283,7 +2283,7 @@
 						"qualifiedName": "IPaymentProvider"
 					},
 					"name": "IPaymentProvider",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		}
@@ -2296,7 +2296,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/utils",
+	"packageName": "/utils",
 	"symbolIdMap": {
 		"49374": {
 			"sourceFileName": "../../../../packages/core/utils/src/payment/abstract-payment-provider.ts",

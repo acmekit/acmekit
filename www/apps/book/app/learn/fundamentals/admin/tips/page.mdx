@@ -24,7 +24,7 @@ First, create the file `src/admin/lib/sdk.ts` to set up the SDK for use in your 
   <CodeTab label="Medusa Project" value="medusa-project">
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -39,7 +39,7 @@ export const sdk = new Medusa({
   <CodeTab label="Medusa Plugin" value="medusa-plugin">
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   // add __BACKEND_URL__ to src/admin/vite-env.d.ts if you get type errors
@@ -77,8 +77,8 @@ export const queryHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-widget.tsx" highlights={queryHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container } from "/ui"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
 
@@ -118,11 +118,11 @@ export const mutationHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-widget.tsx" highlights={mutationHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Button, Container } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Button, Container } from "/ui"
 import { useMutation } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
-import { DetailWidgetProps, HttpTypes } from "@medusajs/framework/types"
+import { DetailWidgetProps, HttpTypes } from "/framework/types"
 
 const ProductWidget = ({ 
   data: productData,
@@ -172,7 +172,7 @@ If you're using `pnpm` as a package manager in your Medusa application, you migh
 No QueryClient set, use QueryClientProvider to set one
 ```
 
-This is a known issue when using `pnpm`. To fix it, you need to install the `@tanstack/react-query` package manually. Make sure to install the same version installed in [@medusajs/dashboard](https://github.com/medusajs/medusa/blob/d58462c9c91a3e335d03f758438e109caad1f839/packages/admin/dashboard/package.json#L54).
+This is a known issue when using `pnpm`. To fix it, you need to install the `@tanstack/react-query` package manually. Make sure to install the same version installed in [/dashboard](https://github.com/medusajs/medusa/blob/d58462c9c91a3e335d03f758438e109caad1f839/packages/admin/dashboard/package.json#L54).
 
 Learn more in the [Errors with pnpm](!resources!/troubleshooting/pnpm) troubleshooting guide.
 

@@ -13,7 +13,7 @@ In this chapter, you'll learn available configurations in the Medusa application
 All configurations of the Medusa application are stored in the `medusa.config.ts` file. The file exports an object created using the `defineConfig` utility. For example:
 
 ```ts title="medusa.config.ts"
-import { loadEnv, defineConfig } from "@medusajs/framework/utils"
+import { loadEnv, defineConfig } from "/framework/utils"
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
@@ -1090,12 +1090,12 @@ You can also override the default configurations of Medusa's modules. For exampl
 module.exports = defineConfig({
   modules: [
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           // default provider
           {
-            resolve: "@medusajs/medusa/notification-local",
+            resolve: "/medusa/notification-local",
             id: "local",
             options: {
               name: "Local Notification Provider",
@@ -1170,7 +1170,7 @@ module.exports = {
   ],
   modules: [
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           // ...

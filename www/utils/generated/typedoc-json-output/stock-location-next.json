@@ -94,7 +94,7 @@
 										"type": "reference",
 										"target": 15476,
 										"name": "FindConfigOrder",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									{
 										"type": "literal",
@@ -188,7 +188,7 @@
 										"type": "reference",
 										"target": 15349,
 										"name": "Entity",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"qualifiedName": "FindConfig.Entity",
 										"refersToTypeParameter": true
 									}
@@ -345,7 +345,7 @@
 						"type": "reference",
 						"target": 15476,
 						"name": "FindConfigOrder",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -596,19 +596,19 @@
 											"type": "reference",
 											"target": 15453,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"qualifiedName": "BaseFilterable.T",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
 									"target": 15453,
 									"name": "T",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"qualifiedName": "BaseFilterable.T",
 									"refersToTypeParameter": true
 								}
@@ -652,19 +652,19 @@
 											"type": "reference",
 											"target": 15453,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"qualifiedName": "BaseFilterable.T",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
 									"target": 15453,
 									"name": "T",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"qualifiedName": "BaseFilterable.T",
 									"refersToTypeParameter": true
 								}
@@ -755,7 +755,7 @@
 							"type": "reference",
 							"target": 15398,
 							"name": "TReturnableLinkableKeys",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					}
@@ -834,7 +834,7 @@
 							"type": "reference",
 							"target": 15401,
 							"name": "TReturnableLinkableKeys",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					}
@@ -897,7 +897,7 @@
 					"type": "reference",
 					"target": 15542,
 					"name": "T",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -910,14 +910,14 @@
 						"type": "reference",
 						"target": 15542,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					},
 					"extendsType": {
 						"type": "reference",
 						"target": 15592,
 						"name": "Scalar",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					"trueType": {
 						"type": "intrinsic",
@@ -931,12 +931,12 @@
 								"type": "reference",
 								"target": 15542,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "FilterQuery",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				"falseType": {
@@ -947,12 +947,12 @@
 							"type": "reference",
 							"target": 15542,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					],
 					"name": "FilterValue",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			}
 		},
@@ -991,7 +991,7 @@
 							"type": "reference",
 							"target": 15544,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						},
 						"extendsType": {
@@ -1022,7 +1022,7 @@
 								"type": "reference",
 								"target": 15544,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							"extendsType": {
@@ -1056,7 +1056,7 @@
 								"type": "reference",
 								"target": 15544,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						}
@@ -1220,7 +1220,7 @@
 					"type": "reference",
 					"target": 15770,
 					"name": "T",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -1241,7 +1241,7 @@
 							"type": "reference",
 							"target": 15770,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					],
@@ -1252,7 +1252,7 @@
 					"type": "reference",
 					"target": 15770,
 					"name": "T",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				}
 			}
@@ -1285,7 +1285,7 @@
 					"type": "reference",
 					"target": 15728,
 					"name": "T",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -1346,12 +1346,12 @@
 								"qualifiedName": "PK"
 							},
 							"name": "PK",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					],
 					"name": "ReadonlyPrimary",
-					"package": "@medusajs/types"
+					"package": "/types"
 				},
 				"falseType": {
 					"type": "conditional",
@@ -1359,7 +1359,7 @@
 						"type": "reference",
 						"target": 15728,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					},
 					"extendsType": {
@@ -1423,12 +1423,12 @@
 											"qualifiedName": "PK"
 										},
 										"name": "PK",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ReadonlyPrimary",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "intrinsic",
@@ -1442,7 +1442,7 @@
 							"type": "reference",
 							"target": 15728,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						},
 						"extendsType": {
@@ -1503,12 +1503,12 @@
 										"qualifiedName": "PK"
 									},
 									"name": "PK",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								}
 							],
 							"name": "ReadonlyPrimary",
-							"package": "@medusajs/types"
+							"package": "/types"
 						},
 						"falseType": {
 							"type": "conditional",
@@ -1516,7 +1516,7 @@
 								"type": "reference",
 								"target": 15728,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							"extendsType": {
@@ -1577,12 +1577,12 @@
 											"qualifiedName": "PK"
 										},
 										"name": "PK",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ReadonlyPrimary",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							"falseType": {
 								"type": "intrinsic",
@@ -1649,12 +1649,12 @@
 											"type": "reference",
 											"target": 15475,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "Query",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -1683,12 +1683,12 @@
 											"type": "reference",
 											"target": 15475,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "Query",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -1718,12 +1718,12 @@
 												"type": "reference",
 												"target": 15475,
 												"name": "T",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "ExpandScalar",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									{
 										"type": "array",
@@ -1735,12 +1735,12 @@
 													"type": "reference",
 													"target": 15475,
 													"name": "T",
-													"package": "@medusajs/types",
+													"package": "/types",
 													"refersToTypeParameter": true
 												}
 											],
 											"name": "ExpandScalar",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								]
@@ -1769,12 +1769,12 @@
 										"type": "reference",
 										"target": 15475,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1802,12 +1802,12 @@
 											"type": "reference",
 											"target": 15475,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "ExpandScalar",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -1836,12 +1836,12 @@
 											"type": "reference",
 											"target": 15475,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "ExpandScalar",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -1868,12 +1868,12 @@
 										"type": "reference",
 										"target": 15475,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "Query",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1899,12 +1899,12 @@
 										"type": "reference",
 										"target": 15475,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1930,12 +1930,12 @@
 										"type": "reference",
 										"target": 15475,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1961,12 +1961,12 @@
 										"type": "reference",
 										"target": 15475,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1992,12 +1992,12 @@
 										"type": "reference",
 										"target": 15475,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -2235,7 +2235,7 @@
 						"type": "reference",
 						"target": 15651,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					},
 					{
@@ -2246,12 +2246,12 @@
 								"type": "reference",
 								"target": 15651,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "ExpandScalar",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
@@ -2261,12 +2261,12 @@
 								"type": "reference",
 								"target": 15651,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "Primary",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				]
 			}
@@ -2308,16 +2308,16 @@
 										"type": "reference",
 										"target": 15600,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "FilterValue2",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						],
 						"name": "OperatorMap",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
@@ -2327,12 +2327,12 @@
 								"type": "reference",
 								"target": 15600,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "FilterValue2",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "array",
@@ -2344,12 +2344,12 @@
 									"type": "reference",
 									"target": 15600,
 									"name": "T",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								}
 							],
 							"name": "FilterValue2",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					},
 					{
@@ -2441,7 +2441,7 @@
 						"type": "reference",
 						"target": 15648,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					}
 				},
@@ -2456,14 +2456,14 @@
 								"qualifiedName": "Key"
 							},
 							"name": "Key",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						},
 						"objectType": {
 							"type": "reference",
 							"target": 15648,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					},
@@ -2513,14 +2513,14 @@
 										"qualifiedName": "Key"
 									},
 									"name": "Key",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								},
 								"objectType": {
 									"type": "reference",
 									"target": 15648,
 									"name": "T",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								}
 							},
@@ -2537,20 +2537,20 @@
 												"qualifiedName": "Key"
 											},
 											"name": "Key",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										},
 										"objectType": {
 											"type": "reference",
 											"target": 15648,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									}
 								],
 								"name": "OperatorMap",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					},
@@ -2565,14 +2565,14 @@
 									"qualifiedName": "Key"
 								},
 								"name": "Key",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							"objectType": {
 								"type": "reference",
 								"target": 15648,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						},
@@ -2589,7 +2589,7 @@
 									"qualifiedName": "U"
 								},
 								"name": "U",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							"extendsType": {
@@ -2641,7 +2641,7 @@
 													"qualifiedName": "V"
 												},
 												"name": "V",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										}
@@ -2657,7 +2657,7 @@
 										"qualifiedName": "V"
 									},
 									"name": "V",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								},
 								"extendsType": {
@@ -2682,7 +2682,7 @@
 														"qualifiedName": "V"
 													},
 													"name": "V",
-													"package": "@medusajs/types",
+													"package": "/types",
 													"refersToTypeParameter": true
 												}
 											],
@@ -2695,19 +2695,19 @@
 												"type": "reference",
 												"target": 15649,
 												"name": "Prev",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											},
 											"objectType": {
 												"type": "reference",
 												"target": 15718,
 												"name": "PrevLimit",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										}
 									],
 									"name": "FilterQuery",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								"falseType": {
 									"type": "intrinsic",
@@ -2775,7 +2775,7 @@
 					"type": "reference",
 					"target": 15598,
 					"name": "Prev",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -2792,7 +2792,7 @@
 						"type": "reference",
 						"target": 15597,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					},
 					"extendsType": {
@@ -2805,7 +2805,7 @@
 							}
 						],
 						"name": "Constructor",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					"trueType": {
 						"type": "reference",
@@ -2818,19 +2818,19 @@
 									"qualifiedName": "Prototype"
 								},
 								"name": "Prototype",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 15598,
 								"name": "Prev",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "FilterQueryProperties",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					"falseType": {
 						"type": "reference",
@@ -2840,19 +2840,19 @@
 								"type": "reference",
 								"target": 15597,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 15598,
 								"name": "Prev",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "FilterQueryProperties",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				}
 			}
@@ -3057,7 +3057,7 @@
 								"type": "reference",
 								"target": 15715,
 								"name": "EventMetadata",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -3085,7 +3085,7 @@
 								"type": "reference",
 								"target": 15636,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						}
@@ -3155,12 +3155,12 @@
 								"type": "reference",
 								"target": 15559,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "Event",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reflection",
@@ -3297,7 +3297,7 @@
 								"type": "reference",
 								"target": 15576,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						},
@@ -3383,7 +3383,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									{
 										"type": "literal",
@@ -4330,7 +4330,7 @@
 						"type": "reference",
 						"target": 15693,
 						"name": "FulfillmentDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -4633,7 +4633,7 @@
 						"type": "reference",
 						"target": 15693,
 						"name": "FulfillmentDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -4907,7 +4907,7 @@
 							"type": "reference",
 							"target": 15612,
 							"name": "ShippingOptionDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -5206,7 +5206,7 @@
 							"type": "reference",
 							"target": 15545,
 							"name": "ServiceZoneDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -5830,7 +5830,7 @@
 								"type": "reference",
 								"target": 15612,
 								"name": "ShippingOptionDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					}
@@ -5886,7 +5886,7 @@
 						"type": "reference",
 						"target": 15663,
 						"name": "FulfillmentProviderDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -5914,7 +5914,7 @@
 						"type": "reference",
 						"target": 15729,
 						"name": "FulfillmentAddressDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -5944,7 +5944,7 @@
 							"type": "reference",
 							"target": 15746,
 							"name": "FulfillmentItemDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -5975,7 +5975,7 @@
 							"type": "reference",
 							"target": 15759,
 							"name": "FulfillmentLabelDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -6227,7 +6227,7 @@
 						"type": "reference",
 						"target": 15652,
 						"name": "GeoZoneType",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -6696,7 +6696,7 @@
 						"type": "reference",
 						"target": 15481,
 						"name": "FulfillmentSetDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -6752,7 +6752,7 @@
 							"type": "reference",
 							"target": 15601,
 							"name": "GeoZoneDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -6783,7 +6783,7 @@
 							"type": "reference",
 							"target": 15612,
 							"name": "ShippingOptionDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -7166,7 +7166,7 @@
 						"type": "reference",
 						"target": 15612,
 						"name": "ShippingOptionDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -7466,7 +7466,7 @@
 						"type": "reference",
 						"target": 15612,
 						"name": "ShippingOptionDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -7739,7 +7739,7 @@
 						"type": "reference",
 						"target": 15653,
 						"name": "ShippingOptionPriceType",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -7980,7 +7980,7 @@
 						"type": "reference",
 						"target": 15545,
 						"name": "ServiceZoneDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -8008,7 +8008,7 @@
 						"type": "reference",
 						"target": 15654,
 						"name": "ShippingProfileDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -8036,7 +8036,7 @@
 						"type": "reference",
 						"target": 15663,
 						"name": "FulfillmentProviderDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -8064,7 +8064,7 @@
 						"type": "reference",
 						"target": 15671,
 						"name": "ShippingOptionTypeDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -8094,7 +8094,7 @@
 							"type": "reference",
 							"target": 15681,
 							"name": "ShippingOptionRuleDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -8125,7 +8125,7 @@
 							"type": "reference",
 							"target": 15693,
 							"name": "FulfillmentDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -8435,7 +8435,7 @@
 							"type": "reference",
 							"target": 15612,
 							"name": "ShippingOptionDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -9002,7 +9002,7 @@
 								"type": "reference",
 								"target": 15577,
 								"name": "JoinerServiceConfigAlias",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "array",
@@ -9010,7 +9010,7 @@
 									"type": "reference",
 									"target": 15577,
 									"name": "JoinerServiceConfigAlias",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						]
@@ -9173,7 +9173,7 @@
 							"type": "reference",
 							"target": 15582,
 							"name": "JoinerRelationship",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -9258,7 +9258,7 @@
 											"type": "reference",
 											"target": 15582,
 											"name": "JoinerRelationship",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -9418,7 +9418,7 @@
 										"type": "reference",
 										"target": 15643,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									},
 									{
@@ -9447,7 +9447,7 @@
 														"type": "reference",
 														"target": 15643,
 														"name": "T",
-														"package": "@medusajs/types",
+														"package": "/types",
 														"refersToTypeParameter": true
 													}
 												}
@@ -9733,7 +9733,7 @@
 								"type": "reference",
 								"target": 15515,
 								"name": "JoinerServiceConfig",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "union",
@@ -9853,7 +9853,7 @@
 											"type": "reference",
 											"target": 15530,
 											"name": "ModuleJoinerRelationship",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -10075,7 +10075,7 @@
 																	"type": "reference",
 																	"target": 15530,
 																	"name": "ModuleJoinerRelationship",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																},
 																{
 																	"type": "literal",
@@ -10381,7 +10381,7 @@
 														"type": "reference",
 														"target": 15535,
 														"name": "LinkModulesExtraFields",
-														"package": "@medusajs/types"
+														"package": "/types"
 													}
 												}
 											],
@@ -10456,7 +10456,7 @@
 						"type": "reference",
 						"target": 15582,
 						"name": "JoinerRelationship",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reflection",
@@ -10623,7 +10623,7 @@
 								"type": "reference",
 								"target": 15424,
 								"name": "ModuleJoinerConfig",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						}
 					]
@@ -11111,7 +11111,7 @@
 												"type": "reference",
 												"target": 15556,
 												"name": "Message",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "array",
@@ -11119,7 +11119,7 @@
 													"type": "reference",
 													"target": 15556,
 													"name": "Message",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										]
@@ -11173,7 +11173,7 @@
 										"type": "reference",
 										"target": 15560,
 										"name": "MessageAggregatorFormat",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -11194,7 +11194,7 @@
 											"type": "reference",
 											"target": 15556,
 											"name": "Message",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -11292,12 +11292,12 @@
 														"type": "reference",
 														"target": 15501,
 														"name": "T",
-														"package": "@medusajs/types",
+														"package": "/types",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "RawMessageFormat",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "array",
@@ -11309,12 +11309,12 @@
 															"type": "reference",
 															"target": 15501,
 															"name": "T",
-															"package": "@medusajs/types",
+															"package": "/types",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "RawMessageFormat",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										]
@@ -11454,7 +11454,7 @@
 						"type": "reference",
 						"target": 15377,
 						"name": "TManager",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					}
 				},
@@ -11501,7 +11501,7 @@
 						"type": "reference",
 						"target": 15377,
 						"name": "TManager",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					}
 				},
@@ -11704,7 +11704,7 @@
 						"type": "reference",
 						"target": 15490,
 						"name": "IMessageAggregator",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -12281,7 +12281,7 @@
 								"type": "reference",
 								"target": 15514,
 								"name": "MetadataType",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -12627,7 +12627,7 @@
 								"type": "reference",
 								"target": 15406,
 								"name": "StockLocationAddressDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -12657,7 +12657,7 @@
 									"type": "reference",
 									"target": 15481,
 									"name": "FulfillmentSetDTO",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -12860,7 +12860,7 @@
 									"type": "reference",
 									"target": 15333,
 									"name": "FilterableStockLocationProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -12870,11 +12870,11 @@
 											"type": "reference",
 											"target": 15333,
 											"name": "FilterableStockLocationProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -12918,7 +12918,7 @@
 									"type": "reference",
 									"target": 15333,
 									"name": "FilterableStockLocationProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -12928,11 +12928,11 @@
 											"type": "reference",
 											"target": 15333,
 											"name": "FilterableStockLocationProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -13058,7 +13058,7 @@
 									}
 								],
 								"name": "OperatorMap",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					}
@@ -13092,11 +13092,11 @@
 							"type": "reference",
 							"target": 15333,
 							"name": "FilterableStockLocationProps",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					],
 					"name": "BaseFilterable",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		},
@@ -13397,7 +13397,7 @@
 								"type": "reference",
 								"target": 15514,
 								"name": "MetadataType",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						}
 					],
@@ -13556,7 +13556,7 @@
 										"type": "reference",
 										"target": 15504,
 										"name": "StockLocationAddressInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								]
 							}
@@ -13588,7 +13588,7 @@
 								"type": "reference",
 								"target": 15514,
 								"name": "MetadataType",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						}
 					],
@@ -13738,7 +13738,7 @@
 								"type": "reference",
 								"target": 15504,
 								"name": "StockLocationAddressInput",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -13768,7 +13768,7 @@
 								"type": "reference",
 								"target": 15514,
 								"name": "MetadataType",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						}
 					],
@@ -13916,7 +13916,7 @@
 						"type": "reference",
 						"target": 15504,
 						"name": "StockLocationAddressInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -13946,7 +13946,7 @@
 						"type": "reference",
 						"target": 15514,
 						"name": "MetadataType",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -14042,7 +14042,7 @@
 						"type": "reference",
 						"target": 15504,
 						"name": "StockLocationAddressInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reflection",
@@ -14150,7 +14150,7 @@
 									"type": "reference",
 									"target": 15402,
 									"name": "FilterableStockLocationAddressProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -14160,11 +14160,11 @@
 											"type": "reference",
 											"target": 15402,
 											"name": "FilterableStockLocationAddressProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -14208,7 +14208,7 @@
 									"type": "reference",
 									"target": 15402,
 									"name": "FilterableStockLocationAddressProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -14218,11 +14218,11 @@
 											"type": "reference",
 											"target": 15402,
 											"name": "FilterableStockLocationAddressProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -14300,11 +14300,11 @@
 							"type": "reference",
 							"target": 15402,
 							"name": "FilterableStockLocationAddressProps",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					],
 					"name": "BaseFilterable",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		},
@@ -14451,7 +14451,7 @@
 										"type": "reference",
 										"target": 15333,
 										"name": "FilterableStockLocationProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -14494,11 +14494,11 @@
 												"type": "reference",
 												"target": 15350,
 												"name": "StockLocationDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -14521,7 +14521,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -14538,7 +14538,7 @@
 											"type": "reference",
 											"target": 15350,
 											"name": "StockLocationDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -14676,7 +14676,7 @@
 										"type": "reference",
 										"target": 15333,
 										"name": "FilterableStockLocationProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -14719,11 +14719,11 @@
 												"type": "reference",
 												"target": 15350,
 												"name": "StockLocationDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -14746,7 +14746,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -14766,7 +14766,7 @@
 													"type": "reference",
 													"target": 15350,
 													"name": "StockLocationDTO",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											},
 											{
@@ -14899,11 +14899,11 @@
 												"type": "reference",
 												"target": 15350,
 												"name": "StockLocationDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -14926,7 +14926,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -14941,7 +14941,7 @@
 										"type": "reference",
 										"target": 15350,
 										"name": "StockLocationDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -15032,7 +15032,7 @@
 										"type": "reference",
 										"target": 15378,
 										"name": "CreateStockLocationInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15055,7 +15055,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15070,7 +15070,7 @@
 										"type": "reference",
 										"target": 15350,
 										"name": "StockLocationDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -15140,7 +15140,7 @@
 											"type": "reference",
 											"target": 15378,
 											"name": "CreateStockLocationInput",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -15164,7 +15164,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15181,7 +15181,7 @@
 											"type": "reference",
 											"target": 15350,
 											"name": "StockLocationDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -15275,7 +15275,7 @@
 											"type": "reference",
 											"target": 15384,
 											"name": "UpsertStockLocationInput",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -15299,7 +15299,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15316,7 +15316,7 @@
 											"type": "reference",
 											"target": 15350,
 											"name": "StockLocationDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -15385,7 +15385,7 @@
 										"type": "reference",
 										"target": 15384,
 										"name": "UpsertStockLocationInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15408,7 +15408,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15423,7 +15423,7 @@
 										"type": "reference",
 										"target": 15350,
 										"name": "StockLocationDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -15525,7 +15525,7 @@
 										"type": "reference",
 										"target": 15390,
 										"name": "UpdateStockLocationInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15548,7 +15548,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15563,7 +15563,7 @@
 										"type": "reference",
 										"target": 15350,
 										"name": "StockLocationDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -15631,7 +15631,7 @@
 										"type": "reference",
 										"target": 15333,
 										"name": "FilterableStockLocationProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15652,7 +15652,7 @@
 										"type": "reference",
 										"target": 15390,
 										"name": "UpdateStockLocationInput",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15675,7 +15675,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15692,7 +15692,7 @@
 											"type": "reference",
 											"target": 15350,
 											"name": "StockLocationDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -15811,7 +15811,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15970,12 +15970,12 @@
 												"type": "reference",
 												"target": 15283,
 												"name": "TReturnableLinkableKeys",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "SoftDeleteReturn",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15998,7 +15998,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16200,12 +16200,12 @@
 												"type": "reference",
 												"target": 15289,
 												"name": "TReturnableLinkableKeys",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "RestoreReturn",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16228,7 +16228,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16344,7 +16344,7 @@
 										"type": "reference",
 										"target": 15402,
 										"name": "FilterableStockLocationAddressProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16387,11 +16387,11 @@
 												"type": "reference",
 												"target": 15406,
 												"name": "StockLocationAddressDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16414,7 +16414,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16431,7 +16431,7 @@
 											"type": "reference",
 											"target": 15406,
 											"name": "StockLocationAddressDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -16519,7 +16519,7 @@
 											"type": "reference",
 											"target": 15421,
 											"name": "UpsertStockLocationAddressInput",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -16543,7 +16543,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16560,7 +16560,7 @@
 											"type": "reference",
 											"target": 15406,
 											"name": "StockLocationAddressDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -16679,7 +16679,7 @@
 										"type": "reference",
 										"target": 15361,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16734,7 +16734,7 @@
 					"type": "reference",
 					"target": 15319,
 					"name": "IModuleService",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		}
@@ -16807,7 +16807,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"15237": {
 			"sourceFileName": "../../../../packages/core/types/src/stock-location/service.ts",

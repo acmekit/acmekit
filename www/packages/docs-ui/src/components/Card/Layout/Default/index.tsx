@@ -3,7 +3,7 @@ import clsx from "clsx"
 import { Badge } from "@/components/Badge"
 import { BorderedIcon } from "@/components/BorderedIcon"
 import { Link } from "@/components/Link"
-import { ArrowUpRightOnBox, TriangleRightMini } from "@medusajs/icons"
+import { ArrowUpRightOnBox, TriangleRightMini } from "/icons"
 import { CardProps } from "../../.."
 import { useIsExternalLink } from "../../../.."
 

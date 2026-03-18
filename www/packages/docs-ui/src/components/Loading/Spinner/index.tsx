@@ -1,7 +1,7 @@
 import React from "react"
 import clsx from "clsx"
-import { Spinner } from "@medusajs/icons"
-import { IconProps } from "@medusajs/icons/dist/types"
+import { Spinner } from "/icons"
+import { IconProps } from "/icons/dist/types"
 
 export type SpinnerLoadingProps = {
   iconProps?: IconProps

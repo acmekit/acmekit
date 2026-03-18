@@ -1,4 +1,4 @@
-import { Sun } from "@medusajs/icons"
+import { Sun } from "/icons"
 
 export default function Component() {
   return <Sun color="#FDB813" />

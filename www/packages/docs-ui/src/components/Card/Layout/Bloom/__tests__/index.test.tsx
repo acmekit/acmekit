@@ -11,7 +11,7 @@ vi.mock("@/components/Link", () => ({
 vi.mock("@/components/Icons", () => ({
   BloomIcon: () => <span data-testid="bloom-icon">BloomIcon</span>,
 }))
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   TriangleRightMini: (props: React.ComponentProps<"svg">) => (
     <svg {...props} data-testid="triangle-right-mini" />
   ),

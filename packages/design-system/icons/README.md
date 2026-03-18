@@ -38,11 +38,11 @@ This package is auto-generated, and requires a Figma token associated with the M
 ## Installation
 
 ```sh
-yarn add @medusajs/icons
+yarn add /icons
 ```
 
 ## Usage
 
 ```jsx
-import { Star } from "@medusajs/icons"
+import { Star } from "/icons"
 ```

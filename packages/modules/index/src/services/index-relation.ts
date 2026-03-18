@@ -1,4 +1,4 @@
-import { MedusaInternalService } from "@medusajs/framework/utils"
+import { MedusaInternalService } from "/framework/utils"
 import { IndexRelation } from "@models"
 
 export class IndexRelationService extends MedusaInternalService(

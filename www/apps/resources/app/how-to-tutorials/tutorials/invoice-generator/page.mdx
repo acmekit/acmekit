@@ -9,7 +9,7 @@ products:
   - order
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
 
 export const metadata = {
@@ -141,7 +141,7 @@ export const invoiceConfigHighlights = [
 ]
 
 ```ts title="src/modules/invoice-generator/models/invoice-config.ts" highlights={invoiceConfigHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 export const InvoiceConfig = model.define("invoice_config", {
   id: model.id().primaryKey(),
@@ -187,7 +187,7 @@ export const invoiceHighlights = [
 ]
 
 ```ts title="src/modules/invoice-generator/models/invoice.ts" highlights={invoiceHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 export enum InvoiceStatus {
   LATEST = "latest",
@@ -228,7 +228,7 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 To create the Invoice Generator Module's service, create the file `src/modules/invoice-generator/service.ts` with the following content:
 
 ```ts title="src/modules/invoice-generator/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { InvoiceConfig } from "./models/invoice-config"
 import { Invoice } from "./models/invoice"
 
@@ -258,7 +258,7 @@ So, create the file `src/modules/invoice-generator/index.ts` with the following 
 
 ```ts title="src/modules/invoice-generator/index.ts"
 import InvoiceModuleService from "./service"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 
 export const INVOICE_MODULE = "invoiceGenerator"
 
@@ -340,7 +340,7 @@ export const createDefaultConfigHighlights = [
 import {
   LoaderOptions,
   IMedusaInternalService,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { InvoiceConfig } from "../models/invoice-config"
 
 export default async function createDefaultConfigLoader({
@@ -451,7 +451,7 @@ export const updateInvoiceConfigHighlights = [
 ]
 
 ```ts title="src/workflows/steps/update-invoice-config.ts" highlights={updateInvoiceConfigHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { INVOICE_MODULE } from "../../modules/invoice-generator"
 
 type StepInput = {
@@ -525,7 +525,7 @@ Next, you'll create a workflow that uses the `updateInvoiceConfigStep` step to u
 Create the file `src/workflows/update-invoice-config.ts` with the following content:
 
 ```ts title="src/workflows/update-invoice-config.ts"
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
 import { updateInvoiceConfigStep } from "./steps/update-invoice-config"
 
 type WorkflowInput = {
@@ -585,7 +585,7 @@ export const retrieveInvoiceConfigHighlights = [
 ]
 
 ```ts title="src/api/admin/invoice-config/route.ts" highlights={retrieveInvoiceConfigHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export async function GET(
   req: MedusaRequest,
@@ -617,7 +617,7 @@ Next, you'll add the API route to update the invoice configurations.
 In the same file, add the following imports at the top of the file:
 
 ```ts title="src/api/admin/invoice-config/route.ts"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 import { 
   updateInvoiceConfigWorkflow,
 } from "../../../workflows/update-invoice-config"
@@ -675,7 +675,7 @@ To validate the body parameters of requests sent to the API route, you need to a
 To apply a middleware to a route, create the file `src/api/middlewares.ts` with the following content:
 
 ```ts title="src/api/middlewares.ts"
-import { defineMiddlewares, validateAndTransformBody } from "@medusajs/framework/http"
+import { defineMiddlewares, validateAndTransformBody } from "/framework/http"
 import { PostInvoiceConfigSchema } from "./admin/invoice-config/route"
 
 export default defineMiddlewares({
@@ -712,7 +712,7 @@ To send requests to the Medusa server, you'll use the [JS SDK](../../../js-sdk/p
 Create the file `src/admin/lib/sdk.ts` with the following content:
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -746,13 +746,13 @@ export const invoiceConfigPageHighlights = [
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```tsx title="src/admin/routes/settings/invoice-config/page.tsx" highlights={invoiceConfigPageHighlights}
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Container, Heading, Button, Input, Label, Textarea, toast } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Container, Heading, Button, Input, Label, Textarea, toast } from "/ui"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { sdk } from "../../../lib/sdk"
 import { useForm } from "react-hook-form"
@@ -1062,7 +1062,7 @@ import {
   InferTypeOf, 
   OrderDTO, 
   OrderLineItemDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import axios from "axios"
 ```
 
@@ -1704,7 +1704,7 @@ export const getOrderInvoiceStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/get-order-invoice.ts" highlights={getOrderInvoiceStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { INVOICE_MODULE } from "../../modules/invoice-generator"
 import { InvoiceStatus } from "../../modules/invoice-generator/models/invoice"
 
@@ -1766,9 +1766,9 @@ export const generateInvoicePdfStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/generate-invoice-pdf.ts" highlights={generateInvoicePdfStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { INVOICE_MODULE } from "../../modules/invoice-generator"
-import { OrderDTO, OrderLineItemDTO } from "@medusajs/framework/types"
+import { OrderDTO, OrderLineItemDTO } from "/framework/types"
 
 export type GenerateInvoicePdfStepInput = {
   order: OrderDTO
@@ -1828,9 +1828,9 @@ export const generateInvoicePdfWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/generate-invoice-pdf.ts" highlights={generateInvoicePdfWorkflowHighlights}
-import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, transform, WorkflowResponse } from "/framework/workflows-sdk"
 import { generateInvoicePdfStep, GenerateInvoicePdfStepInput } from "./steps/generate-invoice-pdf"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { getOrderInvoiceStep } from "./steps/get-order-invoice"
 
 type WorkflowInput = {
@@ -1948,7 +1948,7 @@ export const adminInvoiceHighlights = [
 ]
 
 ```ts title="src/api/admin/orders/[id]/invoices/route.ts" highlights={adminInvoiceHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { MedusaRequest, MedusaResponse } from "/framework"
 import { generateInvoicePdfWorkflow } from "../../../../../workflows/generate-invoice-pdf"
 
 export async function GET(
@@ -1993,7 +1993,7 @@ You'll also create an identical API route for the storefront, allowing customers
 Create the file `src/api/store/orders/[id]/invoices/route.ts` with the following content:
 
 ```ts title="src/api/store/orders/[id]/invoices/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { MedusaRequest, MedusaResponse } from "/framework"
 import { generateInvoicePdfWorkflow } from "../../../../../workflows/generate-invoice-pdf"
 
 export async function GET(
@@ -2044,9 +2044,9 @@ export const orderInvoiceWidgetHighlights1 = [
 ]
 
 ```tsx title="src/admin/widgets/order-invoice.tsx" highlights={orderInvoiceWidgetHighlights1}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Button, Container, Heading, Text, toast } from "@medusajs/ui"
-import { AdminOrder, DetailWidgetProps } from "@medusajs/framework/types"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Button, Container, Heading, Text, toast } from "/ui"
+import { AdminOrder, DetailWidgetProps } from "/framework/types"
 import { sdk } from "../lib/sdk"
 import { useState } from "react"
 
@@ -2191,7 +2191,7 @@ First, add the following at the top of the file:
 "use client"
 
 // other imports...
-import { Button, toast } from "@medusajs/ui"
+import { Button, toast } from "/ui"
 import { useState } from "react"
 import { sdk } from "../../../../lib/config"
 ```
@@ -2313,7 +2313,7 @@ export const orderPlacedHighlights = [
 ]
 
 ```ts title="src/subscribers/order-placed.ts" highlights={orderPlacedHighlights}
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { generateInvoicePdfWorkflow } from "../workflows/generate-invoice-pdf"
 
 export default async function orderPlacedHandler({
@@ -2458,7 +2458,7 @@ export const updateInvoicesStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/update-invoices.ts" highlights={updateInvoicesStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { InvoiceStatus } from "../../modules/invoice-generator/models/invoice"
 import { INVOICE_MODULE } from "../../modules/invoice-generator"
 
@@ -2513,8 +2513,8 @@ The step returns the updated invoices.
 Next, to create the workflow that marks invoices as stale, create the file `src/workflows/mark-invoices-stale.ts` with the following content:
 
 ```ts title="src/workflows/mark-invoices-stale.ts"
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { updateInvoicesStep } from "./steps/update-invoices"
 import { InvoiceStatus } from "../modules/invoice-generator/models/invoice"
 
@@ -2552,7 +2552,7 @@ Next, you'll create a subscriber that listens to order updates and marks the ord
 Create the subscriber `src/subscribers/order-updated.ts` with the following content:
 
 ```ts title="src/subscribers/order-updated.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { markInvoicesStaleWorkflow } from "../workflows/mark-invoices-stale"
 
 type EventPayload = {

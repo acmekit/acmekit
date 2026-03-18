@@ -8,19 +8,19 @@ In this chapter, you'll learn about the codemod that helps you replace imports i
 
 ## What is the Replace Imports Codemod?
 
-[Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0) optimized the package structure by consolidating several external packages into the `@medusajs/framework` package.
+[Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0) optimized the package structure by consolidating several external packages into the `/framework` package.
 
-Previously, you had to install and manage packages related to MikroORM, Awilix, OpenTelemetry, and the `pg` package separately in your Medusa application. Starting with v2.11.0, these packages are included in the `@medusajs/framework` package.
+Previously, you had to install and manage packages related to MikroORM, Awilix, OpenTelemetry, and the `pg` package separately in your Medusa application. Starting with v2.11.0, these packages are included in the `/framework` package.
 
-For example, instead of importing `@mikro-orm/core`, you now import it from `@medusajs/framework/mikro-orm/core`. This applies to all of the following packages:
+For example, instead of importing `@mikro-orm/core`, you now import it from `/framework/mikro-orm/core`. This applies to all of the following packages:
 
-- `@mikro-orm/*` packages (for example, `@mikro-orm/core`, `@mikro-orm/migrations`, etc.) -> `@medusajs/framework/mikro-orm/{subpath}`
-- `awilix` -> `@medusajs/framework/awilix`
-- `pg` -> `@medusajs/framework/pg`
-- `@opentelemetry/instrumentation-pg` -> `@medusajs/framework/opentelemetry/instrumentation-pg`
-- `@opentelemetry/resources` -> `@medusajs/framework/opentelemetry/resources`
-- `@opentelemetry/sdk-node` -> `@medusajs/framework/opentelemetry/sdk-node`
-- `@opentelemetry/sdk-trace-node` -> `@medusajs/framework/opentelemetry/sdk-trace-node`
+- `@mikro-orm/*` packages (for example, `@mikro-orm/core`, `@mikro-orm/migrations`, etc.) -> `/framework/mikro-orm/{subpath}`
+- `awilix` -> `/framework/awilix`
+- `pg` -> `/framework/pg`
+- `@opentelemetry/instrumentation-pg` -> `/framework/opentelemetry/instrumentation-pg`
+- `@opentelemetry/resources` -> `/framework/opentelemetry/resources`
+- `@opentelemetry/sdk-node` -> `/framework/opentelemetry/sdk-node`
+- `@opentelemetry/sdk-trace-node` -> `/framework/opentelemetry/sdk-trace-node`
 
 To help you update your codebase to reflect these changes, Medusa provides a codemod that automatically replaces imports of these packages throughout your codebase.
 
@@ -39,61 +39,61 @@ const { execSync } = require("child_process")
 
 /**
  * Script to replace imports and require statements from mikro-orm/{subpath}, awilix, and pg
- * to their @medusajs/framework equivalents
+ * to their /framework equivalents
  */
 
 // Define the replacement mappings
 const replacements = [
-  // MikroORM imports - replace mikro-orm/{subpath} with @medusajs/framework/mikro-orm/{subpath}
+  // MikroORM imports - replace mikro-orm/{subpath} with /framework/mikro-orm/{subpath}
   {
     pattern: /from\s+['"]@?mikro-orm\/([^'"]+)['"]/g,
     // eslint-disable-next-line quotes
-    replacement: 'from "@medusajs/framework/mikro-orm/$1"',
+    replacement: 'from "/framework/mikro-orm/$1"',
   },
-  // Awilix imports - replace awilix with @medusajs/framework/awilix
+  // Awilix imports - replace awilix with /framework/awilix
   {
     pattern: /from\s+['"]awilix['"]/g,
     // eslint-disable-next-line quotes
-    replacement: 'from "@medusajs/framework/awilix"',
+    replacement: 'from "/framework/awilix"',
   },
-  // PG imports - replace pg with @medusajs/framework/pg
+  // PG imports - replace pg with /framework/pg
   {
     pattern: /from\s+['"]pg['"]/g,
     // eslint-disable-next-line quotes
-    replacement: 'from "@medusajs/framework/pg"',
+    replacement: 'from "/framework/pg"',
   },
   // OpenTelemetry imports - replace @opentelemetry/instrumentation-pg, @opentelemetry/resources, 
-  // @opentelemetry/sdk-node, and @opentelemetry/sdk-trace-node with @medusajs/framework/opentelemetry/{subpath}
+  // @opentelemetry/sdk-node, and @opentelemetry/sdk-trace-node with /framework/opentelemetry/{subpath}
   {
     pattern: /from\s+['"]@?opentelemetry\/(instrumentation-pg|resources|sdk-node|sdk-trace-node)['"]/g,
     // eslint-disable-next-line quotes
-    replacement: 'from "@medusajs/framework/opentelemetry/$1"',
+    replacement: 'from "/framework/opentelemetry/$1"',
   },
-  // MikroORM require statements - replace require('@?mikro-orm/{subpath}') with require('@medusajs/framework/mikro-orm/{subpath}')
+  // MikroORM require statements - replace require('@?mikro-orm/{subpath}') with require('/framework/mikro-orm/{subpath}')
   {
     pattern: /require\s*\(\s*['"]@?mikro-orm\/([^'"]+)['"]\s*\)/g,
     // eslint-disable-next-line quotes
-    replacement: 'require("@medusajs/framework/mikro-orm/$1")',
+    replacement: 'require("/framework/mikro-orm/$1")',
   },
-  // Awilix require statements - replace require('awilix') with require('@medusajs/framework/awilix')
+  // Awilix require statements - replace require('awilix') with require('/framework/awilix')
   {
     pattern: /require\s*\(\s*['"]awilix['"]\s*\)/g,
     // eslint-disable-next-line quotes
-    replacement: 'require("@medusajs/framework/awilix")',
+    replacement: 'require("/framework/awilix")',
   },
-  // PG require statements - replace require('pg') with require('@medusajs/framework/pg')
+  // PG require statements - replace require('pg') with require('/framework/pg')
   {
     pattern: /require\s*\(\s*['"]pg['"]\s*\)/g,
     // eslint-disable-next-line quotes
-    replacement: 'require("@medusajs/framework/pg")',
+    replacement: 'require("/framework/pg")',
   },
   // OpenTelemetry require statements - replace require('@opentelemetry/instrumentation-pg'), 
   // require('@opentelemetry/resources'), require('@opentelemetry/sdk-node'), and 
-  // require('@opentelemetry/sdk-trace-node') with require('@medusajs/framework/opentelemetry/{subpath}')
+  // require('@opentelemetry/sdk-trace-node') with require('/framework/opentelemetry/{subpath}')
   {
     pattern: /require\s*\(\s*['"]@?opentelemetry\/(instrumentation-pg|resources|sdk-node|sdk-trace-node)['"]\s*\)/g,
     // eslint-disable-next-line quotes
-    replacement: 'require("@medusajs/framework/opentelemetry/$1")',
+    replacement: 'require("/framework/opentelemetry/$1")',
   },
 ]
 
@@ -240,7 +240,7 @@ if (require.main === module) {
 module.exports = { processFile, getTargetFiles, main }
 ```
 
-This script scans your project for files that import from `mikro-orm/{subpath}`, `awilix`, or `pg`, and replaces those imports with their new equivalents from `@medusajs/framework`. It handles both ES module `import` statements and CommonJS `require` statements in JavaScript and TypeScript files.
+This script scans your project for files that import from `mikro-orm/{subpath}`, `awilix`, or `pg`, and replaces those imports with their new equivalents from `/framework`. It handles both ES module `import` statements and CommonJS `require` statements in JavaScript and TypeScript files.
 
 Next, run the following command in your terminal to make the script executable:
 
@@ -268,7 +268,7 @@ This will scan your project files, apply the necessary import replacements, and 
 
 After running the codemod, review the changes made to your codebase. You can use `git diff` to see the modifications. Additionally, run your tests to ensure everything works as expected.
 
-If everything is working correctly, you can remove the `replace-imports.js` file from your project. You can also remove the following packages from your `package.json`, as they're now included in the `@medusajs/framework` package:
+If everything is working correctly, you can remove the `replace-imports.js` file from your project. You can also remove the following packages from your `package.json`, as they're now included in the `/framework` package:
 
 - `@mikro-orm/*` packages (for example, `@mikro-orm/core`, `@mikro-orm/migrations`, etc.)
 - `awilix`

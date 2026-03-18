@@ -1,8 +1,8 @@
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
-} from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+} from "/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 /**
  * The remote query's details.

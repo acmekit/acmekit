@@ -1,4 +1,4 @@
-import { Checkbox, Label } from "@medusajs/ui"
+import { Checkbox, Label } from "/ui"
 
 export default function CheckboxAllStates() {
   return (

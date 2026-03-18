@@ -20,7 +20,7 @@ vi.mock("@/providers/SiteConfig", () => ({
 }))
 
 // mock icons
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   ArrowUpRightOnBox: () => <span data-testid="arrow-icon" />,
 }))
 

@@ -7,7 +7,7 @@ import {
   Link as LinkIcon,
   CheckCircle,
   SquareTwoStack,
-} from "@medusajs/icons"
+} from "/icons"
 import { useSiteConfig } from "../../../../providers/SiteConfig"
 import { AiAssistantThreadItem as AiAssistantThreadItemType } from "../../../../providers/AiAssistant"
 import { Reaction, useChat } from "@kapaai/react-sdk"

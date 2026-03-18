@@ -12,7 +12,7 @@ products:
   - auth
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
 
 export const metadata = {
@@ -157,10 +157,10 @@ export const phoneAuthServiceHighlights = [
 import { 
   AbstractAuthModuleProvider, 
   AbstractEventBusModuleService, 
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { 
   Logger, 
-} from "@medusajs/types"
+} from "/types"
 
 type InjectedDependencies = {
   logger: Logger
@@ -232,7 +232,7 @@ So, add the `validateOptions` method to the `PhoneAuthService` class:
 // other imports...
 import { 
   MedusaError,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 class PhoneAuthService extends AbstractAuthModuleProvider {
   // ...
@@ -275,7 +275,7 @@ import {
   AuthenticationInput, 
   AuthIdentityProviderService, 
   AuthenticationResponse, 
-} from "@medusajs/types"
+} from "/types"
 
 class PhoneAuthService extends AbstractAuthModuleProvider {
   // ...
@@ -373,7 +373,7 @@ export const authenticateHighlights = [
 // other imports...
 import { 
   AuthIdentityDTO,
-} from "@medusajs/types"
+} from "/types"
 import jwt from "jsonwebtoken"
 
 class PhoneAuthService extends AbstractAuthModuleProvider {
@@ -605,7 +605,7 @@ import PhoneAuthService from "./service"
 import { 
   ModuleProvider, 
   Modules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.AUTH, {
   services: [PhoneAuthService],
@@ -625,13 +625,13 @@ In `medusa-config.ts`, add a `modules` property:
 
 ```ts title="medusa-config.ts"
 // other imports...
-import { Modules, ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { Modules, ContainerRegistrationKeys } from "/framework/utils"
 
 module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/auth",
+      resolve: "/medusa/auth",
       dependencies: [
         Modules.CACHE, 
         ContainerRegistrationKeys.LOGGER, 
@@ -641,7 +641,7 @@ module.exports = defineConfig({
         providers: [
           // default provider
           {
-            resolve: "@medusajs/medusa/auth-emailpass",
+            resolve: "/medusa/auth-emailpass",
             id: "emailpass",
           },
           {
@@ -927,7 +927,7 @@ export const twilioSmsServiceHighlights = [
 ```ts title="src/modules/twilio-sms/service.ts" highlights={twilioSmsServiceHighlights}
 import { 
   AbstractNotificationProviderService,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { Twilio } from "twilio"
 
 type InjectedDependencies = {}
@@ -1029,7 +1029,7 @@ export const sendHighlights = [
 import { 
   ProviderSendNotificationDTO, 
   ProviderSendNotificationResultsDTO,
-} from "@medusajs/types"
+} from "/types"
 
 class TwilioSmsService extends AbstractNotificationProviderService {
   // ...
@@ -1111,7 +1111,7 @@ To create the module's definition, create the file `src/modules/twilio-sms/index
 import { 
   ModuleProvider, 
   Modules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import TwilioSMSNotificationService from "./service"
 
 export default ModuleProvider(Modules.NOTIFICATION, {
@@ -1136,12 +1136,12 @@ module.exports = defineConfig({
   modules: [
     // ...
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           // default provider
           {
-            resolve: "@medusajs/medusa/notification-local",
+            resolve: "/medusa/notification-local",
             id: "local",
             options: {
               name: "Local Notification Provider",
@@ -1225,8 +1225,8 @@ export const sendOtpHighlights = [
 import {
   SubscriberArgs,
   type SubscriberConfig,
-} from "@medusajs/medusa"
-import { Modules } from "@medusajs/framework/utils"
+} from "/medusa"
+import { Modules } from "/framework/utils"
 
 export default async function sendOtpHandler({
   event: { data: {
@@ -1507,7 +1507,7 @@ export const otpHighlights = [
 ```tsx title="src/modules/account/components/otp/index.tsx" badgeLabel="Storefront" badgeColor="blue" highlights={otpHighlights}
 "use client"
 
-import { Input } from "@medusajs/ui"
+import { Input } from "/ui"
 import { useState, useRef, useEffect } from "react"
 import { authenticateWithPhone, verifyOtp } from "../../../../lib/data/customer"
 import ErrorMessage from "../../../checkout/components/error-message"
@@ -1742,7 +1742,7 @@ import "react-phone-number-input/style.css"
 import PhoneInput from "react-phone-number-input"
 import { Otp } from "../otp"
 import { useParams } from "next/navigation"
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
@@ -1954,7 +1954,7 @@ import "react-phone-number-input/style.css"
 import PhoneInput from "react-phone-number-input"
 import { Otp } from "../otp"
 import { useParams } from "next/navigation"
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
@@ -2207,7 +2207,7 @@ Learn more in the [Middlewares](!docs!/learn/fundamentals/api-routes/middlewares
 To add a middleware in your Medusa application, create the file `src/api/middlewares.ts` with the following content:
 
 ```ts title="src/api/middlewares.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { defineMiddlewares } from "@medusajs/framework/http"
+import { defineMiddlewares } from "/framework/http"
 
 export default defineMiddlewares({
   routes: [

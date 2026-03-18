@@ -47,7 +47,7 @@ vi.mock("@/components/Button", () => ({
   ),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   MagnifyingGlass: ({ className }: { className?: string }) => (
     <svg data-testid="magnifying-glass-icon" className={className} />
   ),

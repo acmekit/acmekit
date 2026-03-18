@@ -388,7 +388,7 @@ If you try to run the Medusa application now with Docker, you'll encounter an SS
 To resolve the error, add the following configurations in `medusa-config.ts`:
 
 ```ts title="medusa-config.ts"
-import { loadEnv, defineConfig } from "@medusajs/framework/utils"
+import { loadEnv, defineConfig } from "/framework/utils"
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 

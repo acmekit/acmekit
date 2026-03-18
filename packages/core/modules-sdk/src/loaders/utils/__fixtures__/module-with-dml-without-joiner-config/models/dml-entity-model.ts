@@ -1,4 +1,4 @@
-import { model } from "@medusajs/utils"
+import { model } from "/utils"
 
 export const entityModel = model.define("entityModel", {
   id: model.id().primaryKey(),

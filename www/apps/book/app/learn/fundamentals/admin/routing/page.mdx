@@ -24,8 +24,8 @@ export const highlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-widget.tsx" highlights={highlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container } from "/ui"
 import { Link } from "react-router-dom"
 
 // The widget
@@ -76,8 +76,8 @@ export const loaderHighlights = [
 ]
 
 ```tsx title="src/admin/routes/custom/page.tsx" highlights={loaderHighlights}
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 import {
   useLoaderData,
 } from "react-router-dom"
@@ -128,7 +128,7 @@ export const loaderParamHighlights = [
 ]
 
 ```tsx title="src/admin/routes/custom/[id]/page.tsx" highlights={loaderParamHighlights}
-import { Container, Heading } from "@medusajs/ui"
+import { Container, Heading } from "/ui"
 import {
   useLoaderData,
   LoaderFunctionArgs,

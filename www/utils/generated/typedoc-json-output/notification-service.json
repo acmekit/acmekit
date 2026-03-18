@@ -99,7 +99,7 @@
 												"qualifiedName": "CreateNotificationDTO"
 											},
 											"name": "CreateNotificationDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -126,7 +126,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -146,7 +146,7 @@
 												"qualifiedName": "NotificationDTO"
 											},
 											"name": "NotificationDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -218,7 +218,7 @@
 											"qualifiedName": "CreateNotificationDTO"
 										},
 										"name": "CreateNotificationDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -244,7 +244,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -262,7 +262,7 @@
 											"qualifiedName": "NotificationDTO"
 										},
 										"name": "NotificationDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -406,11 +406,11 @@
 													"qualifiedName": "NotificationDTO"
 												},
 												"name": "NotificationDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -436,7 +436,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -454,7 +454,7 @@
 											"qualifiedName": "NotificationDTO"
 										},
 										"name": "NotificationDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -596,7 +596,7 @@
 											"qualifiedName": "FilterableNotificationProps"
 										},
 										"name": "FilterableNotificationProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -645,11 +645,11 @@
 													"qualifiedName": "NotificationDTO"
 												},
 												"name": "NotificationDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -675,7 +675,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -695,7 +695,7 @@
 												"qualifiedName": "NotificationDTO"
 											},
 											"name": "NotificationDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -838,7 +838,7 @@
 											"qualifiedName": "FilterableNotificationProps"
 										},
 										"name": "FilterableNotificationProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -887,11 +887,11 @@
 													"qualifiedName": "NotificationDTO"
 												},
 												"name": "NotificationDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -917,7 +917,7 @@
 											"qualifiedName": "Context"
 										},
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -940,7 +940,7 @@
 														"qualifiedName": "NotificationDTO"
 													},
 													"name": "NotificationDTO",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											},
 											{
@@ -984,7 +984,7 @@
 						"qualifiedName": "IModuleService"
 					},
 					"name": "IModuleService",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		}
@@ -997,7 +997,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"65636": {
 			"sourceFileName": "../../../../packages/core/types/src/notification/service.ts",

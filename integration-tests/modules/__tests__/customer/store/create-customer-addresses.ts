@@ -1,6 +1,6 @@
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
-import { ICustomerModuleService } from "@medusajs/types"
-import { Modules } from "@medusajs/utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
+import { ICustomerModuleService } from "/types"
+import { Modules } from "/utils"
 import {
   generatePublishableKey,
   generateStoreHeaders,

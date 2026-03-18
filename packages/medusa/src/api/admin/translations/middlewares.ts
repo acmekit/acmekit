@@ -2,8 +2,8 @@ import {
   MiddlewareRoute,
   validateAndTransformBody,
   validateAndTransformQuery,
-} from "@medusajs/framework/http"
-import { PolicyOperation } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { PolicyOperation } from "/framework/utils"
 import { DEFAULT_BATCH_ENDPOINTS_SIZE_LIMIT } from "../../../utils"
 import * as QueryConfig from "./query-config"
 import { Entities } from "./query-config"

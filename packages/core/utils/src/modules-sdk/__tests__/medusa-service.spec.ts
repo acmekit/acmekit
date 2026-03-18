@@ -1,7 +1,7 @@
 import { MedusaService } from "../medusa-service"
 import { model } from "../../dml"
 import { MessageAggregator } from "../../event-bus"
-import { ModuleJoinerConfig } from "@medusajs/types"
+import { ModuleJoinerConfig } from "/types"
 
 const baseRepoMock = {
   serialize: jest.fn().mockImplementation((item) => item),

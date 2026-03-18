@@ -1,5 +1,5 @@
 {
-  "name": "@medusajs/auth-emailpass",
+  "name": "@acmekit/auth-emailpass",
   "version": "2.13.4",
   "description": "Email and password credential authentication provider for Medusa",
   "main": "dist/index.js",
@@ -26,13 +26,13 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "@medusajs/framework": "2.13.4"
+    "/framework": "2.13.4"
   },
   "dependencies": {
     "scrypt-kdf": "^2.0.1"
   },
   "peerDependencies": {
-    "@medusajs/framework": "2.13.4"
+    "/framework": "2.13.4"
   },
   "keywords": [
     "medusa-provider",

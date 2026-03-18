@@ -4,7 +4,7 @@ import {
   DataTable,
   Heading,
   usePrompt,
-} from "@medusajs/ui"
+} from "/ui"
 
 const products = [
   {

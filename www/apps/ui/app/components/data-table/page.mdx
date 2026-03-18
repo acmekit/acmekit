@@ -28,12 +28,12 @@ This component is available after Medusa UI v4.0.4 (or Medusa v2.4.0). It is bui
 
 ## Usage
 
-You import the `DataTable` component from `@medusajs/ui`.
+You import the `DataTable` component from `/ui`.
 
 ```tsx
 import { 
   DataTable,
-} from "@medusajs/ui"
+} from "/ui"
 ```
 
 ### Data Table Columns Preparation
@@ -44,7 +44,7 @@ Before using the `DataTable` component, you need to prepare its columns using th
 import {
   // ...
   createDataTableColumnHelper,
-} from "@medusajs/ui"
+} from "/ui"
 
 const data = [
   {
@@ -77,13 +77,13 @@ For each column in the table, use the `accessor` method of the column helper to 
 
 ### Create Data Table Instance
 
-The `DataTable` component expects a table instance created using the `useDataTable` hook. Import that hook from `@medusajs/ui`:
+The `DataTable` component expects a table instance created using the `useDataTable` hook. Import that hook from `/ui`:
 
 ```tsx
 import {
   // ...
   useDataTable,
-} from "@medusajs/ui"
+} from "/ui"
 ```
 
 Then, inside the component that will render `DataTable`, create a table instance using the `useDataTable` hook:
@@ -309,13 +309,13 @@ This will show a search input at the top of the table, in the data table's toolb
 
 The object passed to the `useDataTable` hook accepts a `pagination` property that you can use to enable and configure the pagination functionality in the `DataTable` component.
 
-First, import the `DataTablePaginationState` type from `@medusajs/ui`:
+First, import the `DataTablePaginationState` type from `/ui`:
 
 ```tsx
 import {
   // ...
   DataTablePaginationState,
-} from "@medusajs/ui"
+} from "/ui"
 ```
 
 Then, create a state variable to manage the pagination:
@@ -405,14 +405,14 @@ This will show the pagination controls at the end of the table.
 
 The object passed to the `useDataTable` hook accepts a `filters` property that you can use to enable and configure the filtering functionality in the `DataTable` component.
 
-First, add the following imports from the `@medusajs/ui` package:
+First, add the following imports from the `/ui` package:
 
 ```tsx
 import {
   // ...
   createDataTableFilterHelper,
   DataTableFilteringState,
-} from "@medusajs/ui"
+} from "/ui"
 ```
 
 The `createDataTableFilterHelper` utility is a function that returns a helper function to generate filter configurations for the `DataTable` component. The `DataTableFilteringState` type is an object that represents the filtering state of the table.
@@ -706,7 +706,7 @@ Next, in the component rendering the `DataTable` component, create a state varia
 import {
   // ...
   DataTableSortingState,
-} from "@medusajs/ui"
+} from "/ui"
 
 export default function ProductTable() {
   const [sorting, setSorting] = useState<DataTableSortingState | null>(null)
@@ -815,14 +815,14 @@ The user can still change the sort values, but the initial values will be applie
 
 The object passed to the `useDataTable` hook accepts a `commands` object property that you can use to add custom actions to the `DataTable` component.
 
-First, add the following imports from `@medusajs/ui`:
+First, add the following imports from `/ui`:
 
 ```tsx
 import {
   // ...
   createDataTableCommandHelper,
   DataTableRowSelectionState,
-} from "@medusajs/ui"
+} from "/ui"
 ```
 
 The `createDataTableCommandHelper` utility is a function that returns a helper function to generate command configurations for the `DataTable` component. The `DataTableRowSelectionState` type is an object that represents the row selection state of the table.

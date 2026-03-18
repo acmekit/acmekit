@@ -769,7 +769,7 @@
 															"qualifiedName": "Providers"
 														},
 														"name": "Providers",
-														"package": "@medusajs/types"
+														"package": "/types"
 													}
 												}
 											],
@@ -1590,7 +1590,7 @@
 						"qualifiedName": "IModuleService"
 					},
 					"name": "IModuleService",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		},
@@ -1608,7 +1608,7 @@
 					},
 					{
 						"kind": "code",
-						"text": "```ts\nimport { ICachingProviderService } from \"@medusajs/framework/types\"\nimport { Logger } from \"@medusajs/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n  // assuming you initialized a client\n  // in a Loader and stored it in the container\n  client: Client\n}\n\ntype Options = {\n  url: string\n}\n\nclass MyCachingModuleProvider implements ICachingProviderService {\n  static identifier = \"my-cache\"\n  protected logger_: Logger\n  protected options_: Options\n  protected client\n\n  constructor (\n    { logger, client }: InjectedDependencies,\n    options: Options\n  ) {\n    this.logger_ = logger\n    this.options_ = options\n    // set the service's client to\n    // the client from the container\n    this.client = client\n  }\n\n  // ...\n}\n\nexport default MyCachingModuleProvider\n```"
+						"text": "```ts\nimport { ICachingProviderService } from \"/framework/types\"\nimport { Logger } from \"/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n  // assuming you initialized a client\n  // in a Loader and stored it in the container\n  client: Client\n}\n\ntype Options = {\n  url: string\n}\n\nclass MyCachingModuleProvider implements ICachingProviderService {\n  static identifier = \"my-cache\"\n  protected logger_: Logger\n  protected options_: Options\n  protected client\n\n  constructor (\n    { logger, client }: InjectedDependencies,\n    options: Options\n  ) {\n    this.logger_ = logger\n    this.options_ = options\n    // set the service's client to\n    // the client from the container\n    this.client = client\n  }\n\n  // ...\n}\n\nexport default MyCachingModuleProvider\n```"
 					},
 					{
 						"kind": "text",
@@ -2643,7 +2643,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"65437": {
 			"sourceFileName": "../../../../packages/core/types/src/caching/index.ts",

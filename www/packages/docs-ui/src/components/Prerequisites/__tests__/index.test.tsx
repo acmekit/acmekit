@@ -43,7 +43,7 @@ vi.mock("@/components/Button", () => ({
   ),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   TriangleRightMini: ({ className }: { className?: string }) => (
     <svg data-testid="triangle-icon" className={className} />
   ),

@@ -4,7 +4,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details } from "docs-ui"
-import { Github } from "@medusajs/icons"
+import { Github } from "/icons"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1732704590/Medusa%20Resources/Integrations_Resend_pam0nf.jpg"
 
@@ -188,10 +188,10 @@ export const serviceHighlights1 = [
 ```ts title="src/modules/resend/service.ts" highlights={serviceHighlights1}
 import { 
   AbstractNotificationProviderService,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { 
   Logger,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { 
   Resend,
 } from "resend"
@@ -269,7 +269,7 @@ So, add to the `ResendNotificationProviderService` the `validateOptions` method:
 import { 
   // other imports...
   MedusaError,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 // ...
 
@@ -380,7 +380,7 @@ import {
   // ...
   ProviderSendNotificationDTO, 
   ProviderSendNotificationResultsDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { 
   // ...
   CreateEmailOptions, 
@@ -457,7 +457,7 @@ Create the file `src/modules/resend/index.ts` with the following content:
 import { 
   ModuleProvider, 
   Modules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import ResendNotificationProviderService from "./service"
 
 export default ModuleProvider(Modules.NOTIFICATION, {
@@ -480,7 +480,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           {
@@ -562,7 +562,7 @@ import {
   Body, 
   Link, 
 } from "@react-email/components"
-import { BigNumberValue, CustomerDTO, OrderDTO } from "@medusajs/framework/types"
+import { BigNumberValue, CustomerDTO, OrderDTO } from "/framework/types"
 
 type OrderPlacedEmailProps = {
   order: OrderDTO & {
@@ -1159,9 +1159,9 @@ Learn more about workflows in [this documentation](!docs!/learn/fundamentals/wor
 You'll start by implementing the step of the workflow that sends the notification. To do that, create the file `src/workflows/steps/send-notification.ts` with the following content:
 
 ```ts title="src/workflows/steps/send-notification.ts"
-import { Modules } from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { CreateNotificationDTO } from "@medusajs/framework/types"
+import { Modules } from "/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { CreateNotificationDTO } from "/framework/types"
 
 export const sendNotificationStep = createStep(
   "send-notification",
@@ -1209,8 +1209,8 @@ import {
   createWorkflow, 
   when,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { sendNotificationStep } from "./steps/send-notification"
 
 type WorkflowInput = {
@@ -1309,7 +1309,7 @@ export const subscriberHighlights = [
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 import { sendOrderConfirmationWorkflow } from "../workflows/send-order-confirmation"
 
 export default async function orderPlacedHandler({

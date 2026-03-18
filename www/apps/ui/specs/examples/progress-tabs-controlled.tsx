@@ -1,4 +1,4 @@
-import { ProgressTabs, Text, Button } from "@medusajs/ui"
+import { ProgressTabs, Text, Button } from "/ui"
 import * as React from "react"
 
 export default function ProgressTabsControlled() {

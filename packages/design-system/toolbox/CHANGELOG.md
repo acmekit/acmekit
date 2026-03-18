@@ -1,4 +1,4 @@
-# @medusajs/toolbox
+# /toolbox
 
 ## 2.13.4
 

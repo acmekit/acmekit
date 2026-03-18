@@ -1,4 +1,4 @@
-import { Checkbox, CheckboxCheckedState, Label } from "@medusajs/ui"
+import { Checkbox, CheckboxCheckedState, Label } from "/ui"
 import { useState } from "react"
 
 export default function CheckboxControlled() {

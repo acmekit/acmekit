@@ -1,13 +1,13 @@
-import { TranslationDTO } from "@medusajs/framework/types"
+import { TranslationDTO } from "/framework/types"
 import {
   createWorkflow,
   transform,
   WorkflowData,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { updateTranslationsStep, UpdateTranslationsStepInput } from "../steps"
-import { TranslationWorkflowEvents } from "@medusajs/framework/utils"
+import { TranslationWorkflowEvents } from "/framework/utils"
 
 /**
  * The translations to update.

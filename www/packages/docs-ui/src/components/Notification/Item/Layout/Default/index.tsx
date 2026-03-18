@@ -6,7 +6,7 @@ import {
   ExclamationCircleSolid,
   InformationCircleSolid,
   XCircleSolid,
-} from "@medusajs/icons"
+} from "/icons"
 import { Button } from "@/components/Button"
 
 export type NotificationItemLayoutDefaultProps = NotificationItemProps & {

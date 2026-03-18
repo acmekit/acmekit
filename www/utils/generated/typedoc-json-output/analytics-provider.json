@@ -19,7 +19,7 @@
 					},
 					{
 						"kind": "code",
-						"text": "```ts\nimport { Logger } from \"@medusajs/framework/types\"\nimport { AbstractAnalyticsProviderService } from \"@medusajs/framework/utils\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nclass MyAnalyticsProviderService extends AbstractAnalyticsProviderService {\n  protected logger_: Logger\n  protected options_: Options\n  static identifier = \"my-analytics\"\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    super()\n\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n}\n\nexport default MyAnalyticsProviderService\n```"
+						"text": "```ts\nimport { Logger } from \"/framework/types\"\nimport { AbstractAnalyticsProviderService } from \"/framework/utils\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nclass MyAnalyticsProviderService extends AbstractAnalyticsProviderService {\n  protected logger_: Logger\n  protected options_: Options\n  static identifier = \"my-analytics\"\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    super()\n\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n}\n\nexport default MyAnalyticsProviderService\n```"
 					}
 				]
 			},
@@ -113,7 +113,7 @@
 								"type": "reference",
 								"target": 65947,
 								"name": "AbstractAnalyticsProviderService",
-								"package": "@medusajs/utils"
+								"package": "/utils"
 							}
 						}
 					]
@@ -213,7 +213,7 @@
 											"qualifiedName": "TrackAnalyticsEventDTO"
 										},
 										"name": "TrackAnalyticsEventDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -340,7 +340,7 @@
 											"qualifiedName": "IdentifyAnalyticsEventDTO"
 										},
 										"name": "IdentifyAnalyticsEventDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -410,7 +410,7 @@
 						"qualifiedName": "IAnalyticsProvider"
 					},
 					"name": "IAnalyticsProvider",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		}
@@ -423,7 +423,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/utils",
+	"packageName": "/utils",
 	"symbolIdMap": {
 		"65946": {
 			"sourceFileName": "../../../../packages/core/utils/src/analytics/abstract-analytics-provider.ts",

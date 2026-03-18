@@ -29,7 +29,7 @@ You create a data model in a TypeScript or JavaScript file under the `models` di
 ![Directory structure in module after adding the brand data model](https://res.cloudinary.com/dza7lstvk/image/upload/v1732868920/Medusa%20Book/brand-dir-overview-2_lexhdl.jpg)
 
 ```ts title="src/modules/brand/models/brand.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 export const Brand = model.define("brand", {
   id: model.id().primaryKey(),
@@ -67,7 +67,7 @@ export const serviceHighlights = [
 ]
 
 ```ts title="src/modules/brand/service.ts" highlights={serviceHighlights}
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { Brand } from "./models/brand"
 
 class BrandModuleService extends MedusaService({
@@ -102,7 +102,7 @@ So, to export the Brand Module's definition, create the file `src/modules/brand/
 ![Directory structure in module after adding the definition file](https://res.cloudinary.com/dza7lstvk/image/upload/v1732869045/Medusa%20Book/brand-dir-overview-4_nf8ymw.jpg)
 
 ```ts title="src/modules/brand/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import BrandModuleService from "./service"
 
 export const BRAND_MODULE = "brand"

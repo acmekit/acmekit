@@ -20,7 +20,7 @@ After overriding the `Logger`, Medusa will use your custom logger whenever it ne
 
 To override the default `Logger`:
 
-1. Create a class that extends the `Logger` interface from `@medusajs/framework/types`.
+1. Create a class that extends the `Logger` interface from `/framework/types`.
 2. Pass the class in the Medusa configurations.
 
 ### Step 1: Create a Custom Logger Class
@@ -28,7 +28,7 @@ To override the default `Logger`:
 To create a custom logger class, create a new file at `src/utils/custom-logger.ts` with the following content:
 
 ```ts title="src/utils/custom-logger.ts"
-import { Logger } from "@medusajs/framework/types"
+import { Logger } from "/framework/types"
 
 class MyLogger implements Logger {
   panic(data: unknown): void {

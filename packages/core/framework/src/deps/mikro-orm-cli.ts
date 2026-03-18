@@ -1,1 +1,1 @@
-export * from "@medusajs/deps/mikro-orm/cli"
+export * from "/deps/mikro-orm/cli"

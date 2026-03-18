@@ -1,5 +1,5 @@
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
-import { DmlEntity, Modules } from "@medusajs/utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
+import { DmlEntity, Modules } from "/utils"
 import {
   adminHeaders,
   createAdminUser,

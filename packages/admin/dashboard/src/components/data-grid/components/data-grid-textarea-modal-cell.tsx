@@ -1,4 +1,4 @@
-import { clx, Textarea } from "@medusajs/ui"
+import { clx, Textarea } from "/ui"
 import { Popover as RadixPopover } from "radix-ui"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Controller, ControllerRenderProps } from "react-hook-form"

@@ -80,11 +80,11 @@
 															"qualifiedName": "IdProperty"
 														},
 														"name": "IdProperty",
-														"package": "@medusajs/utils"
+														"package": "/utils"
 													}
 												],
 												"name": "PrimaryKeyModifier",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -117,7 +117,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -150,7 +150,7 @@
 													"qualifiedName": "BooleanProperty"
 												},
 												"name": "BooleanProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -183,7 +183,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -216,7 +216,7 @@
 													"qualifiedName": "DateTimeProperty"
 												},
 												"name": "DateTimeProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -251,7 +251,7 @@
 													"qualifiedName": "JSONProperty"
 												},
 												"name": "JSONProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										}
@@ -281,7 +281,7 @@
 							}
 						],
 						"name": "DMLEntitySchemaBuilder",
-						"package": "@medusajs/utils"
+						"package": "/utils"
 					},
 					{
 						"type": "literal",
@@ -289,7 +289,7 @@
 					}
 				],
 				"name": "DmlEntity",
-				"package": "@medusajs/utils"
+				"package": "/utils"
 			},
 			"defaultValue": "..."
 		},
@@ -368,11 +368,11 @@
 															"qualifiedName": "IdProperty"
 														},
 														"name": "IdProperty",
-														"package": "@medusajs/utils"
+														"package": "/utils"
 													}
 												],
 												"name": "PrimaryKeyModifier",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -407,7 +407,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -442,7 +442,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -475,7 +475,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -510,7 +510,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -545,7 +545,7 @@
 													"qualifiedName": "JSONProperty"
 												},
 												"name": "JSONProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										}
@@ -575,7 +575,7 @@
 							}
 						],
 						"name": "DMLEntitySchemaBuilder",
-						"package": "@medusajs/utils"
+						"package": "/utils"
 					},
 					{
 						"type": "literal",
@@ -583,7 +583,7 @@
 					}
 				],
 				"name": "DmlEntity",
-				"package": "@medusajs/utils"
+				"package": "/utils"
 			},
 			"defaultValue": "..."
 		}
@@ -597,7 +597,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/user",
+	"packageName": "/user",
 	"symbolIdMap": {
 		"17895": {
 			"sourceFileName": "../../../../packages/modules/user/src/models/index.ts",

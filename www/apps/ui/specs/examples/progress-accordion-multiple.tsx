@@ -1,4 +1,4 @@
-import { ProgressAccordion, Text } from "@medusajs/ui"
+import { ProgressAccordion, Text } from "/ui"
 
 export default function ProgressAccordionSingle() {
   return (

@@ -1,4 +1,4 @@
-import { Logger } from "@medusajs/framework/types"
+import { Logger } from "/framework/types"
 import path from "path"
 import { CONFIG } from "./types"
 

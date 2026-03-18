@@ -5,8 +5,8 @@ import type {
   IDmlEntity,
   Infer,
   PropertyType,
-} from "@medusajs/types"
-import { Entity, Filter, MetadataStorage } from "@medusajs/deps/mikro-orm/core"
+} from "/types"
+import { Entity, Filter, MetadataStorage } from "/deps/mikro-orm/core"
 
 import {
   mikroOrmFreeTextSearchFilterOptionsFactory,

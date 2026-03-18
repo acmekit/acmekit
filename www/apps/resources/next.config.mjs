@@ -243,14 +243,14 @@ const nextConfig = {
     ])
   },
   outputFileTracingExcludes: {
-    "*": ["node_modules/@medusajs/icons"],
+    "*": ["node_modules//icons"],
   },
   outputFileTracingIncludes: {
     "/md\\-content/\\[\\[\\.\\.\\.slug\\]\\]": ["./app/**/*.mdx"],
     "/md\\-content/references/**": ["./references/**/*.mdx"],
   },
   experimental: {
-    optimizePackageImports: ["@medusajs/icons", "@medusajs/ui", "elkjs"],
+    optimizePackageImports: ["/icons", "/ui", "elkjs"],
   },
   rewrites: async () => {
     return {

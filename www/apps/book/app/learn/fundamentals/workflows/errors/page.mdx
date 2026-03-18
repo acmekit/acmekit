@@ -43,7 +43,7 @@ export const highlights = [
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import myWorkflow from "../../../workflows/hello-world"
 
 export async function GET(
@@ -145,7 +145,7 @@ export const skipOnPermanentFailureEnabledHighlights = [
 ```ts title="Workflow Equivalent" highlights={skipOnPermanentFailureEnabledHighlights}
 import {
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   actionThatThrowsError,
   moreActions,
@@ -205,7 +205,7 @@ export const skipOnPermanentFailureStepHighlights = [
 ```ts title="Workflow Equivalent" highlights={skipOnPermanentFailureStepHighlights}
 import {
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   actionThatThrowsError,
   moreActions,
@@ -279,7 +279,7 @@ export const continueOnPermanentFailureHighlights = [
 ```ts title="Workflow Equivalent" highlights={continueOnPermanentFailureHighlights}
 import {
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   actionThatThrowsError,
   moreActions,

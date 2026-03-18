@@ -1,4 +1,4 @@
-import { IconProps } from "@medusajs/icons/dist/types"
+import { IconProps } from "/icons/dist/types"
 import React from "react"
 
 export const NavigationDropdownDocV1Icon = (props: IconProps) => {

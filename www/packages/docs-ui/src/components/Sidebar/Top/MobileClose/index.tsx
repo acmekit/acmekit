@@ -3,7 +3,7 @@
 import React from "react"
 import { useSidebar } from "@/providers/Sidebar"
 import { Button } from "@/components/Button"
-import { XMarkMini } from "@medusajs/icons"
+import { XMarkMini } from "/icons"
 
 export const SidebarTopMobileClose = () => {
   const { setMobileSidebarOpen } = useSidebar()

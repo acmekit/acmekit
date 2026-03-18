@@ -96,7 +96,7 @@ ADMIN_AUTH_TYPE=jwt
 Make sure to also create a JS SDK instance in your Medusa Admin customizations with the `auth.type` option set to `jwt`. For example, create the file `src/lib/sdk.ts` with the following content:
 
 ```ts title="src/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -124,8 +124,8 @@ First, you need to create the workflow that creates a user and associates it wit
 Create the file `src/workflows/create-user.ts` with the following content:
 
 ```ts title="src/workflows/create-user.ts"
-import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { createUsersWorkflow, setAuthAppMetadataStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, transform, WorkflowResponse } from "/framework/workflows-sdk"
+import { createUsersWorkflow, setAuthAppMetadataStep } from "/medusa/core-flows"
 
 type WorkflowInput = {
   email: string
@@ -182,13 +182,13 @@ Create the file `src/api/custom-auth/admin/users/route.ts` with the following co
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```ts title="src/api/custom-auth/admin/users/route.ts"
-import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { z } from "@medusajs/framework/zod"
+import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework"
+import { z } from "/framework/zod"
 import { createUserWorkflow } from "../../../../workflows/create-user"
 
 export const CreateUserSchema = z.object({
@@ -219,7 +219,7 @@ Finally, you need to apply the authentication [middleware](!docs!/learn/fundamen
 To do this, create the file `src/api/middlewares.ts` with the following content:
 
 ```ts title="src/api/middlewares.ts"
-import { authenticate, defineMiddlewares } from "@medusajs/framework/http"
+import { authenticate, defineMiddlewares } from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -252,8 +252,8 @@ import {
   AuthenticatedMedusaRequest, 
   MedusaResponse,
   MedusaNextFunction,
-} from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { MedusaError } from "/framework/utils"
 
 export default async function validateCustomAuthProvider(
   req: AuthenticatedMedusaRequest, 
@@ -336,8 +336,8 @@ The widget should display a button that authenticates or redirects the user to t
 For example, the widget may look like this:
 
 ```tsx title="src/admin/widgets/custom-login.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Button, toast } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Button, toast } from "/ui"
 import { decodeToken } from "react-jwt"
 import { useSearchParams, useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"

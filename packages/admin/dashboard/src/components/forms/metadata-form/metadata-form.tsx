@@ -7,7 +7,7 @@ import {
   InlineTip,
   clx,
   toast,
-} from "@medusajs/ui"
+} from "/ui"
 import { useFieldArray, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { z } from "zod"
@@ -17,8 +17,8 @@ import {
   ArrowUpMini,
   EllipsisVertical,
   Trash,
-} from "@medusajs/icons"
-import { FetchError } from "@medusajs/js-sdk"
+} from "/icons"
+import { FetchError } from "/js-sdk"
 import { ComponentPropsWithoutRef, forwardRef } from "react"
 import { ConditionalTooltip } from "../../common/conditional-tooltip"
 import { Form } from "../../common/form"

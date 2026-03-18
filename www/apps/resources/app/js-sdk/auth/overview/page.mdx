@@ -87,7 +87,7 @@ By default, the JS SDK uses JWT token (`jwt`) authentication. You can change the
 For example:
 
 ```ts
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   // ...
@@ -100,7 +100,7 @@ export const sdk = new Medusa({
 To use a secret API key instead, pass it in the `apiKey` configuration instead:
 
 ```ts
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   // ...
@@ -187,7 +187,7 @@ For example, to use `AsyncStorage` in React Native:
 
 ```ts
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 let MEDUSA_BACKEND_URL = "http://localhost:9000"
 
@@ -259,7 +259,7 @@ You can change the `credentials` option by setting the `auth.fetchCredentials` c
 For example:
 
 ```ts
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   // ...

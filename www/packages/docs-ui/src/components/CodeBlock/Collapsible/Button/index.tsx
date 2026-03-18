@@ -3,7 +3,7 @@
 import clsx from "clsx"
 import React from "react"
 import { CollapsibleReturn } from "../../../../hooks/use-collapsible"
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 
 export type CodeBlockCollapsibleButtonProps = {
   type: "start" | "end"

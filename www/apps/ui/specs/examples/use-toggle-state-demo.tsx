@@ -4,7 +4,7 @@ import {
   Heading,
   Table,
   useToggleState,
-} from "@medusajs/ui"
+} from "/ui"
 import { useState } from "react"
 
 export default function useToggleStateDemo() {

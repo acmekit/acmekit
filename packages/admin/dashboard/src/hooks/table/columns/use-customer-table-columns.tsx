@@ -17,7 +17,7 @@ import {
   FirstSeenCell,
   FirstSeenHeader,
 } from "../../../components/table/table-cells/customer/first-seen-cell"
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 
 const columnHelper = createColumnHelper<HttpTypes.AdminCustomer>()
 

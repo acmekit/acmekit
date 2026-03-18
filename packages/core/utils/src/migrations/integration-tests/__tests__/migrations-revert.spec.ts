@@ -1,6 +1,6 @@
-import { MetadataStorage } from "@medusajs/deps/mikro-orm/core"
-import { TSMigrationGenerator } from "@medusajs/deps/mikro-orm/migrations"
-import { MikroORM } from "@medusajs/deps/mikro-orm/postgresql"
+import { MetadataStorage } from "/deps/mikro-orm/core"
+import { TSMigrationGenerator } from "/deps/mikro-orm/migrations"
+import { MikroORM } from "/deps/mikro-orm/postgresql"
 import { join } from "path"
 import { createDatabase, dropDatabase } from "pg-god"
 

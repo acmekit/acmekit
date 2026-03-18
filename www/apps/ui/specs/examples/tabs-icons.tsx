@@ -1,5 +1,5 @@
-import { Tabs, Text } from "@medusajs/ui"
-import { TruckFast, CreditCard, InformationCircle } from "@medusajs/icons"
+import { Tabs, Text } from "/ui"
+import { TruckFast, CreditCard, InformationCircle } from "/icons"
 
 export default function TabsIcons() {
   return (

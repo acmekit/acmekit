@@ -1,6 +1,6 @@
-import AnalyticsLocalModule from "@medusajs/analytics-local"
+import AnalyticsLocalModule from "/analytics-local"
 
-export * from "@medusajs/analytics-local"
+export * from "/analytics-local"
 
 export default AnalyticsLocalModule
-export const discoveryPath = require.resolve("@medusajs/analytics-local")
+export const discoveryPath = require.resolve("/analytics-local")

@@ -2,11 +2,11 @@ import {
   LoaderOptions,
   Logger,
   ModulesSdkTypes,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import {
   ContainerRegistrationKeys,
   normalizeLocale,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import Locale from "@models/locale"
 
 /**

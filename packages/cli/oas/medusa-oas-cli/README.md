@@ -4,10 +4,10 @@ A command-line tool for all OpenAPI Specifications (OAS) related tooling.
 
 ## Install
 
-`yarn add --dev @medusajs/medusa-oas-cli`
+`yarn add --dev /medusa-oas-cli`
 
 Install in the global namespace is not yet supported.
-~~`npm install -g @medusajs/medusa-oas-cli`~~
+~~`npm install -g /medusa-oas-cli`~~
 
 ## Configuration / First time setup
 
@@ -23,7 +23,7 @@ yarn medusa-oas <command>
 
 ### Command - `oas`
 
-This command will scan the `@medusajs/medusa` package in order to extract JSDoc OAS into a json file.
+This command will scan the `/medusa` package in order to extract JSDoc OAS into a json file.
 
 The command will output one of three the files `admin.oas.json`, `store.oas.json` or `combined.oas.json` in the same
 directory that the command was run.

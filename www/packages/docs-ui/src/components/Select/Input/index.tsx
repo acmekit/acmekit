@@ -5,7 +5,7 @@ import clsx from "clsx"
 import { useSelect } from "@/hooks"
 import { SelectDropdown, SelectProps } from ".."
 import { Badge } from "docs-ui"
-import { ChevronUpDown, XMarkMini } from "@medusajs/icons"
+import { ChevronUpDown, XMarkMini } from "/icons"
 
 export const SelectInput = ({
   value,

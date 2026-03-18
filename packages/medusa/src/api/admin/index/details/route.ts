@@ -1,6 +1,6 @@
-import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { HttpTypes } from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
+import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework"
+import { HttpTypes } from "/framework/types"
+import { Modules } from "/framework/utils"
 
 /**
  * Get the index information for all entities that are indexed and their sync state

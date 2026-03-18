@@ -1,8 +1,8 @@
 import {
   ContainerRegistrationKeys,
   MedusaError,
-} from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+} from "/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 /**
  * @ignore

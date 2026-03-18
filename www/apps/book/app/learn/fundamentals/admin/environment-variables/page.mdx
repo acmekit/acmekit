@@ -39,8 +39,8 @@ To access or use an environment variable starting with `VITE_`, use the `import.
 For example:
 
 ```tsx highlights={[["8"]]}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 const ProductWidget = () => {
   return (
@@ -175,8 +175,8 @@ For plugins, you can use environment variables without a prefix. Then, Medusa ap
 For example, you can create a widget in your plugin that uses the `MY_API_KEY` environment variable:
 
 ```tsx highlights={[["8"]]}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 const ProductWidget = () => {
   return (
@@ -214,8 +214,8 @@ Plugins also have the following global variables available:
 You can use those variables in your Medusa Admin customizations of a plugin. For example:
 
 ```tsx highlights={[["8"]]}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 const ProductWidget = () => {
   return (

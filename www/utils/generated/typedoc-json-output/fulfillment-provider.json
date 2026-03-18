@@ -19,7 +19,7 @@
 					},
 					{
 						"kind": "code",
-						"text": "```ts title=\"src/modules/my-fulfillment/service.ts\"\nimport { AbstractFulfillmentProviderService } from \"@medusajs/framework/utils\"\nimport { Logger } from \"@medusajs/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nclass MyFulfillmentProviderService extends AbstractFulfillmentProviderService {\n// other properties...\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor(\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    super()\n\n    this.logger_ = logger\n    this.options_ = options\n\n    // TODO initialize your client\n  }\n}\n\nexport default MyFulfillmentProviderService\n```"
+						"text": "```ts title=\"src/modules/my-fulfillment/service.ts\"\nimport { AbstractFulfillmentProviderService } from \"/framework/utils\"\nimport { Logger } from \"/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nclass MyFulfillmentProviderService extends AbstractFulfillmentProviderService {\n// other properties...\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor(\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    super()\n\n    this.logger_ = logger\n    this.options_ = options\n\n    // TODO initialize your client\n  }\n}\n\nexport default MyFulfillmentProviderService\n```"
 					}
 				]
 			},
@@ -113,7 +113,7 @@
 								"type": "reference",
 								"target": 45680,
 								"name": "AbstractFulfillmentProviderService",
-								"package": "@medusajs/utils"
+								"package": "/utils"
 							}
 						}
 					]
@@ -193,7 +193,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\n// other imports...\nimport { FulfillmentOption } from \"@medusajs/framework/types\"\n\nclass MyFulfillmentProviderService extends AbstractFulfillmentProviderService {\n  // ...\n  async getFulfillmentOptions(): Promise<FulfillmentOption[]> {\n    // assuming you have a client\n    const services = await this.client.getServices()\n\n    return services.map((service) => ({\n      id: service.service_id,\n      name: service.name,\n      service_code: service.code,\n      // can add other relevant data for the provider to later process the shipping option.\n    }))\n  }\n}\n```"
+												"text": "```ts\n// other imports...\nimport { FulfillmentOption } from \"/framework/types\"\n\nclass MyFulfillmentProviderService extends AbstractFulfillmentProviderService {\n  // ...\n  async getFulfillmentOptions(): Promise<FulfillmentOption[]> {\n    // assuming you have a client\n    const services = await this.client.getServices()\n\n    return services.map((service) => ({\n      id: service.service_id,\n      name: service.name,\n      service_code: service.code,\n      // can add other relevant data for the provider to later process the shipping option.\n    }))\n  }\n}\n```"
 											}
 										]
 									}
@@ -223,7 +223,7 @@
 												"qualifiedName": "FulfillmentOption"
 											},
 											"name": "FulfillmentOption",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -438,7 +438,7 @@
 											"qualifiedName": "ValidateFulfillmentDataContext"
 										},
 										"name": "ValidateFulfillmentDataContext",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -744,7 +744,7 @@
 											"qualifiedName": "CreateShippingOptionDTO"
 										},
 										"name": "CreateShippingOptionDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -855,7 +855,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\nimport { CalculateShippingOptionPriceDTO } from \"@medusajs/framework/types\"\nclass MyFulfillmentProviderService extends AbstractFulfillmentProviderService {\n  // ...\n  async calculatePrice(\n    optionData: CalculateShippingOptionPriceDTO[\"optionData\"],\n    data: CalculateShippingOptionPriceDTO[\"data\"],\n    context: CalculateShippingOptionPriceDTO[\"context\"]\n  ): Promise<CalculatedShippingOptionPrice> {\n    // assuming the client can calculate the price using\n    // the third-party service\n    const price = await this.client.calculate(data)\n    return {\n      calculated_amount: price,\n      // Update this boolean value based on your logic\n      is_calculated_price_tax_inclusive: true,\n    }\n  }\n}\n```"
+												"text": "```ts\nimport { CalculateShippingOptionPriceDTO } from \"/framework/types\"\nclass MyFulfillmentProviderService extends AbstractFulfillmentProviderService {\n  // ...\n  async calculatePrice(\n    optionData: CalculateShippingOptionPriceDTO[\"optionData\"],\n    data: CalculateShippingOptionPriceDTO[\"data\"],\n    context: CalculateShippingOptionPriceDTO[\"context\"]\n  ): Promise<CalculatedShippingOptionPrice> {\n    // assuming the client can calculate the price using\n    // the third-party service\n    const price = await this.client.calculate(data)\n    return {\n      calculated_amount: price,\n      // Update this boolean value based on your logic\n      is_calculated_price_tax_inclusive: true,\n    }\n  }\n}\n```"
 											}
 										]
 									}
@@ -978,7 +978,7 @@
 													"qualifiedName": "CartPropsForFulfillment"
 												},
 												"name": "CartPropsForFulfillment",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "unknown",
@@ -1002,7 +1002,7 @@
 											"qualifiedName": "CalculatedShippingOptionPrice"
 										},
 										"name": "CalculatedShippingOptionPrice",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1198,7 +1198,7 @@
 																"qualifiedName": "FulfillmentItemDTO"
 															},
 															"name": "FulfillmentItemDTO",
-															"package": "@medusajs/types"
+															"package": "/types"
 														},
 														{
 															"type": "literal",
@@ -1249,7 +1249,7 @@
 															"qualifiedName": "FulfillmentOrderDTO"
 														},
 														"name": "FulfillmentOrderDTO",
-														"package": "@medusajs/types"
+														"package": "/types"
 													}
 												],
 												"name": "Partial",
@@ -1293,7 +1293,7 @@
 															"qualifiedName": "FulfillmentDTO"
 														},
 														"name": "FulfillmentDTO",
-														"package": "@medusajs/types"
+														"package": "/types"
 													},
 													{
 														"type": "union",
@@ -1336,7 +1336,7 @@
 											"qualifiedName": "CreateFulfillmentResult"
 										},
 										"name": "CreateFulfillmentResult",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -1762,7 +1762,7 @@
 											"qualifiedName": "CreateFulfillmentResult"
 										},
 										"name": "CreateFulfillmentResult",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -2249,7 +2249,7 @@
 						"qualifiedName": "IFulfillmentProvider"
 					},
 					"name": "IFulfillmentProvider",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		}
@@ -2262,7 +2262,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/utils",
+	"packageName": "/utils",
 	"symbolIdMap": {
 		"45679": {
 			"sourceFileName": "../../../../packages/core/utils/src/fulfillment/provider.ts",

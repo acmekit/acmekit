@@ -54,7 +54,7 @@ import { Npm2YarnCode } from "../index"
 describe("render", () => {
   test("renders npm2yarn code", () => {
     const { container } = render(
-      <Npm2YarnCode npmCode="npm install @medusajs/medusa" />
+      <Npm2YarnCode npmCode="npm install /medusa" />
     )
     expect(container).toBeInTheDocument()
     const codeTabs = container.querySelector("[data-testid='code-tabs']")
@@ -71,7 +71,7 @@ describe("render", () => {
     )
     expect(yarnCodeBlock).toBeInTheDocument()
     expect(yarnCodeBlock).toHaveAttribute("data-lang", "bash")
-    expect(yarnCodeBlock).toHaveTextContent("yarn add @medusajs/medusa")
+    expect(yarnCodeBlock).toHaveTextContent("yarn add /medusa")
     expect(codeTabsChildren![1]).toHaveAttribute("data-label", "pnpm")
     expect(codeTabsChildren![1]).toHaveAttribute("data-value", "pnpm")
     const pnpmCodeBlock = codeTabsChildren![1].querySelector(
@@ -79,7 +79,7 @@ describe("render", () => {
     )
     expect(pnpmCodeBlock).toBeInTheDocument()
     expect(pnpmCodeBlock).toHaveAttribute("data-lang", "bash")
-    expect(pnpmCodeBlock).toHaveTextContent("pnpm add @medusajs/medusa")
+    expect(pnpmCodeBlock).toHaveTextContent("pnpm add /medusa")
     expect(codeTabsChildren![2]).toHaveAttribute("data-label", "npm")
     expect(codeTabsChildren![2]).toHaveAttribute("data-value", "npm")
     const npmCodeBlock = codeTabsChildren![2].querySelector(
@@ -87,13 +87,13 @@ describe("render", () => {
     )
     expect(npmCodeBlock).toBeInTheDocument()
     expect(npmCodeBlock).toHaveAttribute("data-lang", "bash")
-    expect(npmCodeBlock).toHaveTextContent("npm install @medusajs/medusa")
+    expect(npmCodeBlock).toHaveTextContent("npm install /medusa")
   })
 
   test("renders npm2yarn code with custom code options", () => {
     const { container } = render(
       <Npm2YarnCode
-        npmCode="npm install @medusajs/medusa"
+        npmCode="npm install /medusa"
         title="Custom Title"
       />
     )

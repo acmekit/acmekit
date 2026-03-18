@@ -2,7 +2,7 @@ import {
   ContainerRegistrationKeys,
   MedusaError,
   MedusaErrorTypes,
-} from "@medusajs/utils"
+} from "/utils"
 import {
   AuthenticatedMedusaRequest,
   MedusaNextFunction,

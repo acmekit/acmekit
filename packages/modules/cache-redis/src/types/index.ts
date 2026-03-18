@@ -26,9 +26,9 @@ export type RedisCacheModuleOptions = {
   namespace?: string
 }
 
-declare module "@medusajs/types" {
+declare module "/types" {
   interface ModuleOptions {
-    "@medusajs/cache-redis": RedisCacheModuleOptions
-    "@medusajs/medusa/cache-redis": RedisCacheModuleOptions
+    "/cache-redis": RedisCacheModuleOptions
+    "/medusa/cache-redis": RedisCacheModuleOptions
   }
 }

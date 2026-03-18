@@ -1,5 +1,5 @@
-import { Modules } from "@medusajs/framework/utils"
-import { MedusaContainer } from "@medusajs/framework/types"
+import { Modules } from "/framework/utils"
+import { MedusaContainer } from "/framework/types"
 
 /**
  * Waits for all workflow executions to finish. When relying on workflows but not necessarily

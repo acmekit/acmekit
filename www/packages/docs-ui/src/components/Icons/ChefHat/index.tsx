@@ -1,5 +1,5 @@
 import React from "react"
-import { IconProps } from "@medusajs/icons/dist/types"
+import { IconProps } from "/icons/dist/types"
 
 export const ChefHatIcon = (props: IconProps) => {
   return (

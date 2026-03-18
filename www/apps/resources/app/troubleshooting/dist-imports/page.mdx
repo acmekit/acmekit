@@ -11,12 +11,12 @@ For example, this is not allowed:
 ```ts
 import { 
   AdminGetApiKeysParams,
-} from "@medusajs/medusa/dist/api/admin/api-keys" // <-- Not allowed
+} from "/medusa/dist/api/admin/api-keys" // <-- Not allowed
 ```
 
 ## Importing from Exposed Directories
 
-The `@medusajs/medusa` package allows you to import from the following sub-directories:
+The `/medusa` package allows you to import from the following sub-directories:
 
 - `api`
 - `subscribers`
@@ -32,5 +32,5 @@ So, this is allowed:
 ```ts
 import { 
   AdminGetApiKeysParams,
-} from "@medusajs/medusa/api/admin/api-keys" // <-- Allowed
+} from "/medusa/api/admin/api-keys" // <-- Allowed
 ```

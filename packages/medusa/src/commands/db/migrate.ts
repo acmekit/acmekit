@@ -1,12 +1,12 @@
-import { MEDUSA_CLI_PATH, MedusaAppLoader, Migrator } from "@medusajs/framework"
-import { LinkLoader } from "@medusajs/framework/links"
+import { MEDUSA_CLI_PATH, MedusaAppLoader, Migrator } from "/framework"
+import { LinkLoader } from "/framework/links"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
   isDefined,
   mergePluginModules,
-} from "@medusajs/framework/utils"
-import { Logger, MedusaContainer } from "@medusajs/types"
+} from "/framework/utils"
+import { Logger, MedusaContainer } from "/types"
 import { fork } from "child_process"
 import path, { join } from "path"
 import { initializeContainer } from "../../loaders"

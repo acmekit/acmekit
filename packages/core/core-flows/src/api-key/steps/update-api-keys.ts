@@ -2,12 +2,12 @@ import {
   FilterableApiKeyProps,
   IApiKeyModuleService,
   UpdateApiKeyDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import {
   Modules,
   getSelectsAndRelationsFromObjectArray,
-} from "@medusajs/framework/utils"
-import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
+} from "/framework/utils"
+import { StepResponse, createStep } from "/framework/workflows-sdk"
 
 /**
  * The data to update API keys.

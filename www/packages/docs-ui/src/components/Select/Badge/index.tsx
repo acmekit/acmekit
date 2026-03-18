@@ -4,7 +4,7 @@ import React, { useCallback, useRef, useState } from "react"
 import { useSelect } from "@/hooks"
 import clsx from "clsx"
 import { SelectDropdown, SelectProps } from ".."
-import { TriangleDownMini } from "@medusajs/icons"
+import { TriangleDownMini } from "/icons"
 
 export const SelectBadge = ({
   value,

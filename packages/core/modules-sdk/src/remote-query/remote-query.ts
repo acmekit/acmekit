@@ -2,7 +2,7 @@ import {
   RemoteFetchDataCallback,
   RemoteJoiner,
   toRemoteJoinerQuery,
-} from "@medusajs/orchestration"
+} from "/orchestration"
 import {
   JoinerArgument,
   JoinerRelationship,
@@ -13,8 +13,8 @@ import {
   RemoteJoinerOptions,
   RemoteJoinerQuery,
   RemoteNestedExpands,
-} from "@medusajs/types"
-import { isPresent, isString, toPascalCase } from "@medusajs/utils"
+} from "/types"
+import { isPresent, isString, toPascalCase } from "/utils"
 import { MedusaModule } from "../medusa-module"
 
 const BASE_PREFIX = ""

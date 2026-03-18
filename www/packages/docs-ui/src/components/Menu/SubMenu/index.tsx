@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import { Menu, MenuProps } from ".."
 import clsx from "clsx"
 import { MenuItemSubMenu } from "types"
-import { TriangleRightMini } from "@medusajs/icons"
+import { TriangleRightMini } from "/icons"
 import Link from "next/link"
 
 type MenuSubMenuProps = Pick<MenuProps, "itemsOnClick"> & {

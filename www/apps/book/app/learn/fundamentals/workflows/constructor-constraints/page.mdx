@@ -187,7 +187,7 @@ const myWorkflow = createWorkflow(
 
 // Do
 // other imports...
-import { transform } from "@medusajs/framework/workflows-sdk"
+import { transform } from "/framework/workflows-sdk"
 
 const myWorkflow = createWorkflow(
   "hello-world", 
@@ -213,7 +213,7 @@ const myWorkflow = createWorkflow(
 
 // Do
 // other imports...
-import { transform } from "@medusajs/framework/workflows-sdk"
+import { transform } from "/framework/workflows-sdk"
 
 const myWorkflow = createWorkflow(
   "hello-world", 
@@ -241,7 +241,7 @@ const myWorkflow = createWorkflow(
 
 // Do
 // other imports...
-import { transform } from "@medusajs/framework/workflows-sdk"
+import { transform } from "/framework/workflows-sdk"
 
 const myWorkflow = createWorkflow(
   "hello-world", 
@@ -273,7 +273,7 @@ const myWorkflow = createWorkflow(
 
 // Do
 // other imports...
-import { transform } from "@medusajs/framework/workflows-sdk"
+import { transform } from "/framework/workflows-sdk"
 
 const myWorkflow = createWorkflow(
   "hello-world", 
@@ -307,7 +307,7 @@ const myWorkflow = createWorkflow(
 
 // Do
 // other imports...
-import { transform } from "@medusajs/framework/workflows-sdk"
+import { transform } from "/framework/workflows-sdk"
 
 const myWorkflow = createWorkflow(
   "hello-world", 
@@ -348,7 +348,7 @@ const myWorkflow = createWorkflow(
 })
 
 // Do
-import { transform } from "@medusajs/framework/workflows-sdk"
+import { transform } from "/framework/workflows-sdk"
 
 const myWorkflow = createWorkflow(
   "hello-world", 
@@ -388,7 +388,7 @@ const myWorkflow = createWorkflow(
 import { 
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import myWorkflow from "../../workflows/my-workflow"
 
 export async function POST(
@@ -428,7 +428,7 @@ const myWorkflow = createWorkflow(
 })
 
 // Do
-import { transform } from "@medusajs/framework/workflows-sdk"
+import { transform } from "/framework/workflows-sdk"
 
 const myWorkflow = createWorkflow(
   "hello-world", 
@@ -459,7 +459,7 @@ Values of other types, such as Maps, aren't allowed.
 import { 
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",
@@ -478,7 +478,7 @@ const step1 = createStep(
 import { 
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",
@@ -508,7 +508,7 @@ import {
   createStep,
   WorkflowResponse,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",
@@ -539,7 +539,7 @@ Then, in an API route that executes this workflow, you can recreate the buffer f
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import myWorkflow from "../../workflows/hello-world"
 
 export async function GET(

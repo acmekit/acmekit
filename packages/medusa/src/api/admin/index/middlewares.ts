@@ -1,16 +1,16 @@
-import { validateAndTransformBody } from "@medusajs/framework"
+import { validateAndTransformBody } from "/framework"
 import {
   AuthenticatedMedusaRequest,
   MedusaNextFunction,
   MedusaResponse,
   MiddlewareRoute,
-} from "@medusajs/framework/http"
-import { Logger } from "@medusajs/framework/types"
+} from "/framework/http"
+import { Logger } from "/framework/types"
 import {
   ContainerRegistrationKeys,
   FeatureFlag,
   Modules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import IndexEngineFeatureFlag from "../../../feature-flags/index-engine"
 import { authenticate } from "../../../utils/middlewares/authenticate-middleware"
 import { AdminIndexSyncPayload } from "./validator"

@@ -13,7 +13,7 @@ products:
   - payment
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
 
 export const metadata = {
@@ -298,7 +298,7 @@ So, create the file `src/modules/agentic-commerce/index.ts` with the following c
 
 ```ts title="src/modules/agentic-commerce/index.ts"
 import AgenticCommerceService from "./service"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 
 export const AGENTIC_COMMERCE_MODULE = "agenticCommerce"
 
@@ -401,9 +401,9 @@ export const getProductFeedItemsStepHighlights1 = [
 ]
 
 ```ts title="src/workflows/steps/get-product-feed-items.ts" highlights={getProductFeedItemsStepHighlights1}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { getVariantAvailability, QueryContext } from "@medusajs/framework/utils"
-import { CalculatedPriceSet, ShippingOptionDTO } from "@medusajs/framework/types"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { getVariantAvailability, QueryContext } from "/framework/utils"
+import { CalculatedPriceSet, ShippingOptionDTO } from "/framework/types"
 
 export type FeedItem = {
   id: string
@@ -615,7 +615,7 @@ Next, you'll create the step that generates the product feed XML from the feed i
 To create the step, create the file `src/workflows/steps/build-product-feed-xml.ts` with the following content:
 
 ```ts title="src/workflows/steps/build-product-feed-xml.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { FeedItem } from "./get-product-feed-items"
 
 type StepInput = {
@@ -704,7 +704,7 @@ If you get a type error on resolving the Agentic Commerce Module, run the Medusa
 </Note>
 
 ```ts title="src/workflows/steps/send-product-feed.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { AGENTIC_COMMERCE_MODULE } from "../../modules/agentic-commerce"
 
 type StepInput = {
@@ -736,7 +736,7 @@ You can now create the workflow that uses the steps you created.
 Create the file `src/workflows/send-product-feed.ts` with the following content:
 
 ```ts title="src/workflows/send-product-feed.ts"
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
 import { getProductFeedItemsStep } from "./steps/get-product-feed-items"
 import { buildProductFeedXmlStep } from "./steps/build-product-feed-xml"
 import { sendProductFeedStep } from "./steps/send-product-feed"
@@ -787,7 +787,7 @@ Create the file `src/jobs/sync-product-feed.ts` with the following content:
 ```ts title="src/jobs/sync-product-feed.ts"
 import {
   MedusaContainer,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import sendProductFeedWorkflow from "../workflows/send-product-feed"
 
 export default async function syncProductFeed(container: MedusaContainer) {
@@ -891,11 +891,11 @@ import {
   createWorkflow, 
   transform, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   listShippingOptionsForCartWithPricingWorkflow, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 export type PrepareCheckoutSessionDataWorkflowInput = {
   buyer?: {
@@ -1230,7 +1230,7 @@ import {
   transform, 
   when, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   acquireLockStep,
   addShippingMethodToCartWorkflow, 
@@ -1240,7 +1240,7 @@ import {
   listShippingOptionsForCartWithPricingWorkflow, 
   releaseLockStep, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   prepareCheckoutSessionDataWorkflow,
 } from "./prepare-checkout-session-data"
@@ -1538,15 +1538,15 @@ So, to create an API route, create the file `src/api/checkout_sessions/route.ts`
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```ts title="src/api/checkout_sessions/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { z } from "@medusajs/framework/zod"
+import { MedusaRequest, MedusaResponse } from "/framework"
+import { z } from "/framework/zod"
 import { createCheckoutSessionWorkflow } from "../../workflows/create-checkout-session"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 export const PostCreateSessionSchema = z.object({
   items: z.array(z.object({
@@ -1625,7 +1625,7 @@ Next, you'll create a [middleware](!docs!/learn/fundamentals/api-routes/middlewa
 Create the file `src/api/middlewares/validate-agentic-request.ts` with the following content:
 
 ```ts title="src/api/middlewares/validate-agentic-request.ts"
-import { MedusaNextFunction, MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { MedusaNextFunction, MedusaRequest, MedusaResponse } from "/framework"
 import { AGENTIC_COMMERCE_MODULE } from "../../modules/agentic-commerce"
 
 export async function validateAgenticRequest(
@@ -1674,7 +1674,7 @@ You apply middlewares in the `src/api/middlewares.ts` file. Create this file wit
 import { 
   defineMiddlewares, 
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { validateAgenticRequest } from "./middlewares/validate-agentic-request"
 import { PostCreateSessionSchema } from "./checkout_sessions/route"
 
@@ -1710,7 +1710,7 @@ In `src/api/middlewares.ts`, add the following import at the top of the file:
 ```ts title="src/api/middlewares.ts"
 import { 
   errorHandler,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 const originalErrorHandler = errorHandler()
 ```
@@ -1762,7 +1762,7 @@ To test the `POST /checkout_sessions` API locally, you'll add an API route to re
 Create the file `src/api/signature/route.ts` with the following content:
 
 ```ts title="src/api/signature/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { AGENTIC_COMMERCE_MODULE } from "../../modules/agentic-commerce"
 
 export const POST = async (
@@ -1982,7 +1982,7 @@ import {
   transform, 
   when, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   acquireLockStep,
   addShippingMethodToCartWorkflow, 
@@ -1990,7 +1990,7 @@ import {
   releaseLockStep, 
   updateCartWorkflow, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   prepareCheckoutSessionDataWorkflow,
 } from "./prepare-checkout-session-data"
@@ -2211,12 +2211,12 @@ Next, you'll create an API route that executes the `updateCheckoutSessionWorkflo
 Create the file `src/api/checkout_sessions/[id]/route.ts` with the following content:
 
 ```ts title="src/api/checkout_sessions/[id]/route.ts" collapsibleLines="1-7" expandButtonLabel="Show Imports"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { MedusaRequest, MedusaResponse } from "/framework"
 import { updateCheckoutSessionWorkflow } from "../../../workflows/update-checkout-session"
-import { z } from "@medusajs/framework/zod"
-import { MedusaError } from "@medusajs/framework/utils"
+import { z } from "/framework/zod"
+import { MedusaError } from "/framework/utils"
 import { prepareCheckoutSessionDataWorkflow } from "../../../workflows/prepare-checkout-session-data"
-import { refreshPaymentCollectionForCartWorkflow } from "@medusajs/medusa/core-flows"
+import { refreshPaymentCollectionForCartWorkflow } from "/medusa/core-flows"
 
 export const PostUpdateSessionSchema = z.object({
   buyer: z.object({
@@ -2575,7 +2575,7 @@ import {
   transform, 
   when, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   acquireLockStep,
   completeCartWorkflow, 
@@ -2585,7 +2585,7 @@ import {
   releaseLockStep, 
   updateCartWorkflow, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   prepareCheckoutSessionDataWorkflow, 
   PrepareCheckoutSessionDataWorkflowInput,
@@ -2844,11 +2844,11 @@ Next, you'll create an API route at `POST /checkout_sessions/{id}/complete` that
 Create the file `src/api/checkout_sessions/[id]/complete/route.ts` with the following content:
 
 ```ts title="src/api/checkout_sessions/[id]/complete/route.ts" collapsibleLines="1-7" expandButtonLabel="Show Imports"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { z } from "@medusajs/framework/zod"
+import { MedusaRequest, MedusaResponse } from "/framework"
+import { z } from "/framework/zod"
 import { completeCheckoutSessionWorkflow } from "../../../../workflows/complete-checkout-session"
-import { MedusaError } from "@medusajs/framework/utils"
-import { refreshPaymentCollectionForCartWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaError } from "/framework/utils"
+import { refreshPaymentCollectionForCartWorkflow } from "/medusa/core-flows"
 import { prepareCheckoutSessionDataWorkflow } from "../../../../workflows/prepare-checkout-session-data"
 
 export const PostCompleteSessionSchema = z.object({
@@ -2974,11 +2974,11 @@ module.exports = defineConfig({
   modules: [
     // ...
     {
-      resolve: "@medusajs/medusa/payment",
+      resolve: "/medusa/payment",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/payment-stripe",
+            resolve: "/medusa/payment-stripe",
             id: "stripe",
             options: {
               apiKey: process.env.STRIPE_API_KEY,
@@ -3154,9 +3154,9 @@ The `validateCartCancelationStep` step throws an error if the cart cannot be can
 To create the step, create the file `src/workflows/steps/validate-cart-cancelation.ts` with the following content:
 
 ```ts title="src/workflows/steps/validate-cart-cancelation.ts"
-import { CartDTO, OrderDTO, PaymentCollectionDTO } from "@medusajs/framework/types"
-import { MedusaError } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { CartDTO, OrderDTO, PaymentCollectionDTO } from "/framework/types"
+import { MedusaError } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 export type ValidateCartCancelationStepInput = {
   cart: CartDTO & {
@@ -3209,8 +3209,8 @@ The `cancelPaymentSessionsStep` step cancels payment sessions associated with th
 To create the step, create the file `src/workflows/steps/cancel-payment-sessions.ts` with the following content:
 
 ```ts title="src/workflows/steps/cancel-payment-sessions.ts"
-import { promiseAll } from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { promiseAll } from "/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 type StepInput = {
   payment_session_ids: string[]
@@ -3273,9 +3273,9 @@ You can now implement the `cancelCheckoutSessionWorkflow`.
 Create the file `src/workflows/cancel-checkout-session.ts` with the following content:
 
 ```ts title="src/workflows/cancel-checkout-session.ts" collapsibleLines="1-6" expandButtonLabel="Show Imports"
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
 import { validateCartCancelationStep, ValidateCartCancelationStepInput } from "./steps/validate-cart-cancelation"
-import { acquireLockStep, releaseLockStep, updateCartWorkflow, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { acquireLockStep, releaseLockStep, updateCartWorkflow, useQueryGraphStep } from "/medusa/core-flows"
 import { cancelPaymentSessionsStep } from "./steps/cancel-payment-sessions"
 import { prepareCheckoutSessionDataWorkflow } from "./prepare-checkout-session-data"
 
@@ -3383,9 +3383,9 @@ Next, you'll create a `POST` API route at `/checkout_sessions/{id}/cancel` that 
 Create the file `src/api/checkout_sessions/[id]/cancel/route.ts` with the following content:
 
 ```ts title="src/api/checkout_sessions/[id]/cancel/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { cancelCheckoutSessionWorkflow } from "../../../../workflows/cancel-checkout-session"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 export const POST = async (
   req: MedusaRequest,
@@ -3471,7 +3471,7 @@ Create the file `src/subscribers/order-webhooks.ts` with the following content:
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 import { AGENTIC_COMMERCE_MODULE } from "../modules/agentic-commerce"
 import { AgenticCommerceWebhookEvent } from "../modules/agentic-commerce/service"
 

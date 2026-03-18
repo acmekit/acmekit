@@ -1,6 +1,6 @@
 "use client"
 
-import { Text } from "@medusajs/ui"
+import { Text } from "/ui"
 import clsx from "clsx"
 import Link from "next/link"
 import React, { useEffect, useMemo, useRef, useState } from "react"
@@ -8,7 +8,7 @@ import { WorkflowStepUi } from "types"
 import { CodeBlock } from "@/components/CodeBlock"
 import { MarkdownContent } from "@/components/MarkdownContent"
 import { Tooltip } from "@/components/Tooltip"
-import { Bolt, InformationCircle } from "@medusajs/icons"
+import { Bolt, InformationCircle } from "/icons"
 import { getBrowser } from "@/utils/os-browser-utils"
 
 export type WorkflowDiagramNodeProps = {

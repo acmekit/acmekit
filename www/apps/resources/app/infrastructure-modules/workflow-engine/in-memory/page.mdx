@@ -25,7 +25,7 @@ The In-Memory Workflow Engine Module is registered by default in your applicatio
 Add the module into the `modules` property of the exported object in `medusa-config.ts`:
 
 ```ts title="medusa-config.ts"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 // ...
 
@@ -33,7 +33,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/workflow-engine-inmemory",
+      resolve: "/medusa/workflow-engine-inmemory",
     },
   ],
 })

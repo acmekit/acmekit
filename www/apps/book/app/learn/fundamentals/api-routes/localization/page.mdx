@@ -55,7 +55,7 @@ export const allMethodsHighlights = [
 ]
 
 ```ts title="src/api/middlewares.ts" highlights={allMethodsHighlights}
-import { applyLocale, defineMiddlewares } from "@medusajs/framework/http"
+import { applyLocale, defineMiddlewares } from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -76,7 +76,7 @@ export const specificMethodHighlights = [
 ]
 
 ```ts title="src/api/middlewares.ts" highlights={specificMethodHighlights}
-import { applyLocale, defineMiddlewares } from "@medusajs/framework/http"
+import { applyLocale, defineMiddlewares } from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -160,7 +160,7 @@ export const accessLocaleHighlights = [
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -185,7 +185,7 @@ export const queryHighlights = [
 ]
 
 ```ts title="src/api/store/products/route.ts" highlights={queryHighlights}
-import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import type { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const query = req.scope.resolve("query")

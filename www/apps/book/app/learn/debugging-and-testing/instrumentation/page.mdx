@@ -57,7 +57,7 @@ npm install @opentelemetry/exporter-zipkin
 Next, create the file `instrumentation.ts` with the following content:
 
 ```ts title="instrumentation.ts"
-import { registerOtel } from "@medusajs/medusa"
+import { registerOtel } from "/medusa"
 import { ZipkinExporter } from "@opentelemetry/exporter-zipkin"
 
 // If using an exporter other than Zipkin, initialize it here.

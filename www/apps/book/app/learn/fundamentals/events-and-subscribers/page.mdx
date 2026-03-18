@@ -37,7 +37,7 @@ You create a subscriber in a TypeScript or JavaScript file under the `src/subscr
 For example, create the file `src/subscribers/order-placed.ts` with the following content:
 
 ```ts title="src/subscribers/order-placed.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { sendOrderConfirmationWorkflow } from "../workflows/send-order-confirmation"
 
 export default async function orderPlacedHandler({

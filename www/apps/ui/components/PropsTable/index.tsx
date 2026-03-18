@@ -1,6 +1,6 @@
 "use client"
 
-import { InformationCircleSolid } from "@medusajs/icons"
+import { InformationCircleSolid } from "/icons"
 
 import { PropData, PropDataMap, PropSpecType } from "@/types/ui"
 import { useCallback, useMemo } from "react"

@@ -33,10 +33,10 @@ Start by initializing the columns in the data table. To do that, use the `create
 ```tsx title="src/admin/routes/custom/page.tsx"
 import {
   createDataTableColumnHelper,
-} from "@medusajs/ui"
+} from "/ui"
 import { 
   HttpTypes,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 const columnHelper = createDataTableColumnHelper<HttpTypes.AdminProduct>()
 
@@ -87,7 +87,7 @@ To define the filters, add the following:
 import {
   // ...
   createDataTableFilterHelper,
-} from "@medusajs/ui"
+} from "/ui"
 
 const filterHelper = createDataTableFilterHelper<HttpTypes.AdminProduct>()
 
@@ -129,7 +129,7 @@ import {
   DataTablePaginationState,
   DataTableFilteringState,
   DataTableSortingState,
-} from "@medusajs/ui"
+} from "/ui"
 import { useMemo, useState } from "react"
 
 // ...
@@ -212,7 +212,7 @@ Next, you'll configure the data table. Medusa UI provides a `useDataTable` hook 
 import {
   // ...
   useDataTable,
-} from "@medusajs/ui"
+} from "/ui"
 import { useNavigate } from "react-router-dom"
 ```
 
@@ -294,7 +294,7 @@ Finally, you'll render the data table. But first, add the following imports at t
 import {
   // ...
   DataTable,
-} from "@medusajs/ui"
+} from "/ui"
 import { SingleColumnLayout } from "../../layouts/single-column"
 import { Container } from "../../components/container"
 ```
@@ -330,8 +330,8 @@ Lastly, export the component and the UI widget's configuration at the end of the
 
 ```tsx title="src/admin/routes/custom/page.tsx"
 // other imports...
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { ChatBubbleLeftRight } from "@medusajs/icons"
+import { defineRouteConfig } from "/admin-sdk"
+import { ChatBubbleLeftRight } from "/icons"
 
 // ...
 
@@ -348,8 +348,8 @@ If you start your Medusa application and go to `localhost:9000/app/custom`, you'
 ### Full Example Code
 
 ```tsx title="src/admin/routes/custom/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { ChatBubbleLeftRight } from "@medusajs/icons"
+import { defineRouteConfig } from "/admin-sdk"
+import { ChatBubbleLeftRight } from "/icons"
 import { 
   Badge,
   createDataTableColumnHelper,
@@ -360,13 +360,13 @@ import {
   DataTableSortingState,
   Heading,
   useDataTable,
-} from "@medusajs/ui"
+} from "/ui"
 import { useQuery } from "@tanstack/react-query"
 import { SingleColumnLayout } from "../../layouts/single-column"
 import { sdk } from "../../lib/config"
 import { useMemo, useState } from "react"
 import { Container } from "../../components/container"
-import { HttpTypes, ProductStatus } from "@medusajs/framework/types"
+import { HttpTypes, ProductStatus } from "/framework/types"
 
 const columnHelper = createDataTableColumnHelper<HttpTypes.AdminProduct>()
 

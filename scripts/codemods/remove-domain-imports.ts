@@ -1,6 +1,6 @@
 /**
  * jscodeshift codemod: remove-domain-imports
- * Removes all import declarations from a specified @medusajs/DOMAIN package.
+ * Removes all import declarations from a specified /DOMAIN package.
  * Usage: npx jscodeshift -t scripts/codemods/remove-domain-imports.ts \
  *   --extensions=ts,tsx --parser=tsx --domain=cart \
  *   packages/
@@ -17,13 +17,13 @@ const transform: Transform = (file: FileInfo, api: API, options: Options) => {
   const root = j(file.source)
   let changed = false
 
-  // Remove: import ... from "@medusajs/DOMAIN" or "@medusajs/DOMAIN/..."
+  // Remove: import ... from "/DOMAIN" or "/DOMAIN/..."
   root
     .find(j.ImportDeclaration, {
       source: {
         value: (v: string) =>
           typeof v === 'string' &&
-          (v === `@medusajs/${domain}` || v.startsWith(`@medusajs/${domain}/`)),
+          (v === `/${domain}` || v.startsWith(`/${domain}/`)),
       },
     })
     .forEach(() => { changed = true })

@@ -78,11 +78,11 @@
 															"qualifiedName": "TextProperty"
 														},
 														"name": "TextProperty",
-														"package": "@medusajs/utils"
+														"package": "/utils"
 													}
 												],
 												"name": "PrimaryKeyModifier",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -115,7 +115,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -148,7 +148,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -181,7 +181,7 @@
 													"qualifiedName": "TextProperty"
 												},
 												"name": "TextProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -214,7 +214,7 @@
 													"qualifiedName": "NumberProperty"
 												},
 												"name": "NumberProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										},
@@ -247,7 +247,7 @@
 													"qualifiedName": "BigNumberProperty"
 												},
 												"name": "BigNumberProperty",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											},
 											"defaultValue": "..."
 										}
@@ -277,7 +277,7 @@
 							}
 						],
 						"name": "DMLEntitySchemaBuilder",
-						"package": "@medusajs/utils"
+						"package": "/utils"
 					},
 					{
 						"type": "literal",
@@ -285,7 +285,7 @@
 					}
 				],
 				"name": "DmlEntity",
-				"package": "@medusajs/utils"
+				"package": "/utils"
 			}
 		}
 	],
@@ -297,7 +297,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/currency",
+	"packageName": "/currency",
 	"symbolIdMap": {
 		"2742": {
 			"sourceFileName": "../../../../packages/modules/currency/src/models/index.ts",

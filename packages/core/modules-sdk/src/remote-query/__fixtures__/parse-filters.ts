@@ -1,5 +1,5 @@
-import { ModuleJoinerConfig } from "@medusajs/types"
-import { defineJoinerConfig } from "@medusajs/utils"
+import { ModuleJoinerConfig } from "/types"
+import { defineJoinerConfig } from "/utils"
 import { MedusaModule } from "../../medusa-module"
 
 const customModuleJoinerConfig = defineJoinerConfig("custom_user", {

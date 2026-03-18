@@ -1,4 +1,4 @@
-import { AcademicCapSolid, BookOpen } from "@medusajs/icons"
+import { AcademicCapSolid, BookOpen } from "/icons"
 import clsx from "clsx"
 import { CardList, H1, H2, MDXComponents, SimilarPages } from "docs-ui"
 import { config } from "../config"

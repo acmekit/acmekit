@@ -11,7 +11,7 @@ products:
   - order
 ---
 
-import { Github } from "@medusajs/icons"
+import { Github } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
 
 export const metadata = {
@@ -138,7 +138,7 @@ Next, you'll modify the cart item component that's shown in the cart and checkou
 In `src/modules/cart/components/item/index.tsx`, add the following imports at the top of the file:
 
 ```tsx title="src/modules/cart/components/item/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { Checkbox, Textarea, Button, Label } from "@medusajs/ui"
+import { Checkbox, Textarea, Button, Label } from "/ui"
 ```
 
 You import components from the [Medusa UI library](!ui!) that will be useful for the gift inputs.
@@ -568,9 +568,9 @@ So, to show the gift items with their messages in an order, you'll create a cust
 You create a widget in a `.tsx` file under the `src/admin/widgets` directory. So, in the Medusa application directory, create the file `src/admin/widgets/order-gift-items-widget.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/order-gift-items-widget.tsx" badgeLabel="Medusa Application" badgeColor="green"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Text } from "@medusajs/ui"
-import { DetailWidgetProps, AdminOrder } from "@medusajs/framework/types"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Text } from "/ui"
+import { DetailWidgetProps, AdminOrder } from "/framework/types"
 
 const OrderGiftItemsWidget = ({ data }: DetailWidgetProps<AdminOrder>) => {
   const giftItems = data.items?.filter(

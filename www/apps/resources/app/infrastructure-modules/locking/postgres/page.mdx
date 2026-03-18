@@ -25,11 +25,11 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/locking",
+      resolve: "/medusa/locking",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/locking-postgres",
+            resolve: "/medusa/locking-postgres",
             id: "locking-postgres",
             // set this if you want this provider to be used by default
             // and you have other Locking Module Providers registered.
@@ -67,11 +67,11 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/locking",
+      resolve: "/medusa/locking",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/locking-postgres",
+            resolve: "/medusa/locking-postgres",
             id: "locking-postgres",
             is_default: true,
           },
@@ -87,8 +87,8 @@ If you use the Locking Module in your customizations, the PostgreSQL Locking Mod
 For example, when using the `acquire` method in a [workflow step](!docs!/learn/fundamentals/workflows):
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",

@@ -33,7 +33,7 @@ import {
   createStep, 
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const step1 = createStep(
   {
@@ -187,8 +187,8 @@ export const retryHighlights = [
 ]
 
 ```ts title="src/api/retry-step/route.ts" highlights={retryHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { TransactionHandlerType } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { TransactionHandlerType } from "/framework/utils"
 
 export async function GET(
   req: MedusaRequest,

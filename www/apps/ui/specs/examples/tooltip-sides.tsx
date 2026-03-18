@@ -1,10 +1,10 @@
-import { Tooltip } from "@medusajs/ui"
+import { Tooltip } from "/ui"
 import {
   ArrowLongDown,
   ArrowLongLeft,
   ArrowLongRight,
   ArrowLongUp,
-} from "@medusajs/icons"
+} from "/icons"
 
 export default function TooltipSides() {
   return (

@@ -9,7 +9,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details, WorkflowDiagram } from "docs-ui"
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 
 export const metadata = {
   title: `Integrate Slack (Notification) with Medusa`,
@@ -132,7 +132,7 @@ export const serviceHighlights = [
 ```ts title="src/modules/slack/service.ts" highlights={serviceHighlights}
 import { 
   AbstractNotificationProviderService,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 type Options = {
   webhook_url: string
@@ -189,7 +189,7 @@ So, add the `validateOptions` method to the `SlackNotificationProviderService` c
 // other imports...
 import { 
   MedusaError,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 class SlackNotificationProviderService extends AbstractNotificationProviderService {
   // ...
@@ -254,7 +254,7 @@ import {
   OrderDTO, 
   ProviderSendNotificationDTO, 
   ProviderSendNotificationResultsDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import axios from "axios"
 
 class SlackNotificationProviderService extends AbstractNotificationProviderService {
@@ -410,7 +410,7 @@ import SlackNotificationProvider from "./service"
 import { 
   ModuleProvider, 
   Modules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.NOTIFICATION, {
   services: [SlackNotificationProvider],
@@ -440,7 +440,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           {
@@ -552,7 +552,7 @@ The workflow to send notifications to Slack will have the following steps:
   hideLegend
 />
 
-Medusa provides both steps in its `@medusajs/medusa/core-flows` package.
+Medusa provides both steps in its `/medusa/core-flows` package.
 
 So, to create the workflow, create the file `src/workflows/order-placed-notification.ts` with the following content:
 
@@ -564,8 +564,8 @@ export const orderPlacedNotificationWorkflowHighlights = [
 ```ts title="src/workflows/order-placed-notification.ts" highlights={orderPlacedNotificationWorkflowHighlights}
 import { 
   createWorkflow, 
-} from "@medusajs/framework/workflows-sdk"
-import { sendNotificationsStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { sendNotificationsStep, useQueryGraphStep } from "/medusa/core-flows"
 
 type WorkflowInput = {
   id: string
@@ -635,7 +635,7 @@ To execute the workflow when an order is placed, you need to create a subscriber
 To create the subscriber, create the file `src/subscribers/order-placed.ts` with the following content:
 
 ```ts title="src/subscribers/order-placed.ts"
-import { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, SubscriberConfig } from "/framework"
 import { 
   orderPlacedNotificationWorkflow,
 } from "../workflows/order-placed-notification"

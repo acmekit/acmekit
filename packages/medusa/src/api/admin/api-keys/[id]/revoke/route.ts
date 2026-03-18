@@ -1,10 +1,10 @@
-import { revokeApiKeysWorkflow } from "@medusajs/core-flows"
+import { revokeApiKeysWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { refetchApiKey } from "../../helpers"
-import { HttpTypes } from "@medusajs/framework/types"
+import { HttpTypes } from "/framework/types"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<

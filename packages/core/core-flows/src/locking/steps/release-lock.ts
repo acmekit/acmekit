@@ -1,5 +1,5 @@
-import { isDefined, Modules } from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { isDefined, Modules } from "/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 /**
  * The locked keys to be released

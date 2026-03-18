@@ -12,7 +12,7 @@ products:
   - cart
 ---
 
-import { Github, PlaySolid, EllipsisHorizontal } from "@medusajs/icons"
+import { Github, PlaySolid, EllipsisHorizontal } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList, InlineIcon } from "docs-ui"
 
 export const metadata = {
@@ -149,7 +149,7 @@ export const productBuilderHighlights = [
 ]
 
 ```ts title="src/modules/product-builder/models/product-builder.ts" highlights={productBuilderHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import ProductBuilderCustomField from "./product-builder-custom-field"
 import ProductBuilderComplementary from "./product-builder-complementary"
 import ProductBuilderAddon from "./product-builder-addon"
@@ -204,7 +204,7 @@ export const customFieldHighlights = [
 ]
 
 ```ts title="src/modules/product-builder/models/product-builder-custom-field.ts" highlights={customFieldHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import ProductBuilder from "./product-builder"
 
 const ProductBuilderCustomField = model.define("product_builder_custom_field", {
@@ -243,7 +243,7 @@ export const complementaryHighlights = [
 ]
 
 ```ts title="src/modules/product-builder/models/product-builder-complementary.ts" highlights={complementaryHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import ProductBuilder from "./product-builder"
 
 const ProductBuilderComplementary = model.define("product_builder_complementary", {
@@ -277,7 +277,7 @@ export const addonHighlights = [
 ]
 
 ```ts title="src/modules/product-builder/models/product-builder-addon.ts" highlights={addonHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import ProductBuilder from "./product-builder"
 
 const ProductBuilderAddon = model.define("product_builder_addon", {
@@ -313,7 +313,7 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 To create the Product Builder Module's service, create the file `src/modules/product-builder/service.ts` with the following content:
 
 ```ts title="src/modules/product-builder/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import ProductBuilder from "./models/product-builder"
 import ProductBuilderCustomField from "./models/product-builder-custom-field"
 import ProductBuilderComplementary from "./models/product-builder-complementary"
@@ -353,7 +353,7 @@ export const moduleHighlights = [
 
 ```ts title="src/modules/product-builder/index.ts" highlights={moduleHighlights}
 import Service from "./service"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 
 export const PRODUCT_BUILDER_MODULE = "productBuilder"
 
@@ -446,8 +446,8 @@ export const productBuilderLinkHighlights = [
 
 ```ts title="src/links/product-builder-product.ts" highlights={productBuilderLinkHighlights}
 import ProductBuilderModule from "../modules/product-builder"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -474,8 +474,8 @@ export const complementaryLinkHighlights = [
 
 ```ts title="src/links/product-builder-complementary-product.ts" highlights={complementaryLinkHighlights}
 import ProductBuilderModule from "../modules/product-builder"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -499,8 +499,8 @@ export const addonLinkHighlights = [
 
 ```ts title="src/links/product-builder-addon-product.ts" highlights={addonLinkHighlights}
 import ProductBuilderModule from "../modules/product-builder"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -703,7 +703,7 @@ The workflow you'll build will have the following steps:
   }}
 />
 
-The `useQueryGraphStep`, `createRemoteLinkStep`, and `dismissRemoteLinkStep` are available through Medusa's `@medusajs/medusa/core-flows` package. You'll implement other steps in the workflow.
+The `useQueryGraphStep`, `createRemoteLinkStep`, and `dismissRemoteLinkStep` are available through Medusa's `/medusa/core-flows` package. You'll implement other steps in the workflow.
 
 #### createProductBuilderStep
 
@@ -724,7 +724,7 @@ export const createProductBuilderStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-product-builder.ts" highlights={createProductBuilderStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type CreateProductBuilderStepInput = {
@@ -779,7 +779,7 @@ export const prepareCustomFieldsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/prepare-product-builder-custom-fields.ts" highlights={prepareCustomFieldsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type PrepareProductBuilderCustomFieldsStepInput = {
@@ -883,7 +883,7 @@ export const createCustomFieldsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-product-builder-custom-fields.ts" highlights={createCustomFieldsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type CreateProductBuilderCustomFieldsStepInput = {
@@ -941,7 +941,7 @@ export const updateProductBuilderCustomFieldsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/update-product-builder-custom-fields.ts" highlights={updateProductBuilderCustomFieldsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type UpdateProductBuilderCustomFieldsStepInput = {
@@ -1009,7 +1009,7 @@ export const deleteProductBuilderCustomFieldsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/delete-product-builder-custom-fields.ts" highlights={deleteProductBuilderCustomFieldsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type DeleteProductBuilderCustomFieldsStepInput = {
@@ -1075,7 +1075,7 @@ export const prepareProductBuilderComplementaryProductsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/prepare-product-builder-complementary-products.ts" highlights={prepareProductBuilderComplementaryProductsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type PrepareProductBuilderComplementaryProductsStepInput = {
@@ -1147,7 +1147,7 @@ export const createProductBuilderComplementaryProductsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-product-builder-complementary-products.ts" highlights={createProductBuilderComplementaryProductsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type CreateProductBuilderComplementaryProductsStepInput = {
@@ -1202,7 +1202,7 @@ export const deleteProductBuilderComplementaryProductsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/delete-product-builder-complementary-products.ts" highlights={deleteProductBuilderComplementaryProductsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type DeleteProductBuilderComplementaryProductsStepInput = {
@@ -1262,7 +1262,7 @@ export const prepareProductBuilderAddonsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/prepare-product-builder-addons.ts" highlights={prepareProductBuilderAddonsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type PrepareProductBuilderAddonsStepInput = {
@@ -1333,7 +1333,7 @@ export const createProductBuilderAddonsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-product-builder-addons.ts" highlights={createProductBuilderAddonsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type CreateProductBuilderAddonsStepInput = {
@@ -1387,7 +1387,7 @@ export const deleteProductBuilderAddonsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/delete-product-builder-addons.ts" highlights={deleteProductBuilderAddonsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_BUILDER_MODULE } from "../../modules/product-builder"
 
 export type DeleteProductBuilderAddonsStepInput = {
@@ -1441,9 +1441,9 @@ You now have the necessary steps to build the workflow that upserts a product bu
 Start by creating the file `src/workflows/upsert-product-builder.ts` with the following content:
 
 ```ts title="src/workflows/upsert-product-builder.ts" collapsibleLines="1-17" expandButtonLabel="Show Imports"
-import { createWorkflow, parallelize, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { createRemoteLinkStep, dismissRemoteLinkStep } from "@medusajs/medusa/core-flows"
-import { Modules } from "@medusajs/framework/utils"
+import { createWorkflow, parallelize, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
+import { createRemoteLinkStep, dismissRemoteLinkStep } from "/medusa/core-flows"
+import { Modules } from "/framework/utils"
 import { createProductBuilderStep } from "./steps/create-product-builder"
 import { prepareProductBuilderCustomFieldsStep } from "./steps/prepare-product-builder-custom-fields"
 import { createProductBuilderCustomFieldsStep } from "./steps/create-product-builder-custom-fields"
@@ -1455,7 +1455,7 @@ import { deleteProductBuilderComplementaryProductsStep } from "./steps/delete-pr
 import { prepareProductBuilderAddonsStep } from "./steps/prepare-product-builder-addons"
 import { createProductBuilderAddonsStep } from "./steps/create-product-builder-addons"
 import { deleteProductBuilderAddonsStep } from "./steps/delete-product-builder-addons"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { PRODUCT_BUILDER_MODULE } from "../modules/product-builder"
 
 export type UpsertProductBuilderWorkflowInput = {
@@ -1828,8 +1828,8 @@ export const builderRouteHighlights = [
 import { 
   AuthenticatedMedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework"
-import { z } from "@medusajs/framework/zod"
+} from "/framework"
+import { z } from "/framework/zod"
 import { upsertProductBuilderWorkflow } from "../../../../../workflows/upsert-product-builder"
 
 export const UpsertProductBuilderSchema = z.object({
@@ -1894,7 +1894,7 @@ export const middlewareHighlights = [
 import { 
   defineMiddlewares,
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { UpsertProductBuilderSchema } from "./admin/products/[id]/builder/route"
 
 export default defineMiddlewares({
@@ -1997,9 +1997,9 @@ export const getComplementaryProductsRouteHighlights = [
 ]
 
 ```ts title="src/api/admin/products/complementary/route.ts" highlights={getComplementaryProductsRouteHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { createFindParams } from "@medusajs/medusa/api/utils/validators"
-import { z } from "@medusajs/framework/zod"
+import { MedusaRequest, MedusaResponse } from "/framework"
+import { createFindParams } from "/medusa/api/utils/validators"
+import { z } from "/framework/zod"
 
 export const GetComplementaryProductsSchema = z.object({
   exclude_product_id: z.string(),
@@ -2077,7 +2077,7 @@ In `src/api/middlewares.ts`, add the following imports at the top of the file:
 ```ts title="src/api/middlewares.ts"
 import { 
   validateAndTransformQuery,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { GetComplementaryProductsSchema } from "./admin/products/complementary/route"
 ```
 
@@ -2117,7 +2117,7 @@ export const getAddonProductsHighlights = [
 ]
 
 ```ts title="src/api/admin/products/addons/route.ts" highlights={getAddonProductsHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { MedusaRequest, MedusaResponse } from "/framework"
 
 export const GET = async (
   req: MedusaRequest,
@@ -2161,7 +2161,7 @@ Since the API route should accept pagination query parameters, you need to apply
 In `src/api/middlewares.ts`, add the following import at the top of the file:
 
 ```ts title="src/api/middlewares.ts"
-import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+import { createFindParams } from "/medusa/api/utils/validators"
 ```
 
 Then, add a new route object in `defineMiddlewares`:
@@ -2217,7 +2217,7 @@ export const sdkHighlights = [
 ]
 
 ```ts title="src/admin/lib/sdk.ts" highlights={sdkHighlights}
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
@@ -2348,8 +2348,8 @@ import {
   Select,
   Checkbox,
   Text,
-} from "@medusajs/ui"
-import { Trash } from "@medusajs/icons"
+} from "/ui"
+import { Trash } from "/icons"
 import { CustomField } from "../types"
 
 type CustomFieldsTabProps = {
@@ -2481,7 +2481,7 @@ Next, you'll create the complementary products tab component, which allows admin
 Create the file `src/admin/components/complementary-products-tab.tsx` with the following content:
 
 ```tsx title="src/admin/components/complementary-products-tab.tsx" collapsibleLines="1-13" expandButtonLabel="Show Imports"
-import { AdminProduct } from "@medusajs/framework/types"
+import { AdminProduct } from "/framework/types"
 import { 
   Heading, 
   Checkbox, 
@@ -2489,7 +2489,7 @@ import {
   DataTable,
   DataTablePaginationState,
   useDataTable,
-} from "@medusajs/ui"
+} from "/ui"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
@@ -2620,7 +2620,7 @@ import {
   DataTable,
   DataTablePaginationState,
   useDataTable,
-} from "@medusajs/ui"
+} from "/ui"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
@@ -2736,7 +2736,7 @@ import {
   Heading,
   toast,
   ProgressTabs,
-} from "@medusajs/ui"
+} from "/ui"
 import { useState, useEffect } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
@@ -2746,7 +2746,7 @@ import {
   ProductBuilderResponse,
   AddonProduct,
 } from "../types"
-import { AdminProduct } from "@medusajs/framework/types"
+import { AdminProduct } from "/framework/types"
 import { ComplementaryProductsTab } from "./complementary-products-tab"
 import { AddonsTab } from "./addons-tab"
 import { CustomFieldsTab } from "./custom-fields-tab"
@@ -2995,14 +2995,14 @@ Finally, you'll create the widget that will be injected to the product details p
 Create the file `src/admin/widgets/product-builder-widget.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/product-builder-widget.tsx" collapsibleLines="1-12" expandButtonLabel="Show Imports"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading, Text, Button } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading, Text, Button } from "/ui"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
 import { 
   DetailWidgetProps, 
   AdminProduct,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { useState } from "react"
 import { ProductBuilderModal } from "../components/product-builder-modal"
 import { ProductBuilderResponse } from "../types"
@@ -3202,7 +3202,7 @@ In `src/types/global.ts`, add the following import at the top of the file:
 ```ts title="src/types/global.ts" badgeLabel="Storefront" badgeColor="blue"
 import { 
   StoreProduct,
-} from "@medusajs/types"
+} from "/types"
 ```
 
 Then, add the following type definitions at the end of the file:
@@ -3436,11 +3436,11 @@ export const variantSelectorHighlights = [
 ```tsx title="src/modules/products/components/product-builder-config/variant-selector.tsx" badgeLabel="Storefront" badgeColor="blue" highlights={variantSelectorHighlights}
 "use client"
 
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { 
   Badge, 
   Text, 
-} from "@medusajs/ui"
+} from "/ui"
 import { getProductPrice } from "../../../../lib/util/get-product-price"
 
 type VariantSelectionRowProps = {
@@ -3563,11 +3563,11 @@ export const productBuilderConfigHighlights = [
 "use client"
 
 import { useState, useEffect } from "react"
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { 
   Text, 
   Input, 
-} from "@medusajs/ui"
+} from "/ui"
 import Divider from "@modules/common/components/divider"
 import { 
   ProductWithBuilder, 
@@ -4394,8 +4394,8 @@ export const validateProductBuilderConfigurationStepHighlights1 = [
 ]
 
 ```ts title="src/workflows/steps/validate-product-builder-configuration.ts" highlights={validateProductBuilderConfigurationStepHighlights1}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { MedusaError } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
 
 export type ValidateProductBuilderConfigurationStepInput = {
   product_id: string
@@ -4555,14 +4555,14 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   addToCartWorkflow, 
   updateLineItemInCartWorkflow, 
   useQueryGraphStep, 
   acquireLockStep, 
   releaseLockStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   validateProductBuilderConfigurationStep,
 } from "./steps/validate-product-builder-configuration"
@@ -4802,9 +4802,9 @@ export const addToCartApiHighlights = [
 ]
 
 ```ts title="src/api/store/carts/[id]/product-builder/route.ts" highlights={addToCartApiHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { addProductBuilderToCartWorkflow } from "../../../../../workflows/add-product-builder-to-cart"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const AddBuilderProductSchema = z.object({
   product_id: z.string(),
@@ -5022,7 +5022,7 @@ import {
 } from "@lib/data/cart"
 import { 
   toast,
-} from "@medusajs/ui"
+} from "/ui"
 ```
 
 Then, in the `ProductActions` component, find the `handleAddToCart` function and replace it with the following:
@@ -5100,7 +5100,7 @@ export const cartItemSelectHighlights = [
 ```tsx title="src/modules/cart/components/cart-item-select/index.tsx" badgeLabel="Storefront" badgeColor="blue" highlights={cartItemSelectHighlights}
 "use client"
 
-import { IconButton, clx } from "@medusajs/ui"
+import { IconButton, clx } from "/ui"
 import {
   SelectHTMLAttributes,
   forwardRef,
@@ -5109,7 +5109,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { Minus, Plus } from "@medusajs/icons"
+import { Minus, Plus } from "/icons"
 
 type NativeSelectProps = {
   placeholder?: string
@@ -5195,7 +5195,7 @@ Next, you'll update the styling of the delete button that removes items from the
 In `src/modules/common/components/delete-button/index.tsx`, add the following import at the top of the file:
 
 ```tsx title="src/modules/common/components/delete-button/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { IconButton } from "@medusajs/ui"
+import { IconButton } from "/ui"
 ```
 
 Then, in the `DeleteButton` component, replace the `button` element in the `return` statement with the following:
@@ -5219,7 +5219,7 @@ Next, you'll update the `LineItemOptions` component to receive a `className` pro
 In `src/modules/common/components/line-item-options/index.tsx`, add the following import at the top of the file:
 
 ```tsx title="src/modules/common/components/line-item-options/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { clx } from "@medusajs/ui"
+import { clx } from "/ui"
 ```
 
 Next, update the `LineItemOptionsProps` to accept a `className` prop:
@@ -5791,13 +5791,13 @@ import {
   createWorkflow, 
   WorkflowResponse,
   transform,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   deleteLineItemsWorkflow, 
   useQueryGraphStep, 
   acquireLockStep, 
   releaseLockStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 type RemoveProductBuilderFromCartInput = {
   cart_id: string
@@ -5901,7 +5901,7 @@ Next, you'll create an API route that uses the workflow you created to remove a 
 Create the file `src/api/store/carts/[id]/product-builder/[item_id]/route.ts` with the following content:
 
 ```ts title="src/api/store/carts/[id]/product-builder/[item_id]/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { removeProductBuilderFromCartWorkflow } from "../../../../../../workflows/remove-product-builder-from-cart"
 
 export const DELETE = async (
@@ -6079,7 +6079,7 @@ In this step, you'll customize the order confirmation page in the storefront to 
 In `src/modules/order/components/item/index.tsx`, add the following import at the top of the file:
 
 ```tsx title="src/modules/order/components/item/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { clx } from "@medusajs/ui"
+import { clx } from "/ui"
 import { LineItemWithBuilderMetadata } from "../../../../types/global"
 import { isBuilderLineItem } from "../../../../lib/util/product-builder"
 ```
@@ -6296,9 +6296,9 @@ export const orderWidgetHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/order-builder-details-widget.tsx" highlights={orderWidgetHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading, Text, clx } from "@medusajs/ui"
-import { DetailWidgetProps, AdminOrder } from "@medusajs/framework/types"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading, Text, clx } from "/ui"
+import { DetailWidgetProps, AdminOrder } from "/framework/types"
 
 type BuilderLineItemMetadata = {
   is_builder_main_product?: boolean

@@ -1,4 +1,4 @@
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import RbacRole from "./rbac-role"
 
 const RbacRoleParent = model

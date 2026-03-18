@@ -47,10 +47,10 @@ The rest of this guide always uses the \`src/modules/my-fulfillment\` directory 
 </Note>`,
       `## 2. Create the Fulfillment Module Provider Service
 
-Create the file \`src/modules/my-fulfillment/service.ts\` that holds the module provider's main service. It must extend the \`AbstractFulfillmentProviderService\` class imported from \`@medusajs/framework/utils\`:
+Create the file \`src/modules/my-fulfillment/service.ts\` that holds the module provider's main service. It must extend the \`AbstractFulfillmentProviderService\` class imported from \`/framework/utils\`:
 
 \`\`\`ts title="src/modules/my-fulfillment/service.ts"
-import { AbstractFulfillmentProviderService } from "@medusajs/framework/utils"
+import { AbstractFulfillmentProviderService } from "/framework/utils"
 
 class MyFulfillmentProviderService extends AbstractFulfillmentProviderService {
   // TODO implement methods
@@ -69,7 +69,7 @@ import MyFulfillmentProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.FULFILLMENT, {
   services: [MyFulfillmentProviderService],
@@ -92,12 +92,12 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/fulfillment",
+      resolve: "/medusa/fulfillment",
       options: {
         providers: [
           // default provider
           {
-            resolve: "@medusajs/medusa/fulfillment-manual",
+            resolve: "/medusa/fulfillment-manual",
             id: "manual",
           },
           {

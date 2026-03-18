@@ -19,7 +19,7 @@ Each section in the Medusa Admin has a header with a title, and optionally a sub
 To create a component that uses the same header styling and structure, create the file `src/admin/components/header.tsx` with the following content:
 
 ```tsx title="src/admin/components/header.tsx"
-import { Heading, Button, Text } from "@medusajs/ui"
+import { Heading, Button, Text } from "/ui"
 import React from "react"
 import { Link, LinkProps } from "react-router-dom"
 import { ActionMenu, ActionMenuProps } from "./action-menu"
@@ -156,7 +156,7 @@ Use the `Header` component in any widget or UI route.
 For example, create the widget `src/admin/widgets/product-widget.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/product-widget.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { defineWidgetConfig } from "/admin-sdk"
 import { Container } from "../components/container"
 import { Header } from "../components/header"
 

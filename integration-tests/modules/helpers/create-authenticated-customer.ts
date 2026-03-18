@@ -1,4 +1,4 @@
-import { CreateCustomerDTO } from "@medusajs/types"
+import { CreateCustomerDTO } from "/types"
 
 export const createAuthenticatedCustomer = async (
   api: any,

@@ -36,13 +36,13 @@
 ### Installation
 
 ```sh
-yarn add @medusajs/ui
+yarn add /ui
 ```
 
 ### Usage
 
 ```jsx
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 
 const App = () => <Button variant="primary">Hello World</Button>
 ```

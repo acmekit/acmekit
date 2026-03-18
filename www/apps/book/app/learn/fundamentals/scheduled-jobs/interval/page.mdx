@@ -25,7 +25,7 @@ export const highlights = [
 ]
 
 ```ts title="src/jobs/hello-world.ts" highlights={highlights}
-import { MedusaContainer } from "@medusajs/framework/types"
+import { MedusaContainer } from "/framework/types"
 
 export default async function greetingJob(container: MedusaContainer) {
   const logger = container.resolve("logger")

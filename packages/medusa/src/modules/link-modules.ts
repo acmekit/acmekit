@@ -1,6 +1,6 @@
-import LinkModule from "@medusajs/link-modules"
+import LinkModule from "/link-modules"
 
-export * from "@medusajs/link-modules"
+export * from "/link-modules"
 
 export default LinkModule
-export const discoveryPath = require.resolve("@medusajs/link-modules")
+export const discoveryPath = require.resolve("/link-modules")

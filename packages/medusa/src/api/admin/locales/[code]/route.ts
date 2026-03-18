@@ -3,9 +3,9 @@ import {
   defineFileConfig,
   FeatureFlag,
   MedusaError,
-} from "@medusajs/framework/utils"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { HttpTypes } from "@medusajs/framework/types"
+} from "/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { HttpTypes } from "/framework/types"
 import TranslationFeatureFlag from "../../../../feature-flags/translation"
 
 /**

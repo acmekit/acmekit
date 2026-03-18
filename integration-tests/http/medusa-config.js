@@ -1,4 +1,4 @@
-const { defineConfig, Modules } = require("@medusajs/utils")
+const { defineConfig, Modules } = require("/utils")
 const os = require("os")
 const path = require("path")
 
@@ -11,7 +11,7 @@ process.env.DATABASE_URL = DB_URL
 process.env.LOG_LEVEL = "error"
 
 const customFulfillmentProvider = {
-  resolve: "@medusajs/fulfillment-manual",
+  resolve: "/fulfillment-manual",
   id: "test-provider",
 }
 
@@ -23,7 +23,7 @@ const customFulfillmentProviderCalculated = {
 
 const modules = {
   [Modules.FULFILLMENT]: {
-    /** @type {import('@medusajs/fulfillment').FulfillmentModuleOptions} */
+    /** @type {import('/fulfillment').FulfillmentModuleOptions} */
     options: {
       providers: [
         customFulfillmentProvider,
@@ -32,11 +32,11 @@ const modules = {
     },
   },
   [Modules.NOTIFICATION]: {
-    resolve: "@medusajs/notification",
+    resolve: "/notification",
     options: {
       providers: [
         {
-          resolve: "@medusajs/notification-local",
+          resolve: "/notification-local",
           id: "local",
           options: {
             name: "Local Notification Provider",
@@ -47,11 +47,11 @@ const modules = {
     },
   },
   [Modules.FILE]: {
-    resolve: "@medusajs/file",
+    resolve: "/file",
     options: {
       providers: [
         {
-          resolve: "@medusajs/file-local",
+          resolve: "/file-local",
           id: "local",
           options: {
             // This is the directory where we can reliably write in CI environments
@@ -63,18 +63,18 @@ const modules = {
     },
   },
   [Modules.INDEX]: {
-    resolve: "@medusajs/index",
+    resolve: "/index",
     disable: process.env.ENABLE_INDEX_MODULE !== "true",
   },
   [Modules.RBAC]: {
-    resolve: "@medusajs/rbac",
+    resolve: "/rbac",
     disable: process.env.MEDUSA_FF_RBAC !== "true",
   },
 }
 
 if (process.env.MEDUSA_FF_TRANSLATION === "true") {
   modules[Modules.TRANSLATION] = {
-    resolve: "@medusajs/translation",
+    resolve: "/translation",
   }
 }
 

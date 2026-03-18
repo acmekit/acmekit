@@ -31,7 +31,7 @@ For example:
 export const idHighlights = [["4", ".id()", "Define an `id` property."]]
 
 ```ts highlights={idHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id(),
@@ -50,7 +50,7 @@ For example:
 export const textHighlights = [["4", "text", "Define a `text` property."]]
 
 ```ts highlights={textHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   name: model.text(),
@@ -71,7 +71,7 @@ export const textLengthHighlights = [
 ]
 
 ```ts highlights={textLengthHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   name: model.text(),
@@ -98,7 +98,7 @@ For example:
 export const numberHighlights = [["4", "number", "Define a `number` property."]]
 
 ```ts highlights={numberHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   age: model.number(),
@@ -129,7 +129,7 @@ For example:
 export const floatHighlights = [["4", "float", "Define a `float` property."]]
 
 ```ts highlights={floatHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   rating: model.float(),
@@ -154,7 +154,7 @@ For example:
 export const bigNumberHighlights = [["4", "bigNumber", "Define a `bigNumber` property."]]
 
 ```ts highlights={bigNumberHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   price: model.bigNumber(),
@@ -173,7 +173,7 @@ For example:
 export const booleanHighlights = [["4", "boolean", "Define a `boolean` property."]]
 
 ```ts highlights={booleanHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   hasAccount: model.boolean(),
@@ -192,7 +192,7 @@ For example:
 export const enumHighlights = [["4", "enum", "Define a `enum` property."]]
 
 ```ts highlights={enumHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   color: model.enum(["black", "white"]),
@@ -213,7 +213,7 @@ For example:
 export const dateTimeHighlights = [["4", "dateTime", "Define a `dateTime` property."]]
 
 ```ts highlights={dateTimeHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   date_of_birth: model.dateTime(),
@@ -232,7 +232,7 @@ For example:
 export const jsonHighlights = [["4", "json", "Define a `json` property."]]
 
 ```ts highlights={jsonHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   metadata: model.json(),
@@ -253,7 +253,7 @@ For example:
 export const arrHightlights = [["4", "array", "Define an `array` property."]]
 
 ```ts highlights={arrHightlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   names: model.array(),
@@ -280,7 +280,7 @@ export const highlights = [
 ]
 
 ```ts highlights={highlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -306,7 +306,7 @@ export const defaultHighlights = [
 ]
 
 ```ts highlights={defaultHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   color: model
@@ -336,7 +336,7 @@ export const nullableHighlights = [
 ]
 
 ```ts highlights={nullableHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   price: model.bigNumber().nullable(),
@@ -361,7 +361,7 @@ export const uniqueHighlights = [
 ]
 
 ```ts highlights={uniqueHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const User = model.define("user", {
   email: model.text().unique(),
@@ -387,7 +387,7 @@ export const dbIndexHighlights = [
 ]
 
 ```ts highlights={dbIndexHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -420,7 +420,7 @@ export const searchableHighlights = [
 ]
 
 ```ts highlights={searchableHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   title: model.text().searchable(),
@@ -473,7 +473,7 @@ export const translatableHighlights = [
 ]
 
 ```ts highlights={translatableHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   title: model.text().translatable(),

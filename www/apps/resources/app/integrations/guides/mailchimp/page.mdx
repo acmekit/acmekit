@@ -9,7 +9,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details, WorkflowDiagram } from "docs-ui"
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 
 export const metadata = {
   title: `Add Newsletter Subscriptions with Mailchimp in Medusa`,
@@ -133,7 +133,7 @@ export const serviceHighlights = [
 ```ts title="src/modules/mailchimp/service.ts" highlights={serviceHighlights}
 import { 
   AbstractNotificationProviderService, 
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import mailchimpMarketingApi from "@mailchimp/mailchimp_marketing"
 
 type Options = {
@@ -203,7 +203,7 @@ Add the `validateOptions` method to the `MailchimpNotificationProviderService` c
 // other imports...
 import { 
   MedusaError,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 class MailchimpNotificationProviderService extends AbstractNotificationProviderService {
   // ...
@@ -251,7 +251,7 @@ Add the `sendNewsletterSignup` method to the `MailchimpNotificationProviderServi
 import { 
   ProviderSendNotificationResultsDTO, 
   ProviderSendNotificationDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 class MailchimpNotificationProviderService extends AbstractNotificationProviderService {
   // ...
@@ -545,7 +545,7 @@ import MailchimpNotificationProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.NOTIFICATION, {
   services: [MailchimpNotificationProviderService],
@@ -575,7 +575,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           {
@@ -844,13 +844,13 @@ export const apiRouteHighlights = [
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```ts title="src/api/store/newsletter/route.ts" highlights={apiRouteHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { z } from "@medusajs/framework/zod"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { z } from "/framework/zod"
 
 export const newsletterSignupSchema = z.object({
   email: z.string().email(),
@@ -902,7 +902,7 @@ To apply the validation middleware on the `/store/newsletter` API route, create 
 import { 
   defineMiddlewares, 
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { newsletterSignupSchema } from "./store/newsletter/route"
 
 export default defineMiddlewares({
@@ -931,7 +931,7 @@ Finally, you'll create a subscriber that listens to the `newsletter.signup` even
 Create the file `src/subscribers/newsletter-signup.ts` with the following content:
 
 ```ts title="src/subscribers/newsletter-signup.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework" 
+import { SubscriberArgs, type SubscriberConfig } from "/framework" 
 
 export default async function orderPlacedHandler({
   event: { data },
@@ -1027,7 +1027,7 @@ import { subscribeToNewsletter } from "@lib/data/newsletter"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
 import Input from "@modules/common/components/input"
 import { useState } from "react"
-import { toast } from "@medusajs/ui"
+import { toast } from "/ui"
 
 const NewsletterForm = () => {
   const [email, setEmail] = useState("")
@@ -1093,7 +1093,7 @@ You also show a toast notification to the customer indicating that they successf
 The `toast` function is imported from [Medusa UI](!ui!), which requires adding `Toaster` component in the application's tree. So, import the `Toaster` component in the file `src/app/[countryCode]/(main)/layout.tsx`:
 
 ```tsx title="src/app/[countryCode]/(main)/layout.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { Toaster } from "@medusajs/ui"
+import { Toaster } from "/ui"
 ```
 
 Then, in the `PageLayout` component's return statement, add the `Toaster` component after the `Footer` component:
@@ -1188,11 +1188,11 @@ import {
   createWorkflow, 
   when, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   sendNotificationsStep, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 export const sendNewProductsNewsletter = createWorkflow(
   "send-new-products-newsletter", 
@@ -1266,7 +1266,7 @@ To create a scheduled job, create the file `src/jobs/send-weekly-newsletter.ts` 
 ```ts title="src/jobs/send-weekly-newsletter.ts"
 import {
   MedusaContainer,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { sendNewProductsNewsletter } from "../workflows/send-newsletter"
 
 export default async function myCustomJob(container: MedusaContainer) {

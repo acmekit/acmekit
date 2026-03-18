@@ -12,7 +12,7 @@ import {
   ModuleProviderExports,
   ModuleProviderLoaderFunction,
   ModuleResolution,
-} from "@medusajs/types"
+} from "/types"
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
@@ -30,8 +30,8 @@ import {
   ModulesSdkUtils,
   stringifyCircular,
   toMikroOrmEntities,
-} from "@medusajs/utils"
-import { asFunction, asValue } from "@medusajs/deps/awilix"
+} from "/utils"
+import { asFunction, asValue } from "/deps/awilix"
 import { statSync } from "fs"
 import { readdir } from "fs/promises"
 import { dirname, join, resolve } from "path"

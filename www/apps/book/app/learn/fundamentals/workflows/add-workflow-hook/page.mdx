@@ -43,7 +43,7 @@ import {
   createHook,
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { createPostStep } from "./steps/create-post"
 
 export const createBlogPostWorkflow = createWorkflow(
@@ -78,7 +78,7 @@ export const handlerHighlights = [
 ]
 
 ```ts title="src/workflows/hooks/create-blog-post.ts" highlights={handlerHighlights}
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 import { createBlogPostWorkflow } from "../create-blog-post"
 
 createBlogPostWorkflow.hooks.validate(

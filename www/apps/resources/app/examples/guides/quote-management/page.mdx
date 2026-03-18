@@ -11,7 +11,7 @@ products:
   - customer
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram } from "docs-ui"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1741682814/Medusa%20Resources/quote_ldmqaq.jpg"
@@ -177,7 +177,7 @@ export const quoteModelHighlights = [
 ]
 
 ```ts title="src/modules/quote/models/quote.ts" highlights={quoteModelHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 export enum QuoteStatus {
   PENDING_MERCHANT = "pending_merchant",
@@ -238,7 +238,7 @@ To create the Quote Module's service, create the file `src/modules/quote/service
 ![Directory structure after adding the service](https://res.cloudinary.com/dza7lstvk/image/upload/v1741075946/Medusa%20Resources/quote-4_hg4bnr.jpg)
 
 ```ts title="src/modules/quote/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { Quote } from "./models/quote"
 
 class QuoteModuleService extends MedusaService({ 
@@ -269,7 +269,7 @@ So, create the file `src/modules/quote/index.ts` with the following content:
 ![Directory structure after adding the module definition](https://res.cloudinary.com/dza7lstvk/image/upload/v1741076106/Medusa%20Resources/quote-5_ngitn1.jpg)
 
 ```ts title="src/modules/quote/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import QuoteModuleService from "./service"
 
 export const QUOTE_MODULE = "quote"
@@ -369,9 +369,9 @@ export const quoteCartHighlights = [
 ]
 
 ```ts title="src/links/quote-cart.ts" highlights={quoteCartHighlights}
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import QuoteModule from "../modules/quote"
-import CartModule from "@medusajs/medusa/cart"
+import CartModule from "/medusa/cart"
 
 export default defineLink(
   {
@@ -400,9 +400,9 @@ Next, you'll define the link between the `Quote` and `Customer` data model of th
 ![Directory structure after adding the quote-customer link](https://res.cloudinary.com/dza7lstvk/image/upload/v1741078047/Medusa%20Resources/quote-8_bbngmh.jpg)
 
 ```ts title="src/links/quote-customer.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import QuoteModule from "../modules/quote"
-import CustomerModule from "@medusajs/medusa/customer"
+import CustomerModule from "/medusa/customer"
 
 export default defineLink(
   {
@@ -425,9 +425,9 @@ Next, you'll define the link between the `Quote` and `OrderChange` data model of
 ![Directory structure after adding the quote-order-change link](https://res.cloudinary.com/dza7lstvk/image/upload/v1741078511/Medusa%20Resources/quote-11_faac5m.jpg)
 
 ```ts title="src/links/quote-order-change.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import QuoteModule from "../modules/quote"
-import OrderModule from "@medusajs/medusa/order"
+import OrderModule from "/medusa/order"
 
 export default defineLink(
   {
@@ -450,9 +450,9 @@ Finally, you'll define the link between the `Quote` and `Order` data model of th
 ![Directory structure after adding the quote-order link](https://res.cloudinary.com/dza7lstvk/image/upload/v1741078607/Medusa%20Resources/quote-12_ixr2f7.jpg)
 
 ```ts title="src/links/quote-order.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import QuoteModule from "../modules/quote"
-import OrderModule from "@medusajs/medusa/order"
+import OrderModule from "/medusa/order"
 
 export default defineLink(
   {
@@ -536,7 +536,7 @@ The workflow will have the following steps:
   hideLegend
 />
 
-The first four steps are provided by Medusa in its `@medusajs/medusa/core-flows` package. So, you only need to implement the `createQuotesStep` step.
+The first four steps are provided by Medusa in its `/medusa/core-flows` package. So, you only need to implement the `createQuotesStep` step.
 
 ### createQuotesStep
 
@@ -554,7 +554,7 @@ export const createQuotesStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-quotes.ts" highlights={createQuotesStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { QUOTE_MODULE } from "../../modules/quote"
 import QueryModuleService from "../../modules/quote/service"
 
@@ -645,14 +645,14 @@ import {
   createOrderWorkflow,
   CreateOrderWorkflowInput,
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
-import { OrderStatus } from "@medusajs/framework/utils"
+} from "/medusa/core-flows"
+import { OrderStatus } from "/framework/utils"
 import {
   createWorkflow,
   transform,
   WorkflowResponse,
-} from "@medusajs/workflows-sdk"
-import { CreateOrderLineItemDTO } from "@medusajs/framework/types"
+} from "/workflows-sdk"
+import { CreateOrderLineItemDTO } from "/framework/types"
 import { createQuotesStep } from "./steps/create-quotes"
 
 type WorkflowInput = {
@@ -739,7 +739,7 @@ const draftOrder = createOrderWorkflow.runAsStep({
 
 You first prepare the order's details using `transform` from the Workflows SDK. Since Medusa creates an internal representation of the workflow's constructor before any data actually has a value, you can't manipulate data directly in the function. So, Medusa provides utilities like `transform` to manipulate data instead. You can learn more in the [transform variables](!docs!/learn/fundamentals/workflows/variable-manipulation) documentation.
 
-Then, you create the draft order using the `createOrderWorkflow` workflow which you imported from `@medusajs/medusa/core-flows`. The workflow creates and returns the created order.
+Then, you create the draft order using the `createOrderWorkflow` workflow which you imported from `/medusa/core-flows`. The workflow creates and returns the created order.
 
 After that, you want to create an order change for the draft order. This will allow the admin later to make edits to the draft order, such as updating the prices or quantities of the items in the order.
 
@@ -827,8 +827,8 @@ export const createQuoteApiHighlights = [
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { 
   createRequestForQuoteWorkflow,
 } from "../../../../../workflows/create-request-for-quote"
@@ -894,12 +894,12 @@ In Medusa, you create validation schemas using [Zod](https://zod.dev/) in a Type
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```ts title="src/api/store/validators.ts"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export type CreateQuoteType = z.infer<typeof CreateQuote>;
 export const CreateQuote = z
@@ -947,7 +947,7 @@ Middlewares are created in the `src/api/middlewares.ts` file. So create the file
 import { 
   defineMiddlewares, 
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { CreateQuote } from "./store/validators"
 
 export default defineMiddlewares({
@@ -1058,7 +1058,7 @@ Next, you'll define a Zod schema that allows client applications to specify the 
 
 ```ts title="src/api/store/validators.ts"
 // other imports...
-import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+import { createFindParams } from "/medusa/api/utils/validators"
 
 // ...
 
@@ -1081,7 +1081,7 @@ Finally, you'll apply these Query configurations in a middleware. So, add the fo
 ```ts title="src/api/store/middlewares.ts"
 // other imports...
 import { GetQuoteParams } from "./store/validators"
-import { validateAndTransformQuery } from "@medusajs/framework/http"
+import { validateAndTransformQuery } from "/framework/http"
 import { listStoreQuoteQueryConfig } from "./store/customers/me/quotes/query-config"
 
 export default defineMiddlewares({
@@ -1300,8 +1300,8 @@ export const listQuotesHighlights = [
 ]
 
 ```ts title="src/api/admin/quotes/route.ts" highlights={listQuotesHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -1415,7 +1415,7 @@ Next, you'll define a Zod schema that allows client applications to specify the 
 ```ts title="src/api/admin/validators.ts"
 import {
   createFindParams,
-} from "@medusajs/medusa/api/utils/validators"
+} from "/medusa/api/utils/validators"
 
 export const AdminGetQuoteParams = createFindParams({
   limit: 15,
@@ -1481,7 +1481,7 @@ The JS SDK is installed by default in your Medusa application. To configure it, 
 ![Directory structure after adding the sdk file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741098137/Medusa%20Resources/quote-23_plm90s.jpg)
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -1492,7 +1492,7 @@ export const sdk = new Medusa({
 })
 ```
 
-You create an instance of the JS SDK using the `Medusa` class from the `@medusajs/js-sdk` package. You pass it an object having the following properties:
+You create an instance of the JS SDK using the `Medusa` class from the `/js-sdk` package. You pass it an object having the following properties:
 
 - `baseUrl`: The base URL of the Medusa server.
 - `debug`: A boolean indicating whether to log debug information.
@@ -1512,7 +1512,7 @@ import {
   FindParams,
   PaginatedResponse,
   StoreCart,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 export type AdminQuote = {
   id: string;
@@ -1559,7 +1559,7 @@ Create the file `src/admin/hooks/quotes.tsx` with the following content:
 ![Directory structure after adding the hooks quotes file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741098244/Medusa%20Resources/quote-24_apdpem.jpg)
 
 ```ts title="src/admin/hooks/quotes.tsx"
-import { ClientHeaders, FetchError } from "@medusajs/js-sdk"
+import { ClientHeaders, FetchError } from "/js-sdk"
 import {
   QuoteQueryParams,
   AdminQuotesResponse,
@@ -1611,12 +1611,12 @@ So, to add the UI route at `/quotes` in the Medusa Admin, create the file `src/a
 ![Directory structure after adding the Quotes UI route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741099122/Medusa%20Resources/quote-26_qrqzut.jpg)
 
 ```tsx title="src/admin/routes/quotes/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { DocumentText } from "@medusajs/icons"
+import { defineRouteConfig } from "/admin-sdk"
+import { DocumentText } from "/icons"
 import { 
   Container, createDataTableColumnHelper, DataTable, 
   DataTablePaginationState, Heading, Toaster, useDataTable,
-} from "@medusajs/ui"
+} from "/ui"
 import { useNavigate } from "react-router-dom"
 import { useQuotes } from "../../hooks/quotes"
 import { AdminQuote } from "../../types"
@@ -1794,8 +1794,8 @@ To add the API route, create the file `src/api/admin/quotes/[id]/route.ts` with 
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
@@ -1894,8 +1894,8 @@ To create the hook, create the file `src/admin/hooks/order-preview.tsx` with the
 ![Directory structure after adding the order preview hook file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741157692/Medusa%20Resources/quote-32_tb1tqw.jpg)
 
 ```tsx title="src/admin/hooks/order-preview.tsx"
-import { HttpTypes } from "@medusajs/framework/types"
-import { FetchError } from "@medusajs/js-sdk"
+import { HttpTypes } from "/framework/types"
+import { FetchError } from "/js-sdk"
 import { QueryKey, useQuery, UseQueryOptions } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
 
@@ -1960,7 +1960,7 @@ To display changes in an amount, you'll create an `Amount` component and re-use 
 ![Directory structure after adding the amount component](https://res.cloudinary.com/dza7lstvk/image/upload/v1741101819/Medusa%20Resources/quote-28_iwukg2.jpg)
 
 ```tsx title="src/admin/components/amount.tsx"
-import { clx } from "@medusajs/ui"
+import { clx } from "/ui"
 import { formatAmount } from "../utils/format-amount"
 
 type AmountProps = {
@@ -2040,8 +2040,8 @@ import {
   AdminOrder,
   AdminOrderLineItem,
   AdminOrderPreview,
-} from "@medusajs/framework/types"
-import { Badge, Text } from "@medusajs/ui"
+} from "/framework/types"
+import { Badge, Text } from "/ui"
 import { useMemo } from "react"
 import { Amount } from "./amount-cell"
 
@@ -2180,8 +2180,8 @@ Create the file `src/admin/components/totals-breakdown.tsx` with the following c
 ![Directory structure after adding the totals breakdown component](https://res.cloudinary.com/dza7lstvk/image/upload/v1741155757/Medusa%20Resources/quote-30_de0kjq.jpg)
 
 ```tsx title="src/admin/components/totals-breakdown.tsx"
-import { AdminOrder } from "@medusajs/framework/types"
-import { Text } from "@medusajs/ui"
+import { AdminOrder } from "/framework/types"
+import { Text } from "/ui"
 import { ReactNode } from "react"
 import { formatAmount } from "../utils/format-amount"
 
@@ -2269,14 +2269,14 @@ export const quotesDetailsHighlights = [
 ]
 
 ```tsx title="src/admin/routes/quote/[id]/page.tsx" highlights={quotesDetailsHighlights}
-import { CheckCircleSolid } from "@medusajs/icons"
+import { CheckCircleSolid } from "/icons"
 import {
   Button,
   Container,
   Heading,
   Text,
   Toaster,
-} from "@medusajs/ui"
+} from "/ui"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { useOrderPreview } from "../../../hooks/order-preview"
 import { 
@@ -2491,7 +2491,7 @@ To reject a quote, you'll need to create a workflow that will handle the rejecti
   hideLegend
 />
 
-As mentioned before, the `useQueryGraphStep` is provided by Medusa's `@medusajs/medusa/core-flows` package. So, you'll only implement the remaining steps.
+As mentioned before, the `useQueryGraphStep` is provided by Medusa's `/medusa/core-flows` package. So, you'll only implement the remaining steps.
 
 #### validateQuoteNotAccepted
 
@@ -2502,9 +2502,9 @@ To create the step, create the file `src/workflows/steps/validate-quote-not-acce
 ![Diagram showcasing the directory structure after adding the validate quote rejection step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741159537/Medusa%20Resources/quote-34_mtcxwa.jpg)
 
 ```ts title="src/workflows/steps/validate-quote-not-accepted.ts"
-import { MedusaError } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { MedusaError } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
+import { InferTypeOf } from "/framework/types"
 import { Quote, QuoteStatus } from "../../modules/quote/models/quote"
 
 type StepInput = {
@@ -2535,7 +2535,7 @@ Create the file `src/workflows/steps/update-quotes.ts` with the following conten
 ![Diagram showcasing the directory structure after adding the update quotes step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741159754/Medusa%20Resources/quote-35_moaulz.jpg)
 
 ```ts title="src/workflows/steps/update-quotes.ts"
-import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
+import { StepResponse, createStep } from "/framework/workflows-sdk"
 import { QUOTE_MODULE } from "../../modules/quote"
 import { QuoteStatus } from "../../modules/quote/models/quote"
 import QuoteModuleService from "../../modules/quote/service"
@@ -2595,8 +2595,8 @@ export const merchantRejectionWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/merchant-reject-quote.ts" highlights={merchantRejectionWorkflowHighlights}
-import { useQueryGraphStep } from "@medusajs/core-flows"
-import { createWorkflow } from "@medusajs/workflows-sdk"
+import { useQueryGraphStep } from "/core-flows"
+import { createWorkflow } from "/workflows-sdk"
 import { QuoteStatus } from "../modules/quote/models/quote"
 import { validateQuoteNotAccepted } from "./steps/validate-quote-not-accepted"
 import { updateQuotesStep } from "./steps/update-quotes"
@@ -2652,8 +2652,8 @@ Create the file `src/api/admin/quotes/[id]/reject/route.ts` with the following c
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { merchantRejectQuoteWorkflow } from "../../../../../workflows/merchant-reject-quote"
 
 export const POST = async (
@@ -2750,7 +2750,7 @@ In `src/admin/routes/quote/[id]/page.tsx`, add the following imports:
 import {
   toast,
   usePrompt,
-} from "@medusajs/ui"
+} from "/ui"
 import { useEffect, useState } from "react"
 import { 
   useRejectQuote, 
@@ -2896,8 +2896,8 @@ export const sendQuoteHighlights = [
 ]
 
 ```ts title="src/workflows/merchant-send-quote.ts" highlights={sendQuoteHighlights}
-import { useQueryGraphStep } from "@medusajs/core-flows"
-import { createWorkflow } from "@medusajs/workflows-sdk"
+import { useQueryGraphStep } from "/core-flows"
+import { createWorkflow } from "/workflows-sdk"
 import { QuoteStatus } from "../modules/quote/models/quote"
 import { updateQuotesStep } from "./steps/update-quotes"
 import { validateQuoteNotAccepted } from "./steps/validate-quote-not-accepted"
@@ -2953,8 +2953,8 @@ Create the file `src/api/admin/quotes/[id]/send/route.ts` with the following con
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { 
   merchantSendQuoteWorkflow,
 } from "../../../../../workflows/merchant-send-quote"
@@ -3165,8 +3165,8 @@ To create the API route, create the file `src/api/store/customers/me/quotes/[id]
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys, Modules } from "/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
@@ -3291,8 +3291,8 @@ export const customerRejectQuoteHighlights = [
 ]
 
 ```ts title="src/workflows/customer-reject-quote.ts" highlights={customerRejectQuoteHighlights}
-import { useQueryGraphStep } from "@medusajs/core-flows"
-import { createWorkflow } from "@medusajs/workflows-sdk"
+import { useQueryGraphStep } from "/core-flows"
+import { createWorkflow } from "/workflows-sdk"
 import { QuoteStatus } from "../modules/quote/models/quote"
 import { updateQuotesStep } from "./steps/update-quotes"
 import { validateQuoteNotAccepted } from "./steps/validate-quote-not-accepted"
@@ -3349,8 +3349,8 @@ Create the file `src/api/store/customers/me/quotes/[id]/reject/route.ts` with th
 import type { 
   AuthenticatedMedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { 
   customerRejectQuoteWorkflow,
 } from "../../../../../../../workflows/customer-reject-quote"
@@ -3482,9 +3482,9 @@ Create the file `src/workflows/steps/validate-quote-can-accept.ts` with the foll
 ![Directory structure after adding the validate quote can accept step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741165829/Medusa%20Resources/quote-43_cxc3qi.jpg)
 
 ```ts title="src/workflows/steps/validate-quote-can-accept.ts"
-import { MedusaError } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { MedusaError } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
+import { InferTypeOf } from "/framework/types"
 import { Quote, QuoteStatus } from "../../modules/quote/models/quote"
 
 type StepInput = {
@@ -3525,9 +3525,9 @@ import {
   confirmOrderEditRequestWorkflow,
   updateOrderWorkflow,
   useQueryGraphStep,
-} from "@medusajs/core-flows"
-import { OrderStatus } from "@medusajs/framework/utils"
-import { createWorkflow } from "@medusajs/workflows-sdk"
+} from "/core-flows"
+import { OrderStatus } from "/framework/utils"
+import { createWorkflow } from "/workflows-sdk"
 import { validateQuoteCanAcceptStep } from "./steps/validate-quote-can-accept"
 import { QuoteStatus } from "../modules/quote/models/quote"
 import { updateQuotesStep } from "./steps/update-quotes"
@@ -3600,8 +3600,8 @@ Create the file `src/api/store/customers/me/quotes/[id]/accept/route.ts` with th
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { 
   customerAcceptQuoteWorkflow,
 } from "../../../../../../../workflows/customer-accept-quote"
@@ -3716,7 +3716,7 @@ In `src/admin/hooks/quotes.tsx`, add the following hook:
 
 ```tsx title="src/admin/hooks/quotes.tsx"
 // other imports...
-import { HttpTypes } from "@medusajs/framework/types"
+import { HttpTypes } from "/framework/types"
 
 // ...
 
@@ -3801,7 +3801,7 @@ Create the file `src/admin/components/manage-item.tsx` with the following conten
 ![Directory structure after adding the manage item component file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741168152/Medusa%20Resources/quote-46_yxanj7.jpg)
 
 ```tsx
-import { AdminOrder, AdminOrderPreview } from "@medusajs/framework/types"
+import { AdminOrder, AdminOrderPreview } from "/framework/types"
 import {
   Badge,
   CurrencyInput,
@@ -3810,7 +3810,7 @@ import {
   Label,
   Text,
   toast,
-} from "@medusajs/ui"
+} from "/ui"
 import { useMemo } from "react"
 import {
   useUpdateQuoteItem,
@@ -3997,8 +3997,8 @@ Create the file `src/admin/components/manage-quote-form.tsx` with the following 
 ![Directory structure after adding the manage quote form component file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741168581/Medusa%20Resources/quote-47_f5kamq.jpg)
 
 ```tsx title="src/admin/components/manage-quote-form.tsx"
-import { AdminOrder } from "@medusajs/framework/types"
-import { Button, Heading, toast } from "@medusajs/ui"
+import { AdminOrder } from "/framework/types"
+import { Button, Heading, toast } from "/ui"
 import { useConfirmQuote } from "../hooks/quotes"
 import { formatAmount } from "../utils/format-amount"
 import { useOrderPreview } from "../hooks/order-preview"
@@ -4125,7 +4125,7 @@ Create the file `src/admin/routes/quotes/[id]/manage/page.tsx` with the followin
 ```tsx title="src/admin/routes/quotes/[id]/manage/page.tsx"
 import { useParams } from "react-router-dom"
 import { useQuote } from "../../../../hooks/quotes"
-import { Container, Heading, Toaster } from "@medusajs/ui"
+import { Container, Heading, Toaster } from "/ui"
 import { ManageQuoteForm } from "../../../../components/manage-quote-form"
 
 const QuoteManage = () => {

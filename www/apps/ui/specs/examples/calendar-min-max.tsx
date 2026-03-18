@@ -1,4 +1,4 @@
-import { Calendar } from "@medusajs/ui"
+import { Calendar } from "/ui"
 
 export default function CalendarMinMax() {
   const min = new Date()

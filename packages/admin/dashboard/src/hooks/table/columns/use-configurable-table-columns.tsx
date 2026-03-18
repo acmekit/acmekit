@@ -1,6 +1,6 @@
 import React, { useMemo } from "react"
-import { createDataTableColumnHelper } from "@medusajs/ui"
-import { HttpTypes } from "@medusajs/types"
+import { createDataTableColumnHelper } from "/ui"
+import { HttpTypes } from "/types"
 import { useTranslation } from "react-i18next"
 import { getCellRenderer, getColumnValue } from "../../../lib/table/cell-renderers"
 

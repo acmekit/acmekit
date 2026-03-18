@@ -1,9 +1,9 @@
-import { IRbacModuleService } from "@medusajs/framework/types"
-import { Module, Modules } from "@medusajs/framework/utils"
+import { IRbacModuleService } from "/framework/types"
+import { Module, Modules } from "/framework/utils"
 import {
   MockEventBusService,
   moduleIntegrationTestRunner,
-} from "@medusajs/test-utils"
+} from "/test-utils"
 import { RbacModuleService } from "@services"
 
 jest.setTimeout(30000)

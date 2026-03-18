@@ -26,8 +26,8 @@ export const highlights = [
 ]
 
 ```ts highlights={highlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 export async function GET(
   req: MedusaRequest,
@@ -79,8 +79,8 @@ export const subscriberHighlights = [
 ]
 
 ```ts highlights={subscriberHighlights}
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 export default async function productCreateHandler({
   event: { data },
@@ -114,8 +114,8 @@ export const scheduledJobHighlights = [
 ]
 
 ```ts highlights={scheduledJobHighlights}
-import { MedusaContainer } from "@medusajs/framework/types"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { MedusaContainer } from "/framework/types"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 export default async function myCustomJob(
   container: MedusaContainer
@@ -155,8 +155,8 @@ export const workflowStepsHighlight = [
 import {
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/workflows-sdk"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 const step1 = createStep("step-1", async (_, { container }) => {
   const query = container.resolve(ContainerRegistrationKeys.QUERY)

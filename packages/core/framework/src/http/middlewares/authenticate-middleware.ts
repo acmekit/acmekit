@@ -1,5 +1,5 @@
-import { ApiKeyDTO, IApiKeyModuleService } from "@medusajs/types"
-import { ContainerRegistrationKeys, Modules } from "@medusajs/utils"
+import { ApiKeyDTO, IApiKeyModuleService } from "/types"
+import { ContainerRegistrationKeys, Modules } from "/utils"
 import { NextFunction, RequestHandler } from "express"
 import type {
   JwtPayload,

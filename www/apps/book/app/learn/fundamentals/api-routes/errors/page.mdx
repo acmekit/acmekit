@@ -17,8 +17,8 @@ The Medusa application's API route error handler then wraps your thrown error in
 For example:
 
 ```ts
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { MedusaError } from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -257,8 +257,8 @@ import {
   MedusaNextFunction, 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { MedusaError } from "/framework/utils"
 
 export default defineMiddlewares({
   errorHandler: (
@@ -304,8 +304,8 @@ import {
   MedusaNextFunction, 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { MedusaError } from "/framework/utils"
 // assuming you have Sentry set up in your project
 import * as Sentry from "@sentry/node"
 

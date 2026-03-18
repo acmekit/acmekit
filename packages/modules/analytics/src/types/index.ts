@@ -1,7 +1,7 @@
 import {
   ModuleProviderExports,
   ModuleServiceInitializeOptions,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 export type AnalyticsModuleOptions = Partial<ModuleServiceInitializeOptions> & {
   /**
@@ -23,9 +23,9 @@ export type AnalyticsModuleOptions = Partial<ModuleServiceInitializeOptions> & {
   }[]
 }
 
-declare module "@medusajs/types" {
+declare module "/types" {
   interface ModuleOptions {
-    "@medusajs/analytics": AnalyticsModuleOptions
-    "@medusajs/medusa/analytics": AnalyticsModuleOptions
+    "/analytics": AnalyticsModuleOptions
+    "/medusa/analytics": AnalyticsModuleOptions
   }
 }

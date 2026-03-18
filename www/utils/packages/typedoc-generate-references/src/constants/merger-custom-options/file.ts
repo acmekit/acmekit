@@ -44,10 +44,10 @@ The rest of this guide always uses the \`src/modules/my-file\` directory as an e
 </Note>`,
       `## 2. Create the File Module Provider's Service
 
-Create the file \`src/modules/my-file/service.ts\` that holds the implementation of the module provider's main service. It must extend the \`AbstractFileProviderService\` class imported from \`@medusajs/framework/utils\`:
+Create the file \`src/modules/my-file/service.ts\` that holds the implementation of the module provider's main service. It must extend the \`AbstractFileProviderService\` class imported from \`/framework/utils\`:
 
 \`\`\`ts title="src/modules/my-file/service.ts"
-import { AbstractFileProviderService } from "@medusajs/framework/utils"
+import { AbstractFileProviderService } from "/framework/utils"
 
 class MyFileProviderService extends AbstractFileProviderService {
   // TODO implement methods
@@ -66,7 +66,7 @@ import MyFileProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.FILE, {
   services: [MyFileProviderService],
@@ -89,12 +89,12 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/file",
+      resolve: "/medusa/file",
       options: {
         providers: [
           // default provider
           {
-            resolve: "@medusajs/medusa/file-local",
+            resolve: "/medusa/file-local",
             id: "local",
           },
           {

@@ -5,7 +5,7 @@ Use Redis as a Medusa cache store.
 ## Installation
 
 ```
-yarn add @medusajs/cache-redis
+yarn add /cache-redis
 ```
 
 ## Options

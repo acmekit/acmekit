@@ -190,7 +190,7 @@ vi.mock("@/components/Notices/DeprecatedNotice", () => ({
   ),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   TriangleRightMini: ({ className }: { className?: string }) => (
     <svg data-testid="triangle-right-icon" className={className} />
   ),

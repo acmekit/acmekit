@@ -1,4 +1,4 @@
-import { InformationCircleSolid } from "@medusajs/icons"
+import { InformationCircleSolid } from "/icons"
 
 import {
   HookData,

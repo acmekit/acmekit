@@ -1,4 +1,4 @@
-import { Module } from "@medusajs/utils"
+import { Module } from "/utils"
 import { BrandModuleService } from "./service"
 
 export const BRAND_MODULE = "brand"

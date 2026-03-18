@@ -44,10 +44,10 @@ The rest of this guide always uses the \`src/modules/my-analytics\` directory as
 </Note>`,
       `## 2. Create the Analytics Module Provider's Service
 
-Create the file \`src/modules/my-analytics/service.ts\` that holds the implementation of the module provider's main service. It must extend the \`AbstractAnalyticsProviderService\` class imported from \`@medusajs/framework/utils\`:
+Create the file \`src/modules/my-analytics/service.ts\` that holds the implementation of the module provider's main service. It must extend the \`AbstractAnalyticsProviderService\` class imported from \`/framework/utils\`:
 
 \`\`\`ts title="src/modules/my-analytics/service.ts"
-import { AbstractAnalyticsProviderService } from "@medusajs/framework/utils"
+import { AbstractAnalyticsProviderService } from "/framework/utils"
 
 class MyAnalyticsProviderService extends AbstractAnalyticsProviderService {
   // TODO implement methods
@@ -66,7 +66,7 @@ import MyAnalyticsProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.ANALYTICS, {
   services: [MyAnalyticsProviderService],
@@ -89,7 +89,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/analytics",
+      resolve: "/medusa/analytics",
       options: {
         providers: [
           {
@@ -116,10 +116,10 @@ You'll first create a [workflow](!docs!/learn/fundamentals/workflows) that track
 For example, create a workflow at \`src/workflows/track-order-placed.ts\` with the following content:
 
 \`\`\`ts title="src/workflows/track-order-created.ts"
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { Modules } from "@medusajs/framework/utils"
-import { OrderDTO } from "@medusajs/framework/types"
+import { createWorkflow } from "/framework/workflows-sdk"
+import { createStep } from "/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { OrderDTO } from "/framework/types"
 
 type StepInput = {
   order: OrderDTO
@@ -182,7 +182,7 @@ Next, create a subscriber at \`src/subscribers/order-placed.ts\` with the follow
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 import { trackOrderCreatedWorkflow } from "../workflows/track-order-created"
 
 export default async function orderPlacedHandler({

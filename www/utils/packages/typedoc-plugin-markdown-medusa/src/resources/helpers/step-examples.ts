@@ -37,8 +37,8 @@ function generateStepExample(stepReflection: DeclarationReflection): string {
   // generate example
   return `
 \`\`\`ts title="src/workflows/my-workflow.ts"
-${beautifyCode(`import { createWorkflow } from "@medusajs/framework/workflows-sdk"
-import { ${stepReflection.name} } from "@medusajs/medusa/core-flows"
+${beautifyCode(`import { createWorkflow } from "/framework/workflows-sdk"
+import { ${stepReflection.name} } from "/medusa/core-flows"
 
 const myWorkflow = createWorkflow(
   "my-workflow",

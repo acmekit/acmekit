@@ -3,9 +3,9 @@ import * as QueryConfig from "./query-config"
 import {
   validateAndTransformBody,
   validateAndTransformQuery,
-} from "@medusajs/framework"
-import { MiddlewareRoute } from "@medusajs/framework/http"
-import { PolicyOperation } from "@medusajs/framework/utils"
+} from "/framework"
+import { MiddlewareRoute } from "/framework/http"
+import { PolicyOperation } from "/framework/utils"
 
 import { Entities } from "./query-config"
 import {

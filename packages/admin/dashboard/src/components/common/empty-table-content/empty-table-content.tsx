@@ -1,5 +1,5 @@
-import { ExclamationCircle, MagnifyingGlass, PlusMini } from "@medusajs/icons"
-import { Button, Text, clx } from "@medusajs/ui"
+import { ExclamationCircle, MagnifyingGlass, PlusMini } from "/icons"
+import { Button, Text, clx } from "/ui"
 import React from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"

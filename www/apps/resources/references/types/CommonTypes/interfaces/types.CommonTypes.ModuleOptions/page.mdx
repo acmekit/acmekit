@@ -8,10 +8,10 @@ using declaration merging to provide typed options in defineConfig.
 ## Example
 
 ```ts
-// In @medusajs/translation module:
-declare module "@medusajs/types" {
+// In /translation module:
+declare module "/types" {
   interface ModuleOptions {
-    "@medusajs/translation": {
+    "/translation": {
       entities?: { type: string; fields: string[] }[]
     }
   }

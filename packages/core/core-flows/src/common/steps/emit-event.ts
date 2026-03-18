@@ -1,13 +1,13 @@
 import {
   EventBusTypes,
   IEventBusModuleService,
-} from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
+} from "/framework/types"
+import { Modules } from "/framework/utils"
 import {
   StepExecutionContext,
   StepResponse,
   createStep,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 /**
  * The event's details.

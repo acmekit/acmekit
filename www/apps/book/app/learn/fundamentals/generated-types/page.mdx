@@ -101,7 +101,7 @@ Instead, if you need to use a data model's type in your customizations, you can 
 For example, if you want to use the `Brand` data model's type in your customizations, you can do the following:
 
 ```ts
-import { InferTypeOf } from "@medusajs/framework/types"
+import { InferTypeOf } from "/framework/types"
 import { Brand } from "../modules/brand/models/brand" // relative path to the model
 
 export type BrandType = InferTypeOf<typeof Brand>

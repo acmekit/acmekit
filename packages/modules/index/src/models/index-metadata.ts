@@ -1,4 +1,4 @@
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { IndexMetadataStatus } from "../utils/index-metadata-status"
 
 const IndexMetadata = model

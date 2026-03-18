@@ -1,4 +1,4 @@
-import { Context } from "@medusajs/types"
+import { Context } from "/types"
 import { MedusaContextType } from "./context-parameter"
 
 export function InjectTransactionManager(

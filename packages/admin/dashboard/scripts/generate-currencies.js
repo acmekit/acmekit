@@ -1,6 +1,6 @@
 async function generateCurrencies() {
   const { currencies } = await import(
-    "@medusajs/medusa/dist/utils/currencies.js"
+    "/medusa/dist/utils/currencies.js"
   )
   const fs = await import("fs")
   const path = await import("path")

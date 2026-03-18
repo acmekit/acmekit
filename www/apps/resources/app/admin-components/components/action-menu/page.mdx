@@ -23,8 +23,8 @@ import {
   DropdownMenu,
   IconButton,
   clx,
-} from "@medusajs/ui"
-import { EllipsisHorizontal } from "@medusajs/icons"
+} from "/ui"
+import { EllipsisHorizontal } from "/icons"
 import { Link } from "react-router-dom"
 
 export type Action = {
@@ -188,8 +188,8 @@ Use the `ActionMenu` component in any widget or UI route.
 For example, create the widget `src/admin/widgets/product-widget.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/product-widget.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Pencil } from "@medusajs/icons"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Pencil } from "/icons"
 import { Container } from "../components/container"
 import { ActionMenu } from "../components/action-menu"
 
@@ -229,8 +229,8 @@ You can also use the action menu in the [Header](../header/page.mdx) component a
 For example:
 
 ```tsx title="src/admin/widgets/product-widget.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Pencil } from "@medusajs/icons"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Pencil } from "/icons"
 import { Container } from "../components/container"
 import { Header } from "../components/header"
 

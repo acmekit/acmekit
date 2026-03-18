@@ -1,4 +1,4 @@
-import { FlagSettings } from "@medusajs/framework/feature-flags"
+import { FlagSettings } from "/framework/feature-flags"
 
 const RbacFeatureFlag: FlagSettings = {
   key: "rbac",

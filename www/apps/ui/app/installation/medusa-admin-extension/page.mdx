@@ -8,16 +8,16 @@ In this guide, you'll learn how to use Medusa UI for building Medusa Admin custo
 
 ## Use Medusa UI in Medusa Admin
 
-The `@medusajs/ui` and `@medusajs/icons` packages are already installed as dependencies of the `@medusajs/admin-sdk` package in your Medusa project. They're installed by default in your Medusa plugins as well.
+The `/ui` and `/icons` packages are already installed as dependencies of the `/admin-sdk` package in your Medusa project. They're installed by default in your Medusa plugins as well.
 
 So, you can import the packages and use them in your Medusa Admin customizations without any additional installation steps.
 
 For example, to use the UI and icon packages in a UI route:
 
 ```tsx title="src/admin/routes/custom/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { ChatBubbleLeftRight } from "@medusajs/icons"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { ChatBubbleLeftRight } from "/icons"
+import { Container, Heading } from "/ui"
 
 const CustomPage = () => {
   return (

@@ -4,17 +4,17 @@ import {
   logger,
   MedusaAppLoader,
   Migrator,
-} from "@medusajs/framework"
-import { asValue } from "@medusajs/framework/awilix"
-import { EntityManager } from "@medusajs/framework/mikro-orm/postgresql"
-import { MedusaAppOutput, MedusaModule } from "@medusajs/framework/modules-sdk"
-import { EventBusTypes, IndexTypes } from "@medusajs/framework/types"
+} from "/framework"
+import { asValue } from "/framework/awilix"
+import { EntityManager } from "/framework/mikro-orm/postgresql"
+import { MedusaAppOutput, MedusaModule } from "/framework/modules-sdk"
+import { EventBusTypes, IndexTypes } from "/framework/types"
 import {
   ContainerRegistrationKeys,
   Modules,
   toMikroORMEntity,
-} from "@medusajs/framework/utils"
-import { initDb, TestDatabaseUtils } from "@medusajs/test-utils"
+} from "/framework/utils"
+import { initDb, TestDatabaseUtils } from "/test-utils"
 import { IndexData, IndexRelation } from "@models"
 import * as path from "path"
 import { setTimeout } from "timers/promises"

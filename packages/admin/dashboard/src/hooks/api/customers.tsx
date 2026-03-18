@@ -1,5 +1,5 @@
-import { FetchError } from "@medusajs/js-sdk"
-import { HttpTypes, PaginatedResponse } from "@medusajs/types"
+import { FetchError } from "/js-sdk"
+import { HttpTypes, PaginatedResponse } from "/types"
 import {
   QueryKey,
   UseMutationOptions,

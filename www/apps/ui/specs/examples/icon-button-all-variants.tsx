@@ -1,5 +1,5 @@
-import { IconButton } from "@medusajs/ui"
-import { PlusMini } from "@medusajs/icons"
+import { IconButton } from "/ui"
+import { PlusMini } from "/icons"
 
 export default function IconButtonAllVariants() {
   return (

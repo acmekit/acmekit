@@ -1,5 +1,5 @@
-import { EntityMetadata, FindOptions } from "@medusajs/deps/mikro-orm/core"
-import { SqlEntityManager } from "@medusajs/deps/mikro-orm/postgresql"
+import { EntityMetadata, FindOptions } from "/deps/mikro-orm/core"
+import { SqlEntityManager } from "/deps/mikro-orm/postgresql"
 import { promiseAll } from "../../common"
 import { isString } from "../../common/is-string"
 import { buildQuery } from "../../modules-sdk/build-query"

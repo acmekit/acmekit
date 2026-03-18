@@ -8,7 +8,7 @@ import { readFileSync } from "fs"
 type CodeSampleData = Omit<CodeSample, "source">
 
 const JS_SDK_PREFIX = {
-  store: `import Medusa from "@medusajs/js-sdk"
+  store: `import Medusa from "/js-sdk"
 
 let MEDUSA_BACKEND_URL = "http://localhost:9000"
 
@@ -23,7 +23,7 @@ export const sdk = new Medusa({
 })
 
 `,
-  admin: `import Medusa from "@medusajs/js-sdk"
+  admin: `import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",

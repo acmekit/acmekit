@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef } from "react"
 import clsx from "clsx"
 import { OptionType } from "@/hooks/use-select"
 import { Ref } from "types"
-import { CheckMini, EllipseMiniSolid } from "@medusajs/icons"
+import { CheckMini, EllipseMiniSolid } from "/icons"
 
 export type SelectDropdownProps = {
   options: OptionType[]

@@ -1,5 +1,5 @@
 {
-  "name": "@medusajs/auth-github",
+  "name": "@acmekit/auth-github",
   "version": "2.13.4",
   "description": "Github OAuth authentication provider for Medusa",
   "main": "dist/index.js",
@@ -26,10 +26,10 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "@medusajs/framework": "2.13.4"
+    "/framework": "2.13.4"
   },
   "peerDependencies": {
-    "@medusajs/framework": "2.13.4"
+    "/framework": "2.13.4"
   },
   "keywords": [
     "medusa-provider",

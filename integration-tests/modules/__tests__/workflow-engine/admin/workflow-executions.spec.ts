@@ -4,8 +4,8 @@ import {
   StepResponse,
   WorkflowData,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+} from "/framework/workflows-sdk"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import { createAdminUser } from "../../../../helpers/create-admin-user"
 import { setTimeout } from "timers/promises"
 

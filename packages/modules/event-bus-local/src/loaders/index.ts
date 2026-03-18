@@ -1,4 +1,4 @@
-import { LoaderOptions } from "@medusajs/framework/types"
+import { LoaderOptions } from "/framework/types"
 
 export default async ({ logger }: LoaderOptions): Promise<void> => {
   logger?.warn(

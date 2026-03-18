@@ -101,7 +101,7 @@ To retrieve a list of records matching a set of filters, use the `findAndCount` 
 
 <Note>
 
-As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), MikroORM dependencies are included in the `@medusajs/framework` package. If you're using an older version of Medusa, change the import statement to `@mikro-orm/knex`.
+As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), MikroORM dependencies are included in the `/framework` package. If you're using an older version of Medusa, change the import statement to `@mikro-orm/knex`.
 
 </Note>
 
@@ -110,9 +110,9 @@ import {
   InjectTransactionManager,
   MedusaContext,
   MedusaService,
-} from "@medusajs/framework/utils"
-import { Context, InferTypeOf, DAL } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context, InferTypeOf, DAL } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -160,9 +160,9 @@ import {
   InjectTransactionManager,
   MedusaContext,
   MedusaService,
-} from "@medusajs/framework/utils"
-import { Context, InferTypeOf, DAL } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context, InferTypeOf, DAL } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -230,9 +230,9 @@ import {
   InjectTransactionManager,
   MedusaContext,
   MedusaService,
-} from "@medusajs/framework/utils"
-import { Context, InferTypeOf, DAL } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context, InferTypeOf, DAL } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -310,9 +310,9 @@ import {
   InjectTransactionManager,
   MedusaContext,
   MedusaService,
-} from "@medusajs/framework/utils"
-import { Context, InferTypeOf, DAL } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context, InferTypeOf, DAL } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -382,9 +382,9 @@ import {
   InjectTransactionManager,
   MedusaContext,
   MedusaService,
-} from "@medusajs/framework/utils"
-import { Context, InferTypeOf, DAL } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context, InferTypeOf, DAL } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -443,9 +443,9 @@ import {
   InjectTransactionManager,
   MedusaContext,
   MedusaService,
-} from "@medusajs/framework/utils"
-import { Context, InferTypeOf, DAL } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context, InferTypeOf, DAL } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({

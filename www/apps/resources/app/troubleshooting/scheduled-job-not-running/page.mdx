@@ -17,7 +17,7 @@ Make sure that the scheduled job is set up correctly in your Medusa application.
 2. The job exports an asynchronous function that performs the task. For example:
 
 ```ts title="src/jobs/hello-world.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
+import { MedusaContainer } from "/framework/types"
 
 export default async function greetingJob(container: MedusaContainer) {
   const logger = container.resolve("logger")

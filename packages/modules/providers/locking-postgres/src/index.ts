@@ -1,4 +1,4 @@
-import { ModuleProvider, Modules } from "@medusajs/framework/utils"
+import { ModuleProvider, Modules } from "/framework/utils"
 import { PostgresAdvisoryLockProvider } from "./services/advisory-lock"
 
 const services = [PostgresAdvisoryLockProvider]

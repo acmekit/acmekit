@@ -1,4 +1,4 @@
-import { ModuleProvider, Modules } from "@medusajs/framework/utils"
+import { ModuleProvider, Modules } from "/framework/utils"
 import { GoogleAuthService } from "./services/google"
 
 const services = [GoogleAuthService]

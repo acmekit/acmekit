@@ -1,4 +1,4 @@
-import { Button, FocusModal, Heading, Input, Label, Text } from "@medusajs/ui"
+import { Button, FocusModal, Heading, Input, Label, Text } from "/ui"
 import { useState } from "react"
 
 export default function FocusModalControlled() {

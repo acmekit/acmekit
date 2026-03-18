@@ -1,4 +1,4 @@
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const model1 = model.define("module_model_1", {
   id: model.id().primaryKey(),

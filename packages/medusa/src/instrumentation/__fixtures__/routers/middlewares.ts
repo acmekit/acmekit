@@ -1,4 +1,4 @@
-import { defineMiddlewares } from "@medusajs/framework"
+import { defineMiddlewares } from "/framework"
 
 export const errorHandlerMock = jest
   .fn()

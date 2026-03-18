@@ -1,4 +1,4 @@
-import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
+import { StepResponse, createStep } from "/framework/workflows-sdk"
 
 export interface CreateEntitiesStepType {
   /**

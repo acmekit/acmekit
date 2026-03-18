@@ -5,7 +5,7 @@ Medusa in-memory cache module. Use plain JS Map as a cache store.
 ## Installation
 
 ```
-yarn add @medusajs/cache-inmemory
+yarn add /cache-inmemory
 ```
 
 ## Options

@@ -305,7 +305,7 @@
 										"type": "reference",
 										"target": 45734,
 										"name": "CreateEntitiesStepType",
-										"package": "@medusajs/core-flows"
+										"package": "/core-flows"
 									},
 									{
 										"type": "reference",
@@ -318,11 +318,11 @@
 												"type": "reference",
 												"target": 45734,
 												"name": "CreateEntitiesStepType",
-												"package": "@medusajs/core-flows"
+												"package": "/core-flows"
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -361,7 +361,7 @@
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -470,7 +470,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -513,7 +513,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -552,7 +552,7 @@
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -695,7 +695,7 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									},
 									{
@@ -714,12 +714,12 @@
 														"qualifiedName": "LinkDefinition"
 													},
 													"name": "LinkDefinition",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -740,7 +740,7 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										},
 										{
 											"type": "reference",
@@ -756,11 +756,11 @@
 														"qualifiedName": "LinkDefinition"
 													},
 													"name": "LinkDefinition",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										}
 									]
 								}
@@ -774,7 +774,7 @@
 										"qualifiedName": "LinkDefinition"
 									},
 									"name": "LinkDefinition",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							},
 							{
@@ -793,12 +793,12 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -907,7 +907,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -950,12 +950,12 @@
 																		"qualifiedName": "LinkDefinition"
 																	},
 																	"name": "LinkDefinition",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																}
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -994,12 +994,12 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -1306,7 +1306,7 @@
 										"type": "reference",
 										"target": 45777,
 										"name": "DeleteEntitiesStepType",
-										"package": "@medusajs/core-flows"
+										"package": "/core-flows"
 									},
 									{
 										"type": "reference",
@@ -1319,11 +1319,11 @@
 												"type": "reference",
 												"target": 45777,
 												"name": "DeleteEntitiesStepType",
-												"package": "@medusajs/core-flows"
+												"package": "/core-flows"
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -1360,7 +1360,7 @@
 							"qualifiedName": "LinkDefinition"
 						},
 						"name": "LinkDefinition",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "array",
@@ -1371,7 +1371,7 @@
 								"qualifiedName": "LinkDefinition"
 							},
 							"name": "LinkDefinition",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				]
@@ -1508,7 +1508,7 @@
 										"type": "reference",
 										"target": 45764,
 										"name": "DismissRemoteLinksStepInput",
-										"package": "@medusajs/core-flows"
+										"package": "/core-flows"
 									},
 									{
 										"type": "reference",
@@ -1521,11 +1521,11 @@
 												"type": "reference",
 												"target": 45764,
 												"name": "DismissRemoteLinksStepInput",
-												"package": "@medusajs/core-flows"
+												"package": "/core-flows"
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -1546,7 +1546,7 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										},
 										{
 											"type": "reference",
@@ -1562,11 +1562,11 @@
 														"qualifiedName": "LinkDefinition"
 													},
 													"name": "LinkDefinition",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										}
 									]
 								}
@@ -1580,7 +1580,7 @@
 										"qualifiedName": "LinkDefinition"
 									},
 									"name": "LinkDefinition",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							},
 							{
@@ -1599,12 +1599,12 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -1713,7 +1713,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -1756,12 +1756,12 @@
 																		"qualifiedName": "LinkDefinition"
 																	},
 																	"name": "LinkDefinition",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																}
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -1800,12 +1800,12 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -1974,7 +1974,7 @@
 											"qualifiedName": "Input"
 										},
 										"name": "Input",
-										"package": "@medusajs/core-flows"
+										"package": "/core-flows"
 									},
 									{
 										"type": "reference",
@@ -1990,11 +1990,11 @@
 													"qualifiedName": "Input"
 												},
 												"name": "Input",
-												"package": "@medusajs/core-flows"
+												"package": "/core-flows"
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -2059,7 +2059,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												]
 											},
@@ -2099,7 +2099,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												]
 											},
@@ -2289,7 +2289,7 @@
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -2398,7 +2398,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -2512,7 +2512,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -2622,7 +2622,7 @@
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -2663,7 +2663,7 @@
 									"type": "reference",
 									"target": 45933,
 									"name": "T",
-									"package": "@medusajs/core-flows",
+									"package": "/core-flows",
 									"qualifiedName": "GetTranslatedLineItemsStepInput.T",
 									"refersToTypeParameter": true
 								}
@@ -2701,7 +2701,7 @@
 										"qualifiedName": "ProductVariantDTO"
 									},
 									"name": "ProductVariantDTO",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							],
 							"name": "Partial",
@@ -2853,12 +2853,12 @@
 										"type": "reference",
 										"target": 45937,
 										"name": "T",
-										"package": "@medusajs/core-flows",
+										"package": "/core-flows",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "GetTranslatedLineItemsStepInput",
-								"package": "@medusajs/core-flows"
+								"package": "/core-flows"
 							}
 						}
 					],
@@ -2874,7 +2874,7 @@
 											"type": "reference",
 											"target": 45937,
 											"name": "T",
-											"package": "@medusajs/core-flows",
+											"package": "/core-flows",
 											"refersToTypeParameter": true
 										},
 										{
@@ -2888,12 +2888,12 @@
 													"type": "reference",
 													"target": 45937,
 													"name": "T",
-													"package": "@medusajs/core-flows",
+													"package": "/core-flows",
 													"refersToTypeParameter": true
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										}
 									]
 								}
@@ -2904,7 +2904,7 @@
 									"type": "reference",
 									"target": 45937,
 									"name": "T",
-									"package": "@medusajs/core-flows",
+									"package": "/core-flows",
 									"refersToTypeParameter": true
 								}
 							},
@@ -2921,13 +2921,13 @@
 											"type": "reference",
 											"target": 45937,
 											"name": "T",
-											"package": "@medusajs/core-flows",
+											"package": "/core-flows",
 											"refersToTypeParameter": true
 										}
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -3036,7 +3036,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -3076,13 +3076,13 @@
 																	"type": "reference",
 																	"target": 45937,
 																	"name": "T",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																}
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -3118,13 +3118,13 @@
 											"type": "reference",
 											"target": 45937,
 											"name": "T",
-											"package": "@medusajs/core-flows",
+											"package": "/core-flows",
 											"refersToTypeParameter": true
 										}
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -3191,7 +3191,7 @@
 								"qualifiedName": "ShippingOptionDTO"
 							},
 							"name": "ShippingOptionDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -3359,7 +3359,7 @@
 										"type": "reference",
 										"target": 45946,
 										"name": "GetTranslatedShippingOptionsStepInput",
-										"package": "@medusajs/core-flows"
+										"package": "/core-flows"
 									},
 									{
 										"type": "reference",
@@ -3372,11 +3372,11 @@
 												"type": "reference",
 												"target": 45946,
 												"name": "GetTranslatedShippingOptionsStepInput",
-												"package": "@medusajs/core-flows"
+												"package": "/core-flows"
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -3397,7 +3397,7 @@
 												"qualifiedName": "ShippingOptionDTO"
 											},
 											"name": "ShippingOptionDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										},
 										{
 											"type": "reference",
@@ -3413,11 +3413,11 @@
 														"qualifiedName": "ShippingOptionDTO"
 													},
 													"name": "ShippingOptionDTO",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										}
 									]
 								}
@@ -3431,7 +3431,7 @@
 										"qualifiedName": "ShippingOptionDTO"
 									},
 									"name": "ShippingOptionDTO",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							},
 							{
@@ -3450,12 +3450,12 @@
 												"qualifiedName": "ShippingOptionDTO"
 											},
 											"name": "ShippingOptionDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -3564,7 +3564,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -3607,12 +3607,12 @@
 																		"qualifiedName": "ShippingOptionDTO"
 																	},
 																	"name": "ShippingOptionDTO",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																}
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -3651,12 +3651,12 @@
 												"qualifiedName": "ShippingOptionDTO"
 											},
 											"name": "ShippingOptionDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -3797,7 +3797,7 @@
 											"qualifiedName": "RemoveRemoteLinksStepInput"
 										},
 										"name": "RemoveRemoteLinksStepInput",
-										"package": "@medusajs/core-flows"
+										"package": "/core-flows"
 									},
 									{
 										"type": "reference",
@@ -3813,11 +3813,11 @@
 													"qualifiedName": "RemoveRemoteLinksStepInput"
 												},
 												"name": "RemoveRemoteLinksStepInput",
-												"package": "@medusajs/core-flows"
+												"package": "/core-flows"
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -3935,7 +3935,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												]
 											}
@@ -3950,7 +3950,7 @@
 									"qualifiedName": "DeleteEntityInput"
 								},
 								"name": "DeleteEntityInput",
-								"package": "@medusajs/modules-sdk"
+								"package": "/modules-sdk"
 							},
 							{
 								"type": "reference",
@@ -3973,13 +3973,13 @@
 													"qualifiedName": "DeleteEntityInput"
 												},
 												"name": "DeleteEntityInput",
-												"package": "@medusajs/modules-sdk"
+												"package": "/modules-sdk"
 											}
 										]
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -4088,7 +4088,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -4136,13 +4136,13 @@
 																			"qualifiedName": "DeleteEntityInput"
 																		},
 																		"name": "DeleteEntityInput",
-																		"package": "@medusajs/modules-sdk"
+																		"package": "/modules-sdk"
 																	}
 																]
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -4186,13 +4186,13 @@
 													"qualifiedName": "DeleteEntityInput"
 												},
 												"name": "DeleteEntityInput",
-												"package": "@medusajs/modules-sdk"
+												"package": "/modules-sdk"
 											}
 										]
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -4335,7 +4335,7 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									},
 									{
@@ -4354,12 +4354,12 @@
 														"qualifiedName": "LinkDefinition"
 													},
 													"name": "LinkDefinition",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -4380,7 +4380,7 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										},
 										{
 											"type": "reference",
@@ -4396,11 +4396,11 @@
 														"qualifiedName": "LinkDefinition"
 													},
 													"name": "LinkDefinition",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										}
 									]
 								}
@@ -4414,7 +4414,7 @@
 										"qualifiedName": "LinkDefinition"
 									},
 									"name": "LinkDefinition",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							},
 							{
@@ -4433,12 +4433,12 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -4547,7 +4547,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -4590,12 +4590,12 @@
 																		"qualifiedName": "LinkDefinition"
 																	},
 																	"name": "LinkDefinition",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																}
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -4634,12 +4634,12 @@
 												"qualifiedName": "LinkDefinition"
 											},
 											"name": "LinkDefinition",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -4702,12 +4702,12 @@
 								"type": "reference",
 								"target": 45848,
 								"name": "TEntry",
-								"package": "@medusajs/core-flows",
+								"package": "/core-flows",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "RemoteQueryInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reflection",
@@ -4744,7 +4744,7 @@
 													"qualifiedName": "RemoteJoinerOptions"
 												},
 												"name": "RemoteJoinerOptions",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "reflection",
@@ -4775,7 +4775,7 @@
 																"type": "reference",
 																"target": 45849,
 																"name": "TIsList",
-																"package": "@medusajs/core-flows",
+																"package": "/core-flows",
 																"refersToTypeParameter": true
 															}
 														}
@@ -4893,7 +4893,7 @@
 									"type": "reference",
 									"target": 45854,
 									"name": "TIsList",
-									"package": "@medusajs/core-flows",
+									"package": "/core-flows",
 									"refersToTypeParameter": true
 								},
 								"trueType": {
@@ -4907,12 +4907,12 @@
 											"type": "reference",
 											"target": 45853,
 											"name": "TEntry",
-											"package": "@medusajs/core-flows",
+											"package": "/core-flows",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "GraphResultSet",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								"falseType": {
 									"type": "intersection",
@@ -4935,12 +4935,12 @@
 															"type": "reference",
 															"target": 45853,
 															"name": "TEntry",
-															"package": "@medusajs/core-flows",
+															"package": "/core-flows",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "GraphResultSet",
-													"package": "@medusajs/types"
+													"package": "/types"
 												},
 												{
 													"type": "literal",
@@ -4996,12 +4996,12 @@
 																			"type": "reference",
 																			"target": 45853,
 																			"name": "TEntry",
-																			"package": "@medusajs/core-flows",
+																			"package": "/core-flows",
 																			"refersToTypeParameter": true
 																		}
 																	],
 																	"name": "GraphResultSet",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																}
 															}
 														}
@@ -5030,7 +5030,7 @@
 							}
 						],
 						"name": "StepFunction",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				],
 				"name": "ReturnType",
@@ -5160,19 +5160,19 @@
 										"type": "reference",
 										"target": 45857,
 										"name": "TEntry",
-										"package": "@medusajs/core-flows",
+										"package": "/core-flows",
 										"refersToTypeParameter": true
 									},
 									{
 										"type": "reference",
 										"target": 45858,
 										"name": "TIsList",
-										"package": "@medusajs/core-flows",
+										"package": "/core-flows",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "UseQueryGraphStepInput",
-								"package": "@medusajs/core-flows"
+								"package": "/core-flows"
 							}
 						}
 					],
@@ -5191,7 +5191,7 @@
 										"type": "reference",
 										"target": 45858,
 										"name": "TIsList",
-										"package": "@medusajs/core-flows",
+										"package": "/core-flows",
 										"refersToTypeParameter": true
 									},
 									"trueType": {
@@ -5205,12 +5205,12 @@
 												"type": "reference",
 												"target": 45857,
 												"name": "TEntry",
-												"package": "@medusajs/core-flows",
+												"package": "/core-flows",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "GraphResultSet",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									"falseType": {
 										"type": "intersection",
@@ -5233,12 +5233,12 @@
 																"type": "reference",
 																"target": 45857,
 																"name": "TEntry",
-																"package": "@medusajs/core-flows",
+																"package": "/core-flows",
 																"refersToTypeParameter": true
 															}
 														],
 														"name": "GraphResultSet",
-														"package": "@medusajs/types"
+														"package": "/types"
 													},
 													{
 														"type": "literal",
@@ -5283,7 +5283,7 @@
 																		"type": "reference",
 																		"target": 45857,
 																		"name": "TEntry",
-																		"package": "@medusajs/core-flows",
+																		"package": "/core-flows",
 																		"refersToTypeParameter": true
 																	},
 																	"extendsType": {
@@ -5296,7 +5296,7 @@
 																				"qualifiedName": "RemoteQueryEntryPoints"
 																			},
 																			"name": "RemoteQueryEntryPoints",
-																			"package": "@medusajs/types"
+																			"package": "/types"
 																		}
 																	},
 																	"trueType": {
@@ -5311,12 +5311,12 @@
 																						"type": "reference",
 																						"target": 45857,
 																						"name": "TEntry",
-																						"package": "@medusajs/core-flows",
+																						"package": "/core-flows",
 																						"refersToTypeParameter": true
 																					}
 																				],
 																				"name": "TEntry",
-																				"package": "@medusajs/core-flows",
+																				"package": "/core-flows",
 																				"refersToTypeParameter": true
 																			},
 																			"objectType": {
@@ -5326,7 +5326,7 @@
 																					"qualifiedName": "RemoteQueryEntryPoints"
 																				},
 																				"name": "RemoteQueryEntryPoints",
-																				"package": "@medusajs/types"
+																				"package": "/types"
 																			}
 																		}
 																	},
@@ -5371,7 +5371,7 @@
 											"qualifiedName": "Item"
 										},
 										"name": "Item",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								},
@@ -5387,7 +5387,7 @@
 													"qualifiedName": "Item"
 												},
 												"name": "Item",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											{
@@ -5404,12 +5404,12 @@
 															"qualifiedName": "Item"
 														},
 														"name": "Item",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "WorkflowData",
-												"package": "@medusajs/workflows-sdk"
+												"package": "/workflows-sdk"
 											}
 										]
 									}
@@ -5426,7 +5426,7 @@
 											"type": "reference",
 											"target": 45858,
 											"name": "TIsList",
-											"package": "@medusajs/core-flows",
+											"package": "/core-flows",
 											"refersToTypeParameter": true
 										},
 										"trueType": {
@@ -5440,12 +5440,12 @@
 													"type": "reference",
 													"target": 45857,
 													"name": "TEntry",
-													"package": "@medusajs/core-flows",
+													"package": "/core-flows",
 													"refersToTypeParameter": true
 												}
 											],
 											"name": "GraphResultSet",
-											"package": "@medusajs/types"
+											"package": "/types"
 										},
 										"falseType": {
 											"type": "intersection",
@@ -5468,12 +5468,12 @@
 																	"type": "reference",
 																	"target": 45857,
 																	"name": "TEntry",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																}
 															],
 															"name": "GraphResultSet",
-															"package": "@medusajs/types"
+															"package": "/types"
 														},
 														{
 															"type": "literal",
@@ -5518,7 +5518,7 @@
 																			"type": "reference",
 																			"target": 45857,
 																			"name": "TEntry",
-																			"package": "@medusajs/core-flows",
+																			"package": "/core-flows",
 																			"refersToTypeParameter": true
 																		},
 																		"extendsType": {
@@ -5531,7 +5531,7 @@
 																					"qualifiedName": "RemoteQueryEntryPoints"
 																				},
 																				"name": "RemoteQueryEntryPoints",
-																				"package": "@medusajs/types"
+																				"package": "/types"
 																			}
 																		},
 																		"trueType": {
@@ -5548,7 +5548,7 @@
 																						}
 																					],
 																					"name": "TEntry",
-																					"package": "@medusajs/core-flows",
+																					"package": "/core-flows",
 																					"refersToTypeParameter": true
 																				},
 																				"objectType": {
@@ -5558,7 +5558,7 @@
 																						"qualifiedName": "RemoteQueryEntryPoints"
 																					},
 																					"name": "RemoteQueryEntryPoints",
-																					"package": "@medusajs/types"
+																					"package": "/types"
 																				}
 																			}
 																		},
@@ -5630,7 +5630,7 @@
 															"qualifiedName": "Key"
 														},
 														"name": "Key",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													"objectType": {
@@ -5643,7 +5643,7 @@
 															"type": "reference",
 															"target": 45858,
 															"name": "TIsList",
-															"package": "@medusajs/core-flows",
+															"package": "/core-flows",
 															"refersToTypeParameter": true
 														},
 														"trueType": {
@@ -5657,12 +5657,12 @@
 																	"type": "reference",
 																	"target": 45857,
 																	"name": "TEntry",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																}
 															],
 															"name": "GraphResultSet",
-															"package": "@medusajs/types"
+															"package": "/types"
 														},
 														"falseType": {
 															"type": "intersection",
@@ -5685,12 +5685,12 @@
 																					"type": "reference",
 																					"target": 45857,
 																					"name": "TEntry",
-																					"package": "@medusajs/core-flows",
+																					"package": "/core-flows",
 																					"refersToTypeParameter": true
 																				}
 																			],
 																			"name": "GraphResultSet",
-																			"package": "@medusajs/types"
+																			"package": "/types"
 																		},
 																		{
 																			"type": "literal",
@@ -5789,7 +5789,7 @@
 																	"qualifiedName": "Key"
 																},
 																"name": "Key",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															},
 															"objectType": {
@@ -5802,7 +5802,7 @@
 																	"type": "reference",
 																	"target": 45858,
 																	"name": "TIsList",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																},
 																"trueType": {
@@ -5816,12 +5816,12 @@
 																			"type": "reference",
 																			"target": 45857,
 																			"name": "TEntry",
-																			"package": "@medusajs/core-flows",
+																			"package": "/core-flows",
 																			"refersToTypeParameter": true
 																		}
 																	],
 																	"name": "GraphResultSet",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																},
 																"falseType": {
 																	"type": "intersection",
@@ -5846,7 +5846,7 @@
 																						}
 																					],
 																					"name": "GraphResultSet",
-																					"package": "@medusajs/types"
+																					"package": "/types"
 																				},
 																				{
 																					"type": "literal",
@@ -5916,7 +5916,7 @@
 														}
 													],
 													"name": "WorkflowData",
-													"package": "@medusajs/workflows-sdk"
+													"package": "/workflows-sdk"
 												}
 											]
 										}
@@ -5934,7 +5934,7 @@
 													"type": "reference",
 													"target": 45858,
 													"name": "TIsList",
-													"package": "@medusajs/core-flows",
+													"package": "/core-flows",
 													"refersToTypeParameter": true
 												},
 												"trueType": {
@@ -5948,12 +5948,12 @@
 															"type": "reference",
 															"target": 45857,
 															"name": "TEntry",
-															"package": "@medusajs/core-flows",
+															"package": "/core-flows",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "GraphResultSet",
-													"package": "@medusajs/types"
+													"package": "/types"
 												},
 												"falseType": {
 													"type": "intersection",
@@ -5976,12 +5976,12 @@
 																			"type": "reference",
 																			"target": 45857,
 																			"name": "TEntry",
-																			"package": "@medusajs/core-flows",
+																			"package": "/core-flows",
 																			"refersToTypeParameter": true
 																		}
 																	],
 																	"name": "GraphResultSet",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																},
 																{
 																	"type": "literal",
@@ -6026,7 +6026,7 @@
 																					"type": "reference",
 																					"target": 45857,
 																					"name": "TEntry",
-																					"package": "@medusajs/core-flows",
+																					"package": "/core-flows",
 																					"refersToTypeParameter": true
 																				},
 																				"extendsType": {
@@ -6039,7 +6039,7 @@
 																							"qualifiedName": "RemoteQueryEntryPoints"
 																						},
 																						"name": "RemoteQueryEntryPoints",
-																						"package": "@medusajs/types"
+																						"package": "/types"
 																					}
 																				},
 																				"trueType": {
@@ -6105,7 +6105,7 @@
 															"type": "reference",
 															"target": 45858,
 															"name": "TIsList",
-															"package": "@medusajs/core-flows",
+															"package": "/core-flows",
 															"refersToTypeParameter": true
 														},
 														"trueType": {
@@ -6119,12 +6119,12 @@
 																	"type": "reference",
 																	"target": 45857,
 																	"name": "TEntry",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																}
 															],
 															"name": "GraphResultSet",
-															"package": "@medusajs/types"
+															"package": "/types"
 														},
 														"falseType": {
 															"type": "intersection",
@@ -6147,12 +6147,12 @@
 																					"type": "reference",
 																					"target": 45857,
 																					"name": "TEntry",
-																					"package": "@medusajs/core-flows",
+																					"package": "/core-flows",
 																					"refersToTypeParameter": true
 																				}
 																			],
 																			"name": "GraphResultSet",
-																			"package": "@medusajs/types"
+																			"package": "/types"
 																		},
 																		{
 																			"type": "literal",
@@ -6197,7 +6197,7 @@
 																							"type": "reference",
 																							"target": 45857,
 																							"name": "TEntry",
-																							"package": "@medusajs/core-flows",
+																							"package": "/core-flows",
 																							"refersToTypeParameter": true
 																						},
 																						"extendsType": {
@@ -6249,7 +6249,7 @@
 													}
 												],
 												"name": "WorkflowDataProperties",
-												"package": "@medusajs/workflows-sdk"
+												"package": "/workflows-sdk"
 											}
 										]
 									}
@@ -6265,7 +6265,7 @@
 									"type": "reference",
 									"target": 45858,
 									"name": "TIsList",
-									"package": "@medusajs/core-flows",
+									"package": "/core-flows",
 									"refersToTypeParameter": true
 								},
 								"trueType": {
@@ -6279,12 +6279,12 @@
 											"type": "reference",
 											"target": 45857,
 											"name": "TEntry",
-											"package": "@medusajs/core-flows",
+											"package": "/core-flows",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "GraphResultSet",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								"falseType": {
 									"type": "intersection",
@@ -6307,12 +6307,12 @@
 															"type": "reference",
 															"target": 45857,
 															"name": "TEntry",
-															"package": "@medusajs/core-flows",
+															"package": "/core-flows",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "GraphResultSet",
-													"package": "@medusajs/types"
+													"package": "/types"
 												},
 												{
 													"type": "literal",
@@ -6357,7 +6357,7 @@
 																	"type": "reference",
 																	"target": 45857,
 																	"name": "TEntry",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																},
 																"extendsType": {
@@ -6370,7 +6370,7 @@
 																			"qualifiedName": "RemoteQueryEntryPoints"
 																		},
 																		"name": "RemoteQueryEntryPoints",
-																		"package": "@medusajs/types"
+																		"package": "/types"
 																	}
 																},
 																"trueType": {
@@ -6385,12 +6385,12 @@
 																					"type": "reference",
 																					"target": 45857,
 																					"name": "TEntry",
-																					"package": "@medusajs/core-flows",
+																					"package": "/core-flows",
 																					"refersToTypeParameter": true
 																				}
 																			],
 																			"name": "TEntry",
-																			"package": "@medusajs/core-flows",
+																			"package": "/core-flows",
 																			"refersToTypeParameter": true
 																		},
 																		"objectType": {
@@ -6400,7 +6400,7 @@
 																				"qualifiedName": "RemoteQueryEntryPoints"
 																			},
 																			"name": "RemoteQueryEntryPoints",
-																			"package": "@medusajs/types"
+																			"package": "/types"
 																		}
 																	}
 																},
@@ -6453,7 +6453,7 @@
 											"type": "reference",
 											"target": 45858,
 											"name": "TIsList",
-											"package": "@medusajs/core-flows",
+											"package": "/core-flows",
 											"refersToTypeParameter": true
 										},
 										"trueType": {
@@ -6467,12 +6467,12 @@
 													"type": "reference",
 													"target": 45857,
 													"name": "TEntry",
-													"package": "@medusajs/core-flows",
+													"package": "/core-flows",
 													"refersToTypeParameter": true
 												}
 											],
 											"name": "GraphResultSet",
-											"package": "@medusajs/types"
+											"package": "/types"
 										},
 										"falseType": {
 											"type": "intersection",
@@ -6495,12 +6495,12 @@
 																	"type": "reference",
 																	"target": 45857,
 																	"name": "TEntry",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																}
 															],
 															"name": "GraphResultSet",
-															"package": "@medusajs/types"
+															"package": "/types"
 														},
 														{
 															"type": "literal",
@@ -6545,7 +6545,7 @@
 																			"type": "reference",
 																			"target": 45857,
 																			"name": "TEntry",
-																			"package": "@medusajs/core-flows",
+																			"package": "/core-flows",
 																			"refersToTypeParameter": true
 																		},
 																		"extendsType": {
@@ -6558,7 +6558,7 @@
 																					"qualifiedName": "RemoteQueryEntryPoints"
 																				},
 																				"name": "RemoteQueryEntryPoints",
-																				"package": "@medusajs/types"
+																				"package": "/types"
 																			}
 																		},
 																		"trueType": {
@@ -6573,12 +6573,12 @@
 																							"type": "reference",
 																							"target": 45857,
 																							"name": "TEntry",
-																							"package": "@medusajs/core-flows",
+																							"package": "/core-flows",
 																							"refersToTypeParameter": true
 																						}
 																					],
 																					"name": "TEntry",
-																					"package": "@medusajs/core-flows",
+																					"package": "/core-flows",
 																					"refersToTypeParameter": true
 																				},
 																				"objectType": {
@@ -6588,7 +6588,7 @@
 																						"qualifiedName": "RemoteQueryEntryPoints"
 																					},
 																					"name": "RemoteQueryEntryPoints",
-																					"package": "@medusajs/types"
+																					"package": "/types"
 																				}
 																			}
 																		},
@@ -6626,7 +6626,7 @@
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -6735,7 +6735,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -6779,7 +6779,7 @@
 																	"type": "reference",
 																	"target": 45858,
 																	"name": "TIsList",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																},
 																"trueType": {
@@ -6793,12 +6793,12 @@
 																			"type": "reference",
 																			"target": 45857,
 																			"name": "TEntry",
-																			"package": "@medusajs/core-flows",
+																			"package": "/core-flows",
 																			"refersToTypeParameter": true
 																		}
 																	],
 																	"name": "GraphResultSet",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																},
 																"falseType": {
 																	"type": "intersection",
@@ -6821,12 +6821,12 @@
 																							"type": "reference",
 																							"target": 45857,
 																							"name": "TEntry",
-																							"package": "@medusajs/core-flows",
+																							"package": "/core-flows",
 																							"refersToTypeParameter": true
 																						}
 																					],
 																					"name": "GraphResultSet",
-																					"package": "@medusajs/types"
+																					"package": "/types"
 																				},
 																				{
 																					"type": "literal",
@@ -6871,7 +6871,7 @@
 																									"type": "reference",
 																									"target": 45857,
 																									"name": "TEntry",
-																									"package": "@medusajs/core-flows",
+																									"package": "/core-flows",
 																									"refersToTypeParameter": true
 																								},
 																								"extendsType": {
@@ -6884,7 +6884,7 @@
 																											"qualifiedName": "RemoteQueryEntryPoints"
 																										},
 																										"name": "RemoteQueryEntryPoints",
-																										"package": "@medusajs/types"
+																										"package": "/types"
 																									}
 																								},
 																								"trueType": {
@@ -6901,7 +6901,7 @@
 																												}
 																											],
 																											"name": "TEntry",
-																											"package": "@medusajs/core-flows",
+																											"package": "/core-flows",
 																											"refersToTypeParameter": true
 																										},
 																										"objectType": {
@@ -6911,7 +6911,7 @@
 																												"qualifiedName": "RemoteQueryEntryPoints"
 																											},
 																											"name": "RemoteQueryEntryPoints",
-																											"package": "@medusajs/types"
+																											"package": "/types"
 																										}
 																									}
 																								},
@@ -6949,7 +6949,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -6989,7 +6989,7 @@
 											"type": "reference",
 											"target": 45858,
 											"name": "TIsList",
-											"package": "@medusajs/core-flows",
+											"package": "/core-flows",
 											"refersToTypeParameter": true
 										},
 										"trueType": {
@@ -7003,12 +7003,12 @@
 													"type": "reference",
 													"target": 45857,
 													"name": "TEntry",
-													"package": "@medusajs/core-flows",
+													"package": "/core-flows",
 													"refersToTypeParameter": true
 												}
 											],
 											"name": "GraphResultSet",
-											"package": "@medusajs/types"
+											"package": "/types"
 										},
 										"falseType": {
 											"type": "intersection",
@@ -7031,12 +7031,12 @@
 																	"type": "reference",
 																	"target": 45857,
 																	"name": "TEntry",
-																	"package": "@medusajs/core-flows",
+																	"package": "/core-flows",
 																	"refersToTypeParameter": true
 																}
 															],
 															"name": "GraphResultSet",
-															"package": "@medusajs/types"
+															"package": "/types"
 														},
 														{
 															"type": "literal",
@@ -7081,7 +7081,7 @@
 																			"type": "reference",
 																			"target": 45857,
 																			"name": "TEntry",
-																			"package": "@medusajs/core-flows",
+																			"package": "/core-flows",
 																			"refersToTypeParameter": true
 																		},
 																		"extendsType": {
@@ -7094,7 +7094,7 @@
 																					"qualifiedName": "RemoteQueryEntryPoints"
 																				},
 																				"name": "RemoteQueryEntryPoints",
-																				"package": "@medusajs/types"
+																				"package": "/types"
 																			}
 																		},
 																		"trueType": {
@@ -7109,12 +7109,12 @@
 																							"type": "reference",
 																							"target": 45857,
 																							"name": "TEntry",
-																							"package": "@medusajs/core-flows",
+																							"package": "/core-flows",
 																							"refersToTypeParameter": true
 																						}
 																					],
 																					"name": "TEntry",
-																					"package": "@medusajs/core-flows",
+																					"package": "/core-flows",
 																					"refersToTypeParameter": true
 																				},
 																				"objectType": {
@@ -7124,7 +7124,7 @@
 																						"qualifiedName": "RemoteQueryEntryPoints"
 																					},
 																					"name": "RemoteQueryEntryPoints",
-																					"package": "@medusajs/types"
+																					"package": "/types"
 																				}
 																			}
 																		},
@@ -7162,7 +7162,7 @@
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -7686,7 +7686,7 @@
 					"type": "reference",
 					"target": 45886,
 					"name": "RemoteStepInput",
-					"package": "@medusajs/core-flows"
+					"package": "/core-flows"
 				}
 			]
 		},
@@ -7974,7 +7974,7 @@
 					"type": "reference",
 					"target": 45886,
 					"name": "RemoteStepInput",
-					"package": "@medusajs/core-flows"
+					"package": "/core-flows"
 				}
 			]
 		},
@@ -8139,13 +8139,13 @@
 										"type": "reference",
 										"target": 45892,
 										"name": "EntryStepInput",
-										"package": "@medusajs/core-flows"
+										"package": "/core-flows"
 									},
 									{
 										"type": "reference",
 										"target": 45899,
 										"name": "ServiceStepInput",
-										"package": "@medusajs/core-flows"
+										"package": "/core-flows"
 									},
 									{
 										"type": "reference",
@@ -8161,19 +8161,19 @@
 														"type": "reference",
 														"target": 45892,
 														"name": "EntryStepInput",
-														"package": "@medusajs/core-flows"
+														"package": "/core-flows"
 													},
 													{
 														"type": "reference",
 														"target": 45899,
 														"name": "ServiceStepInput",
-														"package": "@medusajs/core-flows"
+														"package": "/core-flows"
 													}
 												]
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -8459,7 +8459,7 @@
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -8481,7 +8481,7 @@
 									}
 								],
 								"name": "WorkflowDataProperties",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "reflection",
@@ -8590,7 +8590,7 @@
 																					"qualifiedName": "TransactionStepsDefinition"
 																				},
 																				"name": "TransactionStepsDefinition",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			},
 																			{
 																				"type": "union",
@@ -8630,7 +8630,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											]
@@ -8666,7 +8666,7 @@
 									}
 								],
 								"name": "StepFunctionReturnConfig",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -8728,7 +8728,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/core-flows",
+	"packageName": "/core-flows",
 	"symbolIdMap": {
 		"45733": {
 			"sourceFileName": "../../../../packages/core/core-flows/src/common/index.ts",

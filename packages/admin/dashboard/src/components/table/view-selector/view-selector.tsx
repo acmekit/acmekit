@@ -7,7 +7,7 @@ import {
   Badge,
   usePrompt,
   toast,
-} from "@medusajs/ui"
+} from "/ui"
 import { 
   Eye,
   EyeSlash,
@@ -17,7 +17,7 @@ import {
   Star,
   CheckCircleSolid,
   ArrowUturnLeft,
-} from "@medusajs/icons"
+} from "/icons"
 import { useViewConfigurations, useViewConfiguration } from "../../../hooks/use-view-configurations"
 import type { ViewConfiguration } from "../../../hooks/use-view-configurations"
 import { SaveViewDialog } from "../save-view-dialog"

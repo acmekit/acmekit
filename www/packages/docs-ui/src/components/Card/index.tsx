@@ -1,7 +1,7 @@
 import React from "react"
 import { BadgeProps } from "@/components/Badge"
 import { CardDefaultLayout } from "./Layout/Default"
-import { IconProps } from "@medusajs/icons/dist/types"
+import { IconProps } from "/icons/dist/types"
 import { CardLargeLayout } from "./Layout/Large"
 import { CardFillerLayout } from "./Layout/Filler"
 import { CardLayoutMini } from "./Layout/Mini"

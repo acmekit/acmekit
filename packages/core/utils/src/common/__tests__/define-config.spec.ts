@@ -14,41 +14,41 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -61,22 +61,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -85,10 +85,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -137,41 +137,41 @@ describe("defineConfig", function () {
             "resolve": "./modules/github",
           },
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -184,22 +184,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -208,10 +208,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -268,41 +268,41 @@ describe("defineConfig", function () {
             )}",
           },
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -315,22 +315,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -339,10 +339,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -400,41 +400,41 @@ describe("defineConfig", function () {
             )}",
           },
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -447,22 +447,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -471,10 +471,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -520,41 +520,41 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -567,22 +567,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -591,10 +591,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -643,41 +643,41 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
             "disable": true,
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -690,22 +690,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -714,10 +714,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -769,24 +769,24 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
             "options": {
               "redisUrl": "redis://localhost:6379",
             },
-            "resolve": "@medusajs/medusa/cache-redis",
+            "resolve": "/medusa/cache-redis",
           },
           "caching": {
             "options": {
@@ -797,14 +797,14 @@ describe("defineConfig", function () {
                   "options": {
                     "redisUrl": "redis://localhost:6379",
                   },
-                  "resolve": "@medusajs/medusa/caching-redis",
+                  "resolve": "/medusa/caching-redis",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/caching",
+            "resolve": "/medusa/caching",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
             "options": {
@@ -813,7 +813,7 @@ describe("defineConfig", function () {
                 "concurrency": 1,
               },
             },
-            "resolve": "@medusajs/medusa/event-bus-redis",
+            "resolve": "/medusa/event-bus-redis",
           },
           "file": {
             "options": {
@@ -828,11 +828,11 @@ describe("defineConfig", function () {
                     "prefix": "test",
                     "region": "us-east-1",
                   },
-                  "resolve": "@medusajs/medusa/file-s3",
+                  "resolve": "/medusa/file-s3",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
             "options": {
@@ -843,11 +843,11 @@ describe("defineConfig", function () {
                   "options": {
                     "redisUrl": "redis://localhost:6379",
                   },
-                  "resolve": "@medusajs/medusa/locking-redis",
+                  "resolve": "/medusa/locking-redis",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -860,22 +860,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -884,7 +884,7 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
             "options": {
@@ -892,7 +892,7 @@ describe("defineConfig", function () {
                 "url": "redis://localhost:6379",
               },
             },
-            "resolve": "@medusajs/medusa/workflow-engine-redis",
+            "resolve": "/medusa/workflow-engine-redis",
           },
         },
         "plugins": [],
@@ -946,24 +946,24 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
             "options": {
               "redisUrl": "redis://localhost:6379",
             },
-            "resolve": "@medusajs/medusa/cache-redis",
+            "resolve": "/medusa/cache-redis",
           },
           "caching": {
             "options": {
@@ -974,14 +974,14 @@ describe("defineConfig", function () {
                   "options": {
                     "redisUrl": "redis://localhost:6379",
                   },
-                  "resolve": "@medusajs/medusa/caching-redis",
+                  "resolve": "/medusa/caching-redis",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/caching",
+            "resolve": "/medusa/caching",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
             "options": {
@@ -990,7 +990,7 @@ describe("defineConfig", function () {
                 "concurrency": 1,
               },
             },
-            "resolve": "@medusajs/medusa/event-bus-redis",
+            "resolve": "/medusa/event-bus-redis",
           },
           "file": {
             "options": {
@@ -1005,11 +1005,11 @@ describe("defineConfig", function () {
                     "prefix": "test",
                     "region": "us-east-1",
                   },
-                  "resolve": "@medusajs/medusa/file-s3",
+                  "resolve": "/medusa/file-s3",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
             "options": {
@@ -1020,11 +1020,11 @@ describe("defineConfig", function () {
                   "options": {
                     "redisUrl": "redis://localhost:6379",
                   },
-                  "resolve": "@medusajs/medusa/locking-redis",
+                  "resolve": "/medusa/locking-redis",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -1037,22 +1037,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -1061,7 +1061,7 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
             "options": {
@@ -1069,7 +1069,7 @@ describe("defineConfig", function () {
                 "url": "redis://localhost:6379",
               },
             },
-            "resolve": "@medusajs/medusa/workflow-engine-redis",
+            "resolve": "/medusa/workflow-engine-redis",
           },
         },
         "plugins": [],
@@ -1139,24 +1139,24 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
             "options": {
               "redisUrl": "redis://localhost:6379",
             },
-            "resolve": "@medusajs/medusa/cache-redis",
+            "resolve": "/medusa/cache-redis",
           },
           "caching": {
             "options": {
@@ -1167,14 +1167,14 @@ describe("defineConfig", function () {
                   "options": {
                     "redisUrl": "redis://localhost:6379",
                   },
-                  "resolve": "@medusajs/medusa/caching-redis",
+                  "resolve": "/medusa/caching-redis",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/caching",
+            "resolve": "/medusa/caching",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
             "options": {
@@ -1183,7 +1183,7 @@ describe("defineConfig", function () {
                 "concurrency": 1,
               },
             },
-            "resolve": "@medusajs/medusa/event-bus-redis",
+            "resolve": "/medusa/event-bus-redis",
           },
           "file": {
             "options": {
@@ -1198,11 +1198,11 @@ describe("defineConfig", function () {
                     "prefix": "test",
                     "region": "us-east-1",
                   },
-                  "resolve": "@medusajs/medusa/file-s3",
+                  "resolve": "/medusa/file-s3",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
             "options": {
@@ -1213,11 +1213,11 @@ describe("defineConfig", function () {
                   "options": {
                     "redisUrl": "redis://localhost:6379",
                   },
-                  "resolve": "@medusajs/medusa/locking-redis",
+                  "resolve": "/medusa/locking-redis",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -1230,22 +1230,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -1254,7 +1254,7 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
             "options": {
@@ -1262,7 +1262,7 @@ describe("defineConfig", function () {
                 "url": "redis://localhost:6379",
               },
             },
-            "resolve": "@medusajs/medusa/workflow-engine-redis",
+            "resolve": "/medusa/workflow-engine-redis",
           },
         },
         "plugins": [],
@@ -1402,41 +1402,41 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -1449,22 +1449,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -1473,10 +1473,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -1537,7 +1537,7 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
@@ -1553,34 +1553,34 @@ describe("defineConfig", function () {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -1599,22 +1599,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -1623,10 +1623,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -1690,7 +1690,7 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
@@ -1706,34 +1706,34 @@ describe("defineConfig", function () {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -1752,22 +1752,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -1776,10 +1776,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],
@@ -1852,7 +1852,7 @@ describe("defineConfig", function () {
         "logger": undefined,
         "modules": {
           "api_key": {
-            "resolve": "@medusajs/medusa/api-key",
+            "resolve": "/medusa/api-key",
           },
           "auth": {
             "options": {
@@ -1868,34 +1868,34 @@ describe("defineConfig", function () {
               "providers": [
                 {
                   "id": "emailpass",
-                  "resolve": "@medusajs/medusa/auth-emailpass",
+                  "resolve": "/medusa/auth-emailpass",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/auth",
+            "resolve": "/medusa/auth",
           },
           "cache": {
-            "resolve": "@medusajs/medusa/cache-inmemory",
+            "resolve": "/medusa/cache-inmemory",
           },
           "customer": {
-            "resolve": "@medusajs/medusa/customer",
+            "resolve": "/medusa/customer",
           },
           "event_bus": {
-            "resolve": "@medusajs/medusa/event-bus-local",
+            "resolve": "/medusa/event-bus-local",
           },
           "file": {
             "options": {
               "providers": [
                 {
                   "id": "local",
-                  "resolve": "@medusajs/medusa/file-local",
+                  "resolve": "/medusa/file-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/file",
+            "resolve": "/medusa/file",
           },
           "locking": {
-            "resolve": "@medusajs/medusa/locking",
+            "resolve": "/medusa/locking",
           },
           "notification": {
             "options": {
@@ -1914,22 +1914,22 @@ describe("defineConfig", function () {
                     ],
                     "name": "Local Notification Provider",
                   },
-                  "resolve": "@medusajs/medusa/notification-local",
+                  "resolve": "/medusa/notification-local",
                 },
               ],
             },
-            "resolve": "@medusajs/medusa/notification",
+            "resolve": "/medusa/notification",
           },
           "rbac": {
             "disable": true,
-            "resolve": "@medusajs/medusa/rbac",
+            "resolve": "/medusa/rbac",
           },
           "settings": {
-            "resolve": "@medusajs/medusa/settings",
+            "resolve": "/medusa/settings",
           },
           "translation": {
             "disable": true,
-            "resolve": "@medusajs/medusa/translation",
+            "resolve": "/medusa/translation",
           },
           "user": {
             "options": {
@@ -1938,10 +1938,10 @@ describe("defineConfig", function () {
               "jwt_secret": "supersecret",
               "jwt_verify_options": undefined,
             },
-            "resolve": "@medusajs/medusa/user",
+            "resolve": "/medusa/user",
           },
           "workflows": {
-            "resolve": "@medusajs/medusa/workflow-engine-inmemory",
+            "resolve": "/medusa/workflow-engine-inmemory",
           },
         },
         "plugins": [],

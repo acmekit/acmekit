@@ -11,7 +11,7 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 # confirmVariantInventoryWorkflow - Medusa Core Workflows Reference
 
-This documentation provides a reference to the `confirmVariantInventoryWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
+This documentation provides a reference to the `confirmVariantInventoryWorkflow`. It belongs to the `/medusa/core-flows` package.
 
 This workflow validates that product variants are in-stock at the specified sales channel, before adding them or updating their quantity in the cart. If a variant doesn't have sufficient quantity in-stock,
 the workflow throws an error. If all variants have sufficient inventory, the workflow returns the cart's items with their inventory details.
@@ -72,8 +72,8 @@ Then, pass the variant's data with the other required data to the workflow:
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { confirmVariantInventoryWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework/http"
+import { confirmVariantInventoryWorkflow } from "/medusa/core-flows"
 
 export async function POST(
   req: MedusaRequest,
@@ -103,8 +103,8 @@ export async function POST(
 import {
   type SubscriberConfig,
   type SubscriberArgs,
-} from "@medusajs/framework"
-import { confirmVariantInventoryWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework"
+import { confirmVariantInventoryWorkflow } from "/medusa/core-flows"
 
 export default async function handleOrderPlaced({
   event: { data },
@@ -135,8 +135,8 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { confirmVariantInventoryWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaContainer } from "/framework/types"
+import { confirmVariantInventoryWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
   container: MedusaContainer
@@ -167,8 +167,8 @@ export const config = {
     <CodeTab label="Another Workflow" value="another-workflow">
     
 ```ts title="src/workflows/my-workflow.ts"
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
-import { confirmVariantInventoryWorkflow } from "@medusajs/medusa/core-flows"
+import { createWorkflow } from "/framework/workflows-sdk"
+import { confirmVariantInventoryWorkflow } from "/medusa/core-flows"
 
 const myWorkflow = createWorkflow(
   "my-workflow",
@@ -201,8 +201,8 @@ When updating an item quantity:
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { confirmVariantInventoryWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework/http"
+import { confirmVariantInventoryWorkflow } from "/medusa/core-flows"
 
 export async function POST(
   req: MedusaRequest,
@@ -238,8 +238,8 @@ export async function POST(
 import {
   type SubscriberConfig,
   type SubscriberArgs,
-} from "@medusajs/framework"
-import { confirmVariantInventoryWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework"
+import { confirmVariantInventoryWorkflow } from "/medusa/core-flows"
 
 export default async function handleOrderPlaced({
   event: { data },
@@ -276,8 +276,8 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { confirmVariantInventoryWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaContainer } from "/framework/types"
+import { confirmVariantInventoryWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
   container: MedusaContainer
@@ -314,8 +314,8 @@ export const config = {
     <CodeTab label="Another Workflow" value="another-workflow">
     
 ```ts title="src/workflows/my-workflow.ts"
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
-import { confirmVariantInventoryWorkflow } from "@medusajs/medusa/core-flows"
+import { createWorkflow } from "/framework/workflows-sdk"
+import { confirmVariantInventoryWorkflow } from "/medusa/core-flows"
 
 const myWorkflow = createWorkflow(
   "my-workflow",

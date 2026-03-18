@@ -1,4 +1,4 @@
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import Customer from "./customer"
 import CustomerGroup from "./customer-group"
 

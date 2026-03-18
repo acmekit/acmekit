@@ -1,4 +1,4 @@
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const IndexRelation = model.define("IndexRelation", {
   id: model.autoincrement().primaryKey(),

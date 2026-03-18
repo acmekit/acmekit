@@ -111,9 +111,9 @@ export const emitHighlights = [
 ]
 
 ```ts title="src/workflows/handle-payment.ts" highlights={emitHighlights}
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { emitEventStep } from "@medusajs/medusa/core-flows"
-import { EventPriority } from "@medusajs/framework/utils"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
+import { emitEventStep } from "/medusa/core-flows"
+import { EventPriority } from "/framework/utils"
 
 export const handlePaymentWorkflow = createWorkflow(
   "handle-payment",

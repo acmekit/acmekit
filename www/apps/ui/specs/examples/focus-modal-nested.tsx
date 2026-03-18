@@ -1,4 +1,4 @@
-import { Button, FocusModal } from "@medusajs/ui"
+import { Button, FocusModal } from "/ui"
 
 export default function NestedFocusModals() {
   return (

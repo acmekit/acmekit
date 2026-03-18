@@ -1,4 +1,4 @@
-import { InjectionZone, isValidInjectionZone } from "@medusajs/admin-shared"
+import { InjectionZone, isValidInjectionZone } from "/admin-shared"
 import fs from "fs/promises"
 import outdent from "outdent"
 import {

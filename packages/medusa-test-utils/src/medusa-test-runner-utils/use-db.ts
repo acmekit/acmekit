@@ -1,17 +1,17 @@
-import type { MedusaAppLoader } from "@medusajs/framework"
-import { logger } from "@medusajs/framework/logger"
-import { Logger, MedusaContainer } from "@medusajs/framework/types"
+import type { MedusaAppLoader } from "/framework"
+import { logger } from "/framework/logger"
+import { Logger, MedusaContainer } from "/framework/types"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { join } from "path"
 
 /**
  * Initiates the database connection
  */
 export async function initDb() {
-  const { pgConnectionLoader } = await import("@medusajs/framework")
+  const { pgConnectionLoader } = await import("/framework")
 
   const pgConnection = await pgConnectionLoader()
 
@@ -64,6 +64,6 @@ async function loadCustomLinks(directory: string, container: MedusaContainer) {
   )
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
 
-  const { LinkLoader } = await import("@medusajs/framework")
+  const { LinkLoader } = await import("/framework")
   await new LinkLoader(linksSourcePaths, logger).load()
 }

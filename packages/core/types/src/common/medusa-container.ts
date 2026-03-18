@@ -1,4 +1,4 @@
-import type { AwilixContainer, ResolveOptions } from "@medusajs/deps/awilix"
+import type { AwilixContainer, ResolveOptions } from "/deps/awilix"
 
 /**
  * The following interface acts as a bucket that other modules or the

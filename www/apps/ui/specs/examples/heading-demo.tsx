@@ -1,4 +1,4 @@
-import { Heading } from "@medusajs/ui"
+import { Heading } from "/ui"
 
 export default function HeadingDemo() {
   return (

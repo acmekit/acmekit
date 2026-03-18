@@ -1,5 +1,5 @@
-import { Compiler } from "@medusajs/framework/build-tools"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { Compiler } from "/framework/build-tools"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { initializeContainer } from "../loaders"
 import { generateTypes } from "./utils/generate-types"
 
@@ -41,7 +41,7 @@ export default async function build({
     promises.push(compiler.buildAppBackend(tsConfig))
   }
 
-  const bundler = await import("@medusajs/admin-bundler")
+  const bundler = await import("/admin-bundler")
   promises.push(compiler.buildAppFrontend(adminOnly, tsConfig, bundler))
   const responses = await Promise.all(promises)
 

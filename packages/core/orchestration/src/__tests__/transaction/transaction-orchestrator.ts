@@ -2,7 +2,7 @@ import {
   MedusaError,
   TransactionStepState,
   TransactionStepStatus,
-} from "@medusajs/utils"
+} from "/utils"
 import { setTimeout } from "timers/promises"
 import {
   DistributedTransaction,

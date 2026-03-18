@@ -22,7 +22,7 @@ To create a component that shows a table with pagination, create the file `src/a
 
 ```tsx title="src/admin/components/table.tsx"
 import { useMemo } from "react"
-import { Table as UiTable } from "@medusajs/ui"
+import { Table as UiTable } from "/ui"
 
 export type TableProps = {
   columns: {
@@ -189,8 +189,8 @@ Use the `Table` component in any widget or UI route.
 For example, create the widget `src/admin/widgets/product-widget.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/product-widget.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { StatusBadge } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { StatusBadge } from "/ui"
 import { Table } from "../components/table"
 import { useState } from "react"
 import { Container } from "../components/container"
@@ -265,8 +265,8 @@ export const tableExampleHighlights = [
 ]
 
 ```tsx title="src/admin/routes/custom/page.tsx" collapsibleLines="1-10" expandButtonLabel="Show Imports" highlights={tableExampleHighlights}
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { ChatBubbleLeftRight } from "@medusajs/icons"
+import { defineRouteConfig } from "/admin-sdk"
+import { ChatBubbleLeftRight } from "/icons"
 import { useQuery } from "@tanstack/react-query"
 import { SingleColumnLayout } from "../../layouts/single-column"
 import { Table } from "../../components/table"

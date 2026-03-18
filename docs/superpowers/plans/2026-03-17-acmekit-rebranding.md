@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Transform the Medusa v2 monorepo into AcmeKit — a general-purpose application framework — by removing all 14 commerce domain modules, renaming `@medusajs/*` → `@acmekit/*`, cleaning the www docs site, and establishing upstream sync.
+**Goal:** Transform the Medusa v2 monorepo into AcmeKit — a general-purpose application framework — by removing all 14 commerce domain modules, renaming `/*` → `@acmekit/*`, cleaning the www docs site, and establishing upstream sync.
 
 **Architecture:** Slice-by-slice removal (one domain fully deleted across ALL layers per task), followed by www cleanup, then namespace/symbol rename as a final pass. Each slice is independently verifiable via `scripts/verify-slice.sh`. The Pre-Work (client API rename) is a standalone branch merged before any slice work begins.
 
@@ -68,7 +68,7 @@ Create each script exactly as defined in the spec section referenced:
 - `scripts/sync-manifest.json` — tracked paths manifest (spec Section 17)
 - `scripts/codemods/remove-domain-imports.ts` — jscodeshift transform for import removal (spec Section 17)
 - `scripts/codemods/rename-symbols.ts` — ts-morph symbol renamer (spec Section 16.2)
-- `scripts/codemods/rename-namespace.ts` — jscodeshift transform for `@medusajs/*` → `@acmekit/*` (spec Section 15.1)
+- `scripts/codemods/rename-namespace.ts` — jscodeshift transform for `/*` → `@acmekit/*` (spec Section 15.1)
 - `scripts/docs-remove-domain-references.mjs` — docs reference scanner (spec Section 17)
 - `scripts/find-orphaned-docs.mjs` — orphaned doc reference scanner (spec Section 17)
 
@@ -562,7 +562,7 @@ Domain = `fulfillment`.
 - [ ] **Step 1b: Delete provider module wrapper files (not covered by DOMAIN= playbook)**
 
 ```bash
-# packages/medusa/src/modules/fulfillment-manual.ts imports from @medusajs/fulfillment-manual
+# packages/medusa/src/modules/fulfillment-manual.ts imports from /fulfillment-manual
 # which is now deleted. Must delete the wrapper file explicitly:
 rm -f packages/medusa/src/modules/fulfillment-manual.ts
 ```
@@ -611,7 +611,7 @@ Domain = `payment`.
 - [ ] **Step 1b: Delete provider module wrapper files (not covered by DOMAIN= playbook)**
 
 ```bash
-# packages/medusa/src/modules/payment-stripe.ts imports from @medusajs/payment-stripe
+# packages/medusa/src/modules/payment-stripe.ts imports from /payment-stripe
 # which is now deleted. Must delete the wrapper file explicitly:
 rm -f packages/medusa/src/modules/payment-stripe.ts
 ```
@@ -1118,8 +1118,8 @@ perl -pi -e "s|/configurations/medusa-config|/configurations/acmekit-config|g;
              s|/references/medusa-config|/references/acmekit-config|g" \
   www/apps/resources/next.config.mjs
 
-# book/next.config.mjs — outputFileTracingExcludes may reference @medusajs/icons:
-perl -pi -e 's|\@medusajs/icons|\@acmekit/icons|g' \
+# book/next.config.mjs — outputFileTracingExcludes may reference /icons:
+perl -pi -e 's|\/icons|\@acmekit/icons|g' \
   www/apps/book/next.config.mjs || true
 ```
 
@@ -1293,7 +1293,7 @@ git checkout -b feat/core-surgery
 - [ ] **Step 1: Remove commerce-only deps from packages/medusa/package.json**
 
 Remove all entries listed in spec Section 8 from `packages/medusa/package.json`:
-`@medusajs/cart`, `@medusajs/order`, `@medusajs/payment`, `@medusajs/product`, `@medusajs/pricing`, `@medusajs/promotion`, `@medusajs/fulfillment`, `@medusajs/inventory`, `@medusajs/tax`, `@medusajs/region`, `@medusajs/sales-channel`, `@medusajs/stock-location`, `@medusajs/currency`, `@medusajs/store`, `@medusajs/payment-stripe`, `@medusajs/fulfillment-manual`, `@medusajs/link-modules`, `@medusajs/draft-order`
+`/cart`, `/order`, `/payment`, `/product`, `/pricing`, `/promotion`, `/fulfillment`, `/inventory`, `/tax`, `/region`, `/sales-channel`, `/stock-location`, `/currency`, `/store`, `/payment-stripe`, `/fulfillment-manual`, `/link-modules`, `/draft-order`
 
 - [ ] **Step 2: Remove commerce-only deps from core-flows/package.json**
 
@@ -1446,7 +1446,7 @@ perl -pi -e 's/^export \* from "\.\/totals[^"]*";\n//gm' packages/core/utils/src
 perl -pi -e 's/^export \* from "\.\/shipping[^"]*";\n//gm' packages/core/utils/src/index.ts
 ```
 
-> **Note:** `totals/` exports cart/order calculation utilities (`computeAmount`, `computeTotal`, etc.) and imports `CartLikeWithTotals` from `@medusajs/types`. `shipping/` exports only `ShippingProfileType`. Both become entirely dead after commerce removal.
+> **Note:** `totals/` exports cart/order calculation utilities (`computeAmount`, `computeTotal`, etc.) and imports `CartLikeWithTotals` from `/types`. `shipping/` exports only `ShippingProfileType`. Both become entirely dead after commerce removal.
 
 - [ ] **Step 3: container.ts — remove commerce service types (spec 12.3)**
 
@@ -1579,7 +1579,7 @@ perl -pi -e 's/"medusa-config"/"acmekit-config"/g' \
 
 `packages/core/utils/src/common/define-config.ts` is the `defineConfig()` helper every project uses. Its internal `sharedModules` array auto-injects ALL 13 commerce modules into every application. After those packages are deleted, any project calling `defineConfig()` without explicit modules will crash on boot.
 
-Similarly, `resolvePlugins()` has `@medusajs/draft-order` as a hardcoded default plugin.
+Similarly, `resolvePlugins()` has `/draft-order` as a hardcoded default plugin.
 
 ```bash
 # Edit packages/core/utils/src/common/define-config.ts manually.
@@ -1603,7 +1603,7 @@ Similarly, `resolvePlugins()` has `@medusajs/draft-order` as a hardcoded default
 # Keep in sharedModules: CUSTOMER, API_KEY, SETTINGS, TRANSLATION, RBAC, AUTH, USER, NOTIFICATION.
 
 # In resolvePlugins(), remove the draft-order default plugin entry from defaultPlugins:
-#   ["@medusajs/draft-order", { resolve: "@medusajs/draft-order", options: {} }],
+#   ["/draft-order", { resolve: "/draft-order", options: {} }],
 # After removal, if defaultPlugins is empty and cloudPlugins logic is trivial, simplify accordingly.
 
 # Also clean up constants that reference commerce concepts:
@@ -1692,7 +1692,7 @@ npx tsc --noEmit --project tsconfig.json 2>&1 | head -30
 
 ```bash
 # Find any dashboard source files still importing from deleted commerce modules:
-grep -rn "from.*@medusajs/\(cart\|order\|product\|pricing\|promotion\|payment\|fulfillment\|inventory\|region\|currency\|tax\|sales-channel\|stock-location\|store\)" \
+grep -rn "from.*/\(cart\|order\|product\|pricing\|promotion\|payment\|fulfillment\|inventory\|region\|currency\|tax\|sales-channel\|stock-location\|store\)" \
   packages/admin/dashboard/src/ --include="*.ts" --include="*.tsx" | grep -v node_modules | head -30
 # Expected: 0 results — all commerce route files were deleted in slices.
 # If hits remain, delete or update those files before proceeding.
@@ -1717,7 +1717,7 @@ Remove all commerce nav entries (Orders, Products, Inventory, Customers, Promoti
 - [ ] **Step 2: Verify admin builds**
 
 ```bash
-yarn workspace @medusajs/dashboard build 2>&1 | tail -20
+yarn workspace /dashboard build 2>&1 | tail -20
 ```
 
 - [ ] **Commit:** `git commit -m "chore(acmekit): dashboard navigation rebuild — remove commerce routes"`
@@ -2004,11 +2004,11 @@ Keep as-is: `Modules.NOTIFICATION`, `Modules.FILE`, `Modules.INDEX`, `Modules.RB
 
 **Package.json cleanup** — remove from `dependencies` in each file:
 
-`integration-tests/modules/package.json`: remove `@medusajs/currency`, `@medusajs/fulfillment`, `@medusajs/fulfillment-manual`, `@medusajs/inventory`, `@medusajs/link-modules`, `@medusajs/payment`, `@medusajs/pricing`, `@medusajs/product`, `@medusajs/promotion`, `@medusajs/region`, `@medusajs/stock-location`, `@medusajs/store`, `@medusajs/tax`.
+`integration-tests/modules/package.json`: remove `/currency`, `/fulfillment`, `/fulfillment-manual`, `/inventory`, `/link-modules`, `/payment`, `/pricing`, `/product`, `/promotion`, `/region`, `/stock-location`, `/store`, `/tax`.
 
-`integration-tests/http/package.json`: remove `@medusajs/fulfillment`, `@medusajs/fulfillment-manual`, `@medusajs/inventory`, `@medusajs/pricing`, `@medusajs/product`, `@medusajs/promotion`, `@medusajs/region`, `@medusajs/stock-location`, `@medusajs/store`, `@medusajs/tax`. Also remove `json-2-csv` from devDependencies.
+`integration-tests/http/package.json`: remove `/fulfillment`, `/fulfillment-manual`, `/inventory`, `/pricing`, `/product`, `/promotion`, `/region`, `/stock-location`, `/store`, `/tax`. Also remove `json-2-csv` from devDependencies.
 
-`integration-tests/api/package.json`: remove `@medusajs/payment`, `@medusajs/pricing`, `@medusajs/product`, `@medusajs/promotion`, `@medusajs/region`, `@medusajs/store`, `@medusajs/tax`.
+`integration-tests/api/package.json`: remove `/payment`, `/pricing`, `/product`, `/promotion`, `/region`, `/store`, `/tax`.
 
 ```bash
 cd integration-tests && yarn install
@@ -2066,16 +2066,16 @@ Note: this test only uses `Modules.TRANSLATION` (no commerce module imports) —
   2. Replace `createBrands({name: "Medusa Brand"})` with the equivalent method on `testingModule` (check `integration-tests/modules/__tests__/__fixtures__/testing-module/services/module-service.ts` for the available methods — it has DML auto-generated CRUD for `DmlEntity`)
   3. Update all `brand` → `dmlEntity` (or whatever the testing module's entity is called) references
 
-**Module remote-query test** — `remote-query.spec.ts` imports `RegionModule from "@medusajs/medusa/region"` and `CustomerModule from "@medusajs/medusa/customer"` (lines 3-4); resolves `Modules.REGION`; creates regions and queries them via remote query; calls `POST /admin/products` (line ~317) and `POST /admin/shipping-profiles` (line ~293).
+**Module remote-query test** — `remote-query.spec.ts` imports `RegionModule from "/medusa/region"` and `CustomerModule from "/medusa/customer"` (lines 3-4); resolves `Modules.REGION`; creates regions and queries them via remote query; calls `POST /admin/products` (line ~317) and `POST /admin/shipping-profiles` (line ~293).
 - Edit `integration-tests/modules/__tests__/modules/remote-query.spec.ts`:
-  1. Remove `import RegionModule from "@medusajs/medusa/region"` and `import CustomerModule from "@medusajs/medusa/customer"`
+  1. Remove `import RegionModule from "/medusa/region"` and `import CustomerModule from "/medusa/customer"`
   2. Remove `regionModule: IRegionModuleService` variable and resolve; replace `regionModule.createRegions(...)` calls with `userModule.createUsers(...)` (resolve `Modules.USER`)
   3. Update remote query call: replace `region: { fields: [...] }` with `user: { fields: [...] }`
   4. Remove `POST /admin/products` and `POST /admin/shipping-profiles` calls; replace with `GET /admin/users`
 
 **Module load-standalone helper** — `load-standalone.ts` is NOT a spec file but a standalone helper. It imports `IProductModuleService` and uses `Modules.PRODUCT`:
 - Edit `integration-tests/modules/__tests__/modules/load-standalone.ts`:
-  1. Replace `import { IProductModuleService }` with `import { IApiKeyModuleService }` from `@medusajs/types`
+  1. Replace `import { IProductModuleService }` with `import { IApiKeyModuleService }` from `/types`
   2. Replace `Modules.PRODUCT` with `Modules.API_KEY`
   3. Replace `modules[Modules.API_KEY] as unknown as IApiKeyModuleService`
   4. Replace `product.listProducts()` with `apiKey.listApiKeys()`
@@ -2099,8 +2099,8 @@ Note: this test only uses `Modules.TRANSLATION` (no commerce module imports) —
 **Translation-test fixture links** — the 4 files deleted in Step 1 need a replacement so the `query-graph.ts` (also deleted) test infrastructure has a kept-module equivalent. Create a single replacement link for kept tests that need to demonstrate the link infrastructure:
 ```bash
 cat > integration-tests/modules/__tests__/__fixtures__/translation-test/src/links/user-translation.ts << 'EOF'
-import { defineLink } from "@medusajs/framework/utils"
-import UserModule from "@medusajs/medusa/user"
+import { defineLink } from "/framework/utils"
+import UserModule from "/medusa/user"
 import Translation from "../modules/translation"
 
 export default defineLink(
@@ -2114,7 +2114,7 @@ EOF
 
 ```bash
 # http/__tests__/event-bus/subscriber-registration.spec.ts
-# Imports PaymentWebhookEvents from @medusajs/utils — this enum is removed with the payment module.
+# Imports PaymentWebhookEvents from /utils — this enum is removed with the payment module.
 # The test checks subscribersMap.get(PaymentWebhookEvents.WebhookReceived) — replace with a kept
 # event enum. Check the worker-mode fixture's subscribers for what is actually registered:
 # Replace the import and the event lookup:
@@ -2278,7 +2278,7 @@ perl -pi -e 's/Thanks for using Medusa\./Thanks for using AcmeKit./g;
 
 - [ ] **Step 2b: Design-system source file strings (stories, JSDoc, spec constants)**
 
-These are NOT caught by the namespace rename (not `@medusajs/` patterns) and NOT by the symbol rename (not class/type names):
+These are NOT caught by the namespace rename (not `/` patterns) and NOT by the symbol rename (not class/type names):
 
 ```bash
 # Storybook story files — user-visible labels and example code:
@@ -2375,7 +2375,7 @@ perl -pi -e 's/\bMedusa\b/AcmeKit/g; s/\bmedusajs\b/acmekit/g; s/medusajs\.com/a
 # Design-system package READMEs (not covered by root glob above):
 find packages/design-system/ -name "README.md" -not -path "*/node_modules/*" | \
   xargs perl -pi -e 's/\bMedusa\b/AcmeKit/g; s/\bmedusajs\b/acmekit/g; s/medusajs\.com/acmekit\.dev/g;
-                     s/medusajs\.svg/acmekit.svg/g; s/Follow%20\@medusajs/Follow%20\@acmekit/g'
+                     s/medusajs\.svg/acmekit.svg/g; s/Follow%20\/Follow%20\@acmekit/g'
 ```
 
 - [ ] **Step 6: GitHub Actions workflow hardcoded strings (beyond MEDUSA_* env vars)**
@@ -2385,7 +2385,7 @@ The `.github/workflows/` files contain hardcoded non-env-var medusa references n
 # Binary name in test-cli-with-database.yml (npx medusa → npx acmekit, medusa new → acmekit new, etc.):
 perl -pi -e 's/npx medusa\b/npx acmekit/g; s/medusa new\b/acmekit new/g;
              s/medusa develop\b/acmekit develop/g; s/medusa start\b/acmekit start/g;
-             s/medusa user\b/acmekit user/g; s|@medusajs/cli|@acmekit/cli|g' \
+             s/medusa user\b/acmekit user/g; s|/cli|@acmekit/cli|g' \
   .github/workflows/test-cli-with-database.yml
 # GIT_REPO references in generate-public-references.yml:
 perl -pi -e 's/GIT_REPO: medusa/GIT_REPO: acmekit/g; s/yarn up:medusa/yarn up:acmekit/g' \
@@ -2417,7 +2417,7 @@ perl -pi -e 's/github: \[ medusajs \]/github: [ acmekit ]/g' \
 
 - [ ] **Step 7: Runtime string constants in core packages and kept modules**
 
-These are hardcoded string values used at runtime — not symbol names, not `@medusajs/` imports — and are NOT caught by any of the bulk rename passes:
+These are hardcoded string values used at runtime — not symbol names, not `/` imports — and are NOT caught by any of the bulk rename passes:
 
 ```bash
 # packages/core/utils/src/common/define-config.ts
@@ -2723,7 +2723,7 @@ perl -pi -e 's/  medusa: getOptions\(/  acmekit: getOptions(/g;
 
 ---
 
-### Task 31: Namespace rename `@medusajs/*` → `@acmekit/*`
+### Task 31: Namespace rename `/*` → `@acmekit/*`
 
 **Spec reference:** Section 15
 
@@ -2755,7 +2755,7 @@ find . -name "tsconfig*.json" -not -path "*/node_modules/*" \
 - [ ] **Step 4: Non-TS files (spec 15.1)**
 
 ```bash
-grep -rl "@medusajs/" \
+grep -rl "/" \
   --include="*.json" --include="*.md" --include="*.mdx" \
   --include="*.yml" --include="*.yaml" --include="*.mjs" --include="*.sh" \
   --exclude-dir=node_modules . | \
@@ -2798,7 +2798,7 @@ yarn install
 yarn workspaces list | grep acmekit
 ```
 
-> **Design system icons build artifact:** `packages/design-system/icons/package.json` has `"main": "dist/cjs/medusa-icons.js"` (build output filename). After the `@medusajs/` → `@acmekit/` namespace pass, also update the dist filename:
+> **Design system icons build artifact:** `packages/design-system/icons/package.json` has `"main": "dist/cjs/medusa-icons.js"` (build output filename). After the `/` → `@acmekit/` namespace pass, also update the dist filename:
 > ```bash
 > perl -pi -e 's|medusa-icons\.js|acmekit-icons.js|g;
 >              s|medusa-icons\.cjs|acmekit-icons.cjs|g' \
@@ -2806,12 +2806,12 @@ yarn workspaces list | grep acmekit
 >   packages/design-system/icons/rollup.config.mjs 2>/dev/null || true
 > ```
 
-- [ ] **Step 5b: Fix `@medusajs/medusa/` string values in .ts runtime code (NOT caught by jscodeshift)**
+- [ ] **Step 5b: Fix `/medusa/` string values in .ts runtime code (NOT caught by jscodeshift)**
 
-jscodeshift operates on AST import/require statements only. Runtime string values like `resolve: "@medusajs/medusa/auth-emailpass"` and `MODULE_PACKAGE_NAMES` entries are plain strings in object literals — jscodeshift does NOT touch them. After the package dir rename `packages/medusa` → `packages/acmekit`, these strings must become `"@acmekit/acmekit/..."`:
+jscodeshift operates on AST import/require statements only. Runtime string values like `resolve: "/medusa/auth-emailpass"` and `MODULE_PACKAGE_NAMES` entries are plain strings in object literals — jscodeshift does NOT touch them. After the package dir rename `packages/medusa` → `packages/acmekit`, these strings must become `"@acmekit/acmekit/..."`:
 
 ```bash
-# After jscodeshift, "@medusajs/medusa/X" strings become "@acmekit/medusa/X" (jscodeshift handles @medusajs/ only)
+# After jscodeshift, "/medusa/X" strings become "@acmekit/medusa/X" (jscodeshift handles / only)
 # Then apply a second pass to fix "/medusa/" → "/acmekit/" in kept .ts files:
 grep -rl '"@acmekit/medusa/' \
   packages/ --include="*.ts" \
@@ -2823,12 +2823,12 @@ perl -pi -e 's|require\("@acmekit/medusa/loaders/index"\)|require("@acmekit/acme
   packages/acmekit-test-utils/src/medusa-test-runner-utils/bootstrap-app.ts || true
 ```
 
-> **Note:** This step must run AFTER Step 2 (jscodeshift) and AFTER Step 5 (package dir rename), so jscodeshift has already changed `@medusajs/` → `@acmekit/`.
+> **Note:** This step must run AFTER Step 2 (jscodeshift) and AFTER Step 5 (package dir rename), so jscodeshift has already changed `/` → `@acmekit/`.
 
 - [ ] **Step 6: Verify namespace rename (spec 15.3)**
 
 ```bash
-grep -r "@medusajs/" packages/ --include="*.ts" --include="*.tsx" \
+grep -r "/" packages/ --include="*.ts" --include="*.tsx" \
   --include="*.json" -l | grep -v node_modules
 ```
 
@@ -2838,7 +2838,7 @@ Expected: 0 results.
 npx tsc --noEmit --project tsconfig.json 2>&1 | head -50
 ```
 
-- [ ] **Commit:** `git commit -m "feat(acmekit): namespace rename @medusajs/* → @acmekit/*"`
+- [ ] **Commit:** `git commit -m "feat(acmekit): namespace rename /* → @acmekit/*"`
 
 ---
 
@@ -2978,8 +2978,8 @@ git push origin develop
 - [ ] **Step 2: Final unified done-check (spec 16.5) — runs on merged develop**
 
 ```bash
-# Check @medusajs/ namespace (full repo):
-grep -rn "@medusajs/" \
+# Check / namespace (full repo):
+grep -rn "/" \
   packages/ www/ integration-tests/ scripts/ .github/ \
   --include="*.ts" --include="*.tsx" --include="*.js" --include="*.mjs" \
   --include="*.json" --include="*.mdx" --include="*.md" --include="*.yml" \

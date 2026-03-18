@@ -59,7 +59,7 @@ To create the step that retrieves the brands from the third-party CMS, create th
 import {
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import CmsModuleService from "../modules/cms/service"
 import { CMS_MODULE } from "../modules/cms"
 
@@ -204,7 +204,7 @@ import {
   createWorkflow,
   transform,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 // ...
 
@@ -293,7 +293,7 @@ A scheduled job is created in a TypeScript or JavaScript file under the `src/job
 ![Directory structure of the Medusa application after adding the scheduled job](https://res.cloudinary.com/dza7lstvk/image/upload/v1733494592/Medusa%20Book/cms-dir-overview-7_dkjb9s.jpg)
 
 ```ts title="src/jobs/sync-brands-from-cms.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
+import { MedusaContainer } from "/framework/types"
 import { syncBrandsFromCmsWorkflow } from "../workflows/sync-brands-from-cms"
 
 export default async function (container: MedusaContainer) {

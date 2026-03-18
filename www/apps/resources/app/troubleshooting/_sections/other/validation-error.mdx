@@ -53,7 +53,7 @@ To expand a relation of a data model, the data model must have a [relationship p
 For example, consider you have the following data model:
 
 ```ts
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -78,7 +78,7 @@ This will throw the `ValidationError` because the `Post` data model doesn't have
 Instead, add the author as a relationship property to the `Post` data model:
 
 ```ts
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import Author from "./author"
 
 const Post = model.define("post", {

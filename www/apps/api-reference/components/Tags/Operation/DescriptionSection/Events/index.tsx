@@ -20,7 +20,7 @@ import {
 import { useMemo } from "react"
 import type { OpenAPI } from "types"
 import TagOperationParameters from "../../Parameters"
-import { Brackets, CheckCircle, SquareTwoStack, Tag } from "@medusajs/icons"
+import { Brackets, CheckCircle, SquareTwoStack, Tag } from "/icons"
 
 export type TagsOperationDescriptionSectionEventsProps = {
   events: OpenAPI.OasEvents[]

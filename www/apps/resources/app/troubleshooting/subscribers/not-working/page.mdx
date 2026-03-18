@@ -21,10 +21,10 @@ For example:
 import { 
   createWorkflow,
   transform
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import {
   emitEventStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 const helloWorldWorkflow = createWorkflow(
   "hello-world",
@@ -77,7 +77,7 @@ Make sure that your subscriber is correctly set up to listen to the event you're
 2. The subscriber exports an asynchronous function that handles the event. For example:
 
 ```ts title="src/subscribers/your-subscriber.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 
 export default async function orderPlacedHandler({
   event: { data },

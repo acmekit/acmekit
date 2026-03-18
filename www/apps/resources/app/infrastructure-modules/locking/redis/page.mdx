@@ -36,11 +36,11 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/locking",
+      resolve: "/medusa/locking",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/locking-redis",
+            resolve: "/medusa/locking-redis",
             id: "locking-redis",
             // set this if you want this provider to be used by default
             // and you have other Locking Module Providers registered.
@@ -254,11 +254,11 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/locking",
+      resolve: "/medusa/locking",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/locking-redis",
+            resolve: "/medusa/locking-redis",
             id: "locking-redis",
             is_default: true,
             options: {
@@ -277,8 +277,8 @@ If you use the Locking Module in your customizations, the Redis Locking Module P
 For example, when using the `acquire` method in a [workflow step](!docs!/learn/fundamentals/workflows):
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",

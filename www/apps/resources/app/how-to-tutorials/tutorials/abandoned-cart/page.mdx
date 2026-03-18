@@ -10,7 +10,7 @@ products:
   - cart
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram, Card } from "docs-ui"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1743097105/Medusa%20Resources/abandoned-cart_eze9ng.jpg"
@@ -142,11 +142,11 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/notification-sendgrid",
+            resolve: "/medusa/notification-sendgrid",
             id: "sendgrid",
             options: {
               channels: ["email"],
@@ -210,7 +210,7 @@ The workflow will receive the list of abandoned carts as an input. The workflow 
   hideLegend
 />
 
-Medusa provides the second step in its `@medusajs/medusa/core-flows` package. So, you only need to implement the first one.
+Medusa provides the second step in its `/medusa/core-flows` package. So, you only need to implement the first one.
 
 ### sendAbandonedNotificationsStep
 
@@ -222,9 +222,9 @@ To implement the step, create the file `src/workflows/steps/send-abandoned-notif
 import { 
   createStep,
   StepResponse, 
-} from "@medusajs/framework/workflows-sdk"
-import { Modules } from "@medusajs/framework/utils"
-import { CartDTO, CustomerDTO } from "@medusajs/framework/types"
+} from "/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { CartDTO, CustomerDTO } from "/framework/types"
 
 type SendAbandonedNotificationsStepInput = {
   carts: (CartDTO & {
@@ -300,13 +300,13 @@ import {
   createWorkflow,
   WorkflowResponse,
   transform,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   sendAbandonedNotificationsStep,
 } from "./steps/send-abandoned-notifications"
-import { updateCartsStep } from "@medusajs/medusa/core-flows"
-import { CartDTO } from "@medusajs/framework/types"
-import { CustomerDTO } from "@medusajs/framework/types"
+import { updateCartsStep } from "/medusa/core-flows"
+import { CartDTO } from "/framework/types"
+import { CustomerDTO } from "/framework/types"
 
 export type SendAbandonedCartsWorkflowInput = {
   carts: (CartDTO & {
@@ -498,7 +498,7 @@ To run a task at a scheduled interval, you can use a [scheduled job](!docs!/lear
 You can create a scheduled job in a TypeScript or JavaScript file under the `src/jobs` directory. So, to create the scheduled job that sends the abandoned cart notifications, create the file `src/jobs/send-abandoned-cart-notification.ts` with the following content:
 
 ```ts title="src/jobs/send-abandoned-cart-notification.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
+import { MedusaContainer } from "/framework/types"
 import { 
   sendAbandonedCartsWorkflow, 
   SendAbandonedCartsWorkflowInput,

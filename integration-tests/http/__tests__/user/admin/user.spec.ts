@@ -1,12 +1,12 @@
-import { createUsersWorkflow } from "@medusajs/core-flows"
-import { IWorkflowEngineService } from "@medusajs/framework/types"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
-import { IAuthModuleService } from "@medusajs/types"
+import { createUsersWorkflow } from "/core-flows"
+import { IWorkflowEngineService } from "/framework/types"
+import { medusaIntegrationTestRunner } from "/test-utils"
+import { IAuthModuleService } from "/types"
 import {
   ContainerRegistrationKeys,
   generateJwtToken,
   Modules,
-} from "@medusajs/utils"
+} from "/utils"
 import {
   adminHeaders,
   createAdminUser,

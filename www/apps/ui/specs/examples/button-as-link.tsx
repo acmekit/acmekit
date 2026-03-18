@@ -1,4 +1,4 @@
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 
 export default function ButtonAsLink() {
   return (

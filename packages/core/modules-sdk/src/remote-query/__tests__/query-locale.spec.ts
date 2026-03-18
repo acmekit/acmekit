@@ -1,9 +1,9 @@
-import { MedusaContainer } from "@medusajs/types"
-import * as utils from "@medusajs/utils"
+import { MedusaContainer } from "/types"
+import * as utils from "/utils"
 import { Query } from "../query"
 
-jest.mock("@medusajs/utils", () => ({
-  ...jest.requireActual("@medusajs/utils"),
+jest.mock("/utils", () => ({
+  ...jest.requireActual("/utils"),
   applyTranslations: jest.fn(),
 }))
 

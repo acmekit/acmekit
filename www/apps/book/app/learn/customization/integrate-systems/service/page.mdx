@@ -38,7 +38,7 @@ export const serviceHighlights = [
 ]
 
 ```ts title="src/modules/cms/service.ts" highlights={serviceHighlights}
-import { Logger, ConfigModule } from "@medusajs/framework/types"
+import { Logger, ConfigModule } from "/framework/types"
 
 export type ModuleOptions = {
   apiKey: string
@@ -131,7 +131,7 @@ Create the file `src/modules/cms/index.ts` with the following content:
 ![Directory structure of the Medusa application after adding the module definition file](https://res.cloudinary.com/dza7lstvk/image/upload/v1733492991/Medusa%20Book/cms-dir-overview-3_b0byks.jpg)
 
 ```ts title="src/modules/cms/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import CmsModuleService from "./service"
 
 export const CMS_MODULE = "cms"

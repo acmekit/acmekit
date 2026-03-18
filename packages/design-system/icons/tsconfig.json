@@ -23,7 +23,7 @@
     "baseUrl": "src",
     "declarationDir": "dist",
     "paths": {
-      "@medusajs/icon": ["src/index.ts"]
+      "/icon": ["src/index.ts"]
     }
   },
   "include": ["src"],

@@ -1,5 +1,5 @@
-import { ArrowUpRightOnBox } from "@medusajs/icons"
-import { Badge, Container, Heading, IconButton } from "@medusajs/ui"
+import { ArrowUpRightOnBox } from "/icons"
+import { Badge, Container, Heading, IconButton } from "/ui"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 

@@ -20,7 +20,7 @@ for (const file of files) {
   const content = readFileSync(file, 'utf8')
   const hits = []
   for (const domain of COMMERCE_DOMAINS) {
-    const re = new RegExp(`/commerce-modules/${domain}|@medusajs/${domain}`, 'g')
+    const re = new RegExp(`/commerce-modules/${domain}|/${domain}`, 'g')
     let m
     while ((m = re.exec(content)) !== null) {
       hits.push({ domain, index: m.index, match: m[0] })

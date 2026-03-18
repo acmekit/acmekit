@@ -1,4 +1,4 @@
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { useQueryParams } from "../../use-query-params"
 
 type UseCustomerGroupTableQueryProps = {

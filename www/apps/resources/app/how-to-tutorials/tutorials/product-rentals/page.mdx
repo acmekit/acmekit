@@ -13,7 +13,7 @@ products:
   - order
 ---
 
-import { Github, PlaySolid, EllipsisHorizontal } from "@medusajs/icons"
+import { Github, PlaySolid, EllipsisHorizontal } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList, InlineIcon } from "docs-ui"
 
 export const metadata = {
@@ -138,7 +138,7 @@ The `RentalConfiguration` data model holds rental configurations for products. P
 To create the data model, create the file `src/modules/rental/models/rental-configuration.ts` with the following content:
 
 ```ts title="src/modules/rental/models/rental-configuration.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { Rental } from "./rental"
 
 export const RentalConfiguration = model.define("rental_configuration", {
@@ -177,7 +177,7 @@ The `Rental` data model holds individual rentals. They will be created for each 
 To create the data model, create the file `src/modules/rental/models/rental.ts` with the following content:
 
 ```ts title="src/modules/rental/models/rental.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { RentalConfiguration } from "./rental-configuration"
 
 export const Rental = model.define("rental", {
@@ -226,7 +226,7 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 To create the Rental Module's service, create the file `src/modules/rental/service.ts` with the following content:
 
 ```ts title="src/modules/rental/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { Rental } from "./models/rental"
 import { RentalConfiguration } from "./models/rental-configuration"
 
@@ -258,7 +258,7 @@ So, create the file `src/modules/rental/index.ts` with the following content:
 
 ```ts title="src/modules/rental/index.ts"
 import RentalModuleService from "./service"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 
 export const RENTAL_MODULE = "rental"
 
@@ -346,9 +346,9 @@ In this step, you'll define links between the data models in the Rental Module a
 To define the link between `RentalConfiguration` and `Product`, create the file `src/links/product-rental-config.ts` with the following content:
 
 ```ts title="src/links/product-rental-config.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import RentalModule from "../modules/rental"
-import ProductModule from "@medusajs/medusa/product"
+import ProductModule from "/medusa/product"
 
 export default defineLink(
   ProductModule.linkable.product,
@@ -366,9 +366,9 @@ You define a link using the `defineLink` function. It accepts two parameters:
 To define the link from a `Rental` to an `Order`, create the file `src/links/rental-order.ts` with the following content:
 
 ```ts title="src/links/rental-order.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import RentalModule from "../modules/rental"
-import OrderModule from "@medusajs/medusa/order"
+import OrderModule from "/medusa/order"
 
 export default defineLink(
   {
@@ -389,9 +389,9 @@ You define a link similar to the previous one, but with an additional configurat
 To define the link from a `Rental` to an `OrderLineItem`, create the file `src/links/rental-line-item.ts` with the following content:
 
 ```ts title="src/links/rental-line-item.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import RentalModule from "../modules/rental"
-import OrderModule from "@medusajs/medusa/order"
+import OrderModule from "/medusa/order"
 
 export default defineLink(
   {
@@ -412,9 +412,9 @@ You define the link similarly to the previous one, enabling the `readOnly` prope
 To define the link from a `Customer` to a `Rental`, create the file `src/links/rental-customer.ts` with the following content:
 
 ```ts title="src/links/rental-customer.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import RentalModule from "../modules/rental"
-import CustomerModule from "@medusajs/medusa/customer"
+import CustomerModule from "/medusa/customer"
 
 export default defineLink(
   {
@@ -438,9 +438,9 @@ You define the link similarly to the previous ones, enabling the `readOnly` prop
 To define the link from a `Rental` to a `ProductVariant`, create the file `src/links/rental-variant.ts` with the following content:
 
 ```ts title="src/links/rental-variant.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import RentalModule from "../modules/rental"
-import ProductModule from "@medusajs/medusa/product"
+import ProductModule from "/medusa/product"
 
 export default defineLink(
   {
@@ -541,7 +541,7 @@ The `createRentalConfigurationStep` creates a rental configuration.
 To create the step, create the file `src/workflows/steps/create-rental-configuration.ts` with the following content:
 
 ```ts title="src/workflows/steps/create-rental-configuration.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { RENTAL_MODULE } from "../../modules/rental"
 import RentalModuleService from "../../modules/rental/service"
 
@@ -602,7 +602,7 @@ The `updateRentalConfigurationStep` updates a rental configuration.
 To create the step, create the file `src/workflows/steps/update-rental-configuration.ts` with the following content:
 
 ```ts title="src/workflows/steps/update-rental-configuration.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { RENTAL_MODULE } from "../../modules/rental"
 import RentalModuleService from "../../modules/rental/service"
 
@@ -671,12 +671,12 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   useQueryGraphStep, 
   createRemoteLinkStep,
-} from "@medusajs/medusa/core-flows"
-import { Modules } from "@medusajs/framework/utils"
+} from "/medusa/core-flows"
+import { Modules } from "/framework/utils"
 import { 
   createRentalConfigurationStep,
 } from "./steps/create-rental-configuration"
@@ -809,7 +809,7 @@ To create an API route that upserts rental configurations of a product, create t
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
@@ -817,11 +817,11 @@ As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0),
 import type { 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   upsertRentalConfigWorkflow,
 } from "../../../../../workflows/upsert-rental-config"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const PostRentalConfigBodySchema = z.object({
   min_rental_days: z.number().optional(),
@@ -866,7 +866,7 @@ To apply a middleware, create the file `src/api/middlewares.ts` with the followi
 import { 
   defineMiddlewares, 
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   PostRentalConfigBodySchema,
 } from "./admin/products/[id]/rental-config/route"
@@ -952,7 +952,7 @@ export const sdkHighlights = [
 ]
 
 ```ts title="src/admin/lib/sdk.ts" highlights={sdkHighlights}
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
@@ -972,7 +972,7 @@ Next, you'll create the widget to manage rental configurations on the Product De
 To create the widget, create the file `src/admin/widgets/product-rental-config.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/product-rental-config.tsx" collapsibleLines="1-18" expandButtonLabel="Show Imports"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { defineWidgetConfig } from "/admin-sdk"
 import {
   Container,
   Heading,
@@ -984,10 +984,10 @@ import {
   toast,
   Badge,
   usePrompt,
-} from "@medusajs/ui"
+} from "/ui"
 import { useQuery, useMutation } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
-import { DetailWidgetProps, AdminProduct } from "@medusajs/framework/types"
+import { DetailWidgetProps, AdminProduct } from "/framework/types"
 import { useEffect, useState } from "react"
 
 type RentalConfig = {
@@ -1327,7 +1327,7 @@ Next, you'll create a utility function to validate rental dates.
 Create the file `src/utils/validate-rental-dates.ts` with the following content:
 
 ```ts title="src/utils/validate-rental-dates.ts"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 export default function validateRentalDates(
   rentalStartDate: string | Date,
@@ -1398,9 +1398,9 @@ Next, you'll create the API route to retrieve the rental availability of a produ
 To create the API route, create the file `src/api/store/products/[id]/rental-availability/route.ts` with the following content:
 
 ```ts title="src/api/store/products/[id]/rental-availability/route.ts" collapsibleLines="1-6" expandButtonLabel="Show Imports"
-import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { MedusaError, QueryContext } from "@medusajs/framework/utils"
-import { z } from "@medusajs/framework/zod"
+import type { MedusaRequest, MedusaResponse } from "/framework/http"
+import { MedusaError, QueryContext } from "/framework/utils"
+import { z } from "/framework/zod"
 import { RENTAL_MODULE } from "../../../../../modules/rental"
 import RentalModuleService from "../../../../../modules/rental/service"
 import validateRentalDates from "../../../../../utils/validate-rental-dates"
@@ -1544,7 +1544,7 @@ In `src/api/middlewares.ts`, add the following imports at the top of the file:
 ```ts title="src/api/middlewares.ts"
 import { 
   validateAndTransformQuery,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   GetRentalAvailabilitySchema,
 } from "./store/products/[id]/rental-availability/route"
@@ -1725,8 +1725,8 @@ Create the file `src/modules/products/components/rental-date-picker/index.tsx` w
 "use client"
 
 import { useState, useCallback, useMemo } from "react"
-import { DatePicker } from "@medusajs/ui"
-import { HttpTypes } from "@medusajs/types"
+import { DatePicker } from "/ui"
+import { HttpTypes } from "/types"
 import { getRentalAvailability } from "@lib/data/rentals"
 import { RentalConfiguration } from "../../../../types/rental"
 
@@ -1963,10 +1963,10 @@ Next, you'll customize the product price component to show the rental price for 
 Replace the file content in `src/modules/products/components/product-price/index.tsx` with the following code:
 
 ```tsx title="src/modules/products/components/product-price/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { clx } from "@medusajs/ui"
+import { clx } from "/ui"
 
 import { getProductPrice } from "@lib/util/get-product-price"
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { convertToLocale } from "../../../../lib/util/money"
 import { RentalAvailabilityResponse } from "../../../../types/rental"
 
@@ -2344,11 +2344,11 @@ The `validateRentalCartItemStep` validates the rental data provided and retrieve
 To create the step, create the file `src/workflows/steps/validate-rental-cart-item.ts` with the following content:
 
 ```ts title="src/workflows/steps/validate-rental-cart-item.ts" badgeLabel="Medusa Application" badgeColor="green" collapsibleLines="1-8" expandButtonLabel="Show Imports"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { MedusaError } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
 import { RENTAL_MODULE } from "../../modules/rental"
 import RentalModuleService from "../../modules/rental/service"
-import { InferTypeOf, ProductVariantDTO } from "@medusajs/framework/types"
+import { InferTypeOf, ProductVariantDTO } from "/framework/types"
 import { RentalConfiguration } from "../../modules/rental/models/rental-configuration"
 import hasCartOverlap from "../../utils/has-cart-overlap"
 import validateRentalDates from "../../utils/validate-rental-dates"
@@ -2498,14 +2498,14 @@ import {
   WorkflowResponse, 
   transform,
   when, 
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   acquireLockStep, 
   addToCartWorkflow, 
   releaseLockStep, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
-import { QueryContext } from "@medusajs/framework/utils"
+} from "/medusa/core-flows"
+import { QueryContext } from "/framework/utils"
 import { 
   ValidateRentalCartItemInput, 
   validateRentalCartItemStep,
@@ -2646,11 +2646,11 @@ Create the file `src/api/store/carts/[id]/line-items/rentals/route.ts` with the 
 import type { 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   addToCartWithRentalWorkflow,
 } from "../../../../../../workflows/add-to-cart-with-rental"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const PostCartItemsRentalsBody = z.object({
   variant_id: z.string(),
@@ -2919,15 +2919,15 @@ The `validateRentalStep` validates the rental items in the cart before creating 
 To create the step, create the file `src/workflows/steps/validate-rental.ts` with the following content:
 
 ```ts title="src/workflows/steps/validate-rental.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { MedusaError } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
 import { RENTAL_MODULE } from "../../modules/rental"
 import RentalModuleService from "../../modules/rental/service"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { InferTypeOf } from "/framework/types"
 import { RentalConfiguration } from "../../modules/rental/models/rental-configuration"
 import hasCartOverlap from "../../utils/has-cart-overlap"
 import validateRentalDates from "../../utils/validate-rental-dates"
-import { cancelOrderWorkflow } from "@medusajs/medusa/core-flows"
+import { cancelOrderWorkflow } from "/medusa/core-flows"
 
 export type ValidateRentalInput = {
   rental_items: {
@@ -3064,10 +3064,10 @@ The `createRentalsForOrderStep` creates rental records for rental items in the o
 To create the step, create the file `src/workflows/steps/create-rentals-for-order.ts` with the following content:
 
 ```ts title="src/workflows/steps/create-rentals-for-order.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { RENTAL_MODULE } from "../../modules/rental"
 import RentalModuleService from "../../modules/rental/service"
-import { OrderDTO } from "@medusajs/framework/types"
+import { OrderDTO } from "/framework/types"
 
 export type CreateRentalsForOrderInput = {
   order: OrderDTO
@@ -3144,13 +3144,13 @@ import {
   WorkflowResponse, 
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   acquireLockStep,
   completeCartWorkflow, 
   releaseLockStep, 
   useQueryGraphStep, 
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   ValidateRentalInput, 
   validateRentalStep,
@@ -3293,7 +3293,7 @@ Next, you'll create an API route that uses the `createRentalsWorkflow` to create
 Create the file `src/api/store/rentals/[cart_id]/route.ts` with the following content:
 
 ```ts title="src/api/store/rentals/[cart_id]/route.ts" badgeLabel="Medusa Application" badgeColor="green"
-import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import type { MedusaRequest, MedusaResponse } from "/framework/http"
 import { createRentalsWorkflow } from "../../../../workflows/create-rentals"
 
 export const POST = async (
@@ -3413,7 +3413,7 @@ First, you'll create an API route to retrieve the rentals associated with a spec
 Create the file `src/api/admin/orders/[id]/rentals/route.ts` with the following content:
 
 ```ts title="src/api/admin/orders/[id]/rentals/route.ts" badgeLabel="Medusa Application" badgeColor="green"
-import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import type { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const { id } = req.params
@@ -3453,10 +3453,10 @@ The `updateRentalStep` updates the rental's status with validation.
 To create the step, create the file `src/workflows/steps/update-rental.ts` with the following content:
 
 ```ts title="src/workflows/steps/update-rental.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { RENTAL_MODULE } from "../../modules/rental"
 import RentalModuleService from "../../modules/rental/service"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 type UpdateRentalInput = {
   rental_id: string
@@ -3529,7 +3529,7 @@ Next, you'll create the `updateRentalWorkflow` that uses the above step.
 Create the file `src/workflows/update-rental.ts` with the following content:
 
 ```ts title="src/workflows/update-rental.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
 import { updateRentalStep } from "./steps/update-rental"
 
 type UpdateRentalWorkflowInput = {
@@ -3562,9 +3562,9 @@ Next, you'll create an API route that uses the `updateRentalWorkflow` to update 
 Create the file `src/api/admin/rentals/[id]/route.ts` with the following content:
 
 ```ts title="src/api/admin/rentals/[id]/route.ts" badgeLabel="Medusa Application" badgeColor="green"
-import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import type { MedusaRequest, MedusaResponse } from "/framework/http"
 import { updateRentalWorkflow } from "../../../../workflows/update-rental"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const PostRentalStatusBodySchema = z.object({
   status: z.enum(["active", "returned", "cancelled"]),
@@ -3628,7 +3628,7 @@ Finally, you'll inject an admin widget into the order details page to view and m
 Create the file `src/admin/widgets/order-rental-items.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/order-rental-items.tsx" badgeLabel="Medusa Application" badgeColor="green" collapsibleLines="1-18" expandButtonLabel="Show Imports"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { defineWidgetConfig } from "/admin-sdk"
 import {
   Container,
   Heading,
@@ -3640,10 +3640,10 @@ import {
   toast,
   Badge,
   Table,
-} from "@medusajs/ui"
+} from "/ui"
 import { useQuery, useMutation } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
-import { DetailWidgetProps, AdminOrder } from "@medusajs/framework/types"
+import { DetailWidgetProps, AdminOrder } from "/framework/types"
 import { useEffect, useState } from "react"
 
 type Rental = {
@@ -3971,8 +3971,8 @@ To add custom validation when cancelling an order, you'll consume the `orderCanc
 To consume the `orderCanceled` hook, create the file `src/workflows/hooks/validate-order-cancel.ts` with the following content:
 
 ```ts title="src/workflows/hooks/validate-order-cancel.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { cancelOrderWorkflow } from "@medusajs/medusa/core-flows"
-import { MedusaError, ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { cancelOrderWorkflow } from "/medusa/core-flows"
+import { MedusaError, ContainerRegistrationKeys } from "/framework/utils"
 
 cancelOrderWorkflow.hooks.orderCanceled(
   async ({ order }, { container }) => {
@@ -4025,7 +4025,7 @@ A subscriber is an asynchronous function that executes actions in the background
 To create the subscriber, create the file `src/subscribers/order-canceled.ts` with the following content:
 
 ```ts title="src/subscribers/order-canceled.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { updateRentalWorkflow } from "../workflows/update-rental"
 
 export default async function orderCanceledHandler({
@@ -4129,8 +4129,8 @@ A scheduled job is an asynchronous function that runs tasks at specific interval
 For example, to automatically mark rentals as `active` when their rental start date is reached, create a scheduled job at `src/jobs/activate-rentals.ts` with the following content:
 
 ```ts title="src/jobs/activate-rentals.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { MedusaContainer } from "/framework/types"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { updateRentalWorkflow } from "../workflows/update-rental"
 
 export default async function activateRentalsJob(container: MedusaContainer) {
@@ -4229,8 +4229,8 @@ You can also update rental statuses based on specific [events](/references/event
 For example, you might want to mark rentals as `active` when their associated shipments are created. You can do this by creating a subscriber that listens to the `shipment.created` event:
 
 ```ts title="src/subscribers/shipment-created.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { updateRentalWorkflow } from "../workflows/update-rental"
 
 export default async function shipmentCreatedHandler({
@@ -4367,9 +4367,9 @@ Medusa creates a reservation for the inventory of a product variant when an orde
 </Note>
 
 ```ts title="src/workflows/update-rental.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
 import { updateRentalStep } from "./steps/update-rental"
-import { adjustInventoryLevelsStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { adjustInventoryLevelsStep, useQueryGraphStep } from "/medusa/core-flows"
 
 type UpdateRentalWorkflowInput = {
   rental_id: string

@@ -1,4 +1,4 @@
-import { InlineTip } from "@medusajs/ui"
+import { InlineTip } from "/ui"
 
 export default function InlineTipDemo() {
   return (

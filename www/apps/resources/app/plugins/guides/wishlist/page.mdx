@@ -10,7 +10,7 @@ products:
   - sales channel
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, CardList, WorkflowDiagram } from "docs-ui"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1737564127/Medusa%20Resources/plugins-wishlist_ktut0d.jpg"
@@ -232,7 +232,7 @@ Starting with the `Wishlist` model, create a file `src/modules/wishlist/models/w
 ![Directory structure after adding the Wishlist model](https://res.cloudinary.com/dza7lstvk/image/upload/v1737461304/Medusa%20Resources/wishlist-2_co2lht.jpg)
 
 ```ts title="src/modules/wishlist/models/wishlist.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { WishlistItem } from "./wishlist-item"
 
 export const Wishlist = model.define("wishlist", {
@@ -277,7 +277,7 @@ Next, create the `WishlistItem` model in the file `src/modules/wishlist/models/w
 ![Directory structure after adding the WishlistItem model](https://res.cloudinary.com/dza7lstvk/image/upload/v1737461521/Medusa%20Resources/wishlist-3_fxcjxy.jpg)
 
 ```ts title="src/modules/wishlist/models/wishlist-item.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { Wishlist } from "./wishlist"
 
 export const WishlistItem = model.define("wishlist_item", {
@@ -318,7 +318,7 @@ In this section, you'll create the Wishlist Module's service that's used to mana
 ![Directory structure after adding the service file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737461698/Medusa%20Resources/wishlist-4_j5ka26.jpg)
 
 ```ts title="src/modules/wishlist/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { Wishlist } from "./models/wishlist"
 import { WishlistItem } from "./models/wishlist-item"
 
@@ -350,7 +350,7 @@ So, create the file `src/modules/wishlist/index.ts` with the following content:
 
 ```ts title="src/modules/wishlist/index.ts"
 import WishlistModuleService from "./service"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 
 export const WISHLIST_MODULE = "wishlist"
 
@@ -419,9 +419,9 @@ To create the link between the `Wishlist` data model and the `Customer` data mod
 ![Directory structure after adding the link file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737462649/Medusa%20Resources/wishlist-6_xqytog.jpg)
 
 ```ts title="src/modules/wishlist/links/wishlist-customer.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import WishlistModule from "../modules/wishlist"
-import CustomerModule from "@medusajs/medusa/customer"
+import CustomerModule from "/medusa/customer"
 
 export default defineLink(
   {
@@ -446,9 +446,9 @@ Next, to create the link between the `Wishlist` data model and the `SalesChannel
 ![Directory structure after adding the link file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737462829/Medusa%20Resources/wishlist-7_ddiwxy.jpg)
 
 ```ts title="src/modules/wishlist/links/wishlist-sales-channel.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import WishlistModule from "../modules/wishlist"
-import SalesChannelModule from "@medusajs/medusa/sales-channel"
+import SalesChannelModule from "/medusa/sales-channel"
 
 export default defineLink(
   {
@@ -469,9 +469,9 @@ Finally, to create the link between the `WishlistItem` data model and the `Produ
 ![Directory structure after adding the link file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737467010/Medusa%20Resources/wishlist-8_hgoaby.jpg)
 
 ```ts title="src/modules/wishlist/links/wishlist-product.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import WishlistModule from "../modules/wishlist"
-import ProductModule from "@medusajs/medusa/product"
+import ProductModule from "/medusa/product"
 
 export default defineLink(
   {
@@ -546,8 +546,8 @@ export const validateCustomerWishlistHighlights = [
 ]
 
 ```ts title="src/workflows/steps/validate-customer-create-wishlist.ts" highlights={validateCustomerWishlistHighlights}
-import { MedusaError } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 type ValidateCustomerCreateWishlistStepInput = {
   customer_id: string
@@ -618,7 +618,7 @@ export const createWishlistStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-wishlist.ts" highlights={createWishlistStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { WISHLIST_MODULE } from "../../modules/wishlist"
 import WishlistModuleService from "../../modules/wishlist/service"
 
@@ -679,7 +679,7 @@ export const createWishlistWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/create-wishlist.ts" highlights={createWishlistWorkflowHighlights}
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
 import { validateCustomerCreateWishlistStep } from "./steps/validate-customer-create-wishlist"
 import { createWishlistStep } from "./steps/create-wishlist"
 
@@ -742,9 +742,9 @@ So, to create the `/store/customers/me/wishlists` API route, create the file `sr
 ![Directory structure after adding the route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737468859/Medusa%20Resources/wishlist-12_gvvb9z.jpg)
 
 ```ts title="src/api/store/customers/me/wishlists/route.ts"
-import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework/http"
 import { createWishlistWorkflow } from "../../../../../workflows/create-wishlist"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 export async function POST(
   req: AuthenticatedMedusaRequest,
@@ -994,9 +994,9 @@ To create the step, create the file `src/workflows/steps/validate-wishlist-exist
 ![Directory structure after adding the step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1740071251/Medusa%20Resources/wishlist-29_bq6kcn.jpg)
 
 ```ts title="src/workflows/steps/validate-wishlist-exists.ts"
-import { MedusaError } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { MedusaError } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
+import { InferTypeOf } from "/framework/types"
 import { Wishlist } from "../../modules/wishlist/models/wishlist"
 
 type Input = {
@@ -1027,8 +1027,8 @@ To create the step, create the file `src/workflows/steps/validate-wishlist-sales
 ![Directory structure after adding the step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737470093/Medusa%20Resources/wishlist-13_nn924e.jpg)
 
 ```ts title="src/workflows/steps/validate-wishlist-sales-channel.ts"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { createStep } from "/framework/workflows-sdk"
+import { InferTypeOf } from "/framework/types"
 import { Wishlist } from "../../modules/wishlist/models/wishlist"
 
 type ValidateWishlistSalesChannelStepInput = {
@@ -1071,10 +1071,10 @@ export const validateVariantWishlistHighlights = [
 ]
 
 ```ts title="src/workflows/steps/validate-variant-wishlist.ts" highlights={validateVariantWishlistHighlights}
-import { InferTypeOf } from "@medusajs/framework/types"
+import { InferTypeOf } from "/framework/types"
 import { Wishlist } from "../../modules/wishlist/models/wishlist"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { MedusaError } from "@medusajs/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
 
 type ValidateVariantWishlistStepInput = {
   variant_id: string
@@ -1144,7 +1144,7 @@ export const createWishlistItemStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-wishlist-item.ts" highlights={createWishlistItemStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import WishlistModuleService from "../../modules/wishlist/service"
 import { WISHLIST_MODULE } from "../../modules/wishlist"
 
@@ -1196,8 +1196,8 @@ export const createWishlistItemWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/create-wishlist-item.ts" collapsibleLines="1-6" expandButtonLabel="Show Imports" highlights={createWishlistItemWorkflowHighlights}
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { validateWishlistSalesChannelStep } from "./steps/validate-wishlist-sales-channel"
 import { createWishlistItemStep } from "./steps/create-wishlist-item"
 import { validateVariantWishlistStep } from "./steps/validate-variant-wishlist"
@@ -1276,9 +1276,9 @@ Create the file `src/api/store/customers/me/wishlists/items/route.ts` with the f
 ![Directory structure after adding the route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737470985/Medusa%20Resources/wishlist-17_zmqk6c.jpg)
 
 ```ts title="src/api/store/customers/me/wishlists/items/route.ts"
-import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework"
 import { createWishlistItemWorkflow } from "../../../../../../workflows/create-wishlist-item"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 type PostStoreCreateWishlistItemType = {
   variant_id: string
@@ -1323,12 +1323,12 @@ In Medusa, you create validation schemas using [Zod](https://zod.dev/) in a Type
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```ts title="src/api/store/customers/me/wishlists/items/validators.ts"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const PostStoreCreateWishlistItem = z.object({
   variant_id: z.string(),
@@ -1347,13 +1347,13 @@ You can now replace the `PostStoreCreateWishlistItemType` type in `src/api/store
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```ts title="src/api/store/customers/me/wishlists/items/route.ts"
 // ...
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 import { PostStoreCreateWishlistItem } from "./validators"
 
 type PostStoreCreateWishlistItemType = z.infer<
@@ -1379,7 +1379,7 @@ To apply the middleware, create the file `src/api/middlewares.ts` with the follo
 import { 
   defineMiddlewares,
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   PostStoreCreateWishlistItem,
 } from "./store/customers/me/wishlists/items/validators"
@@ -1515,10 +1515,10 @@ To create the step, create the file `src/workflows/steps/validate-item-in-wishli
 ![Directory structure after adding the step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737474621/Medusa%20Resources/wishlist-20_jcwrtf.jpg)
 
 ```ts title="src/workflows/steps/validate-item-in-wishlist.ts"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { InferTypeOf } from "/framework/types"
 import { Wishlist } from "../../modules/wishlist/models/wishlist"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { MedusaError } from "@medusajs/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
 
 type ValidateItemInWishlistStepInput = {
   wishlist: InferTypeOf<typeof Wishlist>
@@ -1554,7 +1554,7 @@ Create the file `src/workflows/steps/delete-wishlist-item.ts` with the following
 ![Directory structure after adding the step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737474703/Medusa%20Resources/wishlist-21_e50lrg.jpg)
 
 ```ts title="src/workflows/steps/delete-wishlist-item.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import WishlistModuleService from "../../modules/wishlist/service"
 import { WISHLIST_MODULE } from "../../modules/wishlist"
 
@@ -1607,9 +1607,9 @@ export const deleteWishlistItemWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/delete-wishlist-item.ts" highlights={deleteWishlistItemWorkflowHighlights}
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
 import { deleteWishlistItemStep } from "./steps/delete-wishlist-item"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { validateItemInWishlistStep } from "./steps/validate-item-in-wishlist"
 import { validateWishlistExistsStep } from "./steps/validate-wishlist-exists"
 
@@ -1674,7 +1674,7 @@ Create the file `src/api/store/customers/me/wishlists/items/[id]/route.ts` with 
 ![Directory structure after adding the route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737475074/Medusa%20Resources/wishlist-23_qatcia.jpg)
 
 ```ts title="src/api/store/customers/me/wishlists/items/[id]/route.ts"
-import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework"
 import { deleteWishlistItemWorkflow } from "../../../../../../../workflows/delete-wishlist-item"
 
 export async function DELETE(
@@ -1761,8 +1761,8 @@ Then, to create the API route, create the file `src/api/store/customers/me/wishl
 ![Directory structure after adding the route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737475331/Medusa%20Resources/wishlist-24_tiwjpr.jpg)
 
 ```ts title="src/api/store/customers/me/wishlists/share/route.ts"
-import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { MedusaError } from "@medusajs/framework/utils"
+import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework"
+import { MedusaError } from "/framework/utils"
 import jwt from "jsonwebtoken"
 
 export async function POST(
@@ -1860,8 +1860,8 @@ Create the file `src/api/store/wishlists/[token]/route.ts` with the following co
 ![Directory structure after adding the route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737475795/Medusa%20Resources/wishlist-25_sodzsr.jpg)
 
 ```ts title="src/api/store/wishlists/[token]/route.ts"
-import { MedusaResponse, MedusaStoreRequest } from "@medusajs/framework"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaResponse, MedusaStoreRequest } from "/framework"
+import { MedusaError } from "/framework/utils"
 import { decode, JwtPayload } from "jsonwebtoken"
 
 export async function GET(
@@ -1968,9 +1968,9 @@ In `src/modules/wishlist/service.ts`, add the following imports and method:
 
 ```ts title="src/modules/wishlist/service.ts"
 // other imports...
-import { InjectManager } from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+import { InjectManager } from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 export default class WishlistModuleService extends MedusaService({
   Wishlist,
@@ -2012,10 +2012,10 @@ export const wishlistCountRouteHighlights = [
 ]
 
 ```ts title="src/api/store/products/[id]/wishlist/route.ts" highlights={wishlistCountRouteHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { MedusaRequest, MedusaResponse } from "/framework"
 import WishlistModuleService from "../../../../../modules/wishlist/service"
 import { WISHLIST_MODULE } from "../../../../../modules/wishlist"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 export async function GET(
   req: MedusaRequest,
@@ -2072,7 +2072,7 @@ To initialize the JS SDK, create the file `src/admin/lib/sdk.ts` with the follow
 ![Directory structure after adding the SDK file](https://res.cloudinary.com/dza7lstvk/image/upload/v1737631853/Medusa%20Resources/wishlist-27_pkzeaj.jpg)
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -2106,14 +2106,14 @@ export const widgetHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-widget.tsx" highlights={widgetHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading, Text } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading, Text } from "/ui"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
 import { 
   DetailWidgetProps, 
   AdminProduct,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 type WishlistResponse = {
   count: number

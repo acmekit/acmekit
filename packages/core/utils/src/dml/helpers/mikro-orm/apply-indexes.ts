@@ -2,7 +2,7 @@ import {
   EntityConstructor,
   EntityIndex,
   PropertyMetadata,
-} from "@medusajs/types"
+} from "/types"
 import { createPsqlIndexStatementHelper } from "../../../common"
 import { validateIndexFields } from "../mikro-orm/build-indexes"
 

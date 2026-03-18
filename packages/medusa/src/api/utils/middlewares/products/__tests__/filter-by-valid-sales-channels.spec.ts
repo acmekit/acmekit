@@ -1,5 +1,5 @@
-import { MedusaStoreRequest } from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaStoreRequest } from "/framework/http"
+import { MedusaError } from "/framework/utils"
 import { NextFunction } from "express"
 import {
   transformAndValidateSalesChannelIds,

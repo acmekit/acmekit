@@ -2,7 +2,7 @@ import {
   Logger,
   ModuleProviderExports,
   ModuleServiceInitializeOptions,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 export type InitializeModuleInjectableDependencies = {
   logger?: Logger
@@ -46,9 +46,9 @@ export type MedusaCloudEmailOptions = {
   sandbox_handle?: string
 }
 
-declare module "@medusajs/types" {
+declare module "/types" {
   interface ModuleOptions {
-    "@medusajs/notification": NotificationModuleOptions
-    "@medusajs/medusa/notification": NotificationModuleOptions
+    "/notification": NotificationModuleOptions
+    "/medusa/notification": NotificationModuleOptions
   }
 }

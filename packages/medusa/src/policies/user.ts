@@ -2,7 +2,7 @@ import {
   definePolicies,
   PolicyDefinition,
   toPascalCase,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { defaultPolicyOperations } from "../utils/default-policy-operations"
 
 const userResources = ["user", "api_key", "invite", "rbac_role"]

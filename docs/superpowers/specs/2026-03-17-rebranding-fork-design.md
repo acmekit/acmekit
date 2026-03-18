@@ -11,7 +11,7 @@
 Transform the Medusa v2 monorepo into **AcmeKit** — a general-purpose application framework (fintech, blockchain, SaaS, any vertical) by:
 
 1. Removing all commerce-domain modules and every trace of them across the entire codebase
-2. Renaming `@medusajs/*` → `@acmekit/*` across all 75 packages
+2. Renaming `/*` → `@acmekit/*` across all 75 packages
 3. Fully cleaning the `/www` documentation monorepo (7 Next.js apps, ~7,345 MDX files)
 4. Establishing a maintainable selective upstream sync strategy
 
@@ -322,7 +322,7 @@ export { Client as HttpClient } from "./client"   // renamed export alias to avo
 export { ClientSdk } from "./client-sdk"          // SDK namespace class
 ```
 
-Consumers importing `Client` from `@medusajs/js-sdk` (or `@acmekit/js-sdk`) will need to update to `HttpClient`. Document this as a breaking change.
+Consumers importing `Client` from `/js-sdk` (or `@acmekit/js-sdk`) will need to update to `HttpClient`. Document this as a breaking change.
 
 ### 4.5 Admin Dashboard
 
@@ -423,7 +423,7 @@ Execute all steps for each domain before moving to the next. Replace `DOMAIN` wi
 
 ```bash
 # Find all TypeScript files that import from this domain
-grep -r "@medusajs/DOMAIN\|@acmekit/DOMAIN\|Modules\.DOMAIN_UPPER\|modules/DOMAIN" \
+grep -r "/DOMAIN\|@acmekit/DOMAIN\|Modules\.DOMAIN_UPPER\|modules/DOMAIN" \
   packages/ --include="*.ts" --include="*.tsx" -l | grep -v node_modules
 ```
 
@@ -820,12 +820,12 @@ Commerce-only npm dependencies to remove after all slices are complete:
 
 ### packages/medusa/package.json — remove these direct deps
 ```
-@medusajs/cart, @medusajs/order, @medusajs/payment, @medusajs/product,
-@medusajs/pricing, @medusajs/promotion, @medusajs/fulfillment,
-@medusajs/inventory, @medusajs/tax, @medusajs/region, @medusajs/sales-channel,
-@medusajs/stock-location, @medusajs/currency, @medusajs/store,
-@medusajs/payment-stripe, @medusajs/fulfillment-manual,
-@medusajs/link-modules, @medusajs/draft-order, @medusajs/core-flows (move to keep)
+/cart, /order, /payment, /product,
+/pricing, /promotion, /fulfillment,
+/inventory, /tax, /region, /sales-channel,
+/stock-location, /currency, /store,
+/payment-stripe, /fulfillment-manual,
+/link-modules, /draft-order, /core-flows (move to keep)
 ```
 
 ### packages/core/core-flows/package.json — remove commerce-only deps
@@ -926,7 +926,7 @@ perl -pi -e 's/\bMedusa\b/AcmeKit/g; s/\bmedusajs\b/acmekit/g; s/medusajs\.com/a
 # packages/medusa-telemetry/src/telemeter.js
 # - Update any "medusa" in event/property names
 # - PostHog stays; just rebrand the event metadata
-# - Rename package from @medusajs/telemetry → @acmekit/telemetry (covered by namespace rename)
+# - Rename package from /telemetry → @acmekit/telemetry (covered by namespace rename)
 grep -n "medusa\|Medusa" packages/medusa-telemetry/src/telemeter.js
 ```
 
@@ -1249,7 +1249,7 @@ rm -rf www/apps/resources/app/troubleshooting/storefront-pak-sc/
 
 > **Critical distinction**: Some core framework documentation (workflows, events, modules) uses commerce concepts as *examples* in code blocks — but the doc itself teaches a generic framework concept. These files must **not** be deleted. Instead, replace the commerce example code with a generic equivalent.
 
-**Rule**: If the file lives outside `commerce-modules/`, `storefront-development/`, `recipes/`, `storefront-development/` — it is framework documentation. If it happens to import `@medusajs/cart`, `@medusajs/product`, use `order.placed` events, or reference `syncProductToErpWorkflow`, replace the example code. Do not delete the page.
+**Rule**: If the file lives outside `commerce-modules/`, `storefront-development/`, `recipes/`, `storefront-development/` — it is framework documentation. If it happens to import `/cart`, `/product`, use `order.placed` events, or reference `syncProductToErpWorkflow`, replace the example code. Do not delete the page.
 
 #### Known files requiring example replacement:
 
@@ -1266,7 +1266,7 @@ rm -rf www/apps/resources/app/troubleshooting/storefront-pak-sc/
 ```bash
 # Broad scan: find ALL surviving framework docs that reference commerce packages in code blocks
 # Run this across all framework-relevant directories (not just the known ones)
-grep -rn "@medusajs/cart\|@medusajs/product\|@medusajs/order\|@medusajs/payment\|@medusajs/pricing\|@medusajs/fulfillment\|@medusajs/inventory\|@medusajs/region\|@medusajs/promotion" \
+grep -rn "/cart\|/product\|/order\|/payment\|/pricing\|/fulfillment\|/inventory\|/region\|/promotion" \
   www/apps/book/app/learn/ \
   www/apps/resources/app/infrastructure-modules/ \
   www/apps/resources/app/service-factory-reference/ \
@@ -1677,7 +1677,7 @@ Do this **after ALL slice removals** to avoid renaming files you're about to del
 ```typescript
 import type { API, FileInfo } from "jscodeshift"
 
-const FROM = "@medusajs/"
+const FROM = "/"
 const TO = "@acmekit/"
 
 export default function transform(file: FileInfo, api: API) {
@@ -1730,7 +1730,7 @@ find . -name "tsconfig*.json" -not -path "*/node_modules/*" \
   -exec perl -pi -e 's/\@medusajs\//@acmekit\//g' {} +
 
 # Non-TS files: package.json names/deps, md, mdx, yml, mjs, sh
-grep -rl "@medusajs/" \
+grep -rl "/" \
   --include="*.json" --include="*.md" --include="*.mdx" \
   --include="*.yml" --include="*.yaml" --include="*.mjs" --include="*.sh" \
   --exclude-dir=node_modules . | \
@@ -1774,7 +1774,7 @@ grep -rl "create-medusa-app\|medusa-cli\|medusa-dev-cli" packages/ --include="*.
 
 ```bash
 # Should return zero results
-grep -r "@medusajs/" packages/ --include="*.ts" --include="*.tsx" \
+grep -r "/" packages/ --include="*.ts" --include="*.tsx" \
   --include="*.json" -l | grep -v node_modules
 
 # TypeScript compile
@@ -1784,13 +1784,13 @@ npx tsc --noEmit --project tsconfig.json 2>&1 | head -50
 npx knip --reporter compact 2>&1 | grep "Cannot find module"
 ```
 
-> **Note**: This check verifies only namespace import paths (`@medusajs/`). It does NOT verify that Medusa-prefixed symbols (MedusaError, MedusaContainer, etc.) have been renamed. Run Section 16.4 after Section 16 to confirm full symbol rename completion. Both checks must pass for the rebranding to be complete.
+> **Note**: This check verifies only namespace import paths (`/`). It does NOT verify that Medusa-prefixed symbols (MedusaError, MedusaContainer, etc.) have been renamed. Run Section 16.4 after Section 16 to confirm full symbol rename completion. Both checks must pass for the rebranding to be complete.
 
 ---
 
 ## 16. Symbol-Level Renaming (Case-Correct)
 
-The namespace rename (`@medusajs/` → `@acmekit/`) handles import paths. But **exported symbols** that include "Medusa" or "medusa" in their name must also be renamed — following the correct case convention of the project.
+The namespace rename (`/` → `@acmekit/`) handles import paths. But **exported symbols** that include "Medusa" or "medusa" in their name must also be renamed — following the correct case convention of the project.
 
 ### 16.1 Rename Map
 
@@ -2051,8 +2051,8 @@ npx tsc --noEmit --project tsconfig.json
 Run this after completing both Section 15 and Section 16 to confirm the entire repo is clean — not just `packages/`.
 
 ```bash
-echo "=== Checking @medusajs/ namespace references (full repo) ==="
-grep -rn "@medusajs/" \
+echo "=== Checking / namespace references (full repo) ==="
+grep -rn "/" \
   packages/ www/ integration-tests/ scripts/ .github/ \
   --include="*.ts" --include="*.tsx" --include="*.js" --include="*.mjs" \
   --include="*.json" --include="*.mdx" --include="*.md" --include="*.yml" \
@@ -2107,7 +2107,7 @@ export default function transform(
   let modified = false
 
   const patterns = [
-    `@medusajs/${domain}`,
+    `/${domain}`,
     `@acmekit/${domain}`,
     `core-flows/${domain}`,
   ]
@@ -2334,7 +2334,7 @@ if [ ! -s /tmp/upstream-raw.patch ]; then
   exit 0
 fi
 
-echo "=== Translating @medusajs/ → @acmekit/ ==="
+echo "=== Translating / → @acmekit/ ==="
 perl -pe 's/\@medusajs\//@acmekit\//g' /tmp/upstream-raw.patch > /tmp/upstream-translated.patch
 
 echo "=== Applying patch ==="

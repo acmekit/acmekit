@@ -1,6 +1,6 @@
-import type { IUserModuleService } from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
-import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
+import type { IUserModuleService } from "/framework/types"
+import { Modules } from "/framework/utils"
+import { StepResponse, createStep } from "/framework/workflows-sdk"
 
 /**
  * The IDs of the users to delete.

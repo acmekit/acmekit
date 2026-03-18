@@ -1,4 +1,4 @@
-import { Label, RadioGroup } from "@medusajs/ui"
+import { Label, RadioGroup } from "/ui"
 import * as React from "react"
 
 export default function RadioGroupControlled() {

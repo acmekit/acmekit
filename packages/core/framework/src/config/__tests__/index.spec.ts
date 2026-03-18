@@ -1,7 +1,7 @@
 import { configLoader } from "../loader"
 import { join } from "path"
 import { container } from "../../container"
-import { ContainerRegistrationKeys } from "@medusajs/utils"
+import { ContainerRegistrationKeys } from "/utils"
 
 describe("configLoader", () => {
   const entryDirectory = join(__dirname, "../__fixtures__")

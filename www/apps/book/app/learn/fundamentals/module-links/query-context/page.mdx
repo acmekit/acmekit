@@ -30,7 +30,7 @@ export const highlights1 = [
 ]
 
 ```ts highlights={highlights1}
-import { QueryContext } from "@medusajs/framework/utils"
+import { QueryContext } from "/framework/utils"
 
 // ...
 
@@ -59,8 +59,8 @@ export const highlights2 = [
 ]
 
 ```ts highlights={highlights2}
-import { MedusaContext, MedusaService } from "@medusajs/framework/utils"
-import { Context, FindConfig } from "@medusajs/framework/types"
+import { MedusaContext, MedusaService } from "/framework/utils"
+import { Context, FindConfig } from "/framework/types"
 import Post from "./models/post"
 import Author from "./models/author"
 
@@ -108,8 +108,8 @@ If you pass pagination fields to `query.graph`, you must also override the [gene
 For example, following the previous example, you must override the `listAndCountPosts` method of the Blog Module's service:
 
 ```ts
-import { MedusaContext, MedusaService } from "@medusajs/framework/utils"
-import { Context, FindConfig } from "@medusajs/framework/types"
+import { MedusaContext, MedusaService } from "/framework/utils"
+import { Context, FindConfig } from "/framework/types"
 import Post from "./models/post"
 import Author from "./models/author"
 
@@ -188,8 +188,8 @@ export const highlights4 = [
 ]
 
 ```ts highlights={highlights4}
-import { MedusaContext, MedusaService } from "@medusajs/framework/utils"
-import { Context, FindConfig } from "@medusajs/framework/types"
+import { MedusaContext, MedusaService } from "/framework/utils"
+import { Context, FindConfig } from "/framework/types"
 import Post from "./models/post"
 import Author from "./models/author"
 

@@ -1,4 +1,4 @@
-import { Avatar, Text } from "@medusajs/ui"
+import { Avatar, Text } from "/ui"
 import { Link } from "react-router-dom"
 import { useUser } from "../../../hooks/api/users"
 

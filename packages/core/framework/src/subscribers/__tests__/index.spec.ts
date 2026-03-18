@@ -1,4 +1,4 @@
-import { ContainerRegistrationKeys, Modules } from "@medusajs/utils"
+import { ContainerRegistrationKeys, Modules } from "/utils"
 import { asValue } from "../../deps/awilix"
 import { join } from "path"
 import { container } from "../../container"

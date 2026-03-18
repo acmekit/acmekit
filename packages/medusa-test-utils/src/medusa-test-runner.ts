@@ -1,14 +1,14 @@
-import { asValue } from "@medusajs/framework/awilix"
-import { logger } from "@medusajs/framework/logger"
-import { Migrator } from "@medusajs/framework/migrations"
-import { MedusaAppOutput } from "@medusajs/framework/modules-sdk"
-import { MedusaContainer } from "@medusajs/framework/types"
+import { asValue } from "/framework/awilix"
+import { logger } from "/framework/logger"
+import { Migrator } from "/framework/migrations"
+import { MedusaAppOutput } from "/framework/modules-sdk"
+import { MedusaContainer } from "/framework/types"
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
   getResolvedPlugins,
   mergePluginModules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { dbTestUtilFactory, getDatabaseURL } from "./database"
 import {
   applyEnvVarsToProcess,
@@ -22,7 +22,7 @@ import {
 } from "./medusa-test-runner-utils"
 import { waitWorkflowExecutions } from "./medusa-test-runner-utils/wait-workflow-executions"
 import { ulid } from "ulid"
-import { createDefaultsWorkflow } from "@medusajs/core-flows"
+import { createDefaultsWorkflow } from "/core-flows"
 
 export interface MedusaSuiteOptions {
   dbConnection: any // knex instance
@@ -158,7 +158,7 @@ class MedusaTestRunner {
   }
 
   private async setupApplication(): Promise<void> {
-    const { container, MedusaAppLoader } = await import("@medusajs/framework")
+    const { container, MedusaAppLoader } = await import("/framework")
     const appLoader = new MedusaAppLoader({
       medusaConfigPath: this.modulesConfigPath,
       cwd: this.cwd,
@@ -289,7 +289,7 @@ class MedusaTestRunner {
     const copiedContainer = createMedusaContainer({}, container)
 
     try {
-      const { MedusaAppLoader } = await import("@medusajs/framework")
+      const { MedusaAppLoader } = await import("/framework")
       const medusaAppLoader = new MedusaAppLoader({
         container: copiedContainer,
         medusaConfigPath: this.modulesConfigPath,

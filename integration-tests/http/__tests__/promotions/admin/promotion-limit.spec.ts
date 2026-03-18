@@ -1,5 +1,5 @@
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
-import { Modules, PromotionStatus, PromotionType } from "@medusajs/utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
+import { Modules, PromotionStatus, PromotionType } from "/utils"
 import {
   createAdminUser,
   generatePublishableKey,

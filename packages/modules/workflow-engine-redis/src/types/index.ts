@@ -1,4 +1,4 @@
-import { Logger } from "@medusajs/framework/types"
+import { Logger } from "/framework/types"
 import { QueueOptions, WorkerOptions } from "bullmq"
 import { RedisOptions } from "ioredis"
 
@@ -178,9 +178,9 @@ export type RedisWorkflowsOptions = {
   }
 }
 
-declare module "@medusajs/types" {
+declare module "/types" {
   interface ModuleOptions {
-    "@medusajs/workflow-engine-redis": RedisWorkflowsOptions
-    "@medusajs/medusa/workflow-engine-redis": RedisWorkflowsOptions
+    "/workflow-engine-redis": RedisWorkflowsOptions
+    "/medusa/workflow-engine-redis": RedisWorkflowsOptions
   }
 }

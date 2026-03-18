@@ -2,7 +2,7 @@ import {
   definePolicies,
   PolicyDefinition,
   toPascalCase,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { defaultPolicyOperations } from "../utils/default-policy-operations"
 
 const taxResources = ["tax_provider", "tax_rate", "tax_region"]

@@ -1,10 +1,10 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
-} from "@medusajs/framework/utils"
-import { HttpTypes } from "@medusajs/framework/types"
+} from "/framework/utils"
+import { HttpTypes } from "/framework/types"
 import TranslationFeatureFlag from "../../../feature-flags/translation"
 
 /**

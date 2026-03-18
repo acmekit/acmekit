@@ -1,5 +1,5 @@
 import React from "react"
-import { Table as UiTable } from "@medusajs/ui"
+import { Table as UiTable } from "/ui"
 import clsx from "clsx"
 
 type RootProps = React.HTMLAttributes<HTMLTableElement>

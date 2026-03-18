@@ -28,8 +28,8 @@ export const highlights = [
 ]
 
 ```ts title="src/jobs/log-message.ts" highlights={highlights}
-import { MedusaContainer } from "@medusajs/framework/types"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { MedusaContainer } from "/framework/types"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 export default async function myCustomJob(
   container: MedusaContainer
@@ -134,8 +134,8 @@ The `Logger` class has an `activity` method used to log a message of level `info
 For example:
 
 ```ts title="src/jobs/log-message.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { MedusaContainer } from "/framework/types"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 export default async function myCustomJob(
   container: MedusaContainer

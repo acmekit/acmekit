@@ -91,7 +91,7 @@ export const modelHighlights = [
 ]
 
 ```ts highlights={modelHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 export const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -108,7 +108,7 @@ export const serviceHighlights = [
 ]
 
 ```ts highlights={serviceHighlights}
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { Post } from "./post"
 
 export class BlogModuleService extends MedusaService({
@@ -123,7 +123,7 @@ export class BlogModuleService extends MedusaService({
   <CodeTab label="Module Definition" value="module">
 
 ```ts
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import { BlogModuleService } from "./service"
 
 export const BLOG_MODULE = "blog"
@@ -147,7 +147,7 @@ export const stepHighlights = [
 ]
 
 ```ts highlights={stepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { BlogModuleService, BLOG_MODULE } from "../../modules/blog"
 
 type Input = {
@@ -183,7 +183,7 @@ const createPostStep = createStep(
   <CodeTab label="Workflow" value="workflow">
 
 ```ts
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
 import { createPostStep } from "./steps"
 
 type Input = {
@@ -209,7 +209,7 @@ Finally, you can expose your custom feature with [API routes](../api-routes/page
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { createPostWorkflow } from "../../../workflows/create-post"
 
 type PostRequestBody = {
@@ -286,8 +286,8 @@ export const defineLinkHighlights = [
 
 ```ts highlights={defineLinkHighlights}
 import BrandModule from "../modules/brand"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -303,7 +303,7 @@ export default defineLink(
   <CodeTab label="Data Model" value="data-model">
 
 ```ts
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 export const Brand = model.define("brand", {
   id: model.id().primaryKey(),
@@ -316,7 +316,7 @@ export const Brand = model.define("brand", {
   <CodeTab label="Service" value="service">
 
 ```ts
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { Brand } from "./models/brand"
 
 class BrandModuleService extends MedusaService({
@@ -333,7 +333,7 @@ export default BrandModuleService
   <CodeTab label="Module Definition" value="module">
 
 ```ts
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import BrandModuleService from "./service"
 
 export const BRAND_MODULE = "brand"
@@ -354,10 +354,10 @@ export const hookHighlights = [
 ]
 
 ```ts title="Workflow Hook Example" highlights={hookHighlights}
-import { createProductsWorkflow } from "@medusajs/medusa/core-flows"
-import { StepResponse } from "@medusajs/framework/workflows-sdk"
-import { Modules } from "@medusajs/framework/utils"
-import { LinkDefinition } from "@medusajs/framework/types"
+import { createProductsWorkflow } from "/medusa/core-flows"
+import { StepResponse } from "/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { LinkDefinition } from "/framework/types"
 import { BRAND_MODULE } from "../../modules/brand"
 import BrandModuleService from "../../modules/brand/service"
 
@@ -467,7 +467,7 @@ export default class ErpModuleService {
   <CodeTab label="Module Definition" value="module">
 
 ```ts
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import ErpModuleService from "./service"
 
 export const ERP_MODULE = "erp"
@@ -499,8 +499,8 @@ import {
   createWorkflow, 
   WorkflowResponse,
   transform,
-} from "@medusajs/framework/workflows-sdk"
-import { createProductsWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { createProductsWorkflow } from "/medusa/core-flows"
 
 export const syncFromErpWorkflow = createWorkflow(
   "sync-from-erp",
@@ -543,7 +543,7 @@ export const syncFromErpWorkflow = createWorkflow(
   <CodeTab label="Step" value="step">
 
 ```ts
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { ERP_MODULE } from "../../modules/erp"
 import { ErpModuleService } from "../../modules/erp/service"
 
@@ -578,7 +578,7 @@ export const syncProductsJobHighlights = [
 ```ts highlights={syncProductsJobHighlights}
 import {
   MedusaContainer,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { syncFromErpWorkflow } from "../workflows/sync-from-erp"
 
 export default async function syncProductsJob(container: MedusaContainer) {
@@ -600,7 +600,7 @@ export const productsCreatedHandlerHighlights = [
 ]
 
 ```ts highlights={productsCreatedHandlerHighlights}
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { sendOrderConfirmationWorkflow } from "../workflows/send-order-confirmation"
 
 export default async function productsCreatedHandler({
@@ -627,7 +627,7 @@ export const apiRouteHighlights = [
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { syncFromErpWorkflow } from "../../../workflows/sync-from-erp"
 
 export const POST = async (
@@ -708,8 +708,8 @@ export const readOnlyLinkHighlights = [
 
 ```ts highlights={readOnlyLinkHighlights}
 import BrandModule from "../modules/brand"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -777,7 +777,7 @@ export default class BrandModuleService {
   <CodeTab label="Module Definition" value="module">
 
 ```ts
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import BrandModuleService from "./service"
 
 export const BRAND_MODULE = "brand"
@@ -867,9 +867,9 @@ To build the task to be automated, you first create a [workflow](../workflows/pa
   <CodeTab label="Step" value="step">
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { CreateNotificationDTO } from "@medusajs/framework/types"
+import { Modules } from "/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { CreateNotificationDTO } from "/framework/types"
 
 export const sendNotificationStep = createStep(
   "send-notification",
@@ -892,8 +892,8 @@ export const sendNotificationStep = createStep(
 import { 
   createWorkflow, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { sendNotificationStep } from "./steps/send-notification"
 
 type WorkflowInput = {
@@ -946,7 +946,7 @@ export const orderPlacedHandlerHighlights = [
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 import { sendOrderConfirmationWorkflow } from "../workflows/send-order-confirmation"
 
 export default async function orderPlacedHandler({
@@ -977,7 +977,7 @@ export const orderConfirmationJobHighlights = [
 ```ts highlights={orderConfirmationJobHighlights}
 import type {
   MedusaContainer,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { sendOrderConfirmationWorkflow } from "../workflows/send-order-confirmation"
 
 export default async function orderConfirmationJob(

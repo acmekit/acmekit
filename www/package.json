@@ -19,7 +19,7 @@
     "watch": "turbo run watch",
     "prep": "turbo run prep",
     "test": "turbo run test -- run",
-    "up:medusa": "yarn workspaces foreach -v --topological-dev --recursive exec yarn up @medusajs/icons @medusajs/ui @medusajs/ui-preset --exact"
+    "up:medusa": "yarn workspaces foreach -v --topological-dev --recursive exec yarn up /icons /ui /ui-preset --exact"
   },
   "dependencies": {
     "autoprefixer": "10.4.14",

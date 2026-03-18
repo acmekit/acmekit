@@ -22,7 +22,7 @@ Create the file `src/api/hello-world/route.ts` with the following content:
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = (
   req: MedusaRequest,
@@ -43,8 +43,8 @@ Learn more in [this documentation](!docs!/learn/fundamentals/api-routes).
 To resolve resources from the Medusa container in an API route:
 
 ```ts highlights={[["8", "resolve", "Resolve the Product Module's\nmain service from the Medusa container."]]}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { Modules } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { Modules } from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest, 
@@ -81,7 +81,7 @@ export const singlePathHighlights = [
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -107,7 +107,7 @@ export const queryHighlights = [
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -134,7 +134,7 @@ export const bodyHighlights = [
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 type HelloWorldReq = {
   name: string
@@ -157,7 +157,7 @@ Learn more about request body parameters in [this documentation](!docs!/learn/fu
 You can change the response code of an API route:
 
 ```ts highlights={[["7", "status", "Change the response's status."]]}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -179,7 +179,7 @@ To execute a workflow in an API route:
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import myWorkflow from "../../workflows/hello-world"
 
 export async function GET(
@@ -210,7 +210,7 @@ export const responseContentTypeHighlights = [
 ]
 
 ```ts highlights={responseContentTypeHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -249,7 +249,7 @@ import type {
   MedusaRequest, 
   MedusaResponse, 
   defineMiddlewares,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -301,7 +301,7 @@ import type {
   MedusaRequest, 
   MedusaResponse, 
   defineMiddlewares,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -322,12 +322,12 @@ export default defineMiddlewares({
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```ts title="src/api/custom/validators.ts"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const PostStoreCustomSchema = z.object({
   a: z.number(),
@@ -341,7 +341,7 @@ export const PostStoreCustomSchema = z.object({
 import { 
   validateAndTransformBody,
   defineMiddlewares,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { PostStoreCustomSchema } from "./custom/validators"
 
 export default defineMiddlewares({
@@ -360,8 +360,8 @@ export default defineMiddlewares({
 3. Use the validated body in the `/custom` API route:
 
 ```ts title="src/api/custom/route.ts" highlights={[["14", "validatedBody"]]}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { z } from "@medusajs/framework/zod"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { z } from "/framework/zod"
 import { PostStoreCustomSchema } from "./validators"
 
 type PostStoreCustomSchemaType = z.infer<
@@ -393,8 +393,8 @@ Find this example in details in [this documentation](!docs!/learn/customization/
 1. Create the file `src/api/middlewares.ts` with the following content:
 
 ```ts title="src/api/middlewares.ts" highlights={[["10", "brand_id", "Replace with your custom field."]]}
-import { defineMiddlewares } from "@medusajs/framework/http"
-import { z } from "@medusajs/framework/zod"
+import { defineMiddlewares } from "/framework/http"
+import { z } from "/framework/zod"
 
 export default defineMiddlewares({
   routes: [
@@ -418,8 +418,8 @@ Learn more about additional data in [this documentation](!docs!/learn/fundamenta
 2. Create the file `src/workflows/hooks/created-product.ts` with the following content:
 
 ```ts
-import { createProductsWorkflow } from "@medusajs/medusa/core-flows"
-import { StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createProductsWorkflow } from "/medusa/core-flows"
+import { StepResponse } from "/framework/workflows-sdk"
 
 createProductsWorkflow.hooks.productsCreated(
   (async ({ products, additional_data }, { container }) => {
@@ -452,7 +452,7 @@ Add the following middleware in `src/api/middlewares.ts`:
 import { 
   defineMiddlewares,
   authenticate,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -481,7 +481,7 @@ Add the following middleware in `src/api/middlewares.ts`:
 import { 
   defineMiddlewares,
   authenticate,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -511,8 +511,8 @@ Requires setting up the authentication middleware as explained in [this example]
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { Modules } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { Modules } from "/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
@@ -546,8 +546,8 @@ Requires setting up the authentication middleware as explained in [this example]
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { Modules } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { Modules } from "/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
@@ -575,8 +575,8 @@ Learn more in [this documentation](!docs!/learn/fundamentals/api-routes/protecte
 To throw errors in an API route, use `MedusaError` from the Medusa Framework:
 
 ```ts highlights={[["9", "MedusaError"]]}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { MedusaError } from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -605,8 +605,8 @@ import {
   MedusaNextFunction, 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { MedusaError } from "/framework/utils"
 
 export default defineMiddlewares({
   errorHandler: (
@@ -636,9 +636,9 @@ import type {
   MedusaRequest, 
   MedusaResponse, 
   defineMiddlewares,
-} from "@medusajs/framework/http"
-import { ConfigModule } from "@medusajs/framework/types"
-import { parseCorsOrigins } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ConfigModule } from "/framework/types"
+import { parseCorsOrigins } from "/framework/utils"
 import cors from "cors"
 
 export default defineMiddlewares({
@@ -676,7 +676,7 @@ To parse a webhook's body, create the file `src/api/middlewares.ts` with the fol
 ```ts title="src/api/middlewares.ts" highlights={[["9"]]}
 import { 
   defineMiddlewares, 
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -695,7 +695,7 @@ To access the raw body data in your route, use the `req.rawBody` property:
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const POST = (
   req: MedusaRequest,
@@ -723,7 +723,7 @@ Find this example explained in details in [this documentation](!docs!/learn/fund
 2. Create the file `src/modules/blog/models/post.ts` with the following data model:
 
 ```ts title="src/modules/blog/models/post.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -736,7 +736,7 @@ export default Post
 3. Create the file `src/modules/blog/service.ts` with the following service:
 
 ```ts title="src/modules/blog/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -751,7 +751,7 @@ export default BlogModuleService
 
 ```ts title="src/modules/blog/index.ts"
 import BlogModuleService from "./service"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 
 export const BLOG_MODULE = "blog"
 
@@ -785,7 +785,7 @@ npx medusa db:migrate
 7. Use the module's main service in an API route:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import BlogModuleService from "../../modules/blog/service"
 import { BLOG_MODULE } from "../../modules/blog"
 
@@ -828,7 +828,7 @@ export * from "./category"
 Finally, resolve the service in your module's main service or loader:
 
 ```ts title="src/modules/blog/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 import { CategoryService } from "./services"
 
@@ -878,7 +878,7 @@ module.exports = defineConfig({
 2. Access the options in the module's main service:
 
 ```ts title="src/modules/blog/service.ts" highlights={[["14", "options"]]}
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 // recommended to define type in another file
@@ -910,7 +910,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/modules/options).
 An example of integrating a dummy third-party system in a module's service:
 
 ```ts title="src/modules/blog/service.ts"
-import { Logger } from "@medusajs/framework/types"
+import { Logger } from "/framework/types"
 import { BLOG_MODULE } from ".."
 
 export type ModuleOptions = {
@@ -965,7 +965,7 @@ This assumes you already have a module. If not, follow [this example](#create-mo
 1. Create the file `src/modules/blog/models/post.ts` with the following data model:
 
 ```ts title="src/modules/blog/models/post.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -1076,7 +1076,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/propert
 To set an `id` property as the primary key of a data model:
 
 ```ts highlights={[["4", "primaryKey"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -1089,7 +1089,7 @@ export default Post
 To set a `text` property as the primary key:
 
 ```ts highlights={[["4", "primaryKey"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   title: model.text().primaryKey(),
@@ -1102,7 +1102,7 @@ export default Post
 To set a `number` property as the primary key:
 
 ```ts highlights={[["4", "primaryKey"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   views: model.number().primaryKey(),
@@ -1119,7 +1119,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/propert
 To set the default value of a property:
 
 ```ts highlights={[["6"], ["9"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   status: model
@@ -1141,7 +1141,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/propert
 To allow `null` values for a property:
 
 ```ts highlights={[["4", "nullable"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   price: model.bigNumber().nullable(),
@@ -1158,7 +1158,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/propert
 To create a unique index on a property:
 
 ```ts highlights={[["4", "unique"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   title: model.text().unique(),
@@ -1175,7 +1175,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/propert
 To define a database index on a property:
 
 ```ts highlights={[["5", "index"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const MyCustom = model.define("my_custom", {
   id: model.id().primaryKey(),
@@ -1194,7 +1194,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/propert
 To define a composite index on a data model:
 
 ```ts highlights={[["7", "indexes"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const MyCustom = model.define("my_custom", {
   id: model.id().primaryKey(),
@@ -1221,7 +1221,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/index).
 To make a property searchable using terms or keywords:
 
 ```ts highlights={[["4", "searchable"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   title: model.text().searchable(),
@@ -1252,7 +1252,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/propert
 The following creates a one-to-one relationship between the `User` and `Email` data models:
 
 ```ts highlights={[["5", "hasOne"], ["12", "belongsTo"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const User = model.define("user", {
   id: model.id().primaryKey(),
@@ -1276,7 +1276,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/relatio
 The following creates a one-to-many relationship between the `Store` and `Product` data models:
 
 ```ts highlights={[["5", "hasMany"], ["12", "belongsTo"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Store = model.define("store", {
   id: model.id().primaryKey(),
@@ -1300,7 +1300,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/relatio
 The following creates a many-to-many relationship between the `Order` and `Product` data models:
 
 ```ts highlights={[["5", "manyToMany"], ["12", "manyToMany"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Order = model.define("order", {
   id: model.id().primaryKey(),
@@ -1324,7 +1324,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/data-models/relatio
 To configure cascade on a data model:
 
 ```ts highlights={[["10", "cascades"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import Product from "./product"
 
 const Store = model.define("store", {
@@ -1493,7 +1493,7 @@ The service factory `MedusaService` generates data-management methods for your d
 To extend the service factory in your module's service:
 
 ```ts highlights={[["4", "MedusaService"]]}
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -1519,8 +1519,8 @@ To resolve resources from the module's container in a service:
   <CodeTab label="With Service Factory" value="service-factory">
 
 ```ts highlights={[["14"]]}
-import { Logger } from "@medusajs/framework/types"
-import { MedusaService } from "@medusajs/framework/utils"
+import { Logger } from "/framework/types"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 type InjectedDependencies = {
@@ -1549,7 +1549,7 @@ export default BlogModuleService
   <CodeTab label="Without Service Factory" value="no-service-factory">
 
 ```ts highlights={[["10"]]}
-import { Logger } from "@medusajs/framework/types"
+import { Logger } from "/framework/types"
 
 type InjectedDependencies = {
   logger: Logger
@@ -1578,7 +1578,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/modules/container).
 To access options passed to a module in its service:
 
 ```ts highlights={[["14", "options"]]}
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 // recommended to define type in another file
@@ -1614,7 +1614,7 @@ To run database query in your service:
 import { 
   InjectManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 class BlogModuleService {
   // ...
@@ -1650,9 +1650,9 @@ import {
   InjectManager,
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class BlogModuleService {
   // ...
@@ -1712,8 +1712,8 @@ To define a link between your custom module and a Commerce Module, such as the P
 
 ```ts title="src/links/blog-product.ts"
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   ProductModule.linkable.product,
@@ -1735,8 +1735,8 @@ To define a list link, where multiple records of a model can be linked to a reco
 
 ```ts highlights={[["9", "isList"]]}
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   ProductModule.linkable.product,
@@ -1755,8 +1755,8 @@ To ensure a model's records linked to another model are deleted when the linked 
 
 ```ts highlights={[["9", "deleteCascades"]]}
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   ProductModule.linkable.product,
@@ -1775,8 +1775,8 @@ To add a custom column to the table that stores the linked records of two data m
 
 ```ts highlights={[["9", "database"]]}
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   ProductModule.linkable.product,
@@ -1834,7 +1834,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/module-links/custom
 To create a link between two records using Link:
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 import { BLOG_MODULE } from "../../modules/blog"
 
 // ...
@@ -1856,7 +1856,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/module-links/link#c
 To dismiss links between records using Link:
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 import { BLOG_MODULE } from "../../modules/blog"
 
 // ...
@@ -1878,7 +1878,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/module-links/link#d
 To cascade delete records linked to a deleted record:
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 // ...
 
@@ -1898,7 +1898,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/module-links/link#c
 To restore records that were soft-deleted because they were linked to a soft-deleted record:
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 // ...
 
@@ -1927,10 +1927,10 @@ To retrieve records using Query in an API route:
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   ContainerRegistrationKeys,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -1957,10 +1957,10 @@ To retrieve records linked to a data model:
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   ContainerRegistrationKeys,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -1991,10 +1991,10 @@ To filter the retrieved records:
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   ContainerRegistrationKeys,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -2027,10 +2027,10 @@ To paginate and sort retrieved records:
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   ContainerRegistrationKeys,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -2079,7 +2079,7 @@ To create a workflow:
 1. Create the first step at `src/workflows/hello-world/steps/step-1.ts` with the following content:
 
 ```ts title="src/workflows/hello-world/steps/step-1.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 export const step1 = createStep("step-1", async () => {
   return new StepResponse(`Hello from step one!`)
@@ -2089,7 +2089,7 @@ export const step1 = createStep("step-1", async () => {
 2. Create the second step at `src/workflows/hello-world/steps/step-2.ts` with the following content:
 
 ```ts title="src/workflows/hello-world/steps/step-2.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 type StepInput = {
   name: string
@@ -2109,7 +2109,7 @@ export const step2 = createStep(
 import {
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { step1 } from "./steps/step-1"
 import { step2 } from "./steps/step-2"
 
@@ -2140,7 +2140,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/workflows).
     import type {
       MedusaRequest,
       MedusaResponse,
-    } from "@medusajs/framework/http"
+    } from "/framework/http"
     import myWorkflow from "../../workflows/hello-world"
 
     export async function GET(
@@ -2165,10 +2165,10 @@ Learn more in [this documentation](!docs!/learn/fundamentals/workflows).
     import {
       type SubscriberConfig,
       type SubscriberArgs,
-    } from "@medusajs/framework"
+    } from "/framework"
     import myWorkflow from "../workflows/hello-world"
-    import { Modules } from "@medusajs/framework/utils"
-    import { IUserModuleService } from "@medusajs/framework/types"
+    import { Modules } from "/framework/utils"
+    import { IUserModuleService } from "/framework/types"
 
     export default async function handleCustomerCreate({
       event: { data },
@@ -2200,7 +2200,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/workflows).
   <CodeTab label="Scheduled Job" value="scheduled-job">
     
     ```ts title="src/jobs/message-daily.ts" highlights={[["7"], ["8"], ["9"], ["10"], ["11"], ["12"]]}
-    import { MedusaContainer } from "@medusajs/framework/types"
+    import { MedusaContainer } from "/framework/types"
     import myWorkflow from "../workflows/hello-world"
 
     export default async function myCustomJob(
@@ -2235,7 +2235,7 @@ Pass a compensation function that undoes what a step did as a second parameter t
 import { 
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",
@@ -2263,7 +2263,7 @@ import {
   createWorkflow,
   WorkflowResponse,
   transform,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 // step imports...
 
 const myWorkflow = createWorkflow(
@@ -2293,7 +2293,7 @@ import {
   createWorkflow,
   WorkflowResponse,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 // step imports...
 
 const workflow = createWorkflow(
@@ -2328,10 +2328,10 @@ To run a workflow in another, use the workflow's `runAsStep` special method:
 ```ts highlights={[["11", "runAsStep"]]}
 import {
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   createProductsWorkflow,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 const workflow = createWorkflow(
   "hello-world",
@@ -2356,7 +2356,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/workflows/execute-a
 To consume a workflow hook, create a file under `src/workflows/hooks`:
 
 ```ts title="src/workflows/hooks/product-created.ts"
-import { createProductsWorkflow } from "@medusajs/medusa/core-flows"
+import { createProductsWorkflow } from "/medusa/core-flows"
 
 createProductsWorkflow.hooks.productsCreated(
   async ({ products, additional_data }, { container }) => {
@@ -2382,7 +2382,7 @@ import {
   createHook,
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { createProductStep } from "./steps/create-product"
 
 export const myWorkflow = createWorkflow(
@@ -2410,7 +2410,7 @@ To configure steps to retry in case of errors, pass the `maxRetries` step option
 ```ts highlights={[["10"]]}
 import { 
   createStep, 
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 export const step1 = createStep(
   {
@@ -2436,7 +2436,7 @@ import {
   createWorkflow,
   WorkflowResponse,
   parallelize,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import {
   createProductStep,
   getProductStep,
@@ -2477,7 +2477,7 @@ import {
   createStep,  
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 // step import...
 
 const myWorkflow = createWorkflow({
@@ -2610,9 +2610,9 @@ Use the Workflow Engine Module's `subscribe` and `unsubscribe` methods to access
 For example, in an API route:
 
 ```ts highlights={[["18", "subscribe", "Subscribe to the workflow's status changes."]]}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import myWorkflow from "../../../workflows/hello-world"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const { transaction, result } = await myWorkflow(req.scope).run()
@@ -2663,7 +2663,7 @@ To create a subscriber that listens to the `product.created` event, create the f
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 
 export default async function productCreateHandler({
   event,
@@ -2684,8 +2684,8 @@ Learn more in [this documentation](!docs!/learn/fundamentals/events-and-subscrib
 To resolve resources from the Medusa container in a subscriber, use the `container` property of its parameter:
 
 ```ts highlights={[["6", "container"], ["8", "resolve", "Resolve the Product Module's main service."]]}
-import { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
-import { Modules } from "@medusajs/framework/utils"
+import { SubscriberArgs, SubscriberConfig } from "/framework"
+import { Modules } from "/framework/utils"
 
 export default async function productCreateHandler({
   event: { data },
@@ -2717,8 +2717,8 @@ To send a notification, such as an email when a user requests to reset their pas
 import {
   SubscriberArgs,
   type SubscriberConfig,
-} from "@medusajs/medusa"
-import { Modules } from "@medusajs/framework/utils"
+} from "/medusa"
+import { Modules } from "/framework/utils"
 
 export default async function resetPasswordTokenHandler({
   event: { data: {
@@ -2762,9 +2762,9 @@ To execute a workflow in a subscriber:
 import {
   type SubscriberConfig,
   type SubscriberArgs,
-} from "@medusajs/framework"
+} from "/framework"
 import myWorkflow from "../workflows/hello-world"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 export default async function handleCustomerCreate({
   event: { data },
@@ -2825,8 +2825,8 @@ Learn more in [this documentation](!docs!/learn/fundamentals/scheduled-jobs).
 To resolve resources in a scheduled job, use the `container` accepted as a first parameter:
 
 ```ts highlights={[["5", "container"], ["7", "resolve", "Resolve the Product Module's main service."]]}
-import { MedusaContainer } from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
+import { MedusaContainer } from "/framework/types"
+import { Modules } from "/framework/utils"
 
 export default async function myCustomJob(
   container: MedusaContainer
@@ -2873,7 +2873,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/scheduled-jobs/exec
 To execute a workflow in a scheduled job:
 
 ```ts
-import { MedusaContainer } from "@medusajs/framework/types"
+import { MedusaContainer } from "/framework/types"
 import myWorkflow from "../workflows/hello-world"
 
 export default async function myCustomJob(
@@ -2926,10 +2926,10 @@ To resolve resources in a loader, use the `container` property of its first para
 ```ts highlights={[["9", "container"], ["11", "resolve", "Resolve the Logger from the module's container."]]}
 import {
   LoaderOptions,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { 
   ContainerRegistrationKeys,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default async function helloWorldLoader({
   container,
@@ -2949,7 +2949,7 @@ To access a module's options in its loader, use the `options` property of its fi
 ```ts highlights={[["11", "options"]]}
 import {
   LoaderOptions,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 // recommended to define type in another file
 type ModuleOptions = {
@@ -2976,8 +2976,8 @@ To register a resource in the Module's container using a loader, use the `contai
 ```ts highlights={[["9", "registerAdd"]]}
 import {
   LoaderOptions,
-} from "@medusajs/framework/types"
-import { asValue } from "@medusajs/framework/awilix"
+} from "/framework/types"
+import { asValue } from "/framework/awilix"
 
 export default async function helloWorldLoader({
   container,
@@ -3012,8 +3012,8 @@ A widget is a React component that can be injected into an existing page in the 
 To create a widget in the admin dashboard, create the file `src/admin/widgets/products-widget.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/products-widget.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 const ProductWidget = () => {
   return (
@@ -3039,12 +3039,12 @@ Learn more about widgets in [this documentation](!docs!/learn/fundamentals/admin
 Widgets created in a details page, such as widgets in the `product.details.before` injection zone, receive a prop of the data of the details page (for example, the product):
 
 ```tsx highlights={[["10", "data"]]}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 import { 
   DetailWidgetProps, 
   AdminProduct,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 // The widget
 const ProductWidget = ({ 
@@ -3078,9 +3078,9 @@ A UI route is a React Component that adds a new page to your admin dashboard. Th
 To create a UI route in the admin dashboard, create the file `src/admin/routes/custom/page.tsx` with the following content:
 
 ```tsx title="src/admin/routes/custom/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { ChatBubbleLeftRight } from "@medusajs/icons"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { ChatBubbleLeftRight } from "/icons"
+import { Container, Heading } from "/ui"
 
 const CustomPage = () => {
   return (
@@ -3111,8 +3111,8 @@ To create a settings page, create a UI route under the `src/admin/routes/setting
 For example, create the file `src/admin/routes/settings/custom/page.tsx` with the following content:
 
 ```tsx title="src/admin/routes/settings/custom/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 const CustomSettingPage = () => {
   return (
@@ -3143,7 +3143,7 @@ For example, create the file `src/admin/routes/custom/[id]/page.tsx` with the fo
 
 ```tsx title="src/admin/routes/custom/[id]/page.tsx"
 import { useParams } from "react-router-dom"
-import { Container } from "@medusajs/ui"
+import { Container } from "/ui"
 
 const CustomPage = () => {
   const { id } = useParams()
@@ -3171,8 +3171,8 @@ To send a request to custom API routes from the admin dashboard, use the Fetch A
 For example:
 
 ```tsx
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container } from "/ui"
 import { useEffect, useState } from "react"
 
 const ProductWidget = () => {
@@ -3216,8 +3216,8 @@ Learn more in [this documentation](!docs!/learn/fundamentals/admin/tips#send-req
 To add a link to another page in a UI route or a widget, use `react-router-dom`'s `Link` component:
 
 ```tsx
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container } from "/ui"
 import { Link } from "react-router-dom"
 
 // The widget
@@ -3243,7 +3243,7 @@ Learn more in [this documentation](!docs!/learn/fundamentals/admin/tips#routing-
 
 ## Integration Tests
 
-Medusa provides a `@medusajs/test-utils` package with utility tools to create integration tests for your custom API routes, modules, or other Medusa customizations.
+Medusa provides a `/test-utils` package with utility tools to create integration tests for your custom API routes, modules, or other Medusa customizations.
 
 <Note>
 
@@ -3256,7 +3256,7 @@ For details on setting up your project for integration tests, refer to [this doc
 To create a test for a custom API route, create the file `integration-tests/http/custom-routes.spec.ts` with the following content:
 
 ```ts title="integration-tests/http/custom-routes.spec.ts"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 
 medusaIntegrationTestRunner({
   testSuite: ({ api, getContainer }) => {
@@ -3290,7 +3290,7 @@ Learn more in [this documentation](!docs!/learn/debugging-and-testing/testing-to
 To create a test for a workflow, create the file `integration-tests/http/workflow.spec.ts` with the following content:
 
 ```ts title="integration-tests/http/workflow.spec.ts"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import { helloWorldWorkflow } from "../../src/workflows/hello-world"
 
 medusaIntegrationTestRunner({
@@ -3322,7 +3322,7 @@ To create a test for a module's service, create the test under the `__tests__` d
 For example, create the file `src/modules/blog/__tests__/service.spec.ts` with the following content:
 
 ```ts title="src/modules/blog/__tests__/service.spec.ts"
-import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
+import { moduleIntegrationTestRunner } from "/test-utils"
 import { BLOG_MODULE } from ".."
 import BlogModuleService from "../service"
 import Post from "../models/post"
@@ -3368,7 +3368,7 @@ To create an actor type that can authenticate to the Medusa application, such as
 1. Create the data model in a module:
 
 ```ts
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Manager = model.define("manager", {
   id: model.id().primaryKey(),
@@ -3386,10 +3386,10 @@ export default Manager
 import { 
   createWorkflow, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   setAuthAppMetadataStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 // other imports...
 
 const createManagerWorkflow = createWorkflow(
@@ -3416,8 +3416,8 @@ const createManagerWorkflow = createWorkflow(
 import type { 
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { MedusaError } from "/framework/utils"
 import createManagerWorkflow from "../../workflows/create-manager"
 
 type RequestBody = {
@@ -3457,7 +3457,7 @@ export async function POST(
 import { 
   defineMiddlewares,
   authenticate,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -3496,7 +3496,7 @@ import {
   AddItemAdjustmentAction,
   AddShippingMethodAdjustment,
   // ...
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 // retrieve the cart
 const cart = await cartModuleService.retrieveCart("cart_123", {
@@ -3621,7 +3621,7 @@ import {
   AddItemAdjustmentAction,
   AddShippingMethodAdjustment,
   // ...
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 // ...
 
@@ -3704,7 +3704,7 @@ To accept payment using the Payment Module's main service:
 import { 
   ContainerRegistrationKeys,
   Modules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 // ...
 
@@ -3766,7 +3766,7 @@ Learn more in [this documentation](../commerce-modules/payment/payment-flow/page
 To get prices of a product variant for a region and currency using [Query](!docs!/learn/fundamentals/module-links/query):
 
 ```ts
-import { QueryContext } from "@medusajs/framework/utils"
+import { QueryContext } from "/framework/utils"
 
 // ...
 
@@ -3824,11 +3824,11 @@ import {
   HttpTypes,
   TaxableItemDTO,
   ItemTaxLineDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { 
   QueryContext,
   calculateAmountsWithTax,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 // other imports...
 
 // ...

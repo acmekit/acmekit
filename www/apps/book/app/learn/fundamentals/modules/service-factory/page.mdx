@@ -34,7 +34,7 @@ export const highlights = [
 ]
 
 ```ts title="src/modules/blog/service.ts" highlights={highlights}
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -284,7 +284,7 @@ If you implement a `constructor` in your service, make sure to call `super` and 
 For example:
 
 ```ts highlights={[["8"]]}
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -307,7 +307,7 @@ The service factory also generates internal services for each data model passed 
 For example, if the `BlogModuleService` is defined as follows:
 
 ```ts
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
@@ -327,7 +327,7 @@ These services are useful when you need to perform database operations in loader
 For example, you can create a loader that logs the number of posts in the database:
 
 ```ts
-import { LoaderOptions } from "@medusajs/framework/types"
+import { LoaderOptions } from "/framework/types"
 
 export default async function helloWorldLoader({
   container,

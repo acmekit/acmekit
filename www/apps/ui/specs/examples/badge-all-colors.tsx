@@ -1,4 +1,4 @@
-import { Badge } from "@medusajs/ui"
+import { Badge } from "/ui"
 
 export default function BadgeAllColors() {
   return (

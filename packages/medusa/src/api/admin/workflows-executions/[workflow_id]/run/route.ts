@@ -2,12 +2,12 @@ import {
   HttpTypes,
   IWorkflowEngineService,
   WorkflowOrchestratorRunDTO,
-} from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
+} from "/framework/types"
+import { Modules } from "/framework/utils"
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { AdminCreateWorkflowsRunType } from "../../validators"
 
 export const POST = async (

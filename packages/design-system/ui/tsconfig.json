@@ -17,7 +17,7 @@
     "alwaysStrict": true,
     "skipLibCheck": true,
     "paths": {
-      "@medusajs/ui": ["./src/index.tsx"],
+      "/ui": ["./src/index.tsx"],
       "@/components/*": ["./src/components/*"],
       "@/providers/*": ["./src/providers/*"],
       "@/hooks/*": ["./src/hooks/*"],

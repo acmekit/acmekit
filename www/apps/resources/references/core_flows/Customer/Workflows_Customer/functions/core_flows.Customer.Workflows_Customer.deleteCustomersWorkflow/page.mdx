@@ -12,7 +12,7 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 # deleteCustomersWorkflow - Medusa Core Workflows Reference
 
-This documentation provides a reference to the `deleteCustomersWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
+This documentation provides a reference to the `deleteCustomersWorkflow`. It belongs to the `/medusa/core-flows` package.
 
 This workflow deletes one or more customers. It's used by the 
 [removeCustomerAccountWorkflow](../core_flows.Customer.Workflows_Customer.removeCustomerAccountWorkflow/page.mdx).
@@ -31,8 +31,8 @@ delete customers in your custom flows.
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { deleteCustomersWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework/http"
+import { deleteCustomersWorkflow } from "/medusa/core-flows"
 
 export async function POST(
   req: MedusaRequest,
@@ -58,8 +58,8 @@ export async function POST(
 import {
   type SubscriberConfig,
   type SubscriberArgs,
-} from "@medusajs/framework"
-import { deleteCustomersWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework"
+import { deleteCustomersWorkflow } from "/medusa/core-flows"
 
 export default async function handleOrderPlaced({
   event: { data },
@@ -86,8 +86,8 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { deleteCustomersWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaContainer } from "/framework/types"
+import { deleteCustomersWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
   container: MedusaContainer
@@ -114,8 +114,8 @@ export const config = {
     <CodeTab label="Another Workflow" value="another-workflow">
     
 ```ts title="src/workflows/my-workflow.ts"
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
-import { deleteCustomersWorkflow } from "@medusajs/medusa/core-flows"
+import { createWorkflow } from "/framework/workflows-sdk"
+import { deleteCustomersWorkflow } from "/medusa/core-flows"
 
 const myWorkflow = createWorkflow(
   "my-workflow",
@@ -156,7 +156,7 @@ This hook is executed after the customers are deleted. You can consume this hook
 #### Example
 
 ```ts
-import { deleteCustomersWorkflow } from "@medusajs/medusa/core-flows"
+import { deleteCustomersWorkflow } from "/medusa/core-flows"
 
 deleteCustomersWorkflow.hooks.customersDeleted(
   (async ({ ids }, { container }) => {

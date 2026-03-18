@@ -1,1 +1,1 @@
-export * from "@medusajs/deps/mikro-orm/postgresql"
+export * from "/deps/mikro-orm/postgresql"

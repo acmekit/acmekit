@@ -1,7 +1,7 @@
 "use client"
 
-import { Spinner } from "@medusajs/icons"
-import { Tabs, clx } from "@medusajs/ui"
+import { Spinner } from "/icons"
+import { Tabs, clx } from "/ui"
 import { CodeBlock } from "docs-ui"
 import * as React from "react"
 

@@ -1,5 +1,5 @@
-import { BuildingTax } from "@medusajs/icons"
-import { IconBadge } from "@medusajs/ui"
+import { BuildingTax } from "/icons"
+import { IconBadge } from "/ui"
 
 export default function IconBadgeDemo() {
   return (

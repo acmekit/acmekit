@@ -34,7 +34,7 @@ The File Module accepts one provider only.
 </Note>
 
 ```ts title="medusa-config.ts"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 // ...
 
@@ -42,11 +42,11 @@ module.exports = {
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/file",
+      resolve: "/medusa/file",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/file-local",
+            resolve: "/medusa/file-local",
             id: "local",
             options: {
               // provider options...

@@ -94,7 +94,7 @@ vi.mock("docs-ui", () => ({
 vi.mock("@/components/Tags/Operation/Parameters", () => ({
   default: () => <div data-testid="parameters">Parameters</div>,
 }))
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   CheckCircle: () => <div data-testid="check-circle">CheckCircle</div>,
   SquareTwoStack: () => <div data-testid="square-two-stack">SquareTwoStack</div>,
   Tag: () => <div data-testid="tag">Tag</div>,

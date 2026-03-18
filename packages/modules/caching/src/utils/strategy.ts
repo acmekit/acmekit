@@ -3,13 +3,13 @@ import type {
   ICachingModuleService,
   ICachingStrategy,
   ModuleJoinerConfig,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import {
   type GraphQLSchema,
   Modules,
   toCamelCase,
   upperCaseFirst,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { type CachingModuleService } from "@services"
 import type { InjectedDependencies } from "@types"
 import stringify from "fast-json-stable-stringify"

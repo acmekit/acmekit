@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 import { fireEvent, render } from "@testing-library/react"
 
 // mock components
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   InformationCircleSolid: () => <svg data-testid="info-icon" />,
   XCircleSolid: () => <svg data-testid="error-icon" />,
   ExclamationCircleSolid: () => <svg data-testid="warning-icon" />,

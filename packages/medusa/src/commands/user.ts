@@ -2,8 +2,8 @@ import {
   ContainerRegistrationKeys,
   FeatureFlag,
   Modules,
-} from "@medusajs/framework/utils"
-import { track } from "@medusajs/telemetry"
+} from "/framework/utils"
+import { track } from "/telemetry"
 import express from "express"
 import loaders from "../loaders"
 

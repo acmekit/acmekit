@@ -2,9 +2,9 @@ import {
   moduleLoader,
   ModulesDefinition,
   registerMedusaModule,
-} from "@medusajs/modules-sdk"
-import { ContainerRegistrationKeys, generateJwtToken } from "@medusajs/utils"
-import { asValue } from "@medusajs/framework/awilix"
+} from "/modules-sdk"
+import { ContainerRegistrationKeys, generateJwtToken } from "/utils"
+import { asValue } from "/framework/awilix"
 import express from "express"
 import querystring from "querystring"
 import supertest from "supertest"
@@ -14,10 +14,10 @@ import {
   container,
   featureFlagsLoader,
   MedusaRequest,
-} from "@medusajs/framework"
-import { configManager } from "@medusajs/framework/config"
-import { logger as defaultLogger } from "@medusajs/framework/logger"
-import { ConfigModule, MedusaContainer } from "@medusajs/types"
+} from "/framework"
+import { configManager } from "/framework/config"
+import { logger as defaultLogger } from "/framework/logger"
+import { ConfigModule, MedusaContainer } from "/types"
 import { config } from "../mocks"
 
 function asArray(resolvers) {

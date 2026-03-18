@@ -1,4 +1,4 @@
-import { Label, Switch } from "@medusajs/ui"
+import { Label, Switch } from "/ui"
 
 export default function SwitchDisabled() {
   return (

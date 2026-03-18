@@ -1,10 +1,10 @@
-import type { CreateCustomerDTO, CustomerDTO } from "@medusajs/framework/types"
+import type { CreateCustomerDTO, CustomerDTO } from "/framework/types"
 import {
   createWorkflow,
   transform,
   WorkflowData,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { setAuthAppMetadataStep } from "../../auth"
 import { validateCustomerAccountCreation } from "../steps/validate-customer-account-creation"
 import { createCustomersWorkflow } from "./create-customers"

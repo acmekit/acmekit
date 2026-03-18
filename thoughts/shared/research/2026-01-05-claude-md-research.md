@@ -78,7 +78,7 @@ yarn install
 yarn build
 
 # Build specific package
-yarn workspace @medusajs/medusa build
+yarn workspace /medusa build
 
 # Watch mode (in package directory)
 yarn watch
@@ -122,7 +122,7 @@ yarn test:integration:modules
 **Test Runners:**
 - `medusaIntegrationTestRunner` - HTTP integration tests
 - `moduleIntegrationTestRunner` - Module integration tests
-- Both from `@medusajs/test-utils`
+- Both from `/test-utils`
 
 **Patterns:**
 - File extension: `.spec.ts` or `.test.ts`
@@ -152,7 +152,7 @@ yarn test:integration:modules
 - DB fields: snake_case
 
 **Import Organization:**
-1. @medusajs/framework imports (grouped by subpath)
+1. /framework imports (grouped by subpath)
 2. External npm packages
 3. Node.js built-ins
 4. Relative local imports

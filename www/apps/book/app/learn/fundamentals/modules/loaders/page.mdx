@@ -43,7 +43,7 @@ Learn how to create a module in [this chapter](../page.mdx).
 ```ts title="src/modules/hello/loaders/hello-world.ts"
 import {
   LoaderOptions,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 export default async function helloWorldLoader({
   container,
@@ -154,7 +154,7 @@ To connect to the database, you create the following loader in your module:
 
 <Note>
 
-As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), Awilix dependencies are included in the `@medusajs/framework` package. If you're using an older version of Medusa, change the import statement to `awilix`.
+As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), Awilix dependencies are included in the `/framework` package. If you're using an older version of Medusa, change the import statement to `awilix`.
 
 </Note>
 
@@ -168,8 +168,8 @@ export const loaderHighlights = [
 ]
 
 ```ts title="src/modules/mongo/loaders/connection.ts" highlights={loaderHighlights}
-import { LoaderOptions } from "@medusajs/framework/types"
-import { asValue } from "@medusajs/framework/awilix"
+import { LoaderOptions } from "/framework/types"
+import { asValue } from "/framework/awilix"
 import { MongoClient } from "mongodb"
 
 type ModuleOptions = {
@@ -239,7 +239,7 @@ In the loader, you check first that these options are set before proceeding. The
 After creating the client, you register it in the module's container using the container's `register` method. The method accepts two parameters:
 
 1. The key to register the resource under, which in this case is `mongoClient`. You'll use this name later to resolve the client.
-2. The resource to register in the container, which is the MongoDB client you created. However, you don't pass the resource as-is. Instead, you need to use an `asValue` function imported from the [`@medusajs/framework/awilix` package](https://github.com/jeffijoe/awilix), which is the package used to implement the container functionality in Medusa.
+2. The resource to register in the container, which is the MongoDB client you created. However, you don't pass the resource as-is. Instead, you need to use an `asValue` function imported from the [`/framework/awilix` package](https://github.com/jeffijoe/awilix), which is the package used to implement the container functionality in Medusa.
 
 ### Use Custom Registered Resource in Module's Service
 
@@ -301,7 +301,7 @@ The service `MongoModuleService` resolves the `mongoClient` resource you registe
 Make sure to export the loader in the module's definition in the `index.ts` file at the root directory of the module:
 
 ```ts title="src/modules/mongo/index.ts" highlights={[["9"]]}
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import MongoModuleService from "./service"
 import mongoConnectionLoader from "./loaders/connection"
 

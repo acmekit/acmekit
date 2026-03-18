@@ -1,6 +1,6 @@
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
-import { IAuthModuleService } from "@medusajs/types"
-import { Modules } from "@medusajs/utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
+import { IAuthModuleService } from "/types"
+import { Modules } from "/utils"
 import Scrypt from "scrypt-kdf"
 import {
   adminHeaders,

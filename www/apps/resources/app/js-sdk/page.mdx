@@ -21,13 +21,13 @@ The Medusa JS SDK is available in your Medusa application by default. So, you do
 To install the Medusa JS SDK in other projects, such as a custom storefront, run the following command:
 
 ```bash npm2yarn
-npm install @medusajs/js-sdk@latest @medusajs/types@latest
+npm install /js-sdk@latest /types@latest
 ```
 
 You install two libraries:
 
-- `@medusajs/js-sdk`: the Medusa JS SDK.
-- `@medusajs/types`: Medusa's types library, which is useful if you're using TypeScript in your development.
+- `/js-sdk`: the Medusa JS SDK.
+- `/types`: Medusa's types library, which is useful if you're using TypeScript in your development.
 
 ---
 
@@ -45,7 +45,7 @@ For admin customizations, create this file at `src/admin/lib/config.ts`.
   <CodeTab label="Admin (Medusa project)" value="admin-medusa-project">
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -60,7 +60,7 @@ export const sdk = new Medusa({
   <CodeTab label="Admin (Medusa Plugin)" value="admin-medusa-plugin">
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: __BACKEND_URL__ || "/",
@@ -75,7 +75,7 @@ export const sdk = new Medusa({
   <CodeTab label="Storefront" value="storefront">
 
 ```ts title="sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 let MEDUSA_BACKEND_URL = "http://localhost:9000"
 
@@ -405,7 +405,7 @@ The JS SDK supports streaming server-sent events (SSE) using the `client.fetchSt
 For example, consider you have the following custom API route at `src/api/admin/stream/route.ts`:
 
 ```ts title="src/api/admin/stream/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -436,8 +436,8 @@ export const GET = async (
 Then, you can use the `client.fetchStream` method in a UI route to receive the streaming data:
 
 ```tsx title="src/admin/route/stream/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Container, Heading, Button, Text } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Container, Heading, Button, Text } from "/ui"
 import { useState } from "react"
 import { sdk } from "../../lib/sdk"
 
@@ -721,11 +721,11 @@ export const queryHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-widget.ts"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Button, Container } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Button, Container } from "/ui"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../lib/config"
-import { DetailWidgetProps, HttpTypes } from "@medusajs/framework/types"
+import { DetailWidgetProps, HttpTypes } from "/framework/types"
 
 const ProductWidget = () => {
   const { data, isLoading } = useQuery({
@@ -758,11 +758,11 @@ export default ProductWidget
   <CodeTab label="Mutation" value="mutation">
 
 ```tsx title="src/admin/widgets/product-widget.ts"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Button, Container } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Button, Container } from "/ui"
 import { useMutation } from "@tanstack/react-query"
 import { sdk } from "../lib/config"
-import { DetailWidgetProps, HttpTypes } from "@medusajs/framework/types"
+import { DetailWidgetProps, HttpTypes } from "/framework/types"
 
 const ProductWidget = ({ 
   data: productData,

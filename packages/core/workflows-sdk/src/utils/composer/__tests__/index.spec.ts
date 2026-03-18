@@ -1,6 +1,6 @@
-import { z } from "@medusajs/deps/zod"
+import { z } from "/deps/zod"
 import { expectTypeOf } from "expect-type"
-import { TransactionState } from "@medusajs/utils"
+import { TransactionState } from "/utils"
 import { createStep } from "../create-step"
 import { createWorkflow } from "../create-workflow"
 import { StepResponse } from "../helpers"
@@ -9,7 +9,7 @@ import { transform } from "../transform"
 import { WorkflowData } from "../type"
 import { when } from "../when"
 import { createHook } from "../create-hook"
-import { TransactionStepsDefinition } from "@medusajs/orchestration"
+import { TransactionStepsDefinition } from "/orchestration"
 
 let count = 1
 const getNewWorkflowId = () => `workflow-${count++}`

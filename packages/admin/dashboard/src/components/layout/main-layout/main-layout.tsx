@@ -7,8 +7,8 @@ import {
   OpenRectArrowOut,
   SquaresPlus,
   Users,
-} from "@medusajs/icons"
-import { Avatar, Divider, DropdownMenu, Text, clx } from "@medusajs/ui"
+} from "/icons"
+import { Avatar, Divider, DropdownMenu, Text, clx } from "/ui"
 import { Collapsible as RadixCollapsible } from "radix-ui"
 import { useTranslation } from "react-i18next"
 

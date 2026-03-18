@@ -7,7 +7,7 @@ import {
   InputConfigWithObjectModules,
   InternalModuleDeclaration,
   MedusaCloudOptions,
-} from "@medusajs/types"
+} from "/types"
 import { FeatureFlag } from "../feature-flags/flag-router"
 import {
   MODULE_PACKAGE_NAMES,
@@ -184,7 +184,7 @@ function resolveModules(
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/auth-emailpass",
+            resolve: "/medusa/auth-emailpass",
             id: "emailpass",
           },
         ],
@@ -204,7 +204,7 @@ function resolveModules(
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/notification-local",
+            resolve: "/medusa/notification-local",
             id: "local",
             options: {
               name: "Local Notification Provider",
@@ -228,7 +228,7 @@ function resolveModules(
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/file-local",
+            resolve: "/medusa/file-local",
             id: "local",
           },
         ],
@@ -276,7 +276,7 @@ function resolveModules(
         providers: [
           {
             id: "s3",
-            resolve: "@medusajs/medusa/file-s3",
+            resolve: "/medusa/file-s3",
             options: {
               authentication_method: "s3-iam-role",
               file_url: process.env.S3_FILE_URL,
@@ -298,7 +298,7 @@ function resolveModules(
         providers: [
           {
             id: "caching-redis",
-            resolve: "@medusajs/medusa/caching-redis",
+            resolve: "/medusa/caching-redis",
             is_default: true,
             options: {
               redisUrl: process.env.CACHE_REDIS_URL,

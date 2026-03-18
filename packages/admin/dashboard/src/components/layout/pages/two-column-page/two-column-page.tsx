@@ -1,4 +1,4 @@
-import { clx } from "@medusajs/ui"
+import { clx } from "/ui"
 import { Children, ComponentPropsWithoutRef, ComponentType } from "react"
 import { Outlet } from "react-router-dom"
 import { JsonViewSection } from "../../../common/json-view-section"

@@ -1,4 +1,4 @@
-import { ProgressAccordion, Text, Button } from "@medusajs/ui"
+import { ProgressAccordion, Text, Button } from "/ui"
 import * as React from "react"
 
 export default function ProgressAccordionControlled() {

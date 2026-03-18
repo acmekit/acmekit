@@ -26,8 +26,8 @@ For example, create the file `src/scripts/my-script.ts` with the following conte
 ```ts title="src/scripts/my-script.ts"
 import { 
   ExecArgs,
-} from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
+} from "/framework/types"
+import { Modules } from "/framework/utils"
 
 export default async function myScript({ container }: ExecArgs) {
   const productModuleService = container.resolve(
@@ -62,7 +62,7 @@ Your script can accept arguments from the command line. Arguments are passed to 
 For example, create the following CLI script that logs the command line arguments:
 
 ```ts
-import { ExecArgs } from "@medusajs/framework/types"
+import { ExecArgs } from "/framework/types"
 
 export default async function myScript({ args }: ExecArgs) {
   console.log(`The arguments you passed: ${args}`)

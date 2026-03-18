@@ -1,6 +1,6 @@
 import React from "react"
-import { Badge, StatusBadge, Tooltip } from "@medusajs/ui"
-import { HttpTypes } from "@medusajs/types"
+import { Badge, StatusBadge, Tooltip } from "/ui"
+import { HttpTypes } from "/types"
 import ReactCountryFlag from "react-country-flag"
 import { getCountryByIso2 } from "./data/countries"
 import { getStylizedAmount } from "./money-amount-helpers"

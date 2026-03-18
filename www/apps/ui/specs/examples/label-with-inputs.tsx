@@ -1,5 +1,5 @@
-import { Label, Input } from "@medusajs/ui"
-import { Textarea, RadioGroup } from "@medusajs/ui"
+import { Label, Input } from "/ui"
+import { Textarea, RadioGroup } from "/ui"
 
 export default function LabelWithInputs() {
   return (

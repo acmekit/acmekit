@@ -10,7 +10,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details, WorkflowDiagram } from "docs-ui"
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1746006829/Medusa%20Resources/localization_dtiqtb.jpg"
 
@@ -180,10 +180,10 @@ export const loaderHighlights = [
 ]
 
 ```ts title="src/modules/contentful/loader/create-content-models.ts" highlights={loaderHighlights}
-import { LoaderOptions } from "@medusajs/framework/types"
-import { asValue } from "@medusajs/framework/awilix"
+import { LoaderOptions } from "/framework/types"
+import { asValue } from "/framework/awilix"
 import { createClient } from "contentful-management"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 const { createClient: createDeliveryClient } = require("contentful")
 
@@ -735,7 +735,7 @@ export const moduleHighlights = [
 ]
 
 ```ts title="src/modules/contentful/index.ts" highlights={moduleHighlights}
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import ContentfulModuleService from "./service"
 import createContentModelsLoader from "./loader/create-content-models"
 
@@ -878,7 +878,7 @@ In the service at `src/modules/contentful/service.ts`, start by adding the metho
 
 ```ts title="src/modules/contentful/service.ts"
 // imports...
-import { ProductVariantDTO } from "@medusajs/framework/types"
+import { ProductVariantDTO } from "/framework/types"
 import { EntryProps } from "contentful-management"
 
 export default class ContentfulModuleService {
@@ -949,7 +949,7 @@ export const createProductOptionHighlights = [
 
 ```ts title="src/modules/contentful/service.ts" highlights={createProductOptionHighlights}
 // other imports...
-import { ProductOptionDTO } from "@medusajs/framework/types"
+import { ProductOptionDTO } from "/framework/types"
 
 export default class ContentfulModuleService {
   // ...
@@ -1044,7 +1044,7 @@ export const createProductHighlights = [
 
 ```ts title="src/modules/contentful/service.ts" highlights={createProductHighlights}
 // other imports...
-import { ProductDTO } from "@medusajs/framework/types"
+import { ProductDTO } from "/framework/types"
 
 export default class ContentfulModuleService {
   // ...
@@ -1177,7 +1177,7 @@ export const deleteProductHighlights = [
 
 ```ts title="src/modules/contentful/service.ts" highlights={deleteProductHighlights}
 // other imports...
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 export default class ContentfulModuleService {
   // ...
@@ -1295,7 +1295,7 @@ The workflow has the following steps:
   hideLegend
 />
 
-Medusa provides the `useQueryGraphStep` in its `@medusajs/medusa/core-flows` package. So, you only need to implement the second step.
+Medusa provides the `useQueryGraphStep` in its `/medusa/core-flows` package. So, you only need to implement the second step.
 
 #### createProductsContentfulStep
 
@@ -1322,9 +1322,9 @@ export const createProductsContentfulStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-products-contentful.ts" highlights={createProductsContentfulStepHighlights}
-import { ProductDTO } from "@medusajs/framework/types"
+import { ProductDTO } from "/framework/types"
 import { CONTENTFUL_MODULE } from "../../modules/contentful"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import ContentfulModuleService from "../../modules/contentful/service"
 import { EntryProps } from "contentful-management"
 
@@ -1405,10 +1405,10 @@ Now that you have all the necessary steps, you can create the workflow.
 To create the workflow, create the file `src/workflows/create-products-contentful.ts` with the following content:
 
 ```ts title="src/workflows/create-products-contentful.ts"
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { createProductsContentfulStep } from "./steps/create-products-contentful"
-import { ProductDTO } from "@medusajs/framework/types"
+import { ProductDTO } from "/framework/types"
 
 type WorkflowInput = {
   product_ids: string[]
@@ -1487,7 +1487,7 @@ export const createProductSubscriberHighlights = [
 import {
   type SubscriberConfig,
   type SubscriberArgs,
-} from "@medusajs/framework"
+} from "/framework"
 import { 
   createProductsContentfulWorkflow,
 } from "../workflows/create-products-contentful"
@@ -1580,8 +1580,8 @@ export const syncProductsSubscriberHighlights = [
 import type { 
   SubscriberConfig,
   SubscriberArgs,
-} from "@medusajs/framework"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { 
   createProductsContentfulWorkflow,
 } from "../workflows/create-products-contentful"
@@ -1664,7 +1664,7 @@ export const syncProductsRouteHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const POST = async (
   req: MedusaRequest,
@@ -1709,7 +1709,7 @@ Before creating the UI route, you'll configure Medusa's [JS SDK](../../../js-sdk
 The JS SDK is installed by default in your Medusa application. To configure it, create the file `src/admin/lib/sdk.ts` with the following content:
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: "http://localhost:9000",
@@ -1740,11 +1740,11 @@ export const contentfulPageHighlights = [
 ]
 
 ```tsx title="src/admin/routes/contentful/page.tsx" highlights={contentfulPageHighlights}
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Container, Heading, Button } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Container, Heading, Button } from "/ui"
 import { useMutation } from "@tanstack/react-query"
 import { sdk } from "../../lib/sdk"
-import { toast } from "@medusajs/ui"
+import { toast } from "/ui"
 
 const ContentfulSettingsPage = () => {
   const { mutate, isPending } = useMutation({
@@ -1876,7 +1876,7 @@ export const getLocalesRouteHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { CONTENTFUL_MODULE } from "../../../modules/contentful"
 import ContentfulModuleService from "../../../modules/contentful/service"
 
@@ -2034,8 +2034,8 @@ export const localeSelectHighlights = [
 import { useState, useEffect, Fragment } from "react"
 import { getLocales, Locale, getSelectedLocale, setSelectedLocale } from "../../../../lib/data/locale"
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions, Transition } from "@headlessui/react"
-import { ArrowRightMini } from "@medusajs/icons"
-import { clx } from "@medusajs/ui"
+import { ArrowRightMini } from "/icons"
+import { clx } from "/ui"
 
 const LocaleSelect = () => {
   const [locales, setLocales] = useState<Locale[]>([])
@@ -2233,8 +2233,8 @@ export const productContentfulLinkHighlights = [
 ]
 
 ```ts title="src/links/product-contentful.ts" highlights={productContentfulLinkHighlights}
-import { defineLink } from "@medusajs/framework/utils"
-import ProductModule from "@medusajs/medusa/product"
+import { defineLink } from "/framework/utils"
+import ProductModule from "/medusa/product"
 import { CONTENTFUL_MODULE } from "../modules/contentful"
 
 export default defineLink(
@@ -2391,8 +2391,8 @@ export const getProductLocaleDetailsRouteHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { QueryContext } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { QueryContext } from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -2877,7 +2877,7 @@ The workflow will have the following steps:
   }}
 />
 
-You only need to implement the first step, as Medusa provides the other workflows (running as steps) in the `@medusajs/medusa/core-flows` package.
+You only need to implement the first step, as Medusa provides the other workflows (running as steps) in the `/medusa/core-flows` package.
 
 #### prepareUpdateDataStep
 
@@ -2894,7 +2894,7 @@ export const prepareUpdateDataStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/prepare-update-data.ts" highlights={prepareUpdateDataStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { EntryProps } from "contentful-management"
 import ContentfulModuleService from "../../modules/contentful/service"
 import { CONTENTFUL_MODULE } from "../../modules/contentful"
@@ -2975,7 +2975,7 @@ export const handleContentfulHookWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/handle-contentful-hook.ts" highlights={handleContentfulHookWorkflowHighlights} collapsibleLines="1-14" expandButtonLabel="Show Imports"
-import { createWorkflow, when } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, when } from "/framework/workflows-sdk"
 import { EntryProps } from "contentful-management"
 import { prepareUpdateDataStep } from "./steps/prepare-update-data"
 import { 
@@ -2983,11 +2983,11 @@ import {
   updateProductsWorkflow, 
   updateProductVariantsWorkflow, 
   UpdateProductOptionsWorkflowInput,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   UpsertProductDTO, 
   UpsertProductVariantDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 export type WorkflowInput = {
   entry: EntryProps
@@ -3061,14 +3061,14 @@ export const contentfulHookRouteHighlights = [
 ]
 
 ```ts title="src/api/hooks/contentful/route.ts" highlights={contentfulHookRouteHighlights} collapsibleLines="1-10" expandButtonLabel="Show Imports"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { 
   handleContentfulHookWorkflow, 
   HandleContentfulHookWorkflowInput,
 } from "../../../workflows/handle-contentful-hook"
 import { CONTENTFUL_MODULE } from "../../../modules/contentful"
 import { CanonicalRequest } from "@contentful/node-apps-toolkit"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 import ContentfulModuleService from "../../../modules/contentful/service"
 
 export const POST = async (

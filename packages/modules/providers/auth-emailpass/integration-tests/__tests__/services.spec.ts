@@ -1,4 +1,4 @@
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 import Scrypt from "scrypt-kdf"
 import { EmailPassAuthService } from "../../src/services/emailpass"
 

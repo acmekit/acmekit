@@ -41,8 +41,8 @@ export const highlights = [
 
 ```ts highlights={highlights}
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -101,8 +101,8 @@ For example, consider you want to access a product's posts. You can define a rea
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -185,7 +185,7 @@ Consider the first read-only module link you defined in this chapter:
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
+import ProductModule from "/medusa/product"
 
 export default defineLink(
   {
@@ -220,7 +220,7 @@ Consider the read-only module link from the `post` data model uses an array of p
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
+import ProductModule from "/medusa/product"
 
 export default defineLink(
   {
@@ -263,8 +263,8 @@ For example, consider the `product` -> `post` link you defined in an earlier sec
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -336,8 +336,8 @@ Alternatively, you can force a one-to-many relation by setting `isList` to `true
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -380,8 +380,8 @@ For example, looking again at the forced one-to-many relation example:
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -460,8 +460,8 @@ export const linkHighlights = [
 ]
 
 ```ts title="src/links/product-cms.ts" highlights={linkHighlights}
-import { defineLink } from "@medusajs/framework/utils"
-import ProductModule from "@medusajs/medusa/product"
+import { defineLink } from "/framework/utils"
+import ProductModule from "/medusa/product"
 import { CMS_MODULE } from "../modules/cms"
 
 export default defineLink(
@@ -503,7 +503,7 @@ export const serviceHighlights = [
 ]
 
 ```ts title="src/modules/cms/service.ts" highlights={serviceHighlights}
-import { FindConfig } from "@medusajs/framework/types"
+import { FindConfig } from "/framework/types"
 
 export default class CmsModuleService {
   private client

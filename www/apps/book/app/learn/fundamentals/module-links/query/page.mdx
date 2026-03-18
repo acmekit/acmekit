@@ -31,10 +31,10 @@ export const exampleHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   ContainerRegistrationKeys,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
@@ -78,8 +78,8 @@ To retrieve data with Query in a [workflow](../../workflows/page.mdx), use the [
 For example:
 
 ```ts title="src/workflows/query.ts"
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 
 const myWorkflow = createWorkflow(
   "my-workflow",
@@ -1560,8 +1560,8 @@ The first step is to use the `validateAndTransformQuery` middleware on the `GET`
 import { 
   validateAndTransformQuery,
   defineMiddlewares,
-} from "@medusajs/framework/http"
-import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+} from "/framework/http"
+import { createFindParams } from "/medusa/api/utils/validators"
 
 export const GetCustomSchema = createFindParams()
 
@@ -1623,10 +1623,10 @@ export const queryConfigHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   ContainerRegistrationKeys,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,

@@ -31,8 +31,8 @@ export const highlights = [
 
 ```ts title="src/links/blog-product.ts" highlights={highlights}
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   ProductModule.linkable.product,
@@ -110,8 +110,8 @@ For example:
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   ProductModule.linkable.product,
@@ -137,8 +137,8 @@ For example:
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -162,8 +162,8 @@ For example:
 
 ```ts
 import BlogModule from "../modules/blog"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   ProductModule.linkable.product,
@@ -206,8 +206,8 @@ export const renameHighlights = [
 
 ```ts highlights={renameHighlights}
 import ArticleModule from "../modules/article"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   ProductModule.linkable.product,

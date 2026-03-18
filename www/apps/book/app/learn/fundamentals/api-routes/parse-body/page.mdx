@@ -25,7 +25,7 @@ export const preserveHighlights = [
 ]
 
 ```ts title="src/api/middlewares.ts" highlights={preserveHighlights}
-import { defineMiddlewares } from "@medusajs/framework/http"
+import { defineMiddlewares } from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -49,7 +49,7 @@ Learn more about [middlewares](../middlewares/page.mdx).
 You can then access the raw body data in your API route handler:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export async function POST(
   req: MedusaRequest,
@@ -74,7 +74,7 @@ export const sizeLimitHighlights = [
 ]
 
 ```ts title="src/api/middlewares.ts" highlights={sizeLimitHighlights}
-import { defineMiddlewares } from "@medusajs/framework/http"
+import { defineMiddlewares } from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -106,7 +106,7 @@ Learn more in the [Override API Routes](../override/page.mdx) chapter.
 
 To accept file uploads in your API routes, you can configure the [Express Multer middleware](https://expressjs.com/en/resources/middleware/multer.html) on your route.
 
-The `multer` package is available through the `@medusajs/medusa` package, so you don't need to install it. However, for better TypeScript support, install the `@types/multer` package as a development dependency:
+The `multer` package is available through the `/medusa` package, so you don't need to install it. However, for better TypeScript support, install the `@types/multer` package as a development dependency:
 
 ```bash npm2yarn
 npm install --save-dev @types/multer
@@ -121,7 +121,7 @@ export const uploadHighlights = [
 ]
 
 ```ts title="src/api/middlewares.ts" highlights={uploadHighlights}
-import { defineMiddlewares } from "@medusajs/framework/http"
+import { defineMiddlewares } from "/framework/http"
 import multer from "multer"
 
 const upload = multer({ storage: multer.memoryStorage() })
@@ -147,9 +147,9 @@ Then, you apply the `upload.array("files")` middleware to the route to accept fi
 You can then access the uploaded files in your API route handler:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
-import { uploadFilesWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { MedusaError } from "/framework/utils"
+import { uploadFilesWorkflow } from "/medusa/core-flows"
 
 export async function POST(
   req: MedusaRequest,

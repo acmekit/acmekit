@@ -98,12 +98,12 @@
 														"type": "reference",
 														"target": 65539,
 														"name": "T",
-														"package": "@medusajs/types",
+														"package": "/types",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "Message",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "array",
@@ -118,12 +118,12 @@
 															"type": "reference",
 															"target": 65539,
 															"name": "T",
-															"package": "@medusajs/types",
+															"package": "/types",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "Message",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										]
@@ -291,7 +291,7 @@
 											"qualifiedName": "Subscriber"
 										},
 										"name": "Subscriber",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -317,7 +317,7 @@
 											"qualifiedName": "SubscriberContext"
 										},
 										"name": "SubscriberContext",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -435,7 +435,7 @@
 											"qualifiedName": "Subscriber"
 										},
 										"name": "Subscriber",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -461,7 +461,7 @@
 											"qualifiedName": "SubscriberContext"
 										},
 										"name": "SubscriberContext",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -804,7 +804,7 @@
 											"qualifiedName": "InterceptorSubscriber"
 										},
 										"name": "InterceptorSubscriber",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -896,7 +896,7 @@
 											"qualifiedName": "InterceptorSubscriber"
 										},
 										"name": "InterceptorSubscriber",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -940,7 +940,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"65535": {
 			"sourceFileName": "../../../../packages/core/types/src/event-bus/event-bus-module.ts",

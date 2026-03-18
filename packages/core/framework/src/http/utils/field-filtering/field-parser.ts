@@ -1,4 +1,4 @@
-import { isDefined } from "@medusajs/utils"
+import { isDefined } from "/utils"
 import { ParsedFields } from "./index"
 
 /**

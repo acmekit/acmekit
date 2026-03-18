@@ -46,10 +46,10 @@ The rest of this guide always uses the `src/modules/my-fulfillment` directory as
 
 ## 2. Create the Fulfillment Module Provider Service
 
-Create the file `src/modules/my-fulfillment/service.ts` that holds the module provider's main service. It must extend the `AbstractFulfillmentProviderService` class imported from `@medusajs/framework/utils`:
+Create the file `src/modules/my-fulfillment/service.ts` that holds the module provider's main service. It must extend the `AbstractFulfillmentProviderService` class imported from `/framework/utils`:
 
 ```ts title="src/modules/my-fulfillment/service.ts"
-import { AbstractFulfillmentProviderService } from "@medusajs/framework/utils"
+import { AbstractFulfillmentProviderService } from "/framework/utils"
 
 class MyFulfillmentProviderService extends AbstractFulfillmentProviderService {
   // TODO implement methods
@@ -74,8 +74,8 @@ If you're creating a client or establishing a connection with a third-party serv
 #### Example
 
 ```ts title="src/modules/my-fulfillment/service.ts"
-import { AbstractFulfillmentProviderService } from "@medusajs/framework/utils"
-import { Logger } from "@medusajs/framework/types"
+import { AbstractFulfillmentProviderService } from "/framework/utils"
+import { Logger } from "/framework/types"
 
 type InjectedDependencies = {
   logger: Logger
@@ -141,7 +141,7 @@ you can retrieve the calculated price of the shipping method.
 #### Example
 
 ```ts
-import { CalculateShippingOptionPriceDTO } from "@medusajs/framework/types"
+import { CalculateShippingOptionPriceDTO } from "/framework/types"
 class MyFulfillmentProviderService extends AbstractFulfillmentProviderService {
   // ...
   async calculatePrice(
@@ -354,7 +354,7 @@ retrieve those and return then in the method, allowing the admin user to choose 
 
 ```ts
 // other imports...
-import { FulfillmentOption } from "@medusajs/framework/types"
+import { FulfillmentOption } from "/framework/types"
 
 class MyFulfillmentProviderService extends AbstractFulfillmentProviderService {
   // ...
@@ -533,7 +533,7 @@ import MyFulfillmentProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.FULFILLMENT, {
   services: [MyFulfillmentProviderService],
@@ -559,12 +559,12 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/fulfillment",
+      resolve: "/medusa/fulfillment",
       options: {
         providers: [
           // default provider
           {
-            resolve: "@medusajs/medusa/fulfillment-manual",
+            resolve: "/medusa/fulfillment-manual",
             id: "manual",
           },
           {

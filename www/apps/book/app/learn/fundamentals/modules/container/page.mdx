@@ -25,7 +25,7 @@ A service's constructor accepts as a first parameter an object used to resolve r
 For example, to resolve the [Logger](../../../debugging-and-testing/logging/page.mdx) from the container:
 
 ```ts highlights={[["4"], ["10"]]}
-import { Logger } from "@medusajs/framework/types"
+import { Logger } from "/framework/types"
 
 type InjectedDependencies = {
   logger: Logger
@@ -55,10 +55,10 @@ For example, to resolve the [Logger](../../../debugging-and-testing/logging/page
 ```ts highlights={[["9"]]}
 import {
   LoaderOptions,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { 
   ContainerRegistrationKeys,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default async function helloWorldLoader({
   container,
@@ -84,7 +84,7 @@ Instead, if your main service extends the `MedusaService` [service factory](../s
 For example, if the `BrandModuleService` is defined as follows:
 
 ```ts
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Brand from "./models/brand"
 
 class BrandModuleService extends MedusaService({
@@ -100,7 +100,7 @@ Then, you can resolve the `brandService` that allows you to manage brands in the
 ```ts
 import {
   LoaderOptions,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 export default async function helloWorldLoader({
   container,

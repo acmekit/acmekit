@@ -1,5 +1,5 @@
-import { Constructor, FileTypes } from "@medusajs/framework/types"
-import { MedusaError } from "@medusajs/framework/utils"
+import { Constructor, FileTypes } from "/framework/types"
+import { MedusaError } from "/framework/utils"
 import { FileProviderRegistrationPrefix } from "@types"
 import type { Readable, Writable } from "stream"
 

@@ -8,7 +8,7 @@ import { useLearningPath } from "@/providers/LearningPath"
 import { Button } from "@/components/Button"
 import { Link } from "@/components/Link"
 import { useNotifications } from "@/providers/Notification"
-import { CircleMiniSolid } from "@medusajs/icons"
+import { CircleMiniSolid } from "/icons"
 
 type LearningPathProps = {
   pathName: string

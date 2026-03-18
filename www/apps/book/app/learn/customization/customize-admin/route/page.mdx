@@ -33,7 +33,7 @@ export const apiRouteHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -92,8 +92,8 @@ Medusa provides a `validateAndTransformQuery` middleware that validates the acce
 import { 
   defineMiddlewares,
   validateAndTransformQuery,
-} from "@medusajs/framework/http"
-import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+} from "/framework/http"
+import { createFindParams } from "/medusa/api/utils/validators"
 // other imports...
 
 export const GetBrandsSchema = createFindParams()
@@ -153,7 +153,7 @@ If you didn't follow the [previous chapter](../widget/page.mdx), create the file
 ![The directory structure of the Medusa application after adding the file](https://res.cloudinary.com/dza7lstvk/image/upload/v1733414606/Medusa%20Book/brands-admin-dir-overview-1_jleg0t.jpg)
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -204,11 +204,11 @@ export const uiRouteHighlights = [
 ]
 
 ```tsx title="src/admin/routes/brands/page.tsx" highlights={uiRouteHighlights}
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { TagSolid } from "@medusajs/icons"
+import { defineRouteConfig } from "/admin-sdk"
+import { TagSolid } from "/icons"
 import { 
   Container,
-} from "@medusajs/ui"
+} from "/ui"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../../lib/sdk"
 import { useMemo, useState } from "react"
@@ -266,7 +266,7 @@ import {
   DataTable,
   DataTablePaginationState,
   useDataTable,
-} from "@medusajs/ui"
+} from "/ui"
 ```
 
 You import the `DataTable` component and the following utilities:

@@ -19,7 +19,7 @@ The Medusa Admin often shows information in rows of label-values, such as when s
 To create a component that shows information in the same structure, create the file `src/admin/components/section-row.tsx` with the following content:
 
 ```tsx title="src/admin/components/section-row.tsx"
-import { Text, clx } from "@medusajs/ui"
+import { Text, clx } from "/ui"
 
 export type SectionRowProps = {
   title: string
@@ -97,7 +97,7 @@ Use the `SectionRow` component in any widget or UI route.
 For example, create the widget `src/admin/widgets/product-widget.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/product-widget.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { defineWidgetConfig } from "/admin-sdk"
 import { Container } from "../components/container"
 import { Header } from "../components/header"
 import { SectionRow } from "../components/section-row"

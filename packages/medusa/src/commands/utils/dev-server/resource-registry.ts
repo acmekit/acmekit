@@ -3,7 +3,7 @@ import {
   inverseDevServerRegistry,
   ResourceMap,
   ResourcePath,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export class ResourceRegistry {
   /**

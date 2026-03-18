@@ -6,7 +6,7 @@ import {
   Drawer,
   Heading,
   Text,
-} from "@medusajs/ui"
+} from "/ui"
 import { useForm } from "react-hook-form"
 import { useViewConfigurations, useViewConfiguration } from "../../../hooks/use-view-configurations"
 import type { ViewConfiguration } from "../../../hooks/use-view-configurations"

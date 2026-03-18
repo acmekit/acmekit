@@ -46,12 +46,12 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           // ...
           {
-            resolve: "@medusajs/medusa/notification-sendgrid",
+            resolve: "/medusa/notification-sendgrid",
             id: "sendgrid",
             options: {
               channels: ["email"],
@@ -134,8 +134,8 @@ export const highlights = [
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
-import { Modules } from "@medusajs/framework/utils"
+} from "/framework"
+import { Modules } from "/framework/utils"
 
 export default async function productCreateHandler({
   event: { data },
@@ -199,11 +199,11 @@ You can use the [sendNotificationsStep](/references/medusa-workflows/steps/sendN
 For example:
 
 ```ts title="src/workflows/send-email.ts"
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow } from "/framework/workflows-sdk"
 import { 
   sendNotificationsStep, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 type WorkflowInput = {
   id: string
@@ -244,8 +244,8 @@ You can also execute this workflow in a subscriber. For example, you can execute
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
-import { Modules } from "@medusajs/framework/utils"
+} from "/framework"
+import { Modules } from "/framework/utils"
 import { sendEmailWorkflow } from "../workflows/send-email"
 
 export default async function productCreateHandler({

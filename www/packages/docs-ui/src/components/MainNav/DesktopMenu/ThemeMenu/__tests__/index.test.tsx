@@ -17,7 +17,7 @@ vi.mock("@/providers/ColorMode", () => ({
   useColorMode: () => mockUseColorMode(),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   EllipseMiniSolid: ({ className }: { className?: string }) => (
     <svg data-testid="ellipse-icon" className={className} />
   ),

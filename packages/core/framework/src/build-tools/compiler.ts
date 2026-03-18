@@ -1,5 +1,5 @@
-import type { AdminOptions, ConfigModule, Logger } from "@medusajs/types"
-import { FileSystem, getConfigFile, getResolvedPlugins } from "@medusajs/utils"
+import type { AdminOptions, ConfigModule, Logger } from "/types"
+import { FileSystem, getConfigFile, getResolvedPlugins } from "/utils"
 import chokidar from "chokidar"
 import { access, constants, copyFile, mkdir, rm } from "fs/promises"
 import path from "path"
@@ -329,7 +329,7 @@ export class Compiler {
 
   /**
    * Builds the frontend source code of an AcmeKit application
-   * using the "@medusajs/admin-bundler" package.
+   * using the "/admin-bundler" package.
    */
   async buildAppFrontend(
     adminOnly: boolean,

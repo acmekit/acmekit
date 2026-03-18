@@ -34,7 +34,7 @@ For example, create the file `src/admin/routes/custom/page.tsx` with the followi
 ![Example of UI route file in the application's directory structure](https://res.cloudinary.com/dza7lstvk/image/upload/v1732867243/Medusa%20Book/ui-route-dir-overview_tgju25.jpg)
 
 ```tsx title="src/admin/routes/custom/page.tsx"
-import { Container, Heading } from "@medusajs/ui"
+import { Container, Heading } from "/ui"
 
 const CustomPage = () => {
   return (
@@ -81,9 +81,9 @@ export const highlights = [
 ]
 
 ```tsx title="src/admin/routes/custom/page.tsx" highlights={highlights}
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { ChatBubbleLeftRight } from "@medusajs/icons"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { ChatBubbleLeftRight } from "/icons"
+import { Container, Heading } from "/ui"
 
 const CustomPage = () => {
   return (
@@ -129,9 +129,9 @@ For example, consider you have the following UI routes:
   <CodeTab label="UI Route 1" value="ui-route-1">
 
 ```tsx title="src/admin/routes/analytics/page.tsx" highlights={[["18"]]}
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { ChartBar } from "@medusajs/icons"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { ChartBar } from "/icons"
+import { Container, Heading } from "/ui"
 
 const AnalyticsPage = () => {
   return (
@@ -156,9 +156,9 @@ export default AnalyticsPage
   <CodeTab label="UI Route 2" value="ui-route-2">
 
 ```tsx title="src/admin/routes/reports/page.tsx" highlights={[["18"]]}
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { DocumentText } from "@medusajs/icons"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { DocumentText } from "/icons"
+import { Container, Heading } from "/ui"
 
 const ReportsPage = () => {
   return (
@@ -200,8 +200,8 @@ Consider that alongside the UI route above at `src/admin/routes/custom/page.tsx`
 ![Example of nested UI route file in the application's directory structure](https://res.cloudinary.com/dza7lstvk/image/upload/v1732867243/Medusa%20Book/ui-route-dir-overview_tgju25.jpg)
 
 ```tsx title="src/admin/routes/custom/nested/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 const NestedCustomPage = () => {
   return (
@@ -235,8 +235,8 @@ Some caveats for nested UI routes in the sidebar:
 You can add a custom UI route under an existing route. For example, you can add a route under the orders route:
 
 ```tsx title="src/admin/routes/orders/nested/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 const NestedOrdersPage = () => {
   return (
@@ -293,8 +293,8 @@ For example, create a UI route at `src/admin/routes/settings/custom/page.tsx`:
 ![Example of settings UI route file in the application's directory structure](https://res.cloudinary.com/dza7lstvk/image/upload/v1732867435/Medusa%20Book/setting-ui-route-dir-overview_kytbh8.jpg)
 
 ```tsx title="src/admin/routes/settings/custom/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 const CustomSettingPage = () => {
   return (
@@ -327,7 +327,7 @@ For example, create the file `src/admin/routes/custom/[id]/page.tsx` with the fo
 
 ```tsx title="src/admin/routes/custom/[id]/page.tsx" highlights={[["5", "", "Retrieve the path parameter."], ["10", "{id}", "Show the path parameter."]]}
 import { useParams } from "react-router-dom"
-import { Container, Heading } from "@medusajs/ui"
+import { Container, Heading } from "/ui"
 
 const CustomPage = () => {
   const { id } = useParams()
@@ -357,7 +357,7 @@ The Medusa Admin dashboard shows breadcrumbs at the top of each page, if specifi
 To set the breadcrumbs of a UI route, export a `handle` object with a `breadcrumb` property in the UI route's file:
 
 ```tsx title="src/admin/routes/custom/page.tsx" highlights={[["16", "breadcrumb", "Set the breadcrumbs of the UI route."]]}
-import { Container, Heading } from "@medusajs/ui"
+import { Container, Heading } from "/ui"
 
 const CustomPage = () => {
   return (
@@ -385,7 +385,7 @@ If you set a breadcrumb for a nested UI route, and you open the route in the Med
 For example, if you have the following UI route at `src/admin/routes/custom/nested/page.tsx` that's nested under the previous one:
 
 ```tsx title="src/admin/routes/custom/nested/page.tsx" highlights={[["16", "breadcrumb", "Set the breadcrumbs of the nested UI route."]]}
-import { Container, Heading } from "@medusajs/ui"
+import { Container, Heading } from "/ui"
 
 const NestedCustomPage = () => {
   return (
@@ -424,7 +424,7 @@ export const dynamicBreadcrumbsHighlights = [
 ]
 
 ```tsx title="src/admin/routes/brands/[id]/page.tsx" highlights={dynamicBreadcrumbsHighlights}
-import { Container, Heading } from "@medusajs/ui"
+import { Container, Heading } from "/ui"
 import { LoaderFunctionArgs, UIMatch, useLoaderData } from "react-router-dom"
 import { sdk } from "../../../lib/sdk"
 

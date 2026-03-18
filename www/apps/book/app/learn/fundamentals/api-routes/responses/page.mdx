@@ -17,7 +17,7 @@ export const jsonHighlights = [
 ]
 
 ```ts title="src/api/custom/route.ts" highlights={jsonHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -52,7 +52,7 @@ export const statusHighlight = [
 ]
 
 ```ts title="src/api/custom/route.ts" highlights={statusHighlight}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -77,7 +77,7 @@ To return response data other than a JSON object, you can either use the `set`, 
 To create an API route that returns a PDF file, you can set the `Content-Type` header to `application/pdf`:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -100,7 +100,7 @@ The `set` method allows you to set multiple headers at once. It accepts an objec
 To create an API route that returns XML content, you can set the `Content-Type` header to `application/xml`:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -128,7 +128,7 @@ export const streamHighlights = [
 ]
 
 ```ts highlights={streamHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,

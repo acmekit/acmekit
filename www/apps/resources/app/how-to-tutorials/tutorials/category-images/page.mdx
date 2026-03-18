@@ -10,7 +10,7 @@ products:
   - product
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
 
 export const metadata = {
@@ -136,7 +136,7 @@ export const dataModelHighlights = [
 ]
 
 ```ts title="src/modules/product-media/models/product-category-image.ts" highlights={dataModelHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const ProductCategoryImage = model.define("product_category_image", {
   id: model.id().primaryKey(),
@@ -188,7 +188,7 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 To create the Product Media module's service, create the file `src/modules/product-media/service.ts` with the following content:
 
 ```ts title="src/modules/product-media/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import ProductCategoryImage from "./models/product-category-image"
 
 class ProductMediaModuleService extends MedusaService({
@@ -216,7 +216,7 @@ So, create the file `src/modules/product-media/index.ts` with the following cont
 
 ```ts title="src/modules/product-media/index.ts"
 import ProductMediaModuleService from "./service"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 
 export const PRODUCT_MEDIA_MODULE = "productMedia"
 
@@ -344,7 +344,7 @@ The `convertCategoryThumbnailsStep` converts existing thumbnails of a category t
 To create the step, create the file `src/workflows/steps/convert-category-thumbnails.ts` with the following content:
 
 ```ts title="src/workflows/steps/convert-category-thumbnails.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_MEDIA_MODULE } from "../../modules/product-media"
 import ProductMediaModuleService from "../../modules/product-media/service"
 
@@ -449,10 +449,10 @@ export const createCategoryImagesStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-category-images.ts" highlights={createCategoryImagesStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_MEDIA_MODULE } from "../../modules/product-media"
 import ProductMediaModuleService from "../../modules/product-media/service"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 export type CreateCategoryImagesStepInput = {
   category_images: {
@@ -538,7 +538,7 @@ import {
   transform,
   when,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { createCategoryImagesStep } from "./steps/create-category-images"
 import { convertCategoryThumbnailsStep } from "./steps/convert-category-thumbnails"
 
@@ -615,7 +615,7 @@ Create the file `src/api/admin/categories/[category_id]/images/route.ts` with th
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
@@ -626,9 +626,9 @@ export const createApiRouteHighlights = [
 ]
 
 ```ts title="src/api/admin/categories/[category_id]/images/route.ts" highlights={createApiRouteHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { createCategoryImagesWorkflow } from "../../../../../workflows/create-category-images"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const CreateCategoryImagesSchema = z.object({
   images: z.array(
@@ -683,7 +683,7 @@ To apply middleware to a route, create the file `src/api/middlewares.ts` with th
 import { 
   defineMiddlewares, 
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   CreateCategoryImagesSchema,
 } from "./admin/categories/[category_id]/images/route"
@@ -772,7 +772,7 @@ To send requests to the Medusa server, you'll use the [JS SDK](../../../js-sdk/p
 Create the file `src/admin/lib/sdk.ts` with the following content:
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -823,13 +823,13 @@ export const categoryMediaWidgetHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/category-media-widget.tsx" highlights={categoryMediaWidgetHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
-import { DetailWidgetProps, AdminProductCategory } from "@medusajs/framework/types"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
+import { DetailWidgetProps, AdminProductCategory } from "/framework/types"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
 import { CategoryImage } from "../types"
-import { ThumbnailBadge } from "@medusajs/icons"
+import { ThumbnailBadge } from "/icons"
 
 type CategoryImagesResponse = {
   category_images: CategoryImage[]
@@ -916,7 +916,7 @@ First, you'll create a component that represents a category image in the modal.
 Create the file `src/admin/components/category-media/category-image-item.tsx` with the following content:
 
 ```tsx title="src/admin/components/category-media/category-image-item.tsx"
-import { ThumbnailBadge } from "@medusajs/icons"
+import { ThumbnailBadge } from "/icons"
 
 type CategoryImageItemProps = {
   id: string
@@ -961,7 +961,7 @@ Next, you'll create a component that displays a gallery of category images, incl
 Create the file `src/admin/components/category-media/category-image-gallery.tsx` with the following content:
 
 ```tsx title="src/admin/components/category-media/category-image-gallery.tsx"
-import { Text } from "@medusajs/ui"
+import { Text } from "/ui"
 import { CategoryImage, UploadedFile } from "../../types"
 import { CategoryImageItem } from "./category-image-item"
 
@@ -1048,7 +1048,7 @@ Create the file `src/admin/components/category-media/category-image-upload.tsx` 
 
 ```tsx title="src/admin/components/category-media/category-image-upload.tsx"
 import { RefObject } from "react"
-import { ArrowDownTray } from "@medusajs/icons"
+import { ArrowDownTray } from "/icons"
 
 type CategoryImageUploadProps = {
   fileInputRef: RefObject<HTMLInputElement>
@@ -1229,7 +1229,7 @@ export const categoryMediaModalHighlights1 = [
 
 ```tsx title="src/admin/components/category-media/category-media-modal.tsx" highlights={categoryMediaModalHighlights1} collapsibleLines="1-8" expandButtonLabel="Show Imports"
 import { useState, useRef } from "react"
-import { FocusModal, Button, Heading, toast } from "@medusajs/ui"
+import { FocusModal, Button, Heading, toast } from "/ui"
 import { useQueryClient } from "@tanstack/react-query"
 import { CategoryImage, UploadedFile } from "../../types"
 import { CategoryImageGallery } from "./category-image-gallery"
@@ -1556,7 +1556,7 @@ export const updateCategoryImagesStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/update-category-images.ts" highlights={updateCategoryImagesStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_MEDIA_MODULE } from "../../modules/product-media"
 import ProductMediaModuleService from "../../modules/product-media/service"
 
@@ -1629,9 +1629,9 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { updateCategoryImagesStep } from "./steps/update-category-images"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { convertCategoryThumbnailsStep } from "./steps/convert-category-thumbnails"
 
 export type UpdateCategoryImagesInput = {
@@ -1696,11 +1696,11 @@ Next, you'll create an API route that exposes the `updateCategoryImagesWorkflow`
 Create the file `src/api/admin/categories/[category_id]/images/batch/route.ts` with the following content:
 
 ```ts title="src/api/admin/categories/[category_id]/images/batch/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import {
   updateCategoryImagesWorkflow,
 } from "../../../../../../workflows/update-category-images"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const UpdateCategoryImagesSchema = z.object({
   updates: z.array(z.object({
@@ -1830,7 +1830,7 @@ Next, add the ability to select a category image in the `CategoryImageItem` comp
 In `src/admin/components/category-media/category-image-item.tsx`, add the following imports at the top of the file:
 
 ```tsx title="src/admin/components/category-media/category-image-item.tsx"
-import { Checkbox, clx } from "@medusajs/ui"
+import { Checkbox, clx } from "/ui"
 ```
 
 Then update the `CategoryImageItemProps` type to include two new props:
@@ -1955,7 +1955,7 @@ Lastly, you'll update the `CategoryMediaModal` component to manage the selection
 In `src/admin/components/category-media/category-media-modal.tsx`, add the following import at the top of the file:
 
 ```tsx title="src/admin/components/category-media/category-media-modal.tsx"
-import { CommandBar } from "@medusajs/ui"
+import { CommandBar } from "/ui"
 ```
 
 You'll use the `CommandBar` component from Medusa UI to show actions like "Set as Thumbnail" and "Delete".
@@ -2217,7 +2217,7 @@ export const deleteCategoryImagesStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/delete-category-images.ts" highlights={deleteCategoryImagesStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PRODUCT_MEDIA_MODULE } from "../../modules/product-media"
 import ProductMediaModuleService from "../../modules/product-media/service"
 
@@ -2292,8 +2292,8 @@ import {
   createWorkflow,
   WorkflowResponse,
   transform,
-} from "@medusajs/framework/workflows-sdk"
-import { deleteFilesWorkflow, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { deleteFilesWorkflow, useQueryGraphStep } from "/medusa/core-flows"
 import { deleteCategoryImagesStep } from "./steps/delete-category-image"
 
 export type DeleteCategoryImagesInput = {
@@ -2753,8 +2753,8 @@ You'll create an inverse read-only link from the `ProductCategory` model in the 
 To create the link, create the file `src/links/product-category-image.ts` with the following content:
 
 ```ts title="src/links/product-category-image.ts" badgeLabel="Medusa Application" badgeColor="green"
-import { defineLink } from "@medusajs/framework/utils"
-import ProductModule from "@medusajs/medusa/product"
+import { defineLink } from "/framework/utils"
+import ProductModule from "/medusa/product"
 import ProductMediaModule from "../modules/product-media"
 
 export default defineLink(
@@ -2858,7 +2858,7 @@ Next, you'll add a megamenu that shows categories with their thumbnail. You'll t
 To create the megamenu component, create the file `src/modules/layout/components/megamenu/index.tsx` with the following content:
 
 ```tsx title="src/modules/layout/components/megamenu/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { CategoryImage } from "../../../../types/global"
 import Thumbnail from "../../../products/components/thumbnail"
@@ -3099,7 +3099,7 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CategoryBanner from "@modules/categories/components/category-banner"
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { CategoryImage } from ".././../../types/global"
 
 type CategoryWithImages = HttpTypes.StoreProductCategory & {

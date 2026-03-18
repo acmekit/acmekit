@@ -1,9 +1,9 @@
 // TODO: Comment temporarely and we will re enable it in the near future #14478
-// import type { EventBusEventsOptions } from "@medusajs/types"
+// import type { EventBusEventsOptions } from "/types"
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import type { ModuleOptions } from "@medusajs/types"
+import type { ModuleOptions } from "/types"
 
 import {
   BulkJobOptions,
@@ -79,9 +79,9 @@ export type EventBusRedisModuleOptions = {
   // eventOptions?: EventBusEventsOptions
 }
 
-declare module "@medusajs/types" {
+declare module "/types" {
   interface ModuleOptions {
-    "@medusajs/event-bus-redis": EventBusRedisModuleOptions
-    "@medusajs/medusa/event-bus-redis": EventBusRedisModuleOptions
+    "/event-bus-redis": EventBusRedisModuleOptions
+    "/medusa/event-bus-redis": EventBusRedisModuleOptions
   }
 }

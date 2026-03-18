@@ -1,5 +1,5 @@
-import { MedusaContainer } from "@medusajs/types"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { MedusaContainer } from "/types"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import {
   adminHeaders,
   createAdminUser,

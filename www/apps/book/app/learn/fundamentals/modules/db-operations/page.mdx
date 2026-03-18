@@ -29,7 +29,7 @@ For example, in your service, add the following methods:
 
 <Note>
 
-As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), MikroORM dependencies are included in the `@medusajs/framework` package. If you're using an older version of Medusa, change the import statement to `@mikro-orm/knex`.
+As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), MikroORM dependencies are included in the `/framework` package. If you're using an older version of Medusa, change the import statement to `@mikro-orm/knex`.
 
 </Note>
 
@@ -43,9 +43,9 @@ export const methodsHighlight = [
 import { 
   InjectManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class BlogModuleService {
   // ...
@@ -72,7 +72,7 @@ class BlogModuleService {
 
 You add two methods `getCount` and `getCountSql` that have the `InjectManager` decorator. Each of the methods also accept the `sharedContext` parameter which has the `MedusaContext` decorator.
 
-The entity manager is injected to the `sharedContext.manager` property, which is an instance of [EntityManager from the `@medusajs/framework/mikro-orm/knex` package](https://mikro-orm.io/api/knex/class/EntityManager).
+The entity manager is injected to the `sharedContext.manager` property, which is an instance of [EntityManager from the `/framework/mikro-orm/knex` package](https://mikro-orm.io/api/knex/class/EntityManager).
 
 You use the manager in the `getCount` method to retrieve the number of records in a table, and in the `getCountSql` to run a PostgreSQL query that retrieves the count.
 
@@ -117,9 +117,9 @@ import {
   InjectManager,
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class BlogModuleService {
   // ...
@@ -178,9 +178,9 @@ import {
   InjectManager,
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class BlogModuleService {
   // ...
@@ -225,9 +225,9 @@ export const anotherMethodHighlights = [
 import { 
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class BlogModuleService {
   // ...
@@ -294,8 +294,8 @@ export const serviceFactoryRepoHighlights = [
 ]
 
 ```ts highlights={serviceFactoryRepoHighlights}
-import { MedusaService } from "@medusajs/framework/utils"
-import { InferTypeOf, DAL } from "@medusajs/framework/types"
+import { MedusaService } from "/framework/utils"
+import { InferTypeOf, DAL } from "/framework/types"
 import Post from "./models/post"
 
 type Post = InferTypeOf<typeof Post>
@@ -327,7 +327,7 @@ export const noServiceFactoryRepoHighlights = [
 ]
 
 ```ts highlights={noServiceFactoryRepoHighlights}
-import { InferTypeOf, DAL } from "@medusajs/framework/types"
+import { InferTypeOf, DAL } from "/framework/types"
 import Post from "./models/post"
 
 type Post = InferTypeOf<typeof Post>
@@ -384,9 +384,9 @@ import {
   InjectManager,
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class BlogModuleService {
   // ...
@@ -454,9 +454,9 @@ export const baseRepoHighlights = [
 ]
 
 ```ts highlights={baseRepoHighlights}
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Post from "./models/post"
-import { DAL } from "@medusajs/framework/types"
+import { DAL } from "/framework/types"
 
 type InjectedDependencies = {
   baseRepository: DAL.RepositoryService
@@ -484,7 +484,7 @@ export const noServiceFactoryBaseRepoHighlights = [
 ]
 
 ```ts highlights={noServiceFactoryBaseRepoHighlights}
-import { DAL } from "@medusajs/framework/types"
+import { DAL } from "/framework/types"
 
 type InjectedDependencies = {
   baseRepository: DAL.RepositoryService
@@ -516,9 +516,9 @@ import {
   InjectManager,
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class BlogModuleService {
   // ...
@@ -588,12 +588,12 @@ The second parameter of the `baseRepository_.transaction` method is an object of
 
 ```ts highlights={[["24"]]}
 // other imports...
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+import { EntityManager } from "/framework/mikro-orm/knex"
 import { 
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
+} from "/framework/utils"
+import { Context } from "/framework/types"
 
 class BlogModuleService {
   // ...
@@ -629,10 +629,10 @@ class BlogModuleService {
 import { 
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
-import { IsolationLevel } from "@medusajs/framework/mikro-orm/core"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
+import { IsolationLevel } from "/framework/mikro-orm/core"
 
 class BlogModuleService {
   // ...
@@ -664,9 +664,9 @@ class BlogModuleService {
 import { 
   InjectTransactionManager,
   MedusaContext,
-} from "@medusajs/framework/utils"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+} from "/framework/utils"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class BlogModuleService {
   // ...

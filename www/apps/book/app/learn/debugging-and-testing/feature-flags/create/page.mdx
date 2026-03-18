@@ -32,7 +32,7 @@ export const featureFlagHighlights = [
 ]
 
 ```ts title="src/feature-flags/blog.ts" highlights={featureFlagHighlights}
-import { FlagSettings } from "@medusajs/framework/feature-flags"
+import { FlagSettings } from "/framework/feature-flags"
 
 const BlogFeatureFlag: FlagSettings = {
   key: "blog_feature",
@@ -120,7 +120,7 @@ If you're writing integration tests for features hidden behind feature flags, yo
 For example:
 
 ```ts title="integration-tests/http/test.spec.ts"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 
 medusaIntegrationTestRunner({
   env: {

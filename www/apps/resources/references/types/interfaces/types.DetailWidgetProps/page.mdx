@@ -12,8 +12,8 @@ type AdminProduct.
 ## Example
 
 ```tsx
-import type { DetailWidgetProps, AdminProduct } from "@medusajs/types"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import type { DetailWidgetProps, AdminProduct } from "/types"
+import { defineWidgetConfig } from "/admin-sdk"
 
 const ProductWidget = ({ data }: DetailWidgetProps<AdminProduct>) => {
  return <div>{data.title}</div>

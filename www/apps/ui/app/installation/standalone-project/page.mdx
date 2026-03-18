@@ -33,7 +33,7 @@ To use Medusa UI in your standalone project, you must have:
 In your standalone project, install the Medusa UI package with the following command:
 
 ```bash npm2yarn
-npm install @medusajs/ui
+npm install /ui
 ```
 
 ---
@@ -45,7 +45,7 @@ Medusa UI customizes Tailwind CSS classes to implement its design system, so you
 To install the Medusa UI preset, run the following command:
 
 ```bash npm2yarn
-npm install @medusajs/ui-preset --save-dev
+npm install /ui-preset --save-dev
 ```
 
 ---
@@ -63,16 +63,16 @@ In Tailwind CSS v3, which is the recommended version to use with Medusa UI, you 
 
 ```js title="tailwind.config.js" highlights={[["5"]]}
 module.exports = {
-  presets: [require("@medusajs/ui-preset")],
+  presets: [require("/ui-preset")],
   content: [
     // ...
-    "./node_modules/@medusajs/ui/dist/**/*.{js,jsx,ts,tsx}",
+    "./node_modules//ui/dist/**/*.{js,jsx,ts,tsx}",
   ],
   // ...
 }
 ```
 
-If your project is in a monorepo, you'll need to resolve the path to the `@medusajs/ui` package from the monorepo root:
+If your project is in a monorepo, you'll need to resolve the path to the `/ui` package from the monorepo root:
 
 export const monorepoHighlights = [
   ["3", "uiPath", "Resolve the UI package path from `node_modules`."],
@@ -83,13 +83,13 @@ export const monorepoHighlights = [
 const path = require("path")
 
 const uiPath = path.resolve(
-  require.resolve("@medusajs/ui"),
+  require.resolve("/ui"),
   "../..",
   "\*_/_.{js,jsx,ts,tsx}"
 )
 
 module.exports = {
-  presets: [require("@medusajs/ui-preset")],
+  presets: [require("/ui-preset")],
   content: [
     // ...
     uiPath,
@@ -107,8 +107,8 @@ In your CSS file that imports Tailwind CSS, add the following `@import`, `@confi
 
 ```css
 @import "tailwindcss";
-@source "../node_modules/@medusajs/ui";
-@config "@medusajs/ui-preset";
+@source "../node_modules//ui";
+@config "/ui-preset";
 ```
 
 This will explicitly include the Medusa UI preset and its components in your Tailwind CSS build and apply the preset styles to your project.
@@ -122,7 +122,7 @@ You can now start building your application with Medusa UI.
 For example, you can use the `Button` in your custom components:
 
 ```tsx
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 
 export function ButtonDemo() {
   return <Button>Button</Button>
@@ -135,7 +135,7 @@ Refer to the documentation of each component to learn about its props and usage.
 
 ## Update UI Packages in Standalone Projects
 
-Medusa's design system packages, including `@medusajs/ui` and `@medusajs/ui-preset`, are versioned independently from other `@medusajs/*` packages. However, they're still released as part of Medusa's releases.
+Medusa's design system packages, including `/ui` and `/ui-preset`, are versioned independently from other `/*` packages. However, they're still released as part of Medusa's releases.
 
 So, to find the latest updates and breaking changes to any of these packages, refer to the [release notes in the Medusa GitHub repository](https://github.com/medusajs/medusa/releases).
 
@@ -144,8 +144,8 @@ To update these packages in your standalone project, update their version in you
 ```json title="package.json"
 {
   "dependencies": {
-    "@medusajs/ui": "4.0.0",
-    "@medusajs/ui-preset": "4.0.0"
+    "/ui": "4.0.0",
+    "/ui-preset": "4.0.0"
   }
 }
 ```

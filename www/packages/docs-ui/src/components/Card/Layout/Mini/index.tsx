@@ -9,7 +9,7 @@ import { ThemeImage } from "@/components/ThemeImage"
 import { useIsExternalLink } from "@/hooks/use-is-external-link"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowUpRightOnBox, TriangleRightMini, XMark } from "@medusajs/icons"
+import { ArrowUpRightOnBox, TriangleRightMini, XMark } from "/icons"
 
 export const CardLayoutMini = ({
   icon,

@@ -2,7 +2,7 @@
 
 import React from "react"
 import { ProductView, useSiteConfig } from "../../providers/SiteConfig"
-import { ArrowUpRightOnBox } from "@medusajs/icons"
+import { ArrowUpRightOnBox } from "/icons"
 import clsx from "clsx"
 import { DocsTrackingEvents } from "../../constants"
 import { useAnalytics } from "../../providers/Analytics"

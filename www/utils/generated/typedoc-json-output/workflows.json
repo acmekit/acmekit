@@ -66,13 +66,13 @@
 												"type": "reference",
 												"target": 64026,
 												"name": "TransactionModelOptions",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											},
 											{
 												"type": "reference",
 												"target": 65254,
 												"name": "StepFeatures",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											},
 											{
 												"type": "reflection",
@@ -143,7 +143,7 @@
 												"type": "reference",
 												"target": 65160,
 												"name": "TransactionCheckpoint",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										]
 									}
@@ -203,7 +203,7 @@
 										"type": "reference",
 										"target": 65160,
 										"name": "TransactionCheckpoint",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -231,7 +231,7 @@
 										"type": "reference",
 										"target": 65253,
 										"name": "TransactionOptions",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -246,7 +246,7 @@
 										"type": "reference",
 										"target": 65160,
 										"name": "TransactionCheckpoint",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -293,7 +293,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -306,7 +306,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -388,7 +388,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -401,7 +401,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -461,7 +461,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -543,7 +543,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -556,7 +556,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -638,7 +638,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -698,7 +698,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -711,7 +711,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -896,7 +896,7 @@
 								"type": "reference",
 								"target": 64477,
 								"name": "TransactionHandlerType",
-								"package": "@medusajs/utils"
+								"package": "/utils"
 							}
 						},
 						{
@@ -1176,7 +1176,7 @@
 								"type": "reference",
 								"target": 64202,
 								"name": "TransactionContext",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -1248,7 +1248,7 @@
 						"type": "reference",
 						"target": 64477,
 						"name": "TransactionHandlerType",
-						"package": "@medusajs/utils"
+						"package": "/utils"
 					}
 				},
 				{
@@ -1318,7 +1318,7 @@
 										"type": "reference",
 										"target": 64477,
 										"name": "TransactionHandlerType",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								},
 								{
@@ -1337,7 +1337,7 @@
 								"type": "reference",
 								"target": 65207,
 								"name": "TransactionStepError",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -1411,7 +1411,7 @@
 						"type": "reference",
 						"target": 65174,
 						"name": "TransactionFlow",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -1431,7 +1431,7 @@
 						"type": "reference",
 						"target": 64202,
 						"name": "TransactionContext",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -1453,7 +1453,7 @@
 							"type": "reference",
 							"target": 65207,
 							"name": "TransactionStepError",
-							"package": "@medusajs/orchestration"
+							"package": "/orchestration"
 						}
 					}
 				},
@@ -1495,7 +1495,7 @@
 										"type": "reference",
 										"target": 65174,
 										"name": "TransactionFlow",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -1508,7 +1508,7 @@
 										"type": "reference",
 										"target": 64202,
 										"name": "TransactionContext",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -1525,7 +1525,7 @@
 											"type": "reference",
 											"target": 65207,
 											"name": "TransactionStepError",
-											"package": "@medusajs/orchestration"
+											"package": "/orchestration"
 										}
 									}
 								}
@@ -1534,7 +1534,7 @@
 								"type": "reference",
 								"target": 65160,
 								"name": "TransactionCheckpoint",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -1587,7 +1587,7 @@
 										"type": "reference",
 										"target": 65160,
 										"name": "TransactionCheckpoint",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -1610,7 +1610,7 @@
 										"type": "reference",
 										"target": 65160,
 										"name": "TransactionCheckpoint",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -1618,7 +1618,7 @@
 								"type": "reference",
 								"target": 65160,
 								"name": "TransactionCheckpoint",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -1679,7 +1679,7 @@
 						"type": "reference",
 						"target": 64177,
 						"name": "TransactionMetadata",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -1732,7 +1732,7 @@
 						"type": "reference",
 						"target": 64202,
 						"name": "TransactionContext",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -1781,7 +1781,7 @@
 										"type": "reference",
 										"target": 64177,
 										"name": "TransactionMetadata",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -1836,7 +1836,7 @@
 										"type": "reference",
 										"target": 64202,
 										"name": "TransactionContext",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -1844,7 +1844,7 @@
 								"type": "reference",
 								"target": 65287,
 								"name": "TransactionPayload",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -1946,7 +1946,7 @@
 						"type": "reference",
 						"target": 65108,
 						"name": "TransactionStepHandler",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -2124,7 +2124,7 @@
 										"type": "reference",
 										"target": 65117,
 										"name": "IDistributedTransactionStorage",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -2193,7 +2193,7 @@
 										"type": "reference",
 										"target": 65174,
 										"name": "TransactionFlow",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -2206,7 +2206,7 @@
 										"type": "reference",
 										"target": 65108,
 										"name": "TransactionStepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -2236,7 +2236,7 @@
 											"type": "reference",
 											"target": 65207,
 											"name": "TransactionStepError",
-											"package": "@medusajs/orchestration"
+											"package": "/orchestration"
 										}
 									}
 								},
@@ -2252,7 +2252,7 @@
 										"type": "reference",
 										"target": 64202,
 										"name": "TransactionContext",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -2260,7 +2260,7 @@
 								"type": "reference",
 								"target": 64645,
 								"name": "DistributedTransaction",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							},
 							"overwrites": {
 								"type": "reference",
@@ -2306,7 +2306,7 @@
 								"type": "reference",
 								"target": 65174,
 								"name": "TransactionFlow",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -2342,7 +2342,7 @@
 								"type": "reference",
 								"target": 64202,
 								"name": "TransactionContext",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -2387,7 +2387,7 @@
 										"type": "reference",
 										"target": 64477,
 										"name": "TransactionHandlerType",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								}
 							],
@@ -2397,7 +2397,7 @@
 									"type": "reference",
 									"target": 65207,
 									"name": "TransactionStepError",
-									"package": "@medusajs/orchestration"
+									"package": "/orchestration"
 								}
 							}
 						}
@@ -2452,7 +2452,7 @@
 										"type": "reference",
 										"target": 64477,
 										"name": "TransactionHandlerType",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								},
 								{
@@ -2523,7 +2523,7 @@
 										"type": "reference",
 										"target": 64477,
 										"name": "TransactionHandlerType",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								},
 								{
@@ -2610,7 +2610,7 @@
 								"type": "reference",
 								"target": 65216,
 								"name": "TransactionState",
-								"package": "@medusajs/utils"
+								"package": "/utils"
 							}
 						}
 					]
@@ -2958,7 +2958,7 @@
 												"type": "reference",
 												"target": 65160,
 												"name": "TransactionCheckpoint",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										]
 									}
@@ -3096,7 +3096,7 @@
 												"type": "reference",
 												"target": 65160,
 												"name": "TransactionCheckpoint",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										]
 									}
@@ -3145,7 +3145,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -3216,7 +3216,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -3379,7 +3379,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -3450,7 +3450,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -3799,7 +3799,7 @@
 								"type": "reference",
 								"target": 64445,
 								"name": "BaseStepErrror",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							},
 							"overwrites": {
 								"type": "reference",
@@ -4031,7 +4031,7 @@
 									"type": "reference",
 									"target": 64034,
 									"name": "SkipStepResponse",
-									"package": "@medusajs/orchestration"
+									"package": "/orchestration"
 								}
 							}
 						}
@@ -4096,7 +4096,7 @@
 								"type": "reference",
 								"target": 64034,
 								"name": "SkipStepResponse",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							},
 							"overwrites": {
 								"type": "reference",
@@ -4145,7 +4145,7 @@
 					"type": "reference",
 					"target": 64445,
 					"name": "BaseStepErrror",
-					"package": "@medusajs/orchestration"
+					"package": "/orchestration"
 				}
 			]
 		},
@@ -4194,7 +4194,7 @@
 								"type": "reference",
 								"target": 64454,
 								"name": "InternalStep",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							},
 							{
 								"type": "array",
@@ -4202,7 +4202,7 @@
 									"type": "reference",
 									"target": 64454,
 									"name": "InternalStep",
-									"package": "@medusajs/orchestration"
+									"package": "/orchestration"
 								}
 							}
 						]
@@ -4257,7 +4257,7 @@
 								"type": "reference",
 								"target": 64454,
 								"name": "InternalStep",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						]
 					}
@@ -4925,7 +4925,7 @@
 					"type": "reference",
 					"target": 64005,
 					"name": "TransactionStepsDefinition",
-					"package": "@medusajs/orchestration"
+					"package": "/orchestration"
 				}
 			]
 		},
@@ -4955,7 +4955,7 @@
 						"type": "reference",
 						"target": 64454,
 						"name": "InternalStep",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -5050,7 +5050,7 @@
 										"type": "reference",
 										"target": 64005,
 										"name": "TransactionStepsDefinition",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -5058,7 +5058,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -5103,7 +5103,7 @@
 										"type": "reference",
 										"target": 64005,
 										"name": "TransactionStepsDefinition",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -5172,7 +5172,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -5256,7 +5256,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -5340,7 +5340,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -5424,7 +5424,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -5486,7 +5486,7 @@
 												"type": "reference",
 												"target": 64454,
 												"name": "InternalStep",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										]
 									}
@@ -5501,7 +5501,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -5581,7 +5581,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -5730,7 +5730,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -5790,7 +5790,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -5850,7 +5850,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -5969,7 +5969,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -6080,7 +6080,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -6095,7 +6095,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								]
 							}
@@ -6155,7 +6155,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -6163,7 +6163,7 @@
 								"type": "reference",
 								"target": 64454,
 								"name": "InternalStep",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -6221,7 +6221,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -6236,7 +6236,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								]
 							}
@@ -6285,7 +6285,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -6293,7 +6293,7 @@
 								"type": "reference",
 								"target": 64454,
 								"name": "InternalStep",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -6338,7 +6338,7 @@
 										"type": "reference",
 										"target": 64454,
 										"name": "InternalStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -6417,7 +6417,7 @@
 								"type": "reference",
 								"target": 64005,
 								"name": "TransactionStepsDefinition",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -6718,7 +6718,7 @@
 								"type": "reference",
 								"target": 65253,
 								"name": "TransactionOptions",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -7571,7 +7571,7 @@
 														"type": "reference",
 														"target": 64005,
 														"name": "TransactionStepsDefinition",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -7593,7 +7593,7 @@
 														"type": "reference",
 														"target": 64026,
 														"name": "TransactionModelOptions",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -7643,7 +7643,7 @@
 								"type": "reference",
 								"target": 64848,
 								"name": "TransactionOrchestrator",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							},
 							"overwrites": {
 								"type": "reference",
@@ -7752,7 +7752,7 @@
 										"type": "reference",
 										"target": 64848,
 										"name": "TransactionOrchestrator",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -7760,7 +7760,7 @@
 								"type": "reference",
 								"target": 64848,
 								"name": "TransactionOrchestrator",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -7892,7 +7892,7 @@
 								"type": "reference",
 								"target": 64026,
 								"name": "TransactionModelOptions",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -8597,7 +8597,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -8673,7 +8673,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -8852,7 +8852,7 @@
 										"type": "reference",
 										"target": 64005,
 										"name": "TransactionStepsDefinition",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -8909,7 +8909,7 @@
 														"type": "reference",
 														"target": 64782,
 														"name": "TransactionStep",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												}
 											]
@@ -8966,7 +8966,7 @@
 														"type": "reference",
 														"target": 64782,
 														"name": "TransactionStep",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												}
 											]
@@ -8976,7 +8976,7 @@
 										"type": "reference",
 										"target": 65254,
 										"name": "StepFeatures",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								]
 							}
@@ -9069,7 +9069,7 @@
 														"type": "reference",
 														"target": 65108,
 														"name": "TransactionStepHandler",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -9312,7 +9312,7 @@
 														"type": "reference",
 														"target": 64185,
 														"name": "Context",
-														"package": "@medusajs/types"
+														"package": "/types"
 													}
 												},
 												{
@@ -9370,7 +9370,7 @@
 																				"type": "reference",
 																				"target": 64645,
 																				"name": "DistributedTransaction",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			}
 																		}
 																	],
@@ -9439,7 +9439,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -9521,7 +9521,7 @@
 										"type": "reference",
 										"target": 65108,
 										"name": "TransactionStepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -9592,7 +9592,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -9731,7 +9731,7 @@
 														"type": "reference",
 														"target": 65108,
 														"name": "TransactionStepHandler",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -9753,7 +9753,7 @@
 														"type": "reference",
 														"target": 64645,
 														"name": "DistributedTransaction",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												}
 											],
@@ -9789,7 +9789,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -9886,7 +9886,7 @@
 														"type": "reference",
 														"target": 65108,
 														"name": "TransactionStepHandler",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -9908,7 +9908,7 @@
 														"type": "reference",
 														"target": 64645,
 														"name": "DistributedTransaction",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -9966,7 +9966,7 @@
 																				"type": "reference",
 																				"target": 64645,
 																				"name": "DistributedTransaction",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			}
 																		}
 																	],
@@ -10033,7 +10033,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -10130,7 +10130,7 @@
 														"type": "reference",
 														"target": 65108,
 														"name": "TransactionStepHandler",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -10152,7 +10152,7 @@
 														"type": "reference",
 														"target": 64645,
 														"name": "DistributedTransaction",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -10230,7 +10230,7 @@
 																				"type": "reference",
 																				"target": 64645,
 																				"name": "DistributedTransaction",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			}
 																		}
 																	],
@@ -10298,7 +10298,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -10415,7 +10415,7 @@
 														"type": "reference",
 														"target": 65108,
 														"name": "TransactionStepHandler",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -10437,7 +10437,7 @@
 														"type": "reference",
 														"target": 64645,
 														"name": "DistributedTransaction",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													}
 												},
 												{
@@ -10495,7 +10495,7 @@
 																				"type": "reference",
 																				"target": 64645,
 																				"name": "DistributedTransaction",
-																				"package": "@medusajs/orchestration"
+																				"package": "/orchestration"
 																			}
 																		}
 																	],
@@ -10584,7 +10584,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -10748,7 +10748,7 @@
 										"type": "reference",
 										"target": 64477,
 										"name": "TransactionHandlerType",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								},
 								{
@@ -10761,7 +10761,7 @@
 										"type": "reference",
 										"target": 65287,
 										"name": "TransactionPayload",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -10774,7 +10774,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransactionType",
-										"package": "@medusajs/orchestration",
+										"package": "/orchestration",
 										"qualifiedName": "DistributedTransaction"
 									}
 								},
@@ -10788,7 +10788,7 @@
 										"type": "reference",
 										"target": 64782,
 										"name": "TransactionStep",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -10801,7 +10801,7 @@
 										"type": "reference",
 										"target": 64848,
 										"name": "TransactionOrchestrator",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -10868,7 +10868,7 @@
 								"type": "reference",
 								"target": 64782,
 								"name": "TransactionStep",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -11079,7 +11079,7 @@
 						"type": "reference",
 						"target": 64005,
 						"name": "TransactionStepsDefinition",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -11121,7 +11121,7 @@
 										"type": "reference",
 										"target": 65236,
 										"name": "TransactionStepState",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								},
 								{
@@ -11141,7 +11141,7 @@
 										"type": "reference",
 										"target": 65247,
 										"name": "TransactionStepStatus",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								}
 							],
@@ -11203,7 +11203,7 @@
 										"type": "reference",
 										"target": 65236,
 										"name": "TransactionStepState",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								},
 								{
@@ -11223,7 +11223,7 @@
 										"type": "reference",
 										"target": 65247,
 										"name": "TransactionStepStatus",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								}
 							],
@@ -11540,7 +11540,7 @@
 												"type": "reference",
 												"target": 65236,
 												"name": "TransactionStepState",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											}
 										},
 										{
@@ -11560,7 +11560,7 @@
 												"type": "reference",
 												"target": 65247,
 												"name": "TransactionStepStatus",
-												"package": "@medusajs/utils"
+												"package": "/utils"
 											}
 										}
 									],
@@ -11725,7 +11725,7 @@
 										"type": "reference",
 										"target": 65236,
 										"name": "TransactionStepState",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								}
 							],
@@ -11774,7 +11774,7 @@
 										"type": "reference",
 										"target": 65247,
 										"name": "TransactionStepStatus",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								}
 							],
@@ -12070,7 +12070,7 @@
 										"type": "reference",
 										"target": 65216,
 										"name": "TransactionState",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								}
 							],
@@ -12119,7 +12119,7 @@
 										"type": "reference",
 										"target": 65216,
 										"name": "TransactionState",
-										"package": "@medusajs/utils"
+										"package": "/utils"
 									}
 								}
 							],
@@ -12770,7 +12770,7 @@
 										"type": "reference",
 										"target": 64005,
 										"name": "TransactionStepsDefinition",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									},
 									{
 										"type": "array",
@@ -12778,7 +12778,7 @@
 											"type": "reference",
 											"target": 64005,
 											"name": "TransactionStepsDefinition",
-											"package": "@medusajs/orchestration"
+											"package": "/orchestration"
 										}
 									}
 								]
@@ -13072,7 +13072,7 @@
 										"type": "reference",
 										"target": 64437,
 										"name": "SchedulerOptions",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								]
 							}
@@ -13416,7 +13416,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -13519,7 +13519,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -13622,7 +13622,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																},
@@ -13770,7 +13770,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -13873,7 +13873,7 @@
 																		"type": "reference",
 																		"target": 64782,
 																		"name": "TransactionStep",
-																		"package": "@medusajs/orchestration"
+																		"package": "/orchestration"
 																	}
 																},
 																{
@@ -13893,7 +13893,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -13997,7 +13997,7 @@
 																		"type": "reference",
 																		"target": 64782,
 																		"name": "TransactionStep",
-																		"package": "@medusajs/orchestration"
+																		"package": "/orchestration"
 																	}
 																},
 																{
@@ -14017,7 +14017,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -14121,7 +14121,7 @@
 																		"type": "reference",
 																		"target": 64782,
 																		"name": "TransactionStep",
-																		"package": "@medusajs/orchestration"
+																		"package": "/orchestration"
 																	}
 																},
 																{
@@ -14141,7 +14141,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -14245,7 +14245,7 @@
 																		"type": "reference",
 																		"target": 64782,
 																		"name": "TransactionStep",
-																		"package": "@medusajs/orchestration"
+																		"package": "/orchestration"
 																	}
 																},
 																{
@@ -14265,7 +14265,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -14369,7 +14369,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -14472,7 +14472,7 @@
 																		"type": "reference",
 																		"target": 64782,
 																		"name": "TransactionStep",
-																		"package": "@medusajs/orchestration"
+																		"package": "/orchestration"
 																	}
 																},
 																{
@@ -14492,7 +14492,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -14596,7 +14596,7 @@
 																		"type": "reference",
 																		"target": 64782,
 																		"name": "TransactionStep",
-																		"package": "@medusajs/orchestration"
+																		"package": "/orchestration"
 																	}
 																},
 																{
@@ -14616,7 +14616,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -14720,7 +14720,7 @@
 																		"type": "reference",
 																		"target": 64782,
 																		"name": "TransactionStep",
-																		"package": "@medusajs/orchestration"
+																		"package": "/orchestration"
 																	}
 																},
 																{
@@ -14740,7 +14740,7 @@
 																		"type": "reference",
 																		"target": 64645,
 																		"name": "DistributedTransactionType",
-																		"package": "@medusajs/orchestration",
+																		"package": "/orchestration",
 																		"qualifiedName": "DistributedTransaction"
 																	}
 																}
@@ -14984,13 +14984,13 @@
 						"type": "reference",
 						"target": 64026,
 						"name": "TransactionModelOptions",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					},
 					{
 						"type": "reference",
 						"target": 65254,
 						"name": "StepFeatures",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				]
 			}
@@ -15054,7 +15054,7 @@
 								"type": "reference",
 								"target": 64026,
 								"name": "TransactionModelOptions",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -15074,7 +15074,7 @@
 								"type": "reference",
 								"target": 64005,
 								"name": "TransactionStepsDefinition",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -15535,7 +15535,7 @@
 								"type": "reference",
 								"target": 65216,
 								"name": "TransactionState",
-								"package": "@medusajs/utils"
+								"package": "/utils"
 							}
 						},
 						{
@@ -15597,7 +15597,7 @@
 												"type": "reference",
 												"target": 64782,
 												"name": "TransactionStep",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										}
 									]
@@ -15698,7 +15698,7 @@
 								"type": "reference",
 								"target": 64001,
 								"name": "WorkflowStepHandler",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -15720,7 +15720,7 @@
 								"type": "reference",
 								"target": 64001,
 								"name": "WorkflowStepHandler",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					],
@@ -15769,7 +15769,7 @@
 						"type": "reference",
 						"target": 64156,
 						"name": "MedusaContainer",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -15811,7 +15811,7 @@
 						"type": "reference",
 						"target": 64063,
 						"name": "OrchestratorBuilder",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -15840,7 +15840,7 @@
 								"type": "reference",
 								"target": 64026,
 								"name": "TransactionModelOptions",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						],
 						"name": "Partial",
@@ -15866,7 +15866,7 @@
 						"type": "reference",
 						"target": 64542,
 						"name": "WorkflowDefinition",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -15899,7 +15899,7 @@
 								"type": "reference",
 								"target": 64558,
 								"name": "StepHandler",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						],
 						"name": "Map",
@@ -15926,7 +15926,7 @@
 						"type": "reference",
 						"target": 64185,
 						"name": "Context",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -15964,7 +15964,7 @@
 							"type": "reference",
 							"target": 64156,
 							"name": "MedusaContainer",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					},
 					"setSignature": {
@@ -15994,7 +15994,7 @@
 											"type": "reference",
 											"target": 64156,
 											"name": "MedusaContainer",
-											"package": "@medusajs/types"
+											"package": "/types"
 										},
 										{
 											"type": "array",
@@ -16024,7 +16024,7 @@
 																"type": "reference",
 																"target": 64211,
 																"name": "ModuleJoinerConfig",
-																"package": "@medusajs/types"
+																"package": "/types"
 															}
 														},
 														{
@@ -16044,7 +16044,7 @@
 																"type": "reference",
 																"target": 64237,
 																"name": "ModuleDefinition",
-																"package": "@medusajs/types"
+																"package": "/types"
 															}
 														}
 													],
@@ -16131,7 +16131,7 @@
 												"type": "reference",
 												"target": 64156,
 												"name": "MedusaContainer",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "array",
@@ -16161,7 +16161,7 @@
 																	"type": "reference",
 																	"target": 64211,
 																	"name": "ModuleJoinerConfig",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																}
 															},
 															{
@@ -16181,7 +16181,7 @@
 																	"type": "reference",
 																	"target": 64237,
 																	"name": "ModuleDefinition",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																}
 															}
 														],
@@ -16212,7 +16212,7 @@
 								"type": "reference",
 								"target": 64248,
 								"name": "LocalWorkflow",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -16324,7 +16324,7 @@
 								"type": "reference",
 								"target": 64005,
 								"name": "TransactionStepsDefinition",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -16413,7 +16413,7 @@
 										"type": "reference",
 										"target": 64185,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16428,7 +16428,7 @@
 										"type": "reference",
 										"target": 64562,
 										"name": "DistributedTransactionEvents",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -16637,7 +16637,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -16697,7 +16697,7 @@
 										"type": "reference",
 										"target": 64185,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16712,7 +16712,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -16766,7 +16766,7 @@
 												"type": "reference",
 												"target": 64645,
 												"name": "DistributedTransaction",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										]
 									}
@@ -16796,7 +16796,7 @@
 										"type": "reference",
 										"target": 64185,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16811,7 +16811,7 @@
 										"type": "reference",
 										"target": 64562,
 										"name": "DistributedTransactionEvents",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -16826,7 +16826,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -16886,7 +16886,7 @@
 										"type": "reference",
 										"target": 64185,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16901,7 +16901,7 @@
 										"type": "reference",
 										"target": 64562,
 										"name": "DistributedTransactionEvents",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -16916,7 +16916,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -16989,7 +16989,7 @@
 										"type": "reference",
 										"target": 64185,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -17004,7 +17004,7 @@
 										"type": "reference",
 										"target": 64562,
 										"name": "DistributedTransactionEvents",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -17019,7 +17019,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -17092,7 +17092,7 @@
 										"type": "reference",
 										"target": 64185,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -17107,7 +17107,7 @@
 										"type": "reference",
 										"target": 64562,
 										"name": "DistributedTransactionEvents",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -17135,7 +17135,7 @@
 										"type": "reference",
 										"target": 64645,
 										"name": "DistributedTransaction",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								],
 								"name": "Promise",
@@ -17189,7 +17189,7 @@
 												"type": "reference",
 												"target": 64026,
 												"name": "TransactionModelOptions",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -17253,7 +17253,7 @@
 										"type": "reference",
 										"target": 64558,
 										"name": "StepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -17275,7 +17275,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -17287,7 +17287,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17352,7 +17352,7 @@
 										"type": "reference",
 										"target": 64558,
 										"name": "StepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -17374,7 +17374,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -17386,7 +17386,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17451,7 +17451,7 @@
 										"type": "reference",
 										"target": 64558,
 										"name": "StepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -17473,7 +17473,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -17485,7 +17485,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17550,7 +17550,7 @@
 										"type": "reference",
 										"target": 64558,
 										"name": "StepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -17572,7 +17572,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -17584,7 +17584,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17649,7 +17649,7 @@
 										"type": "reference",
 										"target": 64558,
 										"name": "StepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -17671,7 +17671,7 @@
 												"type": "reference",
 												"target": 64005,
 												"name": "TransactionStepsDefinition",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										],
 										"name": "Partial",
@@ -17683,7 +17683,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17743,7 +17743,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17803,7 +17803,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17868,7 +17868,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17930,7 +17930,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -17979,7 +17979,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -18024,7 +18024,7 @@
 										"type": "reference",
 										"target": 64558,
 										"name": "StepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -18208,7 +18208,7 @@
 												"type": "reference",
 												"target": 64156,
 												"name": "MedusaContainer",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										},
 										{
@@ -18223,7 +18223,7 @@
 												"type": "reference",
 												"target": 64185,
 												"name": "Context",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										}
 									],
@@ -18231,7 +18231,7 @@
 										"type": "reference",
 										"target": 65108,
 										"name": "TransactionStepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							]
@@ -18255,7 +18255,7 @@
 						"type": "reference",
 						"target": 64848,
 						"name": "TransactionOrchestrator",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -18275,7 +18275,7 @@
 						"type": "reference",
 						"target": 64005,
 						"name": "TransactionStepsDefinition",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -18328,7 +18328,7 @@
 												"type": "reference",
 												"target": 64001,
 												"name": "WorkflowStepHandler",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										},
 										{
@@ -18350,7 +18350,7 @@
 												"type": "reference",
 												"target": 64001,
 												"name": "WorkflowStepHandler",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										}
 									],
@@ -18394,7 +18394,7 @@
 						"type": "reference",
 						"target": 64026,
 						"name": "TransactionModelOptions",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -18533,7 +18533,7 @@
 										"type": "reference",
 										"target": 64001,
 										"name": "WorkflowStepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								},
 								{
@@ -18555,7 +18555,7 @@
 										"type": "reference",
 										"target": 64001,
 										"name": "WorkflowStepHandler",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -18621,7 +18621,7 @@
 								"type": "reference",
 								"target": 64156,
 								"name": "MedusaContainer",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -18787,7 +18787,7 @@
 								"type": "reference",
 								"target": 64177,
 								"name": "TransactionMetadata",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -18807,7 +18807,7 @@
 								"type": "reference",
 								"target": 64645,
 								"name": "DistributedTransactionType",
-								"package": "@medusajs/orchestration",
+								"package": "/orchestration",
 								"qualifiedName": "DistributedTransaction"
 							}
 						},
@@ -18828,7 +18828,7 @@
 								"type": "reference",
 								"target": 64782,
 								"name": "TransactionStep",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -18848,7 +18848,7 @@
 								"type": "reference",
 								"target": 64848,
 								"name": "TransactionOrchestrator",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -18870,7 +18870,7 @@
 								"type": "reference",
 								"target": 64185,
 								"name": "Context",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						}
 					],
@@ -18946,7 +18946,7 @@
 										"type": "reference",
 										"target": 64420,
 										"name": "WorkflowStepHandlerArguments",
-										"package": "@medusajs/orchestration"
+										"package": "/orchestration"
 									}
 								}
 							],
@@ -19028,7 +19028,7 @@
 						"type": "reference",
 						"target": 64476,
 						"name": "ModuleImplementations",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				}
 			],
@@ -19137,7 +19137,7 @@
 														"type": "reference",
 														"target": 64160,
 														"name": "K",
-														"package": "@medusajs/types",
+														"package": "/types",
 														"refersToTypeParameter": true
 													}
 												},
@@ -19166,14 +19166,14 @@
 													"type": "reference",
 													"target": 64160,
 													"name": "K",
-													"package": "@medusajs/types",
+													"package": "/types",
 													"refersToTypeParameter": true
 												},
 												"objectType": {
 													"type": "reference",
 													"target": 64176,
 													"name": "Cradle",
-													"package": "@medusajs/types",
+													"package": "/types",
 													"refersToTypeParameter": true
 												}
 											}
@@ -19235,7 +19235,7 @@
 												"type": "reference",
 												"target": 64164,
 												"name": "T",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										}
@@ -19313,7 +19313,7 @@
 																"type": "reference",
 																"target": 64172,
 																"name": "T",
-																"package": "@medusajs/types",
+																"package": "/types",
 																"refersToTypeParameter": true
 															}
 														}
@@ -19322,7 +19322,7 @@
 														"type": "reference",
 														"target": 64156,
 														"name": "MedusaContainer",
-														"package": "@medusajs/types"
+														"package": "/types"
 													}
 												}
 											]
@@ -19374,7 +19374,7 @@
 														"type": "reference",
 														"target": 64156,
 														"name": "MedusaContainer",
-														"package": "@medusajs/types"
+														"package": "/types"
 													}
 												}
 											]
@@ -19609,7 +19609,7 @@
 								"type": "reference",
 								"target": 65296,
 								"name": "EventMetadata",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -19637,7 +19637,7 @@
 								"type": "reference",
 								"target": 65267,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						}
@@ -19707,12 +19707,12 @@
 								"type": "reference",
 								"target": 65047,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "Event",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reflection",
@@ -19849,7 +19849,7 @@
 								"type": "reference",
 								"target": 65064,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						},
@@ -19935,7 +19935,7 @@
 										"type": "reference",
 										"target": 64185,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									{
 										"type": "literal",
@@ -20443,7 +20443,7 @@
 								"type": "reference",
 								"target": 65065,
 								"name": "JoinerServiceConfigAlias",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "array",
@@ -20451,7 +20451,7 @@
 									"type": "reference",
 									"target": 65065,
 									"name": "JoinerServiceConfigAlias",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						]
@@ -20614,7 +20614,7 @@
 							"type": "reference",
 							"target": 65070,
 							"name": "JoinerRelationship",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -20699,7 +20699,7 @@
 											"type": "reference",
 											"target": 65070,
 											"name": "JoinerRelationship",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -21735,7 +21735,7 @@
 										"type": "reference",
 										"target": 65286,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									},
 									{
@@ -21764,7 +21764,7 @@
 														"type": "reference",
 														"target": 65286,
 														"name": "T",
-														"package": "@medusajs/types",
+														"package": "/types",
 														"refersToTypeParameter": true
 													}
 												}
@@ -21987,7 +21987,7 @@
 								"type": "reference",
 								"target": 65080,
 								"name": "CustomModuleDefinition",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -22016,7 +22016,7 @@
 										"type": "reference",
 										"target": 65086,
 										"name": "ModuleExports",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								]
 							}
@@ -22230,7 +22230,7 @@
 								"type": "reference",
 								"target": 65080,
 								"name": "CustomModuleDefinition",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -22666,13 +22666,13 @@
 										"type": "reference",
 										"target": 64520,
 										"name": "InternalModuleDeclaration",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									{
 										"type": "reference",
 										"target": 64530,
 										"name": "ExternalModuleDeclaration",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								]
 							}
@@ -22750,7 +22750,7 @@
 										"type": "reference",
 										"target": 64211,
 										"name": "ModuleJoinerConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -22770,7 +22770,7 @@
 										"type": "reference",
 										"target": 64237,
 										"name": "ModuleDefinition",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -22862,7 +22862,7 @@
 								"type": "reference",
 								"target": 64156,
 								"name": "MedusaContainer",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -22884,7 +22884,7 @@
 								"type": "reference",
 								"target": 65279,
 								"name": "TOptions",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						},
@@ -22907,7 +22907,7 @@
 								"type": "reference",
 								"target": 65299,
 								"name": "Logger",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -23004,7 +23004,7 @@
 											}
 										],
 										"name": "LoaderOptions",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -23019,7 +23019,7 @@
 										"type": "reference",
 										"target": 64520,
 										"name": "InternalModuleDeclaration",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -23315,7 +23315,7 @@
 								"type": "reference",
 								"target": 64494,
 								"name": "JoinerServiceConfig",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "union",
@@ -23435,7 +23435,7 @@
 											"type": "reference",
 											"target": 64509,
 											"name": "ModuleJoinerRelationship",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -23657,7 +23657,7 @@
 																	"type": "reference",
 																	"target": 64509,
 																	"name": "ModuleJoinerRelationship",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																},
 																{
 																	"type": "literal",
@@ -23963,7 +23963,7 @@
 														"type": "reference",
 														"target": 64514,
 														"name": "LinkModulesExtraFields",
-														"package": "@medusajs/types"
+														"package": "/types"
 													}
 												}
 											],
@@ -24038,7 +24038,7 @@
 						"type": "reference",
 						"target": 65070,
 						"name": "JoinerRelationship",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reflection",
@@ -24189,7 +24189,7 @@
 							}
 						],
 						"name": "Constructor",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				}
 			],
@@ -24219,7 +24219,7 @@
 								"type": "reference",
 								"target": 65107,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						},
@@ -24244,7 +24244,7 @@
 									"type": "reference",
 									"target": 65268,
 									"name": "ModuleLoaderFunction",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -24294,7 +24294,7 @@
 													}
 												],
 												"name": "LoaderOptions",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										},
 										{
@@ -24309,7 +24309,7 @@
 												"type": "reference",
 												"target": 64520,
 												"name": "InternalModuleDeclaration",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										}
 									],
@@ -24440,7 +24440,7 @@
 													}
 												],
 												"name": "LoaderOptions",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										},
 										{
@@ -24455,7 +24455,7 @@
 												"type": "reference",
 												"target": 64520,
 												"name": "InternalModuleDeclaration",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										},
 										{
@@ -24539,7 +24539,7 @@
 													}
 												],
 												"name": "LoaderOptions",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										},
 										{
@@ -24554,7 +24554,7 @@
 												"type": "reference",
 												"target": 64520,
 												"name": "InternalModuleDeclaration",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										}
 									],
@@ -24843,7 +24843,7 @@
 												"type": "reference",
 												"target": 65044,
 												"name": "Message",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "array",
@@ -24851,7 +24851,7 @@
 													"type": "reference",
 													"target": 65044,
 													"name": "Message",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										]
@@ -24905,7 +24905,7 @@
 										"type": "reference",
 										"target": 65048,
 										"name": "MessageAggregatorFormat",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -24926,7 +24926,7 @@
 											"type": "reference",
 											"target": 65044,
 											"name": "Message",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -25024,12 +25024,12 @@
 														"type": "reference",
 														"target": 64491,
 														"name": "T",
-														"package": "@medusajs/types",
+														"package": "/types",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "RawMessageFormat",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "array",
@@ -25041,12 +25041,12 @@
 															"type": "reference",
 															"target": 64491,
 															"name": "T",
-															"package": "@medusajs/types",
+															"package": "/types",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "RawMessageFormat",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										]
@@ -25186,7 +25186,7 @@
 						"type": "reference",
 						"target": 64201,
 						"name": "TManager",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					}
 				},
@@ -25233,7 +25233,7 @@
 						"type": "reference",
 						"target": 64201,
 						"name": "TManager",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					}
 				},
@@ -25436,7 +25436,7 @@
 						"type": "reference",
 						"target": 64480,
 						"name": "IMessageAggregator",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -26260,7 +26260,7 @@
 								"type": "reference",
 								"target": 64185,
 								"name": "Context",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -26356,7 +26356,7 @@
 								"type": "reference",
 								"target": 64562,
 								"name": "DistributedTransactionEvents",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -26383,14 +26383,14 @@
 											"type": "reference",
 											"target": 65232,
 											"name": "LoadedModule",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									},
 									{
 										"type": "reference",
 										"target": 64156,
 										"name": "MedusaContainer",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								]
 							}
@@ -26452,7 +26452,7 @@
 						"type": "reference",
 						"target": 65224,
 						"name": "BaseFlowRunOptions",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					},
 					{
 						"type": "reflection",
@@ -26482,7 +26482,7 @@
 										"type": "reference",
 										"target": 64751,
 										"name": "TData",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								}
@@ -26540,7 +26540,7 @@
 						"type": "reference",
 						"target": 65224,
 						"name": "BaseFlowRunOptions",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					},
 					{
 						"type": "reflection",
@@ -26588,7 +26588,7 @@
 										"type": "reference",
 										"target": 64756,
 										"name": "TData",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								}
@@ -26641,7 +26641,7 @@
 								"type": "reference",
 								"target": 65224,
 								"name": "BaseFlowRunOptions",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "literal",
@@ -26732,7 +26732,7 @@
 						"type": "reference",
 						"target": 65224,
 						"name": "BaseFlowRunOptions",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					},
 					{
 						"type": "reflection",
@@ -26780,7 +26780,7 @@
 										"type": "reference",
 										"target": 64762,
 										"name": "TData",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								},
@@ -26868,7 +26868,7 @@
 								"type": "reference",
 								"target": 64645,
 								"name": "DistributedTransactionType",
-								"package": "@medusajs/orchestration",
+								"package": "/orchestration",
 								"qualifiedName": "DistributedTransaction"
 							}
 						},
@@ -26911,7 +26911,7 @@
 								"type": "reference",
 								"target": 64185,
 								"name": "Context",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -26973,7 +26973,7 @@
 								"type": "reference",
 								"target": 64562,
 								"name": "DistributedTransactionEvents",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -27000,14 +27000,14 @@
 											"type": "reference",
 											"target": 65232,
 											"name": "LoadedModule",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									},
 									{
 										"type": "reference",
 										"target": 64156,
 										"name": "MedusaContainer",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								]
 							}
@@ -27107,7 +27107,7 @@
 									"type": "reference",
 									"target": 65207,
 									"name": "TransactionStepError",
-									"package": "@medusajs/orchestration"
+									"package": "/orchestration"
 								}
 							}
 						},
@@ -27136,7 +27136,7 @@
 								"type": "reference",
 								"target": 64645,
 								"name": "DistributedTransactionType",
-								"package": "@medusajs/orchestration",
+								"package": "/orchestration",
 								"qualifiedName": "DistributedTransaction"
 							}
 						},
@@ -27165,7 +27165,7 @@
 								"type": "reference",
 								"target": 64747,
 								"name": "TResult",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						}
@@ -27312,7 +27312,7 @@
 																	"type": "reference",
 																	"target": 64401,
 																	"name": "TDataOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"extendsType": {
@@ -27323,20 +27323,20 @@
 																	"type": "reference",
 																	"target": 64399,
 																	"name": "TData",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"falseType": {
 																	"type": "reference",
 																	"target": 64401,
 																	"name": "TDataOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																}
 															}
 														],
 														"name": "FlowRunOptions",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											],
@@ -27357,7 +27357,7 @@
 																	"type": "reference",
 																	"target": 64402,
 																	"name": "TResultOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"extendsType": {
@@ -27368,20 +27368,20 @@
 																	"type": "reference",
 																	"target": 64400,
 																	"name": "TResult",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"falseType": {
 																	"type": "reference",
 																	"target": 64402,
 																	"name": "TResultOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																}
 															}
 														],
 														"name": "WorkflowResult",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												],
 												"name": "Promise",
@@ -27446,7 +27446,7 @@
 																	"type": "reference",
 																	"target": 64401,
 																	"name": "TDataOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"extendsType": {
@@ -27457,20 +27457,20 @@
 																	"type": "reference",
 																	"target": 64399,
 																	"name": "TData",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"falseType": {
 																	"type": "reference",
 																	"target": 64401,
 																	"name": "TDataOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																}
 															}
 														],
 														"name": "FlowRegisterStepSuccessOptions",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											],
@@ -27491,7 +27491,7 @@
 																	"type": "reference",
 																	"target": 64402,
 																	"name": "TResultOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"extendsType": {
@@ -27502,20 +27502,20 @@
 																	"type": "reference",
 																	"target": 64400,
 																	"name": "TResult",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"falseType": {
 																	"type": "reference",
 																	"target": 64402,
 																	"name": "TResultOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																}
 															}
 														],
 														"name": "WorkflowResult",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												],
 												"name": "Promise",
@@ -27580,7 +27580,7 @@
 																	"type": "reference",
 																	"target": 64401,
 																	"name": "TDataOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"extendsType": {
@@ -27591,20 +27591,20 @@
 																	"type": "reference",
 																	"target": 64399,
 																	"name": "TData",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"falseType": {
 																	"type": "reference",
 																	"target": 64401,
 																	"name": "TDataOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																}
 															}
 														],
 														"name": "FlowRegisterStepFailureOptions",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											],
@@ -27625,7 +27625,7 @@
 																	"type": "reference",
 																	"target": 64402,
 																	"name": "TResultOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"extendsType": {
@@ -27636,20 +27636,20 @@
 																	"type": "reference",
 																	"target": 64400,
 																	"name": "TResult",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"falseType": {
 																	"type": "reference",
 																	"target": 64402,
 																	"name": "TResultOverride",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																}
 															}
 														],
 														"name": "WorkflowResult",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												],
 												"name": "Promise",
@@ -27708,7 +27708,7 @@
 														"type": "reference",
 														"target": 64763,
 														"name": "FlowRetryStepOptions",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											],
@@ -27723,7 +27723,7 @@
 														"type": "reference",
 														"target": 64742,
 														"name": "WorkflowResult",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												],
 												"name": "Promise",
@@ -27782,7 +27782,7 @@
 														"type": "reference",
 														"target": 64766,
 														"name": "FlowCancelOptions",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											],
@@ -27797,7 +27797,7 @@
 														"type": "reference",
 														"target": 64742,
 														"name": "WorkflowResult",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												],
 												"name": "Promise",
@@ -27909,7 +27909,7 @@
 									"type": "reference",
 									"target": 64045,
 									"name": "OrchestrationUtils.SymbolWorkflowHook",
-									"package": "@medusajs/utils",
+									"package": "/utils",
 									"qualifiedName": "SymbolWorkflowHook"
 								}
 							}
@@ -27932,7 +27932,7 @@
 								"type": "reference",
 								"target": 63757,
 								"name": "Name",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						},
@@ -27984,7 +27984,7 @@
 												"type": "reference",
 												"target": 63759,
 												"name": "Output",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										]
@@ -28018,7 +28018,7 @@
 								"type": "reference",
 								"target": 63759,
 								"name": "Output",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						},
@@ -28040,7 +28040,7 @@
 								"type": "reference",
 								"target": 63758,
 								"name": "Input",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						}
@@ -28116,7 +28116,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\nimport {\n  createStep,\n  createHook,\n  createWorkflow,\n  WorkflowResponse,\n} from \"@medusajs/framework/workflows-sdk\"\nimport { createProductStep } from \"./steps/create-product\"\n\nexport const myWorkflow = createWorkflow(\n  \"my-workflow\",\n  function (input) {\n    const product = createProductStep(input)\n    const productCreatedHook = createHook(\n      \"productCreated\",\n      { productId: product.id }\n    )\n\n    return new WorkflowResponse(product, {\n      hooks: [productCreatedHook],\n    })\n  }\n)\n```"
+										"text": "```ts\nimport {\n  createStep,\n  createHook,\n  createWorkflow,\n  WorkflowResponse,\n} from \"/framework/workflows-sdk\"\nimport { createProductStep } from \"./steps/create-product\"\n\nexport const myWorkflow = createWorkflow(\n  \"my-workflow\",\n  function (input) {\n    const product = createProductStep(input)\n    const productCreatedHook = createHook(\n      \"productCreated\",\n      { productId: product.id }\n    )\n\n    return new WorkflowResponse(product, {\n      hooks: [productCreatedHook],\n    })\n  }\n)\n```"
 									}
 								]
 							}
@@ -28176,7 +28176,7 @@
 								"type": "reference",
 								"target": 63741,
 								"name": "Name",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						},
@@ -28198,7 +28198,7 @@
 								"type": "reference",
 								"target": 63742,
 								"name": "TInvokeInput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						},
@@ -28244,7 +28244,7 @@
 														"type": "reference",
 														"target": 63743,
 														"name": "TInvokeOutput",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													{
@@ -28260,7 +28260,7 @@
 														"type": "reference",
 														"target": 63743,
 														"name": "TInvokeOutput",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												],
@@ -28298,26 +28298,26 @@
 								"type": "reference",
 								"target": 63741,
 								"name": "Name",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 63742,
 								"name": "TInvokeInput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 63743,
 								"name": "TInvokeOutput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "Hook",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				}
 			]
@@ -28447,7 +28447,7 @@
 										"type": "reference",
 										"target": 63655,
 										"name": "TInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								},
@@ -28461,7 +28461,7 @@
 										"type": "reference",
 										"target": 63923,
 										"name": "StepExecutionContext",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								}
 							],
@@ -28480,7 +28480,7 @@
 												"type": "reference",
 												"target": 63656,
 												"name": "TOutput",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											{
@@ -28489,7 +28489,7 @@
 													"type": "reference",
 													"target": 63657,
 													"name": "TCompensateInput",
-													"package": "@medusajs/workflows-sdk",
+													"package": "/workflows-sdk",
 													"refersToTypeParameter": true
 												},
 												"extendsType": {
@@ -28500,20 +28500,20 @@
 													"type": "reference",
 													"target": 63656,
 													"name": "TOutput",
-													"package": "@medusajs/workflows-sdk",
+													"package": "/workflows-sdk",
 													"refersToTypeParameter": true
 												},
 												"falseType": {
 													"type": "reference",
 													"target": 63657,
 													"name": "TCompensateInput",
-													"package": "@medusajs/workflows-sdk",
+													"package": "/workflows-sdk",
 													"refersToTypeParameter": true
 												}
 											}
 										],
 										"name": "StepResponse",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									},
 									{
 										"type": "reference",
@@ -28537,7 +28537,7 @@
 																"type": "reference",
 																"target": 63656,
 																"name": "TOutput",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															},
 															{
@@ -28546,7 +28546,7 @@
 																	"type": "reference",
 																	"target": 63657,
 																	"name": "TCompensateInput",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"extendsType": {
@@ -28557,20 +28557,20 @@
 																	"type": "reference",
 																	"target": 63656,
 																	"name": "TOutput",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																"falseType": {
 																	"type": "reference",
 																	"target": 63657,
 																	"name": "TCompensateInput",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																}
 															}
 														],
 														"name": "StepResponse",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												]
 											}
@@ -28675,7 +28675,7 @@
 												"type": "reference",
 												"target": 63663,
 												"name": "T",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											{
@@ -28695,7 +28695,7 @@
 										"type": "reference",
 										"target": 63923,
 										"name": "StepExecutionContext",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								}
 							],
@@ -28805,7 +28805,7 @@
 								"type": "reference",
 								"target": 64005,
 								"name": "TransactionStepsDefinition",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							},
 							{
 								"type": "union",
@@ -28877,7 +28877,7 @@
 						"type": "reference",
 						"target": 64005,
 						"name": "TransactionStepsDefinition",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -28900,7 +28900,7 @@
 						"type": "reference",
 						"target": 63673,
 						"name": "TStepInputs",
-						"package": "@medusajs/workflows-sdk",
+						"package": "/workflows-sdk",
 						"qualifiedName": "ApplyStepOptions.TStepInputs",
 						"refersToTypeParameter": true
 					}
@@ -28927,7 +28927,7 @@
 								"type": "reference",
 								"target": 63674,
 								"name": "TInvokeInput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"qualifiedName": "ApplyStepOptions.TInvokeInput",
 								"refersToTypeParameter": true
 							},
@@ -28935,7 +28935,7 @@
 								"type": "reference",
 								"target": 63675,
 								"name": "TInvokeResultOutput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"qualifiedName": "ApplyStepOptions.TInvokeResultOutput",
 								"refersToTypeParameter": true
 							},
@@ -28943,13 +28943,13 @@
 								"type": "reference",
 								"target": 63676,
 								"name": "TInvokeResultCompensateInput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"qualifiedName": "ApplyStepOptions.TInvokeResultCompensateInput",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "InvokeFn",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				},
 				{
@@ -28976,13 +28976,13 @@
 								"type": "reference",
 								"target": 63676,
 								"name": "TInvokeResultCompensateInput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"qualifiedName": "ApplyStepOptions.TInvokeResultCompensateInput",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "CompensateFn",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				}
 			],
@@ -29023,7 +29023,7 @@
 								"type": "reference",
 								"target": 63674,
 								"name": "TInvokeInput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"qualifiedName": "ApplyStepOptions.TInvokeInput",
 								"refersToTypeParameter": true
 							}
@@ -29041,21 +29041,21 @@
 											"qualifiedName": "K"
 										},
 										"name": "K",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									"objectType": {
 										"type": "reference",
 										"target": 63674,
 										"name": "TInvokeInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "ApplyStepOptions.TInvokeInput",
 										"refersToTypeParameter": true
 									}
 								}
 							],
 							"name": "WorkflowData",
-							"package": "@medusajs/workflows-sdk"
+							"package": "/workflows-sdk"
 						}
 					}
 				},
@@ -29158,20 +29158,20 @@
 													"qualifiedName": "K"
 												},
 												"name": "K",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											"objectType": {
 												"type": "reference",
 												"target": 63624,
 												"name": "TInvokeInput",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										}
 									],
 									"name": "WorkflowData",
-									"package": "@medusajs/workflows-sdk"
+									"package": "/workflows-sdk"
 								}
 							}
 						},
@@ -29205,33 +29205,33 @@
 										"type": "reference",
 										"target": 63625,
 										"name": "TStepInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
 										"type": "reference",
 										"target": 63624,
 										"name": "TInvokeInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
 										"type": "reference",
 										"target": 63626,
 										"name": "TInvokeResultOutput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
 										"type": "reference",
 										"target": 63627,
 										"name": "TInvokeResultCompensateInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ApplyStepOptions",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						}
 					],
@@ -29243,12 +29243,12 @@
 								"type": "reference",
 								"target": 63626,
 								"name": "TInvokeResultOutput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "StepFunctionResult",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				}
 			]
@@ -29316,7 +29316,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\nimport {\n  createStep,\n  StepResponse\n} from \"@medusajs/framework/workflows-sdk\"\n\ninterface CreateProductInput {\n  title: string\n}\n\nexport const createProductStep = createStep(\n  \"createProductStep\",\n  async function (\n    input: CreateProductInput,\n    { container }\n  ) {\n    const productModuleService = container.resolve(\n      \"product\"\n    )\n    const product = await productModuleService.createProducts(input)\n    return new StepResponse({\n      product\n    }, {\n      product_id: product.id\n    })\n  },\n  async function (\n    input,\n    { container }\n  ) {\n    if (!input) {\n      return\n    }\n    const productModuleService = container.resolve(\n      \"product\"\n    )\n    await productModuleService.deleteProducts([input.product_id])\n  }\n)\n```"
+										"text": "```ts\nimport {\n  createStep,\n  StepResponse\n} from \"/framework/workflows-sdk\"\n\ninterface CreateProductInput {\n  title: string\n}\n\nexport const createProductStep = createStep(\n  \"createProductStep\",\n  async function (\n    input: CreateProductInput,\n    { container }\n  ) {\n    const productModuleService = container.resolve(\n      \"product\"\n    )\n    const product = await productModuleService.createProducts(input)\n    return new StepResponse({\n      product\n    }, {\n      product_id: product.id\n    })\n  },\n  async function (\n    input,\n    { container }\n  ) {\n    if (!input) {\n      return\n    }\n    const productModuleService = container.resolve(\n      \"product\"\n    )\n    await productModuleService.deleteProducts([input.product_id])\n  }\n)\n```"
 									}
 								]
 							}
@@ -29460,7 +29460,7 @@
 														"type": "reference",
 														"target": 64005,
 														"name": "TransactionStepsDefinition",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													},
 													{
 														"type": "union",
@@ -29530,26 +29530,26 @@
 										"type": "reference",
 										"target": 63642,
 										"name": "TInvokeInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
 										"type": "reference",
 										"target": 63643,
 										"name": "TInvokeResultOutput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
 										"type": "reference",
 										"target": 63644,
 										"name": "TInvokeResultCompensateInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "InvokeFn",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						},
 						{
@@ -29602,12 +29602,12 @@
 										"type": "reference",
 										"target": 63644,
 										"name": "TInvokeResultCompensateInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "CompensateFn",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						}
 					],
@@ -29619,19 +29619,19 @@
 								"type": "reference",
 								"target": 63642,
 								"name": "TInvokeInput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 63643,
 								"name": "TInvokeResultOutput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "StepFunction",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				}
 			]
@@ -29715,7 +29715,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\nimport {\n  createWorkflow,\n  WorkflowResponse\n} from \"@medusajs/framework/workflows-sdk\"\nimport { MedusaRequest, MedusaResponse } from \"@medusajs/framework/http\"\nimport {\n  createProductStep,\n  getProductStep,\n} from \"./steps\"\n\ninterface WorkflowInput {\n title: string\n}\n\nconst myWorkflow = createWorkflow(\n  \"my-workflow\",\n  (input: WorkflowInput) => {\n   // Everything here will be executed and resolved later\n   // during the execution. Including the data access.\n\n    const product = createProductStep(input)\n    return new WorkflowResponse(getProductStep(product.id))\n  }\n)\n\nexport async function GET(\n  req: MedusaRequest,\n  res: MedusaResponse\n) {\n  const { result: product } = await myWorkflow(req.scope)\n    .run({\n      input: {\n        title: \"Shirt\"\n      }\n    })\n\n  res.json({\n    product\n  })\n}\n```"
+										"text": "```ts\nimport {\n  createWorkflow,\n  WorkflowResponse\n} from \"/framework/workflows-sdk\"\nimport { MedusaRequest, MedusaResponse } from \"/framework/http\"\nimport {\n  createProductStep,\n  getProductStep,\n} from \"./steps\"\n\ninterface WorkflowInput {\n title: string\n}\n\nconst myWorkflow = createWorkflow(\n  \"my-workflow\",\n  (input: WorkflowInput) => {\n   // Everything here will be executed and resolved later\n   // during the execution. Including the data access.\n\n    const product = createProductStep(input)\n    return new WorkflowResponse(getProductStep(product.id))\n  }\n)\n\nexport async function GET(\n  req: MedusaRequest,\n  res: MedusaResponse\n) {\n  const { result: product } = await myWorkflow(req.scope)\n    .run({\n      input: {\n        title: \"Shirt\"\n      }\n    })\n\n  res.json({\n    product\n  })\n}\n```"
 									}
 								]
 							}
@@ -29859,7 +29859,7 @@
 												"type": "reference",
 												"target": 64026,
 												"name": "TransactionModelOptions",
-												"package": "@medusajs/orchestration"
+												"package": "/orchestration"
 											}
 										]
 									}
@@ -29954,12 +29954,12 @@
 																"type": "reference",
 																"target": 63679,
 																"name": "TData",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											],
@@ -29978,19 +29978,19 @@
 																"type": "reference",
 																"target": 63680,
 																"name": "TResult",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															},
 															{
 																"type": "reference",
 																"target": 63681,
 																"name": "THooks",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															}
 														],
 														"name": "WorkflowResponse",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												]
 											}
@@ -30008,26 +30008,26 @@
 								"type": "reference",
 								"target": 63679,
 								"name": "TData",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 63680,
 								"name": "TResult",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 63681,
 								"name": "THooks",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "ReturnWorkflow",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				}
 			]
@@ -30222,7 +30222,7 @@
 										"type": "reference",
 										"target": 63702,
 										"name": "TOutput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "StepResponse.TOutput",
 										"refersToTypeParameter": true
 									}
@@ -30249,7 +30249,7 @@
 										"type": "reference",
 										"target": 63702,
 										"name": "TOutput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "StepResponse.TOutput",
 										"refersToTypeParameter": true
 									}
@@ -30282,7 +30282,7 @@
 										"type": "reference",
 										"target": 63703,
 										"name": "TCompensateInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "StepResponse.TCompensateInput",
 										"refersToTypeParameter": true
 									}
@@ -30296,7 +30296,7 @@
 										"type": "reference",
 										"target": 63702,
 										"name": "TOutput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "StepResponse.TOutput",
 										"refersToTypeParameter": true
 									},
@@ -30304,13 +30304,13 @@
 										"type": "reference",
 										"target": 63703,
 										"name": "TCompensateInput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "StepResponse.TCompensateInput",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "StepResponse",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						}
 					]
@@ -30351,7 +30351,7 @@
 										"content": [
 											{
 												"kind": "code",
-												"text": "```ts\nimport { Product } from \"@medusajs/medusa\"\nimport {\n  createStep,\n  StepResponse,\n  createWorkflow\n} from \"@medusajs/workflows-sdk\"\n\ninterface CreateProductInput {\n  title: string\n}\n\nexport const createProductStep = createStep(\n  \"createProductStep\",\n  async function (\n    input: CreateProductInput,\n    context\n  ) {\n    const productService = context.container.resolve(\n      \"productService\"\n    )\n\n    try {\n      const product = await productService.createProducts(input)\n      return new StepResponse({\n        product\n      }, {\n        product_id: product.id\n      })\n    } catch (e) {\n      return StepResponse.permanentFailure(`Couldn't create the product: ${e}`)\n    }\n  }\n)\n\ninterface WorkflowInput {\n title: string\n}\n\nconst myWorkflow = createWorkflow<\n    WorkflowInput,\n    Product\n  >(\"my-workflow\", (input) => {\n   // Everything here will be executed and resolved later\n   // during the execution. Including the data access.\n\n    const product = createProductStep(input)\n  }\n)\n\nmyWorkflow()\n  .run({\n    input: {\n      title: \"Shirt\"\n    }\n  })\n  .then(({ errors, result }) => {\n    if (errors.length) {\n      errors.forEach((err) => {\n        if (typeof err.error === \"object\" && \"message\" in err.error) {\n          console.error(err.error.message)\n        } else {\n          console.error(err.error)\n        }\n      })\n    }\n    console.log(result)\n  })\n```"
+												"text": "```ts\nimport { Product } from \"/medusa\"\nimport {\n  createStep,\n  StepResponse,\n  createWorkflow\n} from \"/workflows-sdk\"\n\ninterface CreateProductInput {\n  title: string\n}\n\nexport const createProductStep = createStep(\n  \"createProductStep\",\n  async function (\n    input: CreateProductInput,\n    context\n  ) {\n    const productService = context.container.resolve(\n      \"productService\"\n    )\n\n    try {\n      const product = await productService.createProducts(input)\n      return new StepResponse({\n        product\n      }, {\n        product_id: product.id\n      })\n    } catch (e) {\n      return StepResponse.permanentFailure(`Couldn't create the product: ${e}`)\n    }\n  }\n)\n\ninterface WorkflowInput {\n title: string\n}\n\nconst myWorkflow = createWorkflow<\n    WorkflowInput,\n    Product\n  >(\"my-workflow\", (input) => {\n   // Everything here will be executed and resolved later\n   // during the execution. Including the data access.\n\n    const product = createProductStep(input)\n  }\n)\n\nmyWorkflow()\n  .run({\n    input: {\n      title: \"Shirt\"\n    }\n  })\n  .then(({ errors, result }) => {\n    if (errors.length) {\n      errors.forEach((err) => {\n        if (typeof err.error === \"object\" && \"message\" in err.error) {\n          console.error(err.error.message)\n        } else {\n          console.error(err.error)\n        }\n      })\n    }\n    console.log(result)\n  })\n```"
 											}
 										]
 									}
@@ -30442,7 +30442,7 @@
 								"type": "reference",
 								"target": 64034,
 								"name": "SkipStepResponse",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						}
 					]
@@ -30521,7 +30521,7 @@
 						"type": "reference",
 						"target": 63702,
 						"name": "TOutput",
-						"package": "@medusajs/workflows-sdk",
+						"package": "/workflows-sdk",
 						"qualifiedName": "StepResponse.TOutput",
 						"refersToTypeParameter": true
 					}
@@ -30642,13 +30642,13 @@
 														"type": "reference",
 														"target": 63726,
 														"name": "TResult",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"qualifiedName": "WorkflowResponse.TResult",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "WorkflowData",
-												"package": "@medusajs/workflows-sdk"
+												"package": "/workflows-sdk"
 											},
 											{
 												"type": "mapped",
@@ -30682,14 +30682,14 @@
 																	"qualifiedName": "K"
 																},
 																"name": "K",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															},
 															"objectType": {
 																"type": "reference",
 																"target": 63726,
 																"name": "TResult",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"qualifiedName": "WorkflowResponse.TResult",
 																"refersToTypeParameter": true
 															}
@@ -30707,21 +30707,21 @@
 																			"qualifiedName": "K"
 																		},
 																		"name": "K",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"refersToTypeParameter": true
 																	},
 																	"objectType": {
 																		"type": "reference",
 																		"target": 63726,
 																		"name": "TResult",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"qualifiedName": "WorkflowResponse.TResult",
 																		"refersToTypeParameter": true
 																	}
 																}
 															],
 															"name": "WorkflowDataProperties",
-															"package": "@medusajs/workflows-sdk"
+															"package": "/workflows-sdk"
 														},
 														{
 															"type": "reference",
@@ -30736,21 +30736,21 @@
 																			"qualifiedName": "K"
 																		},
 																		"name": "K",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"refersToTypeParameter": true
 																	},
 																	"objectType": {
 																		"type": "reference",
 																		"target": 63726,
 																		"name": "TResult",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"qualifiedName": "WorkflowResponse.TResult",
 																		"refersToTypeParameter": true
 																	}
 																}
 															],
 															"name": "WorkflowData",
-															"package": "@medusajs/workflows-sdk"
+															"package": "/workflows-sdk"
 														}
 													]
 												}
@@ -30793,7 +30793,7 @@
 														"type": "reference",
 														"target": 63727,
 														"name": "THooks",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"qualifiedName": "WorkflowResponse.THooks",
 														"refersToTypeParameter": true
 													}
@@ -30827,7 +30827,7 @@
 										"type": "reference",
 										"target": 63726,
 										"name": "TResult",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "WorkflowResponse.TResult",
 										"refersToTypeParameter": true
 									},
@@ -30835,13 +30835,13 @@
 										"type": "reference",
 										"target": 63727,
 										"name": "THooks",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "WorkflowResponse.THooks",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "WorkflowResponse",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						}
 					]
@@ -30873,13 +30873,13 @@
 										"type": "reference",
 										"target": 63726,
 										"name": "TResult",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "WorkflowResponse.TResult",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "WorkflowData",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							},
 							{
 								"type": "mapped",
@@ -30913,14 +30913,14 @@
 													"qualifiedName": "K"
 												},
 												"name": "K",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											"objectType": {
 												"type": "reference",
 												"target": 63726,
 												"name": "TResult",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"qualifiedName": "WorkflowResponse.TResult",
 												"refersToTypeParameter": true
 											}
@@ -30938,21 +30938,21 @@
 															"qualifiedName": "K"
 														},
 														"name": "K",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													"objectType": {
 														"type": "reference",
 														"target": 63726,
 														"name": "TResult",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"qualifiedName": "WorkflowResponse.TResult",
 														"refersToTypeParameter": true
 													}
 												}
 											],
 											"name": "WorkflowDataProperties",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										},
 										{
 											"type": "reference",
@@ -30967,21 +30967,21 @@
 															"qualifiedName": "K"
 														},
 														"name": "K",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													"objectType": {
 														"type": "reference",
 														"target": 63726,
 														"name": "TResult",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"qualifiedName": "WorkflowResponse.TResult",
 														"refersToTypeParameter": true
 													}
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										}
 									]
 								}
@@ -31033,7 +31033,7 @@
 										"type": "reference",
 										"target": 63727,
 										"name": "THooks",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"qualifiedName": "WorkflowResponse.THooks",
 										"refersToTypeParameter": true
 									}
@@ -31159,7 +31159,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\nimport {\n  createWorkflow,\n  parallelize,\n  WorkflowResponse\n} from \"@medusajs/framework/workflows-sdk\"\nimport {\n  createProductStep,\n  createPricesStep,\n  attachProductToSalesChannelStep\n} from \"./steps\"\n\ninterface WorkflowInput {\n  title: string\n}\n\nconst myWorkflow = createWorkflow(\n  \"my-workflow\",\n  (input: WorkflowInput) => {\n   const product = createProductStep(input)\n\n   const [prices, productSalesChannel] = parallelize(\n     createPricesStep(product),\n     attachProductToSalesChannelStep(product)\n   )\n\n   return new WorkflowResponse({\n    prices,\n    productSalesChannel\n   })\n }\n)\n```"
+										"text": "```ts\nimport {\n  createWorkflow,\n  parallelize,\n  WorkflowResponse\n} from \"/framework/workflows-sdk\"\nimport {\n  createProductStep,\n  createPricesStep,\n  attachProductToSalesChannelStep\n} from \"./steps\"\n\ninterface WorkflowInput {\n  title: string\n}\n\nconst myWorkflow = createWorkflow(\n  \"my-workflow\",\n  (input: WorkflowInput) => {\n   const product = createProductStep(input)\n\n   const [prices, productSalesChannel] = parallelize(\n     createPricesStep(product),\n     attachProductToSalesChannelStep(product)\n   )\n\n   return new WorkflowResponse({\n    prices,\n    productSalesChannel\n   })\n }\n)\n```"
 									}
 								]
 							}
@@ -31201,7 +31201,7 @@
 											"type": "reference",
 											"target": 63875,
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										}
 									]
 								}
@@ -31221,7 +31221,7 @@
 								"type": "reference",
 								"target": 63762,
 								"name": "TResult",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						}
@@ -31230,7 +31230,7 @@
 						"type": "reference",
 						"target": 63762,
 						"name": "TResult",
-						"package": "@medusajs/workflows-sdk",
+						"package": "/workflows-sdk",
 						"refersToTypeParameter": true
 					}
 				}
@@ -31267,7 +31267,7 @@
 								"type": "reference",
 								"target": 63875,
 								"name": "WorkflowData",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -31315,7 +31315,7 @@
 											"type": "reference",
 											"target": 64052,
 											"name": "T",
-											"package": "@medusajs/workflows-sdk",
+											"package": "/workflows-sdk",
 											"refersToTypeParameter": true
 										},
 										"extendsType": {
@@ -31328,7 +31328,7 @@
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										},
 										"trueType": {
 											"type": "reference",
@@ -31337,7 +31337,7 @@
 												"qualifiedName": "U"
 											},
 											"name": "U",
-											"package": "@medusajs/workflows-sdk",
+											"package": "/workflows-sdk",
 											"refersToTypeParameter": true
 										},
 										"falseType": {
@@ -31346,7 +31346,7 @@
 												"type": "reference",
 												"target": 64052,
 												"name": "T",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											"extendsType": {
@@ -31363,7 +31363,7 @@
 														"type": "reference",
 														"target": 64052,
 														"name": "T",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												},
@@ -31378,14 +31378,14 @@
 																"qualifiedName": "K"
 															},
 															"name": "K",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														},
 														"objectType": {
 															"type": "reference",
 															"target": 64052,
 															"name": "T",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														}
 													},
@@ -31399,7 +31399,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													},
 													"trueType": {
 														"type": "reference",
@@ -31408,7 +31408,7 @@
 															"qualifiedName": "U"
 														},
 														"name": "U",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													"falseType": {
@@ -31420,14 +31420,14 @@
 																"qualifiedName": "K"
 															},
 															"name": "K",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														},
 														"objectType": {
 															"type": "reference",
 															"target": 64052,
 															"name": "T",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														}
 													}
@@ -31463,7 +31463,7 @@
 										"type": "reference",
 										"target": 63923,
 										"name": "StepExecutionContext",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								}
 							],
@@ -31474,7 +31474,7 @@
 										"type": "reference",
 										"target": 64053,
 										"name": "U",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
@@ -31488,7 +31488,7 @@
 												"type": "reference",
 												"target": 64053,
 												"name": "U",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										],
@@ -31564,7 +31564,7 @@
 										"type": "reference",
 										"target": 64059,
 										"name": "T",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								},
@@ -31578,7 +31578,7 @@
 										"type": "reference",
 										"target": 63923,
 										"name": "StepExecutionContext",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								}
 							],
@@ -31589,7 +31589,7 @@
 										"type": "reference",
 										"target": 64060,
 										"name": "U",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
@@ -31603,7 +31603,7 @@
 												"type": "reference",
 												"target": 64060,
 												"name": "U",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										],
@@ -31686,7 +31686,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\nimport {\n  createWorkflow,\n  transform,\n  WorkflowResponse\n} from \"@medusajs/framework/workflows-sdk\"\nimport { step1, step2 } from \"./steps\"\n\ntype WorkflowInput = {\n  name: string\n}\n\nconst myWorkflow = createWorkflow(\n  \"hello-world\",\n  (input: WorkflowInput) => {\n    const str1 = step1(input)\n    const str2 = step2(input)\n\n    const message = transform({\n      str1,\n      str2\n    }, (input) => `${input.str1}${input.str2}`)\n\n    return new WorkflowResponse(message)\n})\n```"
+										"text": "```ts\nimport {\n  createWorkflow,\n  transform,\n  WorkflowResponse\n} from \"/framework/workflows-sdk\"\nimport { step1, step2 } from \"./steps\"\n\ntype WorkflowInput = {\n  name: string\n}\n\nconst myWorkflow = createWorkflow(\n  \"hello-world\",\n  (input: WorkflowInput) => {\n    const str1 = step1(input)\n    const str2 = step2(input)\n\n    const message = transform({\n      str1,\n      str2\n    }, (input) => `${input.str1}${input.str2}`)\n\n    return new WorkflowResponse(message)\n})\n```"
 									}
 								]
 							}
@@ -31718,7 +31718,7 @@
 										"type": "reference",
 										"target": 63875,
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -31750,7 +31750,7 @@
 								"type": "reference",
 								"target": 63766,
 								"name": "T",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						},
@@ -31789,19 +31789,19 @@
 												"type": "reference",
 												"target": 63766,
 												"name": "T",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											{
 												"type": "reference",
 												"target": 63767,
 												"name": "RFinal",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "Func1",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -31815,12 +31815,12 @@
 								"type": "reference",
 								"target": 63767,
 								"name": "RFinal",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "WorkflowData",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				}
 			]
@@ -31902,7 +31902,7 @@
 										"type": "reference",
 										"target": 63883,
 										"name": "CreateWorkflowComposerContext",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								}
 							],
@@ -31914,12 +31914,12 @@
 										"type": "reference",
 										"target": 63825,
 										"name": "TOutput",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "WorkflowData",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						}
 					]
@@ -32057,7 +32057,7 @@
 																"type": "reference",
 																"target": 64005,
 																"name": "TransactionStepsDefinition",
-																"package": "@medusajs/orchestration"
+																"package": "/orchestration"
 															},
 															{
 																"type": "union",
@@ -32092,12 +32092,12 @@
 												"type": "reference",
 												"target": 63833,
 												"name": "TOutput",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								}
 							]
@@ -32150,14 +32150,14 @@
 					"type": "reference",
 					"target": 64062,
 					"name": "T",
-					"package": "@medusajs/workflows-sdk",
+					"package": "/workflows-sdk",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
 					"type": "reference",
 					"target": 64062,
 					"name": "T",
-					"package": "@medusajs/workflows-sdk",
+					"package": "/workflows-sdk",
 					"refersToTypeParameter": true
 				},
 				"trueType": {
@@ -32167,7 +32167,7 @@
 						"type": "reference",
 						"target": 64062,
 						"name": "T",
-						"package": "@medusajs/workflows-sdk",
+						"package": "/workflows-sdk",
 						"refersToTypeParameter": true
 					}
 				},
@@ -32289,7 +32289,7 @@
 					"type": "reference",
 					"target": 64781,
 					"name": "THook",
-					"package": "@medusajs/workflows-sdk",
+					"package": "/workflows-sdk",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -32310,7 +32310,7 @@
 						}
 					],
 					"name": "Hook",
-					"package": "@medusajs/workflows-sdk"
+					"package": "/workflows-sdk"
 				},
 				"trueType": {
 					"type": "mapped",
@@ -32322,7 +32322,7 @@
 							"qualifiedName": "Name"
 						},
 						"name": "Name",
-						"package": "@medusajs/workflows-sdk",
+						"package": "/workflows-sdk",
 						"refersToTypeParameter": true
 					},
 					"templateType": {
@@ -32374,7 +32374,7 @@
 															"qualifiedName": "Input"
 														},
 														"name": "Input",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													{
@@ -32384,19 +32384,19 @@
 															"qualifiedName": "Output"
 														},
 														"name": "Output",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													{
 														"type": "reference",
 														"target": 64780,
 														"name": "TCompensateInput",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "InvokeFn",
-												"package": "@medusajs/workflows-sdk"
+												"package": "/workflows-sdk"
 											}
 										},
 										{
@@ -32415,12 +32415,12 @@
 														"type": "reference",
 														"target": 64780,
 														"name": "TCompensateInput",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "CompensateFn",
-												"package": "@medusajs/workflows-sdk"
+												"package": "/workflows-sdk"
 											}
 										}
 									],
@@ -32482,7 +32482,7 @@
 					"type": "reference",
 					"target": 64405,
 					"name": "THooks",
-					"package": "@medusajs/workflows-sdk",
+					"package": "/workflows-sdk",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -32515,12 +32515,12 @@
 										"qualifiedName": "A"
 									},
 									"name": "A",
-									"package": "@medusajs/workflows-sdk",
+									"package": "/workflows-sdk",
 									"refersToTypeParameter": true
 								}
 							],
 							"name": "ConvertHookToObject",
-							"package": "@medusajs/workflows-sdk"
+							"package": "/workflows-sdk"
 						},
 						{
 							"type": "reference",
@@ -32533,12 +32533,12 @@
 										"qualifiedName": "R"
 									},
 									"name": "R",
-									"package": "@medusajs/workflows-sdk",
+									"package": "/workflows-sdk",
 									"refersToTypeParameter": true
 								}
 							],
 							"name": "ConvertHooksToFunctions",
-							"package": "@medusajs/workflows-sdk"
+							"package": "/workflows-sdk"
 						}
 					]
 				},
@@ -32694,12 +32694,12 @@
 									"type": "reference",
 									"target": 63868,
 									"name": "TInput",
-									"package": "@medusajs/workflows-sdk",
+									"package": "/workflows-sdk",
 									"refersToTypeParameter": true
 								}
 							],
 							"name": "KeysOfUnion",
-							"package": "@medusajs/workflows-sdk"
+							"package": "/workflows-sdk"
 						},
 						"extendsType": {
 							"type": "tuple"
@@ -32744,7 +32744,7 @@
 														"type": "reference",
 														"target": 63869,
 														"name": "TOutput",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													{
@@ -32817,7 +32817,7 @@
 														"type": "reference",
 														"target": 63838,
 														"name": "Void",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													},
 													{
 														"type": "reference",
@@ -32827,11 +32827,11 @@
 																"type": "reference",
 																"target": 63838,
 																"name": "Void",
-																"package": "@medusajs/workflows-sdk"
+																"package": "/workflows-sdk"
 															}
 														],
 														"name": "WorkflowDataProperties",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													},
 													{
 														"type": "reflection",
@@ -32941,7 +32941,7 @@
 																										"type": "reference",
 																										"target": 64005,
 																										"name": "TransactionStepsDefinition",
-																										"package": "@medusajs/orchestration"
+																										"package": "/orchestration"
 																									},
 																									{
 																										"type": "union",
@@ -32976,11 +32976,11 @@
 																						"type": "reference",
 																						"target": 63838,
 																						"name": "Void",
-																						"package": "@medusajs/workflows-sdk"
+																						"package": "/workflows-sdk"
 																					}
 																				],
 																				"name": "WorkflowData",
-																				"package": "@medusajs/workflows-sdk"
+																				"package": "/workflows-sdk"
 																			}
 																		}
 																	]
@@ -33012,12 +33012,12 @@
 																"type": "reference",
 																"target": 63869,
 																"name": "TOutput",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															}
 														],
 														"name": "StepFunctionReturnConfig",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												]
 											},
@@ -33030,7 +33030,7 @@
 															"type": "reference",
 															"target": 63869,
 															"name": "TOutput",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														},
 														"extendsType": {
@@ -33042,7 +33042,7 @@
 																	"qualifiedName": "Item"
 																},
 																"name": "Item",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															}
 														},
@@ -33058,7 +33058,7 @@
 																			"qualifiedName": "Item"
 																		},
 																		"name": "Item",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"refersToTypeParameter": true
 																	},
 																	{
@@ -33072,12 +33072,12 @@
 																					"qualifiedName": "Item"
 																				},
 																				"name": "Item",
-																				"package": "@medusajs/workflows-sdk",
+																				"package": "/workflows-sdk",
 																				"refersToTypeParameter": true
 																			}
 																		],
 																		"name": "WorkflowData",
-																		"package": "@medusajs/workflows-sdk"
+																		"package": "/workflows-sdk"
 																	}
 																]
 															}
@@ -33088,7 +33088,7 @@
 																"type": "reference",
 																"target": 63869,
 																"name": "TOutput",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															},
 															"extendsType": {
@@ -33139,7 +33139,7 @@
 																				}
 																			],
 																			"name": "WorkflowData",
-																			"package": "@medusajs/workflows-sdk"
+																			"package": "/workflows-sdk"
 																		}
 																	]
 																}
@@ -33151,7 +33151,7 @@
 																		"type": "reference",
 																		"target": 63869,
 																		"name": "TOutput",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"refersToTypeParameter": true
 																	},
 																	{
@@ -33162,12 +33162,12 @@
 																				"type": "reference",
 																				"target": 63869,
 																				"name": "TOutput",
-																				"package": "@medusajs/workflows-sdk",
+																				"package": "/workflows-sdk",
 																				"refersToTypeParameter": true
 																			}
 																		],
 																		"name": "WorkflowDataProperties",
-																		"package": "@medusajs/workflows-sdk"
+																		"package": "/workflows-sdk"
 																	}
 																]
 															}
@@ -33177,7 +33177,7 @@
 														"type": "reference",
 														"target": 63869,
 														"name": "TOutput",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													{
@@ -33188,12 +33188,12 @@
 																"type": "reference",
 																"target": 63869,
 																"name": "TOutput",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															}
 														],
 														"name": "WorkflowDataProperties",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													},
 													{
 														"type": "reflection",
@@ -33303,7 +33303,7 @@
 																										"type": "reference",
 																										"target": 64005,
 																										"name": "TransactionStepsDefinition",
-																										"package": "@medusajs/orchestration"
+																										"package": "/orchestration"
 																									},
 																									{
 																										"type": "union",
@@ -33338,12 +33338,12 @@
 																						"type": "reference",
 																						"target": 63869,
 																						"name": "TOutput",
-																						"package": "@medusajs/workflows-sdk",
+																						"package": "/workflows-sdk",
 																						"refersToTypeParameter": true
 																					}
 																				],
 																				"name": "WorkflowData",
-																				"package": "@medusajs/workflows-sdk"
+																				"package": "/workflows-sdk"
 																			}
 																		}
 																	]
@@ -33375,12 +33375,12 @@
 																"type": "reference",
 																"target": 63869,
 																"name": "TOutput",
-																"package": "@medusajs/workflows-sdk",
+																"package": "/workflows-sdk",
 																"refersToTypeParameter": true
 															}
 														],
 														"name": "StepFunctionReturnConfig",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												]
 											}
@@ -33434,7 +33434,7 @@
 															"type": "reference",
 															"target": 63868,
 															"name": "TInput",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														},
 														{
@@ -33445,12 +33445,12 @@
 																	"type": "reference",
 																	"target": 63868,
 																	"name": "TInput",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																}
 															],
 															"name": "WorkflowData",
-															"package": "@medusajs/workflows-sdk"
+															"package": "/workflows-sdk"
 														}
 													]
 												}
@@ -33465,7 +33465,7 @@
 														"type": "reference",
 														"target": 63869,
 														"name": "TOutput",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													"extendsType": {
@@ -33477,7 +33477,7 @@
 																"qualifiedName": "Item"
 															},
 															"name": "Item",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														}
 													},
@@ -33493,7 +33493,7 @@
 																		"qualifiedName": "Item"
 																	},
 																	"name": "Item",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																{
@@ -33507,12 +33507,12 @@
 																				"qualifiedName": "Item"
 																			},
 																			"name": "Item",
-																			"package": "@medusajs/workflows-sdk",
+																			"package": "/workflows-sdk",
 																			"refersToTypeParameter": true
 																		}
 																	],
 																	"name": "WorkflowData",
-																	"package": "@medusajs/workflows-sdk"
+																	"package": "/workflows-sdk"
 																}
 															]
 														}
@@ -33523,7 +33523,7 @@
 															"type": "reference",
 															"target": 63869,
 															"name": "TOutput",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														},
 														"extendsType": {
@@ -33562,7 +33562,7 @@
 																				"qualifiedName": "Key"
 																			},
 																			"name": "Key",
-																			"package": "@medusajs/workflows-sdk",
+																			"package": "/workflows-sdk",
 																			"refersToTypeParameter": true
 																		},
 																		"objectType": {
@@ -33575,7 +33575,7 @@
 																				}
 																			],
 																			"name": "TOutput",
-																			"package": "@medusajs/workflows-sdk",
+																			"package": "/workflows-sdk",
 																			"refersToTypeParameter": true
 																		}
 																	},
@@ -33596,7 +33596,7 @@
 																			}
 																		],
 																		"name": "WorkflowData",
-																		"package": "@medusajs/workflows-sdk"
+																		"package": "/workflows-sdk"
 																	}
 																]
 															}
@@ -33608,7 +33608,7 @@
 																	"type": "reference",
 																	"target": 63869,
 																	"name": "TOutput",
-																	"package": "@medusajs/workflows-sdk",
+																	"package": "/workflows-sdk",
 																	"refersToTypeParameter": true
 																},
 																{
@@ -33619,12 +33619,12 @@
 																			"type": "reference",
 																			"target": 63869,
 																			"name": "TOutput",
-																			"package": "@medusajs/workflows-sdk",
+																			"package": "/workflows-sdk",
 																			"refersToTypeParameter": true
 																		}
 																	],
 																	"name": "WorkflowDataProperties",
-																	"package": "@medusajs/workflows-sdk"
+																	"package": "/workflows-sdk"
 																}
 															]
 														}
@@ -33634,7 +33634,7 @@
 													"type": "reference",
 													"target": 63869,
 													"name": "TOutput",
-													"package": "@medusajs/workflows-sdk",
+													"package": "/workflows-sdk",
 													"refersToTypeParameter": true
 												},
 												{
@@ -33645,12 +33645,12 @@
 															"type": "reference",
 															"target": 63869,
 															"name": "TOutput",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "WorkflowDataProperties",
-													"package": "@medusajs/workflows-sdk"
+													"package": "/workflows-sdk"
 												},
 												{
 													"type": "reflection",
@@ -33760,7 +33760,7 @@
 																									"type": "reference",
 																									"target": 64005,
 																									"name": "TransactionStepsDefinition",
-																									"package": "@medusajs/orchestration"
+																									"package": "/orchestration"
 																								},
 																								{
 																									"type": "union",
@@ -33795,12 +33795,12 @@
 																					"type": "reference",
 																					"target": 63869,
 																					"name": "TOutput",
-																					"package": "@medusajs/workflows-sdk",
+																					"package": "/workflows-sdk",
 																					"refersToTypeParameter": true
 																				}
 																			],
 																			"name": "WorkflowData",
-																			"package": "@medusajs/workflows-sdk"
+																			"package": "/workflows-sdk"
 																		}
 																	}
 																]
@@ -33832,12 +33832,12 @@
 															"type": "reference",
 															"target": 63869,
 															"name": "TOutput",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "StepFunctionReturnConfig",
-													"package": "@medusajs/workflows-sdk"
+													"package": "/workflows-sdk"
 												}
 											]
 										}
@@ -33854,12 +33854,12 @@
 								"type": "reference",
 								"target": 63869,
 								"name": "TOutput",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "WorkflowDataProperties",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				]
 			}
@@ -34011,7 +34011,7 @@
 							"type": "reference",
 							"target": 63882,
 							"name": "T",
-							"package": "@medusajs/workflows-sdk",
+							"package": "/workflows-sdk",
 							"refersToTypeParameter": true
 						},
 						"extendsType": {
@@ -34033,7 +34033,7 @@
 											"qualifiedName": "Item"
 										},
 										"name": "Item",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
@@ -34047,12 +34047,12 @@
 													"qualifiedName": "Item"
 												},
 												"name": "Item",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "WorkflowData",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -34063,7 +34063,7 @@
 								"type": "reference",
 								"target": 63882,
 								"name": "T",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							},
 							"extendsType": {
@@ -34080,7 +34080,7 @@
 										"type": "reference",
 										"target": 63882,
 										"name": "T",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								},
@@ -34096,14 +34096,14 @@
 													"qualifiedName": "Key"
 												},
 												"name": "Key",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											"objectType": {
 												"type": "reference",
 												"target": 63882,
 												"name": "T",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										},
@@ -34120,20 +34120,20 @@
 															"qualifiedName": "Key"
 														},
 														"name": "Key",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													"objectType": {
 														"type": "reference",
 														"target": 63882,
 														"name": "T",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										}
 									]
 								}
@@ -34145,7 +34145,7 @@
 										"type": "reference",
 										"target": 63882,
 										"name": "T",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									},
 									{
@@ -34156,12 +34156,12 @@
 												"type": "reference",
 												"target": 63882,
 												"name": "T",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "WorkflowDataProperties",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								]
 							}
@@ -34171,7 +34171,7 @@
 						"type": "reference",
 						"target": 63882,
 						"name": "T",
-						"package": "@medusajs/workflows-sdk",
+						"package": "/workflows-sdk",
 						"refersToTypeParameter": true
 					},
 					{
@@ -34182,12 +34182,12 @@
 								"type": "reference",
 								"target": 63882,
 								"name": "T",
-								"package": "@medusajs/workflows-sdk",
+								"package": "/workflows-sdk",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "WorkflowDataProperties",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					},
 					{
 						"type": "reflection",
@@ -34297,7 +34297,7 @@
 																		"type": "reference",
 																		"target": 64005,
 																		"name": "TransactionStepsDefinition",
-																		"package": "@medusajs/orchestration"
+																		"package": "/orchestration"
 																	},
 																	{
 																		"type": "union",
@@ -34332,12 +34332,12 @@
 														"type": "reference",
 														"target": 63882,
 														"name": "T",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "WorkflowData",
-												"package": "@medusajs/workflows-sdk"
+												"package": "/workflows-sdk"
 											}
 										}
 									]
@@ -34523,7 +34523,7 @@
 										"type": "reference",
 										"target": 63834,
 										"name": "HookHandler",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								],
 								"name": "Record",
@@ -34567,7 +34567,7 @@
 								"type": "reference",
 								"target": 64063,
 								"name": "OrchestratorBuilder",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -34607,7 +34607,7 @@
 								"type": "reference",
 								"target": 64152,
 								"name": "WorkflowHandler",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -34628,7 +34628,7 @@
 								"type": "reference",
 								"target": 64152,
 								"name": "WorkflowHandler",
-								"package": "@medusajs/orchestration"
+								"package": "/orchestration"
 							}
 						},
 						{
@@ -34692,7 +34692,7 @@
 														"type": "reference",
 														"target": 63821,
 														"name": "StepFunctionResult",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													}
 												}
 											],
@@ -34704,12 +34704,12 @@
 														"type": "reference",
 														"target": 63900,
 														"name": "TOutput",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "WorkflowData",
-												"package": "@medusajs/workflows-sdk"
+												"package": "/workflows-sdk"
 											}
 										}
 									]
@@ -34798,7 +34798,7 @@
 																		"type": "reference",
 																		"target": 63834,
 																		"name": "HookHandler",
-																		"package": "@medusajs/workflows-sdk"
+																		"package": "/workflows-sdk"
 																	}
 																}
 															]
@@ -34915,7 +34915,7 @@
 																				"type": "reference",
 																				"target": 63875,
 																				"name": "WorkflowData",
-																				"package": "@medusajs/workflows-sdk"
+																				"package": "/workflows-sdk"
 																			}
 																		]
 																	}
@@ -35021,7 +35021,7 @@
 																	"type": "reference",
 																	"target": 63875,
 																	"name": "WorkflowData",
-																	"package": "@medusajs/workflows-sdk"
+																	"package": "/workflows-sdk"
 																},
 																{
 																	"type": "intrinsic",
@@ -35036,7 +35036,7 @@
 															"type": "reference",
 															"target": 63875,
 															"name": "WorkflowData",
-															"package": "@medusajs/workflows-sdk"
+															"package": "/workflows-sdk"
 														}
 													}
 												}
@@ -35082,7 +35082,7 @@
 																				"type": "reference",
 																				"target": 63883,
 																				"name": "CreateWorkflowComposerContext",
-																				"package": "@medusajs/workflows-sdk"
+																				"package": "/workflows-sdk"
 																			}
 																		}
 																	],
@@ -35090,7 +35090,7 @@
 																		"type": "reference",
 																		"target": 63922,
 																		"name": "TOutput",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"refersToTypeParameter": true
 																	}
 																}
@@ -35103,7 +35103,7 @@
 												"type": "reference",
 												"target": 63922,
 												"name": "TOutput",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										}
@@ -35385,7 +35385,7 @@
 						"type": "reference",
 						"target": 64156,
 						"name": "MedusaContainer",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -35414,7 +35414,7 @@
 						"type": "reference",
 						"target": 64177,
 						"name": "TransactionMetadata",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				},
 				{
@@ -35444,7 +35444,7 @@
 						"type": "reference",
 						"target": 64185,
 						"name": "Context",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -35639,7 +35639,7 @@
 						"type": "reference",
 						"target": 64005,
 						"name": "TransactionStepsDefinition",
-						"package": "@medusajs/orchestration"
+						"package": "/orchestration"
 					}
 				}
 			],
@@ -35700,13 +35700,13 @@
 						"type": "reference",
 						"target": 63923,
 						"name": "StepExecutionContext",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					},
 					{
 						"type": "reference",
 						"target": 64202,
 						"name": "OriginalWorkflowTransactionContext",
-						"package": "@medusajs/orchestration",
+						"package": "/orchestration",
 						"qualifiedName": "TransactionContext"
 					},
 					{
@@ -35899,7 +35899,7 @@
 							},
 							{
 								"kind": "code",
-								"text": "```ts\nimport type {\n  MedusaRequest,\n  MedusaResponse\n} from \"@medusajs/medusa\";\nimport myWorkflow from \"../../../workflows/hello-world\";\n\nexport async function GET(\n  req: MedusaRequest,\n  res: MedusaResponse\n) {\n  const { result } = await myWorkflow(req.scope)\n    .run({\n      input: {\n        name: req.query.name as string\n      }\n    })\n\n  res.send(result)\n}\n```"
+								"text": "```ts\nimport type {\n  MedusaRequest,\n  MedusaResponse\n} from \"/medusa\";\nimport myWorkflow from \"../../../workflows/hello-world\";\n\nexport async function GET(\n  req: MedusaRequest,\n  res: MedusaResponse\n) {\n  const { result } = await myWorkflow(req.scope)\n    .run({\n      input: {\n        name: req.query.name as string\n      }\n    })\n\n  res.send(result)\n}\n```"
 							}
 						]
 					}
@@ -36017,7 +36017,7 @@
 														"type": "reference",
 														"target": 64156,
 														"name": "MedusaContainer",
-														"package": "@medusajs/types"
+														"package": "/types"
 													},
 													{
 														"type": "array",
@@ -36047,7 +36047,7 @@
 																			"type": "reference",
 																			"target": 64211,
 																			"name": "ModuleJoinerConfig",
-																			"package": "@medusajs/types"
+																			"package": "/types"
 																		}
 																	},
 																	{
@@ -36067,7 +36067,7 @@
 																			"type": "reference",
 																			"target": 64237,
 																			"name": "ModuleDefinition",
-																			"package": "@medusajs/types"
+																			"package": "/types"
 																		}
 																	}
 																],
@@ -36108,7 +36108,7 @@
 														"type": "reference",
 														"target": 64248,
 														"name": "LocalWorkflow",
-														"package": "@medusajs/orchestration"
+														"package": "/orchestration"
 													},
 													{
 														"type": "union",
@@ -36147,33 +36147,33 @@
 														"type": "reference",
 														"target": 63980,
 														"name": "TData",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													{
 														"type": "reference",
 														"target": 63981,
 														"name": "TResult",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													{
 														"type": "reference",
 														"target": 63953,
 														"name": "TDataOverride",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													{
 														"type": "reference",
 														"target": 63954,
 														"name": "TResultOverride",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "ExportedWorkflow",
-												"package": "@medusajs/workflows-sdk"
+												"package": "/workflows-sdk"
 											}
 										]
 									}
@@ -36294,7 +36294,7 @@
 																						"type": "reference",
 																						"target": 63980,
 																						"name": "TData",
-																						"package": "@medusajs/workflows-sdk",
+																						"package": "/workflows-sdk",
 																						"refersToTypeParameter": true
 																					},
 																					{
@@ -36305,12 +36305,12 @@
 																								"type": "reference",
 																								"target": 63980,
 																								"name": "TData",
-																								"package": "@medusajs/workflows-sdk",
+																								"package": "/workflows-sdk",
 																								"refersToTypeParameter": true
 																							}
 																						],
 																						"name": "WorkflowData",
-																						"package": "@medusajs/workflows-sdk"
+																						"package": "/workflows-sdk"
 																					}
 																				]
 																			}
@@ -36351,19 +36351,19 @@
 																		"type": "reference",
 																		"target": 63980,
 																		"name": "TData",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"refersToTypeParameter": true
 																	},
 																	{
 																		"type": "reference",
 																		"target": 63981,
 																		"name": "TResult",
-																		"package": "@medusajs/workflows-sdk",
+																		"package": "/workflows-sdk",
 																		"refersToTypeParameter": true
 																	}
 																],
 																"name": "StepFunction",
-																"package": "@medusajs/workflows-sdk"
+																"package": "/workflows-sdk"
 															}
 														],
 														"name": "ReturnType",
@@ -36495,33 +36495,33 @@
 																					"type": "reference",
 																					"target": 63980,
 																					"name": "TData",
-																					"package": "@medusajs/workflows-sdk",
+																					"package": "/workflows-sdk",
 																					"refersToTypeParameter": true
 																				},
 																				{
 																					"type": "reference",
 																					"target": 63981,
 																					"name": "TResult",
-																					"package": "@medusajs/workflows-sdk",
+																					"package": "/workflows-sdk",
 																					"refersToTypeParameter": true
 																				},
 																				{
 																					"type": "reference",
 																					"target": 63970,
 																					"name": "TDataOverride",
-																					"package": "@medusajs/workflows-sdk",
+																					"package": "/workflows-sdk",
 																					"refersToTypeParameter": true
 																				},
 																				{
 																					"type": "reference",
 																					"target": 63971,
 																					"name": "TResultOverride",
-																					"package": "@medusajs/workflows-sdk",
+																					"package": "/workflows-sdk",
 																					"refersToTypeParameter": true
 																				}
 																			],
 																			"name": "ExportedWorkflow",
-																			"package": "@medusajs/workflows-sdk"
+																			"package": "/workflows-sdk"
 																		}
 																	}
 																],
@@ -36551,33 +36551,33 @@
 																			"type": "reference",
 																			"target": 63980,
 																			"name": "TData",
-																			"package": "@medusajs/workflows-sdk",
+																			"package": "/workflows-sdk",
 																			"refersToTypeParameter": true
 																		},
 																		{
 																			"type": "reference",
 																			"target": 63981,
 																			"name": "TResult",
-																			"package": "@medusajs/workflows-sdk",
+																			"package": "/workflows-sdk",
 																			"refersToTypeParameter": true
 																		},
 																		{
 																			"type": "reference",
 																			"target": 63970,
 																			"name": "TDataOverride",
-																			"package": "@medusajs/workflows-sdk",
+																			"package": "/workflows-sdk",
 																			"refersToTypeParameter": true
 																		},
 																		{
 																			"type": "reference",
 																			"target": 63971,
 																			"name": "TResultOverride",
-																			"package": "@medusajs/workflows-sdk",
+																			"package": "/workflows-sdk",
 																			"refersToTypeParameter": true
 																		}
 																	],
 																	"name": "ExportedWorkflow",
-																	"package": "@medusajs/workflows-sdk"
+																	"package": "/workflows-sdk"
 																}
 															}
 														],
@@ -36699,7 +36699,7 @@
 																"type": "reference",
 																"target": 64026,
 																"name": "TransactionModelOptions",
-																"package": "@medusajs/orchestration"
+																"package": "/orchestration"
 															}
 														}
 													],
@@ -36742,12 +36742,12 @@
 												"type": "reference",
 												"target": 63982,
 												"name": "THooks",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "ConvertHooksToFunctions",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								}
 							],
@@ -36834,7 +36834,7 @@
 							}
 						],
 						"name": "ReturnWorkflow",
-						"package": "@medusajs/workflows-sdk"
+						"package": "/workflows-sdk"
 					}
 				}
 			],
@@ -36844,7 +36844,7 @@
 					"type": "reference",
 					"target": 63984,
 					"name": "T",
-					"package": "@medusajs/workflows-sdk",
+					"package": "/workflows-sdk",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -36865,7 +36865,7 @@
 						}
 					],
 					"name": "ReturnWorkflow",
-					"package": "@medusajs/workflows-sdk"
+					"package": "/workflows-sdk"
 				},
 				"trueType": {
 					"type": "reference",
@@ -36874,7 +36874,7 @@
 						"qualifiedName": "TData"
 					},
 					"name": "TData",
-					"package": "@medusajs/workflows-sdk",
+					"package": "/workflows-sdk",
 					"refersToTypeParameter": true
 				},
 				"falseType": {
@@ -36914,7 +36914,7 @@
 								"type": "reference",
 								"target": 63875,
 								"name": "WorkflowData",
-								"package": "@medusajs/workflows-sdk"
+								"package": "/workflows-sdk"
 							}
 						]
 					}
@@ -36955,7 +36955,7 @@
 											"type": "reference",
 											"target": 64412,
 											"name": "T",
-											"package": "@medusajs/workflows-sdk",
+											"package": "/workflows-sdk",
 											"refersToTypeParameter": true
 										},
 										"extendsType": {
@@ -36968,7 +36968,7 @@
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										},
 										"trueType": {
 											"type": "reference",
@@ -36977,7 +36977,7 @@
 												"qualifiedName": "U"
 											},
 											"name": "U",
-											"package": "@medusajs/workflows-sdk",
+											"package": "/workflows-sdk",
 											"refersToTypeParameter": true
 										},
 										"falseType": {
@@ -36986,7 +36986,7 @@
 												"type": "reference",
 												"target": 64412,
 												"name": "T",
-												"package": "@medusajs/workflows-sdk",
+												"package": "/workflows-sdk",
 												"refersToTypeParameter": true
 											},
 											"extendsType": {
@@ -37003,7 +37003,7 @@
 														"type": "reference",
 														"target": 64412,
 														"name": "T",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													}
 												},
@@ -37018,14 +37018,14 @@
 																"qualifiedName": "K"
 															},
 															"name": "K",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														},
 														"objectType": {
 															"type": "reference",
 															"target": 64412,
 															"name": "T",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														}
 													},
@@ -37039,7 +37039,7 @@
 															}
 														],
 														"name": "WorkflowData",
-														"package": "@medusajs/workflows-sdk"
+														"package": "/workflows-sdk"
 													},
 													"trueType": {
 														"type": "reference",
@@ -37048,7 +37048,7 @@
 															"qualifiedName": "U"
 														},
 														"name": "U",
-														"package": "@medusajs/workflows-sdk",
+														"package": "/workflows-sdk",
 														"refersToTypeParameter": true
 													},
 													"falseType": {
@@ -37060,14 +37060,14 @@
 																"qualifiedName": "K"
 															},
 															"name": "K",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														},
 														"objectType": {
 															"type": "reference",
 															"target": 64412,
 															"name": "T",
-															"package": "@medusajs/workflows-sdk",
+															"package": "/workflows-sdk",
 															"refersToTypeParameter": true
 														}
 													}
@@ -37103,7 +37103,7 @@
 										"type": "reference",
 										"target": 63923,
 										"name": "StepExecutionContext",
-										"package": "@medusajs/workflows-sdk"
+										"package": "/workflows-sdk"
 									}
 								}
 							],
@@ -37201,7 +37201,7 @@
 										"type": "reference",
 										"target": 64417,
 										"name": "ThenResolver",
-										"package": "@medusajs/workflows-sdk",
+										"package": "/workflows-sdk",
 										"refersToTypeParameter": true
 									}
 								}
@@ -37219,7 +37219,7 @@
 											"type": "reference",
 											"target": 64417,
 											"name": "ThenResolver",
-											"package": "@medusajs/workflows-sdk",
+											"package": "/workflows-sdk",
 											"refersToTypeParameter": true
 										}
 									],
@@ -37236,7 +37236,7 @@
 										}
 									],
 									"name": "WorkflowData",
-									"package": "@medusajs/workflows-sdk"
+									"package": "/workflows-sdk"
 								},
 								"trueType": {
 									"type": "union",
@@ -37252,12 +37252,12 @@
 														"qualifiedName": "ReturnedWorkflowData"
 													},
 													"name": "ReturnedWorkflowData",
-													"package": "@medusajs/workflows-sdk",
+													"package": "/workflows-sdk",
 													"refersToTypeParameter": true
 												}
 											],
 											"name": "WorkflowData",
-											"package": "@medusajs/workflows-sdk"
+											"package": "/workflows-sdk"
 										},
 										{
 											"type": "intrinsic",
@@ -37276,7 +37276,7 @@
 											"type": "reference",
 											"target": 64417,
 											"name": "ThenResolver",
-											"package": "@medusajs/workflows-sdk",
+											"package": "/workflows-sdk",
 											"refersToTypeParameter": true
 										}
 									],
@@ -37420,7 +37420,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/workflows-sdk",
+	"packageName": "/workflows-sdk",
 	"symbolIdMap": {
 		"63621": {
 			"sourceFileName": "../../../../packages/core/workflows-sdk/src/utils/composer/index.ts",

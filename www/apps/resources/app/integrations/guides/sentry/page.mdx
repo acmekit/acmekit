@@ -1,5 +1,5 @@
 import { Card, Prerequisites, Details, WorkflowDiagram } from "docs-ui"
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 
 export const metadata = {
   title: `Integrate Sentry (Instrumentation) with Medusa`,
@@ -113,7 +113,7 @@ You should already have a file named `instrumentation.ts` in your Medusa applica
 ```ts title="instrumentation.ts"
 import Sentry from "@sentry/node"
 import otelApi from "@opentelemetry/api"
-import { registerOtel } from "@medusajs/medusa"
+import { registerOtel } from "/medusa"
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-grpc" 
 import { 
   SentrySpanProcessor, 
@@ -228,8 +228,8 @@ An API route is created in a `route.ts` file under a sub-directory of the `src/a
 So, to create an API route at the path `/test-sentry`, create the file `src/api/test-sentry/route.ts` with the following content:
 
 ```ts title="src/api/test-sentry/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { MedusaError } from "/framework/utils"
 
 export async function GET(
   req: MedusaRequest,
@@ -306,8 +306,8 @@ import {
   MedusaNextFunction, 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { MedusaError } from "/framework/utils"
 import * as Sentry from "@sentry/node"
 
 const originalErrorHandler = errorHandler()

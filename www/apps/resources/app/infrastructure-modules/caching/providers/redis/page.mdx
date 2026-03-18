@@ -32,11 +32,11 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/caching",
+      resolve: "/medusa/caching",
       options: {
         providers: [
           {
-            resolve: "@medusajs/caching-redis",
+            resolve: "/caching-redis",
             id: "caching-redis",
             // Optional, makes this the default caching provider
             is_default: true,
@@ -147,8 +147,8 @@ For example, you can create a workflow in `src/workflows/cache-products.ts` that
 import {
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows" 
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows" 
 
 export const cacheProductsWorkflow = createWorkflow(
   "cache-products",
@@ -172,7 +172,7 @@ export const cacheProductsWorkflow = createWorkflow(
 Next, execute that workflow in an [API route](!docs!/learn/fundamentals/api-routes). For example, create a route at `src/api/cache-product/route.ts` with the following content:
 
 ```ts title="src/api/cache-product/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { cacheProductsWorkflow } from "../../workflows/cache-products"
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {

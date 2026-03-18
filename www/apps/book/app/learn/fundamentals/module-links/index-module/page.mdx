@@ -39,7 +39,7 @@ You can also ingest custom data models into the Index Module, as explained in th
 To install the Index Module, run the following command in your Medusa project to install its package:
 
 ```bash npm2yarn
-npm install @medusajs/index
+npm install /index
 ```
 
 Then, add the Index Module to your Medusa configuration in `medusa-config.ts`:
@@ -50,7 +50,7 @@ module.exports = defineConfig({
   modules: [
     // ...
     {
-      resolve: "@medusajs/index",
+      resolve: "/index",
     },
   ],
 })
@@ -139,7 +139,7 @@ export const basicHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -189,8 +189,8 @@ export const filterableHighlights = [
 
 ```ts title="src/links/product-brand.ts" highlights={filterableHighlights}
 import BrandModule from "../modules/brand"
-import ProductModule from "@medusajs/medusa/product"
-import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "/medusa/product"
+import { defineLink } from "/framework/utils"
 
 export default defineLink(
   {
@@ -233,7 +233,7 @@ You can now filter products by their brand, and vice versa. For example:
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -303,7 +303,7 @@ export const paginationHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -763,7 +763,7 @@ The `index` method supports the same configurations. For example, if you add the
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest,
@@ -807,7 +807,7 @@ import {
   createWorkflow,
   StepResponse,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const retrieveBrandsStep = createStep(
   "retrieve-brands",

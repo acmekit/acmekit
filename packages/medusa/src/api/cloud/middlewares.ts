@@ -1,4 +1,4 @@
-import { authenticate, MiddlewareRoute } from "@medusajs/framework/http"
+import { authenticate, MiddlewareRoute } from "/framework/http"
 
 export const cloudRoutesMiddlewares: MiddlewareRoute[] = [
   {

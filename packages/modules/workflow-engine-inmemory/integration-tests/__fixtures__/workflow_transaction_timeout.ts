@@ -2,7 +2,7 @@ import {
   createStep,
   createWorkflow,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { setTimeout } from "timers/promises"
 
 const step_1 = createStep(

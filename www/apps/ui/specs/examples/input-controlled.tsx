@@ -1,4 +1,4 @@
-import { Input } from "@medusajs/ui"
+import { Input } from "/ui"
 import { useState } from "react"
 
 export default function InputControlled() {

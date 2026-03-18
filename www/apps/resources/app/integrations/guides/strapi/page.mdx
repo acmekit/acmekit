@@ -9,7 +9,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details, WorkflowDiagram, H3 } from "docs-ui"
-import { Github } from "@medusajs/icons"
+import { Github } from "/icons"
 
 export const metadata = {
   title: `Integrate Strapi (CMS) with Medusa`,
@@ -707,9 +707,9 @@ A [loader](!docs!/learn/fundamentals/modules/loaders) is an asynchronous functio
 To create the loader that initializes the Strapi client, create the file `src/modules/strapi/loaders/init-client.ts` with the following content:
 
 ```ts title="src/modules/strapi/loaders/init-client.ts" badgeLabel="Medusa application" badgeColor="green"
-import { LoaderOptions } from "@medusajs/framework/types"
-import { asValue } from "@medusajs/framework/awilix"
-import { MedusaError } from "@medusajs/framework/utils"
+import { LoaderOptions } from "/framework/types"
+import { asValue } from "/framework/awilix"
+import { MedusaError } from "/framework/utils"
 import { strapi } from "@strapi/client"
 
 export type ModuleOptions = {
@@ -771,7 +771,7 @@ Create the file `src/modules/strapi/service.ts` with the following content:
 
 ```ts title="src/modules/strapi/service.ts" badgeLabel="Medusa application" badgeColor="green"
 import type { StrapiClient } from "@strapi/client"
-import { Logger } from "@medusajs/framework/types"
+import { Logger } from "/framework/types"
 import { ModuleOptions } from "./loaders/init-client"
 
 type InjectedDependencies = {
@@ -939,7 +939,7 @@ Next, you'll add a method to delete images from Strapi. This will be useful when
 In `src/modules/strapi/service.ts`, add the following import at the top of the file:
 
 ```ts title="src/modules/strapi/service.ts" badgeLabel="Medusa application" badgeColor="green"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 ```
 
 Then, add the following method to the `StrapiModuleService` class:
@@ -1112,7 +1112,7 @@ The final piece of a module is its definition, which you export in an `index.ts`
 To create the module's definition, create the file `src/modules/strapi/index.ts` with the following content:
 
 ```ts title="src/modules/strapi/index.ts" badgeLabel="Medusa application" badgeColor="green"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import StrapiModuleService from "./service"
 import initStrapiClientLoader from "./loaders/init-client"
 
@@ -1210,8 +1210,8 @@ In this step, you'll define a virtual read-only link between the product content
 To define a virtual read-only link, create the file `src/links/product-strapi.ts` with the following content:
 
 ```ts title="src/links/product-strapi.ts" badgeLabel="Medusa application" badgeColor="green"
-import { defineLink } from "@medusajs/framework/utils"
-import ProductModule from "@medusajs/medusa/product"
+import { defineLink } from "/framework/utils"
+import ProductModule from "/medusa/product"
 import { STRAPI_MODULE } from "../modules/strapi"
 
 export default defineLink(
@@ -1385,7 +1385,7 @@ The `createOptionsInStrapiStep` creates product options in Strapi.
 To create the step, create the file `src/workflows/steps/create-options-in-strapi.ts` with the following content:
 
 ```ts title="src/workflows/steps/create-options-in-strapi.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { STRAPI_MODULE } from "../../modules/strapi"
 import StrapiModuleService, { Collection } from "../../modules/strapi/service"
 
@@ -1476,7 +1476,7 @@ The `createOptionValuesInStrapiStep` creates product option values in Strapi.
 To create the step, create the file `src/workflows/steps/create-option-values-in-strapi.ts` with the following content:
 
 ```ts title="src/workflows/steps/create-option-values-in-strapi.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { STRAPI_MODULE } from "../../modules/strapi"
 import StrapiModuleService, { Collection } from "../../modules/strapi/service"
 
@@ -1555,9 +1555,9 @@ The `updateProductOptionValuesMetadataStep` stores the Strapi IDs of the created
 To create the step, create the file `src/workflows/steps/update-product-option-values-metadata.ts` with the following content:
 
 ```ts title="src/workflows/steps/update-product-option-values-metadata.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { Modules } from "@medusajs/framework/utils"
-import { ProductOptionValueDTO } from "@medusajs/framework/types"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { ProductOptionValueDTO } from "/framework/types"
 
 export type UpdateProductOptionValuesMetadataInput = {
   updates: {
@@ -1636,9 +1636,9 @@ import {
   createWorkflow, 
   WorkflowResponse,
   transform,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { createOptionsInStrapiStep } from "./steps/create-options-in-strapi"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { 
   CreateOptionValuesInStrapiInput, 
   createOptionValuesInStrapiStep,
@@ -1833,10 +1833,10 @@ The `uploadImagesToStrapiStep` uploads images to Strapi. You'll use it to upload
 To create the step, create the file `src/workflows/steps/upload-images-to-strapi.ts` with the following content:
 
 ```ts title="src/workflows/steps/upload-images-to-strapi.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { STRAPI_MODULE } from "../../modules/strapi"
 import StrapiModuleService from "../../modules/strapi/service"
-import { promiseAll } from "@medusajs/framework/utils"
+import { promiseAll } from "/framework/utils"
 
 export type UploadImagesToStrapiInput = {
   items: {
@@ -1909,7 +1909,7 @@ The `createVariantsInStrapiStep` creates product variants in Strapi.
 To create the step, create the file `src/workflows/steps/create-variants-in-strapi.ts` with the following content:
 
 ```ts title="src/workflows/steps/create-variants-in-strapi.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { STRAPI_MODULE } from "../../modules/strapi"
 import StrapiModuleService, { Collection } from "../../modules/strapi/service"
 
@@ -1994,9 +1994,9 @@ The `updateProductVariantsMetadataStep` stores the Strapi IDs of the created pro
 To create the step, create the file `src/workflows/steps/update-product-variants-metadata.ts` with the following content:
 
 ```ts title="src/workflows/steps/update-product-variants-metadata.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { Modules } from "@medusajs/framework/utils"
-import { ProductVariantDTO } from "@medusajs/framework/types"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { ProductVariantDTO } from "/framework/types"
 
 export type UpdateProductVariantsMetadataInput = {
   updates: {
@@ -2076,8 +2076,8 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
-import { acquireLockStep, releaseLockStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { acquireLockStep, releaseLockStep, useQueryGraphStep } from "/medusa/core-flows"
 import { CreateVariantsInStrapiInput } from "./steps/create-variants-in-strapi"
 import { createVariantsInStrapiStep } from "./steps/create-variants-in-strapi"
 import { uploadImagesToStrapiStep } from "./steps/upload-images-to-strapi"
@@ -2323,7 +2323,7 @@ The `createProductInStrapiStep` creates a product in Strapi.
 To create the step, create the file `src/workflows/steps/create-product-in-strapi.ts` with the following content:
 
 ```ts title="src/workflows/steps/create-product-in-strapi.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { STRAPI_MODULE } from "../../modules/strapi"
 import StrapiModuleService, { Collection } from "../../modules/strapi/service"
 
@@ -2389,7 +2389,7 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   CreateProductInStrapiInput, 
   createProductInStrapiStep,
@@ -2400,7 +2400,7 @@ import {
   updateProductsWorkflow, 
   acquireLockStep, 
   releaseLockStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { createOptionsInStrapiWorkflow } from "./create-options-in-strapi"
 import { createVariantsInStrapiWorkflow } from "./create-variants-in-strapi"
 
@@ -2564,7 +2564,7 @@ To create the subscriber, create the file `src/subscribers/product-created-strap
 import {
   type SubscriberConfig,
   type SubscriberArgs,
-} from "@medusajs/framework"
+} from "/framework"
 import { createProductInStrapiWorkflow } from "../workflows/create-product-in-strapi"
 
 export default async function productCreatedStrapiSyncHandler({
@@ -2726,7 +2726,7 @@ The `prepareStrapiUpdateDataStep` extracts the data to update from the Strapi we
 To create the step, create the file `src/workflows/steps/prepare-strapi-update-data.ts` with the following content:
 
 ```ts title="src/workflows/steps/prepare-strapi-update-data.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 export const prepareStrapiUpdateDataStep = createStep(
   "prepare-strapi-update-data",
@@ -2785,8 +2785,8 @@ The `clearProductCacheStep` clears the product cache in Medusa to ensure that up
 To create the step, create the file `src/workflows/steps/clear-product-cache.ts` with the following content:
 
 ```ts title="src/workflows/steps/clear-product-cache.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { Modules } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
 
 type ClearProductCacheInput = {
   productId: string | string[]
@@ -2824,9 +2824,9 @@ The `updateProductOptionValueStep` updates product option values in Medusa based
 To create the step, create the file `src/workflows/steps/update-product-option-value.ts` with the following content:
 
 ```ts title="src/workflows/steps/update-product-option-value.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { Modules } from "@medusajs/framework/utils"
-import { IProductModuleService } from "@medusajs/framework/types"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { IProductModuleService } from "/framework/types"
 
 type UpdateProductOptionValueInput = {
   id: string
@@ -2892,8 +2892,8 @@ import {
   createWorkflow, 
   when,
   transform,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { prepareStrapiUpdateDataStep } from "./steps/prepare-strapi-update-data"
 import { clearProductCacheStep } from "./steps/clear-product-cache"
 import { updateProductOptionValueStep } from "./steps/update-product-option-value"
@@ -2901,11 +2901,11 @@ import {
   updateProductsWorkflow, 
   updateProductVariantsWorkflow, 
   updateProductOptionsWorkflow,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   UpsertProductDTO, 
   UpsertProductVariantDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 export type WorkflowInput = {
   entry: any
@@ -3037,8 +3037,8 @@ Refer to the [API routes](!docs!/learn/fundamentals/api-routes) to learn more ab
 To create the API route, create the file `src/api/webhooks/strapi/route.ts` with the following content:
 
 ```ts title="src/api/webhooks/strapi/route.ts" badgeLabel="Medusa application" badgeColor="green"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { simpleHash, Modules } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { simpleHash, Modules } from "/framework/utils"
 import { 
   handleStrapiWebhookWorkflow, 
   WorkflowInput,
@@ -3118,8 +3118,8 @@ import {
   MedusaNextFunction, 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { Modules } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { Modules } from "/framework/utils"
 
 export default defineMiddlewares({
   routes: [
@@ -3199,11 +3199,11 @@ module.exports = defineConfig({
   modules: [
     // ...
     {
-      resolve: "@medusajs/medusa/caching",
+      resolve: "/medusa/caching",
       options: {
         providers: [
           {
-            resolve: "@medusajs/caching-redis",
+            resolve: "/caching-redis",
             id: "caching-redis",
             options: {
               redisUrl: process.env.REDIS_URL,
@@ -3414,7 +3414,7 @@ Next, add utilities that will allow you to easily retrieve Strapi product data f
 Create the file `src/lib/util/strapi.ts` with the following content:
 
 ```ts title="src/lib/util/strapi.ts" badgeLabel="Storefront" badgeColor="blue"
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import {
   StrapiProduct,
   StrapiMedia,
@@ -3831,8 +3831,8 @@ Next, you'll show Strapi option titles and values on the product details page.
 Replace the content of `src/modules/products/components/product-actions/option-select.tsx` with the following:
 
 ```tsx title="src/modules/products/components/product-actions/option-select.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { HttpTypes } from "@medusajs/types"
-import { clx } from "@medusajs/ui"
+import { HttpTypes } from "/types"
+import { clx } from "/ui"
 import React from "react"
 import { getOptionValueText } from "@lib/util/strapi"
 
@@ -3992,8 +3992,8 @@ Finally, you'll customize the line item options to either show Strapi variant ti
 Replace the content of `src/modules/common/components/line-item-options/index.tsx` with the following:
 
 ```tsx title="src/modules/common/components/line-item-options/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { HttpTypes } from "@medusajs/types"
-import { Text } from "@medusajs/ui"
+import { HttpTypes } from "/types"
+import { Text } from "/ui"
 import { getVariantTitle, getVariantOptionValues } from "@lib/util/strapi"
 
 type LineItemOptionsProps = {

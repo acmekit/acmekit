@@ -27,12 +27,12 @@ Then, create the `integration-tests/setup.js` file with the following content:
 
 <Note>
 
-If you're using a version prior to Medusa v2.11.0, change `@medusajs/framework/mikro-orm/core` to `@mikro-orm/core`. Learn more in the [v2.11.0 codemod](!docs!/learn/codemods/replace-imports).
+If you're using a version prior to Medusa v2.11.0, change `/framework/mikro-orm/core` to `@mikro-orm/core`. Learn more in the [v2.11.0 codemod](!docs!/learn/codemods/replace-imports).
 
 </Note>
 
 ```js title="integration-tests/setup.js"
-const { MetadataStorage } = require("@medusajs/framework/mikro-orm/core")
+const { MetadataStorage } = require("/framework/mikro-orm/core")
 
 MetadataStorage.clear()
 ```

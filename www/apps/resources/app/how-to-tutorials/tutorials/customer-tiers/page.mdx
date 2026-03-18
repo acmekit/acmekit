@@ -14,7 +14,7 @@ products:
   - cart
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
 
 export const metadata = {
@@ -140,7 +140,7 @@ For the Tier Module, you need to define two data models:
 So, create the file `src/modules/tier/models/tier.ts` with the following content:
 
 ```ts title="src/modules/tier/models/tier.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { TierRule } from "./tier-rule"
 
 export const Tier = model.define("tier", {
@@ -171,7 +171,7 @@ Learn more about defining data model properties in the [Property Types documenta
 Next, create the file `src/modules/tier/models/tier-rule.ts` with the following content:
 
 ```ts title="src/modules/tier/models/tier-rule.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { Tier } from "./tier"
 
 export const TierRule = model.define("tier_rule", {
@@ -220,7 +220,7 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 To create the Tier Module's service, create the file `src/modules/tier/service.ts` with the following content:
 
 ```ts title="src/modules/tier/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { Tier } from "./models/tier"
 import { TierRule } from "./models/tier-rule"
 
@@ -251,7 +251,7 @@ So, create the file `src/modules/tier/index.ts` with the following content:
 
 ```ts title="src/modules/tier/index.ts"
 import TierModuleService from "./service"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 
 export const TIER_MODULE = "tier"
 
@@ -338,9 +338,9 @@ In this step, you'll define:
 You can define links between data models in a TypeScript or JavaScript file under the `src/links` directory. So, create the file `src/links/tier-customer.ts` with the following content:
 
 ```ts title="src/links/tier-customer.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import TierModule from "../modules/tier"
-import CustomerModule from "@medusajs/medusa/customer"
+import CustomerModule from "/medusa/customer"
 
 export default defineLink(
   {
@@ -366,9 +366,9 @@ This link allows you to retrieve and manage customers associated with a tier, an
 Next, create the file `src/links/tier-promotion.ts` with the following content:
 
 ```ts title="src/links/tier-promotion.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import TierModule from "../modules/tier"
-import PromotionModule from "@medusajs/medusa/promotion"
+import PromotionModule from "/medusa/promotion"
 
 export default defineLink(
   {
@@ -465,7 +465,7 @@ Medusa provides the last step out of the box. You'll create the other steps befo
 First, you'll create a step that creates a tier. Create the file `src/workflows/steps/create-tier.ts` with the following content:
 
 ```ts title="src/workflows/steps/create-tier.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { TIER_MODULE } from "../../modules/tier"
 
 export type CreateTierStepInput = {
@@ -520,7 +520,7 @@ The `createTierRulesStep` creates tier rules for a tier.
 Create the file `src/workflows/steps/create-tier-rules.ts` with the following content:
 
 ```ts title="src/workflows/steps/create-tier-rules.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { TIER_MODULE } from "../../modules/tier"
 
 export type CreateTierRulesStepInput = {
@@ -574,8 +574,8 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { createTierStep } from "./steps/create-tier"
 import { createTierRulesStep } from "./steps/create-tier-rules"
 
@@ -674,7 +674,7 @@ Create the file `src/api/admin/tiers/route.ts` with the following content:
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
@@ -682,8 +682,8 @@ As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0),
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { z } from "@medusajs/framework/zod"
+} from "/framework/http"
+import { z } from "/framework/zod"
 import { createTierWorkflow } from "../../../workflows/create-tier"
 
 export const CreateTierSchema = z.object({
@@ -735,7 +735,7 @@ To apply a middleware to the API route, create the file `src/api/middlewares.ts`
 import {
   defineMiddlewares,
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { CreateTierSchema } from "./admin/tiers/route"
 
 export default defineMiddlewares({
@@ -807,8 +807,8 @@ In `src/api/middlewares.ts`, add the following imports at the top of the file:
 ```ts title="src/api/middlewares.ts"
 import {
   validateAndTransformQuery,
-} from "@medusajs/framework/http"
-import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+} from "/framework/http"
+import { createFindParams } from "/medusa/api/utils/validators"
 ```
 
 Then, add the following object to the `routes` array passed to `defineMiddlewares`:
@@ -870,7 +870,7 @@ export const sdkHighlights = [
 ]
 
 ```ts title="src/admin/lib/sdk.ts" highlights={sdkHighlights}
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
@@ -898,7 +898,7 @@ Learn more about UI routes in the [UI Routes documentation](!docs!/learn/fundame
 To create the UI route, create the file `src/admin/routes/tiers/page.tsx` with the following content:
 
 ```tsx title="src/admin/routes/tiers/page.tsx" collapsibleLines="1-16" expandButtonLabel="Show Imports"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { defineRouteConfig } from "/admin-sdk"
 import {
   Container,
   Heading,
@@ -907,9 +907,9 @@ import {
   createDataTableColumnHelper,
   useDataTable,
   DataTablePaginationState,
-} from "@medusajs/ui"
+} from "/ui"
 import { useNavigate, Link } from "react-router-dom"
-import { UserGroup } from "@medusajs/icons"
+import { UserGroup } from "/icons"
 import { useQuery } from "@tanstack/react-query"
 import { useState, useMemo } from "react"
 import { sdk } from "../../lib/sdk"
@@ -1034,8 +1034,8 @@ Next, you'll create a component that shows a form to create a tier in a modal.
 Create the file `src/admin/components/create-tier-modal.tsx` with the following content:
 
 ```tsx title="src/admin/components/create-tier-modal.tsx" collapsibleLines="1-9" expandButtonLabel="Show Imports"
-import { FocusModal, Heading, Label, Input, Button, Select, IconButton, toast } from "@medusajs/ui"
-import { Trash } from "@medusajs/icons"
+import { FocusModal, Heading, Label, Input, Button, Select, IconButton, toast } from "/ui"
+import { Trash } from "/icons"
 import { useForm, Controller, FormProvider } from "react-hook-form"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
@@ -1401,7 +1401,7 @@ To create the API route, create the file `src/api/admin/tiers/[id]/route.ts` wit
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export async function GET(
   req: MedusaRequest,
@@ -1538,7 +1538,7 @@ The `updateTierStep` updates a tier.
 To create the step, create the file `src/workflows/steps/update-tier.ts` with the following content:
 
 ```ts title="src/workflows/steps/update-tier.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { TIER_MODULE } from "../../modules/tier"
 import TierModuleService from "../../modules/tier/service"
 
@@ -1588,7 +1588,7 @@ The `deleteTierRulesStep` deletes tier rules.
 To create the step, create the file `src/workflows/steps/delete-tier-rules.ts` with the following content:
 
 ```ts title="src/workflows/steps/delete-tier-rules.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { TIER_MODULE } from "../../modules/tier"
 import TierModuleService from "../../modules/tier/service"
 
@@ -1647,8 +1647,8 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { updateTierStep } from "./steps/update-tier"
 import { deleteTierRulesStep } from "./steps/delete-tier-rules"
 import { createTierRulesStep } from "./steps/create-tier-rules"
@@ -1757,7 +1757,7 @@ Next, you'll create the API route that exposes the workflow's functionality to c
 In `src/api/admin/tiers/[id]/route.ts`, add the following imports at the top of the file:
 
 ```ts title="src/api/admin/tiers/[id]/route.ts"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 import { updateTierWorkflow } from "../../../../workflows/update-tier"
 ```
 
@@ -1846,8 +1846,8 @@ To create the API route, create the file `src/api/admin/tiers/[id]/customers/rou
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 
 export async function GET(
   req: MedusaRequest,
@@ -1926,7 +1926,7 @@ The Index Module is currently experimental, so you need to install and configure
 To install the Index Module, run the following command in your Medusa application's directory:
 
 ```bash npm2yarn
-npm install @medusajs/index
+npm install /index
 ```
 
 Then, add the following to your Medusa application's configuration file:
@@ -1936,7 +1936,7 @@ export default config({
   modules: [
     // ...
     {
-      resolve: "@medusajs/index",
+      resolve: "/index",
     },
   ],
 })
@@ -1983,13 +1983,13 @@ You'll first create a drawer component that displays a form to edit the tier's d
 To create the drawer component, create the file `src/admin/components/edit-tier-drawer.tsx` with the following content:
 
 ```tsx title="src/admin/components/edit-tier-drawer.tsx"
-import { Drawer, Heading, Label, Input, Button, Select, IconButton, toast } from "@medusajs/ui"
+import { Drawer, Heading, Label, Input, Button, Select, IconButton, toast } from "/ui"
 import { useForm, Controller, FormProvider } from "react-hook-form"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
 import { useState, useEffect } from "react"
 import { Tier } from "../routes/tiers/page"
-import { Trash } from "@medusajs/icons"
+import { Trash } from "/icons"
 
 type EditTierFormData = {
   name: string
@@ -2328,7 +2328,7 @@ Next, you'll create a component that displays the details of a tier, with a butt
 To create the component, create the file `src/admin/components/tier-details-section.tsx` with the following content:
 
 ```tsx title="src/admin/components/tier-details-section.tsx"
-import { Code, Container, Heading, Text } from "@medusajs/ui"
+import { Code, Container, Heading, Text } from "/ui"
 import { Link } from "react-router-dom"
 import { Tier } from "../routes/tiers/page"
 import { EditTierDrawer } from "./edit-tier-drawer"
@@ -2384,7 +2384,7 @@ Next, you'll create a component that displays the tier rules in a table.
 To create the component, create the file `src/admin/components/tier-rules-table.tsx` with the following content:
 
 ```tsx title="src/admin/components/tier-rules-table.tsx"
-import { Heading, DataTable, createDataTableColumnHelper, useDataTable, Container } from "@medusajs/ui"
+import { Heading, DataTable, createDataTableColumnHelper, useDataTable, Container } from "/ui"
 import { Tier } from "../routes/tiers/page"
 
 type TierRulesTableProps = {
@@ -2446,7 +2446,7 @@ Next, you'll create a component that displays the customers in a tier in a table
 To create the component, create the file `src/admin/components/tier-customers-table.tsx` with the following content:
 
 ```tsx title="src/admin/components/tier-customers-table.tsx"
-import { Heading, DataTable, createDataTableColumnHelper, useDataTable, Container, DataTablePaginationState } from "@medusajs/ui"
+import { Heading, DataTable, createDataTableColumnHelper, useDataTable, Container, DataTablePaginationState } from "/ui"
 import { sdk } from "../lib/sdk"
 import { useQuery } from "@tanstack/react-query"
 import { useMemo, useState } from "react"
@@ -2550,7 +2550,7 @@ Finally, you'll create the UI route that displays the details of a tier.
 To create the UI route, create the file `src/admin/routes/tiers/[id]/page.tsx` with the following content:
 
 ```tsx title="src/admin/routes/tiers/[id]/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { defineRouteConfig } from "/admin-sdk"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../../../lib/sdk"
@@ -2773,8 +2773,8 @@ The `validateCustomerStep` validates that the customer is a registered customer.
 To create the step, create the file `src/workflows/steps/validate-customer.ts` with the following content:
 
 ```ts title="src/workflows/steps/validate-customer.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { MedusaError } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
 
 export type ValidateCustomerStepInput = {
   customer: any
@@ -2813,7 +2813,7 @@ The `determineTierStep` determines the appropriate tier based on the customer's 
 To create the step, create the file `src/workflows/steps/determine-tier.ts` with the following content:
 
 ```ts title="src/workflows/steps/determine-tier.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { TIER_MODULE } from "../../modules/tier"
 import TierModuleService from "../../modules/tier/service"
 
@@ -2855,13 +2855,13 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import {
   useQueryGraphStep,
   createRemoteLinkStep,
   dismissRemoteLinkStep,
-} from "@medusajs/medusa/core-flows"
-import { Modules, OrderStatus } from "@medusajs/framework/utils"
+} from "/medusa/core-flows"
+import { Modules, OrderStatus } from "/framework/utils"
 import { validateCustomerStep } from "./steps/validate-customer"
 import { determineTierStep } from "./steps/determine-tier"
 import { TIER_MODULE } from "../modules/tier"
@@ -2979,7 +2979,7 @@ To create the subscriber, create the file `src/subscribers/order-placed.ts` with
 import {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 import { updateCustomerTierOnOrderWorkflow } from "../workflows/update-customer-tier-on-order"
 
 export default async function orderPlacedHandler({
@@ -3131,7 +3131,7 @@ The `validateTierPromotionStep` validates that the customer is registered and ha
 To create the step, create the file `src/workflows/steps/validate-tier-promotion.ts` with the following content:
 
 ```ts title="src/workflows/steps/validate-tier-promotion.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 export type ValidateTierPromotionStepInput = {
   customer: {
@@ -3183,14 +3183,14 @@ import {
   WorkflowResponse,
   transform,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   acquireLockStep,
   releaseLockStep,
   updateCartPromotionsWorkflow, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
-import { PromotionActions } from "@medusajs/framework/utils"
+} from "/medusa/core-flows"
+import { PromotionActions } from "/framework/utils"
 import { validateTierPromotionStep } from "./steps/validate-tier-promotion"
 
 export type AddTierPromotionToCartWorkflowInput = {
@@ -3300,7 +3300,7 @@ To create the subscriber, create the file `src/subscribers/cart-updated.ts` with
 import {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 import { addTierPromotionToCartWorkflow } from "../workflows/add-tier-promotion-to-cart"
 
 export default async function cartUpdatedHandler({
@@ -3352,9 +3352,9 @@ To ensure that customers don't add promotions that belong to different tiers, yo
 To consume the hook, create the file `src/workflows/hooks/update-cart-promotions-validate.ts` with the following content:
 
 ```ts title="src/workflows/hooks/update-cart-promotions-validate.ts"
-import { updateCartPromotionsWorkflow } from "@medusajs/medusa/core-flows"
-import { MedusaError } from "@medusajs/framework/utils"
-import { PromotionActions } from "@medusajs/framework/utils"
+import { updateCartPromotionsWorkflow } from "/medusa/core-flows"
+import { MedusaError } from "/framework/utils"
+import { PromotionActions } from "/framework/utils"
 
 updateCartPromotionsWorkflow.hooks.validate(async ({ input, cart }, { container }) => {
   const query = container.resolve("query")
@@ -3440,8 +3440,8 @@ Next, you'll add similar validation for the cart's promotions when completing th
 Create the file `src/workflows/hooks/complete-cart-validate.ts` with the following content:
 
 ```ts title="src/workflows/hooks/complete-cart-validate.ts"
-import { completeCartWorkflow } from "@medusajs/medusa/core-flows"
-import { MedusaError } from "@medusajs/framework/utils"
+import { completeCartWorkflow } from "/medusa/core-flows"
+import { MedusaError } from "/framework/utils"
 
 completeCartWorkflow.hooks.validate(async ({ cart }, { container }) => {
   const query = container.resolve("query")
@@ -3572,11 +3572,11 @@ To create the API route, create the file `src/api/store/customers/me/next-tier/r
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { TIER_MODULE } from "../../../../../modules/tier"
-import { MedusaError } from "@medusajs/framework/utils"
-import { z } from "@medusajs/framework/zod"
-import { OrderStatus } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
+import { z } from "/framework/zod"
+import { OrderStatus } from "/framework/utils"
 
 export const NextTierSchema = z.object({
   region_id: z.string(),
@@ -3809,7 +3809,7 @@ Create the file `src/modules/common/customer-tier/index.tsx` with the following 
 
 ```tsx title="src/modules/common/customer-tier/index.tsx" badgeLabel="Storefront" badgeColor="blue"
 import { convertToLocale } from "@lib/util/money"
-import { clx } from "@medusajs/ui"
+import { clx } from "/ui"
 import { CustomerNextTier } from "types/tier"
 
 type CustomerTierProps = {

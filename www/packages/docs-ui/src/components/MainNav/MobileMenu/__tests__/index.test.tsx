@@ -8,7 +8,7 @@ vi.mock("@/components/Button", () => ({
   Button: (props: ButtonProps) => <button {...props} />,
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   BarsThree: () => <svg data-testid="bars-icon" />,
   XMark: () => <svg data-testid="xmark-icon" />,
   ArrowUturnLeft: () => <svg data-testid="arrow-icon" />,

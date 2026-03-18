@@ -1,4 +1,4 @@
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { TFunction } from "i18next"
 import {
   STEP_ERROR_STATES,

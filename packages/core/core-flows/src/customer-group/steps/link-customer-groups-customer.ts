@@ -1,9 +1,9 @@
 import {
   ICustomerModuleService,
   LinkWorkflowInput,
-} from "@medusajs/framework/types"
-import { Modules, promiseAll } from "@medusajs/framework/utils"
-import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
+} from "/framework/types"
+import { Modules, promiseAll } from "/framework/utils"
+import { StepResponse, createStep } from "/framework/workflows-sdk"
 
 export const linkCustomerGroupsToCustomerStepId =
   "link-customers-to-customer-group"

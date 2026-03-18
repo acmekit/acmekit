@@ -46,10 +46,10 @@ The rest of this guide always uses the \`src/modules/my-locking\` directory as a
 </Note>`,
       `## 2. Create the Locking Module Provider Service
 
-Create the file \`src/modules/my-locking/service.ts\` that holds the module provider's main service. It must implement the \`ILockingProvider\` interface imported from \`@medusajs/framework/types\`:
+Create the file \`src/modules/my-locking/service.ts\` that holds the module provider's main service. It must implement the \`ILockingProvider\` interface imported from \`/framework/types\`:
 
 \`\`\`ts title="src/modules/my-locking/service.ts"
-import { ILockingProvider } from "@medusajs/framework/types"
+import { ILockingProvider } from "/framework/types"
 
 type Options = {
   url: string
@@ -68,7 +68,7 @@ export default MyLockingProviderService
 Create the file \`src/modules/my-locking/index.ts\` with the following content:
 
 \`\`\`ts title="src/modules/my-locking/index.ts"
-import { ModuleProvider, Modules } from "@medusajs/framework/utils"
+import { ModuleProvider, Modules } from "/framework/utils"
 import MyLockingProviderService from "./service"
 
 export default ModuleProvider(Modules.LOCKING, {
@@ -86,7 +86,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/locking",
+      resolve: "/medusa/locking",
       options: {
         providers: [
           {
@@ -147,8 +147,8 @@ The Locking Module will now use your provider to handle all locking operations.
 In your workflow's step, you can resolve the Locking Module's service from the Medusa container:
 
 \`\`\`ts
-import { Modules } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",

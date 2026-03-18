@@ -22,7 +22,7 @@ When Medusa puts out a new release, all packages are updated to the same version
 
 <Note>
 
-This doesn't apply to the design-system packages, including `@medusajs/ui`, `@medusajs/ui-presets`, and `@medusajs/ui-icons`. These packages are versioned independently. However, you don't need to install and manage them separately in your Medusa application, as they are included in the `@medusajs/admin-sdk`. If you're using them in a standalone project, such as a storefront or custom admin dashboard, refer to [this section in the Medusa UI documentation](!ui!/installation/standalone-project#updating-ui-packages) for update instructions.
+This doesn't apply to the design-system packages, including `/ui`, `/ui-presets`, and `/ui-icons`. These packages are versioned independently. However, you don't need to install and manage them separately in your Medusa application, as they are included in the `/admin-sdk`. If you're using them in a standalone project, such as a storefront or custom admin dashboard, refer to [this section in the Medusa UI documentation](!ui!/installation/standalone-project#updating-ui-packages) for update instructions.
 
 </Note>
 
@@ -58,7 +58,7 @@ You can also star the [Medusa repository on GitHub](https://github.com/medusajs/
 
 Before updating a Medusa application, make sure to check the [release notes](https://github.com/medusajs/medusa/releases) for any breaking changes that require actions from your side.
 
-Then, to update your Medusa application, bump the version of all `@medusajs/*` dependencies in your `package.json`. Then, re-install dependencies:
+Then, to update your Medusa application, bump the version of all `/*` dependencies in your `package.json`. Then, re-install dependencies:
 
 ```bash npm2yarn
 npm install
@@ -88,7 +88,7 @@ For example, if the version you updated to had migrations for the Cart and Produ
 npx medusa db:rollback cart product
 ```
 
-Then, revert the update by changing the version of all `@medusajs/*` dependencies in your `package.json` to the previous version and re-installing dependencies:
+Then, revert the update by changing the version of all `/*` dependencies in your `package.json` to the previous version and re-installing dependencies:
 
 ```bash npm2yarn
 npm install
@@ -113,7 +113,7 @@ In the Medusa codebase, our team uses the following [TSDoc](https://tsdoc.org/) 
 
 ## Update Plugin Project
 
-If you have a Medusa plugin project, you only need to update its `@medusajs/*` dependencies in the `package.json` file to the latest version. Then, re-install dependencies:
+If you have a Medusa plugin project, you only need to update its `/*` dependencies in the `package.json` file to the latest version. Then, re-install dependencies:
 
 ```bash npm2yarn
 npm  install

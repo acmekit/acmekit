@@ -11,10 +11,10 @@ import { TextArea } from "@/components/TextArea"
 import { Label } from "@/components/Label"
 import { DottedSeparator } from "@/components/DottedSeparator"
 import { RadioItem } from "@/components/RadioItem"
-import { ChatBubbleLeftRight, ThumbDown, ThumbUp } from "@medusajs/icons"
+import { ChatBubbleLeftRight, ThumbDown, ThumbUp } from "/icons"
 import Link from "next/link"
 import { useSiteConfig } from "@/providers/SiteConfig"
-import { RadioGroup } from "@medusajs/ui"
+import { RadioGroup } from "/ui"
 
 export type FeedbackProps = {
   event: string

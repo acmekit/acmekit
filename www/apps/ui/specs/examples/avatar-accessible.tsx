@@ -1,4 +1,4 @@
-import { Avatar } from "@medusajs/ui"
+import { Avatar } from "/ui"
 
 export default function AvatarAccessible() {
   return (

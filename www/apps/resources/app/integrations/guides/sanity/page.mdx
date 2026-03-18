@@ -4,7 +4,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details } from "docs-ui"
-import { Github } from "@medusajs/icons"
+import { Github } from "/icons"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1732200494/Medusa%20Resources/opengraph-image_kstzrn.jpg"
 
@@ -170,7 +170,7 @@ Start by creating the file `src/modules/sanity/service.ts` with the following co
 ```ts title="src/modules/sanity/service.ts"
 import {
   Logger,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import {
   SanityClient,
 } from "@sanity/client"
@@ -312,7 +312,7 @@ Next, add the following two methods to transform a product:
 // other imports...
 import {
   ProductDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 class SanityModuleService {
   // ...
@@ -504,7 +504,7 @@ Next, you must export the Module definition, which lets Medusa know what the Mod
 Create the file `src/modules/sanity/index.ts` with the following content:
 
 ```ts title="src/modules/sanity/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import SanityModuleService from "./service"
 
 export const SANITY_MODULE = "sanity"
@@ -617,8 +617,8 @@ In this section, you'll define a link between the Product and Sanity modules.
 Links are defined in a TypeScript or JavaScript file under the `src/links` directory. So, create the file `src/links/product-sanity.ts` with the following content:
 
 ```ts title="src/links/product-sanity.ts"
-import { defineLink } from "@medusajs/framework/utils"
-import ProductModule from "@medusajs/medusa/product"
+import { defineLink } from "/framework/utils"
+import ProductModule from "/medusa/product"
 import { SANITY_MODULE } from "../modules/sanity"
 
 defineLink(
@@ -687,12 +687,12 @@ export const syncStepHighlights = [
 ]
 
 ```ts title="src/workflows/sanity-sync-products/steps/sync.ts" highlights={syncStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { ProductDTO } from "@medusajs/framework/types"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { ProductDTO } from "/framework/types"
 import { 
   ContainerRegistrationKeys,
   promiseAll,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import SanityModuleService from "../../../modules/sanity/service"
 import { SANITY_MODULE } from "../../../modules/sanity"
 
@@ -880,7 +880,7 @@ Workflows are created in a file under the `src/workflows` directory. So, create 
 import {
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { syncStep } from "./steps/sync"
 
 export type SanitySyncProductsWorkflowInput = {
@@ -943,7 +943,7 @@ export const subscriberHighlights = [
 import type { 
   SubscriberArgs, 
   SubscriberConfig,
-} from "@medusajs/medusa"
+} from "/medusa"
 import { 
   sanitySyncProductsWorkflow,
 } from "../workflows/sanity-sync-products"
@@ -1375,7 +1375,7 @@ Then, to create the API route, create the file `src/api/admin/sanity/documents/[
 import { 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import SanityModuleService from "src/modules/sanity/service"
 import { SANITY_MODULE } from "../../../../../modules/sanity"
 
@@ -1425,7 +1425,7 @@ Create the file `src/api/admin/sanity/documents/[id]/sync/route.ts` with the fol
 import { 
   MedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   sanitySyncProductsWorkflow,
 } from "../../../../../../workflows/sanity-sync-products"
@@ -1461,7 +1461,7 @@ Do not install Tanstack Query as that will cause unexpected errors in your devel
 To configure the JS SDK, create the file `src/admin/lib/sdk.ts` with the following content:
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -1521,7 +1521,7 @@ import {
   useQuery, 
   UseQueryOptions,
 } from "@tanstack/react-query"
-import { FetchError } from "@medusajs/js-sdk"
+import { FetchError } from "/js-sdk"
 
 // ...
 
@@ -1564,10 +1564,10 @@ You can now create the widget injected in a product's details page. Widgets are 
 So, create the file `src/admin/widgets/sanity-product.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/sanity-product.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { AdminProduct, DetailWidgetProps } from "@medusajs/types"
-import { ArrowUpRightOnBox } from "@medusajs/icons"
-import { Button, CodeBlock, Container, StatusBadge, toast } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { AdminProduct, DetailWidgetProps } from "/types"
+import { ArrowUpRightOnBox } from "/icons"
+import { Button, CodeBlock, Container, StatusBadge, toast } from "/ui"
 import { useState } from "react"
 import {
   useSanityDocument,
@@ -1711,8 +1711,8 @@ When you defined the `sanitySyncProductsWorkflow`, you set its `retentionTime` o
 Create the file `src/api/admin/sanity/syncs/route.ts` with the following content:
 
 ```ts title="src/api/admin/sanity/syncs/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { Modules } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework"
+import { Modules } from "/framework/utils"
 import { 
   sanitySyncProductsWorkflow,
 } from "../../../../workflows/sanity-sync-products"
@@ -1821,8 +1821,8 @@ The `useSanitySyncs` hook sends a request to the retrieve sync executions API ro
 Finally, to create the UI route, create the file `src/admin/routes/sanity/page.tsx` with the following content:
 
 ```tsx title="src/admin/routes/sanity/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Sanity } from "@medusajs/icons"
+import { defineRouteConfig } from "/admin-sdk"
+import { Sanity } from "/icons"
 import {
   Badge,
   Button,
@@ -1831,7 +1831,7 @@ import {
   Table,
   Toaster,
   toast,
-} from "@medusajs/ui"
+} from "/ui"
 import { useSanitySyncs, useTriggerSanitySync } from "../../hooks/sanity"
 
 const SanityRoute = () => {

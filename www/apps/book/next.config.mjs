@@ -197,10 +197,10 @@ const nextConfig = {
     "/md\\-content/\\[\\.\\.\\.slug\\]": ["./app/**/*.mdx"],
   },
   outputFileTracingExcludes: {
-    "*": ["node_modules/@medusajs/icons"],
+    "*": ["node_modules//icons"],
   },
   experimental: {
-    optimizePackageImports: ["@medusajs/icons", "@medusajs/ui"],
+    optimizePackageImports: ["/icons", "/ui"],
   },
 }
 

@@ -2,7 +2,7 @@ const {
   defineConfig,
   Modules,
   ContainerRegistrationKeys,
-} = require("@medusajs/framework/utils")
+} = require("/framework/utils")
 const { schema } = require("./schema")
 
 export const dbName =
@@ -30,7 +30,7 @@ Object.keys(config.modules).forEach((key) => {
 })
 
 config.modules[Modules.INDEX] = {
-  resolve: "@medusajs/index",
+  resolve: "/index",
   dependencies: [
     ContainerRegistrationKeys.LOGGER,
     Modules.EVENT_BUS,

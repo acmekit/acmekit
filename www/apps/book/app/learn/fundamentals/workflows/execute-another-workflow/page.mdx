@@ -22,10 +22,10 @@ export const workflowsHighlights = [
 ```ts highlights={workflowsHighlights} collapsibleLines="1-7" expandMoreButton="Show Imports"
 import {
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   createProductsWorkflow,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 const workflow = createWorkflow(
   "hello-world",
@@ -70,10 +70,10 @@ export const transformHighlights = [
 import {
   createWorkflow,
   transform,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   createProductsWorkflow,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 type WorkflowInput = {
   title: string
@@ -126,13 +126,13 @@ export const whenHighlights = [
 import {
   createWorkflow,
   when,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   createProductsWorkflow,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   CreateProductWorkflowInputDTO,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 type WorkflowInput = {
   product?: CreateProductWorkflowInputDTO

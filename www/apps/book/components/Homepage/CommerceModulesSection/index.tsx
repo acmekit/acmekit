@@ -1,4 +1,4 @@
-import { IconProps } from "@medusajs/icons/dist/types"
+import { IconProps } from "/icons/dist/types"
 import { HeadlineTags, ShadedBlock } from "docs-ui"
 import {
   Buildings,
@@ -18,7 +18,7 @@ import {
   Tag,
   User,
   Users,
-} from "@medusajs/icons"
+} from "/icons"
 import clsx from "clsx"
 import HomepageNewsletter from "./Newsletter"
 import Link from "next/link"

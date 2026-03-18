@@ -5,7 +5,7 @@ import Link from "next/link"
 import React, { useMemo } from "react"
 import { MenuItem, MenuItemLink, MenuItemSubMenu } from "types"
 import { SelectedMenu } from ".."
-import { TriangleRightMini } from "@medusajs/icons"
+import { TriangleRightMini } from "/icons"
 
 type MainNavMobileSubMenuProps = {
   menu: MenuItem[]

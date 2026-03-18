@@ -22,8 +22,8 @@ const eventOptions: FormattingOptionsType = {
 In your workflow's step, you can resolve the Event Module's service from the Medusa container:
 
 \`\`\`ts
-import { Modules } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",

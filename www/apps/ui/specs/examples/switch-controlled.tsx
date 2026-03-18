@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Label, Switch } from "@medusajs/ui"
+import { Label, Switch } from "/ui"
 
 export default function SwitchControlled() {
   const [checked, setChecked] = useState(false)

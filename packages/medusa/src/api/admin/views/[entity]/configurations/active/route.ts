@@ -1,13 +1,13 @@
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   AdminSetActiveViewConfigurationType,
   AdminGetActiveViewConfigurationParamsType,
 } from "../validators"
-import { HttpTypes } from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
+import { HttpTypes } from "/framework/types"
+import { Modules } from "/framework/utils"
 
 /**
  * @since 2.10.3

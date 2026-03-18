@@ -18,7 +18,7 @@ products:
   - promotion
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
 
 export const metadata = {
@@ -151,7 +151,7 @@ export const dmlHighlights = [
 ]
 
 ```ts title="src/modules/loyalty/models/loyalty-point.ts" highlights={dmlHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const LoyaltyPoint = model.define("loyalty_point", {
   id: model.id().primaryKey(),
@@ -191,9 +191,9 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 To create the Loyalty Module's service, create the file `src/modules/loyalty/service.ts` with the following content:
 
 ```ts title="src/modules/loyalty/service.ts"
-import { MedusaError, MedusaService } from "@medusajs/framework/utils"
+import { MedusaError, MedusaService } from "/framework/utils"
 import LoyaltyPoint from "./models/loyalty-point"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { InferTypeOf } from "/framework/types"
 
 type LoyaltyPoint = InferTypeOf<typeof LoyaltyPoint>
 
@@ -348,7 +348,7 @@ The final piece to a module is its definition, which you export in an `index.ts`
 So, create the file `src/modules/loyalty/index.ts` with the following content:
 
 ```ts title="src/modules/loyalty/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import LoyaltyModuleService from "./service"
 
 export const LOYALTY_MODULE = "loyalty"
@@ -490,7 +490,7 @@ The workflow will have the following steps:
   }}
 />
 
-Medusa provides the `useQueryGraphStep` and `updatePromotionsStep` in its `@medusajs/medusa/core-flows` package. So, you'll only implement the other steps.
+Medusa provides the `useQueryGraphStep` and `updatePromotionsStep` in its `/medusa/core-flows` package. So, you'll only implement the other steps.
 
 ### validateCustomerExistsStep
 
@@ -499,9 +499,9 @@ In the workflow, you first need to validate that the customer is registered. Onl
 To do this, create the file `src/workflows/steps/validate-customer-exists.ts` with the following content:
 
 ```ts title="src/workflows/steps/validate-customer-exists.ts"
-import { CustomerDTO } from "@medusajs/framework/types"
-import { createStep } from "@medusajs/framework/workflows-sdk"
-import { MedusaError } from "@medusajs/framework/utils"
+import { CustomerDTO } from "/framework/types"
+import { createStep } from "/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
 
 export type ValidateCustomerExistsStepInput = {
   customer: CustomerDTO | null | undefined
@@ -545,7 +545,7 @@ Before you create a step, you'll create a utility function that the step uses to
 Create the file `src/utils/promo.ts` with the following content:
 
 ```ts title="src/utils/promo.ts"
-import { PromotionDTO, CustomerDTO, CartDTO } from "@medusajs/framework/types"
+import { PromotionDTO, CustomerDTO, CartDTO } from "/framework/types"
 
 export type CartData = CartDTO & {
   promotions?: PromotionDTO[]
@@ -573,9 +573,9 @@ You create a `getCartLoyaltyPromotion` function that accepts the cart's details 
 You can now create the step that uses this utility to retrieve a carts loyalty points promotion. To create the step, create the file `src/workflows/steps/get-cart-loyalty-promo.ts` with the following content:
 
 ```ts title="src/workflows/steps/get-cart-loyalty-promo.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { CartData, getCartLoyaltyPromotion } from "../../utils/promo"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 type GetCartLoyaltyPromoStepInput = {
   cart: CartData,
@@ -640,7 +640,7 @@ export const deductStepHighlights = [
 import { 
   createStep,
   StepResponse, 
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { LOYALTY_MODULE } from "../../modules/loyalty"
 import LoyaltyModuleService from "../../modules/loyalty/service"
 
@@ -732,7 +732,7 @@ export const addPointsHighlights = [
 import {
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { LOYALTY_MODULE } from "../../modules/loyalty"
 import LoyaltyModuleService from "../../modules/loyalty/service"
 
@@ -799,7 +799,7 @@ Before you create the workflow, you need a utility function that checks whether 
 To add the utility function, add the following to `src/utils/promo.ts`:
 
 ```ts title="src/utils/promo.ts"
-import { OrderDTO } from "@medusajs/framework/types"
+import { OrderDTO } from "/framework/types"
 
 export type OrderData = OrderDTO & {
   promotion?: PromotionDTO[]
@@ -852,8 +852,8 @@ export const handleOrderPointsHighlights = [
 ]
 
 ```ts title="src/workflows/handle-order-points.ts" highlights={handleOrderPointsHighlights} collapsibleLines="1-9" expandButtonLabel="Show Imports"
-import { createWorkflow, when } from "@medusajs/framework/workflows-sdk"
-import { updatePromotionsStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, when } from "/framework/workflows-sdk"
+import { updatePromotionsStep, useQueryGraphStep } from "/medusa/core-flows"
 import { validateCustomerExistsStep, ValidateCustomerExistsStepInput } from "./steps/validate-customer-exists"
 import { deductPurchasePointsStep } from "./steps/deduct-purchase-points"
 import { addPurchaseAsPointsStep } from "./steps/add-purchase-as-points"
@@ -977,7 +977,7 @@ Subscribers are created in a TypeScript or JavaScript file under the `src/subscr
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 import { handleOrderPointsWorkflow } from "../workflows/handle-order-points"
 
 export default async function orderPlacedHandler({
@@ -1067,7 +1067,7 @@ So, to create an API route at the path `/store/customers/me/loyalty-points`, cre
 import { 
   AuthenticatedMedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { LOYALTY_MODULE } from "../../../../../modules/loyalty"
 import LoyaltyModuleService from "../../../../../modules/loyalty/service"
 
@@ -1148,10 +1148,10 @@ export const loyaltyPointsHighlights = [
 ```tsx title="src/modules/checkout/components/loyalty-points/index.tsx" badgeLabel="Storefront" badgeColor="blue" highlights={loyaltyPointsHighlights}
 "use client"
 
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { useEffect, useMemo, useState } from "react"
 import { getLoyaltyPoints } from "../../../../lib/data/customer"
-import { Button, Heading } from "@medusajs/ui"
+import { Button, Heading } from "/ui"
 import Link from "next/link"
 
 type LoyaltyPointsProps = {
@@ -1338,7 +1338,7 @@ The workflow will have the following steps:
   }}
 />
 
-Most of the workflow's steps are either provided by Medusa in the `@medusajs/medusa/core-flows` package or steps you've already implemented. You only need to implement the `getCartLoyaltyPromoAmountStep` step.
+Most of the workflow's steps are either provided by Medusa in the `/medusa/core-flows` package or steps you've already implemented. You only need to implement the `getCartLoyaltyPromoAmountStep` step.
 
 ### getCartLoyaltyPromoAmountStep
 
@@ -1354,9 +1354,9 @@ export const getCartLoyaltyPromoAmountStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/get-cart-loyalty-promo-amount.ts" highlights={getCartLoyaltyPromoAmountStepHighlights}
-import { PromotionDTO, CustomerDTO } from "@medusajs/framework/types"
-import { MedusaError } from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { PromotionDTO, CustomerDTO } from "/framework/types"
+import { MedusaError } from "/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import LoyaltyModuleService from "../../modules/loyalty/service"
 import { LOYALTY_MODULE } from "../../modules/loyalty"
 
@@ -1425,7 +1425,7 @@ import {
   createWorkflow,
   transform,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   acquireLockStep,
   createPromotionsStep, 
@@ -1433,7 +1433,7 @@ import {
   updateCartPromotionsWorkflow, 
   updateCartsStep, 
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   validateCustomerExistsStep, 
   ValidateCustomerExistsStepInput,
@@ -1443,8 +1443,8 @@ import {
   GetCartLoyaltyPromoAmountStepInput,
 } from "./steps/get-cart-loyalty-promo-amount"
 import { CartData, CUSTOMER_ID_PROMOTION_RULE_ATTRIBUTE } from "../utils/promo"
-import { CreatePromotionDTO } from "@medusajs/framework/types"
-import { PromotionActions } from "@medusajs/framework/utils"
+import { CreatePromotionDTO } from "/framework/types"
+import { PromotionActions } from "/framework/utils"
 import { getCartLoyaltyPromoStep } from "./steps/get-cart-loyalty-promo"
 
 type WorkflowInput = {
@@ -1659,7 +1659,7 @@ Next, you'll create the API route that executes this workflow.
 To create the API route, create the file `src/api/store/carts/[id]/loyalty-points/route.ts` with the following content:
 
 ```ts title="src/api/store/carts/[id]/loyalty-points/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { applyLoyaltyOnCartWorkflow } from "../../../../../workflows/apply-loyalty-on-cart"
 
 export async function POST(
@@ -1863,7 +1863,7 @@ import {
   createWorkflow,
   transform,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import {
   acquireLockStep,
   releaseLockStep,
@@ -1871,9 +1871,9 @@ import {
   updateCartPromotionsWorkflow,
   updateCartsStep,
   updatePromotionsStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { getCartLoyaltyPromoStep } from "./steps/get-cart-loyalty-promo"
-import { PromotionActions } from "@medusajs/framework/utils"
+import { PromotionActions } from "/framework/utils"
 import { CartData } from "../utils/promo"
 
 type WorkflowInput = {
@@ -2102,11 +2102,11 @@ export const completeCartWorkflowHookHighlights = [
 ]
 
 ```ts title="src/workflows/hooks/complete-cart.ts" highlights={completeCartWorkflowHookHighlights} collapsibleLines="1-6" expandButtonLabel="Show Imports"
-import { completeCartWorkflow } from "@medusajs/medusa/core-flows"
+import { completeCartWorkflow } from "/medusa/core-flows"
 import LoyaltyModuleService from "../../modules/loyalty/service"
 import { LOYALTY_MODULE } from "../../modules/loyalty"
 import { CartData, getCartLoyaltyPromotion } from "../../utils/promo"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 completeCartWorkflow.hooks.validate(
   async ({ cart }, { container }) => {

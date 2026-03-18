@@ -32,7 +32,7 @@ vi.mock("@/hooks/use-select", () => ({
 }))
 
 // mock components
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   ChevronUpDown: (props: IconProps) => (
     <svg data-testid="chevron-icon" {...props} />
   ),
@@ -74,7 +74,7 @@ vi.mock("@/components/Select/Dropdown", () => ({
 }))
 
 import { SelectInput } from "../../Input"
-import { IconProps } from "@medusajs/icons/dist/types"
+import { IconProps } from "/icons/dist/types"
 
 beforeEach(() => {
   vi.clearAllMocks()

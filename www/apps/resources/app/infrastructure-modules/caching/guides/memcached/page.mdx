@@ -1,5 +1,5 @@
 import { Prerequisites, Card } from "docs-ui"
-import { Github } from "@medusajs/icons"
+import { Github } from "/icons"
 
 export const metadata = {
   title: `Create Memcached Caching Module Provider`,
@@ -82,7 +82,7 @@ export const loaderHighlights = [
 ]
 
 ```ts title="src/modules/memcached/loaders/connection.ts" highlights={loaderHighlights}
-import { LoaderOptions } from "@medusajs/framework/types"
+import { LoaderOptions } from "/framework/types"
 import * as memjs from "memjs"
 
 export type ModuleOptions = {
@@ -184,7 +184,7 @@ export const serviceHighlights1 = [
 ]
 
 ```ts title="src/modules/memcached/service.ts" highlights={serviceHighlights1}
-import { ICachingProviderService } from "@medusajs/framework/types"
+import { ICachingProviderService } from "/framework/types"
 import * as memjs from "memjs"
 import { ModuleOptions } from "./loaders/connection"
 
@@ -931,7 +931,7 @@ The final piece of a module provider is its definition, which you export in an `
 Create the file `src/modules/memcached/index.ts` with the following content:
 
 ```ts title="src/modules/memcached/index.ts"
-import { ModuleProvider, Modules } from "@medusajs/framework/utils"
+import { ModuleProvider, Modules } from "/framework/utils"
 import MemcachedCachingProviderService from "./service"
 import connection from "./loaders/connection"
 
@@ -969,7 +969,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/caching",
+      resolve: "/medusa/caching",
       options: {
         in_memory: {
           enable: true,
@@ -994,7 +994,7 @@ module.exports = defineConfig({
 })
 ```
 
-You register the `@medusajs/medusa/caching` module and add the Memcached Module Provider to its `providers` array.
+You register the `/medusa/caching` module and add the Memcached Module Provider to its `providers` array.
 
 You pass the options to configure the Memcached client and the module's behavior. These are the same [options you defined in the ModuleOptions type in the loader](#3-create-memcached-connection-loader).
 
@@ -1035,7 +1035,7 @@ To verify that the caching is working, you can create a simple [API route](!docs
 To create an API route, create a new file at `src/api/test-cache/route.ts` with the following content:
 
 ```ts title="src/api/test-cache/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const query = req.scope.resolve("query")

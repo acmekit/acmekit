@@ -1,10 +1,10 @@
-import { MedusaModule } from "@medusajs/framework/modules-sdk"
+import { MedusaModule } from "/framework/modules-sdk"
 import type {
   ICachingModuleService,
   ICachingStrategy,
   Logger,
-} from "@medusajs/framework/types"
-import { GraphQLUtils, MedusaError } from "@medusajs/framework/utils"
+} from "/framework/types"
+import { GraphQLUtils, MedusaError } from "/framework/utils"
 import { CachingDefaultProvider, InjectedDependencies } from "@types"
 import CacheProviderService from "./cache-provider"
 

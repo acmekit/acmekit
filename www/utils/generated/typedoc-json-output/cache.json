@@ -117,7 +117,7 @@
 												"type": "reference",
 												"target": 65427,
 												"name": "T",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										]
@@ -372,7 +372,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"65423": {
 			"sourceFileName": "../../../../packages/core/types/src/cache/service.ts",

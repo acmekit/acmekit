@@ -4,7 +4,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details, WorkflowDiagram } from "docs-ui"
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1743097088/Medusa%20Resources/integrations-algolia_qwpguu.jpg"
 
@@ -296,7 +296,7 @@ The final piece to a module is its definition, which you export in an `index.ts`
 So, create the file `src/modules/algolia/index.ts` with the following content:
 
 ```ts title="src/modules/algolia/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import AlgoliaModuleService from "./service"
 
 export const ALGOLIA_MODULE = "algolia"
@@ -417,7 +417,7 @@ The workflow has the following steps:
   hideLegend
 />
 
-Medusa provides the `useQueryGraphStep` in its `@medusajs/medusa/core-flows` package. So, you only need to implement the other steps.
+Medusa provides the `useQueryGraphStep` in its `/medusa/core-flows` package. So, you only need to implement the other steps.
 
 ### syncProductsStep
 
@@ -432,7 +432,7 @@ If you get a type error on resolving the Algolia Module, run the Medusa applicat
 </Note>
 
 ```ts title="src/workflows/steps/sync-products.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { ALGOLIA_MODULE } from "../../modules/algolia"
 import AlgoliaModuleService from "../../modules/algolia/service"
 
@@ -549,7 +549,7 @@ Create the step at `src/workflows/steps/delete-products-from-algolia.ts` with th
 import {
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { ALGOLIA_MODULE } from "../../modules/algolia"
 
 export type DeleteProductsFromAlgoliaWorkflow = {
@@ -608,8 +608,8 @@ import {
   createWorkflow, 
   transform, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { syncProductsStep, SyncProductsStepInput } from "./steps/sync-products"
 import { deleteProductsFromAlgoliaStep } from "./steps/delete-products-from-algolia"
 
@@ -727,7 +727,7 @@ You create a subscriber in a TypeScript or JavaScript file under the `src/subscr
 import {
   SubscriberArgs,
   type SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 import { syncProductsWorkflow } from "../workflows/sync-products"
 
 export default async function algoliaSyncHandler({ 
@@ -800,8 +800,8 @@ An API route is created in a `route.ts` file under a sub-directory of the `src/a
 So, to create an API route at the path `/admin/algolia/sync`, create the file `src/api/admin/algolia/sync/route.ts` with the following content:
 
 ```ts title="src/api/admin/algolia/sync/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { Modules } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { Modules } from "/framework/utils"
 
 export async function POST(
   req: MedusaRequest,
@@ -848,7 +848,7 @@ Before creating the UI route, you'll configure Medusa's [JS SDK](../../../js-sdk
 The JS SDK is installed by default in your Medusa application. To configure it, create the file `src/admin/lib/sdk.ts` with the following content:
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: "http://localhost:9000",
@@ -872,10 +872,10 @@ You'll now create the UI route that displays a button to trigger the reindex. Yo
 So, to create a new page under the Settings section of the Medusa Admin, create the file `src/admin/routes/settings/algolia/page.tsx` with the following content:
 
 ```tsx title="src/admin/routes/settings/algolia/page.tsx"
-import { Container, Heading, Button, toast } from "@medusajs/ui"
+import { Container, Heading, Button, toast } from "/ui"
 import { useMutation } from "@tanstack/react-query"
 import { sdk } from "../../../lib/sdk"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { defineRouteConfig } from "/admin-sdk"
 
 const AlgoliaPage = () => {
   const { mutate, isPending } = useMutation({
@@ -983,7 +983,7 @@ The action to perform when a product is created or updated is the same. You'll u
 So, you only need one subscriber to handle these two events. To create the subscriber, create the file `src/subscribers/product-sync.ts` with the following content:
 
 ```ts title="src/subscribers/product-sync.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { syncProductsWorkflow } from "../workflows/sync-products"
 
 export default async function handleProductEvents({
@@ -1032,7 +1032,7 @@ You've already created the `deleteProductsFromAlgoliaStep` that deletes products
 Create the file `src/workflows/delete-products-from-algolia.ts` with the following content:
 
 ```ts title="src/workflows/delete-products-from-algolia.ts"
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow } from "/framework/workflows-sdk"
 import { deleteProductsFromAlgoliaStep } from "./steps/delete-products-from-algolia"
 
 type DeleteProductsFromAlgoliaWorkflowInput = {
@@ -1056,7 +1056,7 @@ Finally, you'll create the subscriber that listens to the `product.deleted` even
 Create the file `src/subscribers/product-delete.ts` with the following content:
 
 ```ts title="src/subscribers/product-delete.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { deleteProductsFromAlgoliaWorkflow } from "../workflows/delete-products-from-algolia"
 
 export default async function handleProductDeleted({
@@ -1104,15 +1104,15 @@ To implement the API Route, create the file `src/api/store/products/search/route
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
 ```ts title="src/api/store/products/search/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { ALGOLIA_MODULE } from "../../../../modules/algolia"
 import AlgoliaModuleService from "../../../../modules/algolia/service"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const SearchSchema = z.object({
   query: z.string(),
@@ -1158,7 +1158,7 @@ Middlewares are created in the `src/api/middlewares.ts` file. So create the file
 import { 
   defineMiddlewares,
   validateAndTransformBody, 
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { SearchSchema } from "./store/products/search/route"
 
 export default defineMiddlewares({
@@ -1308,7 +1308,7 @@ import React, { useEffect, useState } from "react"
 import { Hits, InstantSearch, SearchBox } from "react-instantsearch"
 import { searchClient } from "../../../../lib/config"
 import Modal from "../../../common/components/modal"
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"

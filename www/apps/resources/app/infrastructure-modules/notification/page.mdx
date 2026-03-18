@@ -29,11 +29,11 @@ In a step of your workflow, you can resolve the Notification Module's service an
 For example:
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 import { 
   createStep,
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",
@@ -140,7 +140,7 @@ You register providers of the Notification Module in `medusa-config.ts`. For eac
 For example:
 
 ```ts title="medusa-config.ts" highlights={[["19"]]}
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 // ...
 
@@ -149,12 +149,12 @@ module.exports = {
   modules: [
     // ...
     {
-      resolve: "@medusajs/medusa/notification",
+      resolve: "/medusa/notification",
       options: {
         providers: [
           // ...
           {
-            resolve: "@medusajs/medusa/notification-local",
+            resolve: "/medusa/notification-local",
             id: "notification",
             options: {
               channels: ["email"],

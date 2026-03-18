@@ -36,7 +36,7 @@ export const highlights = [
 ]
 
 ```ts title="medusa-config.ts"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 // ...
 
@@ -44,7 +44,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/event-bus-redis",
+      resolve: "/medusa/event-bus-redis",
       options: { 
         redisUrl: process.env.EVENTS_REDIS_URL,
         // suggested additional options for production use

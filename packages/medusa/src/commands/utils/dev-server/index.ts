@@ -1,5 +1,5 @@
-import { container } from "@medusajs/framework"
-import { logger } from "@medusajs/framework/logger"
+import { container } from "/framework"
+import { logger } from "/framework/logger"
 import { ModuleCacheManager } from "./module-cache-manager"
 import { RecoveryService } from "./recovery-service"
 import { RouteReloader } from "./reloaders/routes"

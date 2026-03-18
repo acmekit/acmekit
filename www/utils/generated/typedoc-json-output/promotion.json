@@ -94,7 +94,7 @@
 										"type": "reference",
 										"target": 13863,
 										"name": "FindConfigOrder",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									{
 										"type": "literal",
@@ -188,7 +188,7 @@
 										"type": "reference",
 										"target": 13634,
 										"name": "Entity",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"qualifiedName": "FindConfig.Entity",
 										"refersToTypeParameter": true
 									}
@@ -345,7 +345,7 @@
 						"type": "reference",
 						"target": 13863,
 						"name": "FindConfigOrder",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -554,19 +554,19 @@
 											"type": "reference",
 											"target": 13840,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"qualifiedName": "BaseFilterable.T",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
 									"target": 13840,
 									"name": "T",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"qualifiedName": "BaseFilterable.T",
 									"refersToTypeParameter": true
 								}
@@ -610,19 +610,19 @@
 											"type": "reference",
 											"target": 13840,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"qualifiedName": "BaseFilterable.T",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
 									"target": 13840,
 									"name": "T",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"qualifiedName": "BaseFilterable.T",
 									"refersToTypeParameter": true
 								}
@@ -718,7 +718,7 @@
 							"type": "reference",
 							"target": 13637,
 							"name": "TReturnableLinkableKeys",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					}
@@ -797,7 +797,7 @@
 							"type": "reference",
 							"target": 13640,
 							"name": "TReturnableLinkableKeys",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					}
@@ -860,7 +860,7 @@
 					"type": "reference",
 					"target": 13961,
 					"name": "T",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -873,14 +873,14 @@
 						"type": "reference",
 						"target": 13961,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					},
 					"extendsType": {
 						"type": "reference",
 						"target": 13995,
 						"name": "Scalar",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					"trueType": {
 						"type": "intrinsic",
@@ -894,12 +894,12 @@
 								"type": "reference",
 								"target": 13961,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "FilterQuery",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				"falseType": {
@@ -910,12 +910,12 @@
 							"type": "reference",
 							"target": 13961,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					],
 					"name": "FilterValue",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			}
 		},
@@ -954,7 +954,7 @@
 							"type": "reference",
 							"target": 13963,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						},
 						"extendsType": {
@@ -985,7 +985,7 @@
 								"type": "reference",
 								"target": 13963,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							"extendsType": {
@@ -1019,7 +1019,7 @@
 								"type": "reference",
 								"target": 13963,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						}
@@ -1183,7 +1183,7 @@
 					"type": "reference",
 					"target": 14034,
 					"name": "T",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -1204,7 +1204,7 @@
 							"type": "reference",
 							"target": 14034,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					],
@@ -1215,7 +1215,7 @@
 					"type": "reference",
 					"target": 14034,
 					"name": "T",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				}
 			}
@@ -1248,7 +1248,7 @@
 					"type": "reference",
 					"target": 14032,
 					"name": "T",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -1309,12 +1309,12 @@
 								"qualifiedName": "PK"
 							},
 							"name": "PK",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					],
 					"name": "ReadonlyPrimary",
-					"package": "@medusajs/types"
+					"package": "/types"
 				},
 				"falseType": {
 					"type": "conditional",
@@ -1322,7 +1322,7 @@
 						"type": "reference",
 						"target": 14032,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					},
 					"extendsType": {
@@ -1386,12 +1386,12 @@
 											"qualifiedName": "PK"
 										},
 										"name": "PK",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ReadonlyPrimary",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "intrinsic",
@@ -1405,7 +1405,7 @@
 							"type": "reference",
 							"target": 14032,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						},
 						"extendsType": {
@@ -1466,12 +1466,12 @@
 										"qualifiedName": "PK"
 									},
 									"name": "PK",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								}
 							],
 							"name": "ReadonlyPrimary",
-							"package": "@medusajs/types"
+							"package": "/types"
 						},
 						"falseType": {
 							"type": "conditional",
@@ -1479,7 +1479,7 @@
 								"type": "reference",
 								"target": 14032,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							"extendsType": {
@@ -1540,12 +1540,12 @@
 											"qualifiedName": "PK"
 										},
 										"name": "PK",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ReadonlyPrimary",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							"falseType": {
 								"type": "intrinsic",
@@ -1612,12 +1612,12 @@
 											"type": "reference",
 											"target": 13862,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "Query",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -1646,12 +1646,12 @@
 											"type": "reference",
 											"target": 13862,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "Query",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -1681,12 +1681,12 @@
 												"type": "reference",
 												"target": 13862,
 												"name": "T",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "ExpandScalar",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									{
 										"type": "array",
@@ -1698,12 +1698,12 @@
 													"type": "reference",
 													"target": 13862,
 													"name": "T",
-													"package": "@medusajs/types",
+													"package": "/types",
 													"refersToTypeParameter": true
 												}
 											],
 											"name": "ExpandScalar",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								]
@@ -1732,12 +1732,12 @@
 										"type": "reference",
 										"target": 13862,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1765,12 +1765,12 @@
 											"type": "reference",
 											"target": 13862,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "ExpandScalar",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -1799,12 +1799,12 @@
 											"type": "reference",
 											"target": 13862,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									],
 									"name": "ExpandScalar",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						},
@@ -1831,12 +1831,12 @@
 										"type": "reference",
 										"target": 13862,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "Query",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1862,12 +1862,12 @@
 										"type": "reference",
 										"target": 13862,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1893,12 +1893,12 @@
 										"type": "reference",
 										"target": 13862,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1924,12 +1924,12 @@
 										"type": "reference",
 										"target": 13862,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -1955,12 +1955,12 @@
 										"type": "reference",
 										"target": 13862,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "ExpandScalar",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -2198,7 +2198,7 @@
 						"type": "reference",
 						"target": 14021,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					},
 					{
@@ -2209,12 +2209,12 @@
 								"type": "reference",
 								"target": 14021,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "ExpandScalar",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
@@ -2224,12 +2224,12 @@
 								"type": "reference",
 								"target": 14021,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "Primary",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				]
 			}
@@ -2271,16 +2271,16 @@
 										"type": "reference",
 										"target": 14003,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									}
 								],
 								"name": "FilterValue2",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						],
 						"name": "OperatorMap",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
@@ -2290,12 +2290,12 @@
 								"type": "reference",
 								"target": 14003,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "FilterValue2",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "array",
@@ -2307,12 +2307,12 @@
 									"type": "reference",
 									"target": 14003,
 									"name": "T",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								}
 							],
 							"name": "FilterValue2",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					},
 					{
@@ -2404,7 +2404,7 @@
 						"type": "reference",
 						"target": 14018,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					}
 				},
@@ -2419,14 +2419,14 @@
 								"qualifiedName": "Key"
 							},
 							"name": "Key",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						},
 						"objectType": {
 							"type": "reference",
 							"target": 14018,
 							"name": "T",
-							"package": "@medusajs/types",
+							"package": "/types",
 							"refersToTypeParameter": true
 						}
 					},
@@ -2476,14 +2476,14 @@
 										"qualifiedName": "Key"
 									},
 									"name": "Key",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								},
 								"objectType": {
 									"type": "reference",
 									"target": 14018,
 									"name": "T",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								}
 							},
@@ -2500,20 +2500,20 @@
 												"qualifiedName": "Key"
 											},
 											"name": "Key",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										},
 										"objectType": {
 											"type": "reference",
 											"target": 14018,
 											"name": "T",
-											"package": "@medusajs/types",
+											"package": "/types",
 											"refersToTypeParameter": true
 										}
 									}
 								],
 								"name": "OperatorMap",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					},
@@ -2528,14 +2528,14 @@
 									"qualifiedName": "Key"
 								},
 								"name": "Key",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							"objectType": {
 								"type": "reference",
 								"target": 14018,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						},
@@ -2552,7 +2552,7 @@
 									"qualifiedName": "U"
 								},
 								"name": "U",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							"extendsType": {
@@ -2604,7 +2604,7 @@
 													"qualifiedName": "V"
 												},
 												"name": "V",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										}
@@ -2620,7 +2620,7 @@
 										"qualifiedName": "V"
 									},
 									"name": "V",
-									"package": "@medusajs/types",
+									"package": "/types",
 									"refersToTypeParameter": true
 								},
 								"extendsType": {
@@ -2645,7 +2645,7 @@
 														"qualifiedName": "V"
 													},
 													"name": "V",
-													"package": "@medusajs/types",
+													"package": "/types",
 													"refersToTypeParameter": true
 												}
 											],
@@ -2658,19 +2658,19 @@
 												"type": "reference",
 												"target": 14019,
 												"name": "Prev",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											},
 											"objectType": {
 												"type": "reference",
 												"target": 14022,
 												"name": "PrevLimit",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										}
 									],
 									"name": "FilterQuery",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								"falseType": {
 									"type": "intrinsic",
@@ -2738,7 +2738,7 @@
 					"type": "reference",
 					"target": 14001,
 					"name": "Prev",
-					"package": "@medusajs/types",
+					"package": "/types",
 					"refersToTypeParameter": true
 				},
 				"extendsType": {
@@ -2755,7 +2755,7 @@
 						"type": "reference",
 						"target": 14000,
 						"name": "T",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					},
 					"extendsType": {
@@ -2768,7 +2768,7 @@
 							}
 						],
 						"name": "Constructor",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					"trueType": {
 						"type": "reference",
@@ -2781,19 +2781,19 @@
 									"qualifiedName": "Prototype"
 								},
 								"name": "Prototype",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 14001,
 								"name": "Prev",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "FilterQueryProperties",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					"falseType": {
 						"type": "reference",
@@ -2803,19 +2803,19 @@
 								"type": "reference",
 								"target": 14000,
 								"name": "T",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							},
 							{
 								"type": "reference",
 								"target": 14001,
 								"name": "Prev",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "FilterQueryProperties",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				}
 			}
@@ -3020,7 +3020,7 @@
 								"type": "reference",
 								"target": 14004,
 								"name": "EventMetadata",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -3048,7 +3048,7 @@
 								"type": "reference",
 								"target": 13994,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						}
@@ -3118,12 +3118,12 @@
 								"type": "reference",
 								"target": 13942,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						],
 						"name": "Event",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reflection",
@@ -3260,7 +3260,7 @@
 								"type": "reference",
 								"target": 13959,
 								"name": "TData",
-								"package": "@medusajs/types",
+								"package": "/types",
 								"refersToTypeParameter": true
 							}
 						},
@@ -3346,7 +3346,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									},
 									{
 										"type": "literal",
@@ -3854,7 +3854,7 @@
 								"type": "reference",
 								"target": 13974,
 								"name": "JoinerServiceConfigAlias",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "array",
@@ -3862,7 +3862,7 @@
 									"type": "reference",
 									"target": 13974,
 									"name": "JoinerServiceConfigAlias",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						]
@@ -4025,7 +4025,7 @@
 							"type": "reference",
 							"target": 13979,
 							"name": "JoinerRelationship",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -4110,7 +4110,7 @@
 											"type": "reference",
 											"target": 13979,
 											"name": "JoinerRelationship",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -4270,7 +4270,7 @@
 										"type": "reference",
 										"target": 14013,
 										"name": "T",
-										"package": "@medusajs/types",
+										"package": "/types",
 										"refersToTypeParameter": true
 									},
 									{
@@ -4299,7 +4299,7 @@
 														"type": "reference",
 														"target": 14013,
 														"name": "T",
-														"package": "@medusajs/types",
+														"package": "/types",
 														"refersToTypeParameter": true
 													}
 												}
@@ -4585,7 +4585,7 @@
 								"type": "reference",
 								"target": 13892,
 								"name": "JoinerServiceConfig",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "union",
@@ -4705,7 +4705,7 @@
 											"type": "reference",
 											"target": 13907,
 											"name": "ModuleJoinerRelationship",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -4927,7 +4927,7 @@
 																	"type": "reference",
 																	"target": 13907,
 																	"name": "ModuleJoinerRelationship",
-																	"package": "@medusajs/types"
+																	"package": "/types"
 																},
 																{
 																	"type": "literal",
@@ -5233,7 +5233,7 @@
 														"type": "reference",
 														"target": 13912,
 														"name": "LinkModulesExtraFields",
-														"package": "@medusajs/types"
+														"package": "/types"
 													}
 												}
 											],
@@ -5308,7 +5308,7 @@
 						"type": "reference",
 						"target": 13979,
 						"name": "JoinerRelationship",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reflection",
@@ -5475,7 +5475,7 @@
 								"type": "reference",
 								"target": 13698,
 								"name": "ModuleJoinerConfig",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						}
 					]
@@ -5930,7 +5930,7 @@
 						"type": "reference",
 						"target": 13936,
 						"name": "ApplicationMethodTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -5960,7 +5960,7 @@
 						"type": "reference",
 						"target": 13937,
 						"name": "ApplicationMethodTargetTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -5990,7 +5990,7 @@
 						"type": "reference",
 						"target": 13938,
 						"name": "ApplicationMethodAllocationValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -6234,7 +6234,7 @@
 								"type": "reference",
 								"target": 13590,
 								"name": "PromotionDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					}
@@ -6268,7 +6268,7 @@
 							"type": "reference",
 							"target": 13646,
 							"name": "PromotionRuleDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -6301,7 +6301,7 @@
 							"type": "reference",
 							"target": 13646,
 							"name": "PromotionRuleDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				}
@@ -6373,7 +6373,7 @@
 						"type": "reference",
 						"target": 13936,
 						"name": "ApplicationMethodTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -6401,7 +6401,7 @@
 						"type": "reference",
 						"target": 13937,
 						"name": "ApplicationMethodTargetTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -6431,7 +6431,7 @@
 						"type": "reference",
 						"target": 13938,
 						"name": "ApplicationMethodAllocationValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -6675,7 +6675,7 @@
 								"type": "reference",
 								"target": 13590,
 								"name": "PromotionDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					}
@@ -6709,7 +6709,7 @@
 							"type": "reference",
 							"target": 13641,
 							"name": "CreatePromotionRuleDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -6742,7 +6742,7 @@
 							"type": "reference",
 							"target": 13641,
 							"name": "CreatePromotionRuleDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				}
@@ -6843,7 +6843,7 @@
 						"type": "reference",
 						"target": 13936,
 						"name": "ApplicationMethodTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -6873,7 +6873,7 @@
 						"type": "reference",
 						"target": 13937,
 						"name": "ApplicationMethodTargetTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -6903,7 +6903,7 @@
 						"type": "reference",
 						"target": 13938,
 						"name": "ApplicationMethodAllocationValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -7147,7 +7147,7 @@
 								"type": "reference",
 								"target": 13590,
 								"name": "PromotionDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					}
@@ -7321,7 +7321,7 @@
 						"type": "reference",
 						"target": 13964,
 						"name": "CampaignBudgetTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -7553,7 +7553,7 @@
 							"type": "reference",
 							"target": 13965,
 							"name": "CampaignBudgetUsageDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				}
@@ -7798,7 +7798,7 @@
 						"type": "reference",
 						"target": 13878,
 						"name": "CampaignBudgetDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -7830,7 +7830,7 @@
 							"type": "reference",
 							"target": 13590,
 							"name": "PromotionDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				}
@@ -7906,7 +7906,7 @@
 									"type": "reference",
 									"target": 13686,
 									"name": "FilterableCampaignProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -7916,11 +7916,11 @@
 											"type": "reference",
 											"target": 13686,
 											"name": "FilterableCampaignProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -7964,7 +7964,7 @@
 									"type": "reference",
 									"target": 13686,
 									"name": "FilterableCampaignProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -7974,11 +7974,11 @@
 											"type": "reference",
 											"target": 13686,
 											"name": "FilterableCampaignProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -8108,11 +8108,11 @@
 							"type": "reference",
 							"target": 13686,
 							"name": "FilterableCampaignProps",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					],
 					"name": "BaseFilterable",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		},
@@ -8561,37 +8561,37 @@
 						"type": "reference",
 						"target": 13755,
 						"name": "AddItemAdjustmentAction",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
 						"target": 13762,
 						"name": "RemoveItemAdjustmentAction",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
 						"target": 13768,
 						"name": "AddShippingMethodAdjustment",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
 						"target": 13774,
 						"name": "RemoveShippingMethodAdjustment",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
 						"target": 13779,
 						"name": "CampaignBudgetExceededAction",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "reference",
 						"target": 13782,
 						"name": "PromotionLimitExceededAction",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				]
 			}
@@ -8651,7 +8651,7 @@
 								"type": "reference",
 								"target": 13724,
 								"name": "BigNumberInput",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -8962,7 +8962,7 @@
 						"type": "reference",
 						"target": 13724,
 						"name": "BigNumberInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -9329,7 +9329,7 @@
 						"type": "reference",
 						"target": 13724,
 						"name": "BigNumberInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -9744,7 +9744,7 @@
 						"type": "reference",
 						"target": 13724,
 						"name": "BigNumberInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -9772,7 +9772,7 @@
 						"type": "reference",
 						"target": 13724,
 						"name": "BigNumberInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -9800,7 +9800,7 @@
 						"type": "reference",
 						"target": 13724,
 						"name": "BigNumberInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -9858,7 +9858,7 @@
 							"type": "reference",
 							"target": 13931,
 							"name": "ComputeActionAdjustmentLine",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -10239,7 +10239,7 @@
 						"type": "reference",
 						"target": 13724,
 						"name": "BigNumberInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -10267,7 +10267,7 @@
 						"type": "reference",
 						"target": 13724,
 						"name": "BigNumberInput",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -10299,7 +10299,7 @@
 							"type": "reference",
 							"target": 13931,
 							"name": "ComputeActionAdjustmentLine",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -10859,7 +10859,7 @@
 							"type": "reference",
 							"target": 13725,
 							"name": "ComputeActionItemLine",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -10892,7 +10892,7 @@
 							"type": "reference",
 							"target": 13745,
 							"name": "ComputeActionShippingLine",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				}
@@ -11242,7 +11242,7 @@
 						"type": "reference",
 						"target": 13868,
 						"name": "PromotionRuleOperatorValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -11272,7 +11272,7 @@
 							"type": "reference",
 							"target": 13869,
 							"name": "PromotionRuleValueDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				}
@@ -11400,7 +11400,7 @@
 						"type": "reference",
 						"target": 13868,
 						"name": "PromotionRuleOperatorValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -11602,7 +11602,7 @@
 						"type": "reference",
 						"target": 13868,
 						"name": "PromotionRuleOperatorValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -11722,7 +11722,7 @@
 									"type": "reference",
 									"target": 13676,
 									"name": "FilterablePromotionRuleProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -11732,11 +11732,11 @@
 											"type": "reference",
 											"target": 13676,
 											"name": "FilterablePromotionRuleProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -11780,7 +11780,7 @@
 									"type": "reference",
 									"target": 13676,
 									"name": "FilterablePromotionRuleProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -11790,11 +11790,11 @@
 											"type": "reference",
 											"target": 13676,
 											"name": "FilterablePromotionRuleProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -11863,11 +11863,11 @@
 							"type": "reference",
 							"target": 13676,
 							"name": "FilterablePromotionRuleProps",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					],
 					"name": "BaseFilterable",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		},
@@ -12057,7 +12057,7 @@
 						"type": "reference",
 						"target": 13785,
 						"name": "PromotionTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -12111,7 +12111,7 @@
 						"type": "reference",
 						"target": 13786,
 						"name": "PromotionStatusValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -12262,7 +12262,7 @@
 						"type": "reference",
 						"target": 13813,
 						"name": "ApplicationMethodDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -12294,7 +12294,7 @@
 							"type": "reference",
 							"target": 13646,
 							"name": "PromotionRuleDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -12362,7 +12362,7 @@
 						"type": "reference",
 						"target": 13659,
 						"name": "CampaignDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				}
 			],
@@ -12475,7 +12475,7 @@
 						"type": "reference",
 						"target": 13785,
 						"name": "PromotionTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -12527,7 +12527,7 @@
 						"type": "reference",
 						"target": 13786,
 						"name": "PromotionStatusValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -12648,7 +12648,7 @@
 						"type": "reference",
 						"target": 13787,
 						"name": "CreateApplicationMethodDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -12680,7 +12680,7 @@
 							"type": "reference",
 							"target": 13641,
 							"name": "CreatePromotionRuleDTO",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -12711,7 +12711,7 @@
 						"type": "reference",
 						"target": 13652,
 						"name": "CreateCampaignDTO",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -12892,7 +12892,7 @@
 						"type": "reference",
 						"target": 13785,
 						"name": "PromotionTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -13011,7 +13011,7 @@
 						"type": "reference",
 						"target": 13786,
 						"name": "PromotionStatusValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -13048,7 +13048,7 @@
 								"type": "reference",
 								"target": 13826,
 								"name": "UpdateApplicationMethodDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "literal",
@@ -13169,7 +13169,7 @@
 									"type": "reference",
 									"target": 13613,
 									"name": "FilterablePromotionProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -13179,11 +13179,11 @@
 											"type": "reference",
 											"target": 13613,
 											"name": "FilterablePromotionProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -13227,7 +13227,7 @@
 									"type": "reference",
 									"target": 13613,
 									"name": "FilterablePromotionProps",
-									"package": "@medusajs/types"
+									"package": "/types"
 								},
 								{
 									"type": "reference",
@@ -13237,11 +13237,11 @@
 											"type": "reference",
 											"target": 13613,
 											"name": "FilterablePromotionProps",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									],
 									"name": "BaseFilterable",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							]
 						}
@@ -13367,7 +13367,7 @@
 									}
 								],
 								"name": "OperatorMap",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					}
@@ -13415,7 +13415,7 @@
 									}
 								],
 								"name": "OperatorMap",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					}
@@ -13477,7 +13477,7 @@
 							"type": "reference",
 							"target": 13785,
 							"name": "PromotionTypeValues",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -13510,7 +13510,7 @@
 							"type": "reference",
 							"target": 13786,
 							"name": "PromotionStatusValues",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					}
 				},
@@ -13541,7 +13541,7 @@
 						"type": "reference",
 						"target": 13686,
 						"name": "FilterableCampaignProps",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				}
 			],
@@ -13578,11 +13578,11 @@
 							"type": "reference",
 							"target": 13613,
 							"name": "FilterablePromotionProps",
-							"package": "@medusajs/types"
+							"package": "/types"
 						}
 					],
 					"name": "BaseFilterable",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		},
@@ -13628,7 +13628,7 @@
 						"type": "reference",
 						"target": 13964,
 						"name": "CampaignBudgetTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -13895,7 +13895,7 @@
 						"type": "reference",
 						"target": 13964,
 						"name": "CampaignBudgetTypeValues",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -14243,7 +14243,7 @@
 								"type": "reference",
 								"target": 13872,
 								"name": "CreateCampaignBudgetDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						]
 					}
@@ -14522,7 +14522,7 @@
 								"type": "reference",
 								"target": 13886,
 								"name": "UpdateCampaignBudgetDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							},
 							{
 								"type": "literal",
@@ -14825,7 +14825,7 @@
 											"type": "reference",
 											"target": 13533,
 											"name": "UsageComputedActions",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -14847,7 +14847,7 @@
 										"type": "reference",
 										"target": 13537,
 										"name": "CampaignBudgetUsageContext",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -14947,7 +14947,7 @@
 											"type": "reference",
 											"target": 13533,
 											"name": "UsageComputedActions",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -14969,7 +14969,7 @@
 										"type": "reference",
 										"target": 13537,
 										"name": "CampaignBudgetUsageContext",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15089,7 +15089,7 @@
 										"type": "reference",
 										"target": 13541,
 										"name": "ComputeActionContext",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15142,7 +15142,7 @@
 											"type": "reference",
 											"target": 13561,
 											"name": "ComputeActions",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -15236,7 +15236,7 @@
 											"type": "reference",
 											"target": 13562,
 											"name": "CreatePromotionDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -15260,7 +15260,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15277,7 +15277,7 @@
 											"type": "reference",
 											"target": 13590,
 											"name": "PromotionDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -15346,7 +15346,7 @@
 										"type": "reference",
 										"target": 13562,
 										"name": "CreatePromotionDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15369,7 +15369,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15384,7 +15384,7 @@
 										"type": "reference",
 										"target": 13590,
 										"name": "PromotionDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -15477,7 +15477,7 @@
 											"type": "reference",
 											"target": 13603,
 											"name": "UpdatePromotionDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -15501,7 +15501,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15518,7 +15518,7 @@
 											"type": "reference",
 											"target": 13590,
 											"name": "PromotionDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -15587,7 +15587,7 @@
 										"type": "reference",
 										"target": 13603,
 										"name": "UpdatePromotionDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15610,7 +15610,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15625,7 +15625,7 @@
 										"type": "reference",
 										"target": 13590,
 										"name": "PromotionDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -15764,7 +15764,7 @@
 										"type": "reference",
 										"target": 13613,
 										"name": "FilterablePromotionProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15807,11 +15807,11 @@
 												"type": "reference",
 												"target": 13590,
 												"name": "PromotionDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -15834,7 +15834,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -15851,7 +15851,7 @@
 											"type": "reference",
 											"target": 13590,
 											"name": "PromotionDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -15991,7 +15991,7 @@
 										"type": "reference",
 										"target": 13613,
 										"name": "FilterablePromotionProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16034,11 +16034,11 @@
 												"type": "reference",
 												"target": 13590,
 												"name": "PromotionDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16061,7 +16061,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16081,7 +16081,7 @@
 													"type": "reference",
 													"target": 13590,
 													"name": "PromotionDTO",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											},
 											{
@@ -16226,11 +16226,11 @@
 												"type": "reference",
 												"target": 13590,
 												"name": "PromotionDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16253,7 +16253,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16268,7 +16268,7 @@
 										"type": "reference",
 										"target": 13590,
 										"name": "PromotionDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -16383,7 +16383,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16485,7 +16485,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16653,12 +16653,12 @@
 												"type": "reference",
 												"target": 13397,
 												"name": "TReturnableLinkableKeys",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "SoftDeleteReturn",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16681,7 +16681,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -16892,12 +16892,12 @@
 												"type": "reference",
 												"target": 13403,
 												"name": "TReturnableLinkableKeys",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "RestoreReturn",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -16920,7 +16920,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -17066,7 +17066,7 @@
 											"type": "reference",
 											"target": 13641,
 											"name": "CreatePromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -17090,7 +17090,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -17107,7 +17107,7 @@
 											"type": "reference",
 											"target": 13646,
 											"name": "PromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -17214,7 +17214,7 @@
 											"type": "reference",
 											"target": 13641,
 											"name": "CreatePromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -17238,7 +17238,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -17255,7 +17255,7 @@
 											"type": "reference",
 											"target": 13646,
 											"name": "PromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -17362,7 +17362,7 @@
 											"type": "reference",
 											"target": 13641,
 											"name": "CreatePromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -17386,7 +17386,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -17403,7 +17403,7 @@
 											"type": "reference",
 											"target": 13646,
 											"name": "PromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -17532,7 +17532,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -17673,7 +17673,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -17814,7 +17814,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -17918,7 +17918,7 @@
 										"type": "reference",
 										"target": 13652,
 										"name": "CreateCampaignDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -17941,7 +17941,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -17956,7 +17956,7 @@
 										"type": "reference",
 										"target": 13659,
 										"name": "CampaignDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -18026,7 +18026,7 @@
 											"type": "reference",
 											"target": 13652,
 											"name": "CreateCampaignDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -18050,7 +18050,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -18067,7 +18067,7 @@
 											"type": "reference",
 											"target": 13659,
 											"name": "CampaignDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -18161,7 +18161,7 @@
 											"type": "reference",
 											"target": 13668,
 											"name": "UpdateCampaignDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -18185,7 +18185,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -18202,7 +18202,7 @@
 											"type": "reference",
 											"target": 13659,
 											"name": "CampaignDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -18271,7 +18271,7 @@
 										"type": "reference",
 										"target": 13668,
 										"name": "UpdateCampaignDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -18294,7 +18294,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -18309,7 +18309,7 @@
 										"type": "reference",
 										"target": 13659,
 										"name": "CampaignDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -18448,7 +18448,7 @@
 										"type": "reference",
 										"target": 13676,
 										"name": "FilterablePromotionRuleProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -18491,11 +18491,11 @@
 												"type": "reference",
 												"target": 13646,
 												"name": "PromotionRuleDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -18518,7 +18518,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -18535,7 +18535,7 @@
 											"type": "reference",
 											"target": 13646,
 											"name": "PromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -18623,7 +18623,7 @@
 											"type": "reference",
 											"target": 13680,
 											"name": "UpdatePromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -18647,7 +18647,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -18664,7 +18664,7 @@
 											"type": "reference",
 											"target": 13646,
 											"name": "PromotionRuleDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -18804,7 +18804,7 @@
 										"type": "reference",
 										"target": 13686,
 										"name": "FilterableCampaignProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -18847,11 +18847,11 @@
 												"type": "reference",
 												"target": 13659,
 												"name": "CampaignDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -18874,7 +18874,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -18891,7 +18891,7 @@
 											"type": "reference",
 											"target": 13659,
 											"name": "CampaignDTO",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -19031,7 +19031,7 @@
 										"type": "reference",
 										"target": 13686,
 										"name": "FilterableCampaignProps",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -19074,11 +19074,11 @@
 												"type": "reference",
 												"target": 13659,
 												"name": "CampaignDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -19101,7 +19101,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -19121,7 +19121,7 @@
 													"type": "reference",
 													"target": 13659,
 													"name": "CampaignDTO",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											},
 											{
@@ -19266,11 +19266,11 @@
 												"type": "reference",
 												"target": 13659,
 												"name": "CampaignDTO",
-												"package": "@medusajs/types"
+												"package": "/types"
 											}
 										],
 										"name": "FindConfig",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -19293,7 +19293,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -19308,7 +19308,7 @@
 										"type": "reference",
 										"target": 13659,
 										"name": "CampaignDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								],
 								"name": "Promise",
@@ -19423,7 +19423,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -19525,7 +19525,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -19693,12 +19693,12 @@
 												"type": "reference",
 												"target": 13484,
 												"name": "TReturnableLinkableKeys",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "SoftDeleteReturn",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -19721,7 +19721,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -19932,12 +19932,12 @@
 												"type": "reference",
 												"target": 13490,
 												"name": "TReturnableLinkableKeys",
-												"package": "@medusajs/types",
+												"package": "/types",
 												"refersToTypeParameter": true
 											}
 										],
 										"name": "RestoreReturn",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -19960,7 +19960,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -20049,7 +20049,7 @@
 										"type": "reference",
 										"target": 13692,
 										"name": "AddPromotionsToCampaignDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -20064,7 +20064,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -20172,7 +20172,7 @@
 										"type": "reference",
 										"target": 13695,
 										"name": "RemovePromotionsFromCampaignDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								},
 								{
@@ -20187,7 +20187,7 @@
 										"type": "reference",
 										"target": 13573,
 										"name": "Context",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -20305,7 +20305,7 @@
 					"type": "reference",
 					"target": 13519,
 					"name": "IModuleService",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		},
@@ -20519,7 +20519,7 @@
 												"type": "reference",
 												"target": 13939,
 												"name": "Message",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "array",
@@ -20527,7 +20527,7 @@
 													"type": "reference",
 													"target": 13939,
 													"name": "Message",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										]
@@ -20581,7 +20581,7 @@
 										"type": "reference",
 										"target": 13943,
 										"name": "MessageAggregatorFormat",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -20602,7 +20602,7 @@
 											"type": "reference",
 											"target": 13939,
 											"name": "Message",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								],
@@ -20700,12 +20700,12 @@
 														"type": "reference",
 														"target": 13810,
 														"name": "T",
-														"package": "@medusajs/types",
+														"package": "/types",
 														"refersToTypeParameter": true
 													}
 												],
 												"name": "RawMessageFormat",
-												"package": "@medusajs/types"
+												"package": "/types"
 											},
 											{
 												"type": "array",
@@ -20717,12 +20717,12 @@
 															"type": "reference",
 															"target": 13810,
 															"name": "T",
-															"package": "@medusajs/types",
+															"package": "/types",
 															"refersToTypeParameter": true
 														}
 													],
 													"name": "RawMessageFormat",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											}
 										]
@@ -20862,7 +20862,7 @@
 						"type": "reference",
 						"target": 13589,
 						"name": "TManager",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					}
 				},
@@ -20909,7 +20909,7 @@
 						"type": "reference",
 						"target": 13589,
 						"name": "TManager",
-						"package": "@medusajs/types",
+						"package": "/types",
 						"refersToTypeParameter": true
 					}
 				},
@@ -21112,7 +21112,7 @@
 						"type": "reference",
 						"target": 13799,
 						"name": "IMessageAggregator",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -21371,7 +21371,7 @@
 						"type": "reference",
 						"target": 13918,
 						"name": "BigNumberRawValue",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				},
 				{
@@ -21614,7 +21614,7 @@
 						"type": "reference",
 						"target": 13918,
 						"name": "BigNumberRawValue",
-						"package": "@medusajs/types"
+						"package": "/types"
 					},
 					{
 						"type": "intrinsic",
@@ -21638,7 +21638,7 @@
 						"type": "reference",
 						"target": 13923,
 						"name": "IBigNumber",
-						"package": "@medusajs/types"
+						"package": "/types"
 					}
 				]
 			}
@@ -21733,7 +21733,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"13344": {
 			"sourceFileName": "../../../../packages/core/types/src/promotion/service.ts",

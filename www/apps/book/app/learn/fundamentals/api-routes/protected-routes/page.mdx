@@ -71,7 +71,7 @@ For example, to disable authentication requirement for a custom API route create
 import type { 
   AuthenticatedMedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest, 
@@ -115,7 +115,7 @@ export const highlights = [
 import { 
   defineMiddlewares,
   authenticate,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -147,7 +147,7 @@ For example, to require authentication of a custom actor type `manager` to an AP
 import { 
   defineMiddlewares,
   authenticate,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -173,7 +173,7 @@ To allow multiple actor types to access an API route, pass an array of actor typ
 import { 
   defineMiddlewares,
   authenticate,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -203,7 +203,7 @@ To access the authentication details in an API route, such as the logged-in user
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
@@ -221,7 +221,7 @@ For example:
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
@@ -257,7 +257,7 @@ export const customerHighlights = [
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
@@ -302,7 +302,7 @@ export const adminHighlights = [
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,

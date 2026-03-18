@@ -10,7 +10,7 @@ products:
   - customer
 ---
 
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 import { Prerequisites, WorkflowDiagram } from "docs-ui"
 
 export const ogImage = "https://res.cloudinary.com/dza7lstvk/image/upload/v1742389227/Medusa%20Resources/product-reviews_zia79g.jpg"
@@ -151,7 +151,7 @@ Refer to the [Data Models documentation](!docs!/learn/fundamentals/modules#1-cre
 For the Product Review Module, you need to define a `Review` data model that represents a product review. So, create the file `src/modules/product-review/models/review.ts` with the following content:
 
 ```ts title="src/modules/product-review/models/review.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Review = model.define("review", {
   id: model.id().primaryKey(),
@@ -209,7 +209,7 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 To create the Review Module's service, create the file `src/modules/product-review/service.ts` with the following content:
 
 ```ts title="src/modules/product-review/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import Review from "./models/review"
 
 class ProductReviewModuleService extends MedusaService({
@@ -239,7 +239,7 @@ The final piece to a module is its definition, which you export in an `index.ts`
 So, create the file `src/modules/product-review/index.ts` with the following content:
 
 ```ts title="src/modules/product-review/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import ProductReviewModuleService from "./service"
 
 export const PRODUCT_REVIEW_MODULE = "productReview"
@@ -328,9 +328,9 @@ You can also define a link between the `Review` data model and the `Customer` da
 You can define links between data models in a TypeScript or JavaScript file under the `src/links` directory. So, create the file `src/links/review-product.ts` with the following content:
 
 ```ts title="src/links/review-product.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import ProductReviewModule from "../modules/product-review"
-import ProductModule from "@medusajs/medusa/product"
+import ProductModule from "/medusa/product"
 
 export default defineLink(
   {
@@ -393,7 +393,7 @@ The workflow will have the following steps:
   hideLegend
 />
 
-The `useQueryGraphStep` step is provided by Medusa in its `@medusajs/medusa/core-flows` package. So, you only need to implement the `createReviewStep` step.
+The `useQueryGraphStep` step is provided by Medusa in its `/medusa/core-flows` package. So, you only need to implement the `createReviewStep` step.
 
 ### createReviewStep
 
@@ -415,7 +415,7 @@ export const createReviewHighlights = [
 import {
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { PRODUCT_REVIEW_MODULE } from "../../modules/product-review"
 import ProductReviewModuleService from "../../modules/product-review/service"
 
@@ -492,9 +492,9 @@ To create the workflow, create the file `src/workflows/create-review.ts` with th
 import { 
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { createReviewStep } from "./steps/create-review"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { useQueryGraphStep } from "/medusa/core-flows"
 
 type CreateReviewInput = {
   title?: string
@@ -579,7 +579,7 @@ export const PostStoreReviewHighlights = [
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
@@ -587,10 +587,10 @@ As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0),
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { createReviewWorkflow } from "../../../workflows/create-review"
 
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const PostStoreReviewSchema = z.object({
   title: z.string().optional(),
@@ -661,7 +661,7 @@ import {
   defineMiddlewares,
   authenticate,
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { PostStoreReviewSchema } from "./store/reviews/route"
 
 
@@ -818,8 +818,8 @@ export const GetAdminReviewsHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+} from "/framework/http"
+import { createFindParams } from "/medusa/api/utils/validators"
 
 export const GetAdminReviewsSchema = createFindParams()
 
@@ -878,7 +878,7 @@ In `src/api/middlewares.ts`, add a new middleware:
 // other imports...
 import { 
   validateAndTransformQuery,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { GetAdminReviewsSchema } from "./admin/reviews/route"
 
 export default defineMiddlewares({
@@ -944,7 +944,7 @@ Medusa provides a [JS SDK](../../../js-sdk/page.mdx) that you can use to send re
 The JS SDK is installed by default in your Medusa application. To configure it, create the file `src/admin/lib/sdk.ts` with the following content:
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: "http://localhost:9000",
@@ -972,8 +972,8 @@ export const listUIRoutesHighlight1 = [
 ]
 
 ```tsx title="src/admin/routes/reviews/page.tsx" highlights={listUIRoutesHighlight1} collapsibleLines="1-18" expandButtonLabel="Show Imports"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { ChatBubbleLeftRight } from "@medusajs/icons"
+import { defineRouteConfig } from "/admin-sdk"
+import { ChatBubbleLeftRight } from "/icons"
 import { 
   createDataTableColumnHelper, 
   Container, 
@@ -983,11 +983,11 @@ import {
   StatusBadge, 
   Toaster, 
   DataTablePaginationState,
-} from "@medusajs/ui"
+} from "/ui"
 import { useQuery } from "@tanstack/react-query"
 import { useMemo, useState } from "react"
 import { sdk } from "../../lib/sdk"
-import { HttpTypes } from "@medusajs/framework/types"
+import { HttpTypes } from "/framework/types"
 import { Link } from "react-router-dom"
 
 type Review = {
@@ -1176,7 +1176,7 @@ export const updateReviewStepHighlights = [
 import {
   createStep,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { PRODUCT_REVIEW_MODULE } from "../../modules/product-review"
 import ProductReviewModuleService from "../../modules/product-review/service"
 
@@ -1232,7 +1232,7 @@ You can now create the workflow that uses the above step to update the review. T
 import {
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { updateReviewsStep } from "./steps/update-review"
 
 export type UpdateReviewInput = {
@@ -1266,7 +1266,7 @@ export const PostAdminUpdateReviewsStatusHighlights = [
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
@@ -1274,9 +1274,9 @@ As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0),
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { updateReviewWorkflow } from "../../../../workflows/update-review"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const PostAdminUpdateReviewsStatusSchema = z.object({
   ids: z.array(z.string()),
@@ -1352,7 +1352,7 @@ import {
   createDataTableCommandHelper, 
   DataTableRowSelectionState, 
   toast
-} from "@medusajs/ui"
+} from "/ui"
 ```
 
 Then, in the `columns` array, add a new select column as the first item in the array:
@@ -1494,10 +1494,10 @@ On the product's page, you want to display the average rating of a product. To d
 In `src/modules/product-review/service.ts`, add the following methods to the `ProductReviewModuleService` class:
 
 ```ts title="src/modules/product-review/service.ts"
-import { InjectManager, MedusaService, MedusaContext } from "@medusajs/framework/utils"
+import { InjectManager, MedusaService, MedusaContext } from "/framework/utils"
 import Review from "./models/review"
-import { Context } from "@medusajs/framework/types"
-import { EntityManager } from "@medusajs/framework/mikro-orm/knex"
+import { Context } from "/framework/types"
+import { EntityManager } from "/framework/mikro-orm/knex"
 
 class ProductReviewModuleService extends MedusaService({
   Review,
@@ -1547,11 +1547,11 @@ export const GetStoreReviewsHighlights = [
 import {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+} from "/framework/http"
+import { ContainerRegistrationKeys } from "/framework/utils"
 import { PRODUCT_REVIEW_MODULE } from "../../../../../modules/product-review"
 import ProductReviewModuleService from "../../../../../modules/product-review/service"
-import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+import { createFindParams } from "/medusa/api/utils/validators"
 
 export const GetStoreReviewsSchema = createFindParams()
 
@@ -1610,7 +1610,7 @@ In `src/api/middlewares.ts`, add a new middleware:
 // other imports
 import { 
   validateAndTransformQuery,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { GetStoreReviewsSchema } from "./store/products/[id]/reviews/route"
 
 export default defineMiddlewares({
@@ -1767,9 +1767,9 @@ import { useState } from "react"
 
 import { useEffect } from "react"
 import { retrieveCustomer } from "../../../../lib/data/customer"
-import { HttpTypes } from "@medusajs/types"
-import { Button, Input, Label, Textarea, toast, Toaster } from "@medusajs/ui"
-import { Star, StarSolid } from "@medusajs/icons"
+import { HttpTypes } from "/types"
+import { Button, Input, Label, Textarea, toast, Toaster } from "/ui"
+import { Star, StarSolid } from "/icons"
 import { addProductReview } from "../../../../lib/data/products"
 
 type ProductReviewsFormProps = {
@@ -1904,9 +1904,9 @@ Create the file `src/modules/products/components/product-reviews/index.tsx` with
 "use client"
 
 import { getProductReviews } from "../../../../lib/data/products"
-import { Star, StarSolid } from "@medusajs/icons"
+import { Star, StarSolid } from "/icons"
 import { StoreProductReview } from "../../../../types/global"
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 import { useState, useEffect } from "react"
 import ProductReviewsForm from "./form"
 type ProductReviewsProps = {

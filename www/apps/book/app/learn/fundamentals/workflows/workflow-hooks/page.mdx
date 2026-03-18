@@ -43,7 +43,7 @@ export const handlerHighlights = [
 ]
 
 ```ts title="src/workflows/hooks/product-created.ts" highlights={handlerHighlights}
-import { createProductsWorkflow } from "@medusajs/medusa/core-flows"
+import { createProductsWorkflow } from "/medusa/core-flows"
 
 createProductsWorkflow.hooks.productsCreated(
   async ({ products }, { container }) => {
@@ -85,7 +85,7 @@ Since the hook handler is a step function, you can set its compensation function
 For example:
 
 ```ts title="src/workflows/hooks/product-created.ts"
-import { createProductsWorkflow } from "@medusajs/medusa/core-flows"
+import { createProductsWorkflow } from "/medusa/core-flows"
 
 createProductsWorkflow.hooks.productsCreated(
   async ({ products }, { container }) => {
@@ -110,7 +110,7 @@ It also accepts an object with a `container` property as a second parameter. Thi
 Medusa's workflows include an `additional_data` property in the hook's input:
 
 ```ts title="src/workflows/hooks/product-created.ts" highlights={[["4", "additional_data"]]}
-import { createProductsWorkflow } from "@medusajs/medusa/core-flows"
+import { createProductsWorkflow } from "/medusa/core-flows"
 
 createProductsWorkflow.hooks.productsCreated(
   async ({ products, additional_data }, { container }) => {
@@ -128,8 +128,8 @@ Learn how to pass `additional_data` in requests to API routes in the [Additional
 You can also pass additional data when running the workflow. Pass it as a parameter to the workflow's `.run` method:
 
 ```ts title="src/workflows/hooks/product-created.ts" highlights={[["10", "additional_data"]]}
-import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { createProductsWorkflow } from "@medusajs/medusa/core-flows"
+import type { MedusaRequest, MedusaResponse } from "/framework/http"
+import { createProductsWorkflow } from "/medusa/core-flows"
 
 export async function POST(req: MedusaRequest, res: MedusaResponse) {
   await createProductsWorkflow(req.scope).run({

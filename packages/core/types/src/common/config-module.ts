@@ -17,10 +17,10 @@ import type { Logger } from "../logger"
  *
  * @example
  * ```ts
- * // In @medusajs/translation module:
- * declare module "@medusajs/types" {
+ * // In /translation module:
+ * declare module "/types" {
  *   interface ModuleOptions {
- *     "@medusajs/translation": {
+ *     "/translation": {
  *       entities?: { type: string; fields: string[] }[]
  *     }
  *   }
@@ -967,7 +967,7 @@ export type ProjectConfigOptions = {
  *
  * :::
  *
- * `medusa-config.ts` exports the value returned by the `defineConfig` utility function imported from `@medusajs/framework/utils`.
+ * `medusa-config.ts` exports the value returned by the `defineConfig` utility function imported from `/framework/utils`.
  *
  * `defineConfig` accepts as a parameter an object with the following properties:
  *

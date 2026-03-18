@@ -1,4 +1,4 @@
-import { AdminApiKeyResponse } from "@medusajs/types"
+import { AdminApiKeyResponse } from "/types"
 import { TFunction } from "i18next"
 import { ApiKeyType } from "./constants"
 

@@ -70,11 +70,11 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/caching",
+      resolve: "/medusa/caching",
       options: {
         providers: [
           {
-            resolve: "@medusajs/caching-redis",
+            resolve: "/caching-redis",
             id: "caching-redis",
             // Optional, makes this the default caching provider
             is_default: true,
@@ -153,8 +153,8 @@ For example:
 import {
   createWorkflow,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 
 export const workflow = createWorkflow(
   "workflow-1",
@@ -195,8 +195,8 @@ export const cachingHighlights = [
 ]
 
 ```ts highlights={cachingHighlights}
-import { Modules } from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 type StepInput = {
   filters: Record<string, unknown>

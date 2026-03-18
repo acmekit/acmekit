@@ -1,6 +1,6 @@
 "use client"
 
-import { BarsThree, Book, SidebarLeft, TimelineVertical } from "@medusajs/icons"
+import { BarsThree, Book, SidebarLeft, TimelineVertical } from "/icons"
 import React, { useMemo, useRef, useState } from "react"
 import { Button } from "@/components/Button"
 import { Menu } from "@/components/Menu"

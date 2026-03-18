@@ -16,7 +16,7 @@ Medusa uses feature flags to ship new versions even when some features are not f
 
 ## Available Feature Flags in Medusa
 
-For a list of features hidden behind a feature flag in Medusa, check out the [feature-flags](https://github.com/medusajs/medusa/tree/develop/packages/medusa/src/feature-flags) directory in the `@medusajs/medusa` package.
+For a list of features hidden behind a feature flag in Medusa, check out the [feature-flags](https://github.com/medusajs/medusa/tree/develop/packages/medusa/src/feature-flags) directory in the `/medusa` package.
 
 ---
 
@@ -86,8 +86,8 @@ export const middlewareHighlights = [
 ]
 
 ```ts title="src/api/middlewares.ts" highlights={middlewareHighlights}
-import { defineMiddlewares } from "@medusajs/framework/http"
-import { FeatureFlag } from "@medusajs/framework/utils"
+import { defineMiddlewares } from "/framework/http"
+import { FeatureFlag } from "/framework/utils"
 
 export default defineMiddlewares({
   routes: [
@@ -123,8 +123,8 @@ export const apiRouteHighlights = [
 ]
 
 ```ts title="src/api/routes/custom.ts" highlights={apiRouteHighlights}
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
-import { defineFileConfig, FeatureFlag } from "@medusajs/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework"
+import { defineFileConfig, FeatureFlag } from "/framework/utils"
 
 export async function GET(
   req: MedusaRequest,
@@ -162,7 +162,7 @@ export const widgetHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-details.tsx" highlights={widgetHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { defineWidgetConfig } from "/admin-sdk"
 import { sdk } from "../lib/sdk"
 import { useQuery } from "@tanstack/react-query"
 

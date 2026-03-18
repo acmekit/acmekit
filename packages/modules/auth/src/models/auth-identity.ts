@@ -1,4 +1,4 @@
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { ProviderIdentity } from "./provider-identity"
 
 export const AuthIdentity = model

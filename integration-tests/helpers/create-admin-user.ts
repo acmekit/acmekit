@@ -4,7 +4,7 @@ import {
   IAuthModuleService,
   IUserModuleService,
   MedusaContainer,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import {
   ApiKeyType,
   ContainerRegistrationKeys,
@@ -12,7 +12,7 @@ import {
   generateJwtToken,
   Modules,
   PUBLISHABLE_KEY_HEADER,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import Scrypt from "scrypt-kdf"
 import { getContainer } from "../environment-helpers/use-container"
 

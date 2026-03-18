@@ -1,4 +1,4 @@
-import { Context } from "@medusajs/types"
+import { Context } from "/types"
 import { isPresent } from "../../common"
 import { MedusaContextType } from "./context-parameter"
 

@@ -113,8 +113,8 @@ export const translationHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-brand.tsx" highlights={translationHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Button, Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Button, Container, Heading } from "/ui"
 import { useTranslation } from "react-i18next"
 
 const ProductWidget = () => {
@@ -171,7 +171,7 @@ To set up auto-completion, create the file `src/admin/i18next.d.ts` with the fol
 
 ```ts title="src/admin/i18n/i18next.d.ts"
 // Import Medusa keys
-import type { Resources } from "@medusajs/dashboard"
+import type { Resources } from "/dashboard"
 // Import your custom translation keys
 // For example, import the English translation file
 import type enTranslation from "./i18n/en.json"
@@ -206,8 +206,8 @@ For example, consider the following widget and translation file:
   <CodeTab label="Widget" value="widget">
 
 ```tsx title="src/admin/widgets/product-brand.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Button, Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Button, Container, Heading } from "/ui"
 import { useTranslation } from "react-i18next"
 
 const ProductWidget = () => {
@@ -305,8 +305,8 @@ The translation files will now be loaded under the `brands` namespace.
 Then, in your admin customizations, specify the namespace when using the `useTranslation` hook:
 
 ```tsx title="src/admin/widgets/product-brand.tsx" highlights={[["7"]]}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Button, Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Button, Container, Heading } from "/ui"
 import { useTranslation } from "react-i18next"
 
 // The widget

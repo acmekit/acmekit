@@ -12,7 +12,7 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 # deleteProductTagsWorkflow - Medusa Core Workflows Reference
 
-This documentation provides a reference to the `deleteProductTagsWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
+This documentation provides a reference to the `deleteProductTagsWorkflow`. It belongs to the `/medusa/core-flows` package.
 
 This workflow deletes one or more product tags. It's used by the 
 [Delete Product Tags Admin API Route](https://docs.medusajs.com/api/admin#product-tags\_deleteproducttagsid).
@@ -33,8 +33,8 @@ You can also use this workflow within your own custom workflows, allowing you to
 import type {
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { deleteProductTagsWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework/http"
+import { deleteProductTagsWorkflow } from "/medusa/core-flows"
 
 export async function POST(
   req: MedusaRequest,
@@ -58,8 +58,8 @@ export async function POST(
 import {
   type SubscriberConfig,
   type SubscriberArgs,
-} from "@medusajs/framework"
-import { deleteProductTagsWorkflow } from "@medusajs/medusa/core-flows"
+} from "/framework"
+import { deleteProductTagsWorkflow } from "/medusa/core-flows"
 
 export default async function handleOrderPlaced({
   event: { data },
@@ -84,8 +84,8 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 ```ts title="src/jobs/message-daily.ts"
-import { MedusaContainer } from "@medusajs/framework/types"
-import { deleteProductTagsWorkflow } from "@medusajs/medusa/core-flows"
+import { MedusaContainer } from "/framework/types"
+import { deleteProductTagsWorkflow } from "/medusa/core-flows"
 
 export default async function myCustomJob(
   container: MedusaContainer
@@ -110,8 +110,8 @@ export const config = {
     <CodeTab label="Another Workflow" value="another-workflow">
     
 ```ts title="src/workflows/my-workflow.ts"
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
-import { deleteProductTagsWorkflow } from "@medusajs/medusa/core-flows"
+import { createWorkflow } from "/framework/workflows-sdk"
+import { deleteProductTagsWorkflow } from "/medusa/core-flows"
 
 const myWorkflow = createWorkflow(
   "my-workflow",
@@ -150,7 +150,7 @@ This hook is executed after the tags are deleted. You can consume this hook to p
 #### Example
 
 ```ts
-import { deleteProductTagsWorkflow } from "@medusajs/medusa/core-flows"
+import { deleteProductTagsWorkflow } from "/medusa/core-flows"
 
 deleteProductTagsWorkflow.hooks.productTagsDeleted(
   (async ({ ids }, { container }) => {

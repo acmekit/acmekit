@@ -16,7 +16,7 @@ products:
   - promotion
 ---
 
-import { Github } from "@medusajs/icons"
+import { Github } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList } from "docs-ui"
 
 export const metadata = {
@@ -196,7 +196,7 @@ The workflow you'll build will have the following steps:
   }}
 />
 
-Medusa provides all these steps in its `@medusajs/medusa/core-flows` package, so you can implement the workflow right away.
+Medusa provides all these steps in its `/medusa/core-flows` package, so you can implement the workflow right away.
 
 To create the workflow, create the file `src/workflows/apply-first-purchase-promo.ts` with the following content:
 
@@ -211,10 +211,10 @@ export const workflowHighlights = [
 ]
 
 ```ts title="src/workflows/apply-first-purchase-promo.ts" highlights={workflowHighlights}
-import { createWorkflow, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { updateCartPromotionsStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, when, WorkflowResponse } from "/framework/workflows-sdk"
+import { updateCartPromotionsStep, useQueryGraphStep } from "/medusa/core-flows"
 import { FIRST_PURCHASE_PROMOTION_CODE } from "../constants"
-import { PromotionActions } from "@medusajs/framework/utils"
+import { PromotionActions } from "/framework/utils"
 
 type WorkflowInput = {
   cart_id: string
@@ -307,7 +307,7 @@ A [subscriber](!docs!/learn/fundamentals/events-and-subscribers) is an asynchron
 To create the subscriber, create the file `src/subscribers/apply-first-purchase.ts` with the following content:
 
 ```ts title="src/subscribers/apply-first-purchase.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { applyFirstPurchasePromoWorkflow } from "../workflows/apply-first-purchase-promo"
 
 export default async function cartCreatedHandler({
@@ -403,9 +403,9 @@ export const validatePromotionHighlights = [
 ```ts title="src/workflows/hooks/validate-promotion.ts" highlights={validatePromotionHighlights}
 import { 
   updateCartPromotionsWorkflow,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { FIRST_PURCHASE_PROMOTION_CODE } from "../../constants"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 updateCartPromotionsWorkflow.hooks.validate(
   (async ({ input, cart }, { container }) => {
@@ -475,7 +475,7 @@ In the same `src/workflows/hooks/validate-promotion.ts` file, add the following 
 ```ts title="src/workflows/hooks/validate-promotion.ts"
 import { 
   completeCartWorkflow,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 ```
 
 Then, consume the hook at the end of the file:
@@ -560,7 +560,7 @@ Create the file `src/modules/common/components/discount-popup/index.tsx` with th
 ```tsx title="src/modules/common/components/discount-popup/index.tsx" badgeLabel="Storefront" badgeColor="blue"
 "use client"
 
-import { Button, Heading, Text } from "@medusajs/ui"
+import { Button, Heading, Text } from "/ui"
 import Modal from "@modules/common/components/modal"
 import useToggleState from "@lib/hooks/use-toggle-state"
 import { useEffect } from "react"

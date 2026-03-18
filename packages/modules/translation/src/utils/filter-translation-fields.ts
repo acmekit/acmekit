@@ -1,4 +1,4 @@
-import { TranslationTypes } from "@medusajs/framework/types"
+import { TranslationTypes } from "/framework/types"
 
 export function filterTranslationFields(
   translations: TranslationTypes.TranslationDTO[],

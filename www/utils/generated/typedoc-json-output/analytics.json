@@ -84,7 +84,7 @@
 									"qualifiedName": "IAnalyticsProvider"
 								},
 								"name": "IAnalyticsProvider",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						}
 					]
@@ -184,7 +184,7 @@
 											"qualifiedName": "TrackAnalyticsEventDTO"
 										},
 										"name": "TrackAnalyticsEventDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -301,7 +301,7 @@
 											"qualifiedName": "IdentifyAnalyticsEventDTO"
 										},
 										"name": "IdentifyAnalyticsEventDTO",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -350,7 +350,7 @@
 						"qualifiedName": "IModuleService"
 					},
 					"name": "IModuleService",
-					"package": "@medusajs/types"
+					"package": "/types"
 				}
 			]
 		}
@@ -363,7 +363,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"65923": {
 			"sourceFileName": "../../../../packages/core/types/src/analytics/service.ts",

@@ -1,4 +1,4 @@
-import { ConfigModule } from "@medusajs/types"
+import { ConfigModule } from "/types"
 
 export const customersGlobalMiddlewareMock = jest.fn()
 export const customersCreateMiddlewareMock = jest.fn()

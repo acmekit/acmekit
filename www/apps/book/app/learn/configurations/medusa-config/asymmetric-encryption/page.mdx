@@ -132,7 +132,7 @@ module.exports = defineConfig({
   },
   modules: [
     {
-      resolve: "@medusajs/medusa/user",
+      resolve: "/medusa/user",
       options: {
         jwt_secret: {
           key: jwtConfig.jwtSecret,
@@ -253,7 +253,7 @@ Then, create the API route at `src/api/.well-known/jwks.json/route.ts` with the 
 import type { 
   MedusaRequest, 
   MedusaResponse, 
-} from "@medusajs/framework/http"
+} from "/framework/http"
 
 export const GET = async (
   req: MedusaRequest, 
@@ -279,7 +279,7 @@ For example, create the API route at `src/api/.well-known/jwks.json/route.ts` wi
 import type { 
   MedusaRequest, 
   MedusaResponse, 
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import crypto from "crypto"
 
 export const GET = async (
@@ -342,7 +342,7 @@ import {
   MedusaRequest,
   MedusaNextFunction,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import jwt from "jsonwebtoken"
 import { JwksClient } from "jwks-rsa"
 
@@ -448,7 +448,7 @@ Apply this middleware to your protected API routes to ensure that only requests 
 For example, apply the middleware in `src/api/middlewares.ts`:
 
 ```ts title="src/api/middlewares.ts"
-import { defineMiddlewares } from "@medusajs/framework/http"
+import { defineMiddlewares } from "/framework/http"
 import { jwtAuthMiddleware } from "./middlewares/jwks-auth"
 
 export default defineMiddlewares({

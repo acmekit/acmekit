@@ -1,14 +1,14 @@
-import type { ProjectConfigOptions } from "@medusajs/framework/types"
+import type { ProjectConfigOptions } from "/framework/types"
 import {
   AuthWorkflowEvents,
   generateJwtToken,
   MedusaError,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import {
   createWorkflow,
   transform,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { emitEventStep, useRemoteQueryStep } from "../../common"
 
 /**

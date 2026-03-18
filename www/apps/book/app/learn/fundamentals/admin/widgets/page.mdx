@@ -42,8 +42,8 @@ export const widgetHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-widget.tsx" highlights={widgetHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 
 // The widget
 const ProductWidget = () => {
@@ -101,12 +101,12 @@ export const detailHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-widget.tsx" highlights={detailHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 import { 
   DetailWidgetProps, 
   AdminProduct,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 // The widget
 const ProductWidget = ({ 
@@ -156,12 +156,12 @@ In some cases, you may want to show a widget only if certain conditions are met.
 To prevent the widget from showing, return an empty fragment from the widget component:
 
 ```tsx title="src/admin/widgets/product-widget.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { Container, Heading } from "/ui"
 import { 
   DetailWidgetProps, 
   AdminProduct,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 
 // The widget
 const ProductWidget = ({ 

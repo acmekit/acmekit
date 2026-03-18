@@ -1,4 +1,4 @@
-import { setTelemetryEnabled } from "@medusajs/telemetry"
+import { setTelemetryEnabled } from "/telemetry"
 import { sync as existsSync } from "fs-exists-cached"
 import path from "path"
 import resolveCwd from "resolve-cwd"
@@ -41,7 +41,7 @@ function buildLocalCommands(cli, isLocalProject) {
     }
 
     try {
-      const cmdPath = resolveCwd.silent(`@medusajs/medusa/commands/${command}`)!
+      const cmdPath = resolveCwd.silent(`/medusa/commands/${command}`)!
       return require(cmdPath).default
     } catch (err) {
       console.error(err)
@@ -592,14 +592,14 @@ function isLocalMedusaProject() {
     const { dependencies, devDependencies } = require(path.resolve(
       `./package.json`
     ))
-    // Draft order plugin can't have @medusajs/medusa as dependency,
-    // so we also check for @medusajs/cli 
+    // Draft order plugin can't have /medusa as dependency,
+    // so we also check for /cli 
     inMedusaProject = !!(
       (dependencies &&
-        (dependencies["@medusajs/medusa"] || dependencies["@medusajs/cli"])) ||
+        (dependencies["/medusa"] || dependencies["/cli"])) ||
       (devDependencies &&
-        (devDependencies["@medusajs/medusa"] ||
-          devDependencies["@medusajs/cli"]))
+        (devDependencies["/medusa"] ||
+          devDependencies["/cli"]))
     )
   } catch (err) {
     // ignore
@@ -617,7 +617,7 @@ function getVersionInfo() {
       medusaVersion = require(path.join(
         process.cwd(),
         `node_modules`,
-        `@medusajs/medusa`,
+        `/medusa`,
         `package.json`
       )).version
     } catch (e) {

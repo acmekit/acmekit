@@ -9,7 +9,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details, WorkflowDiagram, H3 } from "docs-ui"
-import { Github } from "@medusajs/icons"
+import { Github } from "/icons"
 
 export const metadata = {
   title: `Integrate Payload CMS with Medusa`,
@@ -863,7 +863,7 @@ Create the file `src/modules/payload/service.ts` with the following content:
 import {
   PayloadModuleOptions,
 } from "./types"
-import { MedusaError } from "@medusajs/framework/utils"
+import { MedusaError } from "/framework/utils"
 
 type InjectedDependencies = {
   // inject any dependencies you need here
@@ -1240,7 +1240,7 @@ The final piece to a module is its definition, which you export in an `index.ts`
 To create the module's definition, create the file `src/modules/payload/index.ts` with the following content:
 
 ```ts title="src/modules/payload/index.ts" badgeLabel="Medusa application" badgeColor="green"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import PayloadModuleService from "./service"
 
 export const PAYLOAD_MODULE = "payload"
@@ -1328,8 +1328,8 @@ In this step, you'll define a virtual read-only link between the `Products` coll
 To define a virtual read-only link, create the file `src/links/product-payload.ts` with the following content:
 
 ```ts title="src/links/product-payload.ts" badgeLabel="Medusa application" badgeColor="green"
-import { defineLink } from "@medusajs/framework/utils"
-import ProductModule from "@medusajs/medusa/product"
+import { defineLink } from "/framework/utils"
+import ProductModule from "/medusa/product"
 import { PAYLOAD_MODULE } from "../modules/payload"
 
 export default defineLink(
@@ -1477,7 +1477,7 @@ export const createPayloadItemsStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-payload-items.ts" badgeLabel="Medusa application" badgeColor="green" highlights={createPayloadItemsStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PayloadUpsertData } from "../../modules/payload/types"
 import { PAYLOAD_MODULE } from "../../modules/payload"
 
@@ -1558,9 +1558,9 @@ export const createPayloadProductsWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/create-payload-products.ts" badgeLabel="Medusa application" badgeColor="green" highlights={createPayloadProductsWorkflowHighlights}
-import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, transform, WorkflowResponse } from "/framework/workflows-sdk"
 import { createPayloadItemsStep } from "./steps/create-payload-items"
-import { updateProductsWorkflow, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { updateProductsWorkflow, useQueryGraphStep } from "/medusa/core-flows"
 
 type WorkflowInput = {
   product_ids: string[]
@@ -1695,7 +1695,7 @@ Refer to the [API routes](!docs!/learn/fundamentals/api-routes) to learn more ab
 Create the file `src/api/admin/payload/sync/[collection]/route.ts` with the following content:
 
 ```ts title="src/api/admin/payload/sync/[collection]/route.ts" badgeLabel="Medusa application" badgeColor="green"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export const POST = async (
   req: MedusaRequest,
@@ -1742,7 +1742,7 @@ export const productsSyncPayloadSubscriberHighlights = [
 ]
 
 ```ts title="src/subscribers/products-sync-payload.ts" badgeLabel="Medusa application" badgeColor="green" highlights={productsSyncPayloadSubscriberHighlights}
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { createPayloadProductsWorkflow } from "../workflows/create-payload-products"
 
 export default async function productSyncPayloadHandler({
@@ -1815,7 +1815,7 @@ To send requests from your Medusa Admin customizations to the Medusa server, you
 Create the file `src/admin/lib/sdk.ts` with the following content:
 
 ```ts title="src/admin/lib/sdk.ts" badgeLabel="Medusa application" badgeColor="green"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -1841,8 +1841,8 @@ Refer to the [UI Routes](!docs!/learn/fundamentals/admin/ui-routes) documentatio
 To create the setting page, create the file `src/admin/routes/settings/payload/page.tsx` with the following content:
 
 ```tsx title="src/admin/routes/settings/payload/page.tsx" badgeLabel="Medusa application" badgeColor="green"
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { Button, Container, Heading, toast } from "@medusajs/ui"
+import { defineRouteConfig } from "/admin-sdk"
+import { Button, Container, Heading, toast } from "/ui"
 import { useMutation } from "@tanstack/react-query"
 import { sdk } from "../../../lib/sdk"
 
@@ -1941,7 +1941,7 @@ You already have the workflow to create a product in Payload, so you only need t
 Create the file `src/subscribers/product-created.ts` with the following content:
 
 ```ts title="src/subscribers/product-created.ts" badgeLabel="Medusa application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { createPayloadProductsWorkflow } from "../workflows/create-payload-products"
 
 export default async function productCreatedHandler({
@@ -2029,7 +2029,7 @@ Next, you'll define a TypeScript type that adds the `payload_product` property t
 In `src/types/global.ts`, add the following imports at the top of the file:
 
 ```ts title="src/types/global.ts" badgeLabel="Storefront" badgeColor="blue"
-import { StoreProduct } from "@medusajs/types"
+import { StoreProduct } from "/types"
 // @ts-ignore
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
 ```
@@ -2468,7 +2468,7 @@ First, you need to create the `deletePayloadItemsStep` that allows you to delete
 Create the file `src/workflows/steps/delete-payload-items.ts` with the following content:
 
 ```ts title="src/workflows/steps/delete-payload-items.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PAYLOAD_MODULE } from "../../modules/payload"
 
 type StepInput = {
@@ -2523,7 +2523,7 @@ Then, you delete the items using the `delete` method of the Payload Module's ser
 Next, to create the workflow that deletes products from Payload, create the file `src/workflows/delete-payload-products.ts` with the following content:
 
 ```ts title="src/workflows/delete-payload-products.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, transform, WorkflowResponse } from "/framework/workflows-sdk"
 import { deletePayloadItemsStep } from "./steps/delete-payload-items"
 
 type WorkflowInput = {
@@ -2564,7 +2564,7 @@ Finally, you'll create the subscriber that executes the workflow when the `produ
 Create the file `src/subscribers/product-deleted.ts` with the following content:
 
 ```ts title="src/subscribers/product-deleted.ts" badgeLabel="Medusa application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { deletePayloadProductsWorkflow } from "../workflows/delete-payload-products"
 
 export default async function productDeletedHandler({
@@ -2638,7 +2638,7 @@ The `updatePayloadItemsStep` will update an item in a Payload collection, such a
 To create the step, create the file `src/workflows/steps/update-payload-items.ts` with the following content:
 
 ```ts title="src/workflows/steps/update-payload-items.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PayloadItemResult, PayloadUpsertData } from "../../modules/payload/types"
 import { PAYLOAD_MODULE } from "../../modules/payload"
 
@@ -2726,8 +2726,8 @@ In the compensation function, you revert the changes made in the step function i
 Create the file `src/workflows/create-payload-product-variant.ts` with the following content:
 
 ```ts title="src/workflows/create-payload-product-variant.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { PayloadCollectionItem, PayloadUpsertData } from "../modules/payload/types"
 import { updatePayloadItemsStep } from "./steps/update-payload-items"
 
@@ -2820,7 +2820,7 @@ Finally, you'll create the subscriber that executes the workflow when the `produ
 Create the file `src/subscribers/variant-created.ts` with the following content:
 
 ```ts title="src/subscribers/variant-created.ts" badgeLabel="Medusa application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { createPayloadProductVariantWorkflow } from "../workflows/create-payload-product-variant"
 
 export default async function productVariantCreatedHandler({
@@ -2890,8 +2890,8 @@ Since you already have the necessary steps, you only need to create the workflow
 Create the file `src/workflows/update-payload-product-variants.ts` with the following content:
 
 ```ts title="src/workflows/update-payload-product-variants.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { PayloadCollectionItem, PayloadUpsertData } from "../modules/payload/types"
 import { updatePayloadItemsStep } from "./steps/update-payload-items"
 
@@ -3007,7 +3007,7 @@ Finally, you'll create the subscriber that executes the workflow.
 Create the file `src/subscribers/variant-updated.ts` with the following content:
 
 ```ts title="src/subscribers/variant-updated.ts" badgeLabel="Medusa application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { updatePayloadProductVariantsWorkflow } from "../workflows/update-payload-product-variants"
 
 export default async function productVariantUpdatedHandler({
@@ -3080,7 +3080,7 @@ Instead, you'll create a step that retrieves the products containing the variant
 To create the step, create the file `src/workflows/steps/retrieve-payload-items.ts` with the following content:
 
 ```ts title="src/workflows/steps/retrieve-payload-items.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PAYLOAD_MODULE } from "../../modules/payload"
 
 type StepInput = {
@@ -3111,7 +3111,7 @@ This step accepts a collection slug and a `where` condition to specify which ite
 To create the workflow, create the file `src/workflows/delete-payload-product-variants.ts` with the following content:
 
 ```ts title="src/workflows/delete-payload-product-variants.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
 import { updatePayloadItemsStep } from "./steps/update-payload-items"
 import { retrievePayloadItemsStep } from "./steps/retrieve-payload-items"
 
@@ -3183,7 +3183,7 @@ Finally, you'll create the subscriber that executes the workflow when the `produ
 Create the file `src/subscribers/variant-deleted.ts` with the following content:
 
 ```ts title="src/subscribers/variant-deleted.ts" badgeLabel="Medusa application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { deletePayloadProductVariantsWorkflow } from "../workflows/delete-payload-product-variants"
 
 export default async function productVariantDeletedHandler({
@@ -3255,8 +3255,8 @@ You already have the necessary steps, so you only need to create the workflow th
 Create the file `src/workflows/create-payload-product-options.ts` with the following content:
 
 ```ts title="src/workflows/create-payload-product-options.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { PayloadCollectionItem, PayloadUpsertData } from "../modules/payload/types"
 import { updatePayloadItemsStep } from "./steps/update-payload-items"
 
@@ -3353,7 +3353,7 @@ Finally, you'll create the subscriber that executes the workflow when the `produ
 Create the file `src/subscribers/option-created.ts` with the following content:
 
 ```ts title="src/subscribers/option-created.ts" badgeLabel="Medusa application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { createPayloadProductOptionsWorkflow } from "../workflows/create-payload-product-options"
 
 export default async function productOptionCreatedHandler({
@@ -3424,7 +3424,7 @@ You already have the necessary steps, so you only need to create the workflow th
 Create the file `src/workflows/delete-payload-product-options.ts` with the following content:
 
 ```ts title="src/workflows/delete-payload-product-options.ts" badgeLabel="Medusa application" badgeColor="green"
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
 import { updatePayloadItemsStep } from "./steps/update-payload-items"
 import { retrievePayloadItemsStep } from "./steps/retrieve-payload-items"
 
@@ -3499,7 +3499,7 @@ Finally, you'll create the subscriber that executes the workflow when the `produ
 Create the file `src/subscribers/option-deleted.ts` with the following content:
 
 ```ts title="src/subscribers/option-deleted.ts" badgeLabel="Medusa application" badgeColor="green"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { deletePayloadProductOptionsWorkflow } from "../workflows/delete-payload-product-options"
 
 export default async function productOptionDeletedHandler({

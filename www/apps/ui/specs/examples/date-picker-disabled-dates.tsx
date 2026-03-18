@@ -1,6 +1,6 @@
 "use client"
 
-import { DatePicker } from "@medusajs/ui"
+import { DatePicker } from "/ui"
 
 export default function DatePickerDisabledDates() {
   // Disable weekends (Saturday and Sunday)

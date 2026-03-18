@@ -1,5 +1,5 @@
-import { z, type ZodType } from "@medusajs/framework/zod"
-import { HttpTypes } from "@medusajs/types"
+import { z, type ZodType } from "/framework/zod"
+import { HttpTypes } from "/types"
 import { createSelectParams } from "../../utils/validators"
 
 export type AdminGetUploadParamsType = z.infer<typeof AdminGetUploadParams>

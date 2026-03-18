@@ -23,7 +23,7 @@ The Local Event Module is registered by default in your application.
 Add the module into the `modules` property of the exported object in `medusa-config.ts`:
 
 ```ts title="medusa-config.ts"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 // ...
 
@@ -31,7 +31,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/event-bus-local",
+      resolve: "/medusa/event-bus-local",
     },
   ],
 })

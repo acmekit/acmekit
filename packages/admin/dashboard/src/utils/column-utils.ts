@@ -1,4 +1,4 @@
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 
 export enum ColumnAlignment {
   LEFT = "left",

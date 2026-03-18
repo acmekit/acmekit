@@ -16,7 +16,7 @@ products:
   - fulfillment
 ---
 
-import { Github, PlaySolid, EllipsisHorizontal } from "@medusajs/icons"
+import { Github, PlaySolid, EllipsisHorizontal } from "/icons"
 import { Prerequisites, WorkflowDiagram, CardList, InlineIcon } from "docs-ui"
 
 export const metadata = {
@@ -148,7 +148,7 @@ export const preorderVariantHighlights = [
 ]
 
 ```ts title="src/modules/preorder/models/preorder-variant.ts" highlights={preorderVariantHighlights}
-import { model } from "@medusajs/utils"
+import { model } from "/utils"
 import { Preorder } from "./preorder"
 
 export enum PreorderVariantStatus {
@@ -207,7 +207,7 @@ export const preorderHighlights = [
 ]
 
 ```ts title="src/modules/preorder/models/preorder.ts" highlights={preorderHighlights}
-import { model } from "@medusajs/utils"
+import { model } from "/utils"
 import { PreorderVariant } from "./preorder-variant"
 
 export enum PreorderStatus {
@@ -259,7 +259,7 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 To create the Preorder Module's service, create the file `src/modules/preorder/services/preorder.ts` with the following content:
 
 ```ts title="src/modules/preorder/services/preorder.ts"
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaService } from "/framework/utils"
 import { PreorderVariant } from "./models/preorder-variant"
 import { Preorder } from "./models/preorder"
 
@@ -286,7 +286,7 @@ The final piece to a module is its definition, which you export in an `index.ts`
 So, create the file `src/modules/preorder/index.ts` with the following content:
 
 ```ts title="src/modules/preorder/index.ts"
-import { Module } from "@medusajs/framework/utils"
+import { Module } from "/framework/utils"
 import PreorderModuleService from "./service"
 
 export const PREORDER_MODULE = "preorder"
@@ -369,9 +369,9 @@ In this step, you'll define a link between the data models in the Preorder Modul
 To define a link between the `PreorderVariant` and `ProductVariant` data models, create the file `src/links/preorder-variant.ts` with the following content:
 
 ```ts title="src/links/preorder-variant.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import PreorderModule from "../modules/preorder"
-import ProductModule from "@medusajs/medusa/product"
+import ProductModule from "/medusa/product"
 
 export default defineLink(
   PreorderModule.linkable.preorderVariant,
@@ -399,9 +399,9 @@ Next, you'll define a read-only link between the `Preorder` data model and Medus
 Create the file `src/links/preorder-order.ts` with the following content:
 
 ```ts title="src/links/preorder-order.ts"
-import { defineLink } from "@medusajs/framework/utils"
+import { defineLink } from "/framework/utils"
 import PreorderModule from "../modules/preorder"
-import OrderModule from "@medusajs/medusa/order"
+import OrderModule from "/medusa/order"
 
 export default defineLink(
   {
@@ -523,7 +523,7 @@ The workflow you'll build will have the following steps:
   }}
 />
 
-The `useQueryGraphStep` and `createRemoteLinkStep` are available through Medusa's `@medusajs/medusa/core-flows` package. You'll implement other steps in the workflow.
+The `useQueryGraphStep` and `createRemoteLinkStep` are available through Medusa's `/medusa/core-flows` package. You'll implement other steps in the workflow.
 
 #### updatePreorderVariantStep
 
@@ -547,7 +547,7 @@ export const updatePreorderVariantStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/update-preorder-variant.ts" highlights={updatePreorderVariantStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PREORDER_MODULE } from "../../modules/preorder"
 import { 
   PreorderVariantStatus,
@@ -630,7 +630,7 @@ export const createPreorderVariantStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-preorder-variant.ts" highlights={createPreorderVariantStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PREORDER_MODULE } from "../../modules/preorder"
 
 type StepInput = {
@@ -688,12 +688,12 @@ export const upsertProductVariantPreorderWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/upsert-product-variant-preorder.ts" highlights={upsertProductVariantPreorderWorkflowHighlights}
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { createRemoteLinkStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
+import { createRemoteLinkStep, useQueryGraphStep } from "/medusa/core-flows"
 import { updatePreorderVariantStep } from "./steps/update-preorder-variant"
 import { createPreorderVariantStep } from "./steps/create-preorder-variant"
 import { PREORDER_MODULE } from "../modules/preorder"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 import { PreorderVariantStatus } from "../modules/preorder/models/preorder-variant"
 
 type WorkflowInput = {
@@ -816,7 +816,7 @@ export const upsertPreorderVariantRouteHighlights = [
 
 <Note>
 
-As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `@medusajs/framework/zod`.
+As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0), Zod should be imported from `/framework/zod`.
 
 </Note>
 
@@ -824,11 +824,11 @@ As of [Medusa v2.13.0](https://github.com/medusajs/medusa/releases/tag/v2.13.0),
 import { 
   AuthenticatedMedusaRequest, 
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   upsertProductVariantPreorderWorkflow, 
 } from "../../../../../workflows/upsert-product-variant-preorder"
-import { z } from "@medusajs/framework/zod"
+import { z } from "/framework/zod"
 
 export const UpsertPreorderVariantSchema = z.object({
   available_date: z.string().datetime(),
@@ -883,7 +883,7 @@ export const middlewaresHighlights = [
 import { 
   defineMiddlewares, 
   validateAndTransformBody,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import { 
   UpsertPreorderVariantSchema,
 } from "./admin/variants/[id]/preorders/route"
@@ -959,7 +959,7 @@ export const disablePreorderVariantStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/disable-preorder-variant.ts" highlights={disablePreorderVariantStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PREORDER_MODULE } from "../../modules/preorder"
 import { 
   PreorderVariantStatus,
@@ -1013,8 +1013,8 @@ export const disablePreorderVariantWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/disable-preorder-variant.ts" highlights={disablePreorderVariantWorkflowHighlights}
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { disablePreorderVariantStep } from "./steps/disable-preorder-variant"
 
 type WorkflowInput = {
@@ -1110,7 +1110,7 @@ To send requests to the Medusa server, you'll use the [JS SDK](../../../js-sdk/p
 Create the file `src/admin/lib/sdk.ts` with the following content:
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -1138,7 +1138,7 @@ export const typesHighlights = [
 ]
 
 ```ts title="src/admin/lib/types.ts" highlights={typesHighlights}
-import { HttpTypes } from "@medusajs/framework/types"
+import { HttpTypes } from "/framework/types"
 
 export interface PreorderVariant {
   id: string
@@ -1205,10 +1205,10 @@ export const usePreorderVariantHighlights = [
 
 ```ts title="src/admin/hooks/use-preorder-variant.ts" highlights={usePreorderVariantHighlights}
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
-import { toast } from "@medusajs/ui"
+import { toast } from "/ui"
 import { sdk } from "../lib/sdk"
 import { PreorderVariantResponse, CreatePreorderVariantData } from "../lib/types"
-import { HttpTypes } from "@medusajs/framework/types"
+import { HttpTypes } from "/framework/types"
 
 export const usePreorderVariant = (variant: HttpTypes.AdminProductVariant) => {
   const queryClient = useQueryClient()
@@ -1293,7 +1293,7 @@ export const preorderVariantWidgetHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/preorder-variant-widget.tsx" collapsibleLines="1-23" expandButtonLabel="Show Imports" highlights={preorderVariantWidgetHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { defineWidgetConfig } from "/admin-sdk"
 import { 
   Container, 
   Heading, 
@@ -1307,13 +1307,13 @@ import {
   clx,
   usePrompt,
   StatusBadge,
-} from "@medusajs/ui"
+} from "/ui"
 import { useEffect, useState } from "react"
 import { 
   DetailWidgetProps, 
   AdminProductVariant,
-} from "@medusajs/framework/types"
-import { Calendar, EllipsisHorizontal, Pencil, Plus, XCircle } from "@medusajs/icons"
+} from "/framework/types"
+import { Calendar, EllipsisHorizontal, Pencil, Plus, XCircle } from "/icons"
 import { usePreorderVariant } from "../hooks/use-preorder-variant"
 
 const PreorderWidget = ({ 
@@ -1656,8 +1656,8 @@ The `retrievePreorderItemIdsStep` receives all cart line items and returns the I
 Create the file `src/workflows/steps/retrieve-preorder-items.ts` with the following content:
 
 ```ts title="src/workflows/steps/retrieve-preorder-items.ts"
-import { CartLineItemDTO, ProductVariantDTO } from "@medusajs/framework/types"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { CartLineItemDTO, ProductVariantDTO } from "/framework/types"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 export type RetrievePreorderItemIdsStepInput = {
   line_items: (CartLineItemDTO & {
@@ -1700,7 +1700,7 @@ export const createPreordersStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/create-preorders.ts" highlights={createPreordersStepHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PREORDER_MODULE } from "../../modules/preorder"
 
 type StepInput = {
@@ -1767,13 +1767,13 @@ import {
   createWorkflow, 
   when, 
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { 
   acquireLockStep, 
   completeCartWorkflow, 
   useQueryGraphStep, 
   releaseLockStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 import { 
   retrievePreorderItemIdsStep, 
   RetrievePreorderItemIdsStepInput,
@@ -1886,7 +1886,7 @@ Next, you'll create an API route that executes the `completeCartPreorderWorkflow
 Create the file `src/api/store/carts/[id]/complete-preorder/route.ts` with the following content:
 
 ```ts title="src/api/store/carts/[id]/complete-preorder/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import { completeCartPreorderWorkflow } from "../../../../../workflows/complete-cart-preorder"
 
 export const POST = async (
@@ -1937,9 +1937,9 @@ export const validateCartHookHighlights = [
 ]
 
 ```ts title="src/workflows/hooks/validate-cart.ts" highlights={validateCartHookHighlights}
-import { MedusaError } from "@medusajs/framework/utils"
-import { addToCartWorkflow } from "@medusajs/medusa/core-flows"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { MedusaError } from "/framework/utils"
+import { addToCartWorkflow } from "/medusa/core-flows"
+import { InferTypeOf } from "/framework/types"
 import { PreorderVariant } from "../../modules/preorder/models/preorder-variant"
 
 function isPreorderVariant(
@@ -2039,7 +2039,7 @@ You'll start by defining types related to pre-orders that you'll use in the stor
 In `src/types/global.ts`, add the following import at the top of the file:
 
 ```ts title="src/types/global.ts" badgeLabel="Storefront" badgeColor="blue"
-import { StorePrice } from "@medusajs/types"
+import { StorePrice } from "/types"
 ```
 
 Then, add the following type definitions at the end of the file:
@@ -2138,7 +2138,7 @@ Next, you'll customize the `ProductActions` component to show the pre-order info
 In `src/modules/products/components/product-actions/index.tsx`, add the following imports at the top of the file:
 
 ```tsx title="src/modules/products/components/product-actions/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { Text } from "@medusajs/ui"
+import { Text } from "/ui"
 import { StoreProductVariantWithPreorder } from "../../../../types/global"
 import { isPreorder } from "../../../../lib/util/is-preorder"
 ```
@@ -2486,7 +2486,7 @@ You'll start by creating an API route that retrieves the pre-order information f
 Create the file `src/api/admin/orders/[id]/preorders/route.ts` with the following content:
 
 ```ts title="src/api/admin/orders/[id]/preorders/route.ts"
-import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { AuthenticatedMedusaRequest, MedusaResponse } from "/framework/http"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
@@ -2564,9 +2564,9 @@ export const preorderWidgetHighlights = [
 ]
 
 ```tsx title="src/admin/widgets/preorder-widget.tsx" highlights={preorderWidgetHighlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { DetailWidgetProps, HttpTypes } from "@medusajs/framework/types"
-import { Container, Heading, StatusBadge, Text } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { DetailWidgetProps, HttpTypes } from "/framework/types"
+import { Container, Heading, StatusBadge, Text } from "/ui"
 import { Link } from "react-router-dom"
 import { usePreorders } from "../hooks/use-preorders"
 
@@ -2725,8 +2725,8 @@ export const retrieveItemsToFulfillHighlights = [
 ]
 
 ```ts title="src/workflows/steps/retrieve-items-to-fulfill.ts" highlights={retrieveItemsToFulfillHighlights}
-import { InferTypeOf, OrderLineItemDTO } from "@medusajs/framework/types"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { InferTypeOf, OrderLineItemDTO } from "/framework/types"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PreorderVariant } from "../../modules/preorder/models/preorder-variant"
 
 export type RetrieveItemsToFulfillStepInput = {
@@ -2774,7 +2774,7 @@ export const updatePreordersHighlights = [
 ]
 
 ```ts title="src/workflows/steps/update-preorders.ts" highlights={updatePreordersHighlights}
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PreorderStatus } from "../../modules/preorder/models/preorder"
 import { PREORDER_MODULE } from "../../modules/preorder"
 
@@ -2842,10 +2842,10 @@ export const fulfillPreorderWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/fulfill-preorder.ts" highlights={fulfillPreorderWorkflowHighlights} collapsibleLines="1-8" expandButtonLabel="Show Imports"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { InferTypeOf } from "/framework/types"
 import { PreorderVariant } from "../modules/preorder/models/preorder-variant"
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { createOrderFulfillmentWorkflow, emitEventStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, WorkflowResponse } from "/framework/workflows-sdk"
+import { createOrderFulfillmentWorkflow, emitEventStep, useQueryGraphStep } from "/medusa/core-flows"
 import { retrieveItemsToFulfillStep, RetrieveItemsToFulfillStepInput } from "./steps/retrieve-items-to-fulfill"
 import { updatePreordersStep } from "./steps/update-preorders"
 import { PreorderStatus } from "../modules/preorder/models/preorder"
@@ -2934,8 +2934,8 @@ To do that, you can use Medusa's [capturePaymentWorkflow](/references/medusa-wor
 First, change the `retrieveItemsToFulfillStep` to return the total of the pre-ordered items:
 
 ```ts title="src/workflows/steps/retrieve-items-to-fulfill.ts" highlights={[["16"], ["20"], ["29"]]}
-import { InferTypeOf, OrderLineItemDTO } from "@medusajs/framework/types"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { InferTypeOf, OrderLineItemDTO } from "/framework/types"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 import { PreorderVariant } from "../../modules/preorder/models/preorder-variant"
 
 export type RetrieveItemsToFulfillStepInput = {
@@ -2971,10 +2971,10 @@ export const retrieveItemsToFulfillStep = createStep(
 Then, update the workflow to the following:
 
 ```ts title="src/workflows/fulfill-preorder.ts"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { InferTypeOf } from "/framework/types"
 import { PreorderVariant } from "../modules/preorder/models/preorder-variant"
-import { createWorkflow, transform, when, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { capturePaymentWorkflow, createOrderFulfillmentWorkflow, emitEventStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, transform, when, WorkflowResponse } from "/framework/workflows-sdk"
+import { capturePaymentWorkflow, createOrderFulfillmentWorkflow, emitEventStep, useQueryGraphStep } from "/medusa/core-flows"
 import { retrieveItemsToFulfillStep, RetrieveItemsToFulfillStepInput } from "./steps/retrieve-items-to-fulfill"
 import { updatePreordersStep } from "./steps/update-preorders"
 import { PreorderStatus } from "../modules/preorder/models/preorder"
@@ -3097,7 +3097,7 @@ export const fulfillPreordersJobHighlights = [
 import {
   InferTypeOf,
   MedusaContainer,
-} from "@medusajs/framework/types"
+} from "/framework/types"
 import { fulfillPreorderWorkflow } from "../workflows/fulfill-preorder"
 import { PreorderVariant } from "../modules/preorder/models/preorder-variant"
 
@@ -3315,7 +3315,7 @@ export const preorderNotificationHighlights = [
 import type {
   SubscriberArgs,
   SubscriberConfig,
-} from "@medusajs/framework"
+} from "/framework"
 
 export default async function productCreateHandler({
   event: { data },
@@ -3432,9 +3432,9 @@ export const cancelPreordersWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/cancel-preorders.ts" highlights={cancelPreordersWorkflowHighlights}
-import { InferTypeOf } from "@medusajs/framework/types"
-import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { emitEventStep } from "@medusajs/medusa/core-flows"
+import { InferTypeOf } from "/framework/types"
+import { createWorkflow, transform, WorkflowResponse } from "/framework/workflows-sdk"
+import { emitEventStep } from "/medusa/core-flows"
 import { updatePreordersStep } from "./steps/update-preorders"
 import { Preorder, PreorderStatus } from "../modules/preorder/models/preorder"
 
@@ -3501,8 +3501,8 @@ export const orderCanceledHighlights = [
 ]
 
 ```ts title="src/subscribers/order-canceled.ts" highlights={orderCanceledHighlights}
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
-import { InferTypeOf } from "@medusajs/framework/types"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
+import { InferTypeOf } from "/framework/types"
 import { cancelPreordersWorkflow, CancelPreordersWorkflowInput } from "../workflows/cancel-preorders"
 import { Preorder } from "../modules/preorder/models/preorder"
 
@@ -3646,10 +3646,10 @@ export const retrievePreorderUpdatesStepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/retrieve-preorder-updates.ts" highlights={retrievePreorderUpdatesStepHighlights}
-import { InferTypeOf, OrderDTO, OrderLineItemDTO, ProductVariantDTO } from "@medusajs/framework/types"
+import { InferTypeOf, OrderDTO, OrderLineItemDTO, ProductVariantDTO } from "/framework/types"
 import { PreorderVariant } from "../../modules/preorder/models/preorder-variant"
 import { Preorder, PreorderStatus } from "../../modules/preorder/models/preorder"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { createStep, StepResponse } from "/framework/workflows-sdk"
 
 export type RetrievePreorderUpdatesStep = {
   order: OrderDTO & {
@@ -3738,8 +3738,8 @@ export const handleOrderEditWorkflowHighlights = [
 ]
 
 ```ts title="src/workflows/handle-order-edit.ts" highlights={handleOrderEditWorkflowHighlights} collapsibleLines="1-6" expandButtonLabel="Show Imports"
-import { createWorkflow, transform, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
-import { emitEventStep, useQueryGraphStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow, transform, WorkflowResponse } from "/framework/workflows-sdk"
+import { emitEventStep, useQueryGraphStep } from "/medusa/core-flows"
 import { RetrievePreorderUpdatesStep, retrievePreorderUpdatesStep } from "./steps/retrieve-preorder-updates"
 import { updatePreordersStep } from "./steps/update-preorders"
 import { createPreordersStep } from "./steps/create-preorders"
@@ -3828,8 +3828,8 @@ Next, you'll create the subscriber that listens to the `order-edit.confirmed` ev
 Create the file `src/subscribers/order-edit-confirmed.ts` with the following content:
 
 ```ts title="src/subscribers/order-edit-confirmed.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
-import { OrderChangeActionDTO } from "@medusajs/framework/types"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
+import { OrderChangeActionDTO } from "/framework/types"
 import { handleOrderEditWorkflow } from "../workflows/handle-order-edit"
 
 export default async function orderEditConfirmedHandler({

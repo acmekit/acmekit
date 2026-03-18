@@ -1,4 +1,4 @@
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 
 export class Migration20240602110946 extends Migration {
   async up(): Promise<void> {

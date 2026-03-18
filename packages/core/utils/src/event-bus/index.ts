@@ -2,7 +2,7 @@ import {
   EventBusTypes,
   InterceptorSubscriber,
   InternalModuleDeclaration,
-} from "@medusajs/types"
+} from "/types"
 import { ulid } from "ulid"
 
 export abstract class AbstractEventBusModuleService

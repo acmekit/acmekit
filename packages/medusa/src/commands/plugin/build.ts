@@ -1,5 +1,5 @@
-import { Compiler } from "@medusajs/framework/build-tools"
-import { logger } from "@medusajs/framework/logger"
+import { Compiler } from "/framework/build-tools"
+import { logger } from "/framework/logger"
 
 export default async function build({ directory }: { directory: string }) {
   logger.info("Starting build...")
@@ -11,7 +11,7 @@ export default async function build({ directory }: { directory: string }) {
     process.exit(1)
   }
 
-  const bundler = await import("@medusajs/admin-bundler")
+  const bundler = await import("/admin-bundler")
   const responses = await Promise.all([
     compiler.buildPluginBackend(tsConfig),
     compiler.buildPluginAdminExtensions(bundler),

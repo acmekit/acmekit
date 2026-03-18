@@ -9,7 +9,7 @@ export async function generateVirtualI18nModule(
     const i18n = await generateI18n(sources)
 
     const imports = [
-        'import { deepMerge } from "@medusajs/admin-shared"',
+        'import { deepMerge } from "/admin-shared"',
         ...i18n.imports
     ]
 

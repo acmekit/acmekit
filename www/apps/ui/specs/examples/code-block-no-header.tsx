@@ -1,4 +1,4 @@
-import { CodeBlock } from "@medusajs/ui"
+import { CodeBlock } from "/ui"
 
 const snippets = [
   {

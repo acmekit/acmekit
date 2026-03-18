@@ -15,7 +15,7 @@ products:
   - payment
 ---
 
-import { Github, PlaySolid, EllipsisHorizontal } from "@medusajs/icons"
+import { Github, PlaySolid, EllipsisHorizontal } from "/icons"
 import { Prerequisites, Card, InlineIcon } from "docs-ui"
 
 export const metadata = {
@@ -140,11 +140,11 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/payment",
+      resolve: "/medusa/payment",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/payment-stripe",
+            resolve: "/medusa/payment-stripe",
             id: "stripe",
             options: {
               apiKey: process.env.STRIPE_API_KEY,
@@ -270,8 +270,8 @@ export const apiRouteHighlights = [
 ]
 
 ```ts title="src/api/store/payment-methods/[account_holder_id]/route.ts" highlights={apiRouteHighlights}
-import { MedusaError } from "@medusajs/framework/utils"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaError } from "/framework/utils"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export async function GET(
   req: MedusaRequest,
@@ -354,7 +354,7 @@ Refer to the [Middlewares](!docs!/learn/fundamentals/api-routes/middlewares) doc
 Middlewares are added in the `src/api/middlewares.ts` file. So, create the file with the following content:
 
 ```ts title="src/api/middlewares.ts"
-import { authenticate, defineMiddlewares } from "@medusajs/framework/http"
+import { authenticate, defineMiddlewares } from "/framework/http"
 
 export default defineMiddlewares({
   routes: [
@@ -529,9 +529,9 @@ The component that shows the Stripe card element is defined in `src/modules/chec
 Start by adding the following import statements at the top of the file:
 
 ```ts title="src/modules/checkout/components/payment-container/index.tsx" badgeLabel="Storefront" badgeColor="blue"
-import { Button } from "@medusajs/ui"
+import { Button } from "/ui"
 import { useEffect, useState } from "react"
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "/types"
 import { SavedPaymentMethod, getSavedPaymentMethods } from "@lib/data/payment"
 import { initiatePaymentSession } from "../../../../lib/data/cart"
 import { capitalize } from "lodash"

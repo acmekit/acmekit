@@ -19,23 +19,23 @@ export const Modules = {
 } as const
 
 export const MODULE_PACKAGE_NAMES = {
-  [Modules.ANALYTICS]: "@medusajs/medusa/analytics",
-  [Modules.AUTH]: "@medusajs/medusa/auth",
-  [Modules.CACHE]: "@medusajs/medusa/cache-inmemory",
-  [Modules.CUSTOMER]: "@medusajs/medusa/customer",
-  [Modules.EVENT_BUS]: "@medusajs/medusa/event-bus-local",
-  [Modules.LINK]: "@medusajs/medusa/link-modules",
-  [Modules.USER]: "@medusajs/medusa/user",
-  [Modules.WORKFLOW_ENGINE]: "@medusajs/medusa/workflow-engine-inmemory",
-  [Modules.API_KEY]: "@medusajs/medusa/api-key",
-  [Modules.FILE]: "@medusajs/medusa/file",
-  [Modules.NOTIFICATION]: "@medusajs/medusa/notification",
-  [Modules.INDEX]: "@medusajs/medusa/index-module",
-  [Modules.LOCKING]: "@medusajs/medusa/locking",
-  [Modules.SETTINGS]: "@medusajs/medusa/settings",
-  [Modules.CACHING]: "@medusajs/medusa/caching",
-  [Modules.TRANSLATION]: "@medusajs/medusa/translation",
-  [Modules.RBAC]: "@medusajs/medusa/rbac",
+  [Modules.ANALYTICS]: "/medusa/analytics",
+  [Modules.AUTH]: "/medusa/auth",
+  [Modules.CACHE]: "/medusa/cache-inmemory",
+  [Modules.CUSTOMER]: "/medusa/customer",
+  [Modules.EVENT_BUS]: "/medusa/event-bus-local",
+  [Modules.LINK]: "/medusa/link-modules",
+  [Modules.USER]: "/medusa/user",
+  [Modules.WORKFLOW_ENGINE]: "/medusa/workflow-engine-inmemory",
+  [Modules.API_KEY]: "/medusa/api-key",
+  [Modules.FILE]: "/medusa/file",
+  [Modules.NOTIFICATION]: "/medusa/notification",
+  [Modules.INDEX]: "/medusa/index-module",
+  [Modules.LOCKING]: "/medusa/locking",
+  [Modules.SETTINGS]: "/medusa/settings",
+  [Modules.CACHING]: "/medusa/caching",
+  [Modules.TRANSLATION]: "/medusa/translation",
+  [Modules.RBAC]: "/medusa/rbac",
 }
 
 export const REVERSED_MODULE_PACKAGE_NAMES = Object.entries(
@@ -47,10 +47,10 @@ export const REVERSED_MODULE_PACKAGE_NAMES = Object.entries(
 
 // TODO: temporary fix until the event bus, cache and workflow engine are migrated to use providers and therefore only a single resolution will be good
 export const TEMPORARY_REDIS_MODULE_PACKAGE_NAMES = {
-  [Modules.EVENT_BUS]: "@medusajs/medusa/event-bus-redis",
-  [Modules.CACHE]: "@medusajs/medusa/cache-redis",
-  [Modules.WORKFLOW_ENGINE]: "@medusajs/medusa/workflow-engine-redis",
-  [Modules.LOCKING]: "@medusajs/medusa/locking-redis",
+  [Modules.EVENT_BUS]: "/medusa/event-bus-redis",
+  [Modules.CACHE]: "/medusa/cache-redis",
+  [Modules.WORKFLOW_ENGINE]: "/medusa/workflow-engine-redis",
+  [Modules.LOCKING]: "/medusa/locking-redis",
 }
 
 REVERSED_MODULE_PACKAGE_NAMES[

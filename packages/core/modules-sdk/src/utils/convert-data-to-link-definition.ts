@@ -1,5 +1,5 @@
-import { LinkDefinition, LoadedModule } from "@medusajs/types"
-import { isPresent } from "@medusajs/utils"
+import { LinkDefinition, LoadedModule } from "/types"
+import { isPresent } from "/utils"
 
 export const convertRecordsToLinkDefinition = (
   links: object[],

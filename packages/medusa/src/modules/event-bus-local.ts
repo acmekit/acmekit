@@ -1,5 +1,5 @@
-import LocalEventBusModule from "@medusajs/event-bus-local"
+import LocalEventBusModule from "/event-bus-local"
 
-export * from "@medusajs/event-bus-local"
+export * from "/event-bus-local"
 export default LocalEventBusModule
-export const discoveryPath = require.resolve("@medusajs/event-bus-local")
+export const discoveryPath = require.resolve("/event-bus-local")

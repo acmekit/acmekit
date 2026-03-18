@@ -1,9 +1,9 @@
 import {
   CreateCustomerGroupDTO,
   ICustomerModuleService,
-} from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
-import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
+} from "/framework/types"
+import { Modules } from "/framework/utils"
+import { StepResponse, createStep } from "/framework/workflows-sdk"
 
 /**
  * The data to create customer groups.

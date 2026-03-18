@@ -1,6 +1,6 @@
-import { createUsersWorkflow } from "@medusajs/core-flows"
-import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { createUsersWorkflow } from "/core-flows"
+import { ContainerRegistrationKeys, Modules } from "/framework/utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import {
   adminHeaders,
   createAdminUser,

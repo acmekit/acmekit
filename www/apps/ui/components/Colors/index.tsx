@@ -3,7 +3,7 @@
 import React from "react"
 import { CopyButton, H2, Hr, MarkdownContent, useColorMode } from "docs-ui"
 import { colors as allColors } from "@/config/colors"
-import { clx } from "@medusajs/ui"
+import { clx } from "/ui"
 import slugify from "slugify"
 
 type Color = {

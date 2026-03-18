@@ -1,5 +1,5 @@
-import { Spinner } from "@medusajs/icons"
-import { Button, toast } from "@medusajs/ui"
+import { Spinner } from "/icons"
+import { Button, toast } from "/ui"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { decodeToken } from "react-jwt"

@@ -1,4 +1,4 @@
-import { Logger } from "@medusajs/framework/types"
+import { Logger } from "/framework/types"
 import redisLoader from "../redis"
 
 jest.mock("ioredis", () => {

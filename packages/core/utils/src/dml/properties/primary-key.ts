@@ -1,4 +1,4 @@
-import { PropertyType } from "@medusajs/types"
+import { PropertyType } from "/types"
 
 const IsPrimaryKeyModifier = Symbol.for("isPrimaryKeyModifier")
 /**

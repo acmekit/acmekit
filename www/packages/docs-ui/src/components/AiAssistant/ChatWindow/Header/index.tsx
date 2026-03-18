@@ -4,7 +4,7 @@ import clsx from "clsx"
 import React from "react"
 import { Tooltip } from "../../../Tooltip"
 import { Link } from "../../../Link"
-import { ShieldCheck, XMark } from "@medusajs/icons"
+import { ShieldCheck, XMark } from "/icons"
 import { Button } from "../../../Button"
 import { useAiAssistant } from "../../../../providers/AiAssistant"
 

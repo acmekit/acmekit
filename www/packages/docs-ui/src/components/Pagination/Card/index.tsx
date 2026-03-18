@@ -1,4 +1,4 @@
-import { TriangleLeftMini, TriangleRightMini } from "@medusajs/icons"
+import { TriangleLeftMini, TriangleRightMini } from "/icons"
 import clsx from "clsx"
 import Link from "next/link"
 import React from "react"

@@ -4,7 +4,7 @@ import {
   isPresent,
   MedusaError,
   CLIENT_KEY_HEADER,
-} from "@medusajs/utils"
+} from "/utils"
 import type {
   MedusaNextFunction,
   MedusaResponse,

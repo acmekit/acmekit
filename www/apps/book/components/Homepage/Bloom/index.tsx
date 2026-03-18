@@ -1,6 +1,6 @@
 "use client"
 
-import { Telescope, XMarkMini } from "@medusajs/icons"
+import { Telescope, XMarkMini } from "/icons"
 import clsx from "clsx"
 import { BloomIcon, Button, HeadlineTags, useAiAssistant } from "docs-ui"
 import { useState } from "react"

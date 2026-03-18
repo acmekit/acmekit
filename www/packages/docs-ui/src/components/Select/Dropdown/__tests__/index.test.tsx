@@ -2,10 +2,10 @@ import React from "react"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { fireEvent, render } from "@testing-library/react"
 import { OptionType } from "@/hooks/use-select"
-import { IconProps } from "@medusajs/icons/dist/types"
+import { IconProps } from "/icons/dist/types"
 
 // mock components
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   CheckMini: (props: IconProps) => <svg data-testid="check-icon" {...props} />,
   EllipseMiniSolid: (props: IconProps) => (
     <svg data-testid="ellipse-icon" {...props} />

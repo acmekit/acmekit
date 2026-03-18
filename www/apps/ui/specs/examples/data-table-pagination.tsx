@@ -1,4 +1,4 @@
-import { DataTable, Heading, createDataTableColumnHelper, useDataTable, type DataTablePaginationState } from "@medusajs/ui"
+import { DataTable, Heading, createDataTableColumnHelper, useDataTable, type DataTablePaginationState } from "/ui"
 import { useMemo, useState } from "react"
 
 const products = [

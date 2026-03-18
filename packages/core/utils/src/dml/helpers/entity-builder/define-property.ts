@@ -3,7 +3,7 @@ import {
   KnownDataTypes,
   PropertyMetadata,
   PropertyType,
-} from "@medusajs/types"
+} from "/types"
 import {
   ArrayType,
   BeforeCreate,
@@ -11,7 +11,7 @@ import {
   OnInit,
   PrimaryKey,
   Property,
-} from "@medusajs/deps/mikro-orm/core"
+} from "/deps/mikro-orm/core"
 import { generateEntityId, isDefined } from "../../../common"
 import { MikroOrmBigNumberProperty } from "../../../dal"
 import { PrimaryKeyModifier } from "../../properties/primary-key"

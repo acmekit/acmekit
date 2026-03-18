@@ -1,5 +1,5 @@
-import { Tooltip } from "@medusajs/ui"
-import { InformationCircleSolid } from "@medusajs/icons"
+import { Tooltip } from "/ui"
+import { InformationCircleSolid } from "/icons"
 
 export default function TooltipMaxWidth() {
   return (

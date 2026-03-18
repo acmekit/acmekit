@@ -1,5 +1,5 @@
 {
-  "name": "@medusajs/admin-shared",
+  "name": "@acmekit/admin-shared",
   "description": "Shared code for Medusa admin packages.",
   "version": "2.13.4",
   "author": "Kasper Kristensen <kasper@medusajs.com>",

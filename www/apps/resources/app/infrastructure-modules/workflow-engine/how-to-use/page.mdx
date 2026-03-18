@@ -23,8 +23,8 @@ In this document, you’ll learn about the different methods in the Workflow Eng
 In your workflow's step, you can resolve the Workflow Engine Module's service from the Medusa container:
 
 ```ts
-import { Modules } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { Modules } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",
@@ -60,7 +60,7 @@ This method is available since [Medusa v2.10.2](https://github.com/medusajs/medu
 // other imports...
 import {
   TransactionHandlerType,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 workflowEngine.retryStep({
   idempotencyKey: {
@@ -154,7 +154,7 @@ This method sets an async step in a currently-executing [long-running workflow](
 // other imports...
 import {
   TransactionHandlerType,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 await workflowEngineModuleService.setStepSuccess({
   idempotencyKey: {
@@ -258,7 +258,7 @@ This method sets an async step in a currently-executing [long-running workflow](
 // other imports...
 import {
   TransactionHandlerType,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 await workflowEngineModuleService.setStepFailure({
   idempotencyKey: {

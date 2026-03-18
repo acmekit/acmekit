@@ -1,4 +1,4 @@
-import { DatePicker } from "@medusajs/ui"
+import { DatePicker } from "/ui"
 
 export default function DatePickerDemo() {
   return (

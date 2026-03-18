@@ -9,7 +9,7 @@ products:
 ---
 
 import { Card, Prerequisites, Details, WorkflowDiagram } from "docs-ui"
-import { Github, PlaySolid } from "@medusajs/icons"
+import { Github, PlaySolid } from "/icons"
 
 export const metadata = {
   title: `Integrate Segment (Analytics) with Medusa`,
@@ -135,7 +135,7 @@ export const serviceHighlights = [
 import { 
   AbstractAnalyticsProviderService,
   MedusaError,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { Analytics } from "@segment/analytics-node"
 
 type Options = {
@@ -189,7 +189,7 @@ Add the `identify` method to the `SegmentAnalyticsProviderService` class:
 
 ```ts title="src/modules/segment/service.ts"
 // other imports...
-import { ProviderIdentifyAnalyticsEventDTO } from "@medusajs/types"
+import { ProviderIdentifyAnalyticsEventDTO } from "/types"
 
 class SegmentAnalyticsProviderService extends AbstractAnalyticsProviderService {
   // ...
@@ -247,7 +247,7 @@ Add the `track` method to the `SegmentAnalyticsProviderService` class:
 
 ```ts title="src/modules/segment/service.ts"
 // other imports...
-import { ProviderTrackAnalyticsEventDTO } from "@medusajs/types"
+import { ProviderTrackAnalyticsEventDTO } from "/types"
 
 class SegmentAnalyticsProviderService extends AbstractAnalyticsProviderService {
   // ...
@@ -331,7 +331,7 @@ import SegmentAnalyticsProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.ANALYTICS, {
   services: [SegmentAnalyticsProviderService],
@@ -354,7 +354,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/analytics",
+      resolve: "/medusa/analytics",
       options: {
         providers: [
           {
@@ -443,7 +443,7 @@ export const stepHighlights = [
 ]
 
 ```ts title="src/workflows/steps/track-event.ts" highlights={stepHighlights}
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { createStep } from "/framework/workflows-sdk"
 
 type TrackEventStepInput = {
   event: string
@@ -516,8 +516,8 @@ export const workflowHighlights = [
 import { 
   createWorkflow,
   transform,
-} from "@medusajs/framework/workflows-sdk"
-import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+} from "/framework/workflows-sdk"
+import { useQueryGraphStep } from "/medusa/core-flows"
 import { trackEventStep } from "./steps/track-event"
 
 type WorkflowInput = {
@@ -608,7 +608,7 @@ export const subscriberHighlights = [
 ]
 
 ```ts title="src/subscribers/order-placed.ts" highlights={subscriberHighlights}
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { trackOrderPlacedWorkflow } from "../workflows/track-order-placed"
 
 export default async function orderPlacedHandler({
@@ -702,10 +702,10 @@ For example, if you have a `createQuoteWorkflow`, you can use Medusa's [emitEven
 ```ts title="src/workflows/create-quote.ts"
 import { 
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import {
   emitEventStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 const createQuoteWorkflow = createWorkflow(
   "create-quote",
@@ -726,7 +726,7 @@ const createQuoteWorkflow = createWorkflow(
 You can then create a subscriber that listens to the `quote.created` event and executes a workflow to track it in Segment:
 
 ```ts title="src/subscribers/quote-created.ts"
-import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import { SubscriberArgs, type SubscriberConfig } from "/framework"
 import { trackQuoteWorkflow } from "../workflows/track-order-placed"
 
 export default async function orderPlacedHandler({

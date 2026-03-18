@@ -3,8 +3,8 @@ import {
   MikroORM,
   OnInit,
   Property,
-} from "@medusajs/deps/mikro-orm/core"
-import { defineConfig } from "@medusajs/deps/mikro-orm/postgresql"
+} from "/deps/mikro-orm/core"
+import { defineConfig } from "/deps/mikro-orm/postgresql"
 import { BaseEntity } from "../base-entity"
 
 describe("BaseEntity", () => {

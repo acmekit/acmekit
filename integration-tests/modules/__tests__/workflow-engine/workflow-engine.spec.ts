@@ -1,14 +1,14 @@
-import { emitEventStep } from "@medusajs/core-flows"
-import { Modules, TransactionState } from "@medusajs/framework/utils"
+import { emitEventStep } from "/core-flows"
+import { Modules, TransactionState } from "/framework/utils"
 import {
   createStep,
   createWorkflow,
   StepResponse,
   WorkflowData,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
-import { IEventBusModuleService } from "@medusajs/types"
+} from "/framework/workflows-sdk"
+import { medusaIntegrationTestRunner } from "/test-utils"
+import { IEventBusModuleService } from "/types"
 import {
   adminHeaders,
   createAdminUser,

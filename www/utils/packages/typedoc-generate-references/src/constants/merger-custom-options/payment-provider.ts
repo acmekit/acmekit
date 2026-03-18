@@ -52,10 +52,10 @@ The rest of this guide always uses the \`src/modules/my-payment\` directory as a
 </Note>`,
       `## 2. Create the Payment Module Provider's Service
 
-Create the file \`src/modules/my-payment/service.ts\` that holds the module provider's main service. It must extend the \`AbstractPaymentProvider\` class imported from \`@medusajs/framework/utils\`:
+Create the file \`src/modules/my-payment/service.ts\` that holds the module provider's main service. It must extend the \`AbstractPaymentProvider\` class imported from \`/framework/utils\`:
 
 \`\`\`ts title="src/modules/my-payment/service.ts"
-import { AbstractPaymentProvider } from "@medusajs/framework/utils"
+import { AbstractPaymentProvider } from "/framework/utils"
 
 type Options = {
   apiKey: string
@@ -80,7 +80,7 @@ import MyPaymentProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 
 export default ModuleProvider(Modules.PAYMENT, {
   services: [MyPaymentProviderService],
@@ -103,7 +103,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/payment",
+      resolve: "/medusa/payment",
       options: {
         providers: [
           {

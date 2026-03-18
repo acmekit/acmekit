@@ -1,4 +1,4 @@
-import { Container, Heading } from "@medusajs/ui"
+import { Container, Heading } from "/ui"
 
 export default function ContainerLayout() {
   return (

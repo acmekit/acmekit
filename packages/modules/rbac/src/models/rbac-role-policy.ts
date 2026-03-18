@@ -1,4 +1,4 @@
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import RbacPolicy from "./rbac-policy"
 import RbacRole from "./rbac-role"
 

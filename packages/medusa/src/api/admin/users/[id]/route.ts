@@ -1,18 +1,18 @@
 import {
   removeUserAccountWorkflow,
   updateUsersWorkflow,
-} from "@medusajs/core-flows"
+} from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
-import { HttpTypes, UpdateUserDTO } from "@medusajs/framework/types"
+} from "/framework/http"
+import { HttpTypes, UpdateUserDTO } from "/framework/types"
 
 import {
   ContainerRegistrationKeys,
   MedusaError,
   remoteQueryObjectFromString,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { refetchUser } from "../helpers"
 
 // Get user

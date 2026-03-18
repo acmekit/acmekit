@@ -53,7 +53,7 @@ vi.mock("@/components/Menu", () => ({
   ),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   BarsThree: () => <svg data-testid="bars-icon" />,
   Book: () => <svg data-testid="book-icon" />,
   SidebarLeft: () => <svg data-testid="sidebar-icon" />,

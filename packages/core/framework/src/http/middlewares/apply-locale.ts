@@ -1,4 +1,4 @@
-import { normalizeLocale } from "@medusajs/utils"
+import { normalizeLocale } from "/utils"
 import type {
   MedusaNextFunction,
   MedusaRequest,

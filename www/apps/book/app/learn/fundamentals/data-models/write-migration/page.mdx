@@ -39,12 +39,12 @@ For example:
 
 <Note>
 
-As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), MikroORM dependencies are included in the `@medusajs/framework` package. If you're using an older version of Medusa, change the import statement to `@mikro-orm/migrations`.
+As of [Medusa v2.11.0](https://github.com/medusajs/medusa/releases/tag/v2.11.0), MikroORM dependencies are included in the `/framework` package. If you're using an older version of Medusa, change the import statement to `@mikro-orm/migrations`.
 
 </Note>
 
 ```ts title="src/modules/blog/migrations/Migration202507021059_create_author.ts"
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 
 export class Migration202507021059 extends Migration {
 
@@ -59,7 +59,7 @@ export class Migration202507021059 extends Migration {
 }
 ```
 
-The migration class in the file extends the `Migration` class imported from `@medusajs/framework/mikro-orm/migrations`. In the `up` and `down` method of the migration class, you use the `addSql` method provided by MikroORM's `Migration` class to run PostgreSQL syntax.
+The migration class in the file extends the `Migration` class imported from `/framework/mikro-orm/migrations`. In the `up` and `down` method of the migration class, you use the `addSql` method provided by MikroORM's `Migration` class to run PostgreSQL syntax.
 
 In the example above, the `up` method creates the table `author`, and the `down` method drops the table if the migration is reverted.
 
@@ -140,10 +140,10 @@ export const dataMigrationHighlights = [
 ]
 
 ```ts title="src/migration-scripts/migrate-blog-data.ts" highlights={dataMigrationHighlights}
-import { MedusaModule } from "@medusajs/framework/modules-sdk"
-import { ExecArgs } from "@medusajs/framework/types"
+import { MedusaModule } from "/framework/modules-sdk"
+import { ExecArgs } from "/framework/types"
 import { BLOG_MODULE } from "../modules/blog"
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow } from "/framework/workflows-sdk"
 
 export default async function migrateBlogData({ container }: ExecArgs) {
   // Check that the blog module exists
@@ -194,7 +194,7 @@ The following section provides examples of writing migrations for common databas
 Consider you have a module with two data models: `Author` and `Post`. An author can have multiple posts, so there's a one-to-many relationship between the two models:
 
 ```ts
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -216,7 +216,7 @@ const Author = model.define("author", {
 To create a migration that reflects this relationship in the database, you can create a migration file as follows:
 
 ```ts title="src/modules/blog/migrations/Migration202507021200_create_author_and_post.ts"
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 
 export class Migration20251230112505 extends Migration {
 
@@ -251,7 +251,7 @@ Consider you have an existing `Post` data model, and you added a new `published_
 You can create a migration file to add this new column as follows:
 
 ```ts title="src/modules/blog/migrations/Migration202507021300_add_published_at_to_post.ts"
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 
 export class Migration20251230113025 extends Migration {
 
@@ -275,7 +275,7 @@ Consider you have an existing `Post` data model, and you removed the `published_
 You can create a migration file to remove this column as follows:
 
 ```ts title="src/modules/blog/migrations/Migration202507021400_remove_published_at_from_post.ts"
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 
 export class Migration20251230113125 extends Migration {
 
@@ -299,7 +299,7 @@ Consider you have an existing `Post` data model with a `title` column, and you r
 You can create a migration file to rename this column as follows:
 
 ```ts title="src/modules/blog/migrations/Migration202507021500_rename_title_to_headline_in_post.ts"
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 
 export class Migration20251230113214 extends Migration {
 
@@ -325,7 +325,7 @@ export const indexHighlights = [
 ]
 
 ```ts title="src/modules/blog/models/post.ts" highlights={indexHighlights}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 import { Author } from "./author"
 
 export const Post = model.define("post", {
@@ -340,7 +340,7 @@ export const Post = model.define("post", {
 You can create a migration file to create this index as follows:
 
 ```ts title="src/modules/blog/migrations/Migration202507021600_create_index_on_headline_in_post.ts"
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 
 export class Migration20251230113322 extends Migration {
 
@@ -364,7 +364,7 @@ Consider you have an existing `Post` data model with an index on the `headline` 
 You can create a migration file to drop this index as follows:
 
 ```ts title="src/modules/blog/migrations/Migration202507021700_drop_index_on_headline_in_post.ts"
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 
 export class Migration20251230113350 extends Migration {
 

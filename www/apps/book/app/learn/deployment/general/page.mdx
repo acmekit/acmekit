@@ -144,17 +144,17 @@ The Caching Module was introduced in [Medusa v2.11.0](https://github.com/medusaj
 Then, add these modules in `medusa-config.ts`:
 
 ```ts title="medusa-config.ts"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/caching",
+      resolve: "/medusa/caching",
       options: {
         providers: [
           {
-            resolve: "@medusajs/caching-redis",
+            resolve: "/caching-redis",
             id: "caching-redis",
             is_default: true,
             options: {
@@ -165,13 +165,13 @@ module.exports = defineConfig({
       },
     },
     {
-      resolve: "@medusajs/medusa/event-bus-redis",
+      resolve: "/medusa/event-bus-redis",
       options: {
         redisUrl: process.env.REDIS_URL,
       },
     },
     {
-      resolve: "@medusajs/medusa/workflow-engine-redis",
+      resolve: "/medusa/workflow-engine-redis",
       options: {
         redis: {
           // Note: This was `url` before v2.12.2
@@ -181,11 +181,11 @@ module.exports = defineConfig({
       },
     },
     {
-      resolve: "@medusajs/medusa/locking",
+      resolve: "/medusa/locking",
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/locking-redis",
+            resolve: "/medusa/locking-redis",
             id: "locking-redis",
             is_default: true,
             options: {

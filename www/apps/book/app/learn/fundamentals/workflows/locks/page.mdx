@@ -34,8 +34,8 @@ export const workflowLockHighlights = [
 ]
 
 ```ts title="src/workflows/charge-customer.ts" highlights={workflowLockHighlights}
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
-import { acquireLockStep, releaseLockStep } from "@medusajs/medusa/core-flows"
+import { createWorkflow } from "/framework/workflows-sdk"
+import { acquireLockStep, releaseLockStep } from "/medusa/core-flows"
 import { chargeCustomerStep } from "./steps/charge-customer-step"
 
 type WorkflowInput = {
@@ -94,7 +94,7 @@ Do not acquire locks within a workflow and a step in the same workflow execution
 For example:
 
 ```ts title="src/workflows/steps/charge-customer.ts"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { createStep } from "/framework/workflows-sdk"
 
 type StepInput = {
   order_id: string
@@ -153,12 +153,12 @@ export const nestedWorkflowLockHighlights = [
 ]
 
 ```ts title="src/workflows/custom-complete-cart.ts" highlights={nestedWorkflowLockHighlights}
-import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { createWorkflow } from "/framework/workflows-sdk"
 import { 
   acquireLockStep, 
   releaseLockStep,
   completeCartWorkflow,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 type WorkflowInput = {
   cart_id: string;

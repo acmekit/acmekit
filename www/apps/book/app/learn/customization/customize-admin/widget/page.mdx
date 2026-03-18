@@ -31,7 +31,7 @@ So, you'll start by configuring the JS SDK. Create the file `src/admin/lib/sdk.t
 ![The directory structure of the Medusa application after adding the file](https://res.cloudinary.com/dza7lstvk/image/upload/v1733414606/Medusa%20Book/brands-admin-dir-overview-1_jleg0t.jpg)
 
 ```ts title="src/admin/lib/sdk.ts"
-import Medusa from "@medusajs/js-sdk"
+import Medusa from "/js-sdk"
 
 export const sdk = new Medusa({
   baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
@@ -80,9 +80,9 @@ export const highlights = [
 ]
 
 ```tsx title="src/admin/widgets/product-brand.tsx" highlights={highlights}
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { DetailWidgetProps, AdminProduct } from "@medusajs/framework/types"
-import { clx, Container, Heading, Text } from "@medusajs/ui"
+import { defineWidgetConfig } from "/admin-sdk"
+import { DetailWidgetProps, AdminProduct } from "/framework/types"
+import { clx, Container, Heading, Text } from "/ui"
 import { useQuery } from "@tanstack/react-query"
 import { sdk } from "../lib/sdk"
 

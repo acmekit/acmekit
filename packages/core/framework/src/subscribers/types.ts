@@ -1,4 +1,4 @@
-import { Event, MedusaContainer } from "@medusajs/types"
+import { Event, MedusaContainer } from "/types"
 
 interface SubscriberContext extends Record<string, unknown> {
   subscriberId?: string

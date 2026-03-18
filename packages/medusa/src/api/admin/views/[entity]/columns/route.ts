@@ -1,11 +1,11 @@
-import { HttpTypes } from "@medusajs/framework/types"
+import { HttpTypes } from "/framework/types"
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   MedusaError,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import { generateEntityColumns } from "./helpers"
 import { ENTITY_MAPPINGS } from "./entity-mappings"
 

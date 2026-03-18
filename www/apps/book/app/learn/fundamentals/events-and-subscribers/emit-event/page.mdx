@@ -38,7 +38,7 @@ Some examples of service events:
 
 ## Emit Event in a Workflow
 
-To emit a workflow event, use the `emitEventStep` helper step provided in the `@medusajs/medusa/core-flows` package. It allows you to emit an event from within a workflow, and it only emits the event after the workflow has finished successfully.
+To emit a workflow event, use the `emitEventStep` helper step provided in the `/medusa/core-flows` package. It allows you to emit an event from within a workflow, and it only emits the event after the workflow has finished successfully.
 
 For example:
 
@@ -51,10 +51,10 @@ export const highlights = [
 ```ts highlights={highlights}
 import { 
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import {
   emitEventStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 const helloWorldWorkflow = createWorkflow(
   "hello-world",
@@ -94,10 +94,10 @@ For example:
 ```ts highlights={highlights}
 import { 
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import {
   emitEventStep,
-} from "@medusajs/medusa/core-flows"
+} from "/medusa/core-flows"
 
 const helloWorldWorkflow = createWorkflow(
   "hello-world",
@@ -137,9 +137,9 @@ export const priorityHighlights = [
 ```ts highlights={priorityHighlights}
 import {
   createWorkflow,
-} from "@medusajs/framework/workflows-sdk"
-import { emitEventStep } from "@medusajs/medusa/core-flows"
-import { EventPriority } from "@medusajs/framework/utils"
+} from "/framework/workflows-sdk"
+import { emitEventStep } from "/medusa/core-flows"
+import { EventPriority } from "/framework/utils"
 
 const criticalWorkflow = createWorkflow(
   "critical-operation",
@@ -171,8 +171,8 @@ To emit a service event:
   <CodeTab label="Extending Service Factory" value="service_factory">
 
 ```ts title="src/modules/blog/service.ts" highlights={["9"]}
-import { IEventBusService } from "@medusajs/framework/types"
-import { MedusaService } from "@medusajs/framework/utils"
+import { IEventBusService } from "/framework/types"
+import { MedusaService } from "/framework/utils"
 
 class BlogModuleService extends MedusaService({
   Post,
@@ -190,7 +190,7 @@ class BlogModuleService extends MedusaService({
   <CodeTab label="Without Service Factory" value="no_service_factory">
 
 ```ts title="src/modules/blog/service.ts" highlights={["6"]}
-import { IEventBusService } from "@medusajs/framework/types"
+import { IEventBusService } from "/framework/types"
 
 class BlogModuleService {
   protected eventBusService_: AbstractEventBusModuleService
@@ -244,7 +244,7 @@ export const depsHighlight = [
 ]
 
 ```ts title="medusa-config.ts" highlights={depsHighlight}
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 module.exports = defineConfig({
   // ...
@@ -267,13 +267,13 @@ export const providerHighlights = [
 ]
 
 ```ts title="medusa-config.ts" highlights={depsHighlight}
-import { Modules } from "@medusajs/framework/utils"
+import { Modules } from "/framework/utils"
 
 module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/payment",
+      resolve: "/medusa/payment",
       dependencies: [
         Modules.EVENT_BUS,
       ],

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Textarea } from "@medusajs/ui"
+import { Textarea } from "/ui"
 
 export default function TextareaControlled() {
   const [value, setValue] = useState("")

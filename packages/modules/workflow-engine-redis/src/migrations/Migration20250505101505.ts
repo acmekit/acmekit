@@ -1,4 +1,4 @@
-import { Migration } from "@medusajs/framework/mikro-orm/migrations"
+import { Migration } from "/framework/mikro-orm/migrations"
 import { ulid } from "ulid"
 
 export class Migration20250505101505 extends Migration {

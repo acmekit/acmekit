@@ -1,11 +1,11 @@
-import { CustomerWorkflowEvents } from "@medusajs/framework/utils"
+import { CustomerWorkflowEvents } from "/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
   createHook,
   createWorkflow,
   transform,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { deleteCustomersStep } from "../steps"
 

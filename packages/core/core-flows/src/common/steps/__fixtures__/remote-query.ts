@@ -17,6 +17,6 @@ export interface FixtureEntryPoints {
   variant: Variant
 }
 
-declare module "@medusajs/types/dist/modules-sdk/remote-query-entry-points" {
+declare module "/types/dist/modules-sdk/remote-query-entry-points" {
   export interface RemoteQueryEntryPoints extends FixtureEntryPoints {}
 }

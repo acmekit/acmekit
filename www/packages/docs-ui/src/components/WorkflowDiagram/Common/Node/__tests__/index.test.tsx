@@ -94,7 +94,7 @@ vi.mock("next/link", () => ({
   ),
 }))
 
-vi.mock("@medusajs/ui", () => ({
+vi.mock("/ui", () => ({
   Text: ({
     children,
     size,
@@ -122,7 +122,7 @@ vi.mock("@medusajs/ui", () => ({
   ),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   Bolt: () => <svg data-testid="bolt-icon" />,
   InformationCircle: () => <svg data-testid="information-circle-icon" />,
 }))

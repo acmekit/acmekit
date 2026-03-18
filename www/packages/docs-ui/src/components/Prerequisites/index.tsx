@@ -4,7 +4,7 @@ import React, { useRef } from "react"
 import { Button } from "@/components/Button"
 import { useCollapsible } from "@/hooks/use-collapsible"
 import clsx from "clsx"
-import { TriangleRightMini } from "@medusajs/icons"
+import { TriangleRightMini } from "/icons"
 import {
   PrerequisiteItem,
   PrerequisiteItemPosition,

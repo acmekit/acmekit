@@ -1,4 +1,4 @@
-import { Button, Prompt } from "@medusajs/ui"
+import { Button, Prompt } from "/ui"
 
 export default function PromptDemo() {
   return (

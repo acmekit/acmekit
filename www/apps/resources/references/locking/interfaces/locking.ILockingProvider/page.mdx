@@ -45,10 +45,10 @@ The rest of this guide always uses the `src/modules/my-locking` directory as an 
 
 ## 2. Create the Locking Module Provider Service
 
-Create the file `src/modules/my-locking/service.ts` that holds the module provider's main service. It must implement the `ILockingProvider` interface imported from `@medusajs/framework/types`:
+Create the file `src/modules/my-locking/service.ts` that holds the module provider's main service. It must implement the `ILockingProvider` interface imported from `/framework/types`:
 
 ```ts title="src/modules/my-locking/service.ts"
-import { ILockingProvider } from "@medusajs/framework/types"
+import { ILockingProvider } from "/framework/types"
 
 type Options = {
   url: string
@@ -71,8 +71,8 @@ If you're creating a client or establishing a connection with a third-party serv
 #### Example
 
 ```ts
-import { ILockingProvider } from "@medusajs/framework/types"
-import { Logger } from "@medusajs/framework/types"
+import { ILockingProvider } from "/framework/types"
+import { Logger } from "/framework/types"
 
 type InjectedDependencies = {
   logger: Logger
@@ -213,7 +213,7 @@ An example of how to implement the `execute` method:
 
 ```ts
 // other imports...
-import { Context } from "@medusajs/framework/types"
+import { Context } from "/framework/types"
 import { setTimeout } from "node:timers/promises"
 
 class MyLockingProviderService implements ILockingProvider {
@@ -301,7 +301,7 @@ An example of how to implement the `release` method:
 
 ```ts
 // other imports...
-import { promiseAll } from "@medusajs/framework/utils"
+import { promiseAll } from "/framework/utils"
 
 class MyLockingProviderService implements ILockingProvider {
   // ...
@@ -380,7 +380,7 @@ for all owners or a specific owner.
 Create the file `src/modules/my-locking/index.ts` with the following content:
 
 ```ts title="src/modules/my-locking/index.ts"
-import { ModuleProvider, Modules } from "@medusajs/framework/utils"
+import { ModuleProvider, Modules } from "/framework/utils"
 import MyLockingProviderService from "./service"
 
 export default ModuleProvider(Modules.LOCKING, {
@@ -401,7 +401,7 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/locking",
+      resolve: "/medusa/locking",
       options: {
         providers: [
           {

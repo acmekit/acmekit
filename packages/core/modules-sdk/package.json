@@ -1,5 +1,5 @@
 {
-  "name": "@medusajs/modules-sdk",
+  "name": "@acmekit/modules-sdk",
   "version": "2.13.4",
   "description": "SDK for medusa modules",
   "main": "dist/index.js",
@@ -31,11 +31,11 @@
     "watch": "yarn run -T tsc --build --watch"
   },
   "devDependencies": {
-    "@medusajs/types": "2.13.4"
+    "/types": "2.13.4"
   },
   "dependencies": {
-    "@medusajs/deps": "2.13.4",
-    "@medusajs/orchestration": "2.13.4",
-    "@medusajs/utils": "2.13.4"
+    "/deps": "2.13.4",
+    "/orchestration": "2.13.4",
+    "/utils": "2.13.4"
   }
 }

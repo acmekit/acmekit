@@ -1,4 +1,4 @@
-import { RemoteQueryEntryPoints } from "@medusajs/framework/types"
+import { RemoteQueryEntryPoints } from "/framework/types"
 
 /**
  * Extracts only the keys of T where the value is a string (or nullable string), the key
@@ -42,9 +42,9 @@ export type TranslationModuleOptions = {
 }
 
 // Augment the global ModuleOptions registry
-declare module "@medusajs/types" {
+declare module "/types" {
   interface ModuleOptions {
-    "@medusajs/translation": TranslationModuleOptions
-    "@medusajs/medusa/translation": TranslationModuleOptions
+    "/translation": TranslationModuleOptions
+    "/medusa/translation": TranslationModuleOptions
   }
 }

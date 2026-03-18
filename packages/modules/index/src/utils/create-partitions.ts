@@ -1,5 +1,5 @@
-import { IndexTypes } from "@medusajs/framework/types"
-import { SqlEntityManager } from "@medusajs/framework/mikro-orm/postgresql"
+import { IndexTypes } from "/framework/types"
+import { SqlEntityManager } from "/framework/mikro-orm/postgresql"
 import { schemaObjectRepresentationPropertiesToOmit } from "@types"
 import { getPivotTableName, normalizeTableName } from "./normalze-table-name"
 

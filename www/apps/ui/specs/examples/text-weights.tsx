@@ -1,4 +1,4 @@
-import { Text } from "@medusajs/ui"
+import { Text } from "/ui"
 
 export default function TextWeights() {
   return (

@@ -25,7 +25,7 @@ import {
   SquareTwoStack,
   TriangleDownMini,
   XMarkMini,
-} from "@medusajs/icons"
+} from "/icons"
 import {
   Badge,
   Container,
@@ -33,7 +33,7 @@ import {
   Heading,
   IconButton,
   Kbd,
-} from "@medusajs/ui"
+} from "/ui"
 import Primitive from "@uiw/react-json-view"
 import { CSSProperties, MouseEvent, Suspense, useState } from "react"
 
@@ -219,7 +219,7 @@ Use the `JsonViewSection` component in any widget or UI route.
 For example, create the widget `src/admin/widgets/product-widget.tsx` with the following content:
 
 ```tsx title="src/admin/widgets/product-widget.tsx"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { defineWidgetConfig } from "/admin-sdk"
 import { JsonViewSection } from "../components/json-view-section"
 
 const ProductWidget = () => {

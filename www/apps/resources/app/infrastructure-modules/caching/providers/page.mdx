@@ -85,12 +85,12 @@ module.exports = defineConfig({
   // ...
   modules: [
     {
-      resolve: "@medusajs/medusa/caching",
+      resolve: "/medusa/caching",
       options: {
         providers: [
           {
             id: "caching-redis",
-            resolve: "@medusajs/caching-redis",
+            resolve: "/caching-redis",
             is_default: true, // Set as the default provider
             options: {
               // Redis options...

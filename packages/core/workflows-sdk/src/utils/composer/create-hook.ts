@@ -1,5 +1,5 @@
-import { OrchestrationUtils } from "@medusajs/utils"
-import { type ZodSchema } from "@medusajs/deps/zod"
+import { OrchestrationUtils } from "/utils"
+import { type ZodSchema } from "/deps/zod"
 import {
   CompensateFn,
   createStep,
@@ -51,7 +51,7 @@ export type Hook<Name extends string, Input, Output> = {
  *   createHook,
  *   createWorkflow,
  *   WorkflowResponse,
- * } from "@medusajs/framework/workflows-sdk"
+ * } from "/framework/workflows-sdk"
  * import { createProductStep } from "./steps/create-product"
  *
  * export const myWorkflow = createWorkflow(

@@ -13,7 +13,7 @@ A JSON property in a data model is a flexible object that can contain various ty
 For example, you can create a `Brand` data model with a `metadata` JSON property to store additional information about the brand:
 
 ```ts highlights={[["6"]]}
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Brand = model.define("brand", {
   id: model.id().primaryKey(),

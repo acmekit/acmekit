@@ -4,12 +4,12 @@ import {
   usePrompt,
   toast,
   DropdownMenu,
-} from "@medusajs/ui"
+} from "/ui"
 import {
   Trash,
   PencilSquare,
   ArrowUturnLeft,
-} from "@medusajs/icons"
+} from "/icons"
 import { useViewConfigurations, useViewConfiguration } from "../../../hooks/use-view-configurations"
 import type { ViewConfiguration } from "../../../hooks/use-view-configurations"
 import { SaveViewDialog } from "../save-view-dialog"

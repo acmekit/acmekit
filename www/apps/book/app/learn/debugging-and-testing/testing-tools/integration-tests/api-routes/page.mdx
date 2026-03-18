@@ -22,7 +22,7 @@ In this chapter, you'll learn how to write integration tests for API routes usin
 Consider the following API route created at `src/api/custom/route.ts`:
 
 ```ts title="src/api/custom/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 
 export async function GET(
   req: MedusaRequest,
@@ -41,7 +41,7 @@ export const getHighlights = [
 ]
 
 ```ts title="integration-tests/http/custom-routes.spec.ts" highlights={getHighlights}
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 
 medusaIntegrationTestRunner({
   testSuite: ({ api, getContainer }) => {
@@ -104,7 +104,7 @@ jest.setTimeout(60 * 1000)
 Suppose you have a `blog` module whose main service extends the service factory, and that has the following model:
 
 ```ts title="src/modules/blog/models/my-custom.ts"
-import { model } from "@medusajs/framework/utils"
+import { model } from "/framework/utils"
 
 const Post = model.define("post", {
   id: model.id().primaryKey(),
@@ -236,7 +236,7 @@ The `afterAll` hook resolves the `BlogModuleService` and use its `deletePosts` t
 Consider a `/custom/:id` API route created at `src/api/custom/[id]/route.ts`:
 
 ```ts title="src/api/custom/[id]/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaRequest, MedusaResponse } from "/framework/http"
 import BlogModuleService from "../../../modules/blog/service"
 import { BLOG_MODULE } from "../../../modules/blog"
 
@@ -325,9 +325,9 @@ export const headersHighlights = [
 ]
 
 ```ts title="integration-tests/http/custom-routes.spec.ts" highlights={headersHighlights}
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
-import { ApiKeyDTO } from "@medusajs/framework/types"
-import { createApiKeysWorkflow } from "@medusajs/medusa/core-flows"
+import { medusaIntegrationTestRunner } from "/test-utils"
+import { ApiKeyDTO } from "/framework/types"
+import { createApiKeysWorkflow } from "/medusa/core-flows"
 
 medusaIntegrationTestRunner({
   testSuite: ({ api, getContainer }) => {
@@ -405,7 +405,7 @@ export const adminHighlights = [
 ]
 
 ```ts title="integration-tests/http/custom-routes.spec.ts" highlights={adminHighlights}
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import jwt from "jsonwebtoken"
 
 medusaIntegrationTestRunner({
@@ -485,10 +485,10 @@ export const customerHighlights = [
 ]
 
 ```ts title="integration-tests/http/custom-routes.spec.ts" highlights={customerHighlights}
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
-import { ApiKeyDTO } from "@medusajs/framework/types"
+import { medusaIntegrationTestRunner } from "/test-utils"
+import { ApiKeyDTO } from "/framework/types"
 import jwt from "jsonwebtoken"
-import { createApiKeysWorkflow } from "@medusajs/medusa/core-flows"
+import { createApiKeysWorkflow } from "/medusa/core-flows"
 
 medusaIntegrationTestRunner({
   testSuite: ({ api, getContainer }) => {
@@ -588,7 +588,7 @@ npm install form-data
 Then, use it in your test to upload files:
 
 ```ts title="integration-tests/http/custom-routes.spec.ts"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import FormData from "form-data"
 
 medusaIntegrationTestRunner({
@@ -647,7 +647,7 @@ If your API route is hidden behind a [feature flag], you can use the `env` optio
 For example:
 
 ```ts title="integration-tests/http/custom-routes.spec.ts"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 
 medusaIntegrationTestRunner({
   env: {

@@ -10,8 +10,8 @@ async function main() {
   await generateSidebar(sidebar)
   await generateEditedDates()
 
-  // copy colors from the `@medusajs/ui-preset` package
-  const resolvedURL = import.meta.resolve("@medusajs/ui-preset")
+  // copy colors from the `/ui-preset` package
+  const resolvedURL = import.meta.resolve("/ui-preset")
   const resolvedPath = fileURLToPath(resolvedURL)
   const originalPath = path.join(
     resolvedPath,

@@ -1,7 +1,7 @@
 "use client"
 
 import { createCalendar } from "@internationalized/date"
-import { TriangleLeftMini, TriangleRightMini } from "@medusajs/icons"
+import { TriangleLeftMini, TriangleRightMini } from "/icons"
 import * as React from "react"
 import {
     DateValue,

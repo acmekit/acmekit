@@ -58,7 +58,7 @@ vi.mock("next/link", () => ({
   ),
 }))
 
-vi.mock("@medusajs/icons", () => ({
+vi.mock("/icons", () => ({
   TriangleRightMini: () => <svg data-testid="triangle-icon" />,
 }))
 

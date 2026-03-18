@@ -1,5 +1,5 @@
 {
-  "name": "@medusajs/deps",
+  "name": "@acmekit/deps",
   "version": "2.13.4",
   "description": "Dependencies for Medusa",
   "main": "dist/index.js",

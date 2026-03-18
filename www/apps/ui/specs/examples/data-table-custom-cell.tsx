@@ -1,4 +1,4 @@
-import { createDataTableColumnHelper, useDataTable, DataTable, Heading, Badge } from "@medusajs/ui"
+import { createDataTableColumnHelper, useDataTable, DataTable, Heading, Badge } from "/ui"
 
 const products = [
   {

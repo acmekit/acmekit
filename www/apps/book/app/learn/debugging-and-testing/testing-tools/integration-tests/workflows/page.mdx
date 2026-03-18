@@ -33,7 +33,7 @@ import {
   createStep,
   StepResponse,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const step1 = createStep("step-1", () => {
   return new StepResponse("Hello, World!")
@@ -52,7 +52,7 @@ export const helloWorldWorkflow = createWorkflow(
 To write a test for this workflow, create the file `integration-tests/http/workflow.spec.ts` with the following content:
 
 ```ts title="integration-tests/http/workflow.spec.ts"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import { helloWorldWorkflow } from "../../src/workflows/hello-world"
 
 medusaIntegrationTestRunner({
@@ -112,8 +112,8 @@ You might want to verify that a workflow throws an error in certain edge cases. 
 For example, if you have the following step in your workflow that throws a `MedusaError`:
 
 ```ts title="src/workflows/hello-world.ts"
-import { MedusaError } from "@medusajs/framework/utils"
-import { createStep } from "@medusajs/framework/workflows-sdk"
+import { MedusaError } from "/framework/utils"
+import { createStep } from "/framework/workflows-sdk"
 
 const step1 = createStep("step-1", () => {
   throw new MedusaError(MedusaError.Types.NOT_FOUND, "Item doesn't exist")
@@ -123,7 +123,7 @@ const step1 = createStep("step-1", () => {
 You can write the following test to ensure that the workflow throws that error:
 
 ```ts title="integration-tests/http/workflow.spec.ts"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import { helloWorldWorkflow } from "../../src/workflows/hello-world"
 
 medusaIntegrationTestRunner({
@@ -169,7 +169,7 @@ import {
   createWorkflow,
   WorkflowResponse,
   StepResponse,
-} from "@medusajs/framework/workflows-sdk"
+} from "/framework/workflows-sdk"
 
 const step1 = createStep("step-1", async () => {
   return new StepResponse({})
@@ -220,10 +220,10 @@ export const longRunningWorkflowHighlights1 = [
 ]
 
 ```ts title="integration-tests/http/long-running-workflow.spec.ts" highlights={longRunningWorkflowHighlights1}
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import longRunningWorkflow from "../../src/workflows/long-running-workflow"
-import { Modules, TransactionHandlerType } from "@medusajs/framework/utils"
-import { StepResponse } from "@medusajs/framework/workflows-sdk"
+import { Modules, TransactionHandlerType } from "/framework/utils"
+import { StepResponse } from "/framework/workflows-sdk"
 
 medusaIntegrationTestRunner({
   testSuite: ({ getContainer }) => {
@@ -309,10 +309,10 @@ export const longRunningWorkflowHighlights2 = [
 ]
 
 ```ts title="integration-tests/http/long-running-workflow-multiple-steps.spec.ts" highlights={longRunningWorkflowHighlights2}
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import longRunningWorkflow from "../../src/workflows/long-running-workflow"
-import { Modules, TransactionHandlerType } from "@medusajs/framework/utils"
-import { StepResponse } from "@medusajs/framework/workflows-sdk"
+import { Modules, TransactionHandlerType } from "/framework/utils"
+import { StepResponse } from "/framework/workflows-sdk"
 
 medusaIntegrationTestRunner({
   testSuite: ({ getContainer }) => {
@@ -409,7 +409,7 @@ export const workflowBrandHighlights = [
 ]
 
 ```ts title="integration-tests/http/workflow-brand.spec.ts" highlights={workflowBrandHighlights}
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import { createBrandWorkflow } from "../../src/workflows/create-brand"
 import { BRAND_MODULE } from "../../src/modules/brand"
 
@@ -466,7 +466,7 @@ export const workflowBrandDeleteHighlights = [
 ]
 
 ```ts title="integration-tests/http/workflow-brand-delete.spec.ts"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import { deleteBrandWorkflow } from "../../src/workflows/delete-brand"
 import { BRAND_MODULE } from "../../src/modules/brand"
 
@@ -526,7 +526,7 @@ export const workflowBrandDeleteHighlights2 = [
 ]
 
 ```ts title="integration-tests/http/workflow-brand-delete.spec.ts" highlights={workflowBrandDeleteHighlights2}
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
+import { medusaIntegrationTestRunner } from "/test-utils"
 import { deleteBrandWorkflow } from "../../src/workflows/delete-brand"
 import { createBrandWorkflow } from "../../src/workflows/create-brand"
 import { BRAND_MODULE } from "../../src/modules/brand"

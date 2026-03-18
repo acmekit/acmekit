@@ -1,6 +1,6 @@
 "use client"
 
-import { DatePicker } from "@medusajs/ui"
+import { DatePicker } from "/ui"
 import { useState } from "react"
 
 export default function DatePickerControlled() {

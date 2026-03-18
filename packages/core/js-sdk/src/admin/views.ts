@@ -1,4 +1,4 @@
-import { HttpTypes, SelectParams } from "@medusajs/types"
+import { HttpTypes, SelectParams } from "/types"
 
 import { Client } from "../client"
 import { ClientHeaders } from "../types"

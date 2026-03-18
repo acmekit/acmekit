@@ -65,7 +65,7 @@
 									"qualifiedName": "TaxableShippingDTO"
 								},
 								"name": "TaxableShippingDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -99,7 +99,7 @@
 										"qualifiedName": "TaxRateDTO"
 									},
 									"name": "TaxRateDTO",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						}
@@ -184,7 +184,7 @@
 									"qualifiedName": "TaxableItemDTO"
 								},
 								"name": "TaxableItemDTO",
-								"package": "@medusajs/types"
+								"package": "/types"
 							}
 						},
 						{
@@ -218,7 +218,7 @@
 										"qualifiedName": "TaxRateDTO"
 									},
 									"name": "TaxRateDTO",
-									"package": "@medusajs/types"
+									"package": "/types"
 								}
 							}
 						}
@@ -305,7 +305,7 @@
 					},
 					{
 						"kind": "code",
-						"text": "```ts\nimport {\n  ITaxProvider,\n  Logger\n} from \"@medusajs/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nexport default class MyTaxProvider implements ITaxProvider {\n  static identifier = \"my-tax\"\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n}\n```"
+						"text": "```ts\nimport {\n  ITaxProvider,\n  Logger\n} from \"/framework/types\"\n\ntype InjectedDependencies = {\n  logger: Logger\n}\n\ntype Options = {\n  apiKey: string\n}\n\nexport default class MyTaxProvider implements ITaxProvider {\n  static identifier = \"my-tax\"\n  protected logger_: Logger\n  protected options_: Options\n  // assuming you're initializing a client\n  protected client\n\n  constructor (\n    { logger }: InjectedDependencies,\n    options: Options\n  ) {\n    this.logger_ = logger\n    this.options_ = options\n\n    // assuming you're initializing a client\n    this.client = new Client(options)\n  }\n}\n```"
 					},
 					{
 						"kind": "text",
@@ -492,7 +492,7 @@
 											"type": "reference",
 											"target": 49433,
 											"name": "ItemTaxCalculationLine",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -516,7 +516,7 @@
 											"type": "reference",
 											"target": 49429,
 											"name": "ShippingTaxCalculationLine",
-											"package": "@medusajs/types"
+											"package": "/types"
 										}
 									}
 								},
@@ -541,7 +541,7 @@
 											"qualifiedName": "TaxCalculationContext"
 										},
 										"name": "TaxCalculationContext",
-										"package": "@medusajs/types"
+										"package": "/types"
 									}
 								}
 							],
@@ -564,7 +564,7 @@
 														"qualifiedName": "ItemTaxLineDTO"
 													},
 													"name": "ItemTaxLineDTO",
-													"package": "@medusajs/types"
+													"package": "/types"
 												},
 												{
 													"type": "reference",
@@ -573,7 +573,7 @@
 														"qualifiedName": "ShippingTaxLineDTO"
 													},
 													"name": "ShippingTaxLineDTO",
-													"package": "@medusajs/types"
+													"package": "/types"
 												}
 											]
 										}
@@ -620,7 +620,7 @@
 			]
 		}
 	],
-	"packageName": "@medusajs/types",
+	"packageName": "/types",
 	"symbolIdMap": {
 		"49428": {
 			"sourceFileName": "../../../../packages/core/types/src/tax/provider.ts",

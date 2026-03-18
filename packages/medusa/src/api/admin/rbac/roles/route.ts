@@ -1,13 +1,13 @@
-import { createRbacRolesWorkflow } from "@medusajs/core-flows"
+import { createRbacRolesWorkflow } from "/core-flows"
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http"
+} from "/framework/http"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
-} from "@medusajs/framework/utils"
+} from "/framework/utils"
 import RbacFeatureFlag from "../../../../feature-flags/rbac"
 import { AdminCreateRbacRoleType } from "./validators"
 

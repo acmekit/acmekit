@@ -25,7 +25,7 @@
  *   - lang: JavaScript
  *     label: Google Provider
  *     source: |-
- *       import Medusa from "@medusajs/js-sdk"
+ *       import Medusa from "/js-sdk"
  *       import { decodeToken } from "react-jwt"
  * 
  *       export const sdk = new Medusa({
@@ -69,7 +69,7 @@
  *   - lang: TypeScript
  *     label: GitHub Provider
  *     source: |-
- *       import Medusa from "@medusajs/js-sdk"
+ *       import Medusa from "/js-sdk"
  *       import { decodeToken } from "react-jwt"
  * 
  *       export const sdk = new Medusa({

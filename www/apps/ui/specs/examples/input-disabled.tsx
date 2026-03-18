@@ -1,4 +1,4 @@
-import { Input } from "@medusajs/ui"
+import { Input } from "/ui"
 
 export default function InputDisabled() {
   return (

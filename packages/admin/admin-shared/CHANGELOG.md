@@ -1,4 +1,4 @@
-# @medusajs/admin-shared
+# /admin-shared
 
 ## 2.13.4
 
