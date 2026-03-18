@@ -2,7 +2,6 @@ import { Client } from "../client"
 import { ApiKey } from "./api-key"
 import { Customer } from "./customer"
 import { CustomerGroup } from "./customer-group"
-import { DraftOrder } from "./draft-order"
 import { Invite } from "./invite"
 import { Notification } from "./notification"
 import { Plugin } from "./plugin"
@@ -25,10 +24,6 @@ export class Admin {
    * @tags notification
    */
   public notification: Notification
-  /**
-   * @tags order
-   */
-  public draftOrder: DraftOrder
   /**
    * @tags user
    */
@@ -68,7 +63,6 @@ export class Admin {
     this.invite = new Invite(client)
     this.customer = new Customer(client)
     this.notification = new Notification(client)
-    this.draftOrder = new DraftOrder(client)
     this.translation = new Translation(client)
     this.user = new User(client)
     this.locale = new Locale(client)

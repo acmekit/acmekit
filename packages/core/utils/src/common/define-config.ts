@@ -143,12 +143,7 @@ function resolvePlugins(
   configPlugins: InputConfig["plugins"],
   { isCloud }: { isCloud: boolean }
 ): ConfigModule["plugins"] {
-  const defaultPlugins: Map<string, ConfigModule["plugins"][number]> = new Map([
-    [
-      "@medusajs/draft-order",
-      { resolve: "@medusajs/draft-order", options: {} },
-    ],
-  ])
+  const defaultPlugins: Map<string, ConfigModule["plugins"][number]> = new Map()
 
   if (configPlugins?.length) {
     configPlugins.forEach((plugin) => {
