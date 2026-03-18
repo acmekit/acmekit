@@ -12,11 +12,11 @@ const HomepageLinksSection = () => {
     }[]
   }[] = [
     {
-      tag: "Customize Medusa Application",
+      tag: "Customize AcmeKit Application",
       links: [
         {
           link: "/learn/installation",
-          text: "Install Medusa",
+          text: "Install AcmeKit",
         },
         {
           link: "https://docs.medusajs.com/cloud/sign-up",
@@ -63,7 +63,7 @@ const HomepageLinksSection = () => {
       ],
     },
     {
-      tag: "Medusa Cloud",
+      tag: "AcmeKit Cloud",
       links: [
         {
           link: "https://docs.medusajs.com/cloud/projects",
@@ -75,7 +75,7 @@ const HomepageLinksSection = () => {
         },
         {
           link: "https://docs.medusajs.com/cloud/emails",
-          text: "Medusa Emails",
+          text: "AcmeKit Emails",
         },
       ],
     },
@@ -92,7 +92,7 @@ const HomepageLinksSection = () => {
         },
         {
           link: "https://docs.medusajs.com/learn/introduction/build-with-llms-ai#mcp-remote-server",
-          text: "Medusa Docs MCP",
+          text: "AcmeKit Docs MCP",
         },
       ],
     },

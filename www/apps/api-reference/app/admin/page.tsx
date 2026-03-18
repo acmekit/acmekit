@@ -27,8 +27,8 @@ export default AdminPage
 
 export function generateMetadata() {
   return {
-    title: `Medusa Admin API Reference`,
-    description: `REST API reference for the Medusa v2 admin API, with code snippets and examples.`,
+    title: `AcmeKit Admin API Reference`,
+    description: `REST API reference for the AcmeKit v2 admin API, with code snippets and examples.`,
     metadataBase: process.env.NEXT_PUBLIC_BASE_URL,
   }
 }

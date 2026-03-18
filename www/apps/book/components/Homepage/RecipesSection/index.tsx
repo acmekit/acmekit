@@ -101,7 +101,7 @@ const HomepageRecipesSection = () => {
             className="!justify-start"
           />
           <h2 className="text-h1 text-medusa-fg-base lg:max-w-[450px]">
-            Medusa’s framework supports any business use case.
+            AcmeKit’s framework supports any business use case.
           </h2>
           <p className="txt-large text-medusa-fg-base">
             These recipes show you how to build a use case by customizing and

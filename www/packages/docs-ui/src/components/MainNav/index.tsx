@@ -100,7 +100,7 @@ export const MainNav = ({ className, itemsClassName }: MainNavProps) => {
                       },
                       {
                         type: "link",
-                        title: "Contact Sales",
+                        title: "Contact Us",
                         link: "https://medusajs.com/contact/",
                       },
                     ],

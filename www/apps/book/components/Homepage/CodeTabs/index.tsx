@@ -138,7 +138,7 @@ const HomepageCodeTabs = () => {
       title: "Add a Data Model",
       textSection: {
         content:
-          "Create data models that represent tables in the database using Medusa's Data Model Language.",
+          "Create data models that represent tables in the database using AcmeKit's Data Model Language.",
         link: {
           title: "DML",
           link: "/learn/fundamentals/modules#1-create-data-model",
@@ -161,7 +161,7 @@ const HomepageCodeTabs = () => {
           [
             "1",
             "model",
-            "Use Medusa's Data Model Language to\nrepresent custom tables in the database.",
+            "Use AcmeKit's Data Model Language to\nrepresent custom tables in the database.",
           ],
           [
             "4",
@@ -175,7 +175,7 @@ const HomepageCodeTabs = () => {
       title: "Build a Custom Module",
       textSection: {
         content:
-          "Build custom modules with commerce or architectural features and use them in API routes or workflows.",
+          "Build custom modules with application or architectural features and use them in API routes or workflows.",
         link: {
           title: "Modules",
           link: "/learn/fundamentals/modules",
@@ -212,12 +212,12 @@ const HomepageCodeTabs = () => {
           [
             "1",
             "MedusaService",
-            "Generate data-management methods\nfor your data models automatically.",
+            "Generate data-management methods\nfor your data models with AcmeKit automatically.",
           ],
           [
             "13",
             "digitalProductModuleService",
-            "Resolve the database from the Medusa container\nin routes and other resources.",
+            "Resolve the database from the AcmeKit container\nin routes and other resources.",
           ],
           ["17", "authorizeLicense", "Use the service's custom methods."],
         ],
@@ -227,7 +227,7 @@ const HomepageCodeTabs = () => {
       title: "Link Data Models",
       textSection: {
         content:
-          "Add custom properties to Medusa's data models using module links to build custom use cases.",
+          "Add custom properties to AcmeKit's data models using module links to build custom use cases.",
         link: {
           title: "Module Links",
           link: "/learn/fundamentals/module-links",
@@ -257,7 +257,7 @@ const HomepageCodeTabs = () => {
       title: "Subscribe to Events",
       textSection: {
         content:
-          "Handle events emitted by the Medusa application to perform custom actions.",
+          "Handle events emitted by the AcmeKit application to perform custom actions.",
         link: {
           title: "Subscribers",
           link: "/learn/fundamentals/events-and-subscribers",
@@ -306,7 +306,7 @@ const HomepageCodeTabs = () => {
       title: "Customize Admin",
       textSection: {
         content:
-          "Inject widgets into predefined zones in the Medusa Admin, or add new pages.",
+          "Inject widgets into predefined zones in the AcmeKit Admin, or add new pages.",
         link: {
           title: "Admin Widgets",
           link: "/learn/fundamentals/admin/widgets",
@@ -339,7 +339,7 @@ const HomepageCodeTabs = () => {
           [
             "7",
             "Container",
-            "Use Medusa's UI components in your customizations.",
+            "Use AcmeKit's UI components in your customizations.",
           ],
           [
             "15",
@@ -353,7 +353,7 @@ const HomepageCodeTabs = () => {
       title: "Integrate Systems",
       textSection: {
         content:
-          "Build workflows around multiple systems to add more powerful features to Medusa.",
+          "Build workflows around multiple systems to add more powerful features to AcmeKit.",
         link: {
           title: "Integrate Systems",
           link: "/learn/customization/integrate-systems",
@@ -382,7 +382,7 @@ const HomepageCodeTabs = () => {
             "retrieveBrandsFromSystemStep",
             "Retrieve data from an external system.",
           ],
-          ["6", "createBrandsInMedusaStep", "Sync data to Medusa."],
+          ["6", "createBrandsInMedusaStep", "Sync data to AcmeKit."],
         ],
       },
     },

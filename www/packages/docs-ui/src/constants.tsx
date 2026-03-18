@@ -41,7 +41,7 @@ export const navDropdownItems: NavigationItem[] = [
           },
           {
             type: "link",
-            title: "Medusa Container",
+            title: "AcmeKit Container",
             link: "/learn/fundamentals/medusa-container",
           },
           {
@@ -155,12 +155,12 @@ export const navDropdownItems: NavigationItem[] = [
         items: [
           {
             type: "link",
-            title: "create-medusa-app",
+            title: "create-acmekit-app",
             link: "/resources/create-medusa-app",
           },
           {
             type: "link",
-            title: "Medusa CLI",
+            title: "AcmeKit CLI",
             link: "/resources/medusa-cli",
           },
         ],
@@ -173,7 +173,7 @@ export const navDropdownItems: NavigationItem[] = [
       },
       {
         type: "link",
-        title: "Medusa UI",
+        title: "AcmeKit UI",
         link: "/ui",
         sidebar_id: "ui",
       },

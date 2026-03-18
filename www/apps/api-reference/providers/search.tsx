@@ -25,7 +25,7 @@ const SearchProvider = ({ children }: SearchProviderProps) => {
         },
         {
           value: process.env.NEXT_PUBLIC_API_ALGOLIA_INDEX_NAME || "temp",
-          title: "Store & Admin API",
+          title: "Client & Admin API",
         },
       ]}
       defaultIndex={process.env.NEXT_PUBLIC_API_ALGOLIA_INDEX_NAME || "temp"}
@@ -35,13 +35,13 @@ const SearchProvider = ({ children }: SearchProviderProps) => {
           {
             title: "Getting started? Try one of the following terms.",
             items: [
-              "Install Medusa with create-medusa-app",
+              "Install AcmeKit with create-acmekit-app",
               "What is an API route?",
               "What is a Workflow?",
             ],
           },
           {
-            title: "Developing with Medusa",
+            title: "Developing with AcmeKit",
             items: [
               "How to create an API route",
               "How to create a module",

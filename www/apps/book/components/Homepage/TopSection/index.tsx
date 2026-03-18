@@ -5,7 +5,7 @@ const HomepageTopSection = () => {
     <div className="w-full py-4 px-2 flex flex-col gap-0.75 justify-center items-center">
       <HeadlineTags
         tags={[
-          "Medusa Documentation",
+          "AcmeKit Documentation",
           {
             text: "Introduction",
             link: "/learn",
@@ -14,7 +14,7 @@ const HomepageTopSection = () => {
       />
       <div className="flex-col gap-0.75 justify-center items-center hidden md:flex">
         <h2 className="text-display text-center">
-          Learn how to build Medusa projects.
+          Learn how to build AcmeKit projects.
         </h2>
         <div className="flex gap-1 w-full items-center">
           <ShadedBlock className="w-full min-h-[44px]" />
@@ -23,7 +23,7 @@ const HomepageTopSection = () => {
       </div>
       <div className="flex flex-col gap-0.75 justify-center items-center md:hidden">
         <h2 className="text-display text-center">
-          Learn how to build Medusa projects. Explore our guides.
+          Learn how to build AcmeKit projects. Explore our guides.
         </h2>
         <ShadedBlock className="w-full min-h-[44px]" />
       </div>

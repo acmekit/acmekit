@@ -7,9 +7,9 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
 
 export const config: DocsConfig = {
   ...globalConfig,
-  titleSuffix: "Medusa Documentation",
+  titleSuffix: "AcmeKit Documentation",
   description:
-    "Explore and learn how to use Medusa. Learn how to get started, the fundamental concepts, how to customize Medusa, and more.",
+    "Explore and learn how to use AcmeKit. Learn how to get started, the fundamental concepts, how to customize AcmeKit, and more.",
   baseUrl,
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   sidebars: generatedSidebars as Sidebar.Sidebar[],

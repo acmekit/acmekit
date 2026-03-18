@@ -27,7 +27,7 @@ export default StorePage
 export function generateMetadata() {
   return {
     title: `AcmeKit Client API Reference`,
-    description: `REST API reference for the Medusa v2 store API, with code snippets and examples.`,
+    description: `REST API reference for the AcmeKit v2 client API, with code snippets and examples.`,
     metadataBase: process.env.NEXT_PUBLIC_BASE_URL,
   }
 }

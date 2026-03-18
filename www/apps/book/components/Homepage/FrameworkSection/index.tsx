@@ -31,12 +31,12 @@ const HomepageFrameworkSection = () => {
           className="!justify-start"
         />
         <h2 className="text-h1 text-medusa-fg-base lg:max-w-[450px]">
-          A digital commerce platform with a built-in framework for
+          A general-purpose application framework with a built-in framework for
           customizations.
         </h2>
         <p className="txt-large text-medusa-fg-base">
-          Unlike other platforms, the Medusa Framework allows you to easily
-          customize and extend the behavior of your commerce platform to always
+          Unlike other platforms, the AcmeKit Framework allows you to easily
+          customize and extend the behavior of your application to always
           fit your business needs.
         </p>
       </div>

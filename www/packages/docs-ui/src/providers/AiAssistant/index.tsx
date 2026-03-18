@@ -26,7 +26,7 @@ const defaultSuggestions: AiAssistantSuggestionType[] = [
   {
     title: "FAQ",
     items: [
-      "What is Medusa?",
+      "What is AcmeKit?",
       "How can I create a module?",
       "How can I create a data model?",
       "How do I create a workflow?",
@@ -36,10 +36,10 @@ const defaultSuggestions: AiAssistantSuggestionType[] = [
   {
     title: "Recipes",
     items: [
-      "How do I build a marketplace with Medusa?",
-      "How do I build digital products with Medusa?",
-      "How do I build subscription-based purchases with Medusa?",
-      "What other recipes are available in the Medusa documentation?",
+      "How do I build a marketplace with AcmeKit?",
+      "How do I build digital products with AcmeKit?",
+      "How do I build subscription-based purchases with AcmeKit?",
+      "What other recipes are available in the AcmeKit documentation?",
     ],
   },
 ]
