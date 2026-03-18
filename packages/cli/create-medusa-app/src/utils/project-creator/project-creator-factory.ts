@@ -89,7 +89,7 @@ async function askForProjectName(
       type: "input",
       name: "projectName",
       message: `What's the name of your ${isPlugin ? "plugin" : "project"}?`,
-      default: isPlugin ? "my-medusa-plugin" : "my-medusa-store",
+      default: isPlugin ? "my-acmekit-plugin" : "my-acmekit-app",
       filter: (input) => {
         return slugify(input).toLowerCase()
       },

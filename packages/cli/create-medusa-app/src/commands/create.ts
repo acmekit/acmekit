@@ -4,7 +4,7 @@ import {
 } from "../utils/project-creator/index.js"
 
 /**
- * Command handler to create a Medusa project or plugin
+ * Command handler to create an AcmeKit project or plugin
  */
 export default async (args: string[], options: ProjectOptions) => {
   const projectCreator = await ProjectCreatorFactory.create(args, options)

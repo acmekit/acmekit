@@ -34,6 +34,6 @@ export function updatePackageVersions(
 
 function shouldUpdateVersion(dependency: string): boolean {
   // UI package follows different versioning, so we can't update it following
-  // the same logic as other Medusa packages
+  // the same logic as other AcmeKit packages
   return dependency.startsWith("/") && dependency !== "/ui"
 }

@@ -35,7 +35,7 @@ function buildLocalCommands(cli, isLocalProject) {
   function resolveLocalCommand(command) {
     if (!isLocalProject && command !== "new") {
       console.error(
-        `The "${command}" command must be run inside a Medusa project. Make sure you are in the root directory of a Medusa project and try again.`
+        `The "${command}" command must be run inside an AcmeKit project. Make sure you are in the root directory of an AcmeKit project and try again.`
       )
       process.exit(1)
     }
@@ -110,14 +110,14 @@ function buildLocalCommands(cli, isLocalProject) {
           })
           .option(`v2`, {
             type: `boolean`,
-            describe: `Install Medusa with the V2 feature flag enabled. WARNING: Medusa V2 is still in development and shouldn't be used in production.`,
+            describe: `Install AcmeKit with the V2 feature flag enabled. WARNING: AcmeKit V2 is still in development and shouldn't be used in production.`,
             default: false,
           })
           .option(`branch`, {
             type: `string`,
             describe: `The branch of the git repository to clone.`,
           }),
-      desc: `Create a new Medusa project.`,
+      desc: `Create a new AcmeKit project.`,
       handler: handlerP(newStarter),
     })
     .command({
@@ -274,7 +274,7 @@ function buildLocalCommands(cli, isLocalProject) {
     })
     .command({
       command: "db:sync-links",
-      desc: "Sync database schema with the links defined by your application and Medusa core",
+      desc: "Sync database schema with the links defined by your application and AcmeKit core",
       builder: (builder) => {
         builder.option("execute-all", {
           type: "boolean",
@@ -433,7 +433,7 @@ function buildLocalCommands(cli, isLocalProject) {
           type: "boolean",
           default: true,
           describe:
-            "Generate automated types for modules inside the .medusa directory",
+            "Generate automated types for modules inside the .acmekit directory",
         })
           .option(`H`, {
             alias: `host`,
@@ -471,7 +471,7 @@ function buildLocalCommands(cli, isLocalProject) {
           type: "boolean",
           default: false,
           describe:
-            "Generate automated types for modules inside the .medusa directory",
+            "Generate automated types for modules inside the .acmekit directory",
         })
           .option(`H`, {
             alias: `host`,
@@ -525,7 +525,7 @@ function buildLocalCommands(cli, isLocalProject) {
           default: false,
           type: "boolean",
           describe:
-            "Only build the admin to serve it separately (outDir .medusa/admin)",
+            "Only build the admin to serve it separately (outDir .acmekit/admin)",
         }),
       handler: handlerP(
         getCommandHandler(`build`, async (args, cmd) => {
@@ -585,16 +585,15 @@ function buildLocalCommands(cli, isLocalProject) {
     })
 }
 
-function isLocalMedusaProject() {
-  let inMedusaProject = false
+function isLocalAcmeKitProject() {
+  let inAcmeKitProject = false
 
   try {
     const { dependencies, devDependencies } = require(path.resolve(
       `./package.json`
     ))
-    // Draft order plugin can't have /medusa as dependency,
-    // so we also check for /cli 
-    inMedusaProject = !!(
+    // Check for /medusa or /cli dependency to detect an AcmeKit project
+    inAcmeKitProject = !!(
       (dependencies &&
         (dependencies["/medusa"] || dependencies["/cli"])) ||
       (devDependencies &&
@@ -605,16 +604,16 @@ function isLocalMedusaProject() {
     // ignore
   }
 
-  return inMedusaProject
+  return inAcmeKitProject
 }
 
 function getVersionInfo() {
   const { version } = require(`../package.json`)
-  const isMedusaProject = isLocalMedusaProject()
-  if (isMedusaProject) {
-    let medusaVersion = ""
+  const isAcmeKitProject = isLocalAcmeKitProject()
+  if (isAcmeKitProject) {
+    let acmekitVersion = ""
     try {
-      medusaVersion = require(path.join(
+      acmekitVersion = require(path.join(
         process.cwd(),
         `node_modules`,
         `/medusa`,
@@ -624,12 +623,12 @@ function getVersionInfo() {
       /* noop */
     }
 
-    if (!medusaVersion) {
-      medusaVersion = `unknown`
+    if (!acmekitVersion) {
+      acmekitVersion = `unknown`
     }
 
     return `AcmeKit CLI version: ${version}
-AcmeKit version: ${medusaVersion}
+AcmeKit version: ${acmekitVersion}
   Note: this is the AcmeKit version for the site at: ${process.cwd()}`
   } else {
     return `AcmeKit CLI version: ${version}`
@@ -638,10 +637,10 @@ AcmeKit version: ${medusaVersion}
 
 export default (argv) => {
   const cli = yargs()
-  const isLocalProject = isLocalMedusaProject()
+  const isLocalProject = isLocalAcmeKitProject()
 
   cli
-    .scriptName(`medusa`)
+    .scriptName(`acmekit`)
     .usage(`Usage: $0 <command> [options]`)
     .alias(`h`, `help`)
     .alias(`v`, `version`)
@@ -670,7 +669,7 @@ export default (argv) => {
   try {
     cli.version(
       `version`,
-      `Show the version of the Medusa CLI and the Medusa package in the current project`,
+      `Show the version of the AcmeKit CLI and the AcmeKit package in the current project`,
       getVersionInfo()
     )
   } catch (e) {

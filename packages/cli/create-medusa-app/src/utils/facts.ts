@@ -15,34 +15,18 @@ export type FactBoxOptions = {
 }
 
 const facts = [
-  "Specify a product's availability in one or more sales channels.",
-  "Payment providers can be configured per region.",
-  "Tax-inclusive pricing allows you to set prices for products and shipping options while delegating tax calculations to AcmeKit.",
-  "AcmeKit provides multi-currency and region support, with full control over prices for each currency and region.",
-  "Organize customers by customer groups and set special prices for them.",
-  "Specify the inventory of products per location and sales channel.",
-  "Publishable-API Keys allow you to send scoped requests to the server's store API routes.",
-  "API Routes expose business logic to clients, such as storefronts and admin customizations.",
+  "API Routes expose business logic to clients and admin customizations.",
   "Subscribers are asynchronous functions that are executed when an event is emitted.",
   "Data models represent tables in the database. They are created using AcmeKit's Data Modeling Language (DML).",
-  "AcmeKit's store API routes are prefixed by /store. The admin API routes are prefixed by /admin.",
-  "The JS SDK allows you to send requests to the Medusa server from your storefront or admin customizations.",
-  "Modules are reusable packages of functionalities related to a single commerce domain or integration.",
+  "AcmeKit's client API routes are prefixed by /client. The admin API routes are prefixed by /admin.",
+  "The JS SDK allows you to send requests to the AcmeKit server from your frontend or admin customizations.",
+  "Modules are reusable packages of functionalities related to a single domain or integration.",
   "Modules have a main service that provides data-management and integration functionalities.",
   "Modules allow you to replace an entire functionality with your custom logic.",
   "Infrastructure Modules are interchangeable modules that implement features and integrations related to the AcmeKit server's infrastructure.",
-  "Commerce Modules are built-in modules that provide core commerce logic specific to domains like Product, Cart and Order.",
   "Workflows are a series of queries and actions, called steps, that complete a task.",
   "A workflow's steps can be retried or rolled back in case of an error.",
-  `AcmeKit provides ${terminalLink(
-    "Claude Code plugins",
-    "https://github.com/medusajs/medusa-claude-plugins"
-  )} to facilitate your development.`,
-  "AcmeKit provides an MCP server at https://docs.medusajs.com/mcp to support your learning and development experience with AI agents",
-  `AcmeKit is optimized to build custom commerce software with AI agents through its MCP server and ${terminalLink(
-    "Claude Code plugins",
-    "https://github.com/medusajs/medusa-claude-plugins"
-  )}.`,
+  "AcmeKit provides an MCP server to support your learning and development experience with AI agents",
 ]
 
 export const getFact = () => {

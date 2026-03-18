@@ -3,11 +3,11 @@ import { Option, program } from "commander"
 import create from "./commands/create.js"
 
 program
-  .description("Create a new Medusa project or plugin")
+  .description("Create a new AcmeKit project or plugin")
   .argument("[project-name]", "Name of the project to create.")
   .option("--plugin", "Create a plugin instead of a project.")
   .option("--repo-url <url>", "URL of repository to use to setup project.")
-  .option("--version <version>", "The version of Medusa packages to install.")
+  .option("--version <version>", "The version of AcmeKit packages to install.")
   .option("--seed", "Seed the created database with demo data.")
   .option(
     "--skip-db",
@@ -34,7 +34,7 @@ program
   )
   .option(
     "--with-nextjs-starter",
-    "Install the Next.js starter along with the Medusa backend",
+    "Install the Next.js starter along with the AcmeKit backend",
     false
   )
   .option(

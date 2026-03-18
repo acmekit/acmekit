@@ -1,11 +1,11 @@
 {
   "name": "@acmekit/test-utils",
   "version": "2.13.4",
-  "description": "Test utils for Medusa",
+  "description": "Test utils for AcmeKit",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
+    "url": "https://github.com/acmekit/acmekit",
     "directory": "packages/medusa-test-utils"
   },
   "engines": {
@@ -22,7 +22,7 @@
     "!dist/**/__mocks__",
     "!dist/**/__fixtures__"
   ],
-  "author": "Medusa",
+  "author": "AcmeKit",
   "license": "MIT",
   "devDependencies": {
     "/core-flows": "2.13.4",

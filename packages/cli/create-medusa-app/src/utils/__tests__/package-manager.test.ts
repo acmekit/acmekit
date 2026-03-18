@@ -514,7 +514,7 @@ describe("PackageManager", () => {
       expect(pm.getPackageManager()).toBe("yarn")
     })
 
-    it("should execute yarn medusa command for yarn", async () => {
+    it("should execute yarn acmekit command for yarn", async () => {
       mockExecute.mockResolvedValue({ stdout: "", stderr: "" })
 
       const pm = new PackageManager(processManager)
@@ -523,12 +523,12 @@ describe("PackageManager", () => {
       await pm.runMedusaCommand("migrate", { cwd: "/test/path" })
 
       expect(mockExecute).toHaveBeenCalledWith(
-        ["yarn medusa migrate", { cwd: "/test/path" }],
+        ["yarn acmekit migrate", { cwd: "/test/path" }],
         { verbose: false }
       )
     })
 
-    it("should execute pnpm medusa command for pnpm", async () => {
+    it("should execute pnpm acmekit command for pnpm", async () => {
       mockExecute.mockResolvedValue({ stdout: "", stderr: "" })
 
       const pm = new PackageManager(processManager)
@@ -537,12 +537,12 @@ describe("PackageManager", () => {
       await pm.runMedusaCommand("seed", { cwd: "/test/path" })
 
       expect(mockExecute).toHaveBeenCalledWith(
-        ["pnpm medusa seed", { cwd: "/test/path" }],
+        ["pnpm acmekit seed", { cwd: "/test/path" }],
         { verbose: false }
       )
     })
 
-    it("should execute npx medusa command for npm", async () => {
+    it("should execute npx acmekit command for npm", async () => {
       mockExecute.mockResolvedValue({ stdout: "", stderr: "" })
 
       const pm = new PackageManager(processManager)
@@ -551,7 +551,7 @@ describe("PackageManager", () => {
       await pm.runMedusaCommand("start", { cwd: "/test/path" })
 
       expect(mockExecute).toHaveBeenCalledWith(
-        ["npx medusa start", { cwd: "/test/path" }],
+        ["npx acmekit start", { cwd: "/test/path" }],
         { verbose: false }
       )
     })

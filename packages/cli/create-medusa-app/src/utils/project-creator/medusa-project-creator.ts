@@ -27,7 +27,7 @@ import terminalLink from "terminal-link"
 
 const slugify = slugifyType.default
 
-// Medusa Project Creator
+// AcmeKit Project Creator
 export class AcmeKitProjectCreator
   extends BaseProjectCreator
   implements ProjectCreator
@@ -102,7 +102,7 @@ export class AcmeKitProjectCreator
   }
 
   private async setupDatabase(): Promise<void> {
-    let dbName = `medusa-${slugify(this.projectName)}`
+    let dbName = `acmekit-${slugify(this.projectName)}`
     const { client, dbConnectionString, ...rest } =
       await getDbClientAndCredentials({
         dbName,
@@ -168,7 +168,7 @@ export class AcmeKitProjectCreator
     }
 
     logMessage({
-      message: "Starting Medusa...",
+      message: "Starting AcmeKit...",
     })
 
     startMedusa({
@@ -225,20 +225,20 @@ export class AcmeKitProjectCreator
         chalk.green(
           `Change to the \`${
             this.projectName
-          }\` directory to explore your Medusa project.${EOL}${EOL}Start your Medusa application again with the following command:${EOL}${EOL}${commandStr}${EOL}${EOL}${
+          }\` directory to explore your AcmeKit project.${EOL}${EOL}Start your AcmeKit application again with the following command:${EOL}${EOL}${commandStr}${EOL}${EOL}${
             this.inviteToken
-              ? `After you start the Medusa application, you can create an admin user with the URL http://localhost:9000/app/invite?token=${this.inviteToken}&first_run=true${EOL}${EOL}`
+              ? `After you start the AcmeKit application, you can create an admin user with the URL http://localhost:9000/app/invite?token=${this.inviteToken}&first_run=true${EOL}${EOL}`
               : ""
           }${
             this.nextjsDirectory?.length
-              ? `The Next.js Starter Storefront was installed in the \`${this.nextjsDirectory}\` directory. Change to that directory and start it with the following command:${EOL}${EOL}${commandStr}${EOL}${EOL}`
+              ? `The Next.js Starter was installed in the \`${this.nextjsDirectory}\` directory. Change to that directory and start it with the following command:${EOL}${EOL}${commandStr}${EOL}${EOL}`
               : ""
-          }Check out the Medusa ${terminalLink(
+          }Check out the AcmeKit ${terminalLink(
             "documentation",
-            "https://docs.medusajs.com/"
+            "https://docs.acmekit.dev/"
           )} to start your development:${EOL}${EOL}Star us on ${terminalLink(
             "GitHub",
-            "https://github.com/medusajs/medusa/stargazers"
+            "https://github.com/acmekit/acmekit/stargazers"
           )} if you like what we're building.`
         ),
         {

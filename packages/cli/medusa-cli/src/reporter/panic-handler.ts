@@ -17,7 +17,7 @@ export const panicHandler = (panicData: PanicData = {} as PanicData) => {
   switch (id) {
     case "10000":
       return {
-        message: `Looks like you provided a URL as your project name. Try "medusa new my-medusa-store ${context.rootPath}" instead.`,
+        message: `Looks like you provided a URL as your project name. Try "acmekit new my-acmekit-app ${context.rootPath}" instead.`,
       }
     case "10002":
       return {

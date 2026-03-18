@@ -1,14 +1,14 @@
 {
   "name": "@acmekit/cli",
   "version": "2.13.4",
-  "description": "Command Line interface for Medusa Commerce",
+  "description": "Command Line interface for AcmeKit",
   "main": "dist/index.js",
   "bin": {
-    "medusa": "cli.js"
+    "acmekit": "cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
+    "url": "https://github.com/acmekit/acmekit",
     "directory": "packages/cli/medusa-cli"
   },
   "publishConfig": {

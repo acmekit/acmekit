@@ -144,7 +144,7 @@ async function getForDbName({
       logMessage({
         message: `Couldn't connect to PostgreSQL because of the following error: ${e}.${EOL}${EOL}Make sure you have PostgreSQL installed and the credentials you provided are correct.${EOL}${EOL}If you keep running into this issue despite having PostgreSQL installed, please check out our ${terminalLink(
           "troubleshooting guides",
-          "https://docs.medusajs.com/resources/troubleshooting/database-errors"
+          "https://docs.acmekit.dev/resources/troubleshooting/database-errors"
         )}.`,
         type: "error",
       })

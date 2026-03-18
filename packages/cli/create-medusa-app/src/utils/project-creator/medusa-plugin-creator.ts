@@ -96,10 +96,10 @@ export class PluginProjectCreator
             this.projectName
           }\` directory to explore your AcmeKit plugin.${EOL}${EOL}Check out the ${terminalLink(
             "AcmeKit plugin documentation",
-            "https://docs.medusajs.com/learn/fundamentals/plugins"
+            "https://docs.acmekit.dev/learn/fundamentals/plugins"
           )} to start your development.${EOL}${EOL}Star us on ${terminalLink(
             "GitHub",
-            "https://github.com/medusajs/medusa/stargazers"
+            "https://github.com/acmekit/acmekit/stargazers"
           )} if you like what we're building.`
         ),
         {

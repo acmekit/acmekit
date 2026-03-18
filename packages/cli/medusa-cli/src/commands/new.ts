@@ -92,7 +92,7 @@ const createInitialGitCommit = async (rootPath, starterUrl) => {
   // use execSync instead of spawn to handle git clients using
   // pgp signatures (with password)
   try {
-    execSync(`git commit -m "Initial commit from medusa: (${starterUrl})"`, {
+    execSync(`git commit -m "Initial commit from acmekit: (${starterUrl})"`, {
       cwd: rootPath,
     })
   } catch {
@@ -150,7 +150,7 @@ const copy = async (starterPath, rootPath) => {
       `You can't create a starter from the existing directory. If you want to
       create a new project in the current directory, the trailing dot isn't
       necessary. If you want to create a project from a local starter, run
-      something like "medusa new my-medusa-store ../local-medusa-starter"`
+      something like "acmekit new my-acmekit-app ../local-acmekit-starter"`
     )
   }
 
@@ -229,14 +229,14 @@ const getPaths = async (starterPath, rootPath, v2 = false) => {
         type: `text`,
         name: `path`,
         message: `What is your project called?`,
-        initial: `my-medusa-store`,
+        initial: `my-acmekit-app`,
       },
       !v2 && {
         type: `select`,
         name: `starter`,
         message: `What starter would you like to use?`,
         choices: [
-          { title: `medusa-starter-default`, value: `medusa-starter-default` },
+          { title: `acmekit-starter-default`, value: `acmekit-starter-default` },
           { title: `(Use a different starter)`, value: `different` },
         ],
         initial: 0,
@@ -251,22 +251,22 @@ const getPaths = async (starterPath, rootPath, v2 = false) => {
     }
 
     selectedOtherStarter = response.starter === `different`
-    starterPath = `medusajs/${v2 ? "medusa-starter-default" : response.starter}`
+    starterPath = `acmekit/${v2 ? "acmekit-starter-default" : response.starter}`
     rootPath = response.path
   }
 
   // set defaults if no root or starter has been set yet
   rootPath = rootPath || process.cwd()
-  starterPath = starterPath || `medusajs/medusa-starter-default`
+  starterPath = starterPath || `acmekit/acmekit-starter-default`
 
   return { starterPath, rootPath, selectedOtherStarter }
 }
 
 const successMessage = (path) => {
-  reporter.info(`Your new Medusa project is ready for you! To start developing run:
+  reporter.info(`Your new AcmeKit project is ready for you! To start developing run:
 
   cd ${path}
-  medusa develop
+  acmekit develop
 `)
 }
 
@@ -442,8 +442,8 @@ const runMigrations = async (rootPath) => {
 
   const cliPath = sysPath.join(
     `node_modules`,
-    `@medusajs`,
-    `medusa-cli`,
+    `@acmekit`,
+    `cli`,
     `cli.js`
   )
 
@@ -543,9 +543,9 @@ export const newStarter = async (args) => {
 
   if (selectedOtherStarter) {
     reporter.info(
-      `Find the url of the Medusa starter you wish to create and run:
+      `Find the url of the AcmeKit starter you wish to create and run:
 
-medusa new ${rootPath} [url-to-starter]
+acmekit new ${rootPath} [url-to-starter]
 
 `
     )
@@ -556,7 +556,7 @@ medusa new ${rootPath} [url-to-starter]
     const isStarterAUrl =
       starter && !url.parse(starter).hostname && !url.parse(starter).protocol
 
-    if (/medusa-starter/gi.test(rootPath) && isStarterAUrl) {
+    if (/acmekit-starter/gi.test(rootPath) && isStarterAUrl) {
       reporter.panic({
         id: PanicId.InvalidProjectName,
         context: {
@@ -607,7 +607,7 @@ medusa new ${rootPath} [url-to-starter]
 
   let creds = dbCredentials
 
-  const dbName = `medusa-db-${Math.random().toString(36).substring(2, 7)}` // generate random 5 character string
+  const dbName = `acmekit-db-${Math.random().toString(36).substring(2, 7)}` // generate random 5 character string
 
   if (!useDefaults && !skipDb && !skipEnv) {
     creds = await interactiveDbCreds(dbName, dbCredentials)
@@ -615,7 +615,7 @@ medusa new ${rootPath} [url-to-starter]
 
   if (creds === null) {
     reporter.info(
-      "Skipping automatic database setup. Please note that you need to create a database and run migrations before you can run your Medusa backend"
+      "Skipping automatic database setup. Please note that you need to create a database and run migrations before you can run your AcmeKit backend"
     )
   } else {
     if (!skipDb) {

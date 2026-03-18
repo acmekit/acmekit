@@ -273,9 +273,9 @@ export default class PackageManager {
     }
 
     const formats: Record<PackageManagerType, string> = {
-      yarn: `yarn medusa ${command}`,
-      pnpm: `pnpm medusa ${command}`,
-      npm: `npx medusa ${command}`,
+      yarn: `yarn acmekit ${command}`,
+      pnpm: `pnpm acmekit ${command}`,
+      npm: `npx acmekit ${command}`,
     }
 
     const commandStr = formats[this.packageManager || "npm"]

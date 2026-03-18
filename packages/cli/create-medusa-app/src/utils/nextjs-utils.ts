@@ -10,7 +10,7 @@ import logMessage from "./log-message.js"
 import { updatePackageVersions } from "./update-package-versions.js"
 import PackageManager from "./package-manager.js"
 
-const NEXTJS_REPO = "https://github.com/medusajs/nextjs-starter-medusa"
+const NEXTJS_REPO = "https://github.com/acmekit/nextjs-starter-acmekit"
 const NEXTJS_BRANCH = "main"
 
 export async function askForNextjsStarter(): Promise<boolean> {
@@ -18,7 +18,7 @@ export async function askForNextjsStarter(): Promise<boolean> {
     {
       type: "confirm",
       name: "installNextjs",
-      message: `Would you like to install the Next.js Starter Storefront? You can also install it later.`,
+      message: `Would you like to install the Next.js Starter? You can also install it later.`,
       default: false,
     },
   ])
@@ -45,7 +45,7 @@ export async function installNextjsStarter({
 }: InstallOptions): Promise<string> {
   factBoxOptions.interval = displayFactBox({
     ...factBoxOptions,
-    title: "Installing Next.js Starter Storefront...",
+    title: "Installing Next.js Starter Starter...",
   })
 
   let nextjsDirectory = `${directoryName}-storefront`
@@ -101,7 +101,7 @@ export async function installNextjsStarter({
     }
 
     logMessage({
-      message: `An error occurred while installing Next.js Starter Storefront: ${e}`,
+      message: `An error occurred while installing Next.js Starter Starter: ${e}`,
       type: "error",
     })
   }
@@ -118,7 +118,7 @@ export async function installNextjsStarter({
 
   displayFactBox({
     ...factBoxOptions,
-    message: `Installed Next.js Starter Storefront successfully in the ${nextjsDirectory} directory.`,
+    message: `Installed Next.js Starter Starter successfully in the ${nextjsDirectory} directory.`,
   })
 
   return nextjsDirectory

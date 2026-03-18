@@ -9,10 +9,10 @@ import type { Client } from "/deps/pg"
 import PackageManager from "./package-manager.js"
 import { updatePackageVersions } from "./update-package-versions.js"
 
-const ADMIN_EMAIL = "admin@medusa-test.com"
+const ADMIN_EMAIL = "admin@acmekit-test.com"
 let STORE_CORS = "http://localhost:8000"
 let ADMIN_CORS = "http://localhost:5173,http://localhost:9000"
-const DOCS_CORS = "https://docs.medusajs.com"
+const DOCS_CORS = "https://docs.acmekit.dev"
 const AUTH_CORS = [ADMIN_CORS, STORE_CORS, DOCS_CORS].join(",")
 STORE_CORS += `,${DOCS_CORS}`
 ADMIN_CORS += `,${DOCS_CORS}`
@@ -174,7 +174,7 @@ async function prepareProject({
     packageJson.packageManager = packageManagerString
   }
 
-  // Update medusa dependencies versions
+  // Update AcmeKit dependencies versions
   if (version) {
     updatePackageVersions(packageJson, version)
   }

@@ -5,7 +5,7 @@ let config: Configstore
 export const getConfigStore = (): Configstore => {
   if (!config) {
     config = new Configstore(
-      `medusa`,
+      `acmekit`,
       {},
       {
         globalConfigPath: true,

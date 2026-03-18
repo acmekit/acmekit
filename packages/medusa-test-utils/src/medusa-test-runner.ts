@@ -90,7 +90,7 @@ class AcmeKitTestRunner {
     const moduleName = config.moduleName ?? ulid()
     this.dbName =
       config.dbName ??
-      `medusa-${moduleName.toLowerCase()}-integration-${tempName}`
+      `acmekit-${moduleName.toLowerCase()}-integration-${tempName}`
     this.schema = config.schema ?? "public"
     this.cwd = config.cwd ?? config.medusaConfigFile ?? process.cwd()
     this.modulesConfigPath = config.medusaConfigFile ?? this.cwd

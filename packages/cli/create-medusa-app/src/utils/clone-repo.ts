@@ -14,8 +14,8 @@ type CloneRepoOptions = {
   isPlugin?: boolean
 }
 
-const DEFAULT_REPO = "https://github.com/medusajs/medusa-starter-default"
-const DEFAULT_PLUGIN_REPO = "https://github.com/medusajs/medusa-starter-plugin"
+const DEFAULT_REPO = "https://github.com/acmekit/acmekit-starter-default"
+const DEFAULT_PLUGIN_REPO = "https://github.com/acmekit/acmekit-starter-plugin"
 const BRANCH = "master"
 const PLUGIN_BRANCH = "main"
 
