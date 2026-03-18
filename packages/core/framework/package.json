@@ -71,18 +71,18 @@
     "test": "../../../node_modules/.bin/jest --bail --forceExit --testPathPattern=src"
   },
   "devDependencies": {
-    "/cli": "2.13.4"
+    "@acmekit/cli": "2.13.4"
   },
   "dependencies": {
+    "@acmekit/deps": "2.13.4",
+    "@acmekit/modules-sdk": "2.13.4",
+    "@acmekit/orchestration": "2.13.4",
+    "@acmekit/telemetry": "2.13.4",
+    "@acmekit/types": "2.13.4",
+    "@acmekit/utils": "2.13.4",
+    "@acmekit/workflows-sdk": "2.13.4",
     "@aws-sdk/client-dynamodb": "^3.218.0",
     "@jercle/yargonaut": "^1.1.5",
-    "/deps": "2.13.4",
-    "/modules-sdk": "2.13.4",
-    "/orchestration": "2.13.4",
-    "/telemetry": "2.13.4",
-    "/types": "2.13.4",
-    "/utils": "2.13.4",
-    "/workflows-sdk": "2.13.4",
     "@types/express": "^4.17.21",
     "chokidar": "^4.0.3",
     "compression": "^1.8.1",
@@ -101,7 +101,7 @@
     "zod-validation-error": "3.5.1"
   },
   "peerDependencies": {
-    "/cli": "2.13.4",
+    "@acmekit/cli": "2.13.4",
     "ioredis": "^5.4.1"
   },
   "peerDependenciesMeta": {

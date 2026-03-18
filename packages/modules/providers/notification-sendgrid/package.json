@@ -26,13 +26,13 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "/framework": "2.13.4"
+    "@acmekit/framework": "2.13.4"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6"
   },
   "peerDependencies": {
-    "/framework": "2.13.4"
+    "@acmekit/framework": "2.13.4"
   },
   "keywords": [
     "medusa-provider",

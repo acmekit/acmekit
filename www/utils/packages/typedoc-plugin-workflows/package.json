@@ -35,8 +35,8 @@
     "typedoc"
   ],
   "dependencies": {
-    "/core-flows": "link:../../../../packages/core/core-flows",
-    "/workflows-sdk": "link:../../../../packages/core/workflows-sdk",
+    "@acmekit/core-flows": "link:../../../../packages/core/core-flows",
+    "@acmekit/workflows-sdk": "link:../../../../packages/core/workflows-sdk",
     "eslint": "^8.53.0",
     "glob": "11.1.0",
     "utils": "*",

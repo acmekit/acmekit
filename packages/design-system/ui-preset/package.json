@@ -30,7 +30,7 @@
     "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
-    "/toolbox": "2.13.4",
+    "@acmekit/toolbox": "2.13.4",
     "tailwindcss": "^3.4.3"
   },
   "publishConfig": {

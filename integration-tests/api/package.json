@@ -10,16 +10,16 @@
     "build": "tsc ./src/* --allowJs --outDir ./dist"
   },
   "dependencies": {
-    "/api-key": "workspace:^",
-    "/auth": "workspace:*",
-    "/cache-inmemory": "workspace:*",
-    "/customer": "workspace:^",
-    "/event-bus-local": "workspace:*",
-    "/medusa": "workspace:*",
-    "/modules-sdk": "workspace:^",
-    "/user": "workspace:^",
-    "/utils": "workspace:^",
-    "/workflow-engine-inmemory": "workspace:*",
+    "@acmekit/api-key": "workspace:^",
+    "@acmekit/auth": "workspace:*",
+    "@acmekit/cache-inmemory": "workspace:*",
+    "@acmekit/customer": "workspace:^",
+    "@acmekit/event-bus-local": "workspace:*",
+    "@acmekit/medusa": "workspace:*",
+    "@acmekit/modules-sdk": "workspace:^",
+    "@acmekit/user": "workspace:^",
+    "@acmekit/utils": "workspace:^",
+    "@acmekit/workflow-engine-inmemory": "workspace:*",
     "pg": "^8.11.3"
   },
   "devDependencies": {

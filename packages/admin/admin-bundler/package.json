@@ -18,12 +18,12 @@
     "package.json"
   ],
   "devDependencies": {
-    "/types": "2.13.4"
+    "@acmekit/types": "2.13.4"
   },
   "dependencies": {
-    "/admin-shared": "2.13.4",
-    "/admin-vite-plugin": "2.13.4",
-    "/dashboard": "2.13.4",
+    "@acmekit/admin-shared": "2.13.4",
+    "@acmekit/admin-vite-plugin": "2.13.4",
+    "@acmekit/dashboard": "2.13.4",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
     "compression": "^1.8.0",

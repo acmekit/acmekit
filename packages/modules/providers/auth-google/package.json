@@ -26,13 +26,13 @@
     "watch": "yarn run -T tsc --watch"
   },
   "devDependencies": {
-    "/framework": "2.13.4"
+    "@acmekit/framework": "2.13.4"
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.2"
   },
   "peerDependencies": {
-    "/framework": "2.13.4"
+    "@acmekit/framework": "2.13.4"
   },
   "keywords": [
     "medusa-provider",

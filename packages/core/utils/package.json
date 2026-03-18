@@ -26,15 +26,15 @@
   "author": "Medusa",
   "license": "MIT",
   "devDependencies": {
-    "/types": "2.13.4",
+    "@acmekit/types": "2.13.4",
     "express": "^4.21.0"
   },
   "dependencies": {
+    "@acmekit/deps": "2.13.4",
     "@graphql-codegen/core": "^4.0.2",
     "@graphql-codegen/typescript": "^4.0.9",
     "@graphql-tools/merge": "^9.0.7",
     "@graphql-tools/schema": "^10.0.6",
-    "/deps": "2.13.4",
     "@types/pluralize": "^0.0.33",
     "bignumber.js": "^9.1.2",
     "dotenv": "^16.4.5",

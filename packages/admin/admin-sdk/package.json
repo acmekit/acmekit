@@ -19,7 +19,7 @@
     "build": "yarn run -T tsup"
   },
   "dependencies": {
-    "/admin-shared": "2.13.4",
+    "@acmekit/admin-shared": "2.13.4",
     "zod": "3.25.76"
   },
   "packageManager": "yarn@3.2.1"

@@ -12,6 +12,887 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@acmekit/admin-bundler@2.13.4, @acmekit/admin-bundler@workspace:packages/admin/admin-bundler":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/admin-bundler@workspace:packages/admin/admin-bundler"
+  dependencies:
+    "@acmekit/admin-shared": 2.13.4
+    "@acmekit/admin-vite-plugin": 2.13.4
+    "@acmekit/dashboard": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@vitejs/plugin-react": ^4.2.1
+    autoprefixer: ^10.4.19
+    compression: ^1.8.0
+    express: ^4.21.0
+    get-port: ^5.1.1
+    glob: 11.1.0
+    outdent: ^0.8.0
+    postcss: ^8.4.38
+    tailwindcss: ^3.4.3
+    vite: ^5.4.21
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/admin-sdk@workspace:packages/admin/admin-sdk":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/admin-sdk@workspace:packages/admin/admin-sdk"
+  dependencies:
+    "@acmekit/admin-shared": 2.13.4
+    zod: 3.25.76
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/admin-shared@2.13.4, @acmekit/admin-shared@workspace:packages/admin/admin-shared":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/admin-shared@workspace:packages/admin/admin-shared"
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/admin-vite-plugin@2.13.4, @acmekit/admin-vite-plugin@workspace:packages/admin/admin-vite-plugin":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/admin-vite-plugin@workspace:packages/admin/admin-vite-plugin"
+  dependencies:
+    "@acmekit/admin-shared": 2.13.4
+    "@babel/parser": 7.25.6
+    "@babel/traverse": 7.25.6
+    "@babel/types": 7.25.6
+    chokidar: ^3.5.3
+    fdir: 6.1.1
+    magic-string: 0.30.5
+    outdent: ^0.8.0
+    picocolors: ^1.1.0
+    vite: ^5.4.21
+  peerDependencies:
+    vite: ^5.4.21
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/analytics-local@2.13.4, @acmekit/analytics-local@workspace:packages/modules/providers/analytics-local":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/analytics-local@workspace:packages/modules/providers/analytics-local"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/analytics-posthog@2.13.4, @acmekit/analytics-posthog@workspace:packages/modules/providers/analytics-posthog":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/analytics-posthog@workspace:packages/modules/providers/analytics-posthog"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    posthog-node: ^5.11.0
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+    posthog-node: ^5.11.0
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/analytics@2.13.4, @acmekit/analytics@workspace:packages/modules/analytics":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/analytics@workspace:packages/modules/analytics"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/api-key@2.13.4, @acmekit/api-key@workspace:^, @acmekit/api-key@workspace:packages/modules/api-key":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/api-key@workspace:packages/modules/api-key"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/auth-emailpass@2.13.4, @acmekit/auth-emailpass@workspace:packages/modules/providers/auth-emailpass":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/auth-emailpass@workspace:packages/modules/providers/auth-emailpass"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    scrypt-kdf: ^2.0.1
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/auth-github@2.13.4, @acmekit/auth-github@workspace:packages/modules/providers/auth-github":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/auth-github@workspace:packages/modules/providers/auth-github"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/auth-google@2.13.4, @acmekit/auth-google@workspace:packages/modules/providers/auth-google":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/auth-google@workspace:packages/modules/providers/auth-google"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    jsonwebtoken: ^9.0.2
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/auth@2.13.4, @acmekit/auth@workspace:*, @acmekit/auth@workspace:packages/modules/auth":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/auth@workspace:packages/modules/auth"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/cache-inmemory@2.13.4, @acmekit/cache-inmemory@workspace:*, @acmekit/cache-inmemory@workspace:packages/modules/cache-inmemory":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/cache-inmemory@workspace:packages/modules/cache-inmemory"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/cache-redis@2.13.4, @acmekit/cache-redis@workspace:packages/modules/cache-redis":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/cache-redis@workspace:packages/modules/cache-redis"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    ioredis: ^5.4.1
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/caching-redis@2.13.4, @acmekit/caching-redis@workspace:packages/modules/providers/caching-redis":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/caching-redis@workspace:packages/modules/providers/caching-redis"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    ioredis: ^5.4.1
+    xxhash-wasm: ^1.1.0
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/caching@2.13.4, @acmekit/caching@workspace:*, @acmekit/caching@workspace:packages/modules/caching":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/caching@workspace:packages/modules/caching"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+    awilix: ^8.0.1
+    fast-json-stable-stringify: ^2.1.0
+    node-cache: ^5.1.2
+    xxhash-wasm: ^1.1.0
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+    awilix: ^8.0.1
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/cli@2.13.4, @acmekit/cli@workspace:packages/cli/medusa-cli":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/cli@workspace:packages/cli/medusa-cli"
+  dependencies:
+    "@acmekit/deps": 2.13.4
+    "@acmekit/telemetry": 2.13.4
+    "@acmekit/utils": 2.13.4
+    "@types/express": ^4.17.21
+    chalk: ^4.1.2
+    configstore: ^5.0.1
+    dotenv: ^16.4.5
+    execa: ^5.1.1
+    express: ^4.21.0
+    fs-exists-cached: ^1.0.0
+    fs-extra: ^11.1.1
+    glob: 11.1.0
+    hosted-git-info: ^4.0.2
+    inquirer: ^8.0.0
+    is-valid-path: ^0.1.1
+    meant: ^1.0.3
+    ora: ^5.4.1
+    pg-god: ^1.0.12
+    prompts: ^2.4.2
+    resolve-cwd: ^3.0.0
+    stack-trace: ^0.0.10
+    ulid: ^2.3.0
+    winston: ^3.9.0
+    yargs: ^17.7.2
+  bin:
+    acmekit: cli.js
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/core-flows@2.13.4, @acmekit/core-flows@workspace:*, @acmekit/core-flows@workspace:^, @acmekit/core-flows@workspace:packages/core/core-flows":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/core-flows@workspace:packages/core/core-flows"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    csv-parse: ^5.6.0
+    json-2-csv: ^5.5.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/customer@2.13.4, @acmekit/customer@workspace:^, @acmekit/customer@workspace:packages/modules/customer":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/customer@workspace:packages/modules/customer"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/dashboard@2.13.4, @acmekit/dashboard@workspace:packages/admin/dashboard":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/dashboard@workspace:packages/admin/dashboard"
+  dependencies:
+    "@acmekit/admin-shared": 2.13.4
+    "@acmekit/admin-vite-plugin": 2.13.4
+    "@acmekit/icons": 2.13.4
+    "@acmekit/js-sdk": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@acmekit/ui": 4.1.4
+    "@acmekit/ui-preset": 2.13.4
+    "@ariakit/react": ^0.4.15
+    "@babel/runtime": ^7.26.10
+    "@dnd-kit/core": ^6.1.0
+    "@dnd-kit/sortable": ^8.0.0
+    "@dnd-kit/utilities": ^3.2.2
+    "@hookform/error-message": ^2.0.1
+    "@hookform/resolvers": 3.4.2
+    "@radix-ui/react-dialog": 1.1.4
+    "@radix-ui/react-dismissable-layer": 1.1.4
+    "@tanstack/react-query": 5.64.2
+    "@tanstack/react-table": 8.20.5
+    "@tanstack/react-virtual": ^3.8.3
+    "@uiw/react-json-view": ^2.0.0-alpha.17
+    cmdk: ^0.2.0
+    copy-to-clipboard: ^3.3.3
+    date-fns: ^3.6.0
+    i18next: 23.7.11
+    i18next-browser-languagedetector: 7.2.0
+    i18next-http-backend: 2.4.2
+    lodash.debounce: ^4.0.8
+    lodash.isequal: ^4.5.0
+    match-sorter: ^6.3.4
+    motion: ^11.15.0
+    qs: ^6.12.1
+    radix-ui: 1.1.2
+    react: ^18.3.1
+    react-country-flag: ^3.1.0
+    react-currency-input-field: ^3.6.11
+    react-dom: ^18.3.1
+    react-helmet-async: ^2.0.5
+    react-hook-form: 7.49.1
+    react-i18next: 13.5.0
+    react-jwt: ^1.2.0
+    react-router-dom: 6.30.3
+    zod: 3.25.76
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/deps@2.13.4, @acmekit/deps@workspace:packages/deps":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/deps@workspace:packages/deps"
+  dependencies:
+    "@mikro-orm/cli": 6.4.16
+    "@mikro-orm/core": 6.4.16
+    "@mikro-orm/knex": 6.4.16
+    "@mikro-orm/migrations": 6.4.16
+    "@mikro-orm/postgresql": 6.4.16
+    "@opentelemetry/api": ^1.9.0
+    "@opentelemetry/instrumentation-pg": ^0.52.0
+    "@opentelemetry/resources": ^2.0.0
+    "@opentelemetry/sdk-node": ^0.200.0
+    "@opentelemetry/sdk-trace-node": ^2.0.0
+    awilix: ^8.0.1
+    pg: ^8.16.3
+    zod: 3.25.76
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/event-bus-local@2.13.4, @acmekit/event-bus-local@workspace:*, @acmekit/event-bus-local@workspace:packages/modules/event-bus-local":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/event-bus-local@workspace:packages/modules/event-bus-local"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/event-bus-redis@2.13.4, @acmekit/event-bus-redis@workspace:*, @acmekit/event-bus-redis@workspace:packages/modules/event-bus-redis":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/event-bus-redis@workspace:packages/modules/event-bus-redis"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@acmekit/utils": 2.13.4
+    bullmq: 5.13.0
+    ioredis: ^5.4.1
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/file-local@2.13.4, @acmekit/file-local@workspace:packages/modules/providers/file-local":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/file-local@workspace:packages/modules/providers/file-local"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/file-s3@2.13.4, @acmekit/file-s3@workspace:packages/modules/providers/file-s3":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/file-s3@workspace:packages/modules/providers/file-s3"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@aws-sdk/client-s3": ^3.556.0
+    "@aws-sdk/lib-storage": ^3.556.0
+    "@aws-sdk/s3-request-presigner": ^3.556.0
+    ulid: ^2.3.0
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/file@2.13.4, @acmekit/file@workspace:packages/modules/file":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/file@workspace:packages/modules/file"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/framework@2.13.4, @acmekit/framework@workspace:*, @acmekit/framework@workspace:packages/core/framework":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/framework@workspace:packages/core/framework"
+  dependencies:
+    "@acmekit/cli": 2.13.4
+    "@acmekit/deps": 2.13.4
+    "@acmekit/modules-sdk": 2.13.4
+    "@acmekit/orchestration": 2.13.4
+    "@acmekit/telemetry": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@acmekit/utils": 2.13.4
+    "@acmekit/workflows-sdk": 2.13.4
+    "@aws-sdk/client-dynamodb": ^3.218.0
+    "@jercle/yargonaut": ^1.1.5
+    "@types/express": ^4.17.21
+    chokidar: ^4.0.3
+    compression: ^1.8.1
+    connect-dynamodb: ^3.0.5
+    connect-redis: 5.2.0
+    cookie-parser: ^1.4.6
+    cors: ^2.8.5
+    express: ^4.21.0
+    express-session: ^1.17.3
+    glob: 11.1.0
+    jsonwebtoken: ^9.0.2
+    lodash.memoize: ^4.1.2
+    morgan: ^1.9.1
+    path-to-regexp: ^8.2.0
+    tsconfig-paths: ^4.2.0
+    zod-validation-error: 3.5.1
+  peerDependencies:
+    "@acmekit/cli": 2.13.4
+    ioredis: ^5.4.1
+  peerDependenciesMeta:
+    ioredis:
+      optional: true
+    vite:
+      optional: true
+  bin:
+    medusa-mikro-orm: ./dist/mikro-orm-cli/bin.js
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/icons@2.13.4, @acmekit/icons@workspace:packages/design-system/icons":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/icons@workspace:packages/design-system/icons"
+  dependencies:
+    "@acmekit/toolbox": 2.13.4
+    react: ^18.3.1
+  peerDependencies:
+    react: ^18.3.1
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/index@2.13.4, @acmekit/index@workspace:packages/modules/index":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/index@workspace:packages/modules/index"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/js-sdk@2.13.4, @acmekit/js-sdk@workspace:packages/core/js-sdk":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/js-sdk@workspace:packages/core/js-sdk"
+  dependencies:
+    "@acmekit/types": 2.13.4
+    fetch-event-stream: ^0.1.5
+    qs: ^6.12.1
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/link-modules@2.13.4, @acmekit/link-modules@workspace:^, @acmekit/link-modules@workspace:packages/modules/link-modules":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/link-modules@workspace:packages/modules/link-modules"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/locking-postgres@2.13.4, @acmekit/locking-postgres@workspace:packages/modules/providers/locking-postgres":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/locking-postgres@workspace:packages/modules/providers/locking-postgres"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/locking-redis@2.13.4, @acmekit/locking-redis@workspace:packages/modules/providers/locking-redis":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/locking-redis@workspace:packages/modules/providers/locking-redis"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    ioredis: ^5.4.1
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/locking@2.13.4, @acmekit/locking@workspace:packages/modules/locking":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/locking@workspace:packages/modules/locking"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/medusa-oas-cli@2.13.4, @acmekit/medusa-oas-cli@workspace:packages/cli/oas/medusa-oas-cli":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/medusa-oas-cli@workspace:packages/cli/oas/medusa-oas-cli"
+  dependencies:
+    "@acmekit/medusa": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@acmekit/utils": 2.13.4
+    "@readme/json-schema-ref-parser": ^1.2.0
+    "@readme/openapi-parser": ^2.4.0
+    "@redocly/cli": 1.25.3
+    commander: ^11.0.0
+    execa: ^5.1.1
+    lodash.mergewith: ^4.6.2
+    openapi3-ts: ^3.1.2
+    swagger-inline: ^6.1.0
+    yargs: ^17.7.2
+  bin:
+    medusa-oas: ./dist/index.js
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/medusa@2.13.4, @acmekit/medusa@workspace:*, @acmekit/medusa@workspace:packages/medusa":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/medusa@workspace:packages/medusa"
+  dependencies:
+    "@acmekit/admin-bundler": 2.13.4
+    "@acmekit/analytics": 2.13.4
+    "@acmekit/analytics-local": 2.13.4
+    "@acmekit/analytics-posthog": 2.13.4
+    "@acmekit/api-key": 2.13.4
+    "@acmekit/auth": 2.13.4
+    "@acmekit/auth-emailpass": 2.13.4
+    "@acmekit/auth-github": 2.13.4
+    "@acmekit/auth-google": 2.13.4
+    "@acmekit/cache-inmemory": 2.13.4
+    "@acmekit/cache-redis": 2.13.4
+    "@acmekit/caching": 2.13.4
+    "@acmekit/caching-redis": 2.13.4
+    "@acmekit/core-flows": 2.13.4
+    "@acmekit/customer": 2.13.4
+    "@acmekit/event-bus-local": 2.13.4
+    "@acmekit/event-bus-redis": 2.13.4
+    "@acmekit/file": 2.13.4
+    "@acmekit/file-local": 2.13.4
+    "@acmekit/file-s3": 2.13.4
+    "@acmekit/framework": 2.13.4
+    "@acmekit/index": 2.13.4
+    "@acmekit/link-modules": 2.13.4
+    "@acmekit/locking": 2.13.4
+    "@acmekit/locking-postgres": 2.13.4
+    "@acmekit/locking-redis": 2.13.4
+    "@acmekit/notification": 2.13.4
+    "@acmekit/notification-local": 2.13.4
+    "@acmekit/notification-sendgrid": 2.13.4
+    "@acmekit/rbac": 2.13.4
+    "@acmekit/settings": 2.13.4
+    "@acmekit/telemetry": 2.13.4
+    "@acmekit/translation": 2.13.4
+    "@acmekit/user": 2.13.4
+    "@acmekit/workflow-engine-inmemory": 2.13.4
+    "@acmekit/workflow-engine-redis": 2.13.4
+    "@inquirer/checkbox": ^2.3.11
+    "@inquirer/input": ^2.2.9
+    boxen: ^5.0.1
+    chalk: ^4.1.2
+    chokidar: ^4.0.3
+    compression: ^1.8.0
+    express: ^4.21.0
+    fs-exists-cached: ^1.0.0
+    jsonwebtoken: ^9.0.2
+    multer: ^2.0.2
+    node-schedule: ^2.1.1
+    qs: ^6.12.1
+    request-ip: ^3.3.0
+    slugify: ^1.6.6
+    uuid: ^9.0.0
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+    "@swc/core": ^1.7.28
+    posthog-node: ^5.11.0
+    react-dom: ^18.3.1
+    yalc: ^1.0.0-pre.53
+  peerDependenciesMeta:
+    "@swc/core":
+      optional: true
+    posthog-node:
+      optional: true
+    react-dom:
+      optional: true
+    yalc:
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/modules-sdk@2.13.4, @acmekit/modules-sdk@workspace:^, @acmekit/modules-sdk@workspace:packages/core/modules-sdk":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/modules-sdk@workspace:packages/core/modules-sdk"
+  dependencies:
+    "@acmekit/deps": 2.13.4
+    "@acmekit/orchestration": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@acmekit/utils": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/notification-local@2.13.4, @acmekit/notification-local@workspace:packages/modules/providers/notification-local":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/notification-local@workspace:packages/modules/providers/notification-local"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/notification-sendgrid@2.13.4, @acmekit/notification-sendgrid@workspace:packages/modules/providers/notification-sendgrid":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/notification-sendgrid@workspace:packages/modules/providers/notification-sendgrid"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@sendgrid/mail": ^8.1.6
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/notification@2.13.4, @acmekit/notification@workspace:packages/modules/notification":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/notification@workspace:packages/modules/notification"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/oas-github-ci@workspace:packages/cli/oas/oas-github-ci":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/oas-github-ci@workspace:packages/cli/oas/oas-github-ci"
+  dependencies:
+    "@acmekit/medusa-oas-cli": 2.13.4
+    execa: ^5.1.1
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/orchestration@2.13.4, @acmekit/orchestration@workspace:packages/core/orchestration":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/orchestration@workspace:packages/core/orchestration"
+  dependencies:
+    "@acmekit/deps": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@acmekit/utils": 2.13.4
+    ulid: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/rbac@2.13.4, @acmekit/rbac@workspace:packages/modules/rbac":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/rbac@workspace:packages/modules/rbac"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/settings@2.13.4, @acmekit/settings@workspace:packages/modules/settings":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/settings@workspace:packages/modules/settings"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/telemetry@2.13.4, @acmekit/telemetry@workspace:packages/medusa-telemetry":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/telemetry@workspace:packages/medusa-telemetry"
+  dependencies:
+    "@babel/runtime": ^7.26.10
+    axios: ^1.13.1
+    axios-retry: ^3.1.9
+    boxen: ^5.0.1
+    ci-info: ^3.2.0
+    configstore: ^5.0.1
+    is-docker: ^2.2.1
+    remove-trailing-slash: ^0.1.1
+    uuid: ^9.0.0
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/test-utils@2.13.4, @acmekit/test-utils@workspace:*, @acmekit/test-utils@workspace:packages/medusa-test-utils":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/test-utils@workspace:packages/medusa-test-utils"
+  dependencies:
+    "@acmekit/core-flows": 2.13.4
+    "@acmekit/framework": 2.13.4
+    "@types/express": ^4.17.21
+    axios: ^1.13.1
+    express: ^4.21.0
+    get-port: ^5.1.1
+    ulid: ^2.3.0
+  peerDependencies:
+    "@acmekit/core-flows": 2.13.4
+    "@acmekit/framework": 2.13.4
+    "@acmekit/medusa": 2.13.4
+  peerDependenciesMeta:
+    "@acmekit/core-flows":
+      optional: true
+    "@acmekit/medusa":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/toolbox@2.13.4, @acmekit/toolbox@workspace:packages/design-system/toolbox":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/toolbox@workspace:packages/design-system/toolbox"
+  dependencies:
+    "@svgr/core": 8.0.0
+    "@svgr/plugin-jsx": 8.0.1
+    "@svgr/plugin-prettier": 8.0.1
+    "@svgr/plugin-svgo": 8.0.1
+    axios: ^1.13.1
+    axios-retry: ^3.1.9
+    commander: ^11.0.0
+    dotenv: ^16.4.5
+    fs-extra: ^11.1.1
+    picocolors: ^1.1.0
+    ts-dedent: 2.2.0
+  bin:
+    toolbox: ./bin/toolbox.js
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/translation@2.13.4, @acmekit/translation@workspace:*, @acmekit/translation@workspace:packages/modules/translation":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/translation@workspace:packages/modules/translation"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/types@2.13.4, @acmekit/types@workspace:^, @acmekit/types@workspace:packages/core/types":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/types@workspace:packages/core/types"
+  dependencies:
+    "@acmekit/deps": 2.13.4
+    bignumber.js: ^9.1.2
+  peerDependencies:
+    ioredis: ^5.4.1
+    vite: ^5.4.21
+  peerDependenciesMeta:
+    ioredis:
+      optional: true
+    vite:
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/ui-preset@2.13.4, @acmekit/ui-preset@workspace:packages/design-system/ui-preset":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/ui-preset@workspace:packages/design-system/ui-preset"
+  dependencies:
+    "@acmekit/toolbox": 2.13.4
+    "@tailwindcss/forms": ^0.5.3
+    tailwindcss: ^3.4.3
+    tailwindcss-animate: ^1.0.6
+  peerDependencies:
+    tailwindcss: ^3.4.3
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/ui@4.1.4, @acmekit/ui@workspace:packages/design-system/ui":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/ui@workspace:packages/design-system/ui"
+  dependencies:
+    "@acmekit/icons": 2.13.4
+    "@acmekit/ui-preset": 2.13.4
+    "@dnd-kit/core": ^6.1.0
+    "@dnd-kit/sortable": ^8.0.0
+    "@dnd-kit/utilities": ^3.2.2
+    "@radix-ui/react-dialog": 1.1.4
+    "@radix-ui/react-dismissable-layer": 1.1.4
+    "@tanstack/react-table": 8.20.5
+    clsx: ^1.2.1
+    copy-to-clipboard: ^3.3.3
+    cva: 1.0.0-beta.1
+    lodash.isequal: ^4.5.0
+    prism-react-renderer: ^2.0.6
+    prismjs: ^1.30.0
+    radix-ui: 1.1.2
+    react: ^18.3.1
+    react-aria: ^3.33.1
+    react-currency-input-field: ^3.6.11
+    react-dom: ^18.3.1
+    react-stately: ^3.31.1
+    sonner: ^1.5.0
+    tailwind-merge: ^2.2.1
+  peerDependencies:
+    react: ^18.3.1
+    react-dom: ^18.3.1
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/user@2.13.4, @acmekit/user@workspace:^, @acmekit/user@workspace:packages/modules/user":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/user@workspace:packages/modules/user"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+    jsonwebtoken: ^9.0.2
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/utils@2.13.4, @acmekit/utils@workspace:^, @acmekit/utils@workspace:packages/core/utils":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/utils@workspace:packages/core/utils"
+  dependencies:
+    "@acmekit/deps": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@graphql-codegen/core": ^4.0.2
+    "@graphql-codegen/typescript": ^4.0.9
+    "@graphql-tools/merge": ^9.0.7
+    "@graphql-tools/schema": ^10.0.6
+    "@types/pluralize": ^0.0.33
+    bignumber.js: ^9.1.2
+    dotenv: ^16.4.5
+    dotenv-expand: ^11.0.6
+    express: ^4.21.0
+    graphql: ^16.9.0
+    jsonwebtoken: ^9.0.2
+    pg-connection-string: ^2.7.0
+    pluralize: ^8.0.0
+    ulid: ^2.3.0
+  peerDependencies:
+    express: ^4.21.0
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/workflow-engine-inmemory@2.13.4, @acmekit/workflow-engine-inmemory@workspace:*, @acmekit/workflow-engine-inmemory@workspace:packages/modules/workflow-engine-inmemory":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/workflow-engine-inmemory@workspace:packages/modules/workflow-engine-inmemory"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+    cron-parser: ^4.9.0
+    ulid: ^2.3.0
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/workflow-engine-redis@2.13.4, @acmekit/workflow-engine-redis@workspace:packages/modules/workflow-engine-redis":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/workflow-engine-redis@workspace:packages/modules/workflow-engine-redis"
+  dependencies:
+    "@acmekit/framework": 2.13.4
+    "@acmekit/test-utils": 2.13.4
+    bullmq: 5.13.0
+    ioredis: ^5.4.1
+    ulid: ^2.3.0
+  peerDependencies:
+    "@acmekit/framework": 2.13.4
+  languageName: unknown
+  linkType: soft
+
+"@acmekit/workflows-sdk@2.13.4, @acmekit/workflows-sdk@workspace:packages/core/workflows-sdk":
+  version: 0.0.0-use.local
+  resolution: "@acmekit/workflows-sdk@workspace:packages/core/workflows-sdk"
+  dependencies:
+    "@acmekit/deps": 2.13.4
+    "@acmekit/modules-sdk": 2.13.4
+    "@acmekit/orchestration": 2.13.4
+    "@acmekit/types": 2.13.4
+    "@acmekit/utils": 2.13.4
+    ulid: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@adobe/css-tools@npm:^4.0.1, @adobe/css-tools@npm:^4.4.0":
   version: 4.4.4
   resolution: "@adobe/css-tools@npm:4.4.4"
@@ -3589,1134 +4470,6 @@ __metadata:
   checksum: 34ca98bc2a0f969894ea144dc5c8a5294690505458cd24965cd9be854d779c193ad9192bf9143c4c18438fafd1902e100d99067e045c69319288562d497558c6
   languageName: node
   linkType: hard
-
-"@medusajs/admin-bundler@2.13.4, @medusajs/admin-bundler@workspace:packages/admin/admin-bundler":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/admin-bundler@workspace:packages/admin/admin-bundler"
-  dependencies:
-    "@medusajs/admin-shared": 2.13.4
-    "@medusajs/admin-vite-plugin": 2.13.4
-    "@medusajs/dashboard": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@vitejs/plugin-react": ^4.2.1
-    autoprefixer: ^10.4.19
-    compression: ^1.8.0
-    express: ^4.21.0
-    get-port: ^5.1.1
-    glob: 11.1.0
-    outdent: ^0.8.0
-    postcss: ^8.4.38
-    tailwindcss: ^3.4.3
-    vite: ^5.4.21
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/admin-sdk@2.13.4, @medusajs/admin-sdk@workspace:packages/admin/admin-sdk":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/admin-sdk@workspace:packages/admin/admin-sdk"
-  dependencies:
-    "@medusajs/admin-shared": 2.13.4
-    zod: 3.25.76
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/admin-shared@2.13.4, @medusajs/admin-shared@workspace:packages/admin/admin-shared":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/admin-shared@workspace:packages/admin/admin-shared"
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/admin-vite-plugin@2.13.4, @medusajs/admin-vite-plugin@workspace:packages/admin/admin-vite-plugin":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/admin-vite-plugin@workspace:packages/admin/admin-vite-plugin"
-  dependencies:
-    "@babel/parser": 7.25.6
-    "@babel/traverse": 7.25.6
-    "@babel/types": 7.25.6
-    "@medusajs/admin-shared": 2.13.4
-    chokidar: ^3.5.3
-    fdir: 6.1.1
-    magic-string: 0.30.5
-    outdent: ^0.8.0
-    picocolors: ^1.1.0
-    vite: ^5.4.21
-  peerDependencies:
-    vite: ^5.4.21
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/analytics-local@2.13.4, @medusajs/analytics-local@workspace:packages/modules/providers/analytics-local":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/analytics-local@workspace:packages/modules/providers/analytics-local"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/analytics-posthog@2.13.4, @medusajs/analytics-posthog@workspace:packages/modules/providers/analytics-posthog":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/analytics-posthog@workspace:packages/modules/providers/analytics-posthog"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    posthog-node: ^5.11.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-    posthog-node: ^5.11.0
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/analytics@2.13.4, @medusajs/analytics@workspace:packages/modules/analytics":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/analytics@workspace:packages/modules/analytics"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/api-key@2.13.4, @medusajs/api-key@workspace:^, @medusajs/api-key@workspace:packages/modules/api-key":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/api-key@workspace:packages/modules/api-key"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/auth-emailpass@2.13.4, @medusajs/auth-emailpass@workspace:packages/modules/providers/auth-emailpass":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/auth-emailpass@workspace:packages/modules/providers/auth-emailpass"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    scrypt-kdf: ^2.0.1
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/auth-github@2.13.4, @medusajs/auth-github@workspace:packages/modules/providers/auth-github":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/auth-github@workspace:packages/modules/providers/auth-github"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/auth-google@2.13.4, @medusajs/auth-google@workspace:packages/modules/providers/auth-google":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/auth-google@workspace:packages/modules/providers/auth-google"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    jsonwebtoken: ^9.0.2
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/auth@2.13.4, @medusajs/auth@workspace:*, @medusajs/auth@workspace:packages/modules/auth":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/auth@workspace:packages/modules/auth"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/cache-inmemory@2.13.4, @medusajs/cache-inmemory@workspace:*, @medusajs/cache-inmemory@workspace:packages/modules/cache-inmemory":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/cache-inmemory@workspace:packages/modules/cache-inmemory"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/cache-redis@2.13.4, @medusajs/cache-redis@workspace:packages/modules/cache-redis":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/cache-redis@workspace:packages/modules/cache-redis"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    ioredis: ^5.4.1
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/caching-redis@2.13.4, @medusajs/caching-redis@workspace:packages/modules/providers/caching-redis":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/caching-redis@workspace:packages/modules/providers/caching-redis"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    ioredis: ^5.4.1
-    xxhash-wasm: ^1.1.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/caching@2.13.4, @medusajs/caching@workspace:*, @medusajs/caching@workspace:packages/modules/caching":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/caching@workspace:packages/modules/caching"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-    awilix: ^8.0.1
-    fast-json-stable-stringify: ^2.1.0
-    node-cache: ^5.1.2
-    xxhash-wasm: ^1.1.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-    awilix: ^8.0.1
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/cart@2.13.4, @medusajs/cart@workspace:packages/modules/cart":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/cart@workspace:packages/modules/cart"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/cli@2.13.4, @medusajs/cli@workspace:packages/cli/medusa-cli":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/cli@workspace:packages/cli/medusa-cli"
-  dependencies:
-    "@medusajs/deps": 2.13.4
-    "@medusajs/telemetry": 2.13.4
-    "@medusajs/utils": 2.13.4
-    "@types/express": ^4.17.21
-    chalk: ^4.1.2
-    configstore: ^5.0.1
-    dotenv: ^16.4.5
-    execa: ^5.1.1
-    express: ^4.21.0
-    fs-exists-cached: ^1.0.0
-    fs-extra: ^11.1.1
-    glob: 11.1.0
-    hosted-git-info: ^4.0.2
-    inquirer: ^8.0.0
-    is-valid-path: ^0.1.1
-    meant: ^1.0.3
-    ora: ^5.4.1
-    pg-god: ^1.0.12
-    prompts: ^2.4.2
-    resolve-cwd: ^3.0.0
-    stack-trace: ^0.0.10
-    ulid: ^2.3.0
-    winston: ^3.9.0
-    yargs: ^17.7.2
-  bin:
-    medusa: cli.js
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/core-flows@2.13.4, @medusajs/core-flows@workspace:*, @medusajs/core-flows@workspace:^, @medusajs/core-flows@workspace:packages/core/core-flows":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/core-flows@workspace:packages/core/core-flows"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    csv-parse: ^5.6.0
-    json-2-csv: ^5.5.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/currency@2.13.4, @medusajs/currency@workspace:^, @medusajs/currency@workspace:packages/modules/currency":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/currency@workspace:packages/modules/currency"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/customer@2.13.4, @medusajs/customer@workspace:^, @medusajs/customer@workspace:packages/modules/customer":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/customer@workspace:packages/modules/customer"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/dashboard@2.13.4, @medusajs/dashboard@workspace:packages/admin/dashboard":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/dashboard@workspace:packages/admin/dashboard"
-  dependencies:
-    "@ariakit/react": ^0.4.15
-    "@babel/runtime": ^7.26.10
-    "@dnd-kit/core": ^6.1.0
-    "@dnd-kit/sortable": ^8.0.0
-    "@dnd-kit/utilities": ^3.2.2
-    "@hookform/error-message": ^2.0.1
-    "@hookform/resolvers": 3.4.2
-    "@medusajs/admin-shared": 2.13.4
-    "@medusajs/admin-vite-plugin": 2.13.4
-    "@medusajs/icons": 2.13.4
-    "@medusajs/js-sdk": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@medusajs/ui": 4.1.4
-    "@medusajs/ui-preset": 2.13.4
-    "@radix-ui/react-dialog": 1.1.4
-    "@radix-ui/react-dismissable-layer": 1.1.4
-    "@tanstack/react-query": 5.64.2
-    "@tanstack/react-table": 8.20.5
-    "@tanstack/react-virtual": ^3.8.3
-    "@uiw/react-json-view": ^2.0.0-alpha.17
-    cmdk: ^0.2.0
-    copy-to-clipboard: ^3.3.3
-    date-fns: ^3.6.0
-    i18next: 23.7.11
-    i18next-browser-languagedetector: 7.2.0
-    i18next-http-backend: 2.4.2
-    lodash.debounce: ^4.0.8
-    lodash.isequal: ^4.5.0
-    match-sorter: ^6.3.4
-    motion: ^11.15.0
-    qs: ^6.12.1
-    radix-ui: 1.1.2
-    react: ^18.3.1
-    react-country-flag: ^3.1.0
-    react-currency-input-field: ^3.6.11
-    react-dom: ^18.3.1
-    react-helmet-async: ^2.0.5
-    react-hook-form: 7.49.1
-    react-i18next: 13.5.0
-    react-jwt: ^1.2.0
-    react-router-dom: 6.30.3
-    zod: 3.25.76
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/deps@2.13.4, @medusajs/deps@workspace:packages/deps":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/deps@workspace:packages/deps"
-  dependencies:
-    "@mikro-orm/cli": 6.4.16
-    "@mikro-orm/core": 6.4.16
-    "@mikro-orm/knex": 6.4.16
-    "@mikro-orm/migrations": 6.4.16
-    "@mikro-orm/postgresql": 6.4.16
-    "@opentelemetry/api": ^1.9.0
-    "@opentelemetry/instrumentation-pg": ^0.52.0
-    "@opentelemetry/resources": ^2.0.0
-    "@opentelemetry/sdk-node": ^0.200.0
-    "@opentelemetry/sdk-trace-node": ^2.0.0
-    awilix: ^8.0.1
-    pg: ^8.16.3
-    zod: 3.25.76
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/draft-order@2.13.4, @medusajs/draft-order@workspace:packages/plugins/draft-order":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/draft-order@workspace:packages/plugins/draft-order"
-  dependencies:
-    "@ariakit/react": ^0.4.15
-    "@babel/runtime": ^7.26.10
-    "@hookform/resolvers": 3.4.2
-    "@medusajs/admin-sdk": 2.13.4
-    "@medusajs/cli": 2.13.4
-    "@medusajs/framework": 2.13.4
-    "@medusajs/icons": 2.13.4
-    "@medusajs/js-sdk": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@medusajs/ui": 4.1.4
-    "@medusajs/ui-preset": 2.13.4
-    "@tanstack/react-query": 5.64.2
-    "@uiw/react-json-view": ^2.0.0-alpha.17
-    date-fns: ^3.6.0
-    lodash.debounce: ^4.0.8
-    lodash.isequal: ^4.5.0
-    match-sorter: ^6.3.4
-    radix-ui: 1.1.2
-    react-hook-form: 7.49.1
-  peerDependencies:
-    "@medusajs/admin-sdk": 2.13.4
-    "@medusajs/cli": 2.13.4
-    "@medusajs/framework": 2.13.4
-    "@medusajs/icons": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-    "@medusajs/ui": 4.1.4
-    react: ^18.3.1
-    react-dom: ^18.3.1
-    react-router-dom: 6.30.3
-  peerDependenciesMeta:
-    "@medusajs/admin-sdk":
-      optional: true
-    "@medusajs/cli":
-      optional: true
-    "@medusajs/icons":
-      optional: true
-    "@medusajs/test-utils":
-      optional: true
-    "@medusajs/ui":
-      optional: true
-    react:
-      optional: true
-    react-dom:
-      optional: true
-    react-router-dom:
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/event-bus-local@2.13.4, @medusajs/event-bus-local@workspace:*, @medusajs/event-bus-local@workspace:packages/modules/event-bus-local":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/event-bus-local@workspace:packages/modules/event-bus-local"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/event-bus-redis@2.13.4, @medusajs/event-bus-redis@workspace:*, @medusajs/event-bus-redis@workspace:packages/modules/event-bus-redis":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/event-bus-redis@workspace:packages/modules/event-bus-redis"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@medusajs/utils": 2.13.4
-    bullmq: 5.13.0
-    ioredis: ^5.4.1
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/file-local@2.13.4, @medusajs/file-local@workspace:packages/modules/providers/file-local":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/file-local@workspace:packages/modules/providers/file-local"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/file-s3@2.13.4, @medusajs/file-s3@workspace:packages/modules/providers/file-s3":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/file-s3@workspace:packages/modules/providers/file-s3"
-  dependencies:
-    "@aws-sdk/client-s3": ^3.556.0
-    "@aws-sdk/lib-storage": ^3.556.0
-    "@aws-sdk/s3-request-presigner": ^3.556.0
-    "@medusajs/framework": 2.13.4
-    ulid: ^2.3.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/file@2.13.4, @medusajs/file@workspace:packages/modules/file":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/file@workspace:packages/modules/file"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/framework@2.13.4, @medusajs/framework@workspace:*, @medusajs/framework@workspace:packages/core/framework":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/framework@workspace:packages/core/framework"
-  dependencies:
-    "@aws-sdk/client-dynamodb": ^3.218.0
-    "@jercle/yargonaut": ^1.1.5
-    "@medusajs/cli": 2.13.4
-    "@medusajs/deps": 2.13.4
-    "@medusajs/modules-sdk": 2.13.4
-    "@medusajs/orchestration": 2.13.4
-    "@medusajs/telemetry": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@medusajs/utils": 2.13.4
-    "@medusajs/workflows-sdk": 2.13.4
-    "@types/express": ^4.17.21
-    chokidar: ^4.0.3
-    compression: ^1.8.1
-    connect-dynamodb: ^3.0.5
-    connect-redis: 5.2.0
-    cookie-parser: ^1.4.6
-    cors: ^2.8.5
-    express: ^4.21.0
-    express-session: ^1.17.3
-    glob: 11.1.0
-    jsonwebtoken: ^9.0.2
-    lodash.memoize: ^4.1.2
-    morgan: ^1.9.1
-    path-to-regexp: ^8.2.0
-    tsconfig-paths: ^4.2.0
-    zod-validation-error: 3.5.1
-  peerDependencies:
-    "@medusajs/cli": 2.13.4
-    ioredis: ^5.4.1
-  peerDependenciesMeta:
-    ioredis:
-      optional: true
-    vite:
-      optional: true
-  bin:
-    medusa-mikro-orm: ./dist/mikro-orm-cli/bin.js
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/fulfillment-manual@2.13.4, @medusajs/fulfillment-manual@workspace:^, @medusajs/fulfillment-manual@workspace:packages/modules/providers/fulfillment-manual":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/fulfillment-manual@workspace:packages/modules/providers/fulfillment-manual"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/fulfillment@2.13.4, @medusajs/fulfillment@workspace:^, @medusajs/fulfillment@workspace:packages/modules/fulfillment":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/fulfillment@workspace:packages/modules/fulfillment"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/icons@2.13.4, @medusajs/icons@workspace:packages/design-system/icons":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/icons@workspace:packages/design-system/icons"
-  dependencies:
-    "@medusajs/toolbox": 2.13.4
-    react: ^18.3.1
-  peerDependencies:
-    react: ^18.3.1
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/index@2.13.4, @medusajs/index@workspace:packages/modules/index":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/index@workspace:packages/modules/index"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/inventory@2.13.4, @medusajs/inventory@workspace:^, @medusajs/inventory@workspace:packages/modules/inventory":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/inventory@workspace:packages/modules/inventory"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/js-sdk@2.13.4, @medusajs/js-sdk@workspace:packages/core/js-sdk":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/js-sdk@workspace:packages/core/js-sdk"
-  dependencies:
-    "@medusajs/types": 2.13.4
-    fetch-event-stream: ^0.1.5
-    qs: ^6.12.1
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/link-modules@2.13.4, @medusajs/link-modules@workspace:^, @medusajs/link-modules@workspace:packages/modules/link-modules":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/link-modules@workspace:packages/modules/link-modules"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/locking-postgres@2.13.4, @medusajs/locking-postgres@workspace:packages/modules/providers/locking-postgres":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/locking-postgres@workspace:packages/modules/providers/locking-postgres"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/locking-redis@2.13.4, @medusajs/locking-redis@workspace:packages/modules/providers/locking-redis":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/locking-redis@workspace:packages/modules/providers/locking-redis"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    ioredis: ^5.4.1
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/locking@2.13.4, @medusajs/locking@workspace:packages/modules/locking":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/locking@workspace:packages/modules/locking"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/medusa-oas-cli@2.13.4, @medusajs/medusa-oas-cli@workspace:packages/cli/oas/medusa-oas-cli":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/medusa-oas-cli@workspace:packages/cli/oas/medusa-oas-cli"
-  dependencies:
-    "@medusajs/medusa": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@medusajs/utils": 2.13.4
-    "@readme/json-schema-ref-parser": ^1.2.0
-    "@readme/openapi-parser": ^2.4.0
-    "@redocly/cli": 1.25.3
-    commander: ^11.0.0
-    execa: ^5.1.1
-    lodash.mergewith: ^4.6.2
-    openapi3-ts: ^3.1.2
-    swagger-inline: ^6.1.0
-    yargs: ^17.7.2
-  bin:
-    medusa-oas: ./dist/index.js
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/medusa@2.13.4, @medusajs/medusa@workspace:*, @medusajs/medusa@workspace:packages/medusa":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/medusa@workspace:packages/medusa"
-  dependencies:
-    "@inquirer/checkbox": ^2.3.11
-    "@inquirer/input": ^2.2.9
-    "@medusajs/admin-bundler": 2.13.4
-    "@medusajs/analytics": 2.13.4
-    "@medusajs/analytics-local": 2.13.4
-    "@medusajs/analytics-posthog": 2.13.4
-    "@medusajs/api-key": 2.13.4
-    "@medusajs/auth": 2.13.4
-    "@medusajs/auth-emailpass": 2.13.4
-    "@medusajs/auth-github": 2.13.4
-    "@medusajs/auth-google": 2.13.4
-    "@medusajs/cache-inmemory": 2.13.4
-    "@medusajs/cache-redis": 2.13.4
-    "@medusajs/caching": 2.13.4
-    "@medusajs/caching-redis": 2.13.4
-    "@medusajs/cart": 2.13.4
-    "@medusajs/core-flows": 2.13.4
-    "@medusajs/currency": 2.13.4
-    "@medusajs/customer": 2.13.4
-    "@medusajs/draft-order": 2.13.4
-    "@medusajs/event-bus-local": 2.13.4
-    "@medusajs/event-bus-redis": 2.13.4
-    "@medusajs/file": 2.13.4
-    "@medusajs/file-local": 2.13.4
-    "@medusajs/file-s3": 2.13.4
-    "@medusajs/framework": 2.13.4
-    "@medusajs/fulfillment": 2.13.4
-    "@medusajs/fulfillment-manual": 2.13.4
-    "@medusajs/index": 2.13.4
-    "@medusajs/inventory": 2.13.4
-    "@medusajs/link-modules": 2.13.4
-    "@medusajs/locking": 2.13.4
-    "@medusajs/locking-postgres": 2.13.4
-    "@medusajs/locking-redis": 2.13.4
-    "@medusajs/notification": 2.13.4
-    "@medusajs/notification-local": 2.13.4
-    "@medusajs/notification-sendgrid": 2.13.4
-    "@medusajs/order": 2.13.4
-    "@medusajs/payment": 2.13.4
-    "@medusajs/payment-stripe": 2.13.4
-    "@medusajs/pricing": 2.13.4
-    "@medusajs/product": 2.13.4
-    "@medusajs/promotion": 2.13.4
-    "@medusajs/rbac": 2.13.4
-    "@medusajs/region": 2.13.4
-    "@medusajs/sales-channel": 2.13.4
-    "@medusajs/settings": 2.13.4
-    "@medusajs/stock-location": 2.13.4
-    "@medusajs/store": 2.13.4
-    "@medusajs/tax": 2.13.4
-    "@medusajs/telemetry": 2.13.4
-    "@medusajs/translation": 2.13.4
-    "@medusajs/user": 2.13.4
-    "@medusajs/workflow-engine-inmemory": 2.13.4
-    "@medusajs/workflow-engine-redis": 2.13.4
-    boxen: ^5.0.1
-    chalk: ^4.1.2
-    chokidar: ^4.0.3
-    compression: ^1.8.0
-    express: ^4.21.0
-    fs-exists-cached: ^1.0.0
-    jsonwebtoken: ^9.0.2
-    multer: ^2.0.2
-    node-schedule: ^2.1.1
-    qs: ^6.12.1
-    request-ip: ^3.3.0
-    slugify: ^1.6.6
-    uuid: ^9.0.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-    "@swc/core": ^1.7.28
-    posthog-node: ^5.11.0
-    react-dom: ^18.3.1
-    yalc: ^1.0.0-pre.53
-  peerDependenciesMeta:
-    "@swc/core":
-      optional: true
-    posthog-node:
-      optional: true
-    react-dom:
-      optional: true
-    yalc:
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/modules-sdk@2.13.4, @medusajs/modules-sdk@workspace:^, @medusajs/modules-sdk@workspace:packages/core/modules-sdk":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/modules-sdk@workspace:packages/core/modules-sdk"
-  dependencies:
-    "@medusajs/deps": 2.13.4
-    "@medusajs/orchestration": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@medusajs/utils": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/notification-local@2.13.4, @medusajs/notification-local@workspace:packages/modules/providers/notification-local":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/notification-local@workspace:packages/modules/providers/notification-local"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/notification-sendgrid@2.13.4, @medusajs/notification-sendgrid@workspace:packages/modules/providers/notification-sendgrid":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/notification-sendgrid@workspace:packages/modules/providers/notification-sendgrid"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@sendgrid/mail": ^8.1.6
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/notification@2.13.4, @medusajs/notification@workspace:packages/modules/notification":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/notification@workspace:packages/modules/notification"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/oas-github-ci@workspace:packages/cli/oas/oas-github-ci":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/oas-github-ci@workspace:packages/cli/oas/oas-github-ci"
-  dependencies:
-    "@medusajs/medusa-oas-cli": 2.13.4
-    execa: ^5.1.1
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/orchestration@2.13.4, @medusajs/orchestration@workspace:packages/core/orchestration":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/orchestration@workspace:packages/core/orchestration"
-  dependencies:
-    "@medusajs/deps": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@medusajs/utils": 2.13.4
-    ulid: ^2.3.0
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/order@2.13.4, @medusajs/order@workspace:packages/modules/order":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/order@workspace:packages/modules/order"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/payment-stripe@2.13.4, @medusajs/payment-stripe@workspace:packages/modules/providers/payment-stripe":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/payment-stripe@workspace:packages/modules/providers/payment-stripe"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    stripe: ^15.5.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/payment@2.13.4, @medusajs/payment@workspace:^, @medusajs/payment@workspace:packages/modules/payment":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/payment@workspace:packages/modules/payment"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-    stripe: 19.1.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/pricing@2.13.4, @medusajs/pricing@workspace:^, @medusajs/pricing@workspace:packages/modules/pricing":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/pricing@workspace:packages/modules/pricing"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/product@2.13.4, @medusajs/product@workspace:^, @medusajs/product@workspace:packages/modules/product":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/product@workspace:packages/modules/product"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/promotion@2.13.4, @medusajs/promotion@workspace:^, @medusajs/promotion@workspace:packages/modules/promotion":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/promotion@workspace:packages/modules/promotion"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/rbac@2.13.4, @medusajs/rbac@workspace:packages/modules/rbac":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/rbac@workspace:packages/modules/rbac"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/region@2.13.4, @medusajs/region@workspace:^, @medusajs/region@workspace:packages/modules/region":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/region@workspace:packages/modules/region"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/sales-channel@2.13.4, @medusajs/sales-channel@workspace:packages/modules/sales-channel":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/sales-channel@workspace:packages/modules/sales-channel"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/settings@2.13.4, @medusajs/settings@workspace:packages/modules/settings":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/settings@workspace:packages/modules/settings"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/stock-location@2.13.4, @medusajs/stock-location@workspace:^, @medusajs/stock-location@workspace:packages/modules/stock-location":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/stock-location@workspace:packages/modules/stock-location"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/store@2.13.4, @medusajs/store@workspace:^, @medusajs/store@workspace:packages/modules/store":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/store@workspace:packages/modules/store"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/tax@2.13.4, @medusajs/tax@workspace:^, @medusajs/tax@workspace:packages/modules/tax":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/tax@workspace:packages/modules/tax"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/telemetry@2.13.4, @medusajs/telemetry@workspace:packages/medusa-telemetry":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/telemetry@workspace:packages/medusa-telemetry"
-  dependencies:
-    "@babel/runtime": ^7.26.10
-    axios: ^1.13.1
-    axios-retry: ^3.1.9
-    boxen: ^5.0.1
-    ci-info: ^3.2.0
-    configstore: ^5.0.1
-    is-docker: ^2.2.1
-    remove-trailing-slash: ^0.1.1
-    uuid: ^9.0.0
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/test-utils@2.13.4, @medusajs/test-utils@workspace:*, @medusajs/test-utils@workspace:packages/medusa-test-utils":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/test-utils@workspace:packages/medusa-test-utils"
-  dependencies:
-    "@medusajs/core-flows": 2.13.4
-    "@medusajs/framework": 2.13.4
-    "@types/express": ^4.17.21
-    axios: ^1.13.1
-    express: ^4.21.0
-    get-port: ^5.1.1
-    ulid: ^2.3.0
-  peerDependencies:
-    "@medusajs/core-flows": 2.13.4
-    "@medusajs/framework": 2.13.4
-    "@medusajs/medusa": 2.13.4
-  peerDependenciesMeta:
-    "@medusajs/core-flows":
-      optional: true
-    "@medusajs/medusa":
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/toolbox@2.13.4, @medusajs/toolbox@workspace:packages/design-system/toolbox":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/toolbox@workspace:packages/design-system/toolbox"
-  dependencies:
-    "@svgr/core": 8.0.0
-    "@svgr/plugin-jsx": 8.0.1
-    "@svgr/plugin-prettier": 8.0.1
-    "@svgr/plugin-svgo": 8.0.1
-    axios: ^1.13.1
-    axios-retry: ^3.1.9
-    commander: ^11.0.0
-    dotenv: ^16.4.5
-    fs-extra: ^11.1.1
-    picocolors: ^1.1.0
-    ts-dedent: 2.2.0
-  bin:
-    toolbox: ./bin/toolbox.js
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/translation@2.13.4, @medusajs/translation@workspace:*, @medusajs/translation@workspace:packages/modules/translation":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/translation@workspace:packages/modules/translation"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/types@2.13.4, @medusajs/types@workspace:^, @medusajs/types@workspace:packages/core/types":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/types@workspace:packages/core/types"
-  dependencies:
-    "@medusajs/deps": 2.13.4
-    bignumber.js: ^9.1.2
-  peerDependencies:
-    ioredis: ^5.4.1
-    vite: ^5.4.21
-  peerDependenciesMeta:
-    ioredis:
-      optional: true
-    vite:
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/ui-preset@2.13.4, @medusajs/ui-preset@workspace:packages/design-system/ui-preset":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/ui-preset@workspace:packages/design-system/ui-preset"
-  dependencies:
-    "@medusajs/toolbox": 2.13.4
-    "@tailwindcss/forms": ^0.5.3
-    tailwindcss: ^3.4.3
-    tailwindcss-animate: ^1.0.6
-  peerDependencies:
-    tailwindcss: ^3.4.3
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/ui@4.1.4, @medusajs/ui@workspace:packages/design-system/ui":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/ui@workspace:packages/design-system/ui"
-  dependencies:
-    "@dnd-kit/core": ^6.1.0
-    "@dnd-kit/sortable": ^8.0.0
-    "@dnd-kit/utilities": ^3.2.2
-    "@medusajs/icons": 2.13.4
-    "@medusajs/ui-preset": 2.13.4
-    "@radix-ui/react-dialog": 1.1.4
-    "@radix-ui/react-dismissable-layer": 1.1.4
-    "@tanstack/react-table": 8.20.5
-    clsx: ^1.2.1
-    copy-to-clipboard: ^3.3.3
-    cva: 1.0.0-beta.1
-    lodash.isequal: ^4.5.0
-    prism-react-renderer: ^2.0.6
-    prismjs: ^1.30.0
-    radix-ui: 1.1.2
-    react: ^18.3.1
-    react-aria: ^3.33.1
-    react-currency-input-field: ^3.6.11
-    react-dom: ^18.3.1
-    react-stately: ^3.31.1
-    sonner: ^1.5.0
-    tailwind-merge: ^2.2.1
-  peerDependencies:
-    react: ^18.3.1
-    react-dom: ^18.3.1
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/user@2.13.4, @medusajs/user@workspace:^, @medusajs/user@workspace:packages/modules/user":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/user@workspace:packages/modules/user"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-    jsonwebtoken: ^9.0.2
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/utils@2.13.4, @medusajs/utils@workspace:^, @medusajs/utils@workspace:packages/core/utils":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/utils@workspace:packages/core/utils"
-  dependencies:
-    "@graphql-codegen/core": ^4.0.2
-    "@graphql-codegen/typescript": ^4.0.9
-    "@graphql-tools/merge": ^9.0.7
-    "@graphql-tools/schema": ^10.0.6
-    "@medusajs/deps": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@types/pluralize": ^0.0.33
-    bignumber.js: ^9.1.2
-    dotenv: ^16.4.5
-    dotenv-expand: ^11.0.6
-    express: ^4.21.0
-    graphql: ^16.9.0
-    jsonwebtoken: ^9.0.2
-    pg-connection-string: ^2.7.0
-    pluralize: ^8.0.0
-    ulid: ^2.3.0
-  peerDependencies:
-    express: ^4.21.0
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/workflow-engine-inmemory@2.13.4, @medusajs/workflow-engine-inmemory@workspace:*, @medusajs/workflow-engine-inmemory@workspace:packages/modules/workflow-engine-inmemory":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/workflow-engine-inmemory@workspace:packages/modules/workflow-engine-inmemory"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-    cron-parser: ^4.9.0
-    ulid: ^2.3.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/workflow-engine-redis@2.13.4, @medusajs/workflow-engine-redis@workspace:packages/modules/workflow-engine-redis":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/workflow-engine-redis@workspace:packages/modules/workflow-engine-redis"
-  dependencies:
-    "@medusajs/framework": 2.13.4
-    "@medusajs/test-utils": 2.13.4
-    bullmq: 5.13.0
-    ioredis: ^5.4.1
-    ulid: ^2.3.0
-  peerDependencies:
-    "@medusajs/framework": 2.13.4
-  languageName: unknown
-  linkType: soft
-
-"@medusajs/workflows-sdk@2.13.4, @medusajs/workflows-sdk@workspace:packages/core/workflows-sdk":
-  version: 0.0.0-use.local
-  resolution: "@medusajs/workflows-sdk@workspace:packages/core/workflows-sdk"
-  dependencies:
-    "@medusajs/deps": 2.13.4
-    "@medusajs/modules-sdk": 2.13.4
-    "@medusajs/orchestration": 2.13.4
-    "@medusajs/types": 2.13.4
-    "@medusajs/utils": 2.13.4
-    ulid: ^2.3.0
-  languageName: unknown
-  linkType: soft
 
 "@mikro-orm/cli@npm:6.4.16":
   version: 6.4.16
@@ -12325,7 +12078,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=13.7.0, @types/node@npm:>=8.1.0":
+"@types/node@npm:*, @types/node@npm:>=13.7.0":
   version: 24.10.1
   resolution: "@types/node@npm:24.10.1"
   dependencies:
@@ -15741,29 +15494,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-jest@npm:^29.7.0":
-  version: 29.7.0
-  resolution: "create-jest@npm:29.7.0"
-  dependencies:
-    "@jest/types": ^29.6.3
-    chalk: ^4.0.0
-    exit: ^0.1.2
-    graceful-fs: ^4.2.9
-    jest-config: ^29.7.0
-    jest-util: ^29.7.0
-    prompts: ^2.0.1
-  bin:
-    create-jest: bin/create-jest.js
-  checksum: e7e54c280692470d3398f62a6238fd396327e01c6a0757002833f06d00afc62dd7bfe04ff2b9cd145264460e6b4d1eb8386f2925b7e567f97939843b7b0e812f
-  languageName: node
-  linkType: hard
-
-"create-medusa-app@workspace:packages/cli/create-medusa-app":
+"create-acmekit-app@workspace:packages/cli/create-medusa-app":
   version: 0.0.0-use.local
-  resolution: "create-medusa-app@workspace:packages/cli/create-medusa-app"
+  resolution: "create-acmekit-app@workspace:packages/cli/create-medusa-app"
   dependencies:
-    "@medusajs/deps": 2.13.4
-    "@medusajs/telemetry": 2.13.4
+    "@acmekit/deps": 2.13.4
+    "@acmekit/telemetry": 2.13.4
     boxen: ^5.0.1
     chalk: ^4.1.2
     commander: ^11.0.0
@@ -15780,9 +15516,26 @@ __metadata:
     wait-on: ^9.0.1
     winston: ^3.9.0
   bin:
-    create-medusa-app: dist/index.js
+    create-acmekit-app: dist/index.js
   languageName: unknown
   linkType: soft
+
+"create-jest@npm:^29.7.0":
+  version: 29.7.0
+  resolution: "create-jest@npm:29.7.0"
+  dependencies:
+    "@jest/types": ^29.6.3
+    chalk: ^4.0.0
+    exit: ^0.1.2
+    graceful-fs: ^4.2.9
+    jest-config: ^29.7.0
+    jest-util: ^29.7.0
+    prompts: ^2.0.1
+  bin:
+    create-jest: bin/create-jest.js
+  checksum: e7e54c280692470d3398f62a6238fd396327e01c6a0757002833f06d00afc62dd7bfe04ff2b9cd145264460e6b4d1eb8386f2925b7e567f97939843b7b0e812f
+  languageName: node
+  linkType: hard
 
 "create-require@npm:^1.1.0":
   version: 1.1.1
@@ -19558,23 +19311,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "integration-tests-api@workspace:integration-tests/api"
   dependencies:
-    "@medusajs/api-key": "workspace:^"
-    "@medusajs/auth": "workspace:*"
-    "@medusajs/cache-inmemory": "workspace:*"
-    "@medusajs/customer": "workspace:^"
-    "@medusajs/event-bus-local": "workspace:*"
-    "@medusajs/medusa": "workspace:*"
-    "@medusajs/modules-sdk": "workspace:^"
-    "@medusajs/payment": "workspace:^"
-    "@medusajs/pricing": "workspace:^"
-    "@medusajs/product": "workspace:^"
-    "@medusajs/promotion": "workspace:^"
-    "@medusajs/region": "workspace:^"
-    "@medusajs/store": "workspace:^"
-    "@medusajs/tax": "workspace:^"
-    "@medusajs/user": "workspace:^"
-    "@medusajs/utils": "workspace:^"
-    "@medusajs/workflow-engine-inmemory": "workspace:*"
+    "@acmekit/api-key": "workspace:^"
+    "@acmekit/auth": "workspace:*"
+    "@acmekit/cache-inmemory": "workspace:*"
+    "@acmekit/customer": "workspace:^"
+    "@acmekit/event-bus-local": "workspace:*"
+    "@acmekit/medusa": "workspace:*"
+    "@acmekit/modules-sdk": "workspace:^"
+    "@acmekit/user": "workspace:^"
+    "@acmekit/utils": "workspace:^"
+    "@acmekit/workflow-engine-inmemory": "workspace:*"
     "@swc/core": ^1.7.28
     "@swc/jest": ^0.2.36
     jest: ^29.7.0
@@ -19587,32 +19333,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "integration-tests-http@workspace:integration-tests/http"
   dependencies:
-    "@medusajs/api-key": "workspace:^"
-    "@medusajs/auth": "workspace:*"
-    "@medusajs/cache-inmemory": "workspace:*"
-    "@medusajs/core-flows": "workspace:*"
-    "@medusajs/customer": "workspace:^"
-    "@medusajs/event-bus-local": "workspace:*"
-    "@medusajs/event-bus-redis": "workspace:*"
-    "@medusajs/framework": "workspace:*"
-    "@medusajs/fulfillment": "workspace:^"
-    "@medusajs/fulfillment-manual": "workspace:^"
-    "@medusajs/inventory": "workspace:^"
-    "@medusajs/medusa": "workspace:*"
-    "@medusajs/modules-sdk": "workspace:^"
-    "@medusajs/pricing": "workspace:^"
-    "@medusajs/product": "workspace:^"
-    "@medusajs/promotion": "workspace:^"
-    "@medusajs/region": "workspace:^"
-    "@medusajs/stock-location": "workspace:^"
-    "@medusajs/store": "workspace:^"
-    "@medusajs/tax": "workspace:^"
-    "@medusajs/test-utils": "workspace:*"
-    "@medusajs/translation": "workspace:*"
-    "@medusajs/types": "workspace:^"
-    "@medusajs/user": "workspace:^"
-    "@medusajs/utils": "workspace:^"
-    "@medusajs/workflow-engine-inmemory": "workspace:*"
+    "@acmekit/api-key": "workspace:^"
+    "@acmekit/auth": "workspace:*"
+    "@acmekit/cache-inmemory": "workspace:*"
+    "@acmekit/core-flows": "workspace:*"
+    "@acmekit/customer": "workspace:^"
+    "@acmekit/event-bus-local": "workspace:*"
+    "@acmekit/event-bus-redis": "workspace:*"
+    "@acmekit/framework": "workspace:*"
+    "@acmekit/medusa": "workspace:*"
+    "@acmekit/modules-sdk": "workspace:^"
+    "@acmekit/test-utils": "workspace:*"
+    "@acmekit/translation": "workspace:*"
+    "@acmekit/types": "workspace:^"
+    "@acmekit/user": "workspace:^"
+    "@acmekit/utils": "workspace:^"
+    "@acmekit/workflow-engine-inmemory": "workspace:*"
     "@swc/core": ^1.7.28
     "@swc/jest": ^0.2.36
     form-data: ^4.0.4
@@ -19628,34 +19364,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "integration-tests-modules@workspace:integration-tests/modules"
   dependencies:
-    "@medusajs/api-key": "workspace:^"
-    "@medusajs/auth": "workspace:*"
-    "@medusajs/cache-inmemory": "workspace:*"
-    "@medusajs/caching": "workspace:*"
-    "@medusajs/core-flows": "workspace:^"
-    "@medusajs/currency": "workspace:^"
-    "@medusajs/customer": "workspace:^"
-    "@medusajs/event-bus-local": "workspace:*"
-    "@medusajs/framework": "workspace:*"
-    "@medusajs/fulfillment": "workspace:^"
-    "@medusajs/fulfillment-manual": "workspace:^"
-    "@medusajs/inventory": "workspace:^"
-    "@medusajs/link-modules": "workspace:^"
-    "@medusajs/medusa": "workspace:*"
-    "@medusajs/modules-sdk": "workspace:^"
-    "@medusajs/payment": "workspace:^"
-    "@medusajs/pricing": "workspace:^"
-    "@medusajs/product": "workspace:^"
-    "@medusajs/promotion": "workspace:^"
-    "@medusajs/region": "workspace:^"
-    "@medusajs/stock-location": "workspace:^"
-    "@medusajs/store": "workspace:^"
-    "@medusajs/tax": "workspace:^"
-    "@medusajs/test-utils": "workspace:*"
-    "@medusajs/types": "workspace:^"
-    "@medusajs/user": "workspace:^"
-    "@medusajs/utils": "workspace:^"
-    "@medusajs/workflow-engine-inmemory": "workspace:*"
+    "@acmekit/api-key": "workspace:^"
+    "@acmekit/auth": "workspace:*"
+    "@acmekit/cache-inmemory": "workspace:*"
+    "@acmekit/caching": "workspace:*"
+    "@acmekit/core-flows": "workspace:^"
+    "@acmekit/customer": "workspace:^"
+    "@acmekit/event-bus-local": "workspace:*"
+    "@acmekit/framework": "workspace:*"
+    "@acmekit/link-modules": "workspace:^"
+    "@acmekit/medusa": "workspace:*"
+    "@acmekit/modules-sdk": "workspace:^"
+    "@acmekit/test-utils": "workspace:*"
+    "@acmekit/types": "workspace:^"
+    "@acmekit/user": "workspace:^"
+    "@acmekit/utils": "workspace:^"
+    "@acmekit/workflow-engine-inmemory": "workspace:*"
     "@swc/core": ^1.7.28
     "@swc/jest": ^0.2.36
     faker: ^5.5.3
@@ -25015,7 +24739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.10.0, qs@npm:^6.11.0, qs@npm:^6.11.2, qs@npm:^6.12.1, qs@npm:~6.14.0":
+"qs@npm:^6.10.0, qs@npm:^6.11.2, qs@npm:^6.12.1, qs@npm:~6.14.0":
   version: 6.14.0
   resolution: "qs@npm:6.14.0"
   dependencies:
@@ -27639,30 +27363,6 @@ __metadata:
   dependencies:
     js-tokens: ^9.0.1
   checksum: 50918f669915d9ad0fe4b7599902b735f853f2201c97791ead00104a654259c0c61bc2bc8fa3db05109339b61f4cf09e47b94ecc874ffbd0e013965223893af8
-  languageName: node
-  linkType: hard
-
-"stripe@npm:19.1.0":
-  version: 19.1.0
-  resolution: "stripe@npm:19.1.0"
-  dependencies:
-    qs: ^6.11.0
-  peerDependencies:
-    "@types/node": ">=16"
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-  checksum: d1f6412373962a585f877af6b5933a000573dad1b0c5fe3937633ccb7117764ad46c8fb565431d846ac08f32811c150ffdce3a273717905a983e416ea131091f
-  languageName: node
-  linkType: hard
-
-"stripe@npm:^15.5.0":
-  version: 15.12.0
-  resolution: "stripe@npm:15.12.0"
-  dependencies:
-    "@types/node": ">=8.1.0"
-    qs: ^6.11.0
-  checksum: 95de07b108b98388d2ead2dedc3fc371df55287c9e926385f95890c680d655234ba2832a23e11e283e946d44dac01868eec823ccf878628eb75f5baa67f08175
   languageName: node
   linkType: hard
 

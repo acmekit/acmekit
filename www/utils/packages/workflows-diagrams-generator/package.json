@@ -17,7 +17,7 @@
     "workflow-diagrams-generator": "dist/index.js"
   },
   "dependencies": {
-    "/workflows-sdk": "latest",
+    "@acmekit/workflows-sdk": "latest",
     "@mermaid-js/mermaid-cli": "^10.6.1",
     "commander": "^11.1.0",
     "ts-node": "^10.9.1",

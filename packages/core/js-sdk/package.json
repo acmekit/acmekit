@@ -29,7 +29,7 @@
   "author": "Medusa",
   "license": "MIT",
   "devDependencies": {
-    "/types": "2.13.4"
+    "@acmekit/types": "2.13.4"
   },
   "dependencies": {
     "fetch-event-stream": "^0.1.5",

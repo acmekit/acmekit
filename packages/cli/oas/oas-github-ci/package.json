@@ -21,7 +21,7 @@
     "test": "../../../../node_modules/.bin/jest --passWithNoTests"
   },
   "dependencies": {
-    "/medusa-oas-cli": "2.13.4",
+    "@acmekit/medusa-oas-cli": "2.13.4",
     "execa": "^5.1.1"
   }
 }

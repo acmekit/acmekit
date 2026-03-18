@@ -31,11 +31,11 @@
     "watch": "yarn run -T tsc --build --watch"
   },
   "devDependencies": {
-    "/types": "2.13.4"
+    "@acmekit/types": "2.13.4"
   },
   "dependencies": {
-    "/deps": "2.13.4",
-    "/orchestration": "2.13.4",
-    "/utils": "2.13.4"
+    "@acmekit/deps": "2.13.4",
+    "@acmekit/orchestration": "2.13.4",
+    "@acmekit/utils": "2.13.4"
   }
 }

@@ -35,7 +35,7 @@
     "bignumber.js": "^9.1.2"
   },
   "devDependencies": {
-    "/deps": "2.13.4"
+    "@acmekit/deps": "2.13.4"
   },
   "peerDependencies": {
     "ioredis": "^5.4.1",
