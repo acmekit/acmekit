@@ -502,7 +502,7 @@ export const newStarter = async (args) => {
   const nodeVersion = getNodeVersion()
   if (nodeVersion < MIN_SUPPORTED_NODE_VERSION) {
     reporter.error(
-      `Medusa requires at least v20 of Node.js. You're using v${nodeVersion}. Please install at least v20 and try again: https://nodejs.org/en/download`
+      `AcmeKit requires at least v20 of Node.js. You're using v${nodeVersion}. Please install at least v20 and try again: https://nodejs.org/en/download`
     )
     process.exit(1)
   }

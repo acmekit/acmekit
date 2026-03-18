@@ -370,7 +370,7 @@ export abstract class AbstractAuthModuleProvider implements IAuthProvider {
    * with a social account, the {@link authenticate} method is called first.
    *
    * Then, the third-party service redirects to a frontend URL passing it a `code` query parameter.
-   * The frontend should then send a request to the Medusa application's validate callback API route, passing it the code.
+   * The frontend should then send a request to the AcmeKit application's validate callback API route, passing it the code.
    * That route uses this method to verify the callback's code.
    *
    * If the callback is verified successfully, the provider creates an auth identity for the user, or updates the auth identity's user information.

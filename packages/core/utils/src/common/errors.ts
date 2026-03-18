@@ -26,7 +26,7 @@ export const MedusaErrorCodes = {
 }
 
 /**
- * Standardized error to be used across Medusa project.
+ * Standardized error to be used across AcmeKit project.
  * @extends Error
  */
 export class MedusaError extends Error {
@@ -40,7 +40,7 @@ export class MedusaError extends Error {
   public static Codes = MedusaErrorCodes
 
   /**
-   * Creates a standardized error to be used across Medusa project.
+   * Creates a standardized error to be used across AcmeKit project.
    * @param {string} type - type of error
    * @param {string} message - message to go along with error
    * @param {string} code - code of error

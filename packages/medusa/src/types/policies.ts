@@ -1,5 +1,5 @@
 /**
- * Default RBAC Policy Resources for Medusa
+ * Default RBAC Policy Resources for AcmeKit
  *
  */
 

@@ -26,7 +26,7 @@ export interface IAnalyticsProvider {
   /**
    * This method is used to shutdown the analytics provider, and flush all data before shutting down.
    * 
-   * This method is called by the Analytics Module when the Medusa application is shutting down.
+   * This method is called by the Analytics Module when the AcmeKit application is shutting down.
    *
    * @returns {Promise<void>} Resolves when the provider is shutdown successfully.
    *

@@ -58,7 +58,7 @@ export default async ({
 >): Promise<void> => {
   let providers = options?.providers || []
 
-  // We add the Medusa Cloud Email provider if there is no other email provider configured
+  // We add the AcmeKit Cloud Email provider if there is no other email provider configured
   const hasEmailProvider = options?.providers?.some((provider) =>
     provider.options?.channels?.some((channel) => channel === "email")
   )

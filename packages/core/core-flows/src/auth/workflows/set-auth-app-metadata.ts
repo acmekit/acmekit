@@ -11,7 +11,7 @@ export const setAuthAppMetadataWorkflowId = "set-auth-app-metadata-workflow"
 /**
  * This workflow sets the `app_metadata` property of an auth identity. This is useful to
  * associate a user (whether it's an admin user or customer) with an auth identity
- * that allows them to authenticate into Medusa.
+ * that allows them to authenticate into AcmeKit.
  *
  * You can learn more about auth identites in
  * [this documentation](https://docs.medusajs.com/resources/commerce-modules/auth/auth-identity-and-actor-types).

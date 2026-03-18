@@ -628,11 +628,11 @@ function getVersionInfo() {
       medusaVersion = `unknown`
     }
 
-    return `Medusa CLI version: ${version}
-Medusa version: ${medusaVersion}
-  Note: this is the Medusa version for the site at: ${process.cwd()}`
+    return `AcmeKit CLI version: ${version}
+AcmeKit version: ${medusaVersion}
+  Note: this is the AcmeKit version for the site at: ${process.cwd()}`
   } else {
-    return `Medusa CLI version: ${version}`
+    return `AcmeKit CLI version: ${version}`
   }
 }
 

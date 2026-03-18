@@ -18,7 +18,7 @@ type InjectedDependencies = {
 
 export class MedusaCloudAuthService extends AbstractAuthModuleProvider {
   static identifier = "cloud"
-  static DISPLAY_NAME = "Medusa Cloud Authentication"
+  static DISPLAY_NAME = "AcmeKit Cloud Authentication"
 
   protected config_: MedusaCloudAuthProviderOptions
   protected logger_: Logger
@@ -36,7 +36,7 @@ export class MedusaCloudAuthService extends AbstractAuthModuleProvider {
   async register(_): Promise<AuthenticationResponse> {
     throw new MedusaError(
       MedusaError.Types.NOT_ALLOWED,
-      "Medusa Cloud does not support registration. Use method `authenticate` instead."
+      "AcmeKit Cloud does not support registration. Use method `authenticate` instead."
     )
   }
 

@@ -12,7 +12,7 @@ export type PermissionAction = {
  *
  * @property roles the role(s) to check. Can be a single string or an array of strings.
  * @property actions the action(s) to check. Can be a single `PermissionAction` or an array of `PermissionAction`s.
- * @property container the Medusa container
+ * @property container the AcmeKit container
 */
 export type HasPermissionInput = {
   roles: string | string[]

@@ -33,7 +33,7 @@ export type NotificationModuleOptions =
       options?: Record<string, unknown> & { channels: string[] }
     }[]
     /**
-     * Options for the default Medusa Cloud Email provider
+     * Options for the default AcmeKit Cloud Email provider
      * @private
      */
     cloud?: MedusaCloudEmailOptions

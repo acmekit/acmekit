@@ -32,7 +32,7 @@ export const POST = async (
     )
   }
 
-  // Check that the auth identity is from Medusa Cloud
+  // Check that the auth identity is from AcmeKit Cloud
   const providerIdentities = await query
     .graph({
       entity: "auth_identity",

@@ -250,7 +250,7 @@ export class Client {
     })
 
     this.logger.debug(
-      "Initiating Medusa client with default headers:\n",
+      "Initiating AcmeKit client with default headers:\n",
       `${JSON.stringify(sanitizeHeaders(defaultHeaders), null, 2)}\n`
     )
 

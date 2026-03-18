@@ -33,7 +33,7 @@ export class ProjectCreatorFactory {
     const nodeVersion = getNodeVersion()
     if (nodeVersion < MIN_SUPPORTED_NODE_VERSION) {
       logMessage({
-        message: `Medusa requires at least v20 of Node.js. You're using v${nodeVersion}. Please ${terminalLink(
+        message: `AcmeKit requires at least v20 of Node.js. You're using v${nodeVersion}. Please ${terminalLink(
           "install Node.js",
           "https://nodejs.org/en/download"
         )} at least v20 and try again.`,

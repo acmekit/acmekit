@@ -6,14 +6,14 @@ import path from "path"
 import type tsStatic from "typescript"
 
 /**
- * The compiler exposes the opinionated APIs for compiling Medusa
+ * The compiler exposes the opinionated APIs for compiling AcmeKit
  * applications and plugins. You can perform the following
  * actions.
  *
  * - loadTSConfigFile: Load and parse the TypeScript config file. All errors
  *   will be reported using the logger.
  *
- * - buildAppBackend: Compile the Medusa application backend source code to the
+ * - buildAppBackend: Compile the AcmeKit application backend source code to the
  *   ".medusa/server" directory. The admin source and integration-tests are
  *   skipped.
  *
@@ -328,7 +328,7 @@ export class Compiler {
   }
 
   /**
-   * Builds the frontend source code of a Medusa application
+   * Builds the frontend source code of an AcmeKit application
    * using the "@medusajs/admin-bundler" package.
    */
   async buildAppFrontend(

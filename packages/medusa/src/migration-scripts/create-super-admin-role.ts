@@ -4,7 +4,7 @@
  * Migration Script: Assign Super Admin Role to All Admin Users
  *
  * This script assigns the pre-created super admin role
- * to all existing admin users in your Medusa instance.
+ * to all existing admin users in your AcmeKit instance.
  *
  * Usage: npx tsx packages/medusa/src/migration-scripts/create-super-admin-role.ts
  */
@@ -143,7 +143,7 @@ async function assignSuperAdminRoleToUsers(container: any): Promise<void> {
 
       if (successCount > 0) {
         logger.info("\n📝 Next steps:")
-        logger.info("  1. Restart your Medusa server")
+        logger.info("  1. Restart your AcmeKit server")
         logger.info("  2. Test the permissions by logging in as an admin user")
         logger.info(
           "  3. Verify that the user has access to all admin endpoints"

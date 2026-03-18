@@ -34,14 +34,14 @@ export default async ({ app, container, plugins }: Options) => {
   const sourcePaths: string[] = []
 
   /**
-   * Always load plugin routes before the Medusa core routes, since it
+   * Always load plugin routes before the AcmeKit core routes, since it
    * will allow the plugin to define routes with higher priority
-   * than Medusa. Here are couple of examples.
+   * than AcmeKit. Here are couple of examples.
    *
    * - Plugin registers a route called "/products/active"
-   * - Medusa registers a route called "/products/:id"
+   * - AcmeKit registers a route called "/products/:id"
    *
-   * Now, if Medusa routes gets registered first, then the "/products/active"
+   * Now, if AcmeKit routes gets registered first, then the "/products/active"
    * route will never be resolved, because it will be handled by the
    * "/products/:id" route.
    */

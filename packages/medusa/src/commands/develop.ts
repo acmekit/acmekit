@@ -55,7 +55,7 @@ export default async function ({ types, directory }) {
   }
 
   /**
-   * Re-constructing the path to Medusa CLI to execute the
+   * Re-constructing the path to AcmeKit CLI to execute the
    * start command.
    */
 
@@ -236,7 +236,7 @@ export default async function ({ types, directory }) {
     const hasPrompted = configStore.getConfig("star.prompted") ?? false
     if (!hasPrompted) {
       const defaultMessage =
-        `✨ Thanks for using Medusa. ✨${EOL}${EOL}` +
+        `✨ Thanks for using AcmeKit. ✨${EOL}${EOL}` +
         `If you liked it, please consider starring us on GitHub${EOL}` +
         `https://medusajs.com/star${EOL}` +
         `${EOL}` +

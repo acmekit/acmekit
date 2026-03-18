@@ -74,7 +74,7 @@ export abstract class BaseProperty<T> implements PropertyType<T> {
    * This method defines an index on a property.
    *
    * @param {string} name - The index's name. If not provided,
-   * Medusa generates the name.
+   * AcmeKit generates the name.
    *
    * @example
    * import { model } from "@medusajs/framework/utils"
@@ -100,7 +100,7 @@ export abstract class BaseProperty<T> implements PropertyType<T> {
    * A unique index is created on the property.
    *
    * @param {string} name - The unique index's name. If not provided,
-   * Medusa generates the name.
+   * AcmeKit generates the name.
    *
    * @example
    * import { model } from "@medusajs/framework/utils"

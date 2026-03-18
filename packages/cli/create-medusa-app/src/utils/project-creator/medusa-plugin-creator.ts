@@ -94,8 +94,8 @@ export class PluginProjectCreator
         chalk.green(
           `Change to the \`${
             this.projectName
-          }\` directory to explore your Medusa plugin.${EOL}${EOL}Check out the ${terminalLink(
-            "Medusa plugin documentation",
+          }\` directory to explore your AcmeKit plugin.${EOL}${EOL}Check out the ${terminalLink(
+            "AcmeKit plugin documentation",
             "https://docs.medusajs.com/learn/fundamentals/plugins"
           )} to start your development.${EOL}${EOL}Star us on ${terminalLink(
             "GitHub",

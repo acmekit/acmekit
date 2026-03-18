@@ -13,8 +13,8 @@ import { createDefaultSalesChannelStep } from "../../sales-channel"
 
 export const createDefaultsWorkflowID = "create-defaults"
 /**
- * This workflow creates default data for a Medusa application, including
- * a default sales channel. The Medusa application uses this workflow
+ * This workflow creates default data for a AcmeKit application, including
+ * a default sales channel. The AcmeKit application uses this workflow
  * to create the default data, if not existing, when the application is first started.
  *
  * You can use this workflow within your customizations or your own custom workflows, allowing you to
@@ -26,7 +26,7 @@ export const createDefaultsWorkflowID = "create-defaults"
  *
  * @summary
  *
- * Create default data for a Medusa application.
+ * Create default data for a AcmeKit application.
  */
 export const createDefaultsWorkflow = createWorkflow(
   createDefaultsWorkflowID,
@@ -34,7 +34,7 @@ export const createDefaultsWorkflow = createWorkflow(
     const salesChannel = createDefaultSalesChannelStep({
       data: {
         name: "Default Sales Channel",
-        description: "Created by Medusa",
+        description: "Created by AcmeKit",
       },
     })
 

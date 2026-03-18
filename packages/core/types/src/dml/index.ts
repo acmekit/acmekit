@@ -333,7 +333,7 @@ export type EntityIndex<
 > = {
   /**
    * The name of the index. If not provided,
-   * Medusa generates the name.
+   * AcmeKit generates the name.
    */
   name?: string
   /**

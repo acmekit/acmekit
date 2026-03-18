@@ -4,7 +4,7 @@ import { getCallerFilePath } from "./get-caller-file-path"
 export const MEDUSA_SKIP_FILE = Symbol.for("__MEDUSA_SKIP_FILE__")
 /**
  * The "defineFileConfig" helper can be used to define the configuration
- * of any file auto-loaded by Medusa.
+ * of any file auto-loaded by AcmeKit.
  *
  * It is used to avoid loading files that are not required. Like a feature flag
  * that is disabled.

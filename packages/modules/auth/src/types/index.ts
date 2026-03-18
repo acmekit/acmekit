@@ -31,7 +31,7 @@ export type AuthModuleOptions = Partial<ModuleServiceInitializeOptions> & {
     options?: Record<string, unknown>
   }[]
   /**
-   * Options for the default Medusa Cloud Auth provider
+   * Options for the default AcmeKit Cloud Auth provider
    * @private
    */
   cloud?: MedusaCloudAuthProviderOptions

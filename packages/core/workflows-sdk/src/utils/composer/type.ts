@@ -237,7 +237,7 @@ export type WorkflowTransactionContext = StepExecutionContext &
  * ```
  *
  * To specify the container of the workflow, you can pass it as an argument to the call of the exported workflow. This is necessary when executing the workflow
- * within a Medusa resource such as an API Route or a Subscriber.
+ * within an AcmeKit resource such as an API Route or a Subscriber.
  *
  * For example:
  *

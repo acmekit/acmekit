@@ -67,7 +67,7 @@ export default async function ({
       logger.info(
         `
       Invite token: ${createdInvite.token}
-      Open the invite in Medusa Admin at: [your-admin-url]/invite?token=${createdInvite.token}`
+      Open the invite in AcmeKit Admin at: [your-admin-url]/invite?token=${createdInvite.token}`
       )
     } else {
       if (userRoles.length > 0) {

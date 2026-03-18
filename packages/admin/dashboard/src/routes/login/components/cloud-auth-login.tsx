@@ -91,7 +91,7 @@ const useHandleLogin = (isAutoLogin: boolean) => {
       })
 
       if (typeof result === "object" && result.location) {
-        // Redirect to Medusa Cloud for authentication
+        // Redirect to AcmeKit Cloud for authentication
         window.location.href = result.location
         return
       }

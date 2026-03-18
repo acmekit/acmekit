@@ -16,7 +16,7 @@ export class Plugin {
   }
 
   /**
-   * This method retrieves the list of plugins installed in a Medusa application.
+   * This method retrieves the list of plugins installed in an AcmeKit application.
    * 
    * @param headers - Headers to pass in the request.
    * @returns The list of plugins.

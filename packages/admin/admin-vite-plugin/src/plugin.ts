@@ -90,7 +90,7 @@ export const medusaVitePlugin: MedusaVitePlugin = (options) => {
 
     // Create the index.js content that re-exports everything
     return `
-      // Auto-generated index file for Medusa Admin UI extensions
+      // Auto-generated index file for AcmeKit Admin UI extensions
     ${widgetModule.code}
     ${routeModule.code}
     ${menuItemModule.code}

@@ -201,7 +201,7 @@ export class LocalFileService extends AbstractFileProviderService {
 
   /**
    * Returns the pre-signed URL that the client (frontend) can use to trigger
-   * a file upload. In this case, the Medusa backend will implement the
+   * a file upload. In this case, the AcmeKit backend will implement the
    * "/upload" endpoint to perform the file upload.
    */
   async getPresignedUploadUrl(

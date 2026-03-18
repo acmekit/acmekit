@@ -37,7 +37,7 @@ interface DataTableProps<TData> {
 /**
  * This component creates a data table with filters, pagination, sorting, and more.
  * It's built on top of the `Table` component while expanding its functionality.
- * The `DataTable` is useful to create tables similar to those in the Medusa Admin dashboard.
+ * The `DataTable` is useful to create tables similar to those in the AcmeKit Admin dashboard.
  */
 const Root = <TData,>({
   instance,
