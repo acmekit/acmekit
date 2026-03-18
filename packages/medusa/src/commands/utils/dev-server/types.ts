@@ -1,5 +1,5 @@
-import { ApiLoader } from "/framework"
-import { Logger } from "/framework/types"
+import { ApiLoader } from "@acmekit/framework"
+import { Logger } from "@acmekit/framework/types"
 
 /**
  * Action types that can be performed on files

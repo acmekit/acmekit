@@ -1,5 +1,5 @@
-import { FeatureFlag, defineFileConfig } from "/framework/utils"
-import { Migration } from "/framework/mikro-orm/migrations"
+import { FeatureFlag, defineFileConfig } from "@acmekit/framework/utils"
+import { Migration } from "@acmekit/framework/mikro-orm/migrations"
 
 defineFileConfig({
   isDisabled: () => !FeatureFlag.isFeatureEnabled("custom_ff"),

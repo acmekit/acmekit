@@ -1,8 +1,8 @@
-import { Link } from "/framework/modules-sdk"
-import type { LinkDefinition } from "/framework/types"
-import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { Link } from "@acmekit/framework/modules-sdk"
+import type { LinkDefinition } from "@acmekit/framework/types"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
 
-import { ContainerRegistrationKeys } from "/framework/utils"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
 
 export type DismissRemoteLinksStepInput = LinkDefinition | LinkDefinition[]
 

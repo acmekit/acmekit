@@ -1,5 +1,5 @@
-import { ModuleJoinerConfig } from "/framework/types"
-import { LINKS, Modules } from "/framework/utils"
+import { ModuleJoinerConfig } from "@acmekit/framework/types"
+import { LINKS, Modules } from "@acmekit/framework/utils"
 
 export const InviteRbacRole: ModuleJoinerConfig = {
   serviceName: LINKS.InviteRbacRole,

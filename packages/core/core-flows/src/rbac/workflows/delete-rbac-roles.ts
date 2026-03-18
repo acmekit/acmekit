@@ -1,4 +1,4 @@
-import { WorkflowData, createWorkflow } from "/framework/workflows-sdk"
+import { WorkflowData, createWorkflow } from "@acmekit/framework/workflows-sdk"
 import { deleteRbacRolesStep } from "../steps"
 
 /**

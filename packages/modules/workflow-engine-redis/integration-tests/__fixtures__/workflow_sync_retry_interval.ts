@@ -8,7 +8,7 @@ import {
   createWorkflow,
   StepResponse,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 
 // Mock counters to track execution attempts
 export const retryIntervalStep1InvokeMock = jest.fn()

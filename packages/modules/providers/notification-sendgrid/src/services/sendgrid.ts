@@ -2,11 +2,11 @@ import {
   Logger,
   NotificationTypes,
   SendgridNotificationServiceOptions,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   AbstractNotificationProviderService,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import sendgrid from "@sendgrid/mail"
 
 type InjectedDependencies = {

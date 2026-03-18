@@ -2,12 +2,12 @@ import {
   AcmeKitNextFunction,
   AcmeKitRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { ConfigModule } from "/framework/types"
+} from "@acmekit/framework/http"
+import { ConfigModule } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 // Middleware to validate that a scope is associated with a provider
 export const validateScopeProviderAssociation = () => {

@@ -1,4 +1,4 @@
-import { z } from "/deps/zod"
+import { z } from "@acmekit/deps/zod"
 import { AcmeKitNextFunction, AcmeKitRequest, AcmeKitResponse } from "../types"
 import { RestrictedFields } from "../utils/restricted-fields"
 import { validateAndTransformQuery } from "../utils/validate-query"

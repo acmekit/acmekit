@@ -1,5 +1,5 @@
-import { XMarkMini } from "/icons"
-import { Badge, clx } from "/ui"
+import { XMarkMini } from "@acmekit/icons"
+import { Badge, clx } from "@acmekit/ui"
 import { AnimatePresence, motion } from "motion/react"
 import {
   FocusEvent,

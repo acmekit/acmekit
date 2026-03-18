@@ -1,9 +1,9 @@
 import {
   CreateCustomerDTO,
   ICustomerModuleService,
-} from "/framework/types"
-import { Modules } from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+} from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 /**
  * The data to create one or more customers.

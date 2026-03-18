@@ -1,5 +1,5 @@
 import memoize from "lodash.memoize"
-import logger from "/cli/dist/reporter"
+import logger from "@acmekit/cli/dist/reporter"
 import { json, NextFunction, RequestHandler, text, urlencoded } from "express"
 
 import type {

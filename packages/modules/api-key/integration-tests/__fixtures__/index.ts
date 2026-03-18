@@ -1,5 +1,5 @@
 import { CreateApiKeyDTO } from "@types"
-import { ApiKeyType } from "/framework/utils"
+import { ApiKeyType } from "@acmekit/framework/utils"
 
 export const createSecretKeyFixture: CreateApiKeyDTO = {
   title: "Secret key",

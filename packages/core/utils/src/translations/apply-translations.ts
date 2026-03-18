@@ -1,4 +1,4 @@
-import { AcmeKitContainer, RemoteQueryFunction } from "/types"
+import { AcmeKitContainer, RemoteQueryFunction } from "@acmekit/types"
 import { ContainerRegistrationKeys } from "../common/container"
 import { isObject } from "../common/is-object"
 import { FeatureFlag } from "../feature-flags/flag-router"

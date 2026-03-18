@@ -2,8 +2,8 @@ import {
   Constructor,
   ICachingProviderService,
   Logger,
-} from "/framework/types"
-import { AcmeKitError } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { CachingProviderRegistrationPrefix } from "../types"
 
 type InjectedDependencies = {

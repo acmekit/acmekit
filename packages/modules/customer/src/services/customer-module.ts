@@ -11,7 +11,7 @@ import {
   InternalModuleDeclaration,
   ModuleJoinerConfig,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 import {
   EmitEvents,
@@ -20,7 +20,7 @@ import {
   isString,
   AcmeKitContext,
   AcmeKitService,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   Customer,
   CustomerAddress,

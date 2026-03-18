@@ -1,5 +1,5 @@
-import { ArrowPathMini, MinusMini, PlusMini } from "/icons"
-import { Container, DropdownMenu, Heading, Text, clx } from "/ui"
+import { ArrowPathMini, MinusMini, PlusMini } from "@acmekit/icons"
+import { Container, DropdownMenu, Heading, Text, clx } from "@acmekit/ui"
 import {
   motion,
   useAnimationControls,
@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import {
   STEP_ERROR_STATES,
   STEP_INACTIVE_STATES,

@@ -30,8 +30,8 @@ The Cache Module is deprecated starting from [Medusa v2.11.0](https://github.com
 In your workflow's step, you can resolve the Cache Module's service from the Medusa container:
 
 \`\`\`ts
-import { Modules } from "/framework/utils"
-import { createStep } from "/framework/workflows-sdk"
+import { Modules } from "@acmekit/framework/utils"
+import { createStep } from "@acmekit/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",

@@ -1,4 +1,4 @@
-import { FindParams, HttpTypes, SelectParams } from "/types"
+import { FindParams, HttpTypes, SelectParams } from "@acmekit/types"
 import { Client } from "../client"
 import { ClientHeaders, FetchArgs } from "../types"
 

@@ -1,5 +1,5 @@
-import { ModuleJoinerConfig } from "/types"
-import { defineJoinerConfig } from "/utils"
+import { ModuleJoinerConfig } from "@acmekit/types"
+import { defineJoinerConfig } from "@acmekit/utils"
 import { AcmeKitModule } from "../../medusa-module"
 
 const customModuleJoinerConfig = defineJoinerConfig("custom_user", {

@@ -5,7 +5,7 @@ import { ExecuteResult } from "./execute.js"
 import { EOL } from "os"
 import { displayFactBox, FactBoxOptions } from "./facts.js"
 import ProcessManager from "./process-manager.js"
-import type { Client } from "/deps/pg"
+import type { Client } from "@acmekit/deps/pg"
 import PackageManager from "./package-manager.js"
 import { updatePackageVersions } from "./update-package-versions.js"
 

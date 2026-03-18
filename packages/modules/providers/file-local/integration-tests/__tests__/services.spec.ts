@@ -1,4 +1,4 @@
-import { FileSystem } from "/utils"
+import { FileSystem } from "@acmekit/utils"
 import fs from "fs/promises"
 import path from "path"
 import { LocalFileService } from "../../src/services/local-file"

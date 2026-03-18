@@ -1,3 +1,3 @@
 import "../types/container"
 
-export * from "/workflows-sdk"
+export * from "@acmekit/workflows-sdk"

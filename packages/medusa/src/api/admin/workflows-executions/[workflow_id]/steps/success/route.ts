@@ -2,14 +2,14 @@ import {
   isDefined,
   Modules,
   TransactionHandlerType,
-} from "/framework/utils"
-import { StepResponse } from "/framework/workflows-sdk"
+} from "@acmekit/framework/utils"
+import { StepResponse } from "@acmekit/framework/workflows-sdk"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
-import { IWorkflowEngineService } from "/framework/types"
+import { IWorkflowEngineService } from "@acmekit/framework/types"
 import { AdminCreateWorkflowsAsyncResponseType } from "../../../validators"
 
 export const POST = async (

@@ -1,12 +1,12 @@
-import { createUsersWorkflow } from "/core-flows"
-import { IWorkflowEngineService } from "/framework/types"
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { IAuthModuleService } from "/types"
+import { createUsersWorkflow } from "@acmekit/core-flows"
+import { IWorkflowEngineService } from "@acmekit/framework/types"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { IAuthModuleService } from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   generateJwtToken,
   Modules,
-} from "/utils"
+} from "@acmekit/utils"
 import {
   adminHeaders,
   createAdminUser,

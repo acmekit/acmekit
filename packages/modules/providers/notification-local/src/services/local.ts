@@ -2,11 +2,11 @@ import {
   LocalNotificationServiceOptions,
   Logger,
   NotificationTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   AbstractNotificationProviderService,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 type InjectedDependencies = {
   logger: Logger

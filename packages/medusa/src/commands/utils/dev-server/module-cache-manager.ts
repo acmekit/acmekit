@@ -1,4 +1,4 @@
-import { Logger } from "/framework/types"
+import { Logger } from "@acmekit/framework/types"
 import path from "path"
 import { CONFIG } from "./types"
 

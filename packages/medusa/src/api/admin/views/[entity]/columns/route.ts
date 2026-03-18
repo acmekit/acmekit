@@ -1,11 +1,11 @@
-import { HttpTypes } from "/framework/types"
+import { HttpTypes } from "@acmekit/framework/types"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import {
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { generateEntityColumns } from "./helpers"
 import { ENTITY_MAPPINGS } from "./entity-mappings"
 

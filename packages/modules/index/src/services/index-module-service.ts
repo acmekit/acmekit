@@ -1,4 +1,4 @@
-import { SqlEntityManager } from "/framework/mikro-orm/postgresql"
+import { SqlEntityManager } from "@acmekit/framework/mikro-orm/postgresql"
 import {
   Constructor,
   Context,
@@ -11,7 +11,7 @@ import {
   Logger,
   ModulesSdkTypes,
   RemoteQueryFunction,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   MikroOrmBaseRepository as BaseRepository,
   ContainerRegistrationKeys,
@@ -22,7 +22,7 @@ import {
   ModulesSdkUtils,
   promiseAll,
   toMikroORMEntity,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { IndexData, IndexMetadata, IndexRelation, IndexSync } from "@models"
 import { schemaObjectRepresentationPropertiesToOmit } from "@types"
 import {

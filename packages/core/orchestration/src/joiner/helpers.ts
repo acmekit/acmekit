@@ -1,4 +1,4 @@
-import { RemoteJoinerQuery } from "/types"
+import { RemoteJoinerQuery } from "@acmekit/types"
 
 export function toRemoteJoinerQuery(
   obj: any,

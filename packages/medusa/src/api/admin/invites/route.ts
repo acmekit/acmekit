@@ -1,14 +1,14 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
-import { createInvitesWorkflow } from "/core-flows"
-import { HttpTypes } from "/framework/types"
+import { createInvitesWorkflow } from "@acmekit/core-flows"
+import { HttpTypes } from "@acmekit/framework/types"
 import { refetchInvite } from "./helpers"
 
 export const GET = async (

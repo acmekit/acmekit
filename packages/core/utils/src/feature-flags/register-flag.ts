@@ -1,4 +1,4 @@
-import { FlagSettings, Logger } from "/types"
+import { FlagSettings, Logger } from "@acmekit/types"
 import {
   isDefined,
   isObject,

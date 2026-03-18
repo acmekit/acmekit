@@ -1,10 +1,10 @@
-import type { ApiKeyDTO, CreateApiKeyDTO } from "/framework/types"
+import type { ApiKeyDTO, CreateApiKeyDTO } from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
   createHook,
   createWorkflow,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { createApiKeysStep } from "../steps"
 
 /**

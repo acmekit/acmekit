@@ -1,10 +1,10 @@
-import { ProductVariantDTO } from "/framework/types"
-import { applyTranslations, FeatureFlag } from "/framework/utils"
+import { ProductVariantDTO } from "@acmekit/framework/types"
+import { applyTranslations, FeatureFlag } from "@acmekit/framework/utils"
 import {
   createStep,
   StepFunction,
   StepResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { applyTranslationsToItems } from "../utils/apply-translations-to-items"
 
 export interface GetTranslatedLineItemsStepInput<T> {

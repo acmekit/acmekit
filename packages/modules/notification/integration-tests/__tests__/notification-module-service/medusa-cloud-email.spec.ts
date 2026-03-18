@@ -1,6 +1,6 @@
-import { INotificationModuleService } from "/framework/types"
-import { Modules, NotificationStatus } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { INotificationModuleService } from "@acmekit/framework/types"
+import { Modules, NotificationStatus } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { resolve } from "path"
 
 jest.setTimeout(30000)

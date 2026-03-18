@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 import RbacRole from "./rbac-role"
 
 const RbacRoleParent = model

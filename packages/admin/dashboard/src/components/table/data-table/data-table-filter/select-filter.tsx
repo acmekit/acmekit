@@ -1,5 +1,5 @@
-import { CheckMini, EllipseMiniSolid, XMarkMini } from "/icons"
-import { clx } from "/ui"
+import { CheckMini, EllipseMiniSolid, XMarkMini } from "@acmekit/icons"
+import { clx } from "@acmekit/ui"
 import { Command } from "cmdk"
 import { Popover as RadixPopover } from "radix-ui"
 import { useState } from "react"

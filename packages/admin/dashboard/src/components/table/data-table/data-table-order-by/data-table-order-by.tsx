@@ -1,5 +1,5 @@
-import { DescendingSorting } from "/icons"
-import { DropdownMenu, IconButton } from "/ui"
+import { DescendingSorting } from "@acmekit/icons"
+import { DropdownMenu, IconButton } from "@acmekit/ui"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"

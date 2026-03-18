@@ -1,6 +1,6 @@
 import React, { useMemo } from "react"
-import { createDataTableColumnHelper } from "/ui"
-import { HttpTypes } from "/types"
+import { createDataTableColumnHelper } from "@acmekit/ui"
+import { HttpTypes } from "@acmekit/types"
 import { useTranslation } from "react-i18next"
 import { getCellRenderer, getColumnValue } from "../../../lib/table/cell-renderers"
 

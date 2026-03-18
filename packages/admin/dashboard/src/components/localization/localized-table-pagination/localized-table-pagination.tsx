@@ -1,4 +1,4 @@
-import { Table } from "/ui"
+import { Table } from "@acmekit/ui"
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react"
 import { useTranslation } from "react-i18next"
 

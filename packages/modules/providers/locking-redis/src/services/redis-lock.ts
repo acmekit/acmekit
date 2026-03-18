@@ -1,5 +1,5 @@
-import { promiseAll } from "/framework/utils"
-import { ILockingProvider } from "/types"
+import { promiseAll } from "@acmekit/framework/utils"
+import { ILockingProvider } from "@acmekit/types"
 import { RedisCacheModuleOptions } from "@types"
 import { Redis } from "ioredis"
 import { setTimeout } from "node:timers/promises"

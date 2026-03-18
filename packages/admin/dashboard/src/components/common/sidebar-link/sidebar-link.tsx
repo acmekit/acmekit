@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
 import { Link } from "react-router-dom"
 
-import { TriangleRightMini } from "/icons"
-import { Text } from "/ui"
+import { TriangleRightMini } from "@acmekit/icons"
+import { Text } from "@acmekit/ui"
 import { IconAvatar } from "../icon-avatar"
 
 export interface SidebarLinkProps {

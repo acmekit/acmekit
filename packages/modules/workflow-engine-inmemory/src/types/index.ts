@@ -1,6 +1,6 @@
-import { ContainerLike } from "/framework"
-import { Logger } from "/framework/types"
-import { FlowCancelOptions } from "/framework/workflows-sdk"
+import { ContainerLike } from "@acmekit/framework"
+import { Logger } from "@acmekit/framework/types"
+import { FlowCancelOptions } from "@acmekit/framework/workflows-sdk"
 
 export type InitializeModuleInjectableDependencies = {
   logger?: Logger

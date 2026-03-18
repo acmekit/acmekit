@@ -1,5 +1,5 @@
-import { Photo } from "/icons"
-import { clx } from "/ui"
+import { Photo } from "@acmekit/icons"
+import { clx } from "@acmekit/ui"
 
 type ThumbnailProps = {
   src?: string | null

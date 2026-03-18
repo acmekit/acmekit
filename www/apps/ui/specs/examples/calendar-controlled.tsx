@@ -1,4 +1,4 @@
-import { Calendar } from "/ui"
+import { Calendar } from "@acmekit/ui"
 import { useState } from "react"
 
 export default function CalendarControlled() {

@@ -1,5 +1,5 @@
-import { TransactionState } from "/framework/orchestration"
-import { model } from "/framework/utils"
+import { TransactionState } from "@acmekit/framework/orchestration"
+import { model } from "@acmekit/framework/utils"
 
 export const WorkflowExecution = model
   .define("workflow_execution", {

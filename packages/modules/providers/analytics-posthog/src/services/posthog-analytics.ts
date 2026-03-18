@@ -3,8 +3,8 @@ import {
   PosthogAnalyticsServiceOptions,
   ProviderIdentifyAnalyticsEventDTO,
   ProviderTrackAnalyticsEventDTO,
-} from "/framework/types"
-import { AbstractAnalyticsProviderService } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { AbstractAnalyticsProviderService } from "@acmekit/framework/utils"
 import { PostHog } from "posthog-node"
 
 type InjectedDependencies = {

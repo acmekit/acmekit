@@ -1,6 +1,6 @@
 import { AcmeKitRequest, AcmeKitResponse } from "../types"
 import { applyLocale } from "../middlewares/apply-locale"
-import { AcmeKitContainer } from "/types"
+import { AcmeKitContainer } from "@acmekit/types"
 
 describe("applyLocale", () => {
   let mockRequest: Partial<AcmeKitRequest>

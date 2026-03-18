@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { UIMatch } from "react-router-dom"
 
 import { useCustomer } from "../../../hooks/api"

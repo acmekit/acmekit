@@ -1,4 +1,4 @@
-import { MiddlewareRoute } from "/framework/http"
+import { MiddlewareRoute } from "@acmekit/framework/http"
 import { storeLocalesRoutesMiddlewares } from "./locales/middlewares"
 import { storeReturnsRoutesMiddlewares } from "./returns/middlewares"
 

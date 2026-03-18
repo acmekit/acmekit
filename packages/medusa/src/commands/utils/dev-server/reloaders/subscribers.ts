@@ -1,10 +1,10 @@
-import { SubscriberLoader } from "/framework/subscribers"
+import { SubscriberLoader } from "@acmekit/framework/subscribers"
 import {
   IEventBusModuleService,
   Logger,
   AcmeKitContainer,
-} from "/framework/types"
-import { Modules } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
 import { ResourceRegistry } from "../resource-registry"
 import { CONFIG, FileChangeAction } from "../types"
 import { BaseReloader } from "./base"

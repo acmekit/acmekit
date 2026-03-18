@@ -2,7 +2,7 @@ import { resolve } from "path"
 import { errorHandlerMock } from "../__fixtures__/routers/middlewares"
 import { createServer } from "../__fixtures__/server"
 import { instrumentHttpLayer } from "../index"
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 
 jest.setTimeout(30000)
 

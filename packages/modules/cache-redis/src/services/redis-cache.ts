@@ -1,4 +1,4 @@
-import { ICacheService } from "/framework/types"
+import { ICacheService } from "@acmekit/framework/types"
 import { Redis } from "ioredis"
 import { RedisCacheModuleOptions } from "../types"
 

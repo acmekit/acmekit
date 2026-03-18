@@ -2,9 +2,9 @@ import {
   ContainerRegistrationKeys,
   AcmeKitError,
   AcmeKitErrorTypes,
-} from "/framework/utils"
-import { createStep, StepResponse } from "/framework/workflows-sdk"
-import { CreateTranslationDTO, UpdateTranslationDataDTO, UpdateTranslationDTO } from "/types"
+} from "@acmekit/framework/utils"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
+import { CreateTranslationDTO, UpdateTranslationDataDTO, UpdateTranslationDTO } from "@acmekit/types"
 
 export const validateTranslationsStepId = "validate-translations"
 

@@ -4,12 +4,12 @@ import {
   Button,
   toast,
   usePrompt,
-} from "/ui"
+} from "@acmekit/ui"
 import {
   Plus,
   CloudArrowUp,
   SquarePlusMicro,
-} from "/icons"
+} from "@acmekit/icons"
 
 interface SaveViewDropdownProps {
   isDefaultView: boolean

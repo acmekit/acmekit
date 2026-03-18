@@ -8,10 +8,10 @@ import {
   GetUploadFileUrlDTO,
   ModuleJoinerConfig,
   UploadFileUrlDTO,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import type { Readable, Writable } from "stream"
 
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { joinerConfig } from "../joiner-config"
 import FileProviderService from "./file-provider-service"
 

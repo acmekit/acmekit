@@ -1,15 +1,15 @@
 import {
   deleteRbacPoliciesWorkflow,
   updateRbacPoliciesWorkflow,
-} from "/core-flows"
+} from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import {
   ContainerRegistrationKeys,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 import { AdminUpdateRbacPolicyType } from "../validators"
 

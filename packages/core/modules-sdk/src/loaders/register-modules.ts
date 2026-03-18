@@ -4,13 +4,13 @@ import {
   ModuleDefinition,
   ModuleExports,
   ModuleResolution,
-} from "/types"
+} from "@acmekit/types"
 
 import {
   isObject,
   isString,
   normalizeImportPathWithSource,
-} from "/utils"
+} from "@acmekit/utils"
 import { ModulesDefinition } from "../definitions"
 import { MODULE_SCOPE } from "../types"
 

@@ -1,4 +1,4 @@
-import { clx } from "/ui"
+import { clx } from "@acmekit/ui"
 import { ComponentPropsWithoutRef } from "react"
 import { Link } from "react-router-dom"
 

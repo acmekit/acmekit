@@ -1,11 +1,11 @@
-import { batchTranslationsWorkflow } from "/core-flows"
-import { AuthenticatedMedusaRequest, AcmeKitResponse } from "/framework"
+import { batchTranslationsWorkflow } from "@acmekit/core-flows"
+import { AuthenticatedMedusaRequest, AcmeKitResponse } from "@acmekit/framework"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
-} from "/framework/utils"
-import { BatchMethodRequest, HttpTypes } from "/types"
+} from "@acmekit/framework/utils"
+import { BatchMethodRequest, HttpTypes } from "@acmekit/types"
 import TranslationFeatureFlag from "../../../../feature-flags/translation"
 import { defaultAdminTranslationFields } from "../query-config"
 import {

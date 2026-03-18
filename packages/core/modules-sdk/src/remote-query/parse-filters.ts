@@ -1,5 +1,5 @@
-import { JoinerServiceConfig, ModuleJoinerConfig } from "/types"
-import { isObject, isString } from "/utils"
+import { JoinerServiceConfig, ModuleJoinerConfig } from "@acmekit/types"
+import { isObject, isString } from "@acmekit/utils"
 import { AcmeKitModule } from "../medusa-module"
 
 const joinerConfigMapCache = new Map()

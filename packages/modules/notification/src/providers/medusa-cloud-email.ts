@@ -1,5 +1,5 @@
-import { Logger, NotificationTypes } from "/framework/types"
-import { AbstractNotificationProviderService } from "/framework/utils"
+import { Logger, NotificationTypes } from "@acmekit/framework/types"
+import { AbstractNotificationProviderService } from "@acmekit/framework/utils"
 import { AcmeKitCloudEmailOptions } from "@types"
 
 export class AcmeKitCloudEmailNotificationProvider extends AbstractNotificationProviderService {

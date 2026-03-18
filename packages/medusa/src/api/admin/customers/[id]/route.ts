@@ -1,13 +1,13 @@
 import {
   removeCustomerAccountWorkflow,
   updateCustomersWorkflow,
-} from "/core-flows"
-import { AdditionalData, HttpTypes } from "/framework/types"
-import { AcmeKitError } from "/framework/utils"
+} from "@acmekit/core-flows"
+import { AdditionalData, HttpTypes } from "@acmekit/framework/types"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { refetchCustomer } from "../helpers"
 import { AdminUpdateCustomerType } from "../validators"
 

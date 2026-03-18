@@ -1,4 +1,4 @@
-import { ConfigModule, PluginDetails } from "/types"
+import { ConfigModule, PluginDetails } from "@acmekit/types"
 import fs from "fs/promises"
 import path from "path"
 import { isString } from "./is-string"

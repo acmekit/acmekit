@@ -2,9 +2,9 @@ import {
   moduleLoader,
   ModulesDefinition,
   registerMedusaModule,
-} from "/modules-sdk"
-import { AcmeKitContainer } from "/types"
-import { ContainerRegistrationKeys, generateJwtToken } from "/utils"
+} from "@acmekit/modules-sdk"
+import { AcmeKitContainer } from "@acmekit/types"
+import { ContainerRegistrationKeys, generateJwtToken } from "@acmekit/utils"
 import { asValue } from "../../../deps/awilix"
 import express from "express"
 import querystring from "querystring"

@@ -1,4 +1,4 @@
-import { track } from "/telemetry"
+import { track } from "@acmekit/telemetry"
 import ora from "ora"
 import stackTrace from "stack-trace"
 import { ulid } from "ulid"

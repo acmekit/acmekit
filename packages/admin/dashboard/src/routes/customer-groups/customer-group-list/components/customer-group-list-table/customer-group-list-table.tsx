@@ -1,11 +1,11 @@
-import { PencilSquare, Trash } from "/icons"
-import { HttpTypes } from "/types"
+import { PencilSquare, Trash } from "@acmekit/icons"
+import { HttpTypes } from "@acmekit/types"
 import {
   Container,
   createDataTableColumnHelper,
   toast,
   usePrompt,
-} from "/ui"
+} from "@acmekit/ui"
 import { keepPreviousData } from "@tanstack/react-query"
 import { useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"

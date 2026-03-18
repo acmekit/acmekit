@@ -2,8 +2,8 @@ import {
   AcmeKitNextFunction,
   AcmeKitRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { ContainerRegistrationKeys } from "/framework/utils"
+} from "@acmekit/framework/http"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
 import ViewConfigurationsFeatureFlag from "../../../../../feature-flags/view-configurations"
 
 export const ensureViewConfigurationsEnabled = async (

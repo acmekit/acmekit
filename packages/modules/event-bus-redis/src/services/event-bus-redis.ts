@@ -5,13 +5,13 @@ import {
   InternalModuleDeclaration,
   Logger,
   Message,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   AbstractEventBusModuleService,
   EventPriority,
   isPresent,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   BulkJobOptions,
   Queue,

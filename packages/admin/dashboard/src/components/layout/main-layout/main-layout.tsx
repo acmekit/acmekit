@@ -7,8 +7,8 @@ import {
   OpenRectArrowOut,
   SquaresPlus,
   Users,
-} from "/icons"
-import { Avatar, Divider, DropdownMenu, Text, clx } from "/ui"
+} from "@acmekit/icons"
+import { Avatar, Divider, DropdownMenu, Text, clx } from "@acmekit/ui"
 import { Collapsible as RadixCollapsible } from "radix-ui"
 import { useTranslation } from "react-i18next"
 

@@ -1,4 +1,4 @@
-import { ILockingModule, Logger } from "/types"
+import { ILockingModule, Logger } from "@acmekit/types"
 
 export class Orchestrator {
   /**

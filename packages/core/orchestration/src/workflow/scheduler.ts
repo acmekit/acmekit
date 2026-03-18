@@ -1,4 +1,4 @@
-import { AcmeKitError } from "/utils"
+import { AcmeKitError } from "@acmekit/utils"
 import { IDistributedSchedulerStorage, SchedulerOptions } from "../transaction"
 import { WorkflowDefinition } from "./workflow-manager"
 

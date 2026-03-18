@@ -6,14 +6,14 @@ import {
   LoaderOptions,
   ModuleJoinerConfig,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   composeLinkName,
   composeTableName,
   simpleHash,
   toPascalCase,
-} from "/framework/utils"
-import { asClass, asValue } from "/framework/awilix"
+} from "@acmekit/framework/utils"
+import { asClass, asValue } from "@acmekit/framework/awilix"
 export function containerLoader(entity, joinerConfig: ModuleJoinerConfig) {
   return async (
     {

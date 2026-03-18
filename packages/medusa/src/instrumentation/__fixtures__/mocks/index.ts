@@ -1,4 +1,4 @@
-import { ConfigModule } from "/types"
+import { ConfigModule } from "@acmekit/types"
 
 export const customersGlobalMiddlewareMock = jest.fn()
 export const customersCreateMiddlewareMock = jest.fn()

@@ -1,4 +1,4 @@
-import { TranslationTypes } from "/framework/types"
+import { TranslationTypes } from "@acmekit/framework/types"
 
 export function filterTranslationFields(
   translations: TranslationTypes.TranslationDTO[],

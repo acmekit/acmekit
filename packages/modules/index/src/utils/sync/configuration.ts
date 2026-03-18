@@ -1,5 +1,5 @@
-import { simpleHash } from "/framework/utils"
-import { IndexTypes, InferEntityType, Logger } from "/types"
+import { simpleHash } from "@acmekit/framework/utils"
+import { IndexTypes, InferEntityType, Logger } from "@acmekit/types"
 import { IndexMetadata } from "@models"
 import { schemaObjectRepresentationPropertiesToOmit } from "@types"
 import { DataSynchronizer } from "../../services/data-synchronizer"

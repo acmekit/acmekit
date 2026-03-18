@@ -1,4 +1,4 @@
-import { QueryContext } from "/utils"
+import { QueryContext } from "@acmekit/utils"
 import { AcmeKitModule } from "../../medusa-module"
 import { getEntitiesMap } from "../__fixtures__/get-entities-map"
 import "../__fixtures__/parse-filters"

@@ -1,4 +1,4 @@
-import { ProgressAccordion, Text, Button } from "/ui"
+import { ProgressAccordion, Text, Button } from "@acmekit/ui"
 import * as React from "react"
 
 export default function ProgressAccordionControlled() {

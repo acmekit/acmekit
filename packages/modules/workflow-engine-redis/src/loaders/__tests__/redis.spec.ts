@@ -1,4 +1,4 @@
-import { Logger } from "/framework/types"
+import { Logger } from "@acmekit/framework/types"
 import redisLoader from "../redis"
 
 jest.mock("ioredis", () => {

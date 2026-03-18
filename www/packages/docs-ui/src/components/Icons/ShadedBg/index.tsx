@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useMemo } from "react"
-import { IconProps } from "/icons/dist/types"
+import { IconProps } from "@acmekit/icons/dist/types"
 import { BadgeVariant } from "../../.."
 
 type ShadedBgIconProps = IconProps & {

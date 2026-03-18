@@ -3,8 +3,8 @@ import {
   Logger,
   ProviderIdentifyAnalyticsEventDTO,
   ProviderTrackAnalyticsEventDTO,
-} from "/framework/types"
-import { AbstractAnalyticsProviderService } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { AbstractAnalyticsProviderService } from "@acmekit/framework/utils"
 
 type InjectedDependencies = {
   logger: Logger

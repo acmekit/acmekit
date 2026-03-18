@@ -52,7 +52,7 @@ The Notification Module Provider's main service must extend the \`AbstractNotifi
 \`\`\`ts title="src/modules/my-notification/service.ts"
 import { 
   AbstractNotificationProviderService
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 class MyNotificationProviderService extends AbstractNotificationProviderService {
   // TODO add methods
@@ -71,7 +71,7 @@ import MyNotificationProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export default ModuleProvider(Modules.NOTIFICATION, {
   services: [MyNotificationProviderService],
@@ -136,11 +136,11 @@ Make sure to specify the correct channels for your provider in the \`channels\` 
 To test out the provider, create a subscriber at \`src/subscribers/user-created.ts\` with the following content:
 
 \`\`\`ts title="src/subscribers/user-created.ts"
-import { Modules } from "/framework/utils"
+import { Modules } from "@acmekit/framework/utils"
 import {
   SubscriberArgs,
   type SubscriberConfig,
-} from "/medusa"
+} from "@acmekit/medusa"
 
 export default async function userCreatedHandler({
   event: { data },

@@ -3,7 +3,7 @@ import {
   KnownDataTypes,
   PropertyMetadata,
   PropertyType,
-} from "/types"
+} from "@acmekit/types"
 import {
   ArrayType,
   BeforeCreate,
@@ -11,7 +11,7 @@ import {
   OnInit,
   PrimaryKey,
   Property,
-} from "/deps/mikro-orm/core"
+} from "@acmekit/deps/mikro-orm/core"
 import { generateEntityId, isDefined } from "../../../common"
 import { MikroOrmBigNumberProperty } from "../../../dal"
 import { PrimaryKeyModifier } from "../../properties/primary-key"

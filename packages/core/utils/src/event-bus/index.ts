@@ -2,7 +2,7 @@ import {
   EventBusTypes,
   InterceptorSubscriber,
   InternalModuleDeclaration,
-} from "/types"
+} from "@acmekit/types"
 import { ulid } from "ulid"
 
 export abstract class AbstractEventBusModuleService

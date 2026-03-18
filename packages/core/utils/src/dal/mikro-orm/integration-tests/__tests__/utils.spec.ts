@@ -1,8 +1,8 @@
-import { MikroORM } from "/deps/mikro-orm/core"
+import { MikroORM } from "@acmekit/deps/mikro-orm/core"
 import {
   defineConfig,
   SqlEntityManager,
-} from "/deps/mikro-orm/postgresql"
+} from "@acmekit/deps/mikro-orm/postgresql"
 import { dropDatabase } from "pg-god"
 import { mikroOrmUpdateDeletedAtRecursively } from "../../utils"
 import { getDatabaseURL, pgGodCredentials } from "../__fixtures__/database"

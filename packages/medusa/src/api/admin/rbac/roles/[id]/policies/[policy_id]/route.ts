@@ -1,9 +1,9 @@
-import { deleteRbacRolePoliciesWorkflow } from "/core-flows"
+import { deleteRbacRolePoliciesWorkflow } from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { defineFileConfig, FeatureFlag } from "/framework/utils"
+} from "@acmekit/framework/http"
+import { defineFileConfig, FeatureFlag } from "@acmekit/framework/utils"
 import RbacFeatureFlag from "../../../../../../../feature-flags/rbac"
 
 /**

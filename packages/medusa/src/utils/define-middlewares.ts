@@ -1,4 +1,4 @@
-import { defineMiddlewares as originalDefineMiddlewares } from "/framework/http"
+import { defineMiddlewares as originalDefineMiddlewares } from "@acmekit/framework/http"
 
 /**
  * A helper function to configure the routes by defining custom middleware,

@@ -3,13 +3,13 @@ import { MIMEType } from "util"
 import type {
   AcmeKitResponse,
   AuthenticatedMedusaRequest,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import {
   Modules,
   AcmeKitError,
   AcmeKitErrorTypes,
-} from "/framework/utils"
-import type { HttpTypes } from "/framework/types"
+} from "@acmekit/framework/utils"
+import type { HttpTypes } from "@acmekit/framework/types"
 import type { AdminUploadPreSignedUrlType } from "../validators"
 
 export const POST = async (

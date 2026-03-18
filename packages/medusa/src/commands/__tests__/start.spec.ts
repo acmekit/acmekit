@@ -1,4 +1,4 @@
-import * as utils from "/framework/utils"
+import * as utils from "@acmekit/framework/utils"
 import path from "path"
 import * as instrumentationFixture from "../__fixtures__/instrumentation"
 import * as instrumentationFailureFixture from "../__fixtures__/instrumentation-failure/instrumentation"

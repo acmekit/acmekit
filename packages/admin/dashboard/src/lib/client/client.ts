@@ -1,4 +1,4 @@
-import Medusa from "/js-sdk"
+import Medusa from "@acmekit/js-sdk"
 
 export const backendUrl = __BACKEND_URL__ ?? "/"
 const authType = __AUTH_TYPE__ ?? "session"

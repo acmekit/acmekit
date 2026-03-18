@@ -1,4 +1,4 @@
-import { MetadataStorage } from "/deps/mikro-orm/core"
+import { MetadataStorage } from "@acmekit/deps/mikro-orm/core"
 import { DmlEntity } from "../../entity"
 import { model } from "../../entity-builder"
 import { mikroORMEntityBuilder } from "../../helpers/create-mikro-orm-entity"

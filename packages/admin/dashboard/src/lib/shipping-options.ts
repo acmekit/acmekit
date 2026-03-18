@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 
 export function isReturnOption(shippingOption: HttpTypes.AdminShippingOption) {
   return !!shippingOption.rules?.find(

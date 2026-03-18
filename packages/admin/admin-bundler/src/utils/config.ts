@@ -1,4 +1,4 @@
-import { VIRTUAL_MODULES } from "/admin-shared"
+import { VIRTUAL_MODULES } from "@acmekit/admin-shared"
 import path from "path"
 import type { HmrOptions, InlineConfig } from "vite"
 import { injectTailwindCSS } from "../plugins/inject-tailwindcss"

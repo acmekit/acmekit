@@ -1,4 +1,4 @@
-import { clx } from "/ui"
+import { clx } from "@acmekit/ui"
 import { Transition, motion } from "motion/react"
 
 type LogoBoxProps = {

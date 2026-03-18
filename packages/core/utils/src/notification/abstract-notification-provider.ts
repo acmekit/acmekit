@@ -1,4 +1,4 @@
-import { INotificationProvider, NotificationTypes } from "/types"
+import { INotificationProvider, NotificationTypes } from "@acmekit/types"
 
 /**
  * ### constructor
@@ -11,8 +11,8 @@ import { INotificationProvider, NotificationTypes } from "/types"
  * #### Example
  *
  * ```ts
- * import { AbstractNotificationProviderService } from "/framework/utils"
- * import { Logger } from "/framework/types"
+ * import { AbstractNotificationProviderService } from "@acmekit/framework/utils"
+ * import { Logger } from "@acmekit/framework/types"
  *
  * type InjectedDependencies = {
  *   logger: Logger
@@ -93,7 +93,7 @@ export class AbstractNotificationProviderService
    * import {
    *   ProviderSendNotificationDTO,
    *   ProviderSendNotificationResultsDTO
-   * } from "/framework/types"
+   * } from "@acmekit/framework/types"
    *
    * class MyNotificationProviderService extends AbstractNotificationProviderService {
    *   // ...

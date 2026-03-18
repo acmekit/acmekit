@@ -1,13 +1,13 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import {
   AdminSetActiveViewConfigurationType,
   AdminGetActiveViewConfigurationParamsType,
 } from "../validators"
-import { HttpTypes } from "/framework/types"
-import { Modules } from "/framework/utils"
+import { HttpTypes } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
 
 /**
  * @since 2.10.3

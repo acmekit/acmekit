@@ -1,7 +1,7 @@
-import { Modules } from "/framework/utils"
-import { ProviderLoaderOptions } from "/types"
+import { Modules } from "@acmekit/framework/utils"
+import { ProviderLoaderOptions } from "@acmekit/types"
 import { RedisCacheModuleOptions } from "@types"
-import { asValue } from "/framework/awilix"
+import { asValue } from "@acmekit/framework/awilix"
 import Redis from "ioredis"
 
 export default async ({

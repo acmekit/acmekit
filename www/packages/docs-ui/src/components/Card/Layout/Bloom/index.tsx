@@ -1,7 +1,7 @@
 import React from "react"
 import clsx from "clsx"
 import { Link } from "@/components/Link"
-import { TriangleRightMini } from "/icons"
+import { TriangleRightMini } from "@acmekit/icons"
 import { BloomIcon, CardProps } from "../../.."
 
 export const CardBloomLayout = ({

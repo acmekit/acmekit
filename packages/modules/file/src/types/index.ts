@@ -1,7 +1,7 @@
 import {
   ModuleProviderExports,
   ModuleServiceInitializeOptions,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 export const FileProviderIdentifierRegistrationName =
   "file_providers_identifier"

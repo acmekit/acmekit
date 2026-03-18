@@ -2,8 +2,8 @@ import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
   refetchEntities,
-} from "/framework/http"
-import { HttpTypes } from "/framework/types"
+} from "@acmekit/framework/http"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminNotificationListParams>,

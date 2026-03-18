@@ -1,4 +1,4 @@
-import { QueryConfig, RequestQueryFields } from "/types"
+import { QueryConfig, RequestQueryFields } from "@acmekit/types"
 import { prepareListQuery } from "../get-query-config"
 
 describe("prepareListQuery", () => {

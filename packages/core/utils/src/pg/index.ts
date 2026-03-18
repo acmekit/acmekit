@@ -13,7 +13,7 @@
 |
 */
 
-import { Client, type ClientConfig } from "/deps/pg"
+import { Client, type ClientConfig } from "@acmekit/deps/pg"
 import { parse } from "pg-connection-string"
 
 /**

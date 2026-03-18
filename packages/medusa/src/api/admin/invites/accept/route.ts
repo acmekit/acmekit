@@ -1,10 +1,10 @@
-import { acceptInviteWorkflow } from "/core-flows"
-import { HttpTypes, InviteWorkflow } from "/framework/types"
-import { AcmeKitError } from "/framework/utils"
+import { acceptInviteWorkflow } from "@acmekit/core-flows"
+import { HttpTypes, InviteWorkflow } from "@acmekit/framework/types"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { AdminInviteAcceptType } from "../validators"
 
 export const POST = async (

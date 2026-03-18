@@ -2,12 +2,12 @@ import {
   AuthIdentityDTO,
   AcmeKitContainer,
   ProjectConfigOptions,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   FeatureFlag,
   generateJwtToken,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { type Secret } from "jsonwebtoken"
 import RbacFeatureFlag from "../../../feature-flags/rbac"
 

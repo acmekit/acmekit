@@ -1,4 +1,4 @@
-import { Tooltip } from "/ui"
+import { Tooltip } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { useDate } from "../../../../../hooks/use-date"
 import { PlaceholderCell } from "../placeholder-cell"

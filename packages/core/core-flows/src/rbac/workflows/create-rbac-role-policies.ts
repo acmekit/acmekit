@@ -4,7 +4,7 @@ import {
   createWorkflow,
   transform,
   when,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { createRbacRolePoliciesStep } from "../steps"
 import { validateUserPermissionsStep } from "../steps/validate-user-permissions"
 

@@ -1,4 +1,4 @@
-import { ModuleDefinition } from "/types"
+import { ModuleDefinition } from "@acmekit/types"
 import { ModulesDefinition } from "../../definitions"
 import { MODULE_SCOPE } from "../../types"
 import { registerMedusaModule } from "../register-modules"

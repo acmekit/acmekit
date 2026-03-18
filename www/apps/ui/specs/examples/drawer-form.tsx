@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, Drawer, Input, Label } from "/ui"
+import { Button, Drawer, Input, Label } from "@acmekit/ui"
 
 export default function DrawerWithForm() {
   const [name, setName] = useState("")

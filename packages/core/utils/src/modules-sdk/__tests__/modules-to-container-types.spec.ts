@@ -34,7 +34,7 @@ describe("generateContainerTypes", function () {
     expect(await fileSystem.exists("modules-bindings.d.ts")).toBeTruthy()
     expect(await fileSystem.contents("modules-bindings.d.ts"))
       .toMatchInlineSnapshot(`
-      "import type FooCache from '/foo-cache'
+      "import type FooCache from '@acmekit/foo-cache'
 
       declare module '/framework/types' {
         interface ModulesImplementations {
@@ -69,7 +69,7 @@ describe("generateContainerTypes", function () {
     expect(await fileSystem.exists("modules-bindings.d.ts")).toBeTruthy()
     expect(await fileSystem.contents("modules-bindings.d.ts"))
       .toMatchInlineSnapshot(`
-      "import type { ICacheService } from '/framework/types'
+      "import type { ICacheService } from '@acmekit/framework/types'
 
       declare module '/framework/types' {
         interface ModulesImplementations {

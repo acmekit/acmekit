@@ -25,7 +25,7 @@ const snippets = [
   {
     label: "AcmeKit JS Client",
     language: "jsx",
-    code: `// Install the JS Client in your storefront project: /medusa-js\n\nimport Medusa from "/medusa-js"\n\nconst medusa = new Medusa({ publishableApiKey: "YOUR_API_KEY"})\nconst product = await medusa.products.retrieve("PRODUCT_ID")\nconsole.log(product.id)`,
+    code: `// Install the JS Client in your storefront project: /medusa-js\n\nimport Medusa from "@acmekit/medusa-js"\n\nconst medusa = new Medusa({ publishableApiKey: "YOUR_API_KEY"})\nconst product = await medusa.products.retrieve("PRODUCT_ID")\nconsole.log(product.id)`,
   },
   {
     label: "AcmeKit React",

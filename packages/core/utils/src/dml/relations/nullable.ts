@@ -1,4 +1,4 @@
-import { RelationshipType } from "/types"
+import { RelationshipType } from "@acmekit/types"
 import { IsRelationship } from "./base"
 
 const IsNullableModifier = Symbol.for("isNullableModifier")

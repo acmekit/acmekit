@@ -1,4 +1,4 @@
-import { track } from "/telemetry"
+import { track } from "@acmekit/telemetry"
 import cluster from "cluster"
 import express from "express"
 import http from "http"
@@ -18,10 +18,10 @@ import {
   isFileSkipped,
   isPresent,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
-import { AcmeKitModule } from "/framework/modules-sdk"
-import { Logger, AcmeKitContainer } from "/framework/types"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
+import { Logger, AcmeKitContainer } from "@acmekit/framework/types"
 import { parse } from "url"
 import RbacFeatureFlag from "../feature-flags/rbac"
 import loaders, { initializeContainer } from "../loaders"

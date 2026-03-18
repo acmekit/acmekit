@@ -1,6 +1,6 @@
-import { ILockingModule } from "/framework/types"
-import { Modules, promiseAll } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { ILockingModule } from "@acmekit/framework/types"
+import { Modules, promiseAll } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { setTimeout } from "node:timers/promises"
 
 jest.setTimeout(10000)

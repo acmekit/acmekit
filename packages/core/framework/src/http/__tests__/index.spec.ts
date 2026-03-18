@@ -1,7 +1,7 @@
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
-} from "/utils"
+} from "@acmekit/utils"
 import { asValue } from "../../deps/awilix"
 import express from "express"
 import { resolve } from "path"

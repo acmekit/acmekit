@@ -10,7 +10,7 @@ import {
   RemoteQueryInput,
   RemoteQueryObjectConfig,
   RemoteQueryObjectFromStringResult,
-} from "/types"
+} from "@acmekit/types"
 import {
   Cached,
   AcmeKitError,
@@ -18,7 +18,7 @@ import {
   isObject,
   remoteQueryObjectFromString,
   unflattenObjectKeys,
-} from "/utils"
+} from "@acmekit/utils"
 import { RemoteQuery } from "./remote-query"
 import { toRemoteQuery } from "./to-remote-query"
 

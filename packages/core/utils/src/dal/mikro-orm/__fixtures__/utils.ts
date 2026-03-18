@@ -8,7 +8,7 @@ import {
   PrimaryKey,
   Property,
   Rel,
-} from "/deps/mikro-orm/core"
+} from "@acmekit/deps/mikro-orm/core"
 import { Searchable } from "../decorators/searchable"
 
 @Entity()

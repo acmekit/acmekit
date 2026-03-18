@@ -1,1 +1,1 @@
-export * from "/deps/opentelemetry/sdk-node"
+export * from "@acmekit/deps/opentelemetry/sdk-node"

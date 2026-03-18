@@ -1,17 +1,17 @@
 import checkbox from "@inquirer/checkbox"
-import { AcmeKitAppLoader } from "/framework"
-import { LinkLoader } from "/framework/links"
+import { AcmeKitAppLoader } from "@acmekit/framework"
+import { LinkLoader } from "@acmekit/framework/links"
 import {
   LinkMigrationsPlannerAction,
   Logger,
   AcmeKitContainer,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
   isDefined,
   mergePluginModules,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import boxen from "boxen"
 import chalk from "chalk"
 import { join } from "path"

@@ -1,8 +1,8 @@
 import { QueryKey, UseQueryOptions, useQuery } from "@tanstack/react-query"
 import { sdk } from "../../lib/client"
 import { queryKeysFactory } from "../../lib/query-key-factory"
-import { HttpTypes } from "/types"
-import { FetchError } from "/js-sdk"
+import { HttpTypes } from "@acmekit/types"
+import { FetchError } from "@acmekit/js-sdk"
 
 const WORKFLOW_EXECUTIONS_QUERY_KEY = "workflow_executions" as const
 export const workflowExecutionsQueryKeys = queryKeysFactory(

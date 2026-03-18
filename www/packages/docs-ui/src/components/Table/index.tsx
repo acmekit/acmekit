@@ -1,5 +1,5 @@
 import React from "react"
-import { Table as UiTable } from "/ui"
+import { Table as UiTable } from "@acmekit/ui"
 import clsx from "clsx"
 
 type RootProps = React.HTMLAttributes<HTMLTableElement>

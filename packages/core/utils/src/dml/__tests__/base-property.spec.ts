@@ -1,4 +1,4 @@
-import { PropertyMetadata } from "/types"
+import { PropertyMetadata } from "@acmekit/types"
 import { expectTypeOf } from "expect-type"
 import { BaseProperty } from "../properties/base"
 import { TextProperty } from "../properties/text"

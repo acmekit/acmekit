@@ -1,7 +1,7 @@
-import { AcmeKitModule } from "/framework/modules-sdk"
-import { ICachingModuleService } from "/framework/types"
-import { Modules } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
+import { ICachingModuleService } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { setTimeout } from "timers/promises"
 import { EventBusServiceMock } from "../../__fixtures__/event-bus-mock"
 

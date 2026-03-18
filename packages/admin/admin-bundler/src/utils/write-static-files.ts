@@ -34,7 +34,7 @@ function getPluginName(index: number) {
 
 async function writeEntryFile(outDir: string, plugins?: string[]) {
   const entry = outdent`
-    import App from "/dashboard";
+    import App from "@acmekit/dashboard";
     import React from "react";
     import ReactDOM from "react-dom/client";
     import "./index.css";

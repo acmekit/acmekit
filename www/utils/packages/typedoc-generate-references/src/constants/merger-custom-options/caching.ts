@@ -56,7 +56,7 @@ The rest of this guide always uses the \`src/modules/my-caching\` directory as a
 Create the file \`src/modules/my-caching/service.ts\` that holds the module provider's main service. It must implement the \`ICachingProviderService\` interface imported from \`/framework/types\`:
 
 \`\`\`ts title="src/modules/my-caching/service.ts"
-import { ICachingProviderService } from "/framework/types"
+import { ICachingProviderService } from "@acmekit/framework/types"
 
 class MyCachingProviderService implements ICachingProviderService {
   // TODO implement methods
@@ -71,7 +71,7 @@ export default MyCachingProviderService
 Create the file \`src/modules/my-caching/index.ts\` with the following content:
 
 \`\`\`ts title="src/modules/my-caching/index.ts"
-import { ModuleProvider, Modules } from "/framework/utils"
+import { ModuleProvider, Modules } from "@acmekit/framework/utils"
 import MyCachingProviderService from "./service"
 
 export default ModuleProvider(Modules.CACHING, {
@@ -116,7 +116,7 @@ module.exports = defineConfig({
 To test out your Caching Module Provider, create a simple API route that retrieves cached data with Query:
 
 \`\`\`ts title="src/api/test-caching/route.ts"
-import { MedusaRequest, MedusaResponse } from "/framework/http"
+import { MedusaRequest, MedusaResponse } from "@acmekit/framework/http"
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const query = req.scope.resolve("query")
@@ -189,8 +189,8 @@ You should use the Caching Module's service when you're caching computed data or
 In your workflow's step, you can resolve the Caching Module's service from the Medusa container:
 
 \`\`\`ts
-import { Modules } from "/framework/utils"
-import { createStep } from "/framework/workflows-sdk"
+import { Modules } from "@acmekit/framework/utils"
+import { createStep } from "@acmekit/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",

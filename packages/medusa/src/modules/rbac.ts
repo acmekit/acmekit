@@ -1,6 +1,6 @@
-import RbacModule from "/rbac"
+import RbacModule from "@acmekit/rbac"
 
-export * from "/rbac"
+export * from "@acmekit/rbac"
 
 export default RbacModule
 export const discoveryPath = require.resolve("/rbac")

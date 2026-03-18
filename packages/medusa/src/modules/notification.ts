@@ -1,6 +1,6 @@
-import NotificationModule from "/notification"
+import NotificationModule from "@acmekit/notification"
 
-export * from "/notification"
+export * from "@acmekit/notification"
 
 export default NotificationModule
 export const discoveryPath = require.resolve("/notification")

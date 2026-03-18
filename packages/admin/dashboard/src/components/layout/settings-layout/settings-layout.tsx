@@ -1,5 +1,5 @@
-import { ArrowUturnLeft, MinusMini } from "/icons"
-import { clx, Divider, IconButton, Text } from "/ui"
+import { ArrowUturnLeft, MinusMini } from "@acmekit/icons"
+import { clx, Divider, IconButton, Text } from "@acmekit/ui"
 import { Collapsible as RadixCollapsible } from "radix-ui"
 import { Fragment, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"

@@ -90,8 +90,8 @@ function getExecutionCodeTabs({
 ${beautifyCode(`import type {
   MedusaRequest,
   MedusaResponse,
-} from "/framework/http"
-import { ${workflowName} } from "/medusa/core-flows"
+} from "@acmekit/framework/http"
+import { ${workflowName} } from "@acmekit/medusa/core-flows"
 
 export async function POST(
   req: MedusaRequest,
@@ -111,8 +111,8 @@ export async function POST(
 ${beautifyCode(`import {
   type SubscriberConfig,
   type SubscriberArgs,
-} from "/framework"
-import { ${workflowName} } from "/medusa/core-flows"
+} from "@acmekit/framework"
+import { ${workflowName} } from "@acmekit/medusa/core-flows"
 
 export default async function handleOrderPlaced({
   event: { data },
@@ -132,8 +132,8 @@ export const config: SubscriberConfig = {
     <CodeTab label="Scheduled Job" value="scheduled-job">
     
 \`\`\`ts title="src/jobs/message-daily.ts"
-${beautifyCode(`import { MedusaContainer } from "/framework/types"
-import { ${workflowName} } from "/medusa/core-flows"
+${beautifyCode(`import { MedusaContainer } from "@acmekit/framework/types"
+import { ${workflowName} } from "@acmekit/medusa/core-flows"
 
 export default async function myCustomJob(
   container: MedusaContainer
@@ -153,8 +153,8 @@ export const config = {
     <CodeTab label="Another Workflow" value="another-workflow">
     
 \`\`\`ts title="src/workflows/my-workflow.ts"
-${beautifyCode(`import { createWorkflow } from "/framework/workflows-sdk"
-import { ${workflowName} } from "/medusa/core-flows"
+${beautifyCode(`import { createWorkflow } from "@acmekit/framework/workflows-sdk"
+import { ${workflowName} } from "@acmekit/medusa/core-flows"
 
 const myWorkflow = createWorkflow(
   "my-workflow",

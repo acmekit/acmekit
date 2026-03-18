@@ -8,7 +8,7 @@ import {
   ModuleJoinerConfig,
   RestoreReturn,
   SoftDeleteReturn,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   CommonEvents,
   EmitEvents,
@@ -22,7 +22,7 @@ import {
   moduleEventBuilderFactory,
   Modules,
   ModulesSdkUtils,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { LinkService } from "@services"
 
 type InjectedDependencies = {

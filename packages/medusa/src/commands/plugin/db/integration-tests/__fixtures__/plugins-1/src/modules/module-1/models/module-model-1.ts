@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 
 const model1 = model.define("module_model_1", {
   id: model.id().primaryKey(),

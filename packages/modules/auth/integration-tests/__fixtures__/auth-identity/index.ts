@@ -1,4 +1,4 @@
-import { IAuthModuleService } from "/framework/types"
+import { IAuthModuleService } from "@acmekit/framework/types"
 import { AuthIdentity } from "@models"
 
 export async function createAuthIdentities(

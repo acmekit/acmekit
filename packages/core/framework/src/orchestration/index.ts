@@ -1,1 +1,1 @@
-export * from "/orchestration"
+export * from "@acmekit/orchestration"

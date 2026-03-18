@@ -1,5 +1,5 @@
-import { EllipseMiniSolid } from "/icons"
-import { DatePicker, Text, clx } from "/ui"
+import { EllipseMiniSolid } from "@acmekit/icons"
+import { DatePicker, Text, clx } from "@acmekit/ui"
 import isEqual from "lodash.isequal"
 import { Popover as RadixPopover } from "radix-ui"
 import { useMemo, useState } from "react"

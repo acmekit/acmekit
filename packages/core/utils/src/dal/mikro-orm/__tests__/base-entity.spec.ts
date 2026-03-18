@@ -3,8 +3,8 @@ import {
   MikroORM,
   OnInit,
   Property,
-} from "/deps/mikro-orm/core"
-import { defineConfig } from "/deps/mikro-orm/postgresql"
+} from "@acmekit/deps/mikro-orm/core"
+import { defineConfig } from "@acmekit/deps/mikro-orm/postgresql"
 import { BaseEntity } from "../base-entity"
 
 describe("BaseEntity", () => {

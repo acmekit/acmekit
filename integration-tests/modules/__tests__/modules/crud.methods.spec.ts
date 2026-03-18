@@ -1,4 +1,4 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 
 jest.setTimeout(100000)
 

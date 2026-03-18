@@ -1,4 +1,4 @@
-import { objectFromStringPath } from "/framework/utils"
+import { objectFromStringPath } from "@acmekit/framework/utils"
 
 export function normalizeFieldsSelection(fields: string[]) {
   const normalizedFields = fields.map((field) => field.replace(/\.\*/g, ""))

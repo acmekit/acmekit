@@ -1,4 +1,4 @@
-import { model } from "/utils"
+import { model } from "@acmekit/utils"
 
 export const entityModel = model.define("entityModel", {
   id: model.id().primaryKey(),

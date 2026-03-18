@@ -5,7 +5,7 @@ import {
   LightBulb,
   LightBulbSolid,
   StopCircleSolid,
-} from "/icons"
+} from "@acmekit/icons"
 import { useAiAssistant } from "@/providers/AiAssistant"
 import { useAnalytics } from "@/providers/Analytics"
 import { useIsBrowser } from "@/providers/BrowserProvider"

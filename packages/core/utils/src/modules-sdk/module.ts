@@ -1,4 +1,4 @@
-import { Constructor, IDmlEntity, ModuleExports } from "/types"
+import { Constructor, IDmlEntity, ModuleExports } from "@acmekit/types"
 import { DmlEntity } from "../dml"
 import {
   buildIdPrefixToEntityNameFromDmlObjects,

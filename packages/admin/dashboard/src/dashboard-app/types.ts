@@ -5,7 +5,7 @@ import {
   CustomFieldModel,
   InjectionZone,
   NestedRoutePosition,
-} from "/admin-shared"
+} from "@acmekit/admin-shared"
 import { ComponentType } from "react"
 import { LoaderFunction } from "react-router-dom"
 import { ZodFirstPartySchemaTypes } from "zod"

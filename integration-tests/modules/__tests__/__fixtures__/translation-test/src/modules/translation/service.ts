@@ -1,4 +1,4 @@
-import { MedusaService } from "/framework/utils"
+import { MedusaService } from "@acmekit/framework/utils"
 import { Translation } from "./models"
 
 export class TranslationModule extends MedusaService({

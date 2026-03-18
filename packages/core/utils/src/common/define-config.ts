@@ -7,7 +7,7 @@ import {
   InputConfigWithObjectModules,
   InternalModuleDeclaration,
   AcmeKitCloudOptions,
-} from "/types"
+} from "@acmekit/types"
 import { FeatureFlag } from "../feature-flags/flag-router"
 import {
   MODULE_PACKAGE_NAMES,

@@ -1,5 +1,5 @@
-import { PencilSquare, Trash } from "/icons"
-import { HttpTypes } from "/types"
+import { PencilSquare, Trash } from "@acmekit/icons"
+import { HttpTypes } from "@acmekit/types"
 import {
   Container,
   Heading,
@@ -7,7 +7,7 @@ import {
   Text,
   toast,
   usePrompt,
-} from "/ui"
+} from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 

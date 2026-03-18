@@ -1,16 +1,16 @@
-import { addShippingMethodToCartWorkflow } from "/core-flows"
+import { addShippingMethodToCartWorkflow } from "@acmekit/core-flows"
 import {
   AdminInventoryItem,
   AdminProduct,
   AdminShippingProfile,
   AdminStockLocation,
   MedusaContainer,
-} from "/types"
+} from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   Modules,
   ProductStatus,
-} from "/utils"
+} from "@acmekit/utils"
 import {
   adminHeaders,
   generatePublishableKey,

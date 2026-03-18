@@ -1,4 +1,4 @@
-import { TriangleLeftMini, TriangleRightMini } from "/icons"
+import { TriangleLeftMini, TriangleRightMini } from "@acmekit/icons"
 import clsx from "clsx"
 import Link from "next/link"
 import React from "react"

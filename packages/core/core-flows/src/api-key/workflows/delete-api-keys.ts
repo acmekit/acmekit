@@ -1,7 +1,7 @@
-import { createWorkflow, WorkflowData } from "/framework/workflows-sdk"
+import { createWorkflow, WorkflowData } from "@acmekit/framework/workflows-sdk"
 import { removeRemoteLinkStep } from "../../common/steps/remove-remote-links"
 import { deleteApiKeysStep } from "../steps"
-import { Modules } from "/framework/utils"
+import { Modules } from "@acmekit/framework/utils"
 
 /**
  * The data to delete API keys.

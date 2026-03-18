@@ -1,5 +1,5 @@
-import { MedusaRequest, MedusaResponse } from "/framework/http"
-import { defineFileConfig, FeatureFlag } from "/utils"
+import { MedusaRequest, MedusaResponse } from "@acmekit/framework/http"
+import { defineFileConfig, FeatureFlag } from "@acmekit/utils"
 
 defineFileConfig({
   isDisabled: () => !FeatureFlag.isFeatureEnabled("custom_ff"),

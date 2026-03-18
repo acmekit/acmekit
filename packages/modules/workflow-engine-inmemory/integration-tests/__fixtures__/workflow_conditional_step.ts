@@ -1,10 +1,10 @@
-import { isPresent } from "/framework/utils"
+import { isPresent } from "@acmekit/framework/utils"
 import {
   createStep,
   createWorkflow,
   StepResponse,
-} from "/framework/workflows-sdk"
-import { when } from "/framework/workflows-sdk/composer"
+} from "@acmekit/framework/workflows-sdk"
+import { when } from "@acmekit/framework/workflows-sdk/composer"
 
 const step_1 = createStep(
   "step_1",

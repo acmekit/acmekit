@@ -1,6 +1,6 @@
-import type { IUserModuleService } from "/framework/types"
-import { Modules } from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+import type { IUserModuleService } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 /**
  * The IDs of the invites to delete.

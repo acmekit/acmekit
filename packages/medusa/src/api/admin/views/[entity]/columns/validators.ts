@@ -1,4 +1,4 @@
-import { z } from "/framework/zod"
+import { z } from "@acmekit/framework/zod"
 import { createSelectParams } from "../../../../utils/validators"
 
 export type AdminGetColumnsParamsType = z.infer<typeof AdminGetColumnsParams>

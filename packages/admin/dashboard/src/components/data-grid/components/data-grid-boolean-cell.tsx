@@ -1,4 +1,4 @@
-import { Checkbox } from "/ui"
+import { Checkbox } from "@acmekit/ui"
 import { Controller, ControllerRenderProps } from "react-hook-form"
 
 import { useCombinedRefs } from "../../../hooks/use-combined-refs"

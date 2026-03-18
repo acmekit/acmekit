@@ -1,8 +1,8 @@
 import {
   TransactionContext,
   WorkflowStepHandlerArguments,
-} from "/orchestration"
-import { OrchestrationUtils } from "/utils"
+} from "@acmekit/orchestration"
+import { OrchestrationUtils } from "@acmekit/utils"
 import { resolveValue } from "./helpers"
 import { proxify } from "./helpers/proxy"
 import { StepExecutionContext, WorkflowData } from "./type"
@@ -36,7 +36,7 @@ type Func<T, U> = (input: T, context: StepExecutionContext) => U | Promise<U>
  *   createWorkflow,
  *   transform,
  *   WorkflowResponse
- * } from "/framework/workflows-sdk"
+ * } from "@acmekit/framework/workflows-sdk"
  * import { step1, step2 } from "./steps"
  *
  * type WorkflowInput = {

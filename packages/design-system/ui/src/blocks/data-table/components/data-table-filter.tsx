@@ -1,4 +1,4 @@
-import { CheckMini, EllipseMiniSolid, XMark, XMarkMini, MagnifyingGlass } from "/icons"
+import { CheckMini, EllipseMiniSolid, XMark, XMarkMini, MagnifyingGlass } from "@acmekit/icons"
 import * as React from "react"
 
 import { useDataTableContext } from "@/blocks/data-table/context/use-data-table-context"

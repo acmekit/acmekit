@@ -1,4 +1,4 @@
-import { clx } from "/ui"
+import { clx } from "@acmekit/ui"
 import { useEffect, useState } from "react"
 import { Controller, ControllerRenderProps } from "react-hook-form"
 import { useCombinedRefs } from "../../../hooks/use-combined-refs"

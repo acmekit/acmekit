@@ -3,14 +3,14 @@ import {
   WorkflowManager,
   WorkflowStepHandler,
   WorkflowStepHandlerArguments,
-} from "/orchestration"
+} from "@acmekit/orchestration"
 import {
   getCallerFilePath,
   isDefined,
   isString,
   OrchestrationUtils,
   registerDevServerResource,
-} from "/utils"
+} from "@acmekit/utils"
 import { ulid } from "ulid"
 import { resolveValue, StepResponse } from "./helpers"
 import { createStepHandler } from "./helpers/create-step-handler"
@@ -395,7 +395,7 @@ export function wrapConditionalStep(
  * import {
  *   createStep,
  *   StepResponse
- * } from "/framework/workflows-sdk"
+ * } from "@acmekit/framework/workflows-sdk"
  *
  * interface CreateProductInput {
  *   title: string

@@ -2,10 +2,10 @@ import {
   WorkflowData,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { deleteTranslationsStep } from "../steps"
-import { TranslationWorkflowEvents } from "/framework/utils"
+import { TranslationWorkflowEvents } from "@acmekit/framework/utils"
 
 /**
  * The IDs of the translations to delete.

@@ -1,6 +1,6 @@
-import { asFunction, asValue, Lifetime } from "/framework/awilix"
-import { moduleProviderLoader } from "/framework/modules-sdk"
-import { LoaderOptions, ModulesSdkTypes } from "/framework/types"
+import { asFunction, asValue, Lifetime } from "@acmekit/framework/awilix"
+import { moduleProviderLoader } from "@acmekit/framework/modules-sdk"
+import { LoaderOptions, ModulesSdkTypes } from "@acmekit/framework/types"
 import {
   AuthIdentifiersRegistrationName,
   AuthModuleOptions,

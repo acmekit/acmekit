@@ -1,9 +1,9 @@
-import { ExecArgs } from "/framework/types"
+import { ExecArgs } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   dynamicImport,
   isFileSkipped,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import express from "express"
 import { existsSync } from "fs"
 import path from "path"

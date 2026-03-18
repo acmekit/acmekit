@@ -1,7 +1,7 @@
-import { ICustomerModuleService } from "/framework/types"
-import { Module, Modules } from "/framework/utils"
+import { ICustomerModuleService } from "@acmekit/framework/types"
+import { Module, Modules } from "@acmekit/framework/utils"
 import { CustomerModuleService } from "@services"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 
 jest.setTimeout(30000)
 

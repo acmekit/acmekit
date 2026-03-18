@@ -1,4 +1,4 @@
-import { PolicyOperation } from "/framework/utils"
+import { PolicyOperation } from "@acmekit/framework/utils"
 
 // Default operations for all resources
 export const defaultPolicyOperations = Object.keys(PolicyOperation).filter(

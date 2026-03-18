@@ -4,8 +4,8 @@ import {
   InformationCircle,
   Spinner,
   XCircle,
-} from "/icons"
-import { Button, toast } from "/ui"
+} from "@acmekit/icons"
+import { Button, toast } from "@acmekit/ui"
 
 export default function ToasterAllVariants() {
   return (

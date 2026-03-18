@@ -1,6 +1,6 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { ICustomerModuleService } from "/types"
-import { Modules } from "/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { ICustomerModuleService } from "@acmekit/types"
+import { Modules } from "@acmekit/utils"
 import {
   generatePublishableKey,
   generateStoreHeaders,

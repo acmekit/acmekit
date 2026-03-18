@@ -1,19 +1,19 @@
-import { container, AcmeKitAppLoader, policiesLoader } from "/framework"
-import { asValue } from "/framework/awilix"
-import { configLoader } from "/framework/config"
-import { pgConnectionLoader } from "/framework/database"
-import { featureFlagsLoader } from "/framework/feature-flags"
-import { expressLoader } from "/framework/http"
-import { JobLoader } from "/framework/jobs"
-import { LinkLoader } from "/framework/links"
-import { logger as defaultLogger } from "/framework/logger"
-import { SubscriberLoader } from "/framework/subscribers"
+import { container, AcmeKitAppLoader, policiesLoader } from "@acmekit/framework"
+import { asValue } from "@acmekit/framework/awilix"
+import { configLoader } from "@acmekit/framework/config"
+import { pgConnectionLoader } from "@acmekit/framework/database"
+import { featureFlagsLoader } from "@acmekit/framework/feature-flags"
+import { expressLoader } from "@acmekit/framework/http"
+import { JobLoader } from "@acmekit/framework/jobs"
+import { LinkLoader } from "@acmekit/framework/links"
+import { logger as defaultLogger } from "@acmekit/framework/logger"
+import { SubscriberLoader } from "@acmekit/framework/subscribers"
 import {
   ConfigModule,
   LoadedModule,
   AcmeKitContainer,
   PluginDetails,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
@@ -21,8 +21,8 @@ import {
   mergePluginModules,
   promiseAll,
   validateModuleName,
-} from "/framework/utils"
-import { WorkflowLoader } from "/framework/workflows"
+} from "@acmekit/framework/utils"
+import { WorkflowLoader } from "@acmekit/framework/workflows"
 import { Express, NextFunction, Request, Response } from "express"
 import { join } from "path"
 import requestIp from "request-ip"

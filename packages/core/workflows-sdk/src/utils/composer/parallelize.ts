@@ -1,5 +1,5 @@
 import { CreateWorkflowComposerContext, WorkflowData } from "./type"
-import { OrchestrationUtils } from "/utils"
+import { OrchestrationUtils } from "@acmekit/utils"
 
 /**
  * This function is used to run multiple steps in parallel. The result of each step will be returned as part of the result array.
@@ -13,7 +13,7 @@ import { OrchestrationUtils } from "/utils"
  *   createWorkflow,
  *   parallelize,
  *   WorkflowResponse
- * } from "/framework/workflows-sdk"
+ * } from "@acmekit/framework/workflows-sdk"
  * import {
  *   createProductStep,
  *   createPricesStep,

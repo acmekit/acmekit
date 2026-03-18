@@ -1,6 +1,6 @@
 import { pathToRegexp } from "path-to-regexp"
 import type { MiddlewareVerb, RouteVerb } from "./types"
-import { isString } from "/utils"
+import { isString } from "@acmekit/utils"
 
 export class RoutesFinder<
   T extends

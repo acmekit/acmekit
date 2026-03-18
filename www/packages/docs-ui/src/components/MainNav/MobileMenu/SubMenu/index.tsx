@@ -5,7 +5,7 @@ import Link from "next/link"
 import React, { useMemo } from "react"
 import { MenuItem, MenuItemLink, MenuItemSubMenu } from "types"
 import { SelectedMenu } from ".."
-import { TriangleRightMini } from "/icons"
+import { TriangleRightMini } from "@acmekit/icons"
 
 type MainNavMobileSubMenuProps = {
   menu: MenuItem[]

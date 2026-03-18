@@ -1,4 +1,4 @@
-import { authenticate, MiddlewareRoute } from "/framework/http"
+import { authenticate, MiddlewareRoute } from "@acmekit/framework/http"
 
 export const cloudRoutesMiddlewares: MiddlewareRoute[] = [
   {

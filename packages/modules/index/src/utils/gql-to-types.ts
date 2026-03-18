@@ -1,9 +1,9 @@
-import { AcmeKitModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import {
   FileSystem,
   GraphQLUtils,
   gqlSchemaToTypes as ModulesSdkGqlSchemaToTypes,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { join } from "path"
 import * as process from "process"
 

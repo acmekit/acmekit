@@ -1,4 +1,4 @@
-import { clx, Input, Text } from "/ui"
+import { clx, Input, Text } from "@acmekit/ui"
 import { getNumberOfDecimalPlaces } from "../../../lib/number-helper"
 import { ComponentProps, ElementRef, forwardRef } from "react"
 import Primitive from "react-currency-input-field"

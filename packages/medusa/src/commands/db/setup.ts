@@ -1,4 +1,4 @@
-import { ContainerRegistrationKeys } from "/framework/utils"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
 import { initializeContainer } from "../../loaders"
 import { dbCreate } from "./create"
 import { migrate } from "./migrate"

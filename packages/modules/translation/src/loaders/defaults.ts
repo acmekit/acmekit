@@ -2,11 +2,11 @@ import {
   LoaderOptions,
   Logger,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   normalizeLocale,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import Locale from "@models/locale"
 
 /**

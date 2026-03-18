@@ -1,4 +1,4 @@
-import { model, NotificationStatus } from "/framework/utils"
+import { model, NotificationStatus } from "@acmekit/framework/utils"
 import { NotificationProvider } from "./notification-provider"
 
 // We probably want to have a TTL for each entry, so we don't bloat the DB (and also for GDPR reasons if TTL < 30 days).

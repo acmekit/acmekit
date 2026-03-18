@@ -1,6 +1,6 @@
-import LinkModule from "/link-modules"
+import LinkModule from "@acmekit/link-modules"
 
-export * from "/link-modules"
+export * from "@acmekit/link-modules"
 
 export default LinkModule
 export const discoveryPath = require.resolve("/link-modules")

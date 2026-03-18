@@ -9,14 +9,14 @@
  * Usage: npx tsx packages/medusa/src/migration-scripts/create-super-admin-role.ts
  */
 
-import { AcmeKitModule } from "/framework/modules-sdk"
-import { ExecArgs } from "/framework/types"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
+import { ExecArgs } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
   Modules,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import dotenv from "dotenv"
 
 dotenv.config()

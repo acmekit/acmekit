@@ -1,6 +1,6 @@
 "use client"
 
-import { Eye, EyeSlash, MagnifyingGlassMini } from "/icons"
+import { Eye, EyeSlash, MagnifyingGlassMini } from "@acmekit/icons"
 import { VariantProps, cva } from "cva"
 import * as React from "react"
 

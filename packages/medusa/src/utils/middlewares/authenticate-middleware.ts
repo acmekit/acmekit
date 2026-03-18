@@ -1,3 +1,3 @@
-import { authenticate as originalAuthenticate } from "/framework/http"
+import { authenticate as originalAuthenticate } from "@acmekit/framework/http"
 
 export const authenticate = originalAuthenticate

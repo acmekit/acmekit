@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 import { IndexMetadataStatus } from "../utils/index-metadata-status"
 
 const IndexMetadata = model

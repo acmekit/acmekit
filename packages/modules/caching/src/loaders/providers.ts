@@ -1,9 +1,9 @@
-import { moduleProviderLoader } from "/framework/modules-sdk"
-import { LoaderOptions, ModulesSdkTypes } from "/framework/types"
+import { moduleProviderLoader } from "@acmekit/framework/modules-sdk"
+import { LoaderOptions, ModulesSdkTypes } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   getProviderRegistrationKey,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { CachingProviderService } from "@services"
 import {
   CachingDefaultProvider,

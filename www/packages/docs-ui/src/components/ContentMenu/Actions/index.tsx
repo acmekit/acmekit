@@ -6,7 +6,7 @@ import { MarkdownIcon } from "../../Icons/Markdown"
 import { useSiteConfig } from "@/providers/SiteConfig"
 import { useAiAssistant } from "@/providers/AiAssistant"
 import { usePathname } from "next/navigation"
-import { BroomSparkle } from "/icons"
+import { BroomSparkle } from "@acmekit/icons"
 import { useChat } from "@kapaai/react-sdk"
 
 export const ContentMenuActions = () => {

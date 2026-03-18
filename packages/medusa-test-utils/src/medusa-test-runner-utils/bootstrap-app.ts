@@ -1,6 +1,6 @@
-import { logger } from "/framework/logger"
-import { AcmeKitContainer } from "/framework/types"
-import { GracefulShutdownServer, promiseAll } from "/framework/utils"
+import { logger } from "@acmekit/framework/logger"
+import { AcmeKitContainer } from "@acmekit/framework/types"
+import { GracefulShutdownServer, promiseAll } from "@acmekit/framework/utils"
 import express from "express"
 import getPort from "get-port"
 import { resolve } from "path"
@@ -18,7 +18,7 @@ async function bootstrapApp({
     res.status(200).send("OK")
   })
 
-  const loaders = require("/medusa/loaders/index").default
+  const loaders = require("@acmekit/medusa/loaders/index").default
 
   try {
     const { container, shutdown } = await loaders({

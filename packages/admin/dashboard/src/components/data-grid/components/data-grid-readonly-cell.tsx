@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react"
 
-import { clx } from "/ui"
+import { clx } from "@acmekit/ui"
 import { useDataGridCellError } from "../hooks"
 import { DataGridCellProps } from "../types"
 import { DataGridRowErrorIndicator } from "./data-grid-row-error-indicator"

@@ -1,5 +1,5 @@
-import { FetchError } from "/js-sdk"
-import { HttpTypes } from "/types"
+import { FetchError } from "@acmekit/js-sdk"
+import { HttpTypes } from "@acmekit/types"
 import { QueryKey, UseQueryOptions, useQuery } from "@tanstack/react-query"
 import { sdk } from "../../lib/client"
 import { queryKeysFactory } from "../../lib/query-key-factory"

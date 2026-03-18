@@ -1,7 +1,7 @@
-import type { IUserModuleService } from "/framework/types"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+import type { IUserModuleService } from "@acmekit/framework/types"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
-import { Modules } from "/framework/utils"
+import { Modules } from "@acmekit/framework/utils"
 
 /**
  * The IDs of the invites to refresh.

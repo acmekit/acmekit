@@ -1,5 +1,5 @@
-import { ModuleResolution } from "/types"
-import { createMedusaContainer } from "/utils"
+import { ModuleResolution } from "@acmekit/types"
+import { createMedusaContainer } from "@acmekit/utils"
 import { MODULE_SCOPE } from "../../types"
 import { moduleLoader } from "../module-loader"
 

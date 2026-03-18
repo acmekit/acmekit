@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import * as React from "react"
 
-import { Plus } from "/icons"
+import { Plus } from "@acmekit/icons"
 import { IconButton } from "./icon-button"
 
 describe("IconButton", () => {

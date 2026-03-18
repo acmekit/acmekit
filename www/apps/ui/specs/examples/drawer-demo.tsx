@@ -1,4 +1,4 @@
-import { Button, Drawer, Text } from "/ui"
+import { Button, Drawer, Text } from "@acmekit/ui"
 
 export default function DrawerDemo() {
   return (

@@ -1,4 +1,4 @@
-import { Button, clx } from "/ui"
+import { Button, clx } from "@acmekit/ui"
 import { ReactNode } from "react"
 
 export type SegmentedControlOption = {

@@ -1,4 +1,4 @@
-import { DMLSchema, EntityIndex, QueryCondition } from "/types"
+import { DMLSchema, EntityIndex, QueryCondition } from "@acmekit/types"
 import { isObject, isPresent } from "../../../common"
 import { DateTimeProperty } from "../../properties/date-time"
 import { buildWhereQuery } from "./query-builder"

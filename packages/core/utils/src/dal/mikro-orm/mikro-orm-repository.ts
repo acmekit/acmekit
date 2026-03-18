@@ -10,7 +10,7 @@ import {
   RepositoryService,
   RepositoryTransformOptions,
   UpsertWithReplaceConfig,
-} from "/types"
+} from "@acmekit/types"
 import {
   EntityClass,
   EntityManager,
@@ -21,8 +21,8 @@ import {
   FilterQuery as MikroFilterQuery,
   FindOptions as MikroOptions,
   ReferenceKind,
-} from "/deps/mikro-orm/core"
-import { SqlEntityManager } from "/deps/mikro-orm/postgresql"
+} from "@acmekit/deps/mikro-orm/core"
+import { SqlEntityManager } from "@acmekit/deps/mikro-orm/postgresql"
 import {
   arrayDifference,
   isString,

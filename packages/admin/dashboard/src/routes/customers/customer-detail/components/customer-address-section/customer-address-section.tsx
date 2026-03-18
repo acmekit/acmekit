@@ -1,8 +1,8 @@
-import { HttpTypes } from "/types"
-import { clx, Container, Heading, toast, usePrompt } from "/ui"
+import { HttpTypes } from "@acmekit/types"
+import { clx, Container, Heading, toast, usePrompt } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 
-import { Trash } from "/icons"
+import { Trash } from "@acmekit/icons"
 import { Link, useNavigate } from "react-router-dom"
 import { ActionMenu } from "../../../../../components/common/action-menu"
 import { NoRecords } from "../../../../../components/common/empty-table-content"

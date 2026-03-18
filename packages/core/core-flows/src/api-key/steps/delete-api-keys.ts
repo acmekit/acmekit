@@ -1,6 +1,6 @@
-import type { IApiKeyModuleService } from "/framework/types"
-import { Modules } from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+import type { IApiKeyModuleService } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 /**
  * The IDs of the API keys to delete.

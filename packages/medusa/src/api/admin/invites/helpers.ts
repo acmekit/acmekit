@@ -1,8 +1,8 @@
-import { AcmeKitContainer } from "/framework/types"
+import { AcmeKitContainer } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export const refetchInvite = async (
   inviteId: string,

@@ -1,1 +1,1 @@
-export * from "/deps/pg"
+export * from "@acmekit/deps/pg"

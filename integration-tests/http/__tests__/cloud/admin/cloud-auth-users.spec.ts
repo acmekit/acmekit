@@ -2,9 +2,9 @@ import {
   AuthIdentityDTO,
   IAuthModuleService,
   UserDTO,
-} from "/framework/types"
-import { ContainerRegistrationKeys, Modules } from "/framework/utils"
-import { medusaIntegrationTestRunner } from "/test-utils"
+} from "@acmekit/framework/types"
+import { ContainerRegistrationKeys, Modules } from "@acmekit/framework/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import jwt from "jsonwebtoken"
 import {
   adminHeaders,

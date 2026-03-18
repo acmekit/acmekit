@@ -1,6 +1,6 @@
 import { codegen } from "@graphql-codegen/core"
 import * as typescriptPlugin from "@graphql-codegen/typescript"
-import { ModuleJoinerConfig } from "/types"
+import { ModuleJoinerConfig } from "@acmekit/types"
 import {
   EnumTypeDefinitionNode,
   EnumValueDefinitionNode,

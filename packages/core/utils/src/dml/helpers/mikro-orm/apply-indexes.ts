@@ -2,7 +2,7 @@ import {
   EntityConstructor,
   EntityIndex,
   PropertyMetadata,
-} from "/types"
+} from "@acmekit/types"
 import { createPsqlIndexStatementHelper } from "../../../common"
 import { validateIndexFields } from "../mikro-orm/build-indexes"
 

@@ -1,4 +1,4 @@
-import { Context, AcmeKitContainer } from "/types"
+import { Context, AcmeKitContainer } from "@acmekit/types"
 import {
   DistributedTransactionType,
   OrchestratorBuilder,

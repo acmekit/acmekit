@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ArrowPath, Link, Trash } from "/icons"
-import { HttpTypes } from "/types"
+import { ArrowPath, Link, Trash } from "@acmekit/icons"
+import { HttpTypes } from "@acmekit/types"
 import {
   Alert,
   Button,
@@ -11,7 +11,7 @@ import {
   Text,
   Tooltip,
   usePrompt,
-} from "/ui"
+} from "@acmekit/ui"
 import { createColumnHelper } from "@tanstack/react-table"
 import copy from "copy-to-clipboard"
 import { format } from "date-fns"

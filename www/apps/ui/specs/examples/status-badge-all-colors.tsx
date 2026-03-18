@@ -1,4 +1,4 @@
-import { StatusBadge } from "/ui"
+import { StatusBadge } from "@acmekit/ui"
 
 export default function StatusBadgeAllColors() {
   return (

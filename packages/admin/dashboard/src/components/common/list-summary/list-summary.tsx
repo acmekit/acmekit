@@ -1,4 +1,4 @@
-import { Tooltip, clx } from "/ui"
+import { Tooltip, clx } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 
 type ListSummaryProps = {

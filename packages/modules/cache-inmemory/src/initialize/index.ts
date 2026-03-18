@@ -1,10 +1,10 @@
-import { AcmeKitModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import {
   ExternalModuleDeclaration,
   ICacheService,
   InternalModuleDeclaration,
-} from "/framework/types"
-import { Modules } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
 import { InMemoryCacheModuleOptions } from "../types"
 
 export const initialize = async (

@@ -1,4 +1,4 @@
-import { Input } from "/ui"
+import { Input } from "@acmekit/ui"
 import { useState } from "react"
 
 export default function InputControlled() {

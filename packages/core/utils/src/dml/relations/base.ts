@@ -3,7 +3,7 @@ import {
   RelationshipOptions,
   RelationshipType,
   RelationshipTypes,
-} from "/types"
+} from "@acmekit/types"
 
 export const IsRelationship = Symbol.for("isRelationship")
 
@@ -48,7 +48,7 @@ export abstract class BaseRelationship<T> implements RelationshipType<T> {
    * This method indicates that the relationship is searchable
    *
    * @example
-   * import { model } from "/framework/utils"
+   * import { model } from "@acmekit/framework/utils"
    *
    * const Product = model.define("Product", {
    *   variants: model.hasMany(() => ProductVariant).searchable(),

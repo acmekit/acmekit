@@ -1,6 +1,6 @@
-import PostgresLockingProvider from "/locking-postgres"
+import PostgresLockingProvider from "@acmekit/locking-postgres"
 
-export * from "/locking-postgres"
+export * from "@acmekit/locking-postgres"
 
 export default PostgresLockingProvider
 export const discoveryPath = require.resolve("/locking-postgres")

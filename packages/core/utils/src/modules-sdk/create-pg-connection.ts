@@ -1,5 +1,5 @@
-import { ModuleServiceInitializeOptions } from "/types"
-import { knex } from "/deps/mikro-orm/postgresql"
+import { ModuleServiceInitializeOptions } from "@acmekit/types"
+import { knex } from "@acmekit/deps/mikro-orm/postgresql"
 
 type Options = ModuleServiceInitializeOptions["database"]
 

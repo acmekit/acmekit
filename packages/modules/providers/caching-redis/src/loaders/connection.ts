@@ -2,7 +2,7 @@ import type {
   InternalModuleDeclaration,
   LoaderOptions,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import { RedisCacheModuleOptions } from "@types"
 import Redis, { type RedisOptions } from "ioredis"
 

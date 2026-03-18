@@ -1,4 +1,4 @@
-import { MiddlewareRoute } from "/framework/http"
+import { MiddlewareRoute } from "@acmekit/framework/http"
 
 import { adminRbacPolicyRoutesMiddlewares } from "./policies/middlewares"
 import { adminRbacRoleRoutesMiddlewares } from "./roles/middlewares"

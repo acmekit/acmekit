@@ -5,9 +5,9 @@ import {
   ModuleServiceInitializeCustomDataLayerOptions,
   ModuleServiceInitializeOptions,
   RepositoryService,
-} from "/types"
+} from "@acmekit/types"
 
-import { asClass } from "/deps/awilix"
+import { asClass } from "@acmekit/deps/awilix"
 import { AcmeKitInternalService } from "../medusa-internal-service"
 import { lowerCaseFirst } from "../../common"
 import {

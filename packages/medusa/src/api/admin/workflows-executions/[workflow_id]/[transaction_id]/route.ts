@@ -1,14 +1,14 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { AdminGetWorkflowExecutionDetailsParamsType } from "../../validators"
-import { HttpTypes } from "/framework/types"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<AdminGetWorkflowExecutionDetailsParamsType>,

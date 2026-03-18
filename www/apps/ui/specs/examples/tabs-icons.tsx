@@ -1,5 +1,5 @@
-import { Tabs, Text } from "/ui"
-import { TruckFast, CreditCard, InformationCircle } from "/icons"
+import { Tabs, Text } from "@acmekit/ui"
+import { TruckFast, CreditCard, InformationCircle } from "@acmekit/icons"
 
 export default function TabsIcons() {
   return (

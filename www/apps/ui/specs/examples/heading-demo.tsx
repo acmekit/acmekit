@@ -1,4 +1,4 @@
-import { Heading } from "/ui"
+import { Heading } from "@acmekit/ui"
 
 export default function HeadingDemo() {
   return (

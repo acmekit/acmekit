@@ -1,4 +1,4 @@
-import { deepCopy, isDefined } from "/utils"
+import { deepCopy, isDefined } from "@acmekit/utils"
 import { logger } from "../logger"
 import { ConfigModule } from "./types"
 

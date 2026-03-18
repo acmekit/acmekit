@@ -1,4 +1,4 @@
-import { Label } from "/ui"
+import { Label } from "@acmekit/ui"
 
 export default function LabelAllSizes() {
   return (

@@ -5,7 +5,7 @@ import {
   FindOptions,
   UpsertWithReplaceConfig,
 } from "./index"
-import type { EntityClass } from "/deps/mikro-orm/core"
+import type { EntityClass } from "@acmekit/deps/mikro-orm/core"
 import { IDmlEntity, InferTypeOf } from "../dml"
 
 type EntityClassName = string

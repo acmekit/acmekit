@@ -1,11 +1,11 @@
-import { InformationCircleSolid } from "/icons"
+import { InformationCircleSolid } from "@acmekit/icons"
 import {
   Hint as HintComponent,
   Label as LabelComponent,
   Text,
   Tooltip,
   clx,
-} from "/ui"
+} from "@acmekit/ui"
 import { Label as RadixLabel, Slot } from "radix-ui"
 import React, {
   ReactNode,

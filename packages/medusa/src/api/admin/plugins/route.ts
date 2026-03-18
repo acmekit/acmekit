@@ -1,6 +1,6 @@
-import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
-import { HttpTypes } from "/framework/types"
-import { ContainerRegistrationKeys, isString } from "/framework/utils"
+import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
+import { HttpTypes } from "@acmekit/framework/types"
+import { ContainerRegistrationKeys, isString } from "@acmekit/framework/utils"
 
 export const GET = async (
   req: AcmeKitRequest<unknown>,

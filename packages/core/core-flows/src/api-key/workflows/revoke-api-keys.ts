@@ -2,12 +2,12 @@ import {
   ApiKeyDTO,
   FilterableApiKeyProps,
   RevokeApiKeyDTO,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { revokeApiKeysStep } from "../steps"
 
 /**

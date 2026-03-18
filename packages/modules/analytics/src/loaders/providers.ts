@@ -1,10 +1,10 @@
-import { moduleProviderLoader } from "/framework/modules-sdk"
+import { moduleProviderLoader } from "@acmekit/framework/modules-sdk"
 import {
   LoaderOptions,
   ModuleProvider,
   ModulesSdkTypes,
-} from "/framework/types"
-import { asFunction, asValue, Lifetime } from "/framework/awilix"
+} from "@acmekit/framework/types"
+import { asFunction, asValue, Lifetime } from "@acmekit/framework/awilix"
 import ProviderService, {
   AnalyticsProviderIdentifierRegistrationName,
   AnalyticsProviderRegistrationPrefix,

@@ -1,4 +1,4 @@
-import { Select } from "/ui"
+import { Select } from "@acmekit/ui"
 
 export default function SelectItemAligned() {
   return (

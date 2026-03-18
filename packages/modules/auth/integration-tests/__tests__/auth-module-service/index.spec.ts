@@ -1,7 +1,7 @@
-import { IAuthModuleService } from "/framework/types"
-import { Module, Modules } from "/framework/utils"
+import { IAuthModuleService } from "@acmekit/framework/types"
+import { Module, Modules } from "@acmekit/framework/utils"
 import { AuthModuleService } from "@services"
-import { moduleIntegrationTestRunner, SuiteOptions } from "/test-utils"
+import { moduleIntegrationTestRunner, SuiteOptions } from "@acmekit/test-utils"
 import { resolve } from "path"
 
 let moduleOptions = {

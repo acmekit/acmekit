@@ -1,1 +1,1 @@
-export * from "/deps/opentelemetry/resources"
+export * from "@acmekit/deps/opentelemetry/resources"

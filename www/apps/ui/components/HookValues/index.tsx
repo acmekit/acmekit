@@ -1,5 +1,5 @@
-import { Spinner } from "/icons"
-import { Container } from "/ui"
+import { Spinner } from "@acmekit/icons"
+import { Container } from "@acmekit/ui"
 import * as React from "react"
 
 import { HookRegistry } from "@/specs/hooks"

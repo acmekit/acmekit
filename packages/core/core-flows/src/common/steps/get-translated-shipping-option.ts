@@ -1,6 +1,6 @@
-import { applyTranslations } from "/framework/utils"
-import { createStep, StepResponse } from "/framework/workflows-sdk"
-import { ShippingOptionDTO } from "/types"
+import { applyTranslations } from "@acmekit/framework/utils"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
+import { ShippingOptionDTO } from "@acmekit/types"
 
 export const getTranslatedShippingOptionsStepId =
   "get-translated-shipping-options"

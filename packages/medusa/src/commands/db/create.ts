@@ -1,5 +1,5 @@
 import input from "@inquirer/input"
-import type { Logger } from "/framework/types"
+import type { Logger } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   createClient,
@@ -7,7 +7,7 @@ import {
   dbExists,
   EnvEditor,
   parseConnectionString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { basename } from "path"
 import slugify from "slugify"
 import { initializeContainer } from "../../loaders"

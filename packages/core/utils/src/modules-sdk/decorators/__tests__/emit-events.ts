@@ -1,6 +1,6 @@
 import { EmitEvents } from "../emit-events"
 import { AcmeKitContext } from "../context-parameter"
-import { Context } from "/types"
+import { Context } from "@acmekit/types"
 import { InjectSharedContext } from "../inject-shared-context"
 
 describe("EmitEvents", () => {

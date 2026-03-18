@@ -7,7 +7,7 @@ import {
   Badge,
   usePrompt,
   toast,
-} from "/ui"
+} from "@acmekit/ui"
 import { 
   Eye,
   EyeSlash,
@@ -17,7 +17,7 @@ import {
   Star,
   CheckCircleSolid,
   ArrowUturnLeft,
-} from "/icons"
+} from "@acmekit/icons"
 import { useViewConfigurations, useViewConfiguration } from "../../../hooks/use-view-configurations"
 import type { ViewConfiguration } from "../../../hooks/use-view-configurations"
 import { SaveViewDialog } from "../save-view-dialog"

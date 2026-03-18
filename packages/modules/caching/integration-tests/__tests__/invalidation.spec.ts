@@ -1,7 +1,7 @@
-import { Modules } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
-import { ICachingModuleService } from "/framework/types"
-import { AcmeKitModule } from "/framework/modules-sdk"
+import { Modules } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
+import { ICachingModuleService } from "@acmekit/framework/types"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import { EventBusServiceMock } from "../__fixtures__/event-bus-mock"
 
 jest.setTimeout(30000)

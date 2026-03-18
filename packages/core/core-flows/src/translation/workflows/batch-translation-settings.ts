@@ -2,11 +2,11 @@ import {
   createWorkflow,
   parallelize,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import {
   UpdateTranslationSettingsDTO,
   CreateTranslationSettingsDTO,
-} from "/types"
+} from "@acmekit/types"
 import {
   createTranslationSettingsStep,
   deleteTranslationSettingsStep,

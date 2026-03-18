@@ -1,5 +1,5 @@
-import { ModuleJoinerConfig } from "/framework/types"
-import { isObject } from "/framework/utils"
+import { ModuleJoinerConfig } from "@acmekit/framework/types"
+import { isObject } from "@acmekit/framework/utils"
 import {
   GraphQLObjectType,
   GraphQLSchema,

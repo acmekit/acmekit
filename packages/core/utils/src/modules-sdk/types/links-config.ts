@@ -5,7 +5,7 @@ import {
   InferDmlEntityNameFromConfig,
   Prettify,
   SnakeCase,
-} from "/types"
+} from "@acmekit/types"
 import { PrimaryKeyModifier } from "../../dml/properties/primary-key"
 
 /**

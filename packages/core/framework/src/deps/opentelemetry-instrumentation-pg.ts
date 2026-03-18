@@ -1,1 +1,1 @@
-export * from "/deps/opentelemetry/instrumentation-pg"
+export * from "@acmekit/deps/opentelemetry/instrumentation-pg"

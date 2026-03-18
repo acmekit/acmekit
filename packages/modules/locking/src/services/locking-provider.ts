@@ -2,8 +2,8 @@ import {
   Constructor,
   ILockingProvider,
   Logger,
-} from "/framework/types"
-import { AcmeKitError } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { LockingProviderRegistrationPrefix } from "../types"
 
 type InjectedDependencies = {

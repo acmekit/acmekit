@@ -1,5 +1,5 @@
-import { FetchError } from "/js-sdk"
-import { HttpTypes, PaginatedResponse } from "/types"
+import { FetchError } from "@acmekit/js-sdk"
+import { HttpTypes, PaginatedResponse } from "@acmekit/types"
 import {
   QueryKey,
   UseMutationOptions,

@@ -4,15 +4,15 @@ import {
   StepResponse,
   WorkflowData,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { Modules, TransactionState } from "/utils"
+} from "@acmekit/framework/workflows-sdk"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { Modules, TransactionState } from "@acmekit/utils"
 import {
   adminHeaders,
   createAdminUser,
 } from "../../../../helpers/create-admin-user"
 import { setTimeout } from "timers/promises"
-import { IWorkflowEngineService } from "/framework/types"
+import { IWorkflowEngineService } from "@acmekit/framework/types"
 
 jest.setTimeout(300000)
 

@@ -3,9 +3,9 @@ import {
   RemoteJoinerOptions,
   RemoteQueryFunction,
   RemoteQueryInput,
-} from "/framework/types"
-import { createStep, StepFunction, StepResponse } from "/workflows-sdk"
-import { ContainerRegistrationKeys } from "/utils"
+} from "@acmekit/framework/types"
+import { createStep, StepFunction, StepResponse } from "@acmekit/workflows-sdk"
+import { ContainerRegistrationKeys } from "@acmekit/utils"
 
 export type UseQueryGraphStepInput<
   TEntry extends string,

@@ -1,4 +1,4 @@
-import { AcmeKitContainer } from "/types"
+import { AcmeKitContainer } from "@acmekit/types"
 import { glob } from "glob"
 import { join } from "path"
 import { Knex } from "../deps/mikro-orm-knex"

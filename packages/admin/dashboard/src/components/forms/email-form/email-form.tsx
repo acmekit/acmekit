@@ -1,4 +1,4 @@
-import { Input, clx } from "/ui"
+import { Input, clx } from "@acmekit/ui"
 import { Control } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { z } from "zod"

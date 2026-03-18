@@ -1,4 +1,4 @@
-import { Button } from "/ui"
+import { Button } from "@acmekit/ui"
 
 export default function ButtonAllSizes() {
   return (

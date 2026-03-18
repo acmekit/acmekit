@@ -1,4 +1,4 @@
-import { IconProps } from "/icons/dist/types"
+import { IconProps } from "@acmekit/icons/dist/types"
 import React from "react"
 
 export const IconCloudSolid = (props: IconProps) => {

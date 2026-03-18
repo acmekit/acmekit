@@ -1,4 +1,4 @@
-import { upperCaseFirst } from "/utils"
+import { upperCaseFirst } from "@acmekit/utils"
 import { OpenAPIObject } from "openapi3-ts"
 
 export async function combineOAS(

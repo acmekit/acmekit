@@ -1,5 +1,5 @@
-import { ArrowDownTray } from "/icons"
-import { Text, clx } from "/ui"
+import { ArrowDownTray } from "@acmekit/icons"
+import { Text, clx } from "@acmekit/ui"
 import { ChangeEvent, DragEvent, useRef, useState } from "react"
 
 export interface FileType {

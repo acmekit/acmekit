@@ -1,6 +1,6 @@
 import { join } from "path"
 import { LinkLoader } from "../link-loader"
-import { AcmeKitModule } from "/modules-sdk"
+import { AcmeKitModule } from "@acmekit/modules-sdk"
 
 describe("LinkLoader", () => {
   const rootDir = join(__dirname, "../__fixtures__", "links")

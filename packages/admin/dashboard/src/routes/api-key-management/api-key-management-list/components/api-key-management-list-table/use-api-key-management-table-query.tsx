@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { useQueryParams } from "../../../../../hooks/use-query-params"
 
 type UseApiKeyManagementTableQueryProps = {

@@ -7,7 +7,7 @@ import {
   InformationCircleSolid,
   XCircleSolid,
   XMarkMini,
-} from "/icons"
+} from "@acmekit/icons"
 import * as React from "react"
 
 import { IconButton } from "@/components/icon-button"

@@ -1,1 +1,1 @@
-export * from "/deps/mikro-orm/knex"
+export * from "@acmekit/deps/mikro-orm/knex"

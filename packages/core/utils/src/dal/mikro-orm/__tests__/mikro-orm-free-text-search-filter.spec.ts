@@ -1,5 +1,5 @@
-import { MikroORM } from "/deps/mikro-orm/core"
-import { defineConfig } from "/deps/mikro-orm/postgresql"
+import { MikroORM } from "@acmekit/deps/mikro-orm/core"
+import { defineConfig } from "@acmekit/deps/mikro-orm/postgresql"
 import { SearchableEntity1, SearchableEntity2 } from "../__fixtures__/utils"
 import { mikroOrmFreeTextSearchFilterOptionsFactory } from "../mikro-orm-free-text-search-filter"
 

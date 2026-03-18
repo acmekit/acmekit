@@ -2,9 +2,9 @@ import {
   BellAlert,
   BellAlertDone,
   InformationCircleSolid,
-} from "/icons"
-import { HttpTypes } from "/types"
-import { clx, Drawer, Heading, IconButton, Text } from "/ui"
+} from "@acmekit/icons"
+import { HttpTypes } from "@acmekit/types"
+import { clx, Drawer, Heading, IconButton, Text } from "@acmekit/ui"
 import { formatDistance } from "date-fns"
 import { TFunction } from "i18next"
 import { useEffect, useState } from "react"

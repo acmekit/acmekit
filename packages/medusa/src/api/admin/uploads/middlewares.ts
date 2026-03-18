@@ -1,9 +1,9 @@
-import { validateAndTransformQuery } from "/framework"
+import { validateAndTransformQuery } from "@acmekit/framework"
 import {
   MiddlewareRoute,
   validateAndTransformBody,
-} from "/framework/http"
-import { PolicyOperation } from "/framework/utils"
+} from "@acmekit/framework/http"
+import { PolicyOperation } from "@acmekit/framework/utils"
 import multer from "multer"
 import { Entities, retrieveUploadConfig } from "./query-config"
 import { AdminGetUploadParams, AdminUploadPreSignedUrl } from "./validators"

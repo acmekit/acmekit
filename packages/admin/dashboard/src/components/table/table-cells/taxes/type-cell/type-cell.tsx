@@ -1,4 +1,4 @@
-import { Badge } from "/ui"
+import { Badge } from "@acmekit/ui"
 
 type CellProps = {
   is_combinable: boolean

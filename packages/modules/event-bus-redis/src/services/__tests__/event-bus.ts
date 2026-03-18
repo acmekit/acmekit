@@ -1,4 +1,4 @@
-import { Logger } from "/framework/types"
+import { Logger } from "@acmekit/framework/types"
 import { Queue, Worker } from "bullmq"
 import { Redis } from "ioredis"
 import RedisEventBusService from "../event-bus-redis"

@@ -1,5 +1,5 @@
-import { AcmeKitContainer } from "/framework/types"
-import { ContainerRegistrationKeys } from "/framework/utils"
+import { AcmeKitContainer } from "@acmekit/framework/types"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
 
 export async function ensureDbExists(container: AcmeKitContainer) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)

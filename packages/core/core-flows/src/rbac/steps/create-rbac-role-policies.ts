@@ -1,6 +1,6 @@
-import { Modules } from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
-import { CreateRbacRolePolicyDTO, IRbacModuleService } from "/types"
+import { Modules } from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
+import { CreateRbacRolePolicyDTO, IRbacModuleService } from "@acmekit/types"
 
 /**
  * @ignore

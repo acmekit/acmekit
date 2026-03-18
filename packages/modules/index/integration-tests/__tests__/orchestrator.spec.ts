@@ -1,6 +1,6 @@
-import { asValue } from "/framework/awilix"
-import { container, logger } from "/framework"
-import type { IndexTypes } from "/types"
+import { asValue } from "@acmekit/framework/awilix"
+import { container, logger } from "@acmekit/framework"
+import type { IndexTypes } from "@acmekit/types"
 import { Orchestrator } from "@utils"
 
 function creatingFakeLockingModule() {

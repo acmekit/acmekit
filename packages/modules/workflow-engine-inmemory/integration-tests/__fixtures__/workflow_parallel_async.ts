@@ -1,10 +1,10 @@
-import { Modules } from "/framework/utils"
+import { Modules } from "@acmekit/framework/utils"
 import {
   createStep,
   createWorkflow,
   parallelize,
   StepResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 
 const step_2 = createStep(
   {

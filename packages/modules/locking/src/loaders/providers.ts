@@ -1,13 +1,13 @@
-import { moduleProviderLoader } from "/framework/modules-sdk"
+import { moduleProviderLoader } from "@acmekit/framework/modules-sdk"
 import {
   LoaderOptions,
   ModuleProvider,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   getProviderRegistrationKey,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { LockingProviderService } from "@services"
 import {
   LockingDefaultProvider,
@@ -19,7 +19,7 @@ import {
   aliasTo,
   asFunction,
   asValue,
-} from "/framework/awilix"
+} from "@acmekit/framework/awilix"
 import { InMemoryLockingProvider } from "../providers/in-memory"
 
 const registrationFn = async (klass, container, { id }) => {

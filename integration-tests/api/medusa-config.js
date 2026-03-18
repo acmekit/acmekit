@@ -1,4 +1,4 @@
-const { Modules } = require("/utils")
+const { Modules } = require("@acmekit/utils")
 
 const DB_HOST = process.env.DB_HOST
 const DB_USERNAME = process.env.DB_USERNAME
@@ -12,7 +12,7 @@ const enableMedusaV2 = process.env.MEDUSA_FF_MEDUSA_V2 == "true"
 
 const customPaymentProvider = {
   resolve: {
-    services: [require("/payment/dist/providers/system").default],
+    services: [require("@acmekit/payment/dist/providers/system").default],
   },
   id: "default_2",
 }

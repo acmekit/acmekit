@@ -1,7 +1,7 @@
 import {
   CustomFieldModel,
   isValidCustomFieldModel,
-} from "/admin-shared"
+} from "@acmekit/admin-shared"
 import {
   ExportDefaultDeclaration,
   isCallExpression,

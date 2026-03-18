@@ -3,15 +3,15 @@ import {
   AcmeKitRequest,
   AcmeKitResponse,
   Query,
-} from "/framework"
-import { ApiLoader } from "/framework/http"
-import { SpanStatusCode } from "/framework/opentelemetry/api"
-import type { NodeSDKConfiguration } from "/framework/opentelemetry/sdk-node"
-import type { SpanExporter } from "/framework/opentelemetry/sdk-trace-node"
-import { TransactionOrchestrator } from "/framework/orchestration"
-import { Tracer } from "/framework/telemetry"
-import { ICachingModuleService } from "/framework/types"
-import { camelToSnakeCase, FeatureFlag } from "/framework/utils"
+} from "@acmekit/framework"
+import { ApiLoader } from "@acmekit/framework/http"
+import { SpanStatusCode } from "@acmekit/framework/opentelemetry/api"
+import type { NodeSDKConfiguration } from "@acmekit/framework/opentelemetry/sdk-node"
+import type { SpanExporter } from "@acmekit/framework/opentelemetry/sdk-trace-node"
+import { TransactionOrchestrator } from "@acmekit/framework/orchestration"
+import { Tracer } from "@acmekit/framework/telemetry"
+import { ICachingModuleService } from "@acmekit/framework/types"
+import { camelToSnakeCase, FeatureFlag } from "@acmekit/framework/utils"
 import CacheModule from "../modules/caching"
 
 const EXCLUDED_RESOURCES = [".vite", "virtual:"]
@@ -407,16 +407,16 @@ export function registerOtel(
   const {
     Resource,
     resourceFromAttributes,
-  } = require("/framework/opentelemetry/resources")
-  const { NodeSDK } = require("/framework/opentelemetry/sdk-node")
+  } = require("@acmekit/framework/opentelemetry/resources")
+  const { NodeSDK } = require("@acmekit/framework/opentelemetry/sdk-node")
   const {
     SimpleSpanProcessor,
-  } = require("/framework/opentelemetry/sdk-trace-node")
+  } = require("@acmekit/framework/opentelemetry/sdk-trace-node")
 
   if (instrument.db) {
     const {
       PgInstrumentation,
-    } = require("/framework/opentelemetry/instrumentation-pg")
+    } = require("@acmekit/framework/opentelemetry/instrumentation-pg")
     instrumentations.push(new PgInstrumentation())
   }
   if (instrument.http) {

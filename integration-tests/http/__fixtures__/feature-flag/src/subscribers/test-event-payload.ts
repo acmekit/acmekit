@@ -1,4 +1,4 @@
-import { defineFileConfig, FeatureFlag } from "/framework/utils"
+import { defineFileConfig, FeatureFlag } from "@acmekit/framework/utils"
 
 const testProductCreatedHandlerMock = jest.fn()
 

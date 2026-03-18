@@ -1,5 +1,5 @@
-import { createMedusaContainer } from "/utils"
-import { asFunction, Lifetime } from "/deps/awilix"
+import { createMedusaContainer } from "@acmekit/utils"
+import { asFunction, Lifetime } from "@acmekit/deps/awilix"
 import { moduleProviderLoader } from "../module-provider-loader"
 
 describe("modules loader", () => {

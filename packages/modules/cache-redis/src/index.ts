@@ -1,4 +1,4 @@
-import { ModuleExports } from "/framework/types"
+import { ModuleExports } from "@acmekit/framework/types"
 import Loader from "./loaders"
 import { RedisCacheService } from "./services"
 

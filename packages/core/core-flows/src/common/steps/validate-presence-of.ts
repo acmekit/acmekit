@@ -1,5 +1,5 @@
-import { isPresent, AcmeKitError } from "/framework/utils"
-import { createStep } from "/framework/workflows-sdk"
+import { isPresent, AcmeKitError } from "@acmekit/framework/utils"
+import { createStep } from "@acmekit/framework/workflows-sdk"
 
 /**
  * This step validates the presence of attributes on an object

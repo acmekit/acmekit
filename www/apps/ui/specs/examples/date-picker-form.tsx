@@ -1,6 +1,6 @@
 "use client"
 
-import { DatePicker, Button, Label } from "/ui"
+import { DatePicker, Button, Label } from "@acmekit/ui"
 import { useState } from "react"
 
 export default function DatePickerForm() {

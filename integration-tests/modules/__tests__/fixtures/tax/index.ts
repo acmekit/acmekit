@@ -1,4 +1,4 @@
-import { ITaxModuleService } from "/types"
+import { ITaxModuleService } from "@acmekit/types"
 
 export const setupTaxStructure = async (service: ITaxModuleService) => {
   // Setup for this specific test

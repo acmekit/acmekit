@@ -3,13 +3,13 @@ import {
   ITranslationModuleService,
   UpdateTranslationDataDTO,
   UpdateTranslationDTO,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   AcmeKitError,
   AcmeKitErrorTypes,
   Modules,
-} from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+} from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 /**
  * The data to update translations.

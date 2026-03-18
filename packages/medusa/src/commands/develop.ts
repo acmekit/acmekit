@@ -1,9 +1,9 @@
-import { MEDUSA_CLI_PATH } from "/framework"
+import { MEDUSA_CLI_PATH } from "@acmekit/framework"
 import {
   ContainerRegistrationKeys,
   FeatureFlag,
-} from "/framework/utils"
-import { Store } from "/telemetry"
+} from "@acmekit/framework/utils"
+import { Store } from "@acmekit/telemetry"
 import boxen from "boxen"
 import { ChildProcess, execSync, fork } from "child_process"
 import chokidar, { FSWatcher } from "chokidar"

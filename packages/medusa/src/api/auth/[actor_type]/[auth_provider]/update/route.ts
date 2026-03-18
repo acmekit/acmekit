@@ -1,9 +1,9 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { IAuthModuleService } from "/framework/types"
-import { AcmeKitError, Modules } from "/framework/utils"
+} from "@acmekit/framework/http"
+import { IAuthModuleService } from "@acmekit/framework/types"
+import { AcmeKitError, Modules } from "@acmekit/framework/utils"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest,

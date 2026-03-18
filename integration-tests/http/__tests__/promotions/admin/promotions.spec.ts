@@ -1,10 +1,10 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   Modules,
   ProductStatus,
   PromotionStatus,
   PromotionType,
-} from "/utils"
+} from "@acmekit/utils"
 import {
   createAdminUser,
   generatePublishableKey,
@@ -16,7 +16,7 @@ import {
   updateCampaignsWorkflow,
   updatePromotionRulesWorkflow,
   updatePromotionsWorkflow,
-} from "/core-flows"
+} from "@acmekit/core-flows"
 
 jest.setTimeout(500000)
 

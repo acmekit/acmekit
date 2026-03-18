@@ -1,6 +1,6 @@
 "use client"
 
-import { TriangleDownMini } from "/icons"
+import { TriangleDownMini } from "@acmekit/icons"
 import clsx from "clsx"
 import React, { useRef, useState } from "react"
 import { NavigationItemDropdown } from "types"

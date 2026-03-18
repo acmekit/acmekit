@@ -1,4 +1,4 @@
-import { DAL, FindConfig, InferRepositoryReturnType } from "/types"
+import { DAL, FindConfig, InferRepositoryReturnType } from "@acmekit/types"
 import { deduplicate, isObject } from "../common"
 
 import { SoftDeletableFilterKey } from "../dal/mikro-orm/mikro-orm-soft-deletable-filter"

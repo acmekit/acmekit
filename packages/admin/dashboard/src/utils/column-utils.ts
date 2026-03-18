@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 
 export enum ColumnAlignment {
   LEFT = "left",

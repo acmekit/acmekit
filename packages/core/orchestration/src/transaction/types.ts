@@ -1,11 +1,11 @@
-import { TransactionState } from "/utils"
+import { TransactionState } from "@acmekit/utils"
 import { DistributedTransactionType } from "./distributed-transaction"
 import { TransactionStep } from "./transaction-step"
 export {
   TransactionHandlerType,
   TransactionState,
   TransactionStepStatus,
-} from "/utils"
+} from "@acmekit/utils"
 
 /**
  * Defines the structure and behavior of a single step within a transaction workflow.

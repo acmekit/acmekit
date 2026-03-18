@@ -1,5 +1,5 @@
-import { DropdownMenu, IconButton } from "/ui"
-import { Trash, BarsThree } from "/icons"
+import { DropdownMenu, IconButton } from "@acmekit/ui"
+import { Trash, BarsThree } from "@acmekit/icons"
 
 export default function DropdownMenuDisabledAndIcons() {
   return (

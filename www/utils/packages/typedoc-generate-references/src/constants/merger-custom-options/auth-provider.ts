@@ -49,7 +49,7 @@ The rest of this guide always uses the \`src/modules/my-auth\` directory as an e
 Create the file \`src/modules/my-auth/service.ts\` that holds the module provider's main service. It must extend the \`AbstractAuthModuleProvider\` class imported from \`/framework/utils\`:
 
 \`\`\`ts title="src/modules/my-auth/service.ts"
-import { AbstractAuthModuleProvider } from "/framework/utils"
+import { AbstractAuthModuleProvider } from "@acmekit/framework/utils"
 
 class MyAuthProviderService extends AbstractAuthModuleProvider {
   // TODO implement methods
@@ -68,7 +68,7 @@ import MyAuthProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export default ModuleProvider(Modules.AUTH, {
   services: [MyAuthProviderService],
@@ -87,7 +87,7 @@ A auth module provider can have export multiple provider services, where each ar
 To use your Auth Module Provider, add it to the \`providers\` array of the Auth Module in \`medusa-config.ts\`:
 
 \`\`\`ts title="medusa-config.ts"
-import { Modules, ContainerRegistrationKeys } from "/framework/utils"
+import { Modules, ContainerRegistrationKeys } from "@acmekit/framework/utils"
 
 module.exports = defineConfig({
   // ...

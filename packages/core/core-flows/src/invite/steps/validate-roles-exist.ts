@@ -1,5 +1,5 @@
-import { AcmeKitError, Modules } from "/framework/utils"
-import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { AcmeKitError, Modules } from "@acmekit/framework/utils"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
 
 /**
  * @ignore

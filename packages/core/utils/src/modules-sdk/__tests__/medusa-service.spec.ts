@@ -1,7 +1,7 @@
 import { AcmeKitService } from "../medusa-service"
 import { model } from "../../dml"
 import { MessageAggregator } from "../../event-bus"
-import { ModuleJoinerConfig } from "/types"
+import { ModuleJoinerConfig } from "@acmekit/types"
 
 const baseRepoMock = {
   serialize: jest.fn().mockImplementation((item) => item),

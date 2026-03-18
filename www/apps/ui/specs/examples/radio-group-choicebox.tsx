@@ -1,4 +1,4 @@
-import { RadioGroup } from "/ui"
+import { RadioGroup } from "@acmekit/ui"
 
 export default function RadioGroupChoiceBox() {
   return (

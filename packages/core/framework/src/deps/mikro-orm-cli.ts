@@ -1,1 +1,1 @@
-export * from "/deps/mikro-orm/cli"
+export * from "@acmekit/deps/mikro-orm/cli"

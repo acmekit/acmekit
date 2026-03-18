@@ -1,11 +1,11 @@
-import { Context, ModuleJoinerConfig } from "/framework/types"
-import { EntitySchema } from "/framework/mikro-orm/core"
+import { Context, ModuleJoinerConfig } from "@acmekit/framework/types"
+import { EntitySchema } from "@acmekit/framework/mikro-orm/core"
 
 import {
   generateEntityId,
   mikroOrmBaseRepositoryFactory,
-} from "/framework/utils"
-import { SqlEntityManager } from "/framework/mikro-orm/postgresql"
+} from "@acmekit/framework/utils"
+import { SqlEntityManager } from "@acmekit/framework/mikro-orm/postgresql"
 
 export function getLinkRepository(model: EntitySchema) {
   return class LinkRepository extends mikroOrmBaseRepositoryFactory(model) {

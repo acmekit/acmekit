@@ -1,4 +1,4 @@
-import { AdminPaymentCollection } from "/types"
+import { AdminPaymentCollection } from "@acmekit/types"
 
 export const getTotalCaptured = (
   paymentCollections: AdminPaymentCollection[]

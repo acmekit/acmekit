@@ -1,6 +1,6 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { IAuthModuleService } from "/types"
-import { Modules } from "/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { IAuthModuleService } from "@acmekit/types"
+import { Modules } from "@acmekit/utils"
 import Scrypt from "scrypt-kdf"
 import {
   adminHeaders,

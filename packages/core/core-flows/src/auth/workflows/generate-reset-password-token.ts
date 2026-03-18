@@ -1,14 +1,14 @@
-import type { ProjectConfigOptions } from "/framework/types"
+import type { ProjectConfigOptions } from "@acmekit/framework/types"
 import {
   AuthWorkflowEvents,
   generateJwtToken,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   createWorkflow,
   transform,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { emitEventStep, useRemoteQueryStep } from "../../common"
 
 /**

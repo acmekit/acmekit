@@ -1,5 +1,5 @@
-import { IndexTypes } from "/framework/types"
-import { SqlEntityManager } from "/framework/mikro-orm/postgresql"
+import { IndexTypes } from "@acmekit/framework/types"
+import { SqlEntityManager } from "@acmekit/framework/mikro-orm/postgresql"
 import { schemaObjectRepresentationPropertiesToOmit } from "@types"
 import { getPivotTableName, normalizeTableName } from "./normalze-table-name"
 

@@ -1,8 +1,8 @@
-import { InputConfigModules } from "/types"
-import { FeatureFlag } from "/utils"
+import { InputConfigModules } from "@acmekit/types"
+import { FeatureFlag } from "@acmekit/utils"
 import { EnvFeatureFlag } from "./src/feature-flags/env-ff"
 
-const { defineConfig } = require("/framework/utils")
+const { defineConfig } = require("@acmekit/framework/utils")
 
 const DB_HOST = process.env.DB_HOST
 const DB_USERNAME = process.env.DB_USERNAME

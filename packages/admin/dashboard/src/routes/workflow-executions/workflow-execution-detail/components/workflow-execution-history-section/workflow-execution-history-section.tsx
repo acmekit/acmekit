@@ -1,5 +1,5 @@
-import { Spinner, TriangleDownMini } from "/icons"
-import { HttpTypes } from "/types"
+import { Spinner, TriangleDownMini } from "@acmekit/icons"
+import { HttpTypes } from "@acmekit/types"
 import {
   clx,
   CodeBlock,
@@ -7,7 +7,7 @@ import {
   Heading,
   IconButton,
   Text,
-} from "/ui"
+} from "@acmekit/ui"
 import { format } from "date-fns"
 import { Collapsible as RadixCollapsible } from "radix-ui"
 import { useEffect, useRef, useState } from "react"

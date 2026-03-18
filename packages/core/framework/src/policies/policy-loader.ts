@@ -1,4 +1,4 @@
-import { discoverPoliciesFromDir } from "/utils"
+import { discoverPoliciesFromDir } from "@acmekit/utils"
 import { normalize } from "path"
 
 /**

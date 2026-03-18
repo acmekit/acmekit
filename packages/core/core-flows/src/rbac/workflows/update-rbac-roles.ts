@@ -1,12 +1,12 @@
-import { isDefined } from "/framework/utils"
+import { isDefined } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
   transform,
   when,
-} from "/framework/workflows-sdk"
-import { UpdateRbacRoleDTO } from "/types"
+} from "@acmekit/framework/workflows-sdk"
+import { UpdateRbacRoleDTO } from "@acmekit/types"
 import { createRbacRolePoliciesStep, setRoleParentStep } from "../steps"
 import { updateRbacRolesStep } from "../steps/update-rbac-roles"
 import { validateUserPermissionsStep } from "../steps/validate-user-permissions"

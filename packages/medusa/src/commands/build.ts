@@ -1,5 +1,5 @@
-import { Compiler } from "/framework/build-tools"
-import { ContainerRegistrationKeys } from "/framework/utils"
+import { Compiler } from "@acmekit/framework/build-tools"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
 import { initializeContainer } from "../loaders"
 import { generateTypes } from "./utils/generate-types"
 

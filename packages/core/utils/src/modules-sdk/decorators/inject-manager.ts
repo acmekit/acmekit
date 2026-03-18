@@ -1,4 +1,4 @@
-import { Context } from "/types"
+import { Context } from "@acmekit/types"
 import { isPresent } from "../../common"
 import { AcmeKitContextType } from "./context-parameter"
 

@@ -1,19 +1,19 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import {
   deleteCustomerAddressesWorkflow,
   updateCustomerAddressesWorkflow,
-} from "/core-flows"
+} from "@acmekit/core-flows"
 
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { AdminCreateCustomerAddressType } from "../../../validators"
 import { refetchCustomer } from "../../../helpers"
-import { AdditionalData, HttpTypes } from "/framework/types"
+import { AdditionalData, HttpTypes } from "@acmekit/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,

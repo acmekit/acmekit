@@ -1,9 +1,9 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   CampaignBudgetType,
   PromotionStatus,
   PromotionType,
-} from "/utils"
+} from "@acmekit/utils"
 import { createAdminUser } from "../../../../helpers/create-admin-user"
 
 jest.setTimeout(50000)

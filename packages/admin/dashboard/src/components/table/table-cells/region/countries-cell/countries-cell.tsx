@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { useTranslation } from "react-i18next"
 
 import { countries as COUNTRIES } from "../../../../../lib/data/countries"

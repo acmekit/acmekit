@@ -1,5 +1,5 @@
-import { AcmeKitError } from "/utils"
-import { z, ZodNullable, ZodObject, ZodOptional } from "/deps/zod"
+import { AcmeKitError } from "@acmekit/utils"
+import { z, ZodNullable, ZodObject, ZodOptional } from "@acmekit/deps/zod"
 import { AcmeKitRequest, AcmeKitResponse } from "../types"
 import { validateAndTransformBody } from "../utils/validate-body"
 

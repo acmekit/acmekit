@@ -2,15 +2,15 @@ import {
   AdditionalData,
   CustomerUpdatableFields,
   FilterableCustomerProps,
-} from "/framework/types"
-import { CustomerWorkflowEvents } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { CustomerWorkflowEvents } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
   createHook,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { updateCustomersStep } from "../steps"
 

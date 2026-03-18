@@ -1,4 +1,4 @@
-import { createDataTableFilterHelper } from "/ui"
+import { createDataTableFilterHelper } from "@acmekit/ui"
 import { subDays, subMonths } from "date-fns"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"

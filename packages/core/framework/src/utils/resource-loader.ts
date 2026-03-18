@@ -1,10 +1,10 @@
-import { Logger, AcmeKitContainer } from "/types"
+import { Logger, AcmeKitContainer } from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   dynamicImport,
   promiseAll,
   readDirRecursive,
-} from "/utils"
+} from "@acmekit/utils"
 import { Dirent } from "fs"
 import { access } from "fs/promises"
 import { join, parse } from "path"

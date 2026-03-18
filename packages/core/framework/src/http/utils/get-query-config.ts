@@ -1,4 +1,4 @@
-import { FindConfig, QueryConfig, RequestQueryFields } from "/types"
+import { FindConfig, QueryConfig, RequestQueryFields } from "@acmekit/types"
 import {
   buildOrder,
   FeatureFlag,
@@ -9,7 +9,7 @@ import {
   PolicyDefinition,
   promiseAll,
   stringToSelectRelationObject,
-} from "/utils"
+} from "@acmekit/utils"
 import { AuthContext, AcmeKitRequest } from "../types"
 import {
   AllowedFieldFilter,

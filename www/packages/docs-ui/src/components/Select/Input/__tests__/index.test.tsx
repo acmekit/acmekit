@@ -74,7 +74,7 @@ vi.mock("@/components/Select/Dropdown", () => ({
 }))
 
 import { SelectInput } from "../../Input"
-import { IconProps } from "/icons/dist/types"
+import { IconProps } from "@acmekit/icons/dist/types"
 
 beforeEach(() => {
   vi.clearAllMocks()

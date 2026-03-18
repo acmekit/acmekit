@@ -1,9 +1,9 @@
 import {
   getSelectsAndRelationsFromObjectArray,
   Modules,
-} from "/framework/utils"
-import { createStep, StepResponse } from "/framework/workflows-sdk"
-import { IRbacModuleService, UpdateRbacPolicyDTO } from "/types"
+} from "@acmekit/framework/utils"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
+import { IRbacModuleService, UpdateRbacPolicyDTO } from "@acmekit/types"
 
 /**
  * @ignore

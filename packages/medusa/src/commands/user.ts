@@ -2,8 +2,8 @@ import {
   ContainerRegistrationKeys,
   FeatureFlag,
   Modules,
-} from "/framework/utils"
-import { track } from "/telemetry"
+} from "@acmekit/framework/utils"
+import { track } from "@acmekit/telemetry"
 import express from "express"
 import loaders from "../loaders"
 

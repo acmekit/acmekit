@@ -1,4 +1,4 @@
-import { Logger, ModulesSdkTypes } from "/framework/types"
+import { Logger, ModulesSdkTypes } from "@acmekit/framework/types"
 import { Queue, Worker } from "bullmq"
 import Redis from "ioredis"
 import { RedisDistributedTransactionStorage } from "../workflow-orchestrator-storage"

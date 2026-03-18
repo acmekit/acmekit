@@ -3,7 +3,7 @@ import {
   JoinerServiceConfigAlias,
   ModuleJoinerConfig,
   PropertyType,
-} from "/types"
+} from "@acmekit/types"
 import { accessSync } from "fs"
 import * as path from "path"
 import { dirname, join, normalize } from "path"

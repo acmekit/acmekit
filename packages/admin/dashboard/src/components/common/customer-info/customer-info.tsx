@@ -1,7 +1,7 @@
-import { Avatar, Copy, Text } from "/ui"
+import { Avatar, Copy, Text } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { getFormattedAddress, isSameAddress } from "../../../lib/addresses"
 
 const ID = ({ data }: { data: HttpTypes.AdminOrder }) => {

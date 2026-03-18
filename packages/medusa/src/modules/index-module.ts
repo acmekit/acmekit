@@ -1,6 +1,6 @@
-import IndexModule from "/index"
+import IndexModule from "@acmekit/index"
 
-export * from "/index"
+export * from "@acmekit/index"
 
 export default IndexModule
 export const discoveryPath = require.resolve("/index")

@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 
 const ApiKey = model
   .define("ApiKey", {

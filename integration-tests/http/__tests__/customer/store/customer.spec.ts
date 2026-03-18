@@ -1,5 +1,5 @@
-import { MedusaContainer } from "/types"
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { MedusaContainer } from "@acmekit/types"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   adminHeaders,
   createAdminUser,

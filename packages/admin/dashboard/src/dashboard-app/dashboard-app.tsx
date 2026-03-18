@@ -6,7 +6,7 @@ import {
   deepMerge,
   InjectionZone,
   NESTED_ROUTE_POSITIONS,
-} from "/admin-shared"
+} from "@acmekit/admin-shared"
 import * as React from "react"
 import {
   createBrowserRouter,

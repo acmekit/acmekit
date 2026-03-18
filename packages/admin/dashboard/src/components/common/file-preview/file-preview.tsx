@@ -1,5 +1,5 @@
-import { ArrowDownTray, Spinner } from "/icons"
-import { IconButton, Text } from "/ui"
+import { ArrowDownTray, Spinner } from "@acmekit/icons"
+import { IconButton, Text } from "@acmekit/ui"
 import { ActionGroup, ActionMenu } from "../action-menu"
 
 export const FilePreview = ({

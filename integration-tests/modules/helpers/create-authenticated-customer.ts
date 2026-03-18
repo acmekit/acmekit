@@ -1,4 +1,4 @@
-import { CreateCustomerDTO } from "/types"
+import { CreateCustomerDTO } from "@acmekit/types"
 
 export const createAuthenticatedCustomer = async (
   api: any,

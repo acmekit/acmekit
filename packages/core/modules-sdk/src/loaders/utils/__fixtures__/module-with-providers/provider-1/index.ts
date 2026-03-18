@@ -1,5 +1,5 @@
 import { ModuleProviderService } from "./services/provider-service"
-import { ModuleProvider } from "/utils"
+import { ModuleProvider } from "@acmekit/utils"
 
 export * from "./services/provider-service"
 

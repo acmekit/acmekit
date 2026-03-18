@@ -1,14 +1,14 @@
-import { createCustomersWorkflow } from "/core-flows"
+import { createCustomersWorkflow } from "@acmekit/core-flows"
 
-import { AdditionalData, HttpTypes } from "/framework/types"
+import { AdditionalData, HttpTypes } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { refetchCustomer } from "./helpers"
 import { AdminCreateCustomerType } from "./validators"
 

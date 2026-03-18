@@ -5,8 +5,8 @@ import type {
   IDmlEntity,
   Infer,
   PropertyType,
-} from "/types"
-import { Entity, Filter, MetadataStorage } from "/deps/mikro-orm/core"
+} from "@acmekit/types"
+import { Entity, Filter, MetadataStorage } from "@acmekit/deps/mikro-orm/core"
 
 import {
   mikroOrmFreeTextSearchFilterOptionsFactory,

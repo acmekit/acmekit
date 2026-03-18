@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CurrencyInput } from "/ui"
+import { CurrencyInput } from "@acmekit/ui"
 
 export default function CurrencyInputControlled() {
   const [value, setValue] = useState<string | undefined>("")

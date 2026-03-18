@@ -3,8 +3,8 @@ import * as QueryConfig from "./query-config"
 import {
   validateAndTransformBody,
   validateAndTransformQuery,
-} from "/framework"
-import { MiddlewareRoute } from "/framework/http"
+} from "@acmekit/framework"
+import { MiddlewareRoute } from "@acmekit/framework/http"
 
 import {
   AdminCreateRbacPolicy,

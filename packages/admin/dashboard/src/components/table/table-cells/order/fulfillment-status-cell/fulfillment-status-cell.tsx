@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next"
 
-import { FulfillmentStatus } from "/types"
+import { FulfillmentStatus } from "@acmekit/types"
 
 import { getOrderFulfillmentStatus } from "../../../../../lib/order-helpers"
 import { StatusCell } from "../../common/status-cell"

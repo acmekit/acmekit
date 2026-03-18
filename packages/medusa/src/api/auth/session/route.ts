@@ -1,7 +1,7 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest,

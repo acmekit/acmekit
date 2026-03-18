@@ -1,4 +1,4 @@
-import { ContainerRegistrationKeys } from "/utils"
+import { ContainerRegistrationKeys } from "@acmekit/utils"
 import type {
   AcmeKitNextFunction,
   AcmeKitRequest,

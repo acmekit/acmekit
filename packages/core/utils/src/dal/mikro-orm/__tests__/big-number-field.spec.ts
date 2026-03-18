@@ -1,6 +1,6 @@
-import { BigNumberRawValue } from "/types"
-import { Entity, MikroORM, PrimaryKey } from "/deps/mikro-orm/core"
-import { defineConfig } from "/deps/mikro-orm/postgresql"
+import { BigNumberRawValue } from "@acmekit/types"
+import { Entity, MikroORM, PrimaryKey } from "@acmekit/deps/mikro-orm/core"
+import { defineConfig } from "@acmekit/deps/mikro-orm/postgresql"
 import { BigNumber } from "../../../totals/big-number"
 import { MikroOrmBigNumberProperty } from "../big-number-field"
 

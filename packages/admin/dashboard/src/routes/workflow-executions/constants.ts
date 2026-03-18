@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { TransactionState, TransactionStepState } from "./types"
 
 export const STEP_IN_PROGRESS_STATES: HttpTypes.TransactionStepState[] = [

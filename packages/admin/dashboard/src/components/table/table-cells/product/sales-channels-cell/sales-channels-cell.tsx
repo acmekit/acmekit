@@ -1,7 +1,7 @@
-import { Tooltip } from "/ui"
+import { Tooltip } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 
-import { SalesChannelDTO } from "/types"
+import { SalesChannelDTO } from "@acmekit/types"
 import { PlaceholderCell } from "../../common/placeholder-cell"
 
 type SalesChannelsCellProps = {

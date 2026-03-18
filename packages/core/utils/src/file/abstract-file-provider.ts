@@ -1,4 +1,4 @@
-import { FileTypes, IFileProvider } from "/types"
+import { FileTypes, IFileProvider } from "@acmekit/types"
 import type { Readable, Writable } from "stream"
 
 /**
@@ -12,8 +12,8 @@ import type { Readable, Writable } from "stream"
  * #### Example
  *
  * ```ts
- * import { Logger } from "/framework/types"
- * import { AbstractFileProviderService } from "/framework/utils"
+ * import { Logger } from "@acmekit/framework/types"
+ * import { AbstractFileProviderService } from "@acmekit/framework/utils"
  *
  * type InjectedDependencies = {
  *   logger: Logger

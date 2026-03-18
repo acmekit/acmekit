@@ -1,9 +1,9 @@
-import { ItemTaxLineDTO, ShippingTaxLineDTO } from "/framework/types"
+import { ItemTaxLineDTO, ShippingTaxLineDTO } from "@acmekit/framework/types"
 import {
   applyTranslationsToTaxLines,
   FeatureFlag,
-} from "/framework/utils"
-import { createStep, StepResponse } from "/framework/workflows-sdk"
+} from "@acmekit/framework/utils"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
 export const getTranslatedTaxLinesStepId = "get-translated-tax-lines-step"
 
 export interface GetTranslatedTaxLinesStepInput {

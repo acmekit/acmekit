@@ -1,5 +1,5 @@
-import { asValue } from "/deps/awilix"
-import { RemoteFetchDataCallback } from "/orchestration"
+import { asValue } from "@acmekit/deps/awilix"
+import { RemoteFetchDataCallback } from "@acmekit/orchestration"
 import {
   ConfigModule,
   ExternalModuleDeclaration,
@@ -16,7 +16,7 @@ import {
   ModuleJoinerConfig,
   ModuleServiceInitializeOptions,
   RemoteQueryFunction,
-} from "/types"
+} from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
@@ -34,7 +34,7 @@ import {
   ModulesSdkUtils,
   promiseAll,
   registerFeatureFlag,
-} from "/utils"
+} from "@acmekit/utils"
 import { Link } from "./link"
 import {
   AcmeKitModule,

@@ -1,4 +1,4 @@
-import { Kbd, Text, clx } from "/ui"
+import { Kbd, Text, clx } from "@acmekit/ui"
 import { Collapsible as RadixCollapsible } from "radix-ui"
 import {
   PropsWithChildren,

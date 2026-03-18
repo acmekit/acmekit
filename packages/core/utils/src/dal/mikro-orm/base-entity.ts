@@ -4,7 +4,7 @@ import {
   OnInit,
   OptionalProps,
   PrimaryKey,
-} from "/deps/mikro-orm/core"
+} from "@acmekit/deps/mikro-orm/core"
 import { generateEntityId } from "../../common"
 
 @Entity({ abstract: true })

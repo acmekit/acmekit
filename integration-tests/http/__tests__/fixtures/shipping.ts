@@ -3,7 +3,7 @@ import {
   AdminStockLocation,
   AdminSalesChannel,
   MedusaContainer,
-} from "/types"
+} from "@acmekit/types"
 import { adminHeaders } from "../../../helpers/create-admin-user"
 
 export async function createShippingOptionSeeder({

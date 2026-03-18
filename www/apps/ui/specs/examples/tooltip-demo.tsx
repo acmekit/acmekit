@@ -1,5 +1,5 @@
-import { InformationCircleSolid } from "/icons"
-import { Tooltip } from "/ui"
+import { InformationCircleSolid } from "@acmekit/icons"
+import { Tooltip } from "@acmekit/ui"
 
 export default function TooltipDemo() {
   return (

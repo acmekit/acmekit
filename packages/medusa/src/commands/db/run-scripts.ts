@@ -1,15 +1,15 @@
-import { AcmeKitAppLoader } from "/framework"
-import { LinkLoader } from "/framework/links"
-import { MigrationScriptsMigrator } from "/framework/migrations"
+import { AcmeKitAppLoader } from "@acmekit/framework"
+import { LinkLoader } from "@acmekit/framework/links"
+import { MigrationScriptsMigrator } from "@acmekit/framework/migrations"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
   mergePluginModules,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { dirname, join } from "path"
 
-import { AcmeKitModule } from "/framework/modules-sdk"
-import { Logger, AcmeKitContainer, PluginDetails } from "/types"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
+import { Logger, AcmeKitContainer, PluginDetails } from "@acmekit/types"
 import { initializeContainer } from "../../loaders"
 import { ensureDbExists } from "../utils"
 

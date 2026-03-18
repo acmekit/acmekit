@@ -1,4 +1,4 @@
-import { clx } from "/ui"
+import { clx } from "@acmekit/ui"
 import { PropsWithChildren } from "react"
 
 type StatusCellProps = PropsWithChildren<{

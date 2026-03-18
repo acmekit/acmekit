@@ -1,6 +1,6 @@
-import { Context, LoadedModule, AcmeKitContainer } from "/types"
-import { createMedusaContainer } from "/utils"
-import { asValue } from "/deps/awilix"
+import { Context, LoadedModule, AcmeKitContainer } from "@acmekit/types"
+import { createMedusaContainer } from "@acmekit/utils"
+import { asValue } from "@acmekit/deps/awilix"
 
 import {
   DistributedTransactionEvents,

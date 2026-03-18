@@ -6,7 +6,7 @@ import {
   ModulesSdkTypes,
   ProjectConfigOptions,
   UserTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   arrayDifference,
   CommonEvents,
@@ -21,7 +21,7 @@ import {
   moduleEventBuilderFactory,
   Modules,
   UserEvents,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import jwt, { JwtPayload, SignOptions, VerifyOptions } from "jsonwebtoken"
 import crypto from "node:crypto"
 

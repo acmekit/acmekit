@@ -1,5 +1,5 @@
-import { EllipsisHorizontal, PencilSquare, Plus, Trash } from "/icons"
-import { DropdownMenu, IconButton } from "/ui"
+import { EllipsisHorizontal, PencilSquare, Plus, Trash } from "@acmekit/icons"
+import { DropdownMenu, IconButton } from "@acmekit/ui"
 
 export default function DropdownMenuDemo() {
   return (

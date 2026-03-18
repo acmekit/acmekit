@@ -1,6 +1,6 @@
 import React from "react"
 import clsx from "clsx"
-import { PlusMini } from "/icons"
+import { PlusMini } from "@acmekit/icons"
 
 export type DetailsSummaryProps = {
   title?: React.ReactNode

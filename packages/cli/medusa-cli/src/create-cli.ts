@@ -1,4 +1,4 @@
-import { setTelemetryEnabled } from "/telemetry"
+import { setTelemetryEnabled } from "@acmekit/telemetry"
 import { sync as existsSync } from "fs-exists-cached"
 import path from "path"
 import resolveCwd from "resolve-cwd"

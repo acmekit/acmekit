@@ -1,7 +1,7 @@
-import { AcmeKitModule } from "/framework/modules-sdk"
-import { ILinkModule, ModuleJoinerConfig } from "/framework/types"
-import { defineLink, isObject, Modules } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
+import { ILinkModule, ModuleJoinerConfig } from "@acmekit/framework/types"
+import { defineLink, isObject, Modules } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { MigrationsExecutionPlanner } from "../../src"
 import {
   Car,

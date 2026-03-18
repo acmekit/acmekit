@@ -1,5 +1,5 @@
-import { IWorkflowEngineService } from "/framework/types"
-import { Modules, TransactionHandlerType } from "/framework/utils"
+import { IWorkflowEngineService } from "@acmekit/framework/types"
+import { Modules, TransactionHandlerType } from "@acmekit/framework/utils"
 import {
   createStep,
   createWorkflow,
@@ -7,8 +7,8 @@ import {
   StepResponse,
   transform,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
-import { moduleIntegrationTestRunner } from "/test-utils"
+} from "@acmekit/framework/workflows-sdk"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { setTimeout } from "timers/promises"
 import { ulid } from "ulid"
 import "../__fixtures__"

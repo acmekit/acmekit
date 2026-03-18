@@ -355,8 +355,8 @@ export interface ICachingModuleService extends IModuleService {
  * #### Example
  *
  * ```ts
- * import { ICachingProviderService } from "/framework/types"
- * import { Logger } from "/framework/types"
+ * import { ICachingProviderService } from "@acmekit/framework/types"
+ * import { Logger } from "@acmekit/framework/types"
  *
  * type InjectedDependencies = {
  *   logger: Logger

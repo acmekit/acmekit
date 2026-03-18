@@ -1,6 +1,6 @@
-import { defineConfig } from "/utils"
+import { defineConfig } from "@acmekit/utils"
 
-const { Modules } = require("/utils")
+const { Modules } = require("@acmekit/utils")
 
 const DB_HOST = process.env.DB_HOST
 const DB_USERNAME = process.env.DB_USERNAME
@@ -12,14 +12,14 @@ process.env.LOG_LEVEL = "error"
 
 const customTaxProviderRegistration = {
   resolve: {
-    services: [require("/tax/dist/providers/system").default],
+    services: [require("@acmekit/tax/dist/providers/system").default],
   },
   id: "system_2",
 }
 
 const customPaymentProvider = {
   resolve: {
-    services: [require("/payment/dist/providers/system").default],
+    services: [require("@acmekit/payment/dist/providers/system").default],
   },
   id: "default_2",
 }

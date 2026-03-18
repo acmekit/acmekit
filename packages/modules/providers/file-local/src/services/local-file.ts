@@ -1,8 +1,8 @@
-import { FileTypes, LocalFileServiceOptions } from "/framework/types"
+import { FileTypes, LocalFileServiceOptions } from "@acmekit/framework/types"
 import {
   AbstractFileProviderService,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { createReadStream, createWriteStream } from "fs"
 import fs from "fs/promises"
 import path from "path"

@@ -14,8 +14,8 @@ import {
   PlusMini,
   TrianglesMini,
   XMarkMini,
-} from "/icons"
-import { clx, Text } from "/ui"
+} from "@acmekit/icons"
+import { clx, Text } from "@acmekit/ui"
 import { matchSorter } from "match-sorter"
 import {
   ComponentPropsWithoutRef,

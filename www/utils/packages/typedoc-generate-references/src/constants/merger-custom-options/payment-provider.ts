@@ -55,7 +55,7 @@ The rest of this guide always uses the \`src/modules/my-payment\` directory as a
 Create the file \`src/modules/my-payment/service.ts\` that holds the module provider's main service. It must extend the \`AbstractPaymentProvider\` class imported from \`/framework/utils\`:
 
 \`\`\`ts title="src/modules/my-payment/service.ts"
-import { AbstractPaymentProvider } from "/framework/utils"
+import { AbstractPaymentProvider } from "@acmekit/framework/utils"
 
 type Options = {
   apiKey: string
@@ -80,7 +80,7 @@ import MyPaymentProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export default ModuleProvider(Modules.PAYMENT, {
   services: [MyPaymentProviderService],

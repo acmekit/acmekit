@@ -1,7 +1,7 @@
 import type {
   IDistributedSchedulerStorage,
   SchedulerOptions,
-} from "/orchestration"
+} from "@acmekit/orchestration"
 
 export class MockSchedulerStorage implements IDistributedSchedulerStorage {
   async schedule(

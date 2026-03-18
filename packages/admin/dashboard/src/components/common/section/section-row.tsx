@@ -1,4 +1,4 @@
-import { Text, clx } from "/ui"
+import { Text, clx } from "@acmekit/ui"
 import { ReactNode } from "react"
 
 export type SectionRowProps = {

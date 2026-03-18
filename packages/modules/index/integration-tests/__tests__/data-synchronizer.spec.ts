@@ -4,17 +4,17 @@ import {
   logger,
   AcmeKitAppLoader,
   Migrator,
-} from "/framework"
-import { asValue } from "/framework/awilix"
-import { EntityManager } from "/framework/mikro-orm/postgresql"
-import { AcmeKitAppOutput, AcmeKitModule } from "/framework/modules-sdk"
-import { IndexTypes, InferEntityType } from "/framework/types"
+} from "@acmekit/framework"
+import { asValue } from "@acmekit/framework/awilix"
+import { EntityManager } from "@acmekit/framework/mikro-orm/postgresql"
+import { AcmeKitAppOutput, AcmeKitModule } from "@acmekit/framework/modules-sdk"
+import { IndexTypes, InferEntityType } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   Modules,
   toMikroORMEntity,
-} from "/framework/utils"
-import { initDb, TestDatabaseUtils } from "/test-utils"
+} from "@acmekit/framework/utils"
+import { initDb, TestDatabaseUtils } from "@acmekit/test-utils"
 import { IndexData, IndexRelation } from "@models"
 import { DataSynchronizer } from "@services"
 import * as path from "path"

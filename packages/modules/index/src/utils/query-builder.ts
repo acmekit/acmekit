@@ -1,11 +1,11 @@
-import { IndexTypes } from "/framework/types"
+import { IndexTypes } from "@acmekit/framework/types"
 import {
   isDefined,
   isObject,
   isString,
   unflattenObjectKeys,
-} from "/framework/utils"
-import { Knex } from "/framework/mikro-orm/knex"
+} from "@acmekit/framework/utils"
+import { Knex } from "@acmekit/framework/mikro-orm/knex"
 import { OrderBy, QueryFormat, QueryOptions, Select } from "@types"
 import { getPivotTableName, normalizeTableName } from "./normalze-table-name"
 

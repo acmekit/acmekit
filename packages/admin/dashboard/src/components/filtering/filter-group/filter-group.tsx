@@ -1,4 +1,4 @@
-import { Button, DropdownMenu } from "/ui"
+import { Button, DropdownMenu } from "@acmekit/ui"
 import { ReactNode } from "react"
 import { useSearchParams } from "react-router-dom"
 import { useDocumentDirection } from "../../../hooks/use-document-direction"

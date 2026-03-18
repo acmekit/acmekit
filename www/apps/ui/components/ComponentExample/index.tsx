@@ -1,7 +1,7 @@
 "use client"
 
-import { Spinner } from "/icons"
-import { Tabs, clx } from "/ui"
+import { Spinner } from "@acmekit/icons"
+import { Tabs, clx } from "@acmekit/ui"
 import { CodeBlock } from "docs-ui"
 import * as React from "react"
 

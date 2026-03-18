@@ -3,7 +3,7 @@ const presets = require("./theme-presets")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [require("/ui-preset")],
+  presets: [require("@acmekit/ui-preset")],
   darkMode: ["class", `[data-theme="dark"]`],
   theme: {
     extend: {

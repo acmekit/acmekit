@@ -1,6 +1,6 @@
-import type { IFileModuleService } from "/framework/types"
-import { Modules } from "/framework/utils"
-import { createStep, StepResponse } from "/framework/workflows-sdk"
+import type { IFileModuleService } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
 
 /**
  * The data to upload files.

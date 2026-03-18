@@ -2,7 +2,7 @@ import {
   JoinerRelationship,
   ModuleExports,
   ModuleJoinerConfig,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import { getModuleService, getReadOnlyModuleService } from "@services"
 import { getLoaders } from "../loaders"
 

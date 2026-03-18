@@ -1,11 +1,11 @@
-import { Lifetime, asFunction, asValue } from "/framework/awilix"
-import { moduleProviderLoader } from "/framework/modules-sdk"
-import { LoaderOptions, ModulesSdkTypes } from "/framework/types"
+import { Lifetime, asFunction, asValue } from "@acmekit/framework/awilix"
+import { moduleProviderLoader } from "@acmekit/framework/modules-sdk"
+import { LoaderOptions, ModulesSdkTypes } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   lowerCaseFirst,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { NotificationProvider } from "@models"
 import { NotificationProviderService } from "@services"
 import {

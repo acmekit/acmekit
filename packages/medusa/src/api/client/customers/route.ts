@@ -1,11 +1,11 @@
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
-import { createCustomerAccountWorkflow } from "/core-flows"
-import { HttpTypes } from "/framework/types"
+import { createCustomerAccountWorkflow } from "@acmekit/core-flows"
+import { HttpTypes } from "@acmekit/framework/types"
 import { refetchCustomer } from "./helpers"
 
 export const POST = async (

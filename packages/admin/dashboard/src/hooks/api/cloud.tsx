@@ -1,4 +1,4 @@
-import { FetchError } from "/js-sdk"
+import { FetchError } from "@acmekit/js-sdk"
 import {
   UseMutationOptions,
   UseQueryOptions,

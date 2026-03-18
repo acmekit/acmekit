@@ -1,4 +1,4 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import FormData from "form-data"
 import fs from "fs/promises"
 import os from "os"

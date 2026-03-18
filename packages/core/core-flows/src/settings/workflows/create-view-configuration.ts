@@ -1,13 +1,13 @@
 import {
   CreateViewConfigurationDTO,
   ViewConfigurationDTO,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
   when,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import {
   createViewConfigurationStep,
   setActiveViewConfigurationStep,

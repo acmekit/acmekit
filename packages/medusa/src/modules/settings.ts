@@ -1,6 +1,6 @@
-import SettingsModule from "/settings"
+import SettingsModule from "@acmekit/settings"
 
-export * from "/settings"
+export * from "@acmekit/settings"
 
 export default SettingsModule
 export const discoveryPath = require.resolve("/settings")

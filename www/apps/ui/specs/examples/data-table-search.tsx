@@ -1,4 +1,4 @@
-import { createDataTableColumnHelper, useDataTable, DataTable, Heading } from "/ui"
+import { createDataTableColumnHelper, useDataTable, DataTable, Heading } from "@acmekit/ui"
 import { useMemo, useState } from "react"
 
 const products = [

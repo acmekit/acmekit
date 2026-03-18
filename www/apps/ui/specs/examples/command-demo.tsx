@@ -1,4 +1,4 @@
-import { Badge, Command } from "/ui"
+import { Badge, Command } from "@acmekit/ui"
 
 export default function CommandDemo() {
   return (

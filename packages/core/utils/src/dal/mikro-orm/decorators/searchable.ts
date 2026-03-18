@@ -1,4 +1,4 @@
-import { MetadataStorage } from "/deps/mikro-orm/core"
+import { MetadataStorage } from "@acmekit/deps/mikro-orm/core"
 
 export function Searchable() {
   return function (target, propertyName) {

@@ -1,1 +1,1 @@
-export * from "/workflows-sdk/composer"
+export * from "@acmekit/workflows-sdk/composer"

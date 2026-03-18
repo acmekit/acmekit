@@ -1,4 +1,4 @@
-import { AcmeKitError } from "/utils"
+import { AcmeKitError } from "@acmekit/utils"
 import { hasPermission } from "../../policies/has-permission"
 import type {
   AuthenticatedMedusaRequest,

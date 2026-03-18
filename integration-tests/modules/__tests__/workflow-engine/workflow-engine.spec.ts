@@ -1,14 +1,14 @@
-import { emitEventStep } from "/core-flows"
-import { Modules, TransactionState } from "/framework/utils"
+import { emitEventStep } from "@acmekit/core-flows"
+import { Modules, TransactionState } from "@acmekit/framework/utils"
 import {
   createStep,
   createWorkflow,
   StepResponse,
   WorkflowData,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { IEventBusModuleService } from "/types"
+} from "@acmekit/framework/workflows-sdk"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { IEventBusModuleService } from "@acmekit/types"
 import {
   adminHeaders,
   createAdminUser,

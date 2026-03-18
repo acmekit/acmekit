@@ -1,10 +1,10 @@
-import { trackFeatureFlag } from "/telemetry"
+import { trackFeatureFlag } from "@acmekit/telemetry"
 import {
   ContainerRegistrationKeys,
   discoverAndRegisterFeatureFlags,
   FeatureFlag,
   FlagRouter,
-} from "/utils"
+} from "@acmekit/utils"
 import { asFunction } from "../deps/awilix"
 import { normalize } from "path"
 import { configManager } from "../config"

@@ -1,15 +1,15 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
 import {
   StoreGetCustomerParamsType,
 } from "../validators"
 import { refetchCustomer } from "../helpers"
-import { AcmeKitError } from "/framework/utils"
-import { updateCustomersWorkflow } from "/core-flows"
-import { HttpTypes } from "/framework/types"
+import { AcmeKitError } from "@acmekit/framework/utils"
+import { updateCustomersWorkflow } from "@acmekit/core-flows"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<StoreGetCustomerParamsType>,

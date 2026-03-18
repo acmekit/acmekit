@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { HttpTypes } from "/types"
-import { Button, Input, toast } from "/ui"
+import { HttpTypes } from "@acmekit/types"
+import { Button, Input, toast } from "@acmekit/ui"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import * as zod from "zod"

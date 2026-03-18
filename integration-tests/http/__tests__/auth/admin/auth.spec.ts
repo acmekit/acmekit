@@ -1,6 +1,6 @@
-import { generateResetPasswordTokenWorkflow } from "/core-flows"
-import { AuthWorkflowEvents, Modules } from "/framework/utils"
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { generateResetPasswordTokenWorkflow } from "@acmekit/core-flows"
+import { AuthWorkflowEvents, Modules } from "@acmekit/framework/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import jwt from "jsonwebtoken"
 import {
   adminHeaders,

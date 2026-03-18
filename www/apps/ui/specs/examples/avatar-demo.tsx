@@ -1,4 +1,4 @@
-import { Avatar } from "/ui"
+import { Avatar } from "@acmekit/ui"
 
 export default function AvatarDemo() {
   return (

@@ -1,7 +1,7 @@
 // Not currently used, re-implement or delete depending on whether there is a need for it in the future.
 
-// import { TrianglesMini } from "/icons"
-// import { clx } from "/ui"
+// import { TrianglesMini } from "@acmekit/icons"
+// import { clx } from "@acmekit/ui"
 // import { ComponentPropsWithoutRef, forwardRef, memo } from "react"
 // import { Controller, ControllerRenderProps } from "react-hook-form"
 

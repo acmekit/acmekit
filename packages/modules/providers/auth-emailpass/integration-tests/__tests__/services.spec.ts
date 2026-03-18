@@ -1,4 +1,4 @@
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import Scrypt from "scrypt-kdf"
 import { EmailPassAuthService } from "../../src/services/emailpass"
 

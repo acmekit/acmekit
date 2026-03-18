@@ -16,4 +16,4 @@ export * from "./zod"
 
 export const MEDUSA_CLI_PATH = require.resolve("/cli")
 
-export { Query } from "/modules-sdk"
+export { Query } from "@acmekit/modules-sdk"

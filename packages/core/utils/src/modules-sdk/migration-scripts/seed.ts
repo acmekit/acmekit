@@ -1,5 +1,5 @@
-import { LoaderOptions, Logger, ModulesSdkTypes } from "/types"
-import { EntitySchema } from "/deps/mikro-orm/core"
+import { LoaderOptions, Logger, ModulesSdkTypes } from "@acmekit/types"
+import { EntitySchema } from "@acmekit/deps/mikro-orm/core"
 import { EOL } from "os"
 import { resolve } from "path"
 import { dynamicImport, isFileSkipped } from "../../common"

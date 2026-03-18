@@ -1,4 +1,4 @@
-import { FlagSettings } from "/framework/feature-flags"
+import { FlagSettings } from "@acmekit/framework/feature-flags"
 
 export const EnvFeatureFlag: FlagSettings = {
   key: "env_ff",

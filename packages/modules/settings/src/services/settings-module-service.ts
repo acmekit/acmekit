@@ -5,7 +5,7 @@ import {
   InternalModuleDeclaration,
   ModulesSdkTypes,
   SettingsTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   EmitEvents,
   InjectManager,
@@ -13,7 +13,7 @@ import {
   AcmeKitContext,
   AcmeKitError,
   AcmeKitService,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { ViewConfiguration, UserPreference } from "@/models"
 
 type InjectedDependencies = {

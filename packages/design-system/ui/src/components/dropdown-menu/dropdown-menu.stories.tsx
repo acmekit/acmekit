@@ -1,4 +1,4 @@
-import { EllipsisHorizontal, PencilSquare, Plus, Trash } from "/icons"
+import { EllipsisHorizontal, PencilSquare, Plus, Trash } from "@acmekit/icons"
 import type { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 

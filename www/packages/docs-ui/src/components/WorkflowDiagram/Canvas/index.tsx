@@ -8,8 +8,8 @@ import {
   motion,
 } from "framer-motion"
 import React, { useEffect, useRef, useState } from "react"
-import { ArrowPathMini, MinusMini, PlusMini } from "/icons"
-import { DropdownMenu, Text } from "/ui"
+import { ArrowPathMini, MinusMini, PlusMini } from "@acmekit/icons"
+import { DropdownMenu, Text } from "@acmekit/ui"
 import {
   createNodeClusters,
   getNextCluster,

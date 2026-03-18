@@ -1,9 +1,9 @@
-import { container, AcmeKitAppLoader } from "/framework"
-import { IModuleService, Logger } from "/framework/types"
+import { container, AcmeKitAppLoader } from "@acmekit/framework"
+import { IModuleService, Logger } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   dynamicImport,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { join, relative } from "path"
 import { ModuleCacheManager } from "../module-cache-manager"
 import { CONFIG, FileChangeAction } from "../types"

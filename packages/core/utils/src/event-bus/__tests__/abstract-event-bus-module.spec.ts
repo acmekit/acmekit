@@ -1,4 +1,4 @@
-import { EventBusTypes } from "/types"
+import { EventBusTypes } from "@acmekit/types"
 import { AbstractEventBusModuleService } from ".."
 
 class MockEventBusModuleService extends AbstractEventBusModuleService {

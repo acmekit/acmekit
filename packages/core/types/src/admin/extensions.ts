@@ -8,8 +8,8 @@
  *
  * @example
  * ```tsx
- * import type { DetailWidgetProps, AdminProduct } from "/types"
- * import { defineWidgetConfig } from "/admin-sdk"
+ * import type { DetailWidgetProps, AdminProduct } from "@acmekit/types"
+ * import { defineWidgetConfig } from "@acmekit/admin-sdk"
  *
  * const ProductWidget = ({ data }: DetailWidgetProps<AdminProduct>) => {
  *  return <div>{data.title}</div>

@@ -1,6 +1,6 @@
-import SendGridNotificationProvider from "/notification-sendgrid"
+import SendGridNotificationProvider from "@acmekit/notification-sendgrid"
 
-export * from "/notification-sendgrid"
+export * from "@acmekit/notification-sendgrid"
 
 export default SendGridNotificationProvider
 export const discoveryPath = require.resolve("/notification-sendgrid")

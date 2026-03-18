@@ -1,6 +1,6 @@
-import { Modules } from "/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
-import { SettingsTypes } from "/types"
+import { Modules } from "@acmekit/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
+import { SettingsTypes } from "@acmekit/types"
 
 jest.setTimeout(30000)
 

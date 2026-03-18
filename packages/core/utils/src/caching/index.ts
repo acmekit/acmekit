@@ -1,4 +1,4 @@
-import { ICachingModuleService, Logger, AcmeKitContainer } from "/types"
+import { ICachingModuleService, Logger, AcmeKitContainer } from "@acmekit/types"
 import { AcmeKitContextType, Modules } from "../modules-sdk"
 import { FeatureFlag } from "../feature-flags"
 import { ContainerRegistrationKeys, isObject } from "../common"

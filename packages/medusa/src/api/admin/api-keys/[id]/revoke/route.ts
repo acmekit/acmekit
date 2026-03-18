@@ -1,10 +1,10 @@
-import { revokeApiKeysWorkflow } from "/core-flows"
+import { revokeApiKeysWorkflow } from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { refetchApiKey } from "../../helpers"
-import { HttpTypes } from "/framework/types"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<

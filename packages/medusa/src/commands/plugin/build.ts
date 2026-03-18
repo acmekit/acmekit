@@ -1,5 +1,5 @@
-import { Compiler } from "/framework/build-tools"
-import { logger } from "/framework/logger"
+import { Compiler } from "@acmekit/framework/build-tools"
+import { logger } from "@acmekit/framework/logger"
 
 export default async function build({ directory }: { directory: string }) {
   logger.info("Starting build...")

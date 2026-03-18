@@ -4,8 +4,8 @@ import {
   getTotalVariantAvailability,
   getVariantAvailability,
   AcmeKitError,
-} from "/framework/utils"
-import { AcmeKitRequest, AcmeKitStoreRequest } from "/framework/http"
+} from "@acmekit/framework/utils"
+import { AcmeKitRequest, AcmeKitStoreRequest } from "@acmekit/framework/http"
 import {
   wrapVariantsWithInventoryQuantityForSalesChannel,
   wrapVariantsWithTotalInventoryQuantity,

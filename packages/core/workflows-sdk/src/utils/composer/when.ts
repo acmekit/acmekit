@@ -1,4 +1,4 @@
-import { isDefined, isObject, OrchestrationUtils } from "/utils"
+import { isDefined, isObject, OrchestrationUtils } from "@acmekit/utils"
 import { ulid } from "ulid"
 import { createStep } from "./create-step"
 import { StepResponse } from "./helpers/step-response"
@@ -33,7 +33,7 @@ type ThenFunc = <ThenResolver extends () => any>(
  *   createWorkflow,
  *   WorkflowResponse,
  *   when,
- * } from "/framework/workflows-sdk"
+ * } from "@acmekit/framework/workflows-sdk"
  * // step imports...
  *
  * export const workflow = createWorkflow(

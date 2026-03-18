@@ -2,8 +2,8 @@ import {
   Constructor,
   ILinkModule,
   ModuleJoinerConfig,
-} from "/framework/types"
-import { isDefined } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { isDefined } from "@acmekit/framework/utils"
 import { LinkModuleService } from "@services"
 
 export function getModuleService(

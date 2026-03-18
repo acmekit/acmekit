@@ -1,8 +1,8 @@
-import { asClass, asValue } from "/framework/awilix"
+import { asClass, asValue } from "@acmekit/framework/awilix"
 import { PostgresProvider } from "../services/postgres-provider"
-import { MikroOrmBaseRepository as BaseRepository } from "/framework/utils"
+import { MikroOrmBaseRepository as BaseRepository } from "@acmekit/framework/utils"
 import { IndexModuleService } from "@services"
-import { LoaderOptions } from "/framework/types"
+import { LoaderOptions } from "@acmekit/framework/types"
 
 export default async ({ container, options }: LoaderOptions): Promise<void> => {
   container.register({

@@ -1,5 +1,5 @@
-import { AcmeKitError, Modules } from "/framework/utils"
-import { createStep } from "/framework/workflows-sdk"
+import { AcmeKitError, Modules } from "@acmekit/framework/utils"
+import { createStep } from "@acmekit/framework/workflows-sdk"
 import { CreateCustomerAccountWorkflowInput } from "../workflows"
 
 export const validateCustomerAccountCreationStepId =

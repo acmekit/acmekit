@@ -1,11 +1,11 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { AcmeKitError } from "/framework/utils"
+} from "@acmekit/framework/http"
+import { AcmeKitError } from "@acmekit/framework/utils"
 
-import { deleteInvitesWorkflow } from "/core-flows"
-import { HttpTypes } from "/framework/types"
+import { deleteInvitesWorkflow } from "@acmekit/core-flows"
+import { HttpTypes } from "@acmekit/framework/types"
 import { refetchInvite } from "../helpers"
 
 export const GET = async (

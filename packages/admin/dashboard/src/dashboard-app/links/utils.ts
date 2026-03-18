@@ -1,4 +1,4 @@
-import { CustomFieldModel } from "/admin-shared"
+import { CustomFieldModel } from "@acmekit/admin-shared"
 import linkModule from "virtual:medusa/links"
 
 function appendLinkableFields(

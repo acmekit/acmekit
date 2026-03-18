@@ -1,5 +1,5 @@
-import { EllipseMiniSolid } from "/icons"
-import { Input, Label, clx } from "/ui"
+import { EllipseMiniSolid } from "@acmekit/icons"
+import { Input, Label, clx } from "@acmekit/ui"
 import debounce from "lodash.debounce"
 import {
   Popover as RadixPopover,

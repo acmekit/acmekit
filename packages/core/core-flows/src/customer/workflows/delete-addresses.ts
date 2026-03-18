@@ -3,7 +3,7 @@ import {
   WorkflowResponse,
   createHook,
   createWorkflow,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { deleteCustomerAddressesStep } from "../steps"
 
 /**

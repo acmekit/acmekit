@@ -1,7 +1,7 @@
 import { ErrorRequestHandler, NextFunction, Response } from "express"
 import { fromZodIssue } from "zod-validation-error"
 
-import { ContainerRegistrationKeys, AcmeKitError } from "/utils"
+import { ContainerRegistrationKeys, AcmeKitError } from "@acmekit/utils"
 import { AcmeKitRequest } from "../types"
 import { formatException } from "./exception-formatter"
 

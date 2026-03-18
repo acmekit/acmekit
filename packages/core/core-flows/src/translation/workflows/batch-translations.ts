@@ -3,8 +3,8 @@ import {
   parallelize,
   transform,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
-import { CreateTranslationDTO, UpdateTranslationDTO } from "/types"
+} from "@acmekit/framework/workflows-sdk"
+import { CreateTranslationDTO, UpdateTranslationDTO } from "@acmekit/types"
 import { createTranslationsWorkflow } from "./create-translations"
 import { deleteTranslationsWorkflow } from "./delete-translations"
 import { updateTranslationsWorkflow } from "./update-translations"

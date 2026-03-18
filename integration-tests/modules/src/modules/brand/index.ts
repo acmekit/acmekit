@@ -1,4 +1,4 @@
-import { Module } from "/utils"
+import { Module } from "@acmekit/utils"
 import { BrandModuleService } from "./service"
 
 export const BRAND_MODULE = "brand"

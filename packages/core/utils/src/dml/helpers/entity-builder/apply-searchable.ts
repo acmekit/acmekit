@@ -2,7 +2,7 @@ import {
   EntityConstructor,
   PropertyMetadata,
   RelationshipMetadata,
-} from "/types"
+} from "@acmekit/types"
 import { Searchable } from "../../../dal"
 
 /**

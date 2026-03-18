@@ -1,4 +1,4 @@
-import { clx } from "/ui"
+import { clx } from "@acmekit/ui"
 import { getStylizedAmount } from "../../../../../lib/money-amount-helpers"
 import { PlaceholderCell } from "../placeholder-cell"
 

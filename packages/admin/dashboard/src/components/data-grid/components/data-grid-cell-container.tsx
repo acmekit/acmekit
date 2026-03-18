@@ -1,6 +1,6 @@
 import { ErrorMessage } from "@hookform/error-message"
-import { ExclamationCircle } from "/icons"
-import { Tooltip, clx } from "/ui"
+import { ExclamationCircle } from "@acmekit/icons"
+import { Tooltip, clx } from "@acmekit/ui"
 import { PropsWithChildren } from "react"
 import { get } from "react-hook-form"
 

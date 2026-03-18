@@ -6,9 +6,9 @@
  * not being properly cleared.
  */
 
-import { IWorkflowEngineService } from "/framework/types"
-import { Modules } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { IWorkflowEngineService } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   retryIntervalStep1InvokeMock,
   retryIntervalStep2InvokeMock,

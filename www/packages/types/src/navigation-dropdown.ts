@@ -1,4 +1,4 @@
-import { IconProps } from "/icons/dist/types.js"
+import { IconProps } from "@acmekit/icons/dist/types.js"
 
 export type NavigationDropdownItemLink = {
   path: string

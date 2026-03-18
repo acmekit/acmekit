@@ -1,5 +1,5 @@
-import { XMarkMini } from "/icons"
-import { Text, clx } from "/ui"
+import { XMarkMini } from "@acmekit/icons"
+import { Text, clx } from "@acmekit/ui"
 import { Popover as RadixPopover } from "radix-ui"
 import { MouseEvent } from "react"
 import { useTranslation } from "react-i18next"

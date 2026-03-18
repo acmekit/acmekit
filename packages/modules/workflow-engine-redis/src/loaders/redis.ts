@@ -1,8 +1,8 @@
 import {
   InternalModuleDeclaration,
   LoaderOptions,
-} from "/framework/types"
-import { asValue } from "/framework/awilix"
+} from "@acmekit/framework/types"
+import { asValue } from "@acmekit/framework/awilix"
 import Redis from "ioredis"
 import { RedisWorkflowsOptions } from "../types"
 

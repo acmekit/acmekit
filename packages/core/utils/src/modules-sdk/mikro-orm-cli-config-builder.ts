@@ -4,8 +4,8 @@ import type {
   EntityClassGroup,
   EntitySchema,
   MikroORMOptions,
-} from "/deps/mikro-orm/core"
-import { defineConfig } from "/deps/mikro-orm/postgresql"
+} from "@acmekit/deps/mikro-orm/core"
+import { defineConfig } from "@acmekit/deps/mikro-orm/postgresql"
 import { kebabCase } from "../common"
 import { CustomDBMigrator, CustomTsMigrationGenerator } from "../dal"
 import { DmlEntity, toMikroOrmEntities } from "../dml"

@@ -1,4 +1,4 @@
-import { model } from "/framework/utils";
+import { model } from "@acmekit/framework/utils";
 
 export default model.define("translation", {
   id: model.id({ prefix: "i18n" }).primaryKey(),

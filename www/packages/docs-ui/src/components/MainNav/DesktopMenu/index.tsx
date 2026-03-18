@@ -1,6 +1,6 @@
 "use client"
 
-import { BarsThree, Book, SidebarLeft, TimelineVertical } from "/icons"
+import { BarsThree, Book, SidebarLeft, TimelineVertical } from "@acmekit/icons"
 import React, { useMemo, useRef, useState } from "react"
 import { Button } from "@/components/Button"
 import { Menu } from "@/components/Menu"

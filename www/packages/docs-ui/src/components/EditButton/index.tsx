@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import clsx from "clsx"
-import { ArrowUpRightOnBox } from "/icons"
+import { ArrowUpRightOnBox } from "@acmekit/icons"
 import { EditDate } from "../EditDate"
 
 type EditButtonProps = {

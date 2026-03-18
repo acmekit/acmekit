@@ -1,6 +1,6 @@
-import { SqlEntityManager } from "/framework/mikro-orm/postgresql"
-import { Context } from "/framework/types"
-import { MikroOrmBase } from "/framework/utils"
+import { SqlEntityManager } from "@acmekit/framework/mikro-orm/postgresql"
+import { Context } from "@acmekit/framework/types"
+import { MikroOrmBase } from "@acmekit/framework/utils"
 
 export class RbacRepository extends MikroOrmBase {
   constructor() {

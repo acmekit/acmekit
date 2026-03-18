@@ -3,7 +3,7 @@
 import React, { MouseEvent } from "react"
 import { useSearch } from "@/providers/Search"
 import { Button } from "@/components/Button"
-import { MagnifyingGlass } from "/icons"
+import { MagnifyingGlass } from "@acmekit/icons"
 import { useKeyboardShortcut } from "@/hooks"
 
 export type SearchModalOpenerProps = {

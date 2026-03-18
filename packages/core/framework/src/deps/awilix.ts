@@ -1,1 +1,1 @@
-export * from "/deps/awilix"
+export * from "@acmekit/deps/awilix"

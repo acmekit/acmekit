@@ -1,9 +1,9 @@
-import type { LinkDefinition } from "/framework/types"
+import type { LinkDefinition } from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { updateRemoteLinksStep } from "../steps/update-remote-links"
 
 export const updateLinksWorkflowId = "update-link"
@@ -20,7 +20,7 @@ export const updateLinksWorkflowId = "update-link"
  * .run({
  *   input: [
  *     {
- *       // import { Modules } from "/framework/utils"
+ *       // import { Modules } from "@acmekit/framework/utils"
  *       [Modules.PRODUCT]: {
  *         product_id: "prod_123",
  *       },

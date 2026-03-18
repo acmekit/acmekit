@@ -1,4 +1,4 @@
-import { Text } from "/ui"
+import { Text } from "@acmekit/ui"
 import { ReactNode } from "react"
 
 export interface ListicleProps {

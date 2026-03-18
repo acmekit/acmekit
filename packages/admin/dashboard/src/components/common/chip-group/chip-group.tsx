@@ -1,5 +1,5 @@
-import { XMarkMini } from "/icons"
-import { Button, clx } from "/ui"
+import { XMarkMini } from "@acmekit/icons"
+import { Button, clx } from "@acmekit/ui"
 import { Children, PropsWithChildren, createContext, useContext } from "react"
 import { useTranslation } from "react-i18next"
 

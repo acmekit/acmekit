@@ -6,8 +6,8 @@ import {
   FolderOpenIllustration,
   TagIllustration,
   TriangleRightMini,
-} from "/icons"
-import { Badge, clx, IconButton } from "/ui"
+} from "@acmekit/icons"
+import { Badge, clx, IconButton } from "@acmekit/ui"
 import { HandleProps } from "./types"
 
 export interface TreeItemProps

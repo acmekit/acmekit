@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next"
-import { PaymentProviderDTO } from "/types"
+import { PaymentProviderDTO } from "@acmekit/types"
 
 import { formatProvider } from "../../../../../lib/format-provider"
 import { PlaceholderCell } from "../../common/placeholder-cell"

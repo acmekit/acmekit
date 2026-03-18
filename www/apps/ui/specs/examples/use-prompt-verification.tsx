@@ -1,4 +1,4 @@
-import { Button, usePrompt } from "/ui"
+import { Button, usePrompt } from "@acmekit/ui"
 
 export default function usePromptVerification() {
   const entityName = "foo-bar-baz"

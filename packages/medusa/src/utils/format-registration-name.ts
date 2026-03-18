@@ -1,5 +1,5 @@
 import { parse } from "path"
-import { toCamelCase, upperCaseFirst } from "/framework/utils"
+import { toCamelCase, upperCaseFirst } from "@acmekit/framework/utils"
 
 /**
  * Formats a filename into the correct container resolution name.

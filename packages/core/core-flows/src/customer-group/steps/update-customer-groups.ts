@@ -2,13 +2,13 @@ import {
   CustomerGroupUpdatableFields,
   FilterableCustomerGroupProps,
   ICustomerModuleService,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   Modules,
   getSelectsAndRelationsFromObjectArray,
   promiseAll,
-} from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+} from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 /**
  * The data to update customer groups.

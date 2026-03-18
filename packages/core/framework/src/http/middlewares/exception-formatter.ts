@@ -1,4 +1,4 @@
-import { AcmeKitError } from "/utils"
+import { AcmeKitError } from "@acmekit/utils"
 
 export enum PostgresError {
   DUPLICATE_ERROR = "23505",

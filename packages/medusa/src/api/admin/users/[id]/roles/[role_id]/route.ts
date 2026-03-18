@@ -1,8 +1,8 @@
-import { removeUserRolesWorkflow } from "/core-flows"
+import { removeUserRolesWorkflow } from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
 /**
  * @ignore

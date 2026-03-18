@@ -5,7 +5,7 @@ import type {
   CustomFieldModelFormTabsMap,
   InjectionZone,
   NestedRoutePosition,
-} from "/admin-shared"
+} from "@acmekit/admin-shared"
 import type { ComponentType } from "react"
 import { ZodFirstPartySchemaTypes } from "zod"
 

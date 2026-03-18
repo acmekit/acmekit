@@ -1,12 +1,12 @@
-import type { InviteWorkflow, UserDTO } from "/framework/types"
-import { InviteWorkflowEvents } from "/framework/utils"
+import type { InviteWorkflow, UserDTO } from "@acmekit/framework/types"
+import { InviteWorkflowEvents } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
   parallelize,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { setAuthAppMetadataStep } from "../../auth"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { createUsersWorkflow } from "../../user"

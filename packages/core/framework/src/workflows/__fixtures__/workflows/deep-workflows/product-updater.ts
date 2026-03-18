@@ -2,7 +2,7 @@ import {
   createStep,
   createWorkflow,
   WorkflowResponse,
-} from "/workflows-sdk"
+} from "@acmekit/workflows-sdk"
 
 export const productWorkflowId = "product-notifier-workflow"
 

@@ -2,7 +2,7 @@ import React from "react"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { fireEvent, render } from "@testing-library/react"
 import { OptionType } from "@/hooks/use-select"
-import { IconProps } from "/icons/dist/types"
+import { IconProps } from "@acmekit/icons/dist/types"
 
 // mock components
 vi.mock("/icons", () => ({

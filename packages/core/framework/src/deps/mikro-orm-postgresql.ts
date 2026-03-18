@@ -1,1 +1,1 @@
-export * from "/deps/mikro-orm/postgresql"
+export * from "@acmekit/deps/mikro-orm/postgresql"

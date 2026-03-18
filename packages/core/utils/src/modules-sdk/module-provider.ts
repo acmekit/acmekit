@@ -1,4 +1,4 @@
-import { ModuleProviderExports } from "/types"
+import { ModuleProviderExports } from "@acmekit/types"
 
 /**
  * Wrapper to build the module provider export

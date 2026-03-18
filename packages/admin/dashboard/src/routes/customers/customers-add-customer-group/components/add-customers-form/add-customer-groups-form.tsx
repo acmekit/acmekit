@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Button, Checkbox, Hint, Tooltip, toast } from "/ui"
+import { Button, Checkbox, Hint, Tooltip, toast } from "@acmekit/ui"
 import {
   OnChangeFn,
   RowSelectionState,
@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import * as zod from "zod"
 
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import {
   RouteFocusModal,
   useRouteModal,

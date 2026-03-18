@@ -1,4 +1,4 @@
-import { FlagSettings, Logger } from "/types"
+import { FlagSettings, Logger } from "@acmekit/types"
 import { discoverFeatureFlagsFromDir } from "./discover-feature-flags"
 import { FlagRouter } from "./flag-router"
 import { registerFeatureFlag } from "./register-flag"

@@ -7,7 +7,7 @@ import {
   TimelineVertical,
   User as UserIcon,
   XMark,
-} from "/icons"
+} from "@acmekit/icons"
 import {
   Avatar,
   DropdownMenu,
@@ -17,7 +17,7 @@ import {
   Kbd,
   Text,
   clx,
-} from "/ui"
+} from "@acmekit/ui"
 import { Dialog as RadixDialog } from "radix-ui"
 import { useTranslation } from "react-i18next"
 

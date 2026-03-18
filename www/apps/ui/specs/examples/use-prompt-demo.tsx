@@ -1,4 +1,4 @@
-import { Button, usePrompt } from "/ui"
+import { Button, usePrompt } from "@acmekit/ui"
 
 export default function usePromptDemo() {
   const dialog = usePrompt()

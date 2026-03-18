@@ -1,4 +1,4 @@
-import { Logger } from "/framework/types"
+import { Logger } from "@acmekit/framework/types"
 import { RedisCacheModuleOptions } from "@types"
 import { Redis } from "ioredis"
 import { createGunzip, createGzip } from "zlib"

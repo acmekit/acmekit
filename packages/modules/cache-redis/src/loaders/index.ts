@@ -1,5 +1,5 @@
-import { LoaderOptions } from "/framework/types"
-import { asValue } from "/framework/awilix"
+import { LoaderOptions } from "@acmekit/framework/types"
+import { asValue } from "@acmekit/framework/awilix"
 import Redis from "ioredis"
 import { RedisCacheModuleOptions } from "../types"
 

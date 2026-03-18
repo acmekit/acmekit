@@ -2,7 +2,7 @@ const {
   defineConfig,
   Modules,
   ContainerRegistrationKeys,
-} = require("/framework/utils")
+} = require("@acmekit/framework/utils")
 const { schema } = require("./schema")
 
 export const dbName =

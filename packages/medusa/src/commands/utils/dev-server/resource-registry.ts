@@ -3,7 +3,7 @@ import {
   inverseDevServerRegistry,
   ResourceMap,
   ResourcePath,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export class ResourceRegistry {
   /**

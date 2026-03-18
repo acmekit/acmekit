@@ -1,5 +1,5 @@
-import { Logger } from "/types"
-import { dynamicImport, promiseAll, readDirRecursive } from "/utils"
+import { Logger } from "@acmekit/types"
+import { dynamicImport, promiseAll, readDirRecursive } from "@acmekit/utils"
 import { Dirent } from "fs"
 import { access } from "fs/promises"
 import { join } from "path"

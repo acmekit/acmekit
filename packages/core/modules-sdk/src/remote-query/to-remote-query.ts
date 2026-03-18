@@ -2,8 +2,8 @@ import {
   RemoteQueryFilters,
   RemoteQueryGraph,
   RemoteQueryInput,
-} from "/types"
-import { isObject, QueryContext } from "/utils"
+} from "@acmekit/types"
+import { isObject, QueryContext } from "@acmekit/utils"
 import { parseAndAssignFilters } from "./parse-filters"
 
 const FIELDS = "__fields"

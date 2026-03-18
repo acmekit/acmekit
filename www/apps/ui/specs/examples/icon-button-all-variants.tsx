@@ -1,5 +1,5 @@
-import { IconButton } from "/ui"
-import { PlusMini } from "/icons"
+import { IconButton } from "@acmekit/ui"
+import { PlusMini } from "@acmekit/icons"
 
 export default function IconButtonAllVariants() {
   return (

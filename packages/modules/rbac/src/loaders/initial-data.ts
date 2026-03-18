@@ -2,7 +2,7 @@ import {
   InferEntityType,
   LoaderOptions,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import { RbacPolicy, RbacRole, RbacRolePolicy } from "@models"
 
 export default async ({

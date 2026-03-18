@@ -1,5 +1,5 @@
-import { ExclamationCircle } from "/icons"
-import { Button, Text } from "/ui"
+import { ExclamationCircle } from "@acmekit/icons"
+import { Button, Text } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 

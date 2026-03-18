@@ -1,10 +1,10 @@
-import { RemoteQueryFunction } from "/framework/types"
+import { RemoteQueryFunction } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { NextFunction } from "express"
-import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
 
 /**
  * If a publishable key (PK) is passed in the header of the request, we attach

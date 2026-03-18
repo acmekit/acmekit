@@ -1,4 +1,4 @@
-import { InternalModuleDeclaration } from "/types"
+import { InternalModuleDeclaration } from "@acmekit/types"
 
 export class ModuleService {
   constructor(

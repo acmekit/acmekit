@@ -1,10 +1,10 @@
-import { linkCustomersToCustomerGroupWorkflow } from "/core-flows"
+import { linkCustomersToCustomerGroupWorkflow } from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
-import { HttpTypes } from "/framework/types"
+import { HttpTypes } from "@acmekit/framework/types"
 import { refetchCustomerGroup } from "../../helpers"
 
 export const POST = async (

@@ -1,6 +1,6 @@
-import { Modules } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
-import { IAuthModuleService } from "/types"
+import { Modules } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
+import { IAuthModuleService } from "@acmekit/types"
 import jwt from "jsonwebtoken"
 
 jest.setTimeout(30000)

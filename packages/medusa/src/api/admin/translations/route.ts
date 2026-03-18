@@ -1,10 +1,10 @@
-import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
-import { HttpTypes } from "/framework/types"
+import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
+import { HttpTypes } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import TranslationFeatureFlag from "../../../feature-flags/translation"
 
 /**

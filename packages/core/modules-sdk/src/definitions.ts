@@ -1,10 +1,10 @@
-import { ModuleDefinition } from "/types"
+import { ModuleDefinition } from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   MODULE_PACKAGE_NAMES,
   Modules,
   upperCaseFirst,
-} from "/utils"
+} from "@acmekit/utils"
 import { MODULE_SCOPE } from "./types"
 
 export const ModulesDefinition: {

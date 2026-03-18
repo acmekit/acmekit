@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 
 const IndexRelation = model.define("IndexRelation", {
   id: model.autoincrement().primaryKey(),

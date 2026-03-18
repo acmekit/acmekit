@@ -1,4 +1,4 @@
-import { Module, Modules } from "/framework/utils"
+import { Module, Modules } from "@acmekit/framework/utils"
 import { WorkflowsModuleService } from "@services"
 import { loadUtils } from "./loaders"
 

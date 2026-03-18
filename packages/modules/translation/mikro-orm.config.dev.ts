@@ -1,4 +1,4 @@
-import { defineMikroOrmCliConfig } from "/framework/utils"
+import { defineMikroOrmCliConfig } from "@acmekit/framework/utils"
 import Locale from "./src/models/locale"
 import Translation from "./src/models/translation"
 import Settings from "./src/models/settings"

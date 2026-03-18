@@ -1,14 +1,14 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { deleteFilesWorkflow } from "/core-flows"
-import { HttpTypes } from "/framework/types"
+} from "@acmekit/framework/http"
+import { deleteFilesWorkflow } from "@acmekit/core-flows"
+import { HttpTypes } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   AcmeKitError,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,

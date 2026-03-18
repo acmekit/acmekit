@@ -50,7 +50,7 @@ import { storeProductRoutesMiddlewares } from "./client/products/middlewares"
 import { storeRegionRoutesMiddlewares } from "./client/regions/middlewares"
 import { storeReturnReasonRoutesMiddlewares } from "./client/return-reasons/middlewares"
 import { adminIndexRoutesMiddlewares } from "./admin/index/middlewares"
-import { setSecretApiKeyContext } from "/framework"
+import { setSecretApiKeyContext } from "@acmekit/framework"
 import { adminLocalesRoutesMiddlewares } from "./admin/locales/middlewares"
 import { adminTranslationsRoutesMiddlewares } from "./admin/translations/middlewares"
 

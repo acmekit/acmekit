@@ -1,6 +1,6 @@
-import { ILockingProvider } from "/framework/types"
-import { isDefined, AcmeKitService } from "/framework/utils"
-import { EntityManager } from "/framework/mikro-orm/core"
+import { ILockingProvider } from "@acmekit/framework/types"
+import { isDefined, AcmeKitService } from "@acmekit/framework/utils"
+import { EntityManager } from "@acmekit/framework/mikro-orm/core"
 import { Locking } from "@models"
 
 type InjectedDependencies = {

@@ -1,4 +1,4 @@
-import { ProgressTabs, Text } from "/ui"
+import { ProgressTabs, Text } from "@acmekit/ui"
 
 export default function ProgressTabsDisabled() {
   return (

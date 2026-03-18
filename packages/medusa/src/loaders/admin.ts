@@ -1,9 +1,9 @@
-import { logger } from "/framework/logger"
+import { logger } from "@acmekit/framework/logger"
 import {
   AdminOptions,
   ConfigModule,
   PluginDetails,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import { Express } from "express"
 import path from "path"
 import { ADMIN_RELATIVE_OUTPUT_DIR } from "../utils"

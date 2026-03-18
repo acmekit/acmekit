@@ -51,7 +51,7 @@ The rest of this guide always uses the \`src/modules/my-tax\` directory as an ex
 Create the file \`src/modules/my-tax/service.ts\` that holds the module provider's main service. It must implement the \`ITaxProvider\` interface imported from \`/framework/types\`:
 
 \`\`\`ts title="src/modules/my-tax/service.ts"
-import { ITaxProvider } from "/framework/types"
+import { ITaxProvider } from "@acmekit/framework/types"
 
 export default class MyTaxProvider implements ITaxProvider {
   // TODO implement methods
@@ -68,7 +68,7 @@ import MyTaxProvider from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export default ModuleProvider(Modules.TAX, {
   services: [MyTaxProvider],

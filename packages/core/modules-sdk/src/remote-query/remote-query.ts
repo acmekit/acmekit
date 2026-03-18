@@ -2,7 +2,7 @@ import {
   RemoteFetchDataCallback,
   RemoteJoiner,
   toRemoteJoinerQuery,
-} from "/orchestration"
+} from "@acmekit/orchestration"
 import {
   JoinerArgument,
   JoinerRelationship,
@@ -13,8 +13,8 @@ import {
   RemoteJoinerOptions,
   RemoteJoinerQuery,
   RemoteNestedExpands,
-} from "/types"
-import { isPresent, isString, toPascalCase } from "/utils"
+} from "@acmekit/types"
+import { isPresent, isString, toPascalCase } from "@acmekit/utils"
 import { AcmeKitModule } from "../medusa-module"
 
 const BASE_PREFIX = ""

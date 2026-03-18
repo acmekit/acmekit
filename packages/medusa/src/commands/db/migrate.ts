@@ -1,12 +1,12 @@
-import { MEDUSA_CLI_PATH, AcmeKitAppLoader, Migrator } from "/framework"
-import { LinkLoader } from "/framework/links"
+import { MEDUSA_CLI_PATH, AcmeKitAppLoader, Migrator } from "@acmekit/framework"
+import { LinkLoader } from "@acmekit/framework/links"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
   isDefined,
   mergePluginModules,
-} from "/framework/utils"
-import { Logger, AcmeKitContainer } from "/types"
+} from "@acmekit/framework/utils"
+import { Logger, AcmeKitContainer } from "@acmekit/types"
 import { fork } from "child_process"
 import path, { join } from "path"
 import { initializeContainer } from "../../loaders"

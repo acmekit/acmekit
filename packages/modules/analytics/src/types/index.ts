@@ -1,7 +1,7 @@
 import {
   ModuleProviderExports,
   ModuleServiceInitializeOptions,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 export type AnalyticsModuleOptions = Partial<ModuleServiceInitializeOptions> & {
   /**

@@ -11,13 +11,13 @@ import {
   Logger,
   ModuleJoinerConfig,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   InjectManager,
   AcmeKitContext,
   AcmeKitError,
   AcmeKitService,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { AuthIdentity, ProviderIdentity } from "@models"
 import { joinerConfig } from "../joiner-config"
 import AuthProviderService from "./auth-provider"

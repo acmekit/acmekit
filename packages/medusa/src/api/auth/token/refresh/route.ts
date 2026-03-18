@@ -1,9 +1,9 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { IAuthModuleService } from "/framework/types"
-import { ContainerRegistrationKeys, Modules } from "/framework/utils"
+} from "@acmekit/framework/http"
+import { IAuthModuleService } from "@acmekit/framework/types"
+import { ContainerRegistrationKeys, Modules } from "@acmekit/framework/utils"
 import { generateJwtTokenForAuthIdentity } from "../../utils/generate-jwt-token"
 
 // Retrieve a newly generated JWT token. All checks that the existing token is valid already happen in the auth middleware.

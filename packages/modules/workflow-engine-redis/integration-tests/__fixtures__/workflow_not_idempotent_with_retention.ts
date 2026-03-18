@@ -2,8 +2,8 @@ import {
   createStep,
   createWorkflow,
   StepResponse,
-} from "/framework/workflows-sdk"
-import { isPresent } from "/framework/utils"
+} from "@acmekit/framework/workflows-sdk"
+import { isPresent } from "@acmekit/framework/utils"
 
 const step_1 = createStep(
   "step_1",

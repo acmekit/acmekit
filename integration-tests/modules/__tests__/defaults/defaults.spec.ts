@@ -1,6 +1,6 @@
-import { createDefaultsWorkflow } from "/core-flows"
-import { Query } from "/modules-sdk"
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { createDefaultsWorkflow } from "@acmekit/core-flows"
+import { Query } from "@acmekit/modules-sdk"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 
 jest.setTimeout(50000)
 

@@ -1,5 +1,5 @@
-import ProductModule from "/medusa/product"
-import { defineLink } from "/utils"
+import ProductModule from "@acmekit/medusa/product"
+import { defineLink } from "@acmekit/utils"
 import BrandModule from "../modules/brand"
 
 const link =

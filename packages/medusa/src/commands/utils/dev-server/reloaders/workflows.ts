@@ -1,4 +1,4 @@
-import { Logger } from "/framework/types"
+import { Logger } from "@acmekit/framework/types"
 import { ModuleCacheManager } from "../module-cache-manager"
 import { ResourceRegistry } from "../resource-registry"
 import {
@@ -7,7 +7,7 @@ import {
   ReloadParams,
   FileChangeAction,
 } from "../types"
-import { ResourceEntry, ResourceMap } from "/framework/utils"
+import { ResourceEntry, ResourceMap } from "@acmekit/framework/utils"
 import { BaseReloader } from "./base"
 
 /**

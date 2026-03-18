@@ -1,7 +1,7 @@
-import { IAuthModuleService } from "/types"
-import { Modules } from "/utils"
+import { IAuthModuleService } from "@acmekit/types"
+import { Modules } from "@acmekit/utils"
 import jwt from "jsonwebtoken"
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   adminHeaders,
   createAdminUser,

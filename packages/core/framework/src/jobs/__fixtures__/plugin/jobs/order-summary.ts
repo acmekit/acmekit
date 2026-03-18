@@ -1,4 +1,4 @@
-import { AcmeKitContainer } from "/types"
+import { AcmeKitContainer } from "@acmekit/types"
 
 export default async function handler(container: AcmeKitContainer) {
   console.log(`You have received 5 orders today`)

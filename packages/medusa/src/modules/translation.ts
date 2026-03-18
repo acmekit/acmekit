@@ -1,6 +1,6 @@
-import TranslationModule from "/translation"
+import TranslationModule from "@acmekit/translation"
 
-export * from "/translation"
+export * from "@acmekit/translation"
 
 export default TranslationModule
 export const discoveryPath = require.resolve("/translation")

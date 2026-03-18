@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 
-import { BuildingTax } from "/icons"
+import { BuildingTax } from "@acmekit/icons"
 import { IconBadge } from "./icon-badge"
 
 const meta: Meta<typeof IconBadge> = {

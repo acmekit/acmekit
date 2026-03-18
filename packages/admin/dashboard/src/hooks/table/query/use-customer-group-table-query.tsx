@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { useQueryParams } from "../../use-query-params"
 
 type UseCustomerGroupTableQueryProps = {

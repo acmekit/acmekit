@@ -1,11 +1,11 @@
-import { Context, FindConfig } from "/framework/types"
+import { Context, FindConfig } from "@acmekit/framework/types"
 import {
   InjectManager,
   InjectTransactionManager,
   AcmeKitContext,
   MikroOrmBaseRepository,
   ModulesSdkUtils,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 type InjectedDependencies = {
   linkRepository: MikroOrmBaseRepository

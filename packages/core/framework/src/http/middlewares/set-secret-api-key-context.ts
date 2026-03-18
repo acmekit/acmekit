@@ -2,7 +2,7 @@ import {
   ContainerRegistrationKeys,
   AcmeKitError,
   AcmeKitErrorTypes,
-} from "/utils"
+} from "@acmekit/utils"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitNextFunction,

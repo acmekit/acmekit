@@ -1,5 +1,5 @@
-import { AcmeKitContainer } from "/types"
-import * as utils from "/utils"
+import { AcmeKitContainer } from "@acmekit/types"
+import * as utils from "@acmekit/utils"
 import { Query } from "../query"
 
 jest.mock("/utils", () => ({

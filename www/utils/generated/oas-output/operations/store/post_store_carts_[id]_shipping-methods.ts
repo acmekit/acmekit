@@ -86,7 +86,7 @@
  *   - lang: JavaScript
  *     label: JS SDK
  *     source: |-
- *       import Medusa from "/js-sdk"
+ *       import Medusa from "@acmekit/js-sdk"
  * 
  *       let ACMEKIT_BACKEND_URL = "http://localhost:9000"
  * 

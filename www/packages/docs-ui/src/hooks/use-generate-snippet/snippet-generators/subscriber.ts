@@ -51,7 +51,7 @@ export const subscriberSnippetGenerator = ({
     .replace("{{payload}}", payloadString)
 }
 
-const subscriberSnippet = `import { SubscriberArgs, type SubscriberConfig } from "/framework"
+const subscriberSnippet = `import { SubscriberArgs, type SubscriberConfig } from "@acmekit/framework"
 
 export default async function {{subscriberName}}({
   event: { data },

@@ -1,4 +1,4 @@
-import { Button, FocusModal, Heading, Input, Label, Text } from "/ui"
+import { Button, FocusModal, Heading, Input, Label, Text } from "@acmekit/ui"
 
 export default function FocusModalDemo() {
   return (

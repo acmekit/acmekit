@@ -11,8 +11,8 @@ import { Context } from "../shared-context"
  * #### Example
  *
  * ```ts
- * import { ILockingProvider } from "/framework/types"
- * import { Logger } from "/framework/types"
+ * import { ILockingProvider } from "@acmekit/framework/types"
+ * import { Logger } from "@acmekit/framework/types"
  *
  * type InjectedDependencies = {
  *   logger: Logger
@@ -80,7 +80,7 @@ export interface ILockingProvider {
    * 
    * ```ts
    * // other imports...
-   * import { Context } from "/framework/types"
+   * import { Context } from "@acmekit/framework/types"
    * import { setTimeout } from "node:timers/promises"
    * 
    * class MyLockingProviderService implements ILockingProvider {
@@ -259,7 +259,7 @@ export interface ILockingProvider {
    * 
    * ```ts
    * // other imports...
-   * import { promiseAll } from "/framework/utils"
+   * import { promiseAll } from "@acmekit/framework/utils"
    * 
    * class MyLockingProviderService implements ILockingProvider {
    *   // ...

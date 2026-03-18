@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 
 export const UserPreference = model
   .define("user_preference", {

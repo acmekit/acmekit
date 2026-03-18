@@ -1,5 +1,5 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { DmlEntity, Modules } from "/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { DmlEntity, Modules } from "@acmekit/utils"
 import {
   adminHeaders,
   createAdminUser,

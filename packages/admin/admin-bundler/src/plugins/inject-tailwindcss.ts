@@ -80,7 +80,7 @@ function createTailwindConfig(
   }
 
   const config: Config = {
-    presets: [require("/ui-preset")],
+    presets: [require("@acmekit/ui-preset")],
     content: [
       html,
       root,

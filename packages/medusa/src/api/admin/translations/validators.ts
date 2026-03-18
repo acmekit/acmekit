@@ -7,7 +7,7 @@ import {
   createFindParams,
   createSelectParams,
 } from "../../utils/validators"
-import { z } from "/framework/zod"
+import { z } from "@acmekit/framework/zod"
 
 export const AdminGetTranslationParams = createSelectParams()
 

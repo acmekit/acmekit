@@ -1,5 +1,5 @@
-import { Constructor, FileTypes } from "/framework/types"
-import { AcmeKitError } from "/framework/utils"
+import { Constructor, FileTypes } from "@acmekit/framework/types"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { FileProviderRegistrationPrefix } from "@types"
 import type { Readable, Writable } from "stream"
 

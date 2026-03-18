@@ -1,11 +1,11 @@
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
   transform,
   when,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { setAuthAppMetadataStep } from "../../auth"
 import { useRemoteQueryStep } from "../../common"
 import { deleteCustomersWorkflow } from "./delete-customers"

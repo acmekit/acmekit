@@ -1,4 +1,4 @@
-import { Event, AcmeKitContainer } from "/types"
+import { Event, AcmeKitContainer } from "@acmekit/types"
 
 interface SubscriberContext extends Record<string, unknown> {
   subscriberId?: string

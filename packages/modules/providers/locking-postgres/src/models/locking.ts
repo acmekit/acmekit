@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 
 const Locking = model.define("Locking", {
   id: model.id({ prefix: "lk" }).primaryKey(),

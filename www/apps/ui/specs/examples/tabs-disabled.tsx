@@ -1,4 +1,4 @@
-import { Tabs, Text } from "/ui"
+import { Tabs, Text } from "@acmekit/ui"
 
 export default function TabsDisabled() {
   return (

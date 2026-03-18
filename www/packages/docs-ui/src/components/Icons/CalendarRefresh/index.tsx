@@ -1,5 +1,5 @@
 import React from "react"
-import { IconProps } from "/icons/dist/types"
+import { IconProps } from "@acmekit/icons/dist/types"
 
 export const CalendarRefreshIcon = (props: IconProps) => {
   return (

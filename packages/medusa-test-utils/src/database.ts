@@ -1,12 +1,12 @@
-import { logger } from "/framework/logger"
-import { CustomDBMigrator } from "/framework/utils"
+import { logger } from "@acmekit/framework/logger"
+import { CustomDBMigrator } from "@acmekit/framework/utils"
 
 import {
   defineConfig,
   MikroORM,
   Options,
   SqlEntityManager,
-} from "/framework/mikro-orm/postgresql"
+} from "@acmekit/framework/mikro-orm/postgresql"
 import { createDatabase } from "pg-god"
 import { execOrTimeout } from "./medusa-test-runner-utils"
 

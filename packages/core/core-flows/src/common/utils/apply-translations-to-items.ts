@@ -1,4 +1,4 @@
-import { ProductVariantDTO } from "/framework/types"
+import { ProductVariantDTO } from "@acmekit/framework/types"
 
 const VARIANT_PREFIX = "variant_"
 const PRODUCT_PREFIX = "product_"

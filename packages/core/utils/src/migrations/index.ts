@@ -1,13 +1,13 @@
-import { MikroORM, MikroORMOptions } from "/deps/mikro-orm/core"
+import { MikroORM, MikroORMOptions } from "@acmekit/deps/mikro-orm/core"
 import {
   MigrateOptions,
   MigrationResult,
   UmzugMigration,
-} from "/deps/mikro-orm/migrations"
+} from "@acmekit/deps/mikro-orm/migrations"
 import {
   defineConfig,
   PostgreSqlDriver,
-} from "/deps/mikro-orm/postgresql"
+} from "@acmekit/deps/mikro-orm/postgresql"
 import { EventEmitter } from "events"
 import { access, mkdir, rename, writeFile } from "fs/promises"
 import { dirname, join } from "path"
@@ -20,13 +20,13 @@ const replacements = [
   {
     pattern: /from\s+['"]@?mikro-orm\/([^'"]+)['"]/g,
     // eslint-disable-next-line quotes
-    replacement: 'from "/framework/mikro-orm/$1"',
+    replacement: 'from "@acmekit/framework/mikro-orm/$1"',
   },
   // PG imports - replace pg with /framework/pg
   {
     pattern: /from\s+['"]pg['"]/g,
     // eslint-disable-next-line quotes
-    replacement: 'from "/framework/pg"',
+    replacement: 'from "@acmekit/framework/pg"',
   },
 ]
 

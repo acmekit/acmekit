@@ -1,4 +1,4 @@
-import { PropertyType } from "/types"
+import { PropertyType } from "@acmekit/types"
 import { toPascalCase } from "../../../common"
 import { PrimaryKeyModifier } from "../../properties/primary-key"
 

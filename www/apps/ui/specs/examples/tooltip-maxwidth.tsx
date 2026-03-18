@@ -1,5 +1,5 @@
-import { Tooltip } from "/ui"
-import { InformationCircleSolid } from "/icons"
+import { Tooltip } from "@acmekit/ui"
+import { InformationCircleSolid } from "@acmekit/icons"
 
 export default function TooltipMaxWidth() {
   return (

@@ -2,9 +2,9 @@ import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
-} from "/framework/utils"
-import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
-import { HttpTypes } from "/framework/types"
+} from "@acmekit/framework/utils"
+import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
+import { HttpTypes } from "@acmekit/framework/types"
 import TranslationFeatureFlag from "../../../feature-flags/translation"
 
 /**

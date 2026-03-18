@@ -1,4 +1,4 @@
-import { IconProps } from "/icons/dist/types"
+import { IconProps } from "@acmekit/icons/dist/types"
 
 const HomepageArrowUpMini = (props: IconProps) => {
   return (

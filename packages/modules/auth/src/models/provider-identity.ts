@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 import { AuthIdentity } from "./auth-identity"
 
 export const ProviderIdentity = model

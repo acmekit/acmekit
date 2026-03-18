@@ -1,4 +1,4 @@
-import { ModulesSdkTypes } from "/types"
+import { ModulesSdkTypes } from "@acmekit/types"
 import { AcmeKitError } from "../common"
 
 function getEnv(key: string, moduleName: string): string {

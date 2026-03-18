@@ -9,7 +9,7 @@ import { Loading } from "@/components/Loading"
 import { SidebarItem } from "@/components/Sidebar/Item"
 import { useSidebar } from "@/providers/Sidebar"
 import clsx from "clsx"
-import { TriangleDownMini, TriangleUpMini } from "/icons"
+import { TriangleDownMini, TriangleUpMini } from "@acmekit/icons"
 
 export type SidebarItemCategoryProps = {
   item: Sidebar.SidebarItemCategory

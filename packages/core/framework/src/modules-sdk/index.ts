@@ -1,1 +1,1 @@
-export * from "/modules-sdk"
+export * from "@acmekit/modules-sdk"

@@ -1,15 +1,15 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { HttpTypes, ITranslationModuleService } from "/framework/types"
+} from "@acmekit/framework/http"
+import { HttpTypes, ITranslationModuleService } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
   Modules,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import TranslationFeatureFlag from "../../../../feature-flags/translation"
 
 /**

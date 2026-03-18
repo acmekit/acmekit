@@ -1,4 +1,4 @@
-import { Spinner } from "/icons"
+import { Spinner } from "@acmekit/icons"
 import { VariantProps, cva } from "cva"
 import { Slot } from "radix-ui"
 import * as React from "react"

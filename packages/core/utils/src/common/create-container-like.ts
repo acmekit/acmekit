@@ -1,4 +1,4 @@
-import { ContainerLike } from "/types"
+import { ContainerLike } from "@acmekit/types"
 
 export function createContainerLike(obj): ContainerLike {
   return {

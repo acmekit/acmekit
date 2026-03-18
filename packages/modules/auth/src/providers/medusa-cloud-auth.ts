@@ -3,11 +3,11 @@ import {
   AuthenticationResponse,
   AuthIdentityProviderService,
   Logger,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   AbstractAuthModuleProvider,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { AcmeKitCloudAuthProviderOptions } from "@types"
 import crypto from "crypto"
 import jwt, { type JwtPayload } from "jsonwebtoken"

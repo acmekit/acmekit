@@ -1,4 +1,4 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   adminHeaders,
   createAdminUser,
@@ -268,7 +268,7 @@ medusaIntegrationTestRunner({
         const {
           ContainerRegistrationKeys,
           Modules,
-        } = require("/framework/utils")
+        } = require("@acmekit/framework/utils")
         const remoteLink = container.resolve(ContainerRegistrationKeys.LINK)
 
         const inviteLinkService = remoteLink.getLinkModule(
@@ -367,7 +367,7 @@ medusaIntegrationTestRunner({
         const {
           ContainerRegistrationKeys,
           Modules,
-        } = require("/framework/utils")
+        } = require("@acmekit/framework/utils")
         const remoteLink = container.resolve(ContainerRegistrationKeys.LINK)
 
         const linkService = remoteLink.getLinkModule(
@@ -419,7 +419,7 @@ medusaIntegrationTestRunner({
         const {
           ContainerRegistrationKeys,
           Modules,
-        } = require("/framework/utils")
+        } = require("@acmekit/framework/utils")
         const remoteLink = container.resolve(ContainerRegistrationKeys.LINK)
 
         const linkService = remoteLink.getLinkModule(

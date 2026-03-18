@@ -5,9 +5,9 @@ import {
   dismissLinksWorkflowId,
   updateLinksWorkflow,
   updateLinksWorkflowId,
-} from "/core-flows"
-import { Modules } from "/utils"
-import { medusaIntegrationTestRunner } from "/test-utils"
+} from "@acmekit/core-flows"
+import { Modules } from "@acmekit/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   adminHeaders,
   createAdminUser,

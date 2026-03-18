@@ -1,6 +1,6 @@
-import { DropdownMenu, IconButton, clx } from "/ui"
+import { DropdownMenu, IconButton, clx } from "@acmekit/ui"
 
-import { EllipsisHorizontal } from "/icons"
+import { EllipsisHorizontal } from "@acmekit/icons"
 import { PropsWithChildren, ReactNode } from "react"
 import { Link } from "react-router-dom"
 import { ConditionalTooltip } from "../conditional-tooltip"

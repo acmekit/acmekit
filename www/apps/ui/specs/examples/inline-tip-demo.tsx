@@ -1,4 +1,4 @@
-import { InlineTip } from "/ui"
+import { InlineTip } from "@acmekit/ui"
 
 export default function InlineTipDemo() {
   return (

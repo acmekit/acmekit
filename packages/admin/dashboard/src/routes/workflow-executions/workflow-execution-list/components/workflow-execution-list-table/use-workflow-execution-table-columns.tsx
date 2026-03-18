@@ -1,11 +1,11 @@
-import { Badge } from "/ui"
+import { Badge } from "@acmekit/ui"
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { StatusCell } from "../../../../../components/table/table-cells/common/status-cell"
 import { TransactionStepState } from "../../../types"
 import { getTransactionState, getTransactionStateColor } from "../../../utils"
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 
 const columnHelper =
   createColumnHelper<

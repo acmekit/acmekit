@@ -5,10 +5,10 @@ import {
   AuthIdentityProviderService,
   EmailPassAuthProviderOptions,
   Logger,
-} from "/framework/types"
-import { AbstractAuthModuleProvider, isString, AcmeKitError, } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { AbstractAuthModuleProvider, isString, AcmeKitError, } from "@acmekit/framework/utils"
 import Scrypt from "scrypt-kdf"
-import { isPresent } from "/utils"
+import { isPresent } from "@acmekit/utils"
 
 type InjectedDependencies = {
   logger: Logger

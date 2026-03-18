@@ -5,7 +5,7 @@ import {
   type ZodInvalidTypeIssue,
   type ZodInvalidUnionIssue,
   type ZodIssue,
-} from "/deps/zod"
+} from "@acmekit/deps/zod"
 
 const formatPath = (issue: ZodIssue) => {
   return issue.path.join(", ")

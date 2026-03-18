@@ -1,10 +1,10 @@
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { NextFunction } from "express"
 import {
   AuthenticatedMedusaRequest,
   refetchEntities,
   refetchEntity,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { DEFAULT_PRICE_FIELD_PATHS } from "./constants"
 
 type PricingContextOptions = {

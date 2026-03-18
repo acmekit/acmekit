@@ -1,5 +1,5 @@
-import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
-import { ContainerRegistrationKeys } from "/framework/utils"
+import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
 
 export const AUTHENTICATE = false
 

@@ -1,4 +1,4 @@
-import { Logger } from "/framework/types"
+import { Logger } from "@acmekit/framework/types"
 import { ModuleCacheManager } from "./module-cache-manager"
 import path from "path"
 import { ReloadParams } from "./types"

@@ -3,11 +3,11 @@ import {
   AuthenticationResponse,
   AuthIdentityDTO,
   AuthIdentityProviderService,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   AbstractAuthModuleProvider,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export class AuthServiceFixtures extends AbstractAuthModuleProvider {
   static identifier = "plaintextpass"

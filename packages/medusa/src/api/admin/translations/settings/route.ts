@@ -1,17 +1,17 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import {
   AdminTranslationSettings,
   HttpTypes,
   ITranslationModuleService,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   defineFileConfig,
   FeatureFlag,
   Modules,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import TranslationFeatureFlag from "../../../../feature-flags/translation"
 import { AdminTranslationSettingsParamsType } from "../validators"
 

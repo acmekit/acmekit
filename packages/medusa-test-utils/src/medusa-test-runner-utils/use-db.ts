@@ -1,10 +1,10 @@
-import type { AcmeKitAppLoader } from "/framework"
-import { logger } from "/framework/logger"
-import { Logger, AcmeKitContainer } from "/framework/types"
+import type { AcmeKitAppLoader } from "@acmekit/framework"
+import { logger } from "@acmekit/framework/logger"
+import { Logger, AcmeKitContainer } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { join } from "path"
 
 /**

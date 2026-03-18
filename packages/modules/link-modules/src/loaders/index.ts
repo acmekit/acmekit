@@ -2,7 +2,7 @@ import {
   JoinerRelationship,
   ModuleJoinerConfig,
   ModuleLoaderFunction,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 import { generateEntity } from "../utils"
 import { connectionLoader } from "./connection"

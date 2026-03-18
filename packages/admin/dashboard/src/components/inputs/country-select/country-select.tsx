@@ -6,7 +6,7 @@ import {
 } from "react"
 import { useTranslation } from "react-i18next"
 import { countries } from "../../../lib/data/countries"
-import { Select } from "/ui"
+import { Select } from "@acmekit/ui"
 
 export const CountrySelect = forwardRef<
   HTMLButtonElement,

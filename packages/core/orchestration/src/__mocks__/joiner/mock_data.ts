@@ -1,4 +1,4 @@
-import { JoinerServiceConfig, ModuleJoinerConfig } from "/types"
+import { JoinerServiceConfig, ModuleJoinerConfig } from "@acmekit/types"
 import { remoteJoinerData } from "./../../__fixtures__/joiner/data"
 
 export const serviceConfigs: (JoinerServiceConfig | ModuleJoinerConfig)[] = [

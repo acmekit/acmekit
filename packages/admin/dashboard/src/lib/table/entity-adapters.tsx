@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { ColumnAdapter } from "../../hooks/table/columns/use-configurable-table-columns"
 
 export const orderColumnAdapter: ColumnAdapter<HttpTypes.AdminOrder> = {

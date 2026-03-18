@@ -5,7 +5,7 @@ import {
   when,
   WorkflowData,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 
 const step1 = createStep(
   {

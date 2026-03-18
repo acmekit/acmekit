@@ -1,5 +1,5 @@
-import { Check, CheckOptions } from "/deps/mikro-orm/core"
-import { CheckConstraint, EntityConstructor } from "/types"
+import { Check, CheckOptions } from "@acmekit/deps/mikro-orm/core"
+import { CheckConstraint, EntityConstructor } from "@acmekit/types"
 
 /**
  * Defines PostgreSQL constraints using the MikrORM's "@Check"

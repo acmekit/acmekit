@@ -1,7 +1,7 @@
 import {
   NESTED_ROUTE_POSITIONS,
   NestedRoutePosition,
-} from "/admin-shared"
+} from "@acmekit/admin-shared"
 import fs from "fs/promises"
 import { outdent } from "outdent"
 import {

@@ -12,7 +12,7 @@ import {
   ModuleProviderExports,
   ModuleProviderLoaderFunction,
   ModuleResolution,
-} from "/types"
+} from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
@@ -30,8 +30,8 @@ import {
   ModulesSdkUtils,
   stringifyCircular,
   toMikroOrmEntities,
-} from "/utils"
-import { asFunction, asValue } from "/deps/awilix"
+} from "@acmekit/utils"
+import { asFunction, asValue } from "@acmekit/deps/awilix"
 import { statSync } from "fs"
 import { readdir } from "fs/promises"
 import { dirname, join, resolve } from "path"

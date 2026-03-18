@@ -1,5 +1,5 @@
-import { LinkLoader, AcmeKitAppLoader } from "/framework"
-import { AcmeKitModule } from "/framework/modules-sdk"
+import { LinkLoader, AcmeKitAppLoader } from "@acmekit/framework"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import {
   ContainerRegistrationKeys,
   FileSystem,
@@ -8,8 +8,8 @@ import {
   gqlSchemaToTypes,
   mergePluginModules,
   validateModuleName,
-} from "/framework/utils"
-import { Logger, AcmeKitContainer } from "/types"
+} from "@acmekit/framework/utils"
+import { Logger, AcmeKitContainer } from "@acmekit/types"
 import path, { join } from "path"
 
 export async function generateTypes({

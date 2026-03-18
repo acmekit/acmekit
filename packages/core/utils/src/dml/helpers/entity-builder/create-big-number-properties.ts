@@ -1,4 +1,4 @@
-import { DMLSchema } from "/types"
+import { DMLSchema } from "@acmekit/types"
 import { isBigNumber } from "../../../common/is-big-number"
 import { isDefined } from "../../../common/is-defined"
 import { trimZeros } from "../../../common/trim-zeros"

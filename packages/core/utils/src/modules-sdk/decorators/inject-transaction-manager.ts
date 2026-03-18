@@ -1,4 +1,4 @@
-import { Context } from "/types"
+import { Context } from "@acmekit/types"
 import { AcmeKitContextType } from "./context-parameter"
 
 export function InjectTransactionManager(

@@ -4,7 +4,7 @@ import {
   Heading,
   Table,
   useToggleState,
-} from "/ui"
+} from "@acmekit/ui"
 import { useState } from "react"
 
 export default function useToggleStateDemo() {

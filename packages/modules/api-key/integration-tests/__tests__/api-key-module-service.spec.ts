@@ -1,8 +1,8 @@
-import { IApiKeyModuleService } from "/framework/types"
-import { ApiKeyType, Module, Modules } from "/framework/utils"
+import { IApiKeyModuleService } from "@acmekit/framework/types"
+import { ApiKeyType, Module, Modules } from "@acmekit/framework/utils"
 import { ApiKeyModuleService } from "@services"
 import crypto from "crypto"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   createPublishableKeyFixture,
   createSecretKeyFixture,

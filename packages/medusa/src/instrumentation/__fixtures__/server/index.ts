@@ -2,9 +2,9 @@ import {
   moduleLoader,
   ModulesDefinition,
   registerMedusaModule,
-} from "/modules-sdk"
-import { ContainerRegistrationKeys, generateJwtToken } from "/utils"
-import { asValue } from "/framework/awilix"
+} from "@acmekit/modules-sdk"
+import { ContainerRegistrationKeys, generateJwtToken } from "@acmekit/utils"
+import { asValue } from "@acmekit/framework/awilix"
 import express from "express"
 import querystring from "querystring"
 import supertest from "supertest"
@@ -14,10 +14,10 @@ import {
   container,
   featureFlagsLoader,
   AcmeKitRequest,
-} from "/framework"
-import { configManager } from "/framework/config"
-import { logger as defaultLogger } from "/framework/logger"
-import { ConfigModule, AcmeKitContainer } from "/types"
+} from "@acmekit/framework"
+import { configManager } from "@acmekit/framework/config"
+import { logger as defaultLogger } from "@acmekit/framework/logger"
+import { ConfigModule, AcmeKitContainer } from "@acmekit/types"
 import { config } from "../mocks"
 
 function asArray(resolvers) {

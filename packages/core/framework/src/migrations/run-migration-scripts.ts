@@ -1,5 +1,5 @@
-import { AcmeKitContainer } from "/types"
-import { dynamicImport, isFileSkipped, Modules } from "/utils"
+import { AcmeKitContainer } from "@acmekit/types"
+import { dynamicImport, isFileSkipped, Modules } from "@acmekit/utils"
 import { basename } from "path"
 import { logger } from "../logger"
 import { Migrator } from "./migrator"

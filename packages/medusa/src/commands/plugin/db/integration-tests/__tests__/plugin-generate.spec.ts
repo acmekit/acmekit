@@ -1,5 +1,5 @@
-import { logger } from "/framework"
-import { FileSystem } from "/framework/utils"
+import { logger } from "@acmekit/framework"
+import { FileSystem } from "@acmekit/framework/utils"
 import { join } from "path"
 import main from "../../generate"
 

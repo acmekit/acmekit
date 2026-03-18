@@ -1,12 +1,12 @@
-import { IWorkflowEngineService } from "/framework/types"
-import { Modules } from "/framework/utils"
+import { IWorkflowEngineService } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
 import {
   createStep,
   createWorkflow,
   StepResponse,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
-import { moduleIntegrationTestRunner } from "/test-utils"
+} from "@acmekit/framework/workflows-sdk"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { setTimeout as setTimeoutSync } from "timers"
 import { setTimeout as setTimeoutPromise } from "timers/promises"
 import { ulid } from "ulid"

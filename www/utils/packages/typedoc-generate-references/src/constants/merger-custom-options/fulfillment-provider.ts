@@ -50,7 +50,7 @@ The rest of this guide always uses the \`src/modules/my-fulfillment\` directory 
 Create the file \`src/modules/my-fulfillment/service.ts\` that holds the module provider's main service. It must extend the \`AbstractFulfillmentProviderService\` class imported from \`/framework/utils\`:
 
 \`\`\`ts title="src/modules/my-fulfillment/service.ts"
-import { AbstractFulfillmentProviderService } from "/framework/utils"
+import { AbstractFulfillmentProviderService } from "@acmekit/framework/utils"
 
 class MyFulfillmentProviderService extends AbstractFulfillmentProviderService {
   // TODO implement methods
@@ -69,7 +69,7 @@ import MyFulfillmentProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export default ModuleProvider(Modules.FULFILLMENT, {
   services: [MyFulfillmentProviderService],

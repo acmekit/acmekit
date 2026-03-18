@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 import RbacRoleParent from "./rbac-role-parent"
 import RbacRolePolicy from "./rbac-role-policy"
 

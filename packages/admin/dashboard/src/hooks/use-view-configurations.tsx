@@ -1,6 +1,6 @@
 import { useMemo } from "react"
-import { toast } from "/ui"
-import { FetchError } from "/js-sdk"
+import { toast } from "@acmekit/ui"
+import { FetchError } from "@acmekit/js-sdk"
 import { useFeatureFlag } from "../providers/feature-flag-provider"
 import {
   useViewConfigurations as useViewConfigurationsBase,

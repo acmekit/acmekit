@@ -1,4 +1,4 @@
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 export interface CreateEntitiesStepType {
   /**

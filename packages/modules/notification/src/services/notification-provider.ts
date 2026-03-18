@@ -3,8 +3,8 @@ import {
   InferEntityType,
   Logger,
   NotificationTypes,
-} from "/framework/types"
-import { ModulesSdkUtils } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { ModulesSdkUtils } from "@acmekit/framework/utils"
 import { NotificationProvider } from "@models"
 import { NotificationProviderRegistrationPrefix } from "@types"
 

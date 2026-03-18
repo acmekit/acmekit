@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 
 import { Thumbnail } from "../../../../common/thumbnail"
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 
 type ProductCellProps = {
   product: Pick<HttpTypes.AdminProduct, "thumbnail" | "title">

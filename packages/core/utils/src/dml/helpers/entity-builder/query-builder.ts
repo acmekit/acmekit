@@ -1,4 +1,4 @@
-import { QueryCondition, QueryValue, SimpleQueryValue } from "/types"
+import { QueryCondition, QueryValue, SimpleQueryValue } from "@acmekit/types"
 import { isBoolean, isDefined, isObject, isString } from "../../../common"
 
 /*

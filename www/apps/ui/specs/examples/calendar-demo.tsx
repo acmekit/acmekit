@@ -1,4 +1,4 @@
-import { Calendar } from "/ui"
+import { Calendar } from "@acmekit/ui"
 import * as React from "react"
 
 export default function CalendarDemo() {

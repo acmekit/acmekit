@@ -1,6 +1,6 @@
 import React from "react"
 import clsx from "clsx"
-import { IconProps } from "/icons/dist/types"
+import { IconProps } from "@acmekit/icons/dist/types"
 import Image from "next/image"
 
 export type BorderedIconProps = {

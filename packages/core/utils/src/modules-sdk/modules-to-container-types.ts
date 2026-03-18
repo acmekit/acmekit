@@ -1,4 +1,4 @@
-import type { LoadedModule } from "/types"
+import type { LoadedModule } from "@acmekit/types"
 import { join } from "path"
 import { FileSystem } from "../common/file-system"
 import { toCamelCase } from "../common/to-camel-case"
@@ -84,7 +84,7 @@ export async function generateContainerTypes(
 
         if (SERVICES_INTERFACES[key]) {
           result.imports.push(
-            `import type { ${SERVICES_INTERFACES[key]} } from '/framework/types'`
+            `import type { ${SERVICES_INTERFACES[key]} } from '@acmekit/framework/types'`
           )
           result.mappings.push(`${interfaceKey}: ${SERVICES_INTERFACES[key]}`)
           return

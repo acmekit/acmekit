@@ -1,4 +1,4 @@
-import { FocusModal, clx } from "/ui"
+import { FocusModal, clx } from "@acmekit/ui"
 import {
   ComponentPropsWithoutRef,
   PropsWithChildren,

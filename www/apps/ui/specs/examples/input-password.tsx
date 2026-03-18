@@ -1,4 +1,4 @@
-import { Input } from "/ui"
+import { Input } from "@acmekit/ui"
 
 export default function InputPassword() {
   return (

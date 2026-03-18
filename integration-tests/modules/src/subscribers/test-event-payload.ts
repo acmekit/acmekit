@@ -1,4 +1,4 @@
-import { SubscriberConfig } from "/medusa"
+import { SubscriberConfig } from "@acmekit/medusa"
 
 const testEventPayloadHandlerMock = jest.fn()
 

@@ -1,4 +1,4 @@
-import { TransactionState } from "/utils"
+import { TransactionState } from "@acmekit/utils"
 import { TransactionCheckpoint } from "../distributed-transaction"
 import { TransactionOptions } from "../types"
 import { DistributedTransactionStorage } from "./abstract-storage"

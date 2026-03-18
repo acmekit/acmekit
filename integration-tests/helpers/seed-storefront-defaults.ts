@@ -1,10 +1,10 @@
-import { createDefaultsWorkflow } from "/core-flows"
+import { createDefaultsWorkflow } from "@acmekit/core-flows"
 import {
   IRegionModuleService,
   IStoreModuleService,
   MedusaContainer,
-} from "/framework/types"
-import { Modules } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
 
 export const seedStorefrontDefaults = async (
   container: MedusaContainer,

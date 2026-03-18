@@ -1,6 +1,6 @@
 "use client"
 
-import { InformationCircleSolid } from "/icons"
+import { InformationCircleSolid } from "@acmekit/icons"
 
 import { PropData, PropDataMap, PropSpecType } from "@/types/ui"
 import { useCallback, useMemo } from "react"

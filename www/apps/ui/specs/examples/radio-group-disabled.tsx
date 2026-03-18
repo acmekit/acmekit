@@ -1,4 +1,4 @@
-import { Label, RadioGroup } from "/ui"
+import { Label, RadioGroup } from "@acmekit/ui"
 
 export default function RadioGroupDisabled() {
   return (

@@ -1,5 +1,5 @@
-import { TaxExclusive, TaxInclusive } from "/icons"
-import { Tooltip } from "/ui"
+import { TaxExclusive, TaxInclusive } from "@acmekit/icons"
+import { Tooltip } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 
 type IncludesTaxTooltipProps = {

@@ -2,8 +2,8 @@ import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
-} from "/framework/workflows-sdk"
-import { UpdateRbacPolicyDTO } from "/types"
+} from "@acmekit/framework/workflows-sdk"
+import { UpdateRbacPolicyDTO } from "@acmekit/types"
 import { updateRbacPoliciesStep } from "../steps/update-rbac-policies"
 
 /**

@@ -1,4 +1,4 @@
-import { ContainerRegistrationKeys, getConfigFile } from "/utils"
+import { ContainerRegistrationKeys, getConfigFile } from "@acmekit/utils"
 import { asFunction } from "../deps/awilix"
 import { container } from "../container"
 import { logger as defaultLogger } from "../logger"

@@ -9,19 +9,19 @@ import {
   ModulesSdkTypes,
   WorkflowExecutionDTO,
   WorkflowsSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   InjectManager,
   InjectSharedContext,
   isDefined,
   AcmeKitContext,
   ModulesSdkUtils,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import type {
   ReturnWorkflow,
   UnwrapWorkflowInputDataType,
-} from "/framework/workflows-sdk"
-import { SqlEntityManager } from "/framework/mikro-orm/postgresql"
+} from "@acmekit/framework/workflows-sdk"
+import { SqlEntityManager } from "@acmekit/framework/mikro-orm/postgresql"
 import { WorkflowExecution } from "@models"
 import {
   WorkflowOrchestratorCancelOptions,

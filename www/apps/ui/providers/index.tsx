@@ -17,7 +17,7 @@ import SidebarProvider from "./sidebar"
 import SearchProvider from "./search"
 import { config } from "../config"
 import { MainNavProvider } from "./main-nav"
-import { TooltipProvider } from "/ui"
+import { TooltipProvider } from "@acmekit/ui"
 
 type ProvidersProps = {
   children?: React.ReactNode

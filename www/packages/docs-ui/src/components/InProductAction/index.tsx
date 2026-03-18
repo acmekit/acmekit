@@ -2,7 +2,7 @@
 
 import React from "react"
 import { ProductView, useSiteConfig } from "../../providers/SiteConfig"
-import { ArrowUpRightOnBox } from "/icons"
+import { ArrowUpRightOnBox } from "@acmekit/icons"
 import clsx from "clsx"
 import { DocsTrackingEvents } from "../../constants"
 import { useAnalytics } from "../../providers/Analytics"

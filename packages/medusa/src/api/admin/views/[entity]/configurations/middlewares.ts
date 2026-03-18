@@ -1,5 +1,5 @@
-import { validateAndTransformBody, validateAndTransformQuery } from "/framework"
-import { MiddlewareRoute } from "/framework/http"
+import { validateAndTransformBody, validateAndTransformQuery } from "@acmekit/framework"
+import { MiddlewareRoute } from "@acmekit/framework/http"
 import * as QueryConfig from "./query-config"
 import {
   AdminCreateViewConfiguration,

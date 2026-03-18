@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { WorkflowManager } from "/orchestration"
+import { WorkflowManager } from "@acmekit/orchestration"
 import * as path from "path"
 import { existsSync, mkdirSync, rmSync, writeFileSync } from "fs"
 import registerWorkflows from "../utils/register-workflows.js"

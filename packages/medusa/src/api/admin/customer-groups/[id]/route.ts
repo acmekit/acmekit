@@ -1,15 +1,15 @@
 import {
   deleteCustomerGroupsWorkflow,
   updateCustomerGroupsWorkflow,
-} from "/core-flows"
+} from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { refetchCustomerGroup } from "../helpers"
-import { HttpTypes } from "/framework/types"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,

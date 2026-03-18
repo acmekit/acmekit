@@ -3,7 +3,7 @@ import {
   IEventBusModuleService,
   Message,
   Subscriber,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 export default class EventBusService implements IEventBusModuleService {
   async emit<T>(

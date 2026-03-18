@@ -1,5 +1,5 @@
-import { NotificationTypes } from "/framework/types"
-import { AbstractNotificationProviderService } from "/framework/utils"
+import { NotificationTypes } from "@acmekit/framework/types"
+import { AbstractNotificationProviderService } from "@acmekit/framework/utils"
 
 export class NotificationProviderServiceFixtures extends AbstractNotificationProviderService {
   static identifier = "fixtures-notification-provider"

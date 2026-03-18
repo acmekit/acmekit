@@ -10,9 +10,9 @@ import {
   extractRelationsFromGQL,
   cleanGraphQLSchema,
   print,
-} from "/framework/utils"
-import { HttpTypes } from "/types"
-import { AcmeKitModule } from "/framework/modules-sdk"
+} from "@acmekit/framework/utils"
+import { HttpTypes } from "@acmekit/types"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import { ENTITY_MAPPINGS } from "./entity-mappings"
 
 // Determine column category based on field characteristics

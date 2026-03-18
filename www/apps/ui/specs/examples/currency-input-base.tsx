@@ -1,4 +1,4 @@
-import { CurrencyInput } from "/ui"
+import { CurrencyInput } from "@acmekit/ui"
 
 export default function CurrencyInputBase() {
   return (

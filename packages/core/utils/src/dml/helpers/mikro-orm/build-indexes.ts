@@ -1,5 +1,5 @@
-import { DMLSchema, EntityConstructor, EntityIndex } from "/types"
-import { MetadataStorage } from "/deps/mikro-orm/core"
+import { DMLSchema, EntityConstructor, EntityIndex } from "@acmekit/types"
+import { MetadataStorage } from "@acmekit/deps/mikro-orm/core"
 import { arrayDifference } from "../../../common"
 
 /*

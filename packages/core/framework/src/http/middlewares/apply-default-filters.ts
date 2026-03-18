@@ -1,4 +1,4 @@
-import { isObject, isPresent } from "/utils"
+import { isObject, isPresent } from "@acmekit/utils"
 import type {
   AcmeKitNextFunction,
   AcmeKitRequest,

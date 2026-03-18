@@ -1,5 +1,5 @@
-import { Label, Input } from "/ui"
-import { Textarea, RadioGroup } from "/ui"
+import { Label, Input } from "@acmekit/ui"
+import { Textarea, RadioGroup } from "@acmekit/ui"
 
 export default function LabelWithInputs() {
   return (

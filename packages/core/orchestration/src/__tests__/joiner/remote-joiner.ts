@@ -2,8 +2,8 @@ import {
   IModuleService,
   AcmeKitContainer,
   RemoteExpandProperty,
-} from "/types"
-import { lowerCaseFirst, toPascalCase } from "/utils"
+} from "@acmekit/types"
+import { lowerCaseFirst, toPascalCase } from "@acmekit/utils"
 import { serviceConfigs, serviceMock } from "../../__mocks__/joiner/mock_data"
 import { RemoteJoiner } from "./../../joiner"
 

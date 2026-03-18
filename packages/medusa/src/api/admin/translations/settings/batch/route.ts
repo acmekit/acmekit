@@ -1,7 +1,7 @@
-import { batchTranslationSettingsWorkflow } from "/core-flows"
-import { AuthenticatedMedusaRequest, AcmeKitResponse } from "/framework"
-import { defineFileConfig, FeatureFlag } from "/framework/utils"
-import { HttpTypes } from "/types"
+import { batchTranslationSettingsWorkflow } from "@acmekit/core-flows"
+import { AuthenticatedMedusaRequest, AcmeKitResponse } from "@acmekit/framework"
+import { defineFileConfig, FeatureFlag } from "@acmekit/framework/utils"
+import { HttpTypes } from "@acmekit/types"
 import TranslationFeatureFlag from "../../../../../feature-flags/translation"
 
 /**

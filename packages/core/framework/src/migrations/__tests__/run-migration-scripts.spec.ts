@@ -1,6 +1,6 @@
 import { jest } from "@jest/globals"
-import { AcmeKitContainer } from "/types"
-import { ContainerRegistrationKeys, Modules } from "/utils"
+import { AcmeKitContainer } from "@acmekit/types"
+import { ContainerRegistrationKeys, Modules } from "@acmekit/utils"
 import path from "path"
 import { MigrationScriptsMigrator } from "../run-migration-scripts"
 

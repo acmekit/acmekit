@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 import Customer from "./customer"
 import CustomerGroup from "./customer-group"
 

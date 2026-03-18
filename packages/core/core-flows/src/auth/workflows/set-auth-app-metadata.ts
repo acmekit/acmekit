@@ -1,7 +1,7 @@
 import {
   createWorkflow,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import {
   setAuthAppMetadataStep,
   SetAuthAppMetadataStepInput,

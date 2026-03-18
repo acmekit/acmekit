@@ -1,4 +1,4 @@
-import { Entity, Property } from "/deps/mikro-orm/core"
+import { Entity, Property } from "@acmekit/deps/mikro-orm/core"
 
 @Entity()
 export class Entity2 {

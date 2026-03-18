@@ -1,5 +1,5 @@
-import { dynamicImport, PolicyResource } from "/framework/utils"
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { dynamicImport, PolicyResource } from "@acmekit/framework/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import { readdir } from "fs/promises"
 import { isObject } from "lodash"
 import { join } from "path"

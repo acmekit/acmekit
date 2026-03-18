@@ -3,7 +3,7 @@ import {
   FilterableRbacRoleProps,
   FindConfig,
   RbacRoleDTO,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   InjectManager,
   InjectTransactionManager,
@@ -11,7 +11,7 @@ import {
   AcmeKitService,
   Policy,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   CreateRbacRoleParentDTO,
   InferEntityType,
@@ -19,7 +19,7 @@ import {
   ModulesSdkTypes,
   RbacRoleParentDTO,
   UpdateRbacRoleParentDTO,
-} from "/types"
+} from "@acmekit/types"
 import { RbacPolicy, RbacRole, RbacRoleParent, RbacRolePolicy } from "@models"
 import { RbacRepository } from "../repositories"
 

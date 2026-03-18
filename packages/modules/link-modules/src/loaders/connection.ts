@@ -3,10 +3,10 @@ import {
   LoaderOptions,
   ModuleServiceInitializeCustomDataLayerOptions,
   ModuleServiceInitializeOptions,
-} from "/framework/types"
-import { ModulesSdkUtils } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { ModulesSdkUtils } from "@acmekit/framework/utils"
 
-import { EntitySchema } from "/framework/mikro-orm/core"
+import { EntitySchema } from "@acmekit/framework/mikro-orm/core"
 
 export function connectionLoader(entity: EntitySchema) {
   return async (

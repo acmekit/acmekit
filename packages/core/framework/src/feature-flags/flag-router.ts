@@ -1,4 +1,4 @@
-import { isObject, isString } from "/utils"
+import { isObject, isString } from "@acmekit/utils"
 import { FeatureFlagsResponse, IFlagRouter } from "./types"
 
 export class FlagRouter implements IFlagRouter {

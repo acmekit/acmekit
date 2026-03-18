@@ -1,14 +1,14 @@
-import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
 import {
   AuthenticationInput,
   ConfigModule,
   IAuthModuleService,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   AcmeKitError,
   Modules,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { generateJwtTokenForAuthIdentity } from "../../../utils/generate-jwt-token"
 
 export const POST = async (req: AcmeKitRequest, res: AcmeKitResponse) => {

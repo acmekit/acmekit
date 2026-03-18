@@ -1,4 +1,4 @@
-import { track } from "/telemetry"
+import { track } from "@acmekit/telemetry"
 import boxen from "boxen"
 import chalk from "chalk"
 import { emojify } from "node-emoji"

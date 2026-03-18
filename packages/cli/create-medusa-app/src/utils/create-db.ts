@@ -1,5 +1,5 @@
 import { EOL } from "os"
-import type pg from "/deps/pg"
+import type pg from "@acmekit/deps/pg"
 import postgresClient, {
   DEFAULT_HOST,
   DEFAULT_PORT,

@@ -2,7 +2,7 @@ import {
   FeatureFlag,
   getConfigFile,
   discoverAndRegisterFeatureFlags,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export async function configLoaderOverride(
   entryDirectory: string,

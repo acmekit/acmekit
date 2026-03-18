@@ -1,5 +1,5 @@
-import { PlusMini } from "/icons"
-import { Copy, IconButton, Text } from "/ui"
+import { PlusMini } from "@acmekit/icons"
+import { Copy, IconButton, Text } from "@acmekit/ui"
 
 export default function CopyAsChild() {
   return (

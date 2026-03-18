@@ -1,9 +1,9 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { ContainerRegistrationKeys } from "/framework/utils"
-import { HttpTypes } from "/types"
+} from "@acmekit/framework/http"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
+import { HttpTypes } from "@acmekit/types"
 
 /**
  * @since 2.12.4

@@ -3,8 +3,8 @@ import {
   ILockingModule,
   InternalModuleDeclaration,
   Logger,
-} from "/types"
-import { EntityManager } from "/framework/mikro-orm/core"
+} from "@acmekit/types"
+import { EntityManager } from "@acmekit/framework/mikro-orm/core"
 import { LockingDefaultProvider } from "@types"
 import LockingProviderService from "./locking-provider"
 

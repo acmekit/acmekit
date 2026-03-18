@@ -3,7 +3,7 @@ import {
   RequestQueryFields,
   Logger as coreLogger,
   AcmeKitContainer as coreMedusaContainer,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

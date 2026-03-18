@@ -1,4 +1,4 @@
-import { FlagSettings } from "/framework/feature-flags"
+import { FlagSettings } from "@acmekit/framework/feature-flags"
 
 const IndexEngineFeatureFlag: FlagSettings = {
   key: "index_engine",

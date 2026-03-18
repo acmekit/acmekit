@@ -1,4 +1,4 @@
-import { Checkbox, Label } from "/ui"
+import { Checkbox, Label } from "@acmekit/ui"
 
 export default function CheckboxAllStates() {
   return (

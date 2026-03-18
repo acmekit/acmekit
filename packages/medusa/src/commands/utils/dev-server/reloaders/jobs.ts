@@ -1,5 +1,5 @@
-import { JobLoader } from "/framework/jobs"
-import { Logger, AcmeKitContainer } from "/framework/types"
+import { JobLoader } from "@acmekit/framework/jobs"
+import { Logger, AcmeKitContainer } from "@acmekit/framework/types"
 import { ModuleCacheManager } from "../module-cache-manager"
 import { ResourceRegistry } from "../resource-registry"
 import { CONFIG, DevServerGlobals, FileChangeAction } from "../types"

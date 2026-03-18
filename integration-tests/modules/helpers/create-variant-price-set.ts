@@ -3,8 +3,8 @@ import {
   IPricingModuleService,
   MedusaContainer,
   PriceSetDTO,
-} from "/types"
-import { Modules } from "/utils"
+} from "@acmekit/types"
+import { Modules } from "@acmekit/utils"
 
 const defaultPrices = [
   {

@@ -1,5 +1,5 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { Modules, PromotionStatus, PromotionType } from "/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { Modules, PromotionStatus, PromotionType } from "@acmekit/utils"
 import {
   createAdminUser,
   generatePublishableKey,

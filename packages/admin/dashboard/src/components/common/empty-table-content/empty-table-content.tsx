@@ -1,5 +1,5 @@
-import { ExclamationCircle, MagnifyingGlass, PlusMini } from "/icons"
-import { Button, Text, clx } from "/ui"
+import { ExclamationCircle, MagnifyingGlass, PlusMini } from "@acmekit/icons"
+import { Button, Text, clx } from "@acmekit/ui"
 import React from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"

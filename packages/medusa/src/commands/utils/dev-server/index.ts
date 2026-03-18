@@ -1,5 +1,5 @@
-import { container } from "/framework"
-import { logger } from "/framework/logger"
+import { container } from "@acmekit/framework"
+import { logger } from "@acmekit/framework/logger"
 import { ModuleCacheManager } from "./module-cache-manager"
 import { RecoveryService } from "./recovery-service"
 import { RouteReloader } from "./reloaders/routes"

@@ -1,5 +1,5 @@
-import { MedusaWorkflow } from "/framework/workflows-sdk"
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { MedusaWorkflow } from "@acmekit/framework/workflows-sdk"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import path from "path"
 import { setTimeout as setTimeoutPromise } from "timers/promises"
 import { testJobHandler } from "../../__fixtures__/feature-flag/src/jobs/test-job"

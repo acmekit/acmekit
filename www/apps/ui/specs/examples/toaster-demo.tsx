@@ -1,4 +1,4 @@
-import { Button, Toaster, toast } from "/ui"
+import { Button, Toaster, toast } from "@acmekit/ui"
 
 export default function ToasterDemo() {
   return (

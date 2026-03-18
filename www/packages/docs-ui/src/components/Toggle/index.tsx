@@ -1,4 +1,4 @@
-import { Switch } from "/ui"
+import { Switch } from "@acmekit/ui"
 import clsx from "clsx"
 import React from "react"
 

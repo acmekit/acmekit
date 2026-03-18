@@ -2,7 +2,7 @@ import {
   FindParams,
   HttpTypes,
   SelectParams,
-} from "/types"
+} from "@acmekit/types"
 import { Client } from "../client"
 import { ClientHeaders } from "../types"
 

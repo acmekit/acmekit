@@ -1,4 +1,4 @@
-import { Context } from "/types"
+import { Context } from "@acmekit/types"
 import { EventArgs, EventSubscriber } from "@mikro-orm/core"
 type Service = {
   interceptEntityMutationEvents: (

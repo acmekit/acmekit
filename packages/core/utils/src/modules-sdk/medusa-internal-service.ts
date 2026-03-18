@@ -8,13 +8,13 @@ import {
   ModulesSdkTypes,
   PerformedActions,
   UpsertWithReplaceConfig,
-} from "/types"
+} from "@acmekit/types"
 import {
   EventType,
   type EntityClass,
   type EntityManager,
   type EntitySchema,
-} from "/deps/mikro-orm/core"
+} from "@acmekit/deps/mikro-orm/core"
 import {
   isDefined,
   isObject,

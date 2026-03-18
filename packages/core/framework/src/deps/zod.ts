@@ -1,1 +1,1 @@
-export * from "/deps/zod"
+export * from "@acmekit/deps/zod"

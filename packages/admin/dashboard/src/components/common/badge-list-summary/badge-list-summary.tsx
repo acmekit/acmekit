@@ -1,4 +1,4 @@
-import { Badge, Tooltip, clx } from "/ui"
+import { Badge, Tooltip, clx } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 
 type BadgeListSummaryProps = {

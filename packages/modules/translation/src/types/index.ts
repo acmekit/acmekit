@@ -1,4 +1,4 @@
-import { RemoteQueryEntryPoints } from "/framework/types"
+import { RemoteQueryEntryPoints } from "@acmekit/framework/types"
 
 /**
  * Extracts only the keys of T where the value is a string (or nullable string), the key

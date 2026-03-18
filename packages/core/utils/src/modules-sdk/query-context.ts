@@ -1,4 +1,4 @@
-import { QueryContextType } from "/types"
+import { QueryContextType } from "@acmekit/types"
 
 type QueryContexFnType = {
   (query: Record<string, unknown>): Record<string, unknown>

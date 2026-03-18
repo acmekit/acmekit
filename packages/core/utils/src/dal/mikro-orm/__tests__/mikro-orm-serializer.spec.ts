@@ -1,7 +1,7 @@
 import express from "express"
 import autocannon, { Result } from "autocannon"
-import { MikroORM, EntitySerializer } from "/deps/mikro-orm/core"
-import { defineConfig } from "/deps/mikro-orm/postgresql"
+import { MikroORM, EntitySerializer } from "@acmekit/deps/mikro-orm/core"
+import { defineConfig } from "@acmekit/deps/mikro-orm/postgresql"
 import {
   Entity1WithUnDecoratedProp,
   Entity2WithUnDecoratedProp,

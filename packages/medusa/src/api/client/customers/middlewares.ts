@@ -10,12 +10,12 @@ import {
   StoreUpdateCustomerAddress,
 } from "./validators"
 
-import { MiddlewareRoute } from "/framework/http"
+import { MiddlewareRoute } from "@acmekit/framework/http"
 import { authenticate } from "../../../utils/middlewares/authenticate-middleware"
 import {
   validateAndTransformBody,
   validateAndTransformQuery,
-} from "/framework"
+} from "@acmekit/framework"
 
 export const storeCustomerRoutesMiddlewares: MiddlewareRoute[] = [
   {

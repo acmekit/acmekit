@@ -1,4 +1,4 @@
-import { AdminApiKeyResponse } from "/types"
+import { AdminApiKeyResponse } from "@acmekit/types"
 import { TFunction } from "i18next"
 import { ApiKeyType } from "./constants"
 

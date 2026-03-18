@@ -1,4 +1,4 @@
-import { Spinner } from "/icons"
+import { Spinner } from "@acmekit/icons"
 import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { useMe } from "../../../hooks/api/users"
 import { SearchProvider } from "../../../providers/search-provider"

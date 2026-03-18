@@ -1,4 +1,4 @@
-import { RelationshipMetadata } from "/types"
+import { RelationshipMetadata } from "@acmekit/types"
 import { camelToSnakeCase } from "../../../common/camel-to-snake-case"
 
 /**

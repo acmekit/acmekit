@@ -8,7 +8,7 @@ import {
   AcmeKitModule,
   ModulesDefinition,
   RegisterModuleJoinerConfig,
-} from "/modules-sdk"
+} from "@acmekit/modules-sdk"
 import {
   CommonTypes,
   ConfigModule,
@@ -18,16 +18,16 @@ import {
   LoadedModule,
   ModuleDefinition,
   ModuleServiceInitializeOptions,
-} from "/types"
+} from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   isBoolean,
   isObject,
   isPresent,
   upperCaseFirst,
-} from "/utils"
+} from "@acmekit/utils"
 
-import type { Knex } from "/framework/mikro-orm/knex"
+import type { Knex } from "@acmekit/framework/mikro-orm/knex"
 import { aliasTo, asValue } from "./deps/awilix"
 import { configManager } from "./config"
 import {

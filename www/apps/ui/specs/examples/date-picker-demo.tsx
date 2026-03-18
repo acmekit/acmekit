@@ -1,4 +1,4 @@
-import { DatePicker } from "/ui"
+import { DatePicker } from "@acmekit/ui"
 
 export default function DatePickerDemo() {
   return (

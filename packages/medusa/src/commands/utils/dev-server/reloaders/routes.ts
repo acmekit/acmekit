@@ -1,5 +1,5 @@
-import { ApiLoader } from "/framework"
-import { Logger } from "/framework/types"
+import { ApiLoader } from "@acmekit/framework"
+import { Logger } from "@acmekit/framework/types"
 import { CONFIG, FileChangeAction } from "../types"
 import { ModuleCacheManager } from "../module-cache-manager"
 import { BaseReloader } from "./base"

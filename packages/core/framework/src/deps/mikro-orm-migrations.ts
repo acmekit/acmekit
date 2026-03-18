@@ -1,1 +1,1 @@
-export * from "/deps/mikro-orm/migrations"
+export * from "@acmekit/deps/mikro-orm/migrations"

@@ -1,17 +1,17 @@
-import { AcmeKitModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import {
   IndexTypes,
   JoinerServiceConfigAlias,
   ModuleJoinerConfig,
   ModuleJoinerRelationship,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   buildModuleResourceEventName,
   CommonEvents,
   GraphQLUtils,
   kebabCase,
   lowerCaseFirst,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { schemaObjectRepresentationPropertiesToOmit } from "@types"
 import { baseGraphqlSchema } from "./base-graphql-schema"
 

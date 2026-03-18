@@ -1,4 +1,4 @@
-import { FlagSettings } from "/types"
+import { FlagSettings } from "@acmekit/types"
 import { readdir } from "fs/promises"
 import { join, normalize } from "path"
 import { dynamicImport, isString, readDirRecursive } from "../common"

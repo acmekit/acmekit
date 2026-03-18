@@ -4,7 +4,7 @@ import {
   IMessageAggregator,
   Message,
   MessageAggregatorFormat,
-} from "/types"
+} from "@acmekit/types"
 
 import { composeMessage } from "./build-event-messages"
 

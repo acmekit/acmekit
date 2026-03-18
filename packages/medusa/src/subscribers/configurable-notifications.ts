@@ -1,10 +1,10 @@
-import { INotificationModuleService } from "/framework/types"
+import { INotificationModuleService } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   Modules,
   pickValueFromObject,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { SubscriberArgs, SubscriberConfig } from "../types/subscribers"
 
 type HandlerConfig = {

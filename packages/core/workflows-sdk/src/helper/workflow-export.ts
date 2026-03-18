@@ -1,24 +1,24 @@
-import { AcmeKitModule } from "/modules-sdk"
+import { AcmeKitModule } from "@acmekit/modules-sdk"
 import {
   DistributedTransactionEvents,
   DistributedTransactionType,
   LocalWorkflow,
   TransactionState,
-} from "/orchestration"
+} from "@acmekit/orchestration"
 import {
   Context,
   IEventBusModuleService,
   LoadedModule,
   Logger,
   AcmeKitContainer,
-} from "/types"
+} from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   isPresent,
   AcmeKitContextType,
   Modules,
   TransactionHandlerType,
-} from "/utils"
+} from "@acmekit/utils"
 import { EOL } from "os"
 import { ulid } from "ulid"
 import { AcmeKitWorkflow } from "../medusa-workflow"

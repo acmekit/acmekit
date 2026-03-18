@@ -1,6 +1,6 @@
-import InMemoryCacheModule from "/cache-inmemory"
+import InMemoryCacheModule from "@acmekit/cache-inmemory"
 
-export * from "/cache-inmemory"
+export * from "@acmekit/cache-inmemory"
 
 export default InMemoryCacheModule
 export const discoveryPath = require.resolve("/cache-inmemory")

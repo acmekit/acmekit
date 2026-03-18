@@ -1,4 +1,4 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import { adminHeaders, createAdminUser } from "../../helpers/create-admin-user"
 
 jest.setTimeout(50000)

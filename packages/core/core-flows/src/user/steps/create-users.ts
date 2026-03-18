@@ -1,9 +1,9 @@
 import type {
   CreateUserDTO,
   IUserModuleService,
-} from "/framework/types"
-import { Modules } from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+} from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 export const createUsersStepId = "create-users-step"
 /**

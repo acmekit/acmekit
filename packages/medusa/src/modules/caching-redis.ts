@@ -1,6 +1,6 @@
-import RedisCachingProvider from "/caching-redis"
+import RedisCachingProvider from "@acmekit/caching-redis"
 
-export * from "/caching-redis"
+export * from "@acmekit/caching-redis"
 
 export default RedisCachingProvider
 export const discoveryPath = require.resolve("/caching-redis")

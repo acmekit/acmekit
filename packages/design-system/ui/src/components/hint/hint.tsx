@@ -1,4 +1,4 @@
-import { ExclamationCircleSolid } from "/icons"
+import { ExclamationCircleSolid } from "@acmekit/icons"
 import { VariantProps, cva } from "cva"
 import * as React from "react"
 

@@ -1,5 +1,5 @@
-import { IconBadge } from "/ui"
-import { BuildingTax } from "/icons"
+import { IconBadge } from "@acmekit/ui"
+import { BuildingTax } from "@acmekit/icons"
 
 export default function IconBadgeAllSizes() {
   return (

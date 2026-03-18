@@ -1,4 +1,4 @@
-import { defineMiddlewares } from "/framework"
+import { defineMiddlewares } from "@acmekit/framework"
 
 export const errorHandlerMock = jest
   .fn()

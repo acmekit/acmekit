@@ -1,4 +1,4 @@
-import { clx } from "/ui"
+import { clx } from "@acmekit/ui"
 import { ConditionalTooltip } from "../../../../common/conditional-tooltip"
 import { PlaceholderCell } from "../placeholder-cell"
 

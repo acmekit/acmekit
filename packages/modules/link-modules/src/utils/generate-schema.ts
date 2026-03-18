@@ -1,15 +1,15 @@
-import { AcmeKitModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import {
   ModuleJoinerConfig,
   ModuleJoinerRelationship,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   camelToSnakeCase,
   composeTableName,
   isString,
   lowerCaseFirst,
   toPascalCase,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export function generateGraphQLSchema(
   joinerConfig: ModuleJoinerConfig,

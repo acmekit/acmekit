@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next"
 import { useState } from "react"
 import copy from "copy-to-clipboard"
 
-import { clx, toast, Tooltip } from "/ui"
+import { clx, toast, Tooltip } from "@acmekit/ui"
 
 type DisplayIdProps = {
   id: string

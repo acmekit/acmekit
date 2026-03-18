@@ -2,7 +2,7 @@ import {
   createStep,
   createWorkflow,
   StepResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 
 const step1InvokeMock = jest.fn((input) => {
   input.test = "test"

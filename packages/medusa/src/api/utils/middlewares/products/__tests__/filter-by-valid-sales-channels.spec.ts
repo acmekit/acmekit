@@ -1,5 +1,5 @@
-import { AcmeKitStoreRequest } from "/framework/http"
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitStoreRequest } from "@acmekit/framework/http"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { NextFunction } from "express"
 import {
   transformAndValidateSalesChannelIds,

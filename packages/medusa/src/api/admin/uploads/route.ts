@@ -1,10 +1,10 @@
-import { uploadFilesWorkflow } from "/core-flows"
+import { uploadFilesWorkflow } from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { AcmeKitError } from "/framework/utils"
-import { HttpTypes } from "/framework/types"
+} from "@acmekit/framework/http"
+import { AcmeKitError } from "@acmekit/framework/utils"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminUploadFile>,

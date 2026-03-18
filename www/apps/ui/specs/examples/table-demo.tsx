@@ -1,4 +1,4 @@
-import { Table } from "/ui"
+import { Table } from "@acmekit/ui"
 
 type Order = {
   id: string

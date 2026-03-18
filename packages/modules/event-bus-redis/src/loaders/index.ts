@@ -1,5 +1,5 @@
-import { asValue } from "/framework/awilix"
-import { LoaderOptions } from "/framework/types"
+import { asValue } from "@acmekit/framework/awilix"
+import { LoaderOptions } from "@acmekit/framework/types"
 import Redis from "ioredis"
 import { EOL } from "os"
 import { EventBusRedisModuleOptions } from "../types"

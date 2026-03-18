@@ -1,5 +1,5 @@
 // TODO: Comment temporarely and we will re enable it in the near future #14478
-// import { EventOptions } from "/types"
+// import { EventOptions } from "@acmekit/types"
 import { buildEventNamesFromEntityName } from "../event-bus"
 import { Modules } from "../modules-sdk"
 

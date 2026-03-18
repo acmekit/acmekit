@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react"
 import { Button } from "../../Button"
-import { ArrowUturnLeft, BarsThree, XMark } from "/icons"
+import { ArrowUturnLeft, BarsThree, XMark } from "@acmekit/icons"
 import clsx from "clsx"
 import { MenuItem } from "types"
 // @ts-expect-error can't install the types package because it doesn't support React v19

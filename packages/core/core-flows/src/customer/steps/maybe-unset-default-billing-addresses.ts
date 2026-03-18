@@ -3,9 +3,9 @@ import {
   FilterableCustomerAddressProps,
   ICustomerModuleService,
   UpdateCustomerAddressDTO,
-} from "/framework/types"
-import { Modules, isDefined } from "/framework/utils"
-import { createStep } from "/framework/workflows-sdk"
+} from "@acmekit/framework/types"
+import { Modules, isDefined } from "@acmekit/framework/utils"
+import { createStep } from "@acmekit/framework/workflows-sdk"
 import { unsetForCreate, unsetForUpdate } from "./utils"
 
 /**

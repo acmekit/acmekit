@@ -1,4 +1,4 @@
-import { FeatureFlagTypes } from "/types"
+import { FeatureFlagTypes } from "@acmekit/types"
 import { isObject, isString } from "../common"
 
 export class FlagRouter implements FeatureFlagTypes.IFlagRouter {

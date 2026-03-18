@@ -1,4 +1,4 @@
-import { Context, EventBusTypes } from "/types"
+import { Context, EventBusTypes } from "@acmekit/types"
 import { buildModuleResourceEventName } from "../event-bus/utils"
 
 // TODO should that move closer to the event bus? and maybe be rename to modulemoduleEventBuilderFactory

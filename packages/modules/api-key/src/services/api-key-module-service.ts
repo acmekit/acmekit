@@ -9,7 +9,7 @@ import {
   InternalModuleDeclaration,
   ModuleJoinerConfig,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ApiKeyType,
   EmitEvents,
@@ -22,7 +22,7 @@ import {
   AcmeKitError,
   AcmeKitService,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { ApiKey } from "@models"
 import {
   CreateApiKeyDTO,

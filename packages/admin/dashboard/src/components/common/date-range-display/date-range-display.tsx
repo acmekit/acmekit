@@ -1,4 +1,4 @@
-import { Text, clx } from "/ui"
+import { Text, clx } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { useDate } from "../../../hooks/use-date"
 

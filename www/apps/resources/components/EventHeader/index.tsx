@@ -1,6 +1,6 @@
 "use client"
 
-import { Brackets, CheckCircle, SquareTwoStack, Tag } from "/icons"
+import { Brackets, CheckCircle, SquareTwoStack, Tag } from "@acmekit/icons"
 import {
   DropdownMenu,
   H2,

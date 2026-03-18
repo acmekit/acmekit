@@ -1,4 +1,4 @@
-import { AcmeKitContainer, ModuleProvider } from "/types"
+import { AcmeKitContainer, ModuleProvider } from "@acmekit/types"
 import {
   dynamicImport,
   isFileSkipped,
@@ -6,8 +6,8 @@ import {
   lowerCaseFirst,
   normalizeImportPathWithSource,
   promiseAll,
-} from "/utils"
-import { asFunction, Lifetime } from "/deps/awilix"
+} from "@acmekit/utils"
+import { asFunction, Lifetime } from "@acmekit/deps/awilix"
 
 export async function moduleProviderLoader({
   container,

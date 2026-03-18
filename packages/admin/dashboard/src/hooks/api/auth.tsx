@@ -1,5 +1,5 @@
-import { FetchError } from "/js-sdk"
-import { HttpTypes } from "/types"
+import { FetchError } from "@acmekit/js-sdk"
+import { HttpTypes } from "@acmekit/types"
 import { UseMutationOptions, useMutation } from "@tanstack/react-query"
 import { sdk } from "../../lib/client"
 

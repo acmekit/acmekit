@@ -10,7 +10,7 @@ export default class Examples {
     workflowName: string
     parameter: ParameterReflection
   }): string {
-    let str = `import { ${workflowName} } from "/medusa/core-flows"\n\n`
+    let str = `import { ${workflowName} } from "@acmekit/medusa/core-flows"\n\n`
 
     str += `${workflowName}.hooks.${hookName}(\n\t(async ({`
 

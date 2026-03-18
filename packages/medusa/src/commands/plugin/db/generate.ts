@@ -1,14 +1,14 @@
-import { logger } from "/framework"
-import type { Logger } from "/framework/types"
+import { logger } from "@acmekit/framework"
+import type { Logger } from "@acmekit/framework/types"
 import {
   defineMikroOrmCliConfig,
   DmlEntity,
   dynamicImport,
   isFileSkipped,
   toUnixSlash,
-} from "/framework/utils"
-import { MetadataStorage } from "/framework/mikro-orm/core"
-import { MikroORM } from "/framework/mikro-orm/postgresql"
+} from "@acmekit/framework/utils"
+import { MetadataStorage } from "@acmekit/framework/mikro-orm/core"
+import { MikroORM } from "@acmekit/framework/mikro-orm/postgresql"
 import { glob } from "glob"
 import { dirname, join } from "path"
 

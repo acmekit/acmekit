@@ -1,4 +1,4 @@
-import { AcmeKitModule, MODULE_SCOPE } from "/framework/modules-sdk"
+import { AcmeKitModule, MODULE_SCOPE } from "@acmekit/framework/modules-sdk"
 import {
   ExternalModuleDeclaration,
   ILinkModule,
@@ -8,7 +8,7 @@ import {
   ModuleJoinerConfig,
   ModuleServiceInitializeCustomDataLayerOptions,
   ModuleServiceInitializeOptions,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   arrayDifference,
   composeLinkName,
@@ -19,7 +19,7 @@ import {
   promiseAll,
   simpleHash,
   toPascalCase,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import * as linkDefinitions from "../definitions"
 import { MigrationsExecutionPlanner } from "../migration"
 import { InitializeModuleInjectableDependencies } from "../types"

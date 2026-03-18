@@ -1,6 +1,6 @@
-import FileModule from "/file"
+import FileModule from "@acmekit/file"
 
-export * from "/file"
+export * from "@acmekit/file"
 
 export default FileModule
 export const discoveryPath = require.resolve("/file")

@@ -1,5 +1,5 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { ModuleRegistrationName } from "/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { ModuleRegistrationName } from "@acmekit/utils"
 import {
   adminHeaders,
   createAdminUser,

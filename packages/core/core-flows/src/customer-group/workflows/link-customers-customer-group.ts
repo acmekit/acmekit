@@ -1,5 +1,5 @@
-import type { LinkWorkflowInput } from "/framework/types"
-import { WorkflowData, createWorkflow } from "/framework/workflows-sdk"
+import type { LinkWorkflowInput } from "@acmekit/framework/types"
+import { WorkflowData, createWorkflow } from "@acmekit/framework/workflows-sdk"
 import { linkCustomersToCustomerGroupStep } from "../steps"
 
 /**

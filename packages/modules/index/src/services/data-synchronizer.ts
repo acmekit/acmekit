@@ -3,7 +3,7 @@ import {
   ContainerRegistrationKeys,
   Modules,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   Event,
   ILockingModule,
@@ -12,7 +12,7 @@ import {
   ModulesSdkTypes,
   RemoteQueryFunction,
   SchemaObjectEntityRepresentation,
-} from "/types"
+} from "@acmekit/types"
 import { IndexMetadataStatus, Orchestrator } from "@utils"
 import { setTimeout } from "timers/promises"
 export class DataSynchronizer {

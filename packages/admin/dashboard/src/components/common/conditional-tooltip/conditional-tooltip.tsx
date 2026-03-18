@@ -1,4 +1,4 @@
-import { Tooltip } from "/ui"
+import { Tooltip } from "@acmekit/ui"
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react"
 
 type ConditionalTooltipProps = PropsWithChildren<

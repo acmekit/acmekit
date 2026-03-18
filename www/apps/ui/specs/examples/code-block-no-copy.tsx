@@ -1,4 +1,4 @@
-import { CodeBlock, Label } from "/ui"
+import { CodeBlock, Label } from "@acmekit/ui"
 
 const snippets = [
   {

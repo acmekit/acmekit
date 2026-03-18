@@ -1,4 +1,4 @@
-import { raw } from "/framework/mikro-orm/core"
+import { raw } from "@acmekit/framework/mikro-orm/core"
 import {
   DistributedTransactionType,
   IDistributedSchedulerStorage,
@@ -13,18 +13,18 @@ import {
   TransactionOptions,
   TransactionStep,
   TransactionStepError,
-} from "/framework/orchestration"
+} from "@acmekit/framework/orchestration"
 import {
   InferEntityType,
   Logger,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   isPresent,
   AcmeKitError,
   TransactionState,
   TransactionStepState,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { WorkflowOrchestratorService } from "@services"
 import { type CronExpression, parseExpression } from "cron-parser"
 import { WorkflowExecution } from "../models/workflow-execution"

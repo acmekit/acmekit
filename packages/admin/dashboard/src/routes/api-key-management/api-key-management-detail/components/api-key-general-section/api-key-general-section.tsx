@@ -1,5 +1,5 @@
-import { PencilSquare, Trash, XCircle } from "/icons"
-import { ApiKeyDTO } from "/types"
+import { PencilSquare, Trash, XCircle } from "@acmekit/icons"
+import { ApiKeyDTO } from "@acmekit/types"
 import {
   Badge,
   Container,
@@ -9,7 +9,7 @@ import {
   Text,
   toast,
   usePrompt,
-} from "/ui"
+} from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import {

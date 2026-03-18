@@ -1,5 +1,5 @@
-import { defineLink } from "/framework/utils"
-import ProductModule from "/medusa/product"
+import { defineLink } from "@acmekit/framework/utils"
+import ProductModule from "@acmekit/medusa/product"
 import Translation from "../modules/translation"
 
 export default defineLink(

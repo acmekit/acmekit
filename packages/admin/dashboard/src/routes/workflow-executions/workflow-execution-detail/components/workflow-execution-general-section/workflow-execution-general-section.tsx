@@ -6,10 +6,10 @@ import {
   StatusBadge,
   Text,
   clx,
-} from "/ui"
+} from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { getTransactionState, getTransactionStateColor } from "../../../utils"
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { TransactionState, TransactionStepState } from "../../../types"
 
 type WorkflowExecutionGeneralSectionProps = {

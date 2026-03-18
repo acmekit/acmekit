@@ -1,8 +1,8 @@
 import {
   PermanentStepFailureError,
   SkipStepResponse,
-} from "/orchestration"
-import { OrchestrationUtils, isDefined } from "/utils"
+} from "@acmekit/orchestration"
+import { OrchestrationUtils, isDefined } from "@acmekit/utils"
 
 /**
  * This class is used to create the response returned by a step. A step return its data by returning an instance of `StepResponse`.
@@ -49,12 +49,12 @@ export class StepResponse<TOutput, TCompensateInput = TOutput> {
    * @param message - An optional message to be logged.
    *
    * @example
-   * import { Product } from "/medusa"
+   * import { Product } from "@acmekit/medusa"
    * import {
    *   createStep,
    *   StepResponse,
    *   createWorkflow
-   * } from "/workflows-sdk"
+   * } from "@acmekit/workflows-sdk"
    *
    * interface CreateProductInput {
    *   title: string

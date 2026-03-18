@@ -1,4 +1,4 @@
-import { XMark } from "/icons"
+import { XMark } from "@acmekit/icons"
 import {
   Button,
   clx,
@@ -7,7 +7,7 @@ import {
   Input,
   Kbd,
   Text,
-} from "/ui"
+} from "@acmekit/ui"
 import { Dialog as RadixDialog } from "radix-ui"
 import { useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"

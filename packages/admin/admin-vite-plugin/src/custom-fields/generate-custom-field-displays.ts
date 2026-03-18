@@ -3,7 +3,7 @@ import {
   isValidCustomFieldDisplayZone,
   type CustomFieldContainerZone,
   type CustomFieldModel,
-} from "/admin-shared"
+} from "@acmekit/admin-shared"
 import fs from "fs/promises"
 import {
   ExportDefaultDeclaration,

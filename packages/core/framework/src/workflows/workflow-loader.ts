@@ -1,6 +1,6 @@
-import { AcmeKitContainer } from "/types"
-import { isFileSkipped } from "/utils"
-import { AcmeKitWorkflow } from "/workflows-sdk"
+import { AcmeKitContainer } from "@acmekit/types"
+import { isFileSkipped } from "@acmekit/utils"
+import { AcmeKitWorkflow } from "@acmekit/workflows-sdk"
 import { logger } from "../logger"
 import { ResourceLoader } from "../utils/resource-loader"
 

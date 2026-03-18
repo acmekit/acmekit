@@ -2,9 +2,9 @@ import {
   CommonEvents,
   composeMessage,
   Modules,
-} from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
-import { IEventBusModuleService } from "/types"
+} from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
+import { IEventBusModuleService } from "@acmekit/types"
 
 moduleIntegrationTestRunner<IEventBusModuleService>({
   moduleName: Modules.EVENT_BUS,

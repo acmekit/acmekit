@@ -1,4 +1,4 @@
-import { InlineTip, Input, Switch } from "/ui"
+import { InlineTip, Input, Switch } from "@acmekit/ui"
 import { ComponentType } from "react"
 import { ControllerRenderProps, UseFormReturn } from "react-hook-form"
 import { useTranslation } from "react-i18next"

@@ -1,4 +1,4 @@
-import { createDataTableColumnHelper, useDataTable, DataTable, Heading, Badge } from "/ui"
+import { createDataTableColumnHelper, useDataTable, DataTable, Heading, Badge } from "@acmekit/ui"
 
 const products = [
   {

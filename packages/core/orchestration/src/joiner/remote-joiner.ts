@@ -9,7 +9,7 @@ import {
   RemoteJoinerOptions,
   RemoteJoinerQuery,
   RemoteNestedExpands,
-} from "/types"
+} from "@acmekit/types"
 import {
   deduplicate,
   FilterOperatorMap,
@@ -18,7 +18,7 @@ import {
   isObject,
   isString,
   AcmeKitError,
-} from "/utils"
+} from "@acmekit/utils"
 
 const BASE_PATH = "_root"
 

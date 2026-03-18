@@ -1,11 +1,11 @@
-import { CustomerWorkflowEvents } from "/framework/utils"
+import { CustomerWorkflowEvents } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
   createHook,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { deleteCustomersStep } from "../steps"
 

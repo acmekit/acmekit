@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import clsx from "clsx"
-import { Star, StarSolid } from "/icons"
+import { Star, StarSolid } from "@acmekit/icons"
 import { Button } from "@/components/Button"
 import { Label } from "@/components/Label"
 import { TextArea } from "@/components/TextArea"

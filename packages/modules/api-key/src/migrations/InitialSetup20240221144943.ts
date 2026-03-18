@@ -1,4 +1,4 @@
-import { Migration } from "/framework/mikro-orm/migrations"
+import { Migration } from "@acmekit/framework/mikro-orm/migrations"
 
 export class InitialSetup20240221144943 extends Migration {
   async up(): Promise<void> {

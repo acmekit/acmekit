@@ -1,4 +1,4 @@
-import { TransactionStepsDefinition } from "/orchestration"
+import { TransactionStepsDefinition } from "@acmekit/orchestration"
 import getRandomString from "../utils/get-random-string.js"
 
 type DiagramBuilderOptions = {

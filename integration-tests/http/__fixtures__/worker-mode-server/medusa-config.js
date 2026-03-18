@@ -1,4 +1,4 @@
-const { defineConfig, Modules } = require("/utils")
+const { defineConfig, Modules } = require("@acmekit/utils")
 const os = require("os")
 const path = require("path")
 

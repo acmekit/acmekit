@@ -1,4 +1,4 @@
-import { Code, Copy } from "/ui"
+import { Code, Copy } from "@acmekit/ui"
 
 export default function CopyDemo() {
   return (

@@ -1,6 +1,6 @@
-import { z } from "/deps/zod"
-import { BaseEntity, QueryConfig, RequestQueryFields } from "/types"
-import { AcmeKitError, removeUndefinedProperties } from "/utils"
+import { z } from "@acmekit/deps/zod"
+import { BaseEntity, QueryConfig, RequestQueryFields } from "@acmekit/types"
+import { AcmeKitError, removeUndefinedProperties } from "@acmekit/utils"
 import { NextFunction } from "express"
 
 import { zodValidator } from "../../zod/zod-helpers"

@@ -1,4 +1,4 @@
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { Request, Response } from "express"
 
 export function GET(req: Request, res: Response) {

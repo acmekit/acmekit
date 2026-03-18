@@ -4,7 +4,7 @@ import {
   PropertyType,
   RelationshipMetadata,
   RelationshipType,
-} from "/types"
+} from "@acmekit/types"
 import {
   BeforeCreate,
   BeforeUpdate,
@@ -17,7 +17,7 @@ import {
   OnInit,
   Property,
   rel,
-} from "/deps/mikro-orm/core"
+} from "@acmekit/deps/mikro-orm/core"
 import { camelToSnakeCase, pluralize } from "../../../common"
 import { DmlEntity } from "../../entity"
 import { BelongsTo } from "../../relations"

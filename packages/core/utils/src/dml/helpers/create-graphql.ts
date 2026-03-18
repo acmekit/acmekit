@@ -1,4 +1,4 @@
-import type { PropertyType } from "/types"
+import type { PropertyType } from "@acmekit/types"
 import { DmlEntity } from "../entity"
 import { getForeignKey } from "./entity-builder"
 import { parseEntityName } from "./entity-builder/parse-entity-name"

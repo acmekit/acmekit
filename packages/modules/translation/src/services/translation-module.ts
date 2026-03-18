@@ -1,4 +1,4 @@
-import { raw } from "/framework/mikro-orm/core"
+import { raw } from "@acmekit/framework/mikro-orm/core"
 import {
   Context,
   CreateTranslationDTO,
@@ -11,8 +11,8 @@ import {
   ModulesSdkTypes,
   TranslationTypes,
   UpdateTranslationSettingsDTO,
-} from "/framework/types"
-import { SqlEntityManager } from "/framework/mikro-orm/postgresql"
+} from "@acmekit/framework/types"
+import { SqlEntityManager } from "@acmekit/framework/mikro-orm/postgresql"
 import {
   arrayDifference,
   DmlEntity,
@@ -24,7 +24,7 @@ import {
   AcmeKitService,
   normalizeLocale,
   toSnakeCase,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import Locale from "@models/locale"
 import Translation from "@models/translation"
 import Settings from "@models/settings"

@@ -1,5 +1,5 @@
-import { FileTypes } from "/framework/types"
-import { AbstractFileProviderService } from "/framework/utils"
+import { FileTypes } from "@acmekit/framework/types"
+import { AbstractFileProviderService } from "@acmekit/framework/utils"
 
 export class FileProviderServiceFixtures extends AbstractFileProviderService {
   static identifier = "fixtures-file-provider"

@@ -1,5 +1,5 @@
-import { ApiKeyType } from "/framework/utils"
-import { z } from "/framework/zod"
+import { ApiKeyType } from "@acmekit/framework/utils"
+import { z } from "@acmekit/framework/zod"
 import {
   createFindParams,
   createOperatorMap,

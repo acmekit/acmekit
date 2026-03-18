@@ -1,5 +1,5 @@
-import { TransactionHandlerType } from "/framework/utils"
-import { z } from "/framework/zod"
+import { TransactionHandlerType } from "@acmekit/framework/utils"
+import { z } from "@acmekit/framework/zod"
 import { createFindParams, createSelectParams } from "../../utils/validators"
 
 export type AdminGetWorkflowExecutionDetailsParamsType = z.infer<

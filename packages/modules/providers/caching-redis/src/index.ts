@@ -1,4 +1,4 @@
-import { ModuleProvider, Modules } from "/framework/utils"
+import { ModuleProvider, Modules } from "@acmekit/framework/utils"
 import Connection from "./loaders/connection"
 import Hash from "./loaders/hash"
 import { RedisCachingProvider } from "./services/redis-cache"

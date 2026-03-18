@@ -1,5 +1,5 @@
-import { AcmeKitContainer } from "/types"
-import { ContainerRegistrationKeys, useCache } from "/utils"
+import { AcmeKitContainer } from "@acmekit/types"
+import { ContainerRegistrationKeys, useCache } from "@acmekit/utils"
 import { FlagRouter } from "../feature-flags/flag-router"
 
 export type PermissionAction = {

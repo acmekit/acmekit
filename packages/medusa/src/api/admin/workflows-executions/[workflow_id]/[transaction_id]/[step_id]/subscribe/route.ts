@@ -1,10 +1,10 @@
-import { IWorkflowEngineService } from "/framework/types"
+import { IWorkflowEngineService } from "@acmekit/framework/types"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
-import { Modules } from "/framework/utils"
+import { Modules } from "@acmekit/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,

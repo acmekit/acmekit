@@ -1,4 +1,4 @@
-import { FindConfig } from "/types"
+import { FindConfig } from "@acmekit/types"
 import { SoftDeletableFilterKey } from "../../dal/mikro-orm/mikro-orm-soft-deletable-filter"
 import { buildQuery } from "../build-query"
 

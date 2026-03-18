@@ -3,8 +3,8 @@ import {
   getTotalVariantAvailability,
   getVariantAvailability,
   AcmeKitError,
-} from "/framework/utils"
-import { AcmeKitRequest, AcmeKitStoreRequest } from "/framework/http"
+} from "@acmekit/framework/utils"
+import { AcmeKitRequest, AcmeKitStoreRequest } from "@acmekit/framework/http"
 import { transformAndValidateSalesChannelIds } from "./filter-by-valid-sales-channels"
 
 export const wrapVariantsWithTotalInventoryQuantity = async (

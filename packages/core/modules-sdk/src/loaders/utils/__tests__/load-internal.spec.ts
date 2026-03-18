@@ -1,9 +1,9 @@
-import { IModuleService, ModuleResolution } from "/types"
+import { IModuleService, ModuleResolution } from "@acmekit/types"
 import {
   createMedusaContainer,
   getProviderRegistrationKey,
   upperCaseFirst,
-} from "/utils"
+} from "@acmekit/utils"
 import { join } from "path"
 import {
   ModuleWithDmlMixedWithoutJoinerConfigFixtures,

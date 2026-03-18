@@ -1,4 +1,4 @@
-import { CommandBar, Table, clx } from "/ui"
+import { CommandBar, Table, clx } from "@acmekit/ui"
 import {
   ColumnDef,
   Table as ReactTable,

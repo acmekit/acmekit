@@ -1,4 +1,4 @@
-import { MagnifierAlert } from "/icons"
+import { MagnifierAlert } from "@acmekit/icons"
 import clsx from "clsx"
 import React from "react"
 

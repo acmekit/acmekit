@@ -1,6 +1,6 @@
-import { IFileModuleService } from "/framework/types"
-import { Module, Modules } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { IFileModuleService } from "@acmekit/framework/types"
+import { Module, Modules } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { FileModuleService } from "@services"
 import { resolve } from "path"
 

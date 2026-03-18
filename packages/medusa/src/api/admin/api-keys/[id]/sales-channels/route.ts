@@ -1,10 +1,10 @@
-import { linkSalesChannelsToApiKeyWorkflow } from "/core-flows"
-import { HttpTypes } from "/framework/types"
-import { ApiKeyType, AcmeKitError } from "/framework/utils"
+import { linkSalesChannelsToApiKeyWorkflow } from "@acmekit/core-flows"
+import { HttpTypes } from "@acmekit/framework/types"
+import { ApiKeyType, AcmeKitError } from "@acmekit/framework/utils"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { refetchApiKey } from "../../helpers"
 
 export const POST = async (

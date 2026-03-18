@@ -1,4 +1,4 @@
-import { Migration } from "/framework/mikro-orm/migrations"
+import { Migration } from "@acmekit/framework/mikro-orm/migrations"
 import { ulid } from "ulid"
 
 export class Migration20250505092459 extends Migration {

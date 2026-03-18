@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 import { Notification } from "./notification"
 
 export const NotificationProvider = model.define("notificationProvider", {

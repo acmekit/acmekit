@@ -1,5 +1,5 @@
 import { NextFunction } from "express"
-import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
 import { StoreCreateCartType } from "../../../client/carts/validators"
 
 /**

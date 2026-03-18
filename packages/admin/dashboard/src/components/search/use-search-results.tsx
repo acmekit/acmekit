@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { keepPreviousData } from "@tanstack/react-query"
 import { TFunction } from "i18next"
 import { useCallback, useEffect, useMemo, useState } from "react"

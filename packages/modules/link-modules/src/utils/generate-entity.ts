@@ -1,16 +1,16 @@
 import {
   JoinerRelationship,
   ModuleJoinerConfig,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   composeTableName,
   compressName,
   mikroOrmSoftDeletableFilterOptions,
   simpleHash,
   SoftDeletableFilterKey,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
-import { EntitySchema } from "/framework/mikro-orm/core"
+import { EntitySchema } from "@acmekit/framework/mikro-orm/core"
 
 function getClass(...properties) {
   return class LinkModel {

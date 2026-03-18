@@ -5,4 +5,4 @@ export {
   HttpCompressionOptions,
   ConfigModule,
   PluginDetails,
-} from "/types"
+} from "@acmekit/types"

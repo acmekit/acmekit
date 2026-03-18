@@ -1,5 +1,5 @@
-import { LinkDefinition, LoadedModule } from "/types"
-import { isPresent } from "/utils"
+import { LinkDefinition, LoadedModule } from "@acmekit/types"
+import { isPresent } from "@acmekit/utils"
 
 export const convertRecordsToLinkDefinition = (
   links: object[],

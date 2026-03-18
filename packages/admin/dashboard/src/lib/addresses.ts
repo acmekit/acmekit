@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 
 import { countries, getCountryByIso2 } from "./data/countries"
 

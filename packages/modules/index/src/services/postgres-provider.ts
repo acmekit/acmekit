@@ -5,7 +5,7 @@ import {
   QueryGraphFunction,
   RemoteQueryFunction,
   Subscriber,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   MikroOrmBaseRepository as BaseRepository,
   CommonEvents,
@@ -17,12 +17,12 @@ import {
   AcmeKitContext,
   toMikroORMEntity,
   unflattenObjectKeys,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   EntityManager,
   EntityRepository,
   SqlEntityManager,
-} from "/framework/mikro-orm/postgresql"
+} from "@acmekit/framework/mikro-orm/postgresql"
 import { IndexData, IndexRelation } from "@models"
 import { createPartitions, QueryBuilder } from "../utils"
 import { flattenObjectKeys } from "../utils/flatten-object-keys"

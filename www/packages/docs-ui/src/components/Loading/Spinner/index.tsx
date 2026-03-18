@@ -1,7 +1,7 @@
 import React from "react"
 import clsx from "clsx"
-import { Spinner } from "/icons"
-import { IconProps } from "/icons/dist/types"
+import { Spinner } from "@acmekit/icons"
+import { IconProps } from "@acmekit/icons/dist/types"
 
 export type SpinnerLoadingProps = {
   iconProps?: IconProps

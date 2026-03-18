@@ -1,4 +1,4 @@
-import { Calendar } from "/ui"
+import { Calendar } from "@acmekit/ui"
 
 export default function CalendarMinMax() {
   const min = new Date()

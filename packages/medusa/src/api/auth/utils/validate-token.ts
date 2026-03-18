@@ -4,14 +4,14 @@ import {
   AcmeKitNextFunction,
   AcmeKitRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { ConfigModule, IAuthModuleService } from "/framework/types"
+} from "@acmekit/framework/http"
+import { ConfigModule, IAuthModuleService } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   AcmeKitError,
   Modules,
-} from "/framework/utils"
-import { HttpTypes } from "/types"
+} from "@acmekit/framework/utils"
+import { HttpTypes } from "@acmekit/types"
 
 export interface UpdateProviderJwtPayload {
   entity_id: string

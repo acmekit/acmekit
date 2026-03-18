@@ -5,8 +5,8 @@ import type {
   Logger,
   ModuleProviderExports,
   ModuleServiceInitializeOptions,
-} from "/framework/types"
-import { Modules } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
 import { default as CacheProviderService } from "../services/cache-provider"
 
 export const CachingDefaultProvider = "default_provider"

@@ -1,4 +1,4 @@
-import { z } from "/framework/zod"
+import { z } from "@acmekit/framework/zod"
 
 export const ResetPasswordRequest = z.object({
   identifier: z.string(),

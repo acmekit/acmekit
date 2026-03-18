@@ -17,7 +17,7 @@ import {
   FlagMini,
   Link,
   TriangleRightMini,
-} from "/icons"
+} from "@acmekit/icons"
 import { decodeStr } from "@/utils/decode-str"
 import { isInView } from "@/utils/is-in-view"
 import { usePathname } from "next/navigation"

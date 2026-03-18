@@ -1,6 +1,6 @@
-import LocalFileProvider from "/file-local"
+import LocalFileProvider from "@acmekit/file-local"
 
-export * from "/file-local"
+export * from "@acmekit/file-local"
 
 export default LocalFileProvider
 export const discoveryPath = require.resolve("/file-local")

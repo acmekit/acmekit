@@ -1,7 +1,7 @@
 import React from "react"
 import { InlineCode } from "../../../InlineCode"
-import { Text } from "/ui"
-import { Bolt, CursorArrowRays, InformationCircle } from "/icons"
+import { Text } from "@acmekit/ui"
+import { Bolt, CursorArrowRays, InformationCircle } from "@acmekit/icons"
 
 type WorkflowDiagramLegendProps = {
   hideLegend?: boolean

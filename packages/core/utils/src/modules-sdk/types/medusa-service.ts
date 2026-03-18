@@ -9,7 +9,7 @@ import {
   Prettify,
   RestoreReturn,
   SoftDeleteReturn,
-} from "/types"
+} from "@acmekit/types"
 import { EventArgs } from "@mikro-orm/core"
 import { DmlEntity } from "../../dml"
 

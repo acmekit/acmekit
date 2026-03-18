@@ -1,4 +1,4 @@
-import { Switch } from "/ui"
+import { Switch } from "@acmekit/ui"
 import { useEffect, useRef, useState } from "react"
 import CurrencyInput, { CurrencyInputProps } from "react-currency-input-field"
 import { Controller, ControllerRenderProps } from "react-hook-form"

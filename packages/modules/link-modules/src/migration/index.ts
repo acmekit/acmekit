@@ -4,20 +4,20 @@ import {
   ModuleJoinerConfig,
   ModuleServiceInitializeOptions,
   PlannerActionLinkDescriptor,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
-import { EntitySchema, MikroORM } from "/framework/mikro-orm/core"
+import { EntitySchema, MikroORM } from "@acmekit/framework/mikro-orm/core"
 import {
   DatabaseSchema,
   PostgreSqlDriver,
-} from "/framework/mikro-orm/postgresql"
+} from "@acmekit/framework/mikro-orm/postgresql"
 import {
   arrayDifference,
   DALUtils,
   executeWithConcurrency,
   ModulesSdkUtils,
   normalizeMigrationSQL,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { generateEntity } from "../utils"
 
 /**

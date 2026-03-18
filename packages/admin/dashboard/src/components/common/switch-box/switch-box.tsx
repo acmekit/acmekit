@@ -1,4 +1,4 @@
-import { Switch } from "/ui"
+import { Switch } from "@acmekit/ui"
 import { ReactNode } from "react"
 import { ControllerProps, FieldPath, FieldValues } from "react-hook-form"
 

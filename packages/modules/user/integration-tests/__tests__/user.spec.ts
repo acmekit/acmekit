@@ -1,10 +1,10 @@
-import { IUserModuleService } from "/framework/types"
-import { Module, Modules, UserEvents } from "/framework/utils"
+import { IUserModuleService } from "@acmekit/framework/types"
+import { Module, Modules, UserEvents } from "@acmekit/framework/utils"
 import { UserModuleService } from "@services"
 import {
   MockEventBusService,
   moduleIntegrationTestRunner,
-} from "/test-utils"
+} from "@acmekit/test-utils"
 
 jest.setTimeout(30000)
 

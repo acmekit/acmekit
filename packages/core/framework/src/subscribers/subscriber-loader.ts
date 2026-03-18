@@ -3,13 +3,13 @@ import {
   IEventBusModuleService,
   AcmeKitContainer,
   Subscriber,
-} from "/types"
+} from "@acmekit/types"
 import {
   isFileSkipped,
   kebabCase,
   Modules,
   registerDevServerResource,
-} from "/utils"
+} from "@acmekit/utils"
 import { parse } from "path"
 import { configManager } from "../config"
 import { container } from "../container"

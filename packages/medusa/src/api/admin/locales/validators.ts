@@ -1,4 +1,4 @@
-import { z } from "/framework/zod"
+import { z } from "@acmekit/framework/zod"
 import { createFindParams, createSelectParams } from "../../utils/validators"
 import { applyAndAndOrOperators } from "../../utils/common-validators"
 

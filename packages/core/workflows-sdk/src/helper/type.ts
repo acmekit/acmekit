@@ -3,8 +3,8 @@ import {
   DistributedTransactionType,
   LocalWorkflow,
   TransactionStepError,
-} from "/orchestration"
-import { Context, LoadedModule, AcmeKitContainer } from "/types"
+} from "@acmekit/orchestration"
+import { Context, LoadedModule, AcmeKitContainer } from "@acmekit/types"
 
 type BaseFlowRunOptions = {
   context?: Context

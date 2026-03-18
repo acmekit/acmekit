@@ -1,14 +1,14 @@
-import { asValue } from "/framework/awilix"
-import { logger } from "/framework/logger"
-import { Migrator } from "/framework/migrations"
-import { AcmeKitAppOutput } from "/framework/modules-sdk"
-import { AcmeKitContainer } from "/framework/types"
+import { asValue } from "@acmekit/framework/awilix"
+import { logger } from "@acmekit/framework/logger"
+import { Migrator } from "@acmekit/framework/migrations"
+import { AcmeKitAppOutput } from "@acmekit/framework/modules-sdk"
+import { AcmeKitContainer } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
   getResolvedPlugins,
   mergePluginModules,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { dbTestUtilFactory, getDatabaseURL } from "./database"
 import {
   applyEnvVarsToProcess,
@@ -22,7 +22,7 @@ import {
 } from "./medusa-test-runner-utils"
 import { waitWorkflowExecutions } from "./medusa-test-runner-utils/wait-workflow-executions"
 import { ulid } from "ulid"
-import { createDefaultsWorkflow } from "/core-flows"
+import { createDefaultsWorkflow } from "@acmekit/core-flows"
 
 export interface AcmeKitSuiteOptions {
   dbConnection: any // knex instance

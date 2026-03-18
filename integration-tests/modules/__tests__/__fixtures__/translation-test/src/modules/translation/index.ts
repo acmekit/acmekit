@@ -1,4 +1,4 @@
-import { Module } from "/framework/utils";
+import { Module } from "@acmekit/framework/utils";
 import { TranslationModule } from "./service";
 
 export const TRANSLATION = "translation";

@@ -1,4 +1,4 @@
-import { Label, Switch } from "/ui"
+import { Label, Switch } from "@acmekit/ui"
 
 export default function SwitchDisabled() {
   return (

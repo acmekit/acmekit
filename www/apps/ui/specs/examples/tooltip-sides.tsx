@@ -1,10 +1,10 @@
-import { Tooltip } from "/ui"
+import { Tooltip } from "@acmekit/ui"
 import {
   ArrowLongDown,
   ArrowLongLeft,
   ArrowLongRight,
   ArrowLongUp,
-} from "/icons"
+} from "@acmekit/icons"
 
 export default function TooltipSides() {
   return (

@@ -1,7 +1,7 @@
-import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
 
-import type { IAuthModuleService } from "/framework/types"
-import { isDefined, Modules } from "/framework/utils"
+import type { IAuthModuleService } from "@acmekit/framework/types"
+import { isDefined, Modules } from "@acmekit/framework/utils"
 
 export type SetAuthAppMetadataStepInput = {
   authIdentityId: string

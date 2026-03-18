@@ -1,7 +1,7 @@
 import React from "react"
 import { useLearningPath } from "../../../../providers/LearningPath"
 import { Button } from "docs-ui"
-import { ArrowDownLeftMini, ArrowDownMini } from "/icons"
+import { ArrowDownLeftMini, ArrowDownMini } from "@acmekit/icons"
 
 type LearningPathStepActionsType = {
   onFinish?: () => void

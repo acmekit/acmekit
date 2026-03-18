@@ -11,10 +11,10 @@ import { TextArea } from "@/components/TextArea"
 import { Label } from "@/components/Label"
 import { DottedSeparator } from "@/components/DottedSeparator"
 import { RadioItem } from "@/components/RadioItem"
-import { ChatBubbleLeftRight, ThumbDown, ThumbUp } from "/icons"
+import { ChatBubbleLeftRight, ThumbDown, ThumbUp } from "@acmekit/icons"
 import Link from "next/link"
 import { useSiteConfig } from "@/providers/SiteConfig"
-import { RadioGroup } from "/ui"
+import { RadioGroup } from "@acmekit/ui"
 
 export type FeedbackProps = {
   event: string

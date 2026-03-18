@@ -1,5 +1,5 @@
 import { useState, ReactNode } from "react"
-import { Container, Button } from "/ui"
+import { Container, Button } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { DataTable } from "../../data-table"
 import { SaveViewDialog } from "../save-view-dialog"

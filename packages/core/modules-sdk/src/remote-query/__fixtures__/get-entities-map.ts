@@ -1,4 +1,4 @@
-import { GraphQLUtils } from "/utils"
+import { GraphQLUtils } from "@acmekit/utils"
 
 export function getEntitiesMap(loadedSchema): Map<string, any> {
   const defaultMedusaSchema = `

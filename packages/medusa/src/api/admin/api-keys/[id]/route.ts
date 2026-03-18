@@ -1,15 +1,15 @@
 import {
   deleteApiKeysWorkflow,
   updateApiKeysWorkflow,
-} from "/core-flows"
+} from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
 import { refetchApiKey } from "../helpers"
-import { AcmeKitError } from "/framework/utils"
-import { HttpTypes } from "/framework/types"
+import { AcmeKitError } from "@acmekit/framework/utils"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.SelectParams>,

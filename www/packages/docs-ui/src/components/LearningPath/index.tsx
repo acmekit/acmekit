@@ -8,7 +8,7 @@ import { useLearningPath } from "@/providers/LearningPath"
 import { Button } from "@/components/Button"
 import { Link } from "@/components/Link"
 import { useNotifications } from "@/providers/Notification"
-import { CircleMiniSolid } from "/icons"
+import { CircleMiniSolid } from "@acmekit/icons"
 
 type LearningPathProps = {
   pathName: string

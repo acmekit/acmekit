@@ -1,6 +1,6 @@
-import CacheModule from "/caching"
+import CacheModule from "@acmekit/caching"
 
-export * from "/caching"
+export * from "@acmekit/caching"
 
 export default CacheModule
 export const discoveryPath = require.resolve("/caching")

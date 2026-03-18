@@ -1,4 +1,4 @@
-import Medusa from "/js-sdk"
+import Medusa from "@acmekit/js-sdk"
 
 let MEDUSA_BACKEND_URL = "http://localhost:9000"
 

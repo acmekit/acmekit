@@ -2,12 +2,12 @@ import {
   CustomerGroupDTO,
   FilterableCustomerGroupProps,
   CustomerGroupUpdatableFields,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { updateCustomerGroupsStep } from "../steps"
 
 /**

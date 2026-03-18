@@ -1,9 +1,9 @@
-import { IUserModuleService } from "/framework/types"
-import { Modules, UserEvents } from "/framework/utils"
+import { IUserModuleService } from "@acmekit/framework/types"
+import { Modules, UserEvents } from "@acmekit/framework/utils"
 import {
   MockEventBusService,
   moduleIntegrationTestRunner,
-} from "/test-utils"
+} from "@acmekit/test-utils"
 import jwt, { JwtPayload } from "jsonwebtoken"
 
 jest.setTimeout(30000)

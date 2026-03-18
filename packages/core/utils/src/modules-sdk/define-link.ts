@@ -1,4 +1,4 @@
-import { LinkModulesExtraFields, ModuleJoinerConfig } from "/types"
+import { LinkModulesExtraFields, ModuleJoinerConfig } from "@acmekit/types"
 import {
   camelToSnakeCase,
   getCallerFilePath,

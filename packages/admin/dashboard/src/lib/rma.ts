@@ -1,4 +1,4 @@
-import { AdminOrderLineItem } from "/types"
+import { AdminOrderLineItem } from "@acmekit/types"
 
 export function getReturnableQuantity(item: AdminOrderLineItem): number {
   const {

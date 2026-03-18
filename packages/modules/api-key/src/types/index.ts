@@ -4,7 +4,7 @@ import {
   Logger,
   RevokeApiKeyDTO,
   UpdateApiKeyDTO,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 export type InitializeModuleInjectableDependencies = {
   logger?: Logger

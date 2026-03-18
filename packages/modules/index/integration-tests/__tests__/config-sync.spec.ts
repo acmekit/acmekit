@@ -4,12 +4,12 @@ import {
   logger,
   AcmeKitAppLoader,
   Migrator,
-} from "/framework"
-import { asValue } from "/framework/awilix"
-import { AcmeKitAppOutput, AcmeKitModule } from "/framework/modules-sdk"
-import { ContainerRegistrationKeys, Modules } from "/framework/utils"
-import { initDb, TestDatabaseUtils } from "/test-utils"
-import { IndexTypes, ModulesSdkTypes } from "/types"
+} from "@acmekit/framework"
+import { asValue } from "@acmekit/framework/awilix"
+import { AcmeKitAppOutput, AcmeKitModule } from "@acmekit/framework/modules-sdk"
+import { ContainerRegistrationKeys, Modules } from "@acmekit/framework/utils"
+import { initDb, TestDatabaseUtils } from "@acmekit/test-utils"
+import { IndexTypes, ModulesSdkTypes } from "@acmekit/types"
 import { Configuration } from "@utils"
 import path from "path"
 import { setTimeout } from "timers/promises"

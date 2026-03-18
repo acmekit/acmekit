@@ -4,12 +4,12 @@ import {
   usePrompt,
   toast,
   DropdownMenu,
-} from "/ui"
+} from "@acmekit/ui"
 import {
   Trash,
   PencilSquare,
   ArrowUturnLeft,
-} from "/icons"
+} from "@acmekit/icons"
 import { useViewConfigurations, useViewConfiguration } from "../../../hooks/use-view-configurations"
 import type { ViewConfiguration } from "../../../hooks/use-view-configurations"
 import { SaveViewDialog } from "../save-view-dialog"

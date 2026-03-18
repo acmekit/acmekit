@@ -1,9 +1,9 @@
 import { QueryKey, UseQueryOptions, useQuery } from "@tanstack/react-query"
 
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { sdk } from "../../lib/client"
 import { queryKeysFactory } from "../../lib/query-key-factory"
-import { FetchError } from "/js-sdk"
+import { FetchError } from "@acmekit/js-sdk"
 
 const NOTIFICATION_QUERY_KEY = "notification" as const
 export const notificationQueryKeys = queryKeysFactory(NOTIFICATION_QUERY_KEY)

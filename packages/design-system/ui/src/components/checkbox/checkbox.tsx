@@ -1,6 +1,6 @@
 "use client"
 
-import { CheckMini, MinusMini } from "/icons"
+import { CheckMini, MinusMini } from "@acmekit/icons"
 import { Checkbox as RadixCheckbox } from "radix-ui"
 import * as React from "react"
 

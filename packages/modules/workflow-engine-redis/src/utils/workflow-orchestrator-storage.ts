@@ -1,4 +1,4 @@
-import { raw } from "/framework/mikro-orm/core"
+import { raw } from "@acmekit/framework/mikro-orm/core"
 import {
   DistributedTransactionType,
   IDistributedSchedulerStorage,
@@ -13,8 +13,8 @@ import {
   TransactionOptions,
   TransactionStep,
   TransactionStepError,
-} from "/framework/orchestration"
-import { Logger, ModulesSdkTypes } from "/framework/types"
+} from "@acmekit/framework/orchestration"
+import { Logger, ModulesSdkTypes } from "@acmekit/framework/types"
 import {
   isDefined,
   isPresent,
@@ -22,7 +22,7 @@ import {
   promiseAll,
   TransactionState,
   TransactionStepState,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { WorkflowOrchestratorService } from "@services"
 import {
   Queue,

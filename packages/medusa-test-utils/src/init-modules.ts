@@ -1,14 +1,14 @@
-import { logger } from "/framework/logger"
+import { logger } from "@acmekit/framework/logger"
 import {
   ExternalModuleDeclaration,
   InternalModuleDeclaration,
   ModuleJoinerConfig,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   createPgConnection,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export interface InitModulesOptions {
   injectedDependencies?: Record<string, unknown>
@@ -35,7 +35,7 @@ export async function initModules({
   preventConnectionDestroyWarning = false,
   cwd,
 }: InitModulesOptions) {
-  const moduleSdkImports = require("/framework/modules-sdk")
+  const moduleSdkImports = require("@acmekit/framework/modules-sdk")
 
   injectedDependencies ??= {}
 

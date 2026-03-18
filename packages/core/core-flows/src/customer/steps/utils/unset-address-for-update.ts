@@ -2,8 +2,8 @@ import {
   FilterableCustomerAddressProps,
   ICustomerModuleService,
   UpdateCustomerAddressDTO,
-} from "/framework/types"
-import { StepResponse } from "/framework/workflows-sdk"
+} from "@acmekit/framework/types"
+import { StepResponse } from "@acmekit/framework/workflows-sdk"
 
 export const unsetForUpdate = async (
   data: {

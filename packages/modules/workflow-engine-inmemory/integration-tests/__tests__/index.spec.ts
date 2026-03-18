@@ -1,30 +1,30 @@
-import { AcmeKitContainer } from "/framework"
-import { asFunction } from "/framework/awilix"
+import { AcmeKitContainer } from "@acmekit/framework"
+import { asFunction } from "@acmekit/framework/awilix"
 import {
   DistributedTransactionType,
   TransactionState,
   WorkflowManager,
-} from "/framework/orchestration"
+} from "@acmekit/framework/orchestration"
 import {
   Context,
   IWorkflowEngineService,
   Logger,
   RemoteQueryFunction,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   Module,
   Modules,
   promiseAll,
   TransactionHandlerType,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   createStep,
   createWorkflow,
   StepResponse,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
-import { moduleIntegrationTestRunner } from "/test-utils"
+} from "@acmekit/framework/workflows-sdk"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { WorkflowsModuleService } from "@services"
 import { setTimeout as setTimeoutSync } from "timers"
 import { setTimeout as setTimeoutPromise } from "timers/promises"

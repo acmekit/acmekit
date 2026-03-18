@@ -1,4 +1,4 @@
-import { Migration } from "/framework/mikro-orm/migrations";
+import { Migration } from "@acmekit/framework/mikro-orm/migrations";
 
 export class Migration20250717162007 extends Migration {
 

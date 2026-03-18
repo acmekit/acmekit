@@ -1,6 +1,6 @@
 "use client"
 
-import { XMark } from "/icons"
+import { XMark } from "@acmekit/icons"
 import { Dialog as RadixDialog } from "radix-ui"
 import * as React from "react"
 

@@ -1,13 +1,13 @@
-import { createRbacRolesWorkflow } from "/core-flows"
+import { createRbacRolesWorkflow } from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import {
   ContainerRegistrationKeys,
   defineFileConfig,
   FeatureFlag,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import RbacFeatureFlag from "../../../../feature-flags/rbac"
 import { AdminCreateRbacRoleType } from "./validators"
 

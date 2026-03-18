@@ -1,1 +1,1 @@
-export * from "/core-flows"
+export * from "@acmekit/core-flows"

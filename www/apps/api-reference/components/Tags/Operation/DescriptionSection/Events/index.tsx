@@ -20,7 +20,7 @@ import {
 import { useMemo } from "react"
 import type { OpenAPI } from "types"
 import TagOperationParameters from "../../Parameters"
-import { Brackets, CheckCircle, SquareTwoStack, Tag } from "/icons"
+import { Brackets, CheckCircle, SquareTwoStack, Tag } from "@acmekit/icons"
 
 export type TagsOperationDescriptionSectionEventsProps = {
   events: OpenAPI.OasEvents[]

@@ -1,7 +1,7 @@
-import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
+import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
 
-import { refreshInviteTokensWorkflow } from "/core-flows"
-import { HttpTypes } from "/framework/types"
+import { refreshInviteTokensWorkflow } from "@acmekit/core-flows"
+import { HttpTypes } from "@acmekit/framework/types"
 import { refetchInvite } from "../../helpers"
 
 export const POST = async (

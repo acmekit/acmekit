@@ -1,8 +1,8 @@
 import {
   CreateCustomerAddressDTO,
   ICustomerModuleService,
-} from "/framework/types"
-import { StepResponse } from "/framework/workflows-sdk"
+} from "@acmekit/framework/types"
+import { StepResponse } from "@acmekit/framework/workflows-sdk"
 
 export const unsetForCreate = async (
   data: CreateCustomerAddressDTO[],

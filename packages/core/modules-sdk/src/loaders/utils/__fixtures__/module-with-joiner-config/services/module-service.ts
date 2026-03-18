@@ -1,5 +1,5 @@
-import { IModuleService, ModuleJoinerConfig } from "/types"
-import { defineJoinerConfig } from "/utils"
+import { IModuleService, ModuleJoinerConfig } from "@acmekit/types"
+import { defineJoinerConfig } from "@acmekit/utils"
 
 export class ModuleService implements IModuleService {
   __joinerConfig(): ModuleJoinerConfig {

@@ -1,11 +1,11 @@
-import type { UserWorkflow } from "/framework/types"
-import { Modules, UserWorkflowEvents } from "/framework/utils"
+import type { UserWorkflow } from "@acmekit/framework/types"
+import { Modules, UserWorkflowEvents } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   createWorkflow,
   parallelize,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { emitEventStep, removeRemoteLinkStep } from "../../common"
 import { deleteUsersStep } from "../steps"
 

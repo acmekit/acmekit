@@ -1,5 +1,5 @@
-import { AcmeKitStoreRequest } from "/framework/http"
-import { arrayDifference, AcmeKitError } from "/framework/utils"
+import { AcmeKitStoreRequest } from "@acmekit/framework/http"
+import { arrayDifference, AcmeKitError } from "@acmekit/framework/utils"
 import { NextFunction } from "express"
 
 /**

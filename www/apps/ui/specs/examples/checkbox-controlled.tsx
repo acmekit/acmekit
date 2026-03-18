@@ -1,4 +1,4 @@
-import { Checkbox, CheckboxCheckedState, Label } from "/ui"
+import { Checkbox, CheckboxCheckedState, Label } from "@acmekit/ui"
 import { useState } from "react"
 
 export default function CheckboxControlled() {

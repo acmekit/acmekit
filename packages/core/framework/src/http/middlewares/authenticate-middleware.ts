@@ -1,5 +1,5 @@
-import { ApiKeyDTO, IApiKeyModuleService } from "/types"
-import { ContainerRegistrationKeys, Modules } from "/utils"
+import { ApiKeyDTO, IApiKeyModuleService } from "@acmekit/types"
+import { ContainerRegistrationKeys, Modules } from "@acmekit/utils"
 import { NextFunction, RequestHandler } from "express"
 import type {
   JwtPayload,

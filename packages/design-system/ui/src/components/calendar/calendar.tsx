@@ -5,7 +5,7 @@ import {
   createCalendar,
   getLocalTimeZone
 } from "@internationalized/date"
-import { TriangleLeftMini, TriangleRightMini } from "/icons"
+import { TriangleLeftMini, TriangleRightMini } from "@acmekit/icons"
 import * as React from "react"
 import {
   DateValue,

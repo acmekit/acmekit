@@ -1,11 +1,11 @@
-import type { UserDTO, UserWorkflow } from "/framework/types"
-import { UserWorkflowEvents } from "/framework/utils"
+import type { UserDTO, UserWorkflow } from "@acmekit/framework/types"
+import { UserWorkflowEvents } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { createRemoteLinkStep } from "../../common/steps/create-remote-links"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { validateRolesExistStep } from "../../invite/steps/validate-roles-exist"

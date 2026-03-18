@@ -1,4 +1,4 @@
-import { AcmeKitModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import { buildSchemaObjectRepresentation } from "../build-config"
 
 // Mock AcmeKitModule only

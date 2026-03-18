@@ -1,10 +1,10 @@
-import { EntityConstructor } from "/types"
+import { EntityConstructor } from "@acmekit/types"
 import {
   CheckConstraintViolationException,
   MetadataStorage,
   MikroORM,
-} from "/deps/mikro-orm/core"
-import { defineConfig } from "/deps/mikro-orm/postgresql"
+} from "@acmekit/deps/mikro-orm/core"
+import { defineConfig } from "@acmekit/deps/mikro-orm/postgresql"
 import { join } from "path"
 import { createDatabase, dropDatabase } from "pg-god"
 import { FileSystem } from "../../../common"

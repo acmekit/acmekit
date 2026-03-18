@@ -1,7 +1,7 @@
-import { InternalModuleDeclaration } from "/types"
+import { InternalModuleDeclaration } from "@acmekit/types"
 import { MODULE_SCOPE } from "../../types"
 
-import { asValue } from "/deps/awilix"
+import { asValue } from "@acmekit/deps/awilix"
 import { AcmeKitModule } from "../../medusa-module"
 
 const mockRegisterMedusaModule = jest.fn().mockImplementation(() => {

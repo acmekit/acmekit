@@ -1,4 +1,4 @@
-import { Container, Heading, Text } from "/ui"
+import { Container, Heading, Text } from "@acmekit/ui"
 import { keepPreviousData } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
 import { _DataTable } from "../../../../../components/table/data-table"

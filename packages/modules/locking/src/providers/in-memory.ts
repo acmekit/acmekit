@@ -1,5 +1,5 @@
-import { ILockingProvider } from "/framework/types"
-import { isDefined } from "/framework/utils"
+import { ILockingProvider } from "@acmekit/framework/types"
+import { isDefined } from "@acmekit/framework/utils"
 
 type LockInfo = {
   ownerId: string | null

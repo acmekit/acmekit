@@ -1,5 +1,5 @@
-import { EllipsisHorizontal } from "/icons"
-import { DropdownMenu, IconButton } from "/ui"
+import { EllipsisHorizontal } from "@acmekit/icons"
+import { DropdownMenu, IconButton } from "@acmekit/ui"
 import React from "react"
 
 type SortingState = "asc" | "desc" | "alpha" | "alpha-reverse" | "none"

@@ -1,5 +1,5 @@
-import { ArrowUpRightOnBox } from "/icons"
-import { Badge, Container, Heading, IconButton } from "/ui"
+import { ArrowUpRightOnBox } from "@acmekit/icons"
+import { Badge, Container, Heading, IconButton } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 

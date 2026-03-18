@@ -3,14 +3,14 @@ import type {
   ZodObject,
   ZodOptional,
   ZodRawShape,
-} from "/deps/zod"
+} from "@acmekit/deps/zod"
 import type { NextFunction, Request, Response } from "express"
 
 import {
   FindConfig,
   AcmeKitPricingContext,
   RequestQueryFields,
-} from "/types"
+} from "@acmekit/types"
 import { AcmeKitContainer } from "../container"
 import { PolicyAction } from "./middlewares/check-permissions"
 import { RestrictedFields } from "./utils/restricted-fields"

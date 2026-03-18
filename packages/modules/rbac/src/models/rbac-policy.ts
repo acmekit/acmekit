@@ -1,4 +1,4 @@
-import { model } from "/framework/utils"
+import { model } from "@acmekit/framework/utils"
 
 const RbacPolicy = model
   .define("rbac_policy", {

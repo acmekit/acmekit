@@ -2,7 +2,7 @@ import {
   ArrayType,
   EntityMetadata,
   MetadataStorage,
-} from "/deps/mikro-orm/core"
+} from "@acmekit/deps/mikro-orm/core"
 import { expectTypeOf } from "expect-type"
 import { DmlEntity } from "../entity"
 import { model } from "../entity-builder"

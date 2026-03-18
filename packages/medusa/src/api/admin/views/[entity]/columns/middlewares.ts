@@ -1,5 +1,5 @@
-import { validateAndTransformQuery } from "/framework"
-import { MiddlewareRoute } from "/framework/http"
+import { validateAndTransformQuery } from "@acmekit/framework"
+import { MiddlewareRoute } from "@acmekit/framework/http"
 import { AdminGetColumnsParams } from "./validators"
 import { ensureViewConfigurationsEnabled } from "../configurations/middleware"
 

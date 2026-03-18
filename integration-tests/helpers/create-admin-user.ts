@@ -4,7 +4,7 @@ import {
   IAuthModuleService,
   IUserModuleService,
   MedusaContainer,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   ApiKeyType,
   ContainerRegistrationKeys,
@@ -12,7 +12,7 @@ import {
   generateJwtToken,
   Modules,
   PUBLISHABLE_KEY_HEADER,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import Scrypt from "scrypt-kdf"
 import { getContainer } from "../environment-helpers/use-container"
 

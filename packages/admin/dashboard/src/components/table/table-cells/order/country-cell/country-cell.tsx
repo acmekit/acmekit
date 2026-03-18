@@ -1,7 +1,7 @@
-import { Tooltip } from "/ui"
+import { Tooltip } from "@acmekit/ui"
 import ReactCountryFlag from "react-country-flag"
 import { PlaceholderCell } from "../../common/placeholder-cell"
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 
 type Country = Omit<HttpTypes.AdminRegionCountry, "id"> & {
   id?: string

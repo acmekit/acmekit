@@ -2,7 +2,7 @@ import {
   Logger,
   ModuleProviderExports,
   ModuleServiceInitializeOptions,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 export type InitializeModuleInjectableDependencies = {
   logger?: Logger

@@ -6,7 +6,7 @@ import {
   TextCell,
   TextHeader,
 } from "../../../components/table/table-cells/common/text-cell"
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 
 const columnHelper = createColumnHelper<HttpTypes.AdminCustomerGroup>()
 

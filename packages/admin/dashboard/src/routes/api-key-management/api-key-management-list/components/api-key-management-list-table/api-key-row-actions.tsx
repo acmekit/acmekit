@@ -1,6 +1,6 @@
-import { PencilSquare, SquareTwoStack, Trash, XCircle } from "/icons"
-import { AdminApiKeyResponse } from "/types"
-import { toast, usePrompt } from "/ui"
+import { PencilSquare, SquareTwoStack, Trash, XCircle } from "@acmekit/icons"
+import { AdminApiKeyResponse } from "@acmekit/types"
+import { toast, usePrompt } from "@acmekit/ui"
 import { useTranslation } from "react-i18next"
 import { ActionMenu } from "../../../../../components/common/action-menu"
 import {

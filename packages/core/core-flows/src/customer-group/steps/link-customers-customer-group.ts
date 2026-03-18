@@ -1,9 +1,9 @@
 import {
   ICustomerModuleService,
   LinkWorkflowInput,
-} from "/framework/types"
-import { Modules, promiseAll } from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+} from "@acmekit/framework/types"
+import { Modules, promiseAll } from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 export const linkCustomersToCustomerGroupStepId =
   "link-customers-to-customer-group"

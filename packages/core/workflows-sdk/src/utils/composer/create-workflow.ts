@@ -2,19 +2,19 @@ import {
   TransactionModelOptions,
   WorkflowHandler,
   WorkflowManager,
-} from "/orchestration"
+} from "@acmekit/orchestration"
 import {
   IWorkflowEngineService,
   LoadedModule,
   AcmeKitContainer,
-} from "/types"
+} from "@acmekit/types"
 import {
   getCallerFilePath,
   isString,
   Modules,
   OrchestrationUtils,
   registerDevServerResource,
-} from "/utils"
+} from "@acmekit/utils"
 import { ulid } from "ulid"
 import { exportWorkflow, WorkflowResult } from "../../helper"
 import { createStep } from "./create-step"
@@ -60,8 +60,8 @@ const buildTransactionId = (
  * import {
  *   createWorkflow,
  *   WorkflowResponse
- * } from "/framework/workflows-sdk"
- * import { AcmeKitRequest, AcmeKitResponse } from "/framework/http"
+ * } from "@acmekit/framework/workflows-sdk"
+ * import { AcmeKitRequest, AcmeKitResponse } from "@acmekit/framework/http"
  * import {
  *   createProductStep,
  *   getProductStep,

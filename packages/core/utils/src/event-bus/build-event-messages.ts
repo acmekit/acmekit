@@ -1,4 +1,4 @@
-import { Context, EventBusTypes } from "/types"
+import { Context, EventBusTypes } from "@acmekit/types"
 
 /**
  * Helper function to compose and normalize a Message to be emitted by EventBus Module

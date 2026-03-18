@@ -1,18 +1,18 @@
 import {
   removeUserAccountWorkflow,
   updateUsersWorkflow,
-} from "/core-flows"
+} from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { HttpTypes, UpdateUserDTO } from "/framework/types"
+} from "@acmekit/framework/http"
+import { HttpTypes, UpdateUserDTO } from "@acmekit/framework/types"
 
 import {
   ContainerRegistrationKeys,
   AcmeKitError,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { refetchUser } from "../helpers"
 
 // Get user

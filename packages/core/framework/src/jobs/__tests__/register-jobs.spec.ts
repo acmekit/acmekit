@@ -1,8 +1,8 @@
-import { WorkflowManager, WorkflowScheduler } from "/orchestration"
+import { WorkflowManager, WorkflowScheduler } from "@acmekit/orchestration"
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
-} from "/utils"
+} from "@acmekit/utils"
 import { asValue } from "../../deps/awilix"
 import { join } from "path"
 import { logger } from "../../logger"

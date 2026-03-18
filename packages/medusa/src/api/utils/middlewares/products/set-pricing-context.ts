@@ -2,9 +2,9 @@ import {
   AuthenticatedMedusaRequest,
   refetchEntities,
   refetchEntity,
-} from "/framework/http"
-import { AcmeKitPricingContext } from "/framework/types"
-import { AcmeKitError } from "/framework/utils"
+} from "@acmekit/framework/http"
+import { AcmeKitPricingContext } from "@acmekit/framework/types"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { NextFunction } from "express"
 import { DEFAULT_PRICE_FIELD_PATHS } from "./constants"
 

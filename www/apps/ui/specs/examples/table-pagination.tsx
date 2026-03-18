@@ -1,4 +1,4 @@
-import { Table } from "/ui"
+import { Table } from "@acmekit/ui"
 import { useMemo, useState } from "react"
 
 type Order = {

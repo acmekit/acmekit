@@ -1,7 +1,7 @@
-import { moduleIntegrationTestRunner } from "/test-utils"
-import { Modules } from "/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
+import { Modules } from "@acmekit/framework/utils"
 import { resolve } from "path"
-import { IAnalyticsModuleService } from "/types"
+import { IAnalyticsModuleService } from "@acmekit/types"
 import { AnalyticsProviderServiceFixtures } from "../__fixtures__/providers/default-provider"
 
 jest.setTimeout(100000)

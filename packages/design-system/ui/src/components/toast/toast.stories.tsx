@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 
-import { Keyboard } from "/icons"
+import { Keyboard } from "@acmekit/icons"
 import { Kbd } from "../kbd"
 import { Toast } from "./toast"
 

@@ -1,9 +1,9 @@
-import type { FileDTO } from "/framework/types"
+import type { FileDTO } from "@acmekit/framework/types"
 import {
   createWorkflow,
   WorkflowData,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { uploadFilesStep } from "../steps"
 
 /**

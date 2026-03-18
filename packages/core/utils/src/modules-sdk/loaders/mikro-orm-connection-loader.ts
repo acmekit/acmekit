@@ -1,9 +1,9 @@
-import { Logger, AcmeKitContainer, ModulesSdkTypes } from "/types"
+import { Logger, AcmeKitContainer, ModulesSdkTypes } from "@acmekit/types"
 import {
   PostgreSqlDriver,
   SqlEntityManager,
-} from "/deps/mikro-orm/postgresql"
-import { asValue } from "/deps/awilix"
+} from "@acmekit/deps/mikro-orm/postgresql"
+import { asValue } from "@acmekit/deps/awilix"
 import { ContainerRegistrationKeys, AcmeKitError } from "../../common"
 import { mikroOrmCreateConnection } from "../../dal"
 import { isSharedConnectionSymbol } from "../create-pg-connection"

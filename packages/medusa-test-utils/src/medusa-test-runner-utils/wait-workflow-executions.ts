@@ -1,5 +1,5 @@
-import { Modules } from "/framework/utils"
-import { AcmeKitContainer } from "/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { AcmeKitContainer } from "@acmekit/framework/types"
 
 /**
  * Waits for all workflow executions to finish. When relying on workflows but not necessarily

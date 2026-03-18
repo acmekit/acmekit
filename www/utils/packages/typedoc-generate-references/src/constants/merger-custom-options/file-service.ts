@@ -22,8 +22,8 @@ const fileServiceOptions: FormattingOptionsType = {
 In your workflow's step, you can resolve the File Module's service from the Medusa container:
 
 \`\`\`ts
-import { Modules } from "/framework/utils"
-import { createStep } from "/framework/workflows-sdk"
+import { Modules } from "@acmekit/framework/utils"
+import { createStep } from "@acmekit/framework/workflows-sdk"
 
 const step1 = createStep(
   "step-1",

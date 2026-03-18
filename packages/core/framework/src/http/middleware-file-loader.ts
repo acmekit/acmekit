@@ -1,5 +1,5 @@
-import { z } from "/deps/zod"
-import { dynamicImport, FileSystem, isFileSkipped } from "/utils"
+import { z } from "@acmekit/deps/zod"
+import { dynamicImport, FileSystem, isFileSkipped } from "@acmekit/utils"
 import { join } from "path"
 
 import { logger } from "../logger"

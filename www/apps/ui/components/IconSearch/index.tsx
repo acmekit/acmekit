@@ -1,7 +1,7 @@
 "use client"
 
-import * as Icons from "/icons"
-import { Container, Input, Text } from "/ui"
+import * as Icons from "@acmekit/icons"
+import { Container, Input, Text } from "@acmekit/ui"
 import clsx from "clsx"
 import { CopyButton } from "docs-ui"
 import * as React from "react"

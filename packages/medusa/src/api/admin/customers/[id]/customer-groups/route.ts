@@ -1,10 +1,10 @@
-import { linkCustomerGroupsToCustomerWorkflow } from "/core-flows"
+import { linkCustomerGroupsToCustomerWorkflow } from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 
-import { HttpTypes } from "/framework/types"
+import { HttpTypes } from "@acmekit/framework/types"
 
 import { refetchCustomer } from "../../helpers"
 

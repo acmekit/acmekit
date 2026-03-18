@@ -1,4 +1,4 @@
-import { Migration } from "/framework/mikro-orm/migrations"
+import { Migration } from "@acmekit/framework/mikro-orm/migrations"
 
 export class Migration20251218140235 extends Migration {
   override async up(): Promise<void> {

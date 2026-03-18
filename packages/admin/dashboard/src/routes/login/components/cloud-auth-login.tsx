@@ -1,5 +1,5 @@
-import { Spinner } from "/icons"
-import { Button, toast } from "/ui"
+import { Spinner } from "@acmekit/icons"
+import { Button, toast } from "@acmekit/ui"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { decodeToken } from "react-jwt"

@@ -1,4 +1,4 @@
-import { ModuleProvider, Modules } from "/framework/utils"
+import { ModuleProvider, Modules } from "@acmekit/framework/utils"
 import { PosthogAnalyticsService } from "./services/posthog-analytics"
 
 const services = [PosthogAnalyticsService]

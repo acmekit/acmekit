@@ -1,4 +1,4 @@
-import { AcmeKitError, TransactionStepState } from "/utils"
+import { AcmeKitError, TransactionStepState } from "@acmekit/utils"
 import {
   DistributedTransactionType,
   TransactionPayload,

@@ -1,5 +1,5 @@
 import "./types"
-import { Module, Modules } from "/framework/utils"
+import { Module, Modules } from "@acmekit/framework/utils"
 import { default as loadProviders } from "./loaders/providers"
 import LockingModuleService from "./services/locking-module"
 

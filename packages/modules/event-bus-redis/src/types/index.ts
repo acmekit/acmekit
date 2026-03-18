@@ -1,9 +1,9 @@
 // TODO: Comment temporarely and we will re enable it in the near future #14478
-// import type { EventBusEventsOptions } from "/types"
+// import type { EventBusEventsOptions } from "@acmekit/types"
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import type { ModuleOptions } from "/types"
+import type { ModuleOptions } from "@acmekit/types"
 
 import {
   BulkJobOptions,

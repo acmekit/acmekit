@@ -7,7 +7,7 @@ import {
   Logger,
   ModulesSdkTypes,
   NotificationTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   EmitEvents,
   generateEntityId,
@@ -17,7 +17,7 @@ import {
   AcmeKitService,
   NotificationStatus,
   promiseAll,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { Notification } from "@models"
 import NotificationProviderService from "./notification-provider"
 

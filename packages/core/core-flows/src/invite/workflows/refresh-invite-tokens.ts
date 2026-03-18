@@ -1,12 +1,12 @@
-import type { InviteDTO, InviteWorkflow } from "/framework/types"
+import type { InviteDTO, InviteWorkflow } from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 
-import { InviteWorkflowEvents } from "/framework/utils"
+import { InviteWorkflowEvents } from "@acmekit/framework/utils"
 import { emitEventStep } from "../../common"
 import { refreshInviteTokensStep } from "../steps/refresh-invite-tokens"
 

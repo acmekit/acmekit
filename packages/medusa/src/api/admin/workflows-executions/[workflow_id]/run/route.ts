@@ -2,12 +2,12 @@ import {
   HttpTypes,
   IWorkflowEngineService,
   WorkflowOrchestratorRunDTO,
-} from "/framework/types"
-import { Modules } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { AdminCreateWorkflowsRunType } from "../../validators"
 
 export const POST = async (

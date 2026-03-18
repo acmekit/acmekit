@@ -1,6 +1,6 @@
-import GithubAuthProvider from "/auth-github"
+import GithubAuthProvider from "@acmekit/auth-github"
 
-export * from "/auth-github"
+export * from "@acmekit/auth-github"
 
 export default GithubAuthProvider
 export const discoveryPath = require.resolve("/auth-github")

@@ -18,7 +18,7 @@ import {
 import { Sidebar } from "types"
 import slugify from "slugify"
 import { MDXComponents } from "../.."
-import { ChevronDoubleRight, ExclamationCircle } from "/icons"
+import { ChevronDoubleRight, ExclamationCircle } from "@acmekit/icons"
 import { isSidebarItemLink } from "../../utils/sidebar-utils"
 
 type HeadingComponent = (

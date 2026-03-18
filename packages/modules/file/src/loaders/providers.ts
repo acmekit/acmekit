@@ -1,15 +1,15 @@
-import { moduleProviderLoader } from "/framework/modules-sdk"
+import { moduleProviderLoader } from "@acmekit/framework/modules-sdk"
 import {
   LoaderOptions,
   ModuleProvider,
   ModulesSdkTypes,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import { FileProviderService } from "@services"
 import {
   FileProviderIdentifierRegistrationName,
   FileProviderRegistrationPrefix,
 } from "@types"
-import { asFunction, asValue, Lifetime } from "/framework/awilix"
+import { asFunction, asValue, Lifetime } from "@acmekit/framework/awilix"
 
 const registrationFn = async (klass, container, pluginOptions) => {
   const key = FileProviderService.getRegistrationIdentifier(

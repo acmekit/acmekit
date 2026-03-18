@@ -1,4 +1,4 @@
-import { Container, Heading, Text, clx } from "/ui"
+import { Container, Heading, Text, clx } from "@acmekit/ui"
 import { CSSProperties, ComponentPropsWithoutRef } from "react"
 
 type SkeletonProps = {

@@ -1,4 +1,4 @@
-import { z } from "/deps/zod"
+import { z } from "@acmekit/deps/zod"
 import { NextFunction } from "express"
 import { AcmeKitRequest, AcmeKitResponse } from "../types"
 import { zodValidator } from "../../zod"

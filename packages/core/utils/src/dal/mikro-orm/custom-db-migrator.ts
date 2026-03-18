@@ -1,10 +1,10 @@
-import { Constructor } from "/types"
-import { MikroORM, Utils } from "/deps/mikro-orm/core"
+import { Constructor } from "@acmekit/types"
+import { MikroORM, Utils } from "@acmekit/deps/mikro-orm/core"
 import {
   Migrator as BaseMigrator,
   Migration,
   UmzugMigration,
-} from "/deps/mikro-orm/migrations"
+} from "@acmekit/deps/mikro-orm/migrations"
 import { isFileDisabled, isFileSkipped } from "../../common/define-file-config"
 import { dynamicImport } from "../../common/dynamic-import"
 

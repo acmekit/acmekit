@@ -1,4 +1,4 @@
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { Client } from "../client"
 import { ClientHeaders } from "../types"
 

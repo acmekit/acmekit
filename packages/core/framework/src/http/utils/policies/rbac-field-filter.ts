@@ -4,9 +4,9 @@ import {
   PolicyResource,
   promiseAll,
   toSnakeCase,
-} from "/framework/utils"
-import { AcmeKitModule } from "/modules-sdk"
-import type { AcmeKitContainer } from "/types"
+} from "@acmekit/framework/utils"
+import { AcmeKitModule } from "@acmekit/modules-sdk"
+import type { AcmeKitContainer } from "@acmekit/types"
 import { hasPermission } from "../../../policies/has-permission"
 import { FieldFilterContext, IFieldFilter } from "../field-filtering/index"
 

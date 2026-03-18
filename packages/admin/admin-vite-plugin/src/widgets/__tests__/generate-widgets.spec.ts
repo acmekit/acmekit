@@ -20,7 +20,7 @@ vi.mock("fs/promises", () => ({
 
 const mockFileContents = [
   `
-    import { defineWidgetConfig } from "/admin-sdk"
+    import { defineWidgetConfig } from "@acmekit/admin-sdk"
 
     const Widget = () => {
         return <div>Widget 1</div>

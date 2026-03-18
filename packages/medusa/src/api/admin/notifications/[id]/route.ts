@@ -2,9 +2,9 @@ import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
   refetchEntity,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { AdminGetNotificationParamsType } from "../validators"
-import { HttpTypes } from "/framework/types"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<AdminGetNotificationParamsType>,

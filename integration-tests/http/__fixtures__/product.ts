@@ -1,4 +1,4 @@
-import { ProductStatus } from "/utils"
+import { ProductStatus } from "@acmekit/utils"
 
 export const medusaTshirtProduct = {
   title: "Medusa T-Shirt",

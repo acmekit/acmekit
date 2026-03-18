@@ -1,4 +1,4 @@
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 import { GithubAuthService } from "../../src/services/github"
 import { http, HttpResponse } from "msw"
 import { setupServer } from "msw/node"

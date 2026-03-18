@@ -1,6 +1,6 @@
-import { generateResetPasswordTokenWorkflow } from "/core-flows"
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { ContainerRegistrationKeys } from "/utils"
+import { generateResetPasswordTokenWorkflow } from "@acmekit/core-flows"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { ContainerRegistrationKeys } from "@acmekit/utils"
 import jwt from "jsonwebtoken"
 import path from "path"
 import {

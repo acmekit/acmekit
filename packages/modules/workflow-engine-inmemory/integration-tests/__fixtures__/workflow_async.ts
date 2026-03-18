@@ -4,7 +4,7 @@ import {
   createStep,
   createWorkflow,
   parallelize,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { setTimeout } from "timers/promises"
 
 const step_1_background = createStep(

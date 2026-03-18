@@ -9,7 +9,7 @@ export async function generateVirtualI18nModule(
     const i18n = await generateI18n(sources)
 
     const imports = [
-        'import { deepMerge } from "/admin-shared"',
+        'import { deepMerge } from "@acmekit/admin-shared"',
         ...i18n.imports
     ]
 

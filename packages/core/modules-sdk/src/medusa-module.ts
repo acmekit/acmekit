@@ -10,15 +10,15 @@ import {
   ModuleExports,
   ModuleJoinerConfig,
   ModuleResolution,
-} from "/types"
+} from "@acmekit/types"
 import {
   ContainerRegistrationKeys,
   createMedusaContainer,
   promiseAll,
   simpleHash,
   stringifyCircular,
-} from "/utils"
-import { asValue } from "/deps/awilix"
+} from "@acmekit/utils"
+import { asValue } from "@acmekit/deps/awilix"
 import { EOL } from "os"
 import {
   moduleLoader,

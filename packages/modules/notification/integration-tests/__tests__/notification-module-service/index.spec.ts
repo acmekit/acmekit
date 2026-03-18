@@ -1,7 +1,7 @@
 import {
   CreateNotificationDTO,
   INotificationModuleService,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   CommonEvents,
   composeMessage,
@@ -9,11 +9,11 @@ import {
   Modules,
   NotificationEvents,
   NotificationStatus,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import {
   MockEventBusService,
   moduleIntegrationTestRunner,
-} from "/test-utils"
+} from "@acmekit/test-utils"
 import { NotificationModuleService } from "@services"
 import { resolve } from "path"
 

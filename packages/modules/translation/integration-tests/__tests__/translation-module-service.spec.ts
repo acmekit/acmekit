@@ -1,6 +1,6 @@
-import { ITranslationModuleService } from "/framework/types"
-import { DmlEntity, Module, Modules } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { ITranslationModuleService } from "@acmekit/framework/types"
+import { DmlEntity, Module, Modules } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import TranslationModuleService from "@services/translation-module"
 import { createLocaleFixture, createTranslationFixture } from "../__fixtures__"
 

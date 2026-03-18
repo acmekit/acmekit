@@ -3,7 +3,7 @@ import {
   transform,
   when,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import {
   createApiKeysStep,
   linkSalesChannelsToApiKeyWorkflow,

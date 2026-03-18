@@ -1,6 +1,6 @@
 "use client"
 
-import { Telescope, XMarkMini } from "/icons"
+import { Telescope, XMarkMini } from "@acmekit/icons"
 import clsx from "clsx"
 import { BloomIcon, Button, HeadlineTags, useAiAssistant } from "docs-ui"
 import { useState } from "react"

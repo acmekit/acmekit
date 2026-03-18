@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react"
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 
 type ViewConfiguration =
   HttpTypes.AdminViewConfigurationResponse["view_configuration"]

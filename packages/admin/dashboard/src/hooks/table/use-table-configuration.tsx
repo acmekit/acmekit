@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
-import { HttpTypes } from "/types"
+import { HttpTypes } from "@acmekit/types"
 import { useViewConfigurations, useViewConfiguration } from "../use-view-configurations"
 import { useEntityColumns } from "../api/views"
 import { useFeatureFlag } from "../../providers/feature-flag-provider"

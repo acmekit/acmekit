@@ -1,4 +1,4 @@
-const { defineConfig } = require("/framework/utils")
+const { defineConfig } = require("@acmekit/framework/utils")
 
 const DB_HOST = process.env.DB_HOST
 const DB_USERNAME = process.env.DB_USERNAME

@@ -1,6 +1,6 @@
 "use client"
 
-import { MagnifyingGlass, XMark } from "/icons"
+import { MagnifyingGlass, XMark } from "@acmekit/icons"
 import clsx from "clsx"
 import React from "react"
 import { useKeyboardShortcut } from "../../../hooks/use-keyboard-shortcut"

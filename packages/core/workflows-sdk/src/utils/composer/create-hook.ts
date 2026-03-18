@@ -1,5 +1,5 @@
-import { OrchestrationUtils } from "/utils"
-import { type ZodSchema } from "/deps/zod"
+import { OrchestrationUtils } from "@acmekit/utils"
+import { type ZodSchema } from "@acmekit/deps/zod"
 import {
   CompensateFn,
   createStep,
@@ -51,7 +51,7 @@ export type Hook<Name extends string, Input, Output> = {
  *   createHook,
  *   createWorkflow,
  *   WorkflowResponse,
- * } from "/framework/workflows-sdk"
+ * } from "@acmekit/framework/workflows-sdk"
  * import { createProductStep } from "./steps/create-product"
  *
  * export const myWorkflow = createWorkflow(

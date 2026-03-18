@@ -1,4 +1,4 @@
-import { Input, Text } from "/ui"
+import { Input, Text } from "@acmekit/ui"
 import { ComponentProps, ElementRef, forwardRef } from "react"
 
 export const HandleInput = forwardRef<

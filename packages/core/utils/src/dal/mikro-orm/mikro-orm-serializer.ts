@@ -10,7 +10,7 @@ import {
   ReferenceKind,
   SerializationContext,
   Utils,
-} from "/deps/mikro-orm/core"
+} from "@acmekit/deps/mikro-orm/core"
 
 const STATIC_OPTIONS_SHAPE = {
   populate: true as string[] | boolean,

@@ -2,7 +2,7 @@ import {
   definePolicies,
   PolicyDefinition,
   toPascalCase,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { defaultPolicyOperations } from "../utils/default-policy-operations"
 
 const customerResources = ["customer", "customer_address", "customer_group"]

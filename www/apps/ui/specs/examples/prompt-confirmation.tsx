@@ -1,4 +1,4 @@
-import { Button, Prompt } from "/ui"
+import { Button, Prompt } from "@acmekit/ui"
 
 export default function PromptConfirmation() {
   return (

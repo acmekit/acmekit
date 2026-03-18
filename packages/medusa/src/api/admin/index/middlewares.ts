@@ -1,16 +1,16 @@
-import { validateAndTransformBody } from "/framework"
+import { validateAndTransformBody } from "@acmekit/framework"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitNextFunction,
   AcmeKitResponse,
   MiddlewareRoute,
-} from "/framework/http"
-import { Logger } from "/framework/types"
+} from "@acmekit/framework/http"
+import { Logger } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   FeatureFlag,
   Modules,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import IndexEngineFeatureFlag from "../../../feature-flags/index-engine"
 import { authenticate } from "../../../utils/middlewares/authenticate-middleware"
 import { AdminIndexSyncPayload } from "./validator"

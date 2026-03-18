@@ -1,4 +1,4 @@
-import { Input } from "/ui"
+import { Input } from "@acmekit/ui"
 import debounce from "lodash.debounce"
 import { ChangeEvent, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"

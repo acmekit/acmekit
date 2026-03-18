@@ -1,6 +1,6 @@
-import { AuthenticatedMedusaRequest, AcmeKitResponse } from "/framework"
-import { HttpTypes } from "/framework/types"
-import { Modules } from "/framework/utils"
+import { AuthenticatedMedusaRequest, AcmeKitResponse } from "@acmekit/framework"
+import { HttpTypes } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
 
 /**
  * Get the index information for all entities that are indexed and their sync state

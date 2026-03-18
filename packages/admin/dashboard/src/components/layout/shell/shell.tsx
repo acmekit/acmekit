@@ -1,5 +1,5 @@
-import { SidebarLeft, TriangleRightMini, XMark } from "/icons"
-import { IconButton, clx } from "/ui"
+import { SidebarLeft, TriangleRightMini, XMark } from "@acmekit/icons"
+import { IconButton, clx } from "@acmekit/ui"
 import { AnimatePresence } from "motion/react"
 import { Dialog as RadixDialog } from "radix-ui"
 import { PropsWithChildren, ReactNode, useEffect, useState } from "react"

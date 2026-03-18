@@ -6,8 +6,8 @@ import {
   AcmeKitContainer,
   Message,
   Subscriber,
-} from "/framework/types"
-import { AbstractEventBusModuleService } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { AbstractEventBusModuleService } from "@acmekit/framework/utils"
 import { EventEmitter } from "events"
 import { setTimeout } from "timers/promises"
 

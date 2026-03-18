@@ -2,8 +2,8 @@ import {
   Adjustments,
   AdjustmentsDone,
   ExclamationCircle,
-} from "/icons"
-import { Button, DropdownMenu, clx } from "/ui"
+} from "@acmekit/icons"
+import { Button, DropdownMenu, clx } from "@acmekit/ui"
 import {
   Cell,
   CellContext,

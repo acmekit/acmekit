@@ -1,6 +1,6 @@
-import { z } from "/deps/zod"
+import { z } from "@acmekit/deps/zod"
 import { expectTypeOf } from "expect-type"
-import { TransactionState } from "/utils"
+import { TransactionState } from "@acmekit/utils"
 import { createStep } from "../create-step"
 import { createWorkflow } from "../create-workflow"
 import { StepResponse } from "../helpers"
@@ -9,7 +9,7 @@ import { transform } from "../transform"
 import { WorkflowData } from "../type"
 import { when } from "../when"
 import { createHook } from "../create-hook"
-import { TransactionStepsDefinition } from "/orchestration"
+import { TransactionStepsDefinition } from "@acmekit/orchestration"
 
 let count = 1
 const getNewWorkflowId = () => `workflow-${count++}`

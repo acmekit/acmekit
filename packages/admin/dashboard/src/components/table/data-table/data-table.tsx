@@ -1,4 +1,4 @@
-import { clx } from "/ui"
+import { clx } from "@acmekit/ui"
 import { memo } from "react"
 import { NoRecords, NoResultsProps } from "../../common/empty-table-content"
 import { TableSkeleton } from "../../common/skeleton"
@@ -19,7 +19,7 @@ interface DataTableProps<TData>
 const MemoizedDataTableQuery = memo(DataTableQuery) as typeof DataTableQuery
 
 /**
- * @deprecated Use the DataTable component from "/components/data-table" instead
+ * @deprecated Use the DataTable component from "@acmekit/components/data-table" instead
  */
 export const _DataTable = <TData,>({
   table,

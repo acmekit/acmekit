@@ -1,4 +1,4 @@
-import { Minus } from "/icons"
+import { Minus } from "@acmekit/icons"
 import * as React from "react"
 
 import { Button } from "@/components/button"

@@ -1,5 +1,5 @@
-import { defineFileConfig, FeatureFlag } from "/framework/utils"
-import { createStep, createWorkflow } from "/framework/workflows-sdk"
+import { defineFileConfig, FeatureFlag } from "@acmekit/framework/utils"
+import { createStep, createWorkflow } from "@acmekit/framework/workflows-sdk"
 
 const testWorkflowHandler = jest.fn()
 

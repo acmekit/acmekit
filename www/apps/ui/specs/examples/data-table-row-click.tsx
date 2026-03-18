@@ -4,7 +4,7 @@ import {
   DataTable,
   Heading,
   usePrompt,
-} from "/ui"
+} from "@acmekit/ui"
 
 const products = [
   {

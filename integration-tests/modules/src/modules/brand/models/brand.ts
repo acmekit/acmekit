@@ -1,4 +1,4 @@
-import { model } from "/utils"
+import { model } from "@acmekit/utils"
 
 export const Brand = model.define("brand", {
   id: model.id({ prefix: "brand" }).primaryKey(),

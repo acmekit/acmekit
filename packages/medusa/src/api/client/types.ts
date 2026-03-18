@@ -1,8 +1,8 @@
-import { AcmeKitStoreRequest } from "/framework/http"
+import { AcmeKitStoreRequest } from "@acmekit/framework/http"
 import {
   AcmeKitPricingContext,
   TaxCalculationContext,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 
 export type StoreRequestWithContext<
   Body,

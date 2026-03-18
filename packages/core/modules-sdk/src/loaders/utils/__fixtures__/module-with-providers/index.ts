@@ -1,6 +1,6 @@
-import { ModuleExports } from "/types"
+import { ModuleExports } from "@acmekit/types"
 import { ModuleService } from "./services/module-service"
-import { Module } from "/utils"
+import { Module } from "@acmekit/utils"
 
 const moduleExports: ModuleExports = {
   service: ModuleService,

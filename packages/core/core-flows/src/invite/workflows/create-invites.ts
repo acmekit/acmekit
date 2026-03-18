@@ -1,11 +1,11 @@
-import type { InviteDTO, InviteWorkflow } from "/framework/types"
-import { InviteWorkflowEvents } from "/framework/utils"
+import type { InviteDTO, InviteWorkflow } from "@acmekit/framework/types"
+import { InviteWorkflowEvents } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { createRemoteLinkStep } from "../../common/steps/create-remote-links"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { createInviteStep, validateRolesExistStep } from "../steps"

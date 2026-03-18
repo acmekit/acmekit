@@ -1,5 +1,5 @@
-import { ContainerRegistrationKeys, Modules } from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+import { ContainerRegistrationKeys, Modules } from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 /**
  * @ignore

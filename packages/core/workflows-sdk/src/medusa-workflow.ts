@@ -1,5 +1,5 @@
-import { LocalWorkflow } from "/orchestration"
-import { LoadedModule, AcmeKitContainer } from "/types"
+import { LocalWorkflow } from "@acmekit/orchestration"
+import { LoadedModule, AcmeKitContainer } from "@acmekit/types"
 import { ExportedWorkflow } from "./helper"
 
 class AcmeKitWorkflow {

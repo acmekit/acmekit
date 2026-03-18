@@ -1,11 +1,11 @@
-import { AcmeKitAppLoader, Migrator } from "/framework"
-import { LinkLoader } from "/framework/links"
+import { AcmeKitAppLoader, Migrator } from "@acmekit/framework"
+import { LinkLoader } from "@acmekit/framework/links"
 import {
   ContainerRegistrationKeys,
   getResolvedPlugins,
   AcmeKitError,
   mergePluginModules,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import { join } from "path"
 import { initializeContainer } from "../../loaders"
 import { ensureDbExists } from "../utils"

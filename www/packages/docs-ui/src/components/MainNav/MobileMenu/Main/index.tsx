@@ -3,7 +3,7 @@
 import React from "react"
 import { useMainNav } from "../../../../providers/MainNav"
 import Link from "next/link"
-import { TriangleRightMini } from "/icons"
+import { TriangleRightMini } from "@acmekit/icons"
 import clsx from "clsx"
 import { SelectedMenu } from ".."
 

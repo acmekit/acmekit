@@ -1,9 +1,9 @@
-import { EntityConstructor } from "/types"
-import { MetadataStorage, MikroORM } from "/deps/mikro-orm/core"
+import { EntityConstructor } from "@acmekit/types"
+import { MetadataStorage, MikroORM } from "@acmekit/deps/mikro-orm/core"
 import {
   defineConfig,
   SqlEntityManager,
-} from "/deps/mikro-orm/postgresql"
+} from "@acmekit/deps/mikro-orm/postgresql"
 import { join } from "path"
 import { createDatabase, dropDatabase } from "pg-god"
 import { FileSystem } from "../../../common"

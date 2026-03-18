@@ -1,6 +1,6 @@
-import { createUsersWorkflow } from "/core-flows"
-import { ContainerRegistrationKeys, Modules } from "/framework/utils"
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { createUsersWorkflow } from "@acmekit/core-flows"
+import { ContainerRegistrationKeys, Modules } from "@acmekit/framework/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   adminHeaders,
   createAdminUser,

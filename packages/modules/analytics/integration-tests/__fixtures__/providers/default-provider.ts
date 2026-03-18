@@ -1,8 +1,8 @@
 import {
   ProviderIdentifyAnalyticsEventDTO,
   ProviderTrackAnalyticsEventDTO,
-} from "/framework/types"
-import { AbstractAnalyticsProviderService } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { AbstractAnalyticsProviderService } from "@acmekit/framework/utils"
 
 export class AnalyticsProviderServiceFixtures extends AbstractAnalyticsProviderService {
   static identifier = "fixtures-analytics-provider"

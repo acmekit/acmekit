@@ -1,4 +1,4 @@
-import { Container, Heading } from "/ui"
+import { Container, Heading } from "@acmekit/ui"
 
 export default function ContainerLayout() {
   return (

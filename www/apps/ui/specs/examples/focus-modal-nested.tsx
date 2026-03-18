@@ -1,4 +1,4 @@
-import { Button, FocusModal } from "/ui"
+import { Button, FocusModal } from "@acmekit/ui"
 
 export default function NestedFocusModals() {
   return (

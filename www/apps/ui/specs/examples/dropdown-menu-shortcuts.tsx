@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react"
-import { DropdownMenu, IconButton, toast, Toaster } from "/ui"
-import { Keyboard } from "/icons"
+import { DropdownMenu, IconButton, toast, Toaster } from "@acmekit/ui"
+import { Keyboard } from "@acmekit/icons"
 
 function getOsShortcut() {
   const isMacOs =

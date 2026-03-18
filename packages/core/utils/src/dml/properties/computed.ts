@@ -1,4 +1,4 @@
-import { PropertyType } from "/types"
+import { PropertyType } from "@acmekit/types"
 
 const IsComputedProperty = Symbol.for("isComputedProperty")
 /**

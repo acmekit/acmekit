@@ -1,4 +1,4 @@
-import { ICacheService } from "/framework/types"
+import { ICacheService } from "@acmekit/framework/types"
 import { CacheRecord, InMemoryCacheModuleOptions } from "../types"
 
 const DEFAULT_TTL = 30 // seconds

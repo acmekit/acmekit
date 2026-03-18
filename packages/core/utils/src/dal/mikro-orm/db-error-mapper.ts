@@ -4,7 +4,7 @@ import {
   NotFoundError,
   NotNullConstraintViolationException,
   UniqueConstraintViolationException,
-} from "/deps/mikro-orm/core"
+} from "@acmekit/deps/mikro-orm/core"
 import { AcmeKitError, upperCaseFirst } from "../../common"
 
 function parseValue(value: string) {

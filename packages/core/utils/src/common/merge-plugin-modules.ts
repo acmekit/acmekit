@@ -2,7 +2,7 @@ import type {
   PluginDetails,
   ConfigModule,
   InputConfigModules,
-} from "/types"
+} from "@acmekit/types"
 import { transformModules } from "./define-config"
 
 /**

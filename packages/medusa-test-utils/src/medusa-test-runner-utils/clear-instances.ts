@@ -5,6 +5,6 @@
  * automatically just like we usually do for the classic migrations actions
  */
 export async function clearInstances() {
-  const { AcmeKitModule } = require("/framework/modules-sdk")
+  const { AcmeKitModule } = require("@acmekit/framework/modules-sdk")
   AcmeKitModule.clearInstances()
 }

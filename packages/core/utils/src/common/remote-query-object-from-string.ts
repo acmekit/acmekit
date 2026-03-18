@@ -1,7 +1,7 @@
 import {
   RemoteQueryObjectConfig,
   RemoteQueryObjectFromStringResult,
-} from "/types"
+} from "@acmekit/types"
 import { isObject } from "./is-object"
 
 /**

@@ -1,4 +1,4 @@
-import { Link } from "/modules-sdk"
+import { Link } from "@acmekit/modules-sdk"
 import {
   ConfigModule,
   IAnalyticsModuleService,
@@ -20,8 +20,8 @@ import {
   Logger,
   ModuleImplementations,
   RemoteQueryFunction,
-} from "/types"
-import { ContainerRegistrationKeys, Modules } from "/utils"
+} from "@acmekit/types"
+import { ContainerRegistrationKeys, Modules } from "@acmekit/utils"
 import { AwilixContainer, ResolveOptions } from "../deps/awilix"
 import { Knex } from "../deps/mikro-orm-knex"
 

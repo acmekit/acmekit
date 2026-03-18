@@ -6,8 +6,8 @@ import {
   TransactionPayload,
   TransactionStepsDefinition,
   WorkflowHandler,
-} from "/orchestration"
-import { Context, LoadedModule, AcmeKitContainer } from "/types"
+} from "@acmekit/orchestration"
+import { Context, LoadedModule, AcmeKitContainer } from "@acmekit/types"
 import { ExportedWorkflow } from "../../helper"
 import { Hook } from "./create-hook"
 import { CompensateFn, InvokeFn } from "./create-step"
@@ -245,7 +245,7 @@ export type WorkflowTransactionContext = StepExecutionContext &
  * import type {
  *   AcmeKitRequest,
  *   AcmeKitResponse
- * } from "/medusa";
+ * } from "@acmekit/medusa";
  * import myWorkflow from "../../../workflows/hello-world";
  *
  * export async function GET(

@@ -1,4 +1,4 @@
-import { ProgressTabs, Text, Button } from "/ui"
+import { ProgressTabs, Text, Button } from "@acmekit/ui"
 import * as React from "react"
 
 export default function ProgressTabsControlled() {

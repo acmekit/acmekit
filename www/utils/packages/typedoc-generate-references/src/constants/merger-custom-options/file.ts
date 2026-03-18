@@ -47,7 +47,7 @@ The rest of this guide always uses the \`src/modules/my-file\` directory as an e
 Create the file \`src/modules/my-file/service.ts\` that holds the implementation of the module provider's main service. It must extend the \`AbstractFileProviderService\` class imported from \`/framework/utils\`:
 
 \`\`\`ts title="src/modules/my-file/service.ts"
-import { AbstractFileProviderService } from "/framework/utils"
+import { AbstractFileProviderService } from "@acmekit/framework/utils"
 
 class MyFileProviderService extends AbstractFileProviderService {
   // TODO implement methods
@@ -66,7 +66,7 @@ import MyFileProviderService from "./service"
 import { 
   ModuleProvider, 
   Modules
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export default ModuleProvider(Modules.FILE, {
   services: [MyFileProviderService],

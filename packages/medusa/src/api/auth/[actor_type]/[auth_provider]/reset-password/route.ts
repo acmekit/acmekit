@@ -1,9 +1,9 @@
-import { generateResetPasswordTokenWorkflow } from "/core-flows"
+import { generateResetPasswordTokenWorkflow } from "@acmekit/core-flows"
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { ContainerRegistrationKeys } from "/framework/utils"
+} from "@acmekit/framework/http"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
 import { ResetPasswordRequestType } from "../../../validators"
 
 export const POST = async (

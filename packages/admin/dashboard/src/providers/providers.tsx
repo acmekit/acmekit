@@ -1,4 +1,4 @@
-import { Toaster, TooltipProvider } from "/ui"
+import { Toaster, TooltipProvider } from "@acmekit/ui"
 import { QueryClientProvider } from "@tanstack/react-query"
 import type { PropsWithChildren } from "react"
 import { HelmetProvider } from "react-helmet-async"

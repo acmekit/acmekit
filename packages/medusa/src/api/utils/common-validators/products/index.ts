@@ -1,6 +1,6 @@
-import { FilterableProductProps, OperatorMap } from "/framework/types"
-import { isPresent, ProductStatus } from "/framework/utils"
-import { z } from "/framework/zod"
+import { FilterableProductProps, OperatorMap } from "@acmekit/framework/types"
+import { isPresent, ProductStatus } from "@acmekit/framework/utils"
+import { z } from "@acmekit/framework/zod"
 import { createOperatorMap } from "../../validators"
 import { booleanString } from "../common"
 

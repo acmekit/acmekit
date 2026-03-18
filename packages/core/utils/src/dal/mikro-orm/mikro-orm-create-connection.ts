@@ -1,6 +1,6 @@
-import { Filter as MikroORMFilter } from "/deps/mikro-orm/core"
-import { TSMigrationGenerator } from "/deps/mikro-orm/migrations"
-import { ModuleServiceInitializeOptions } from "/types"
+import { Filter as MikroORMFilter } from "@acmekit/deps/mikro-orm/core"
+import { TSMigrationGenerator } from "@acmekit/deps/mikro-orm/migrations"
+import { ModuleServiceInitializeOptions } from "@acmekit/types"
 import { isString, retryExecution, stringifyCircular } from "../../common"
 import { normalizeMigrationSQL } from "../utils"
 import { CustomDBMigrator } from "./custom-db-migrator"
@@ -8,7 +8,7 @@ import { CustomDBMigrator } from "./custom-db-migrator"
 type FilterDef = Parameters<typeof MikroORMFilter>[0]
 
 const expectedMigrationsImportStatement =
-  'import { Migration } from "/framework/mikro-orm/migrations"'
+  'import { Migration } from "@acmekit/framework/mikro-orm/migrations"'
 
 export class CustomTsMigrationGenerator extends TSMigrationGenerator {
   // TODO: temporary fix to drop unique constraint before creating unique index

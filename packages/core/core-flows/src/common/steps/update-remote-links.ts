@@ -1,10 +1,10 @@
-import { Link } from "/framework/modules-sdk"
-import type { LinkDefinition } from "/framework/types"
+import { Link } from "@acmekit/framework/modules-sdk"
+import type { LinkDefinition } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   AcmeKitError,
-} from "/framework/utils"
-import { StepResponse, createStep } from "/framework/workflows-sdk"
+} from "@acmekit/framework/utils"
+import { StepResponse, createStep } from "@acmekit/framework/workflows-sdk"
 
 export const updateRemoteLinksStepId = "update-remote-links-step"
 /**

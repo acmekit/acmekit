@@ -14,7 +14,7 @@ import { H3 } from "@/components/Heading/H3"
 import { H4 } from "@/components/Heading/H4"
 import { Link } from "@/components/Link"
 import clsx from "clsx"
-import { Text } from "/ui"
+import { Text } from "@acmekit/ui"
 
 export const MDXComponents: MDXComponentsType = {
   code: CodeMdx,

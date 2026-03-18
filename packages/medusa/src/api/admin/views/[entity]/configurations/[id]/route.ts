@@ -1,11 +1,11 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
+} from "@acmekit/framework/http"
 import { AdminUpdateViewConfigurationType } from "../validators"
-import { HttpTypes } from "/framework/types"
-import { AcmeKitError, Modules } from "/framework/utils"
-import { updateViewConfigurationWorkflow } from "/core-flows"
+import { HttpTypes } from "@acmekit/framework/types"
+import { AcmeKitError, Modules } from "@acmekit/framework/utils"
+import { updateViewConfigurationWorkflow } from "@acmekit/core-flows"
 
 /**
  * @since 2.10.3

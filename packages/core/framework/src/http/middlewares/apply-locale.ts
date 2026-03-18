@@ -1,4 +1,4 @@
-import { normalizeLocale } from "/utils"
+import { normalizeLocale } from "@acmekit/utils"
 import type {
   AcmeKitNextFunction,
   AcmeKitRequest,

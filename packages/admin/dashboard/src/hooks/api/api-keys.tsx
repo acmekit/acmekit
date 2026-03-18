@@ -1,5 +1,5 @@
-import { HttpTypes } from "/types"
-import { FetchError } from "/js-sdk"
+import { HttpTypes } from "@acmekit/types"
+import { FetchError } from "@acmekit/js-sdk"
 import {
   MutationOptions,
   QueryKey,

@@ -1,10 +1,10 @@
-import type { CreateCustomerDTO, CustomerDTO } from "/framework/types"
+import type { CreateCustomerDTO, CustomerDTO } from "@acmekit/framework/types"
 import {
   createWorkflow,
   transform,
   WorkflowData,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { setAuthAppMetadataStep } from "../../auth"
 import { validateCustomerAccountCreation } from "../steps/validate-customer-account-creation"
 import { createCustomersWorkflow } from "./create-customers"

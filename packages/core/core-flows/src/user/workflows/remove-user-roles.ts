@@ -3,7 +3,7 @@ import {
   WorkflowResponse,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { dismissRemoteLinkStep } from "../../common/steps/dismiss-remote-links"
 import { validateUserRolePermissionsStep } from "../steps/validate-user-role-permissions"
 

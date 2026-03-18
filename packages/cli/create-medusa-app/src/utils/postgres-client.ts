@@ -1,4 +1,4 @@
-import pg from "/deps/pg"
+import pg from "@acmekit/deps/pg"
 
 const { Client } = pg as any
 

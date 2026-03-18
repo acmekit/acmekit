@@ -1,4 +1,4 @@
-import { AcmeKitContainer } from "/types"
+import { AcmeKitContainer } from "@acmekit/types"
 import {
   asFunction,
   asValue,
@@ -6,7 +6,7 @@ import {
   ClassOrFunctionReturning,
   createContainer,
   Resolver,
-} from "/deps/awilix"
+} from "@acmekit/deps/awilix"
 
 function asArray(
   resolvers: (ClassOrFunctionReturning<unknown> | Resolver<unknown>)[]

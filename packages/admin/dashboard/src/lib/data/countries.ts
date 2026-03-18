@@ -1,4 +1,4 @@
-import type { HttpTypes } from "/types"
+import type { HttpTypes } from "@acmekit/types"
 
 export interface StaticCountry
   extends Required<Omit<HttpTypes.AdminRegionCountry, "id">> {}

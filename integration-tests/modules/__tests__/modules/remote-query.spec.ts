@@ -1,14 +1,14 @@
-import { RemoteJoiner } from "/framework/orchestration"
-import CustomerModule from "/medusa/customer"
-import RegionModule from "/medusa/region"
-import { MedusaModule } from "/modules-sdk"
-import { medusaIntegrationTestRunner } from "/test-utils"
+import { RemoteJoiner } from "@acmekit/framework/orchestration"
+import CustomerModule from "@acmekit/medusa/customer"
+import RegionModule from "@acmekit/medusa/region"
+import { MedusaModule } from "@acmekit/modules-sdk"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
 import {
   IRegionModuleService,
   ModuleJoinerConfig,
   RemoteQueryFunction,
-} from "/types"
-import { ContainerRegistrationKeys, defineLink, Modules } from "/utils"
+} from "@acmekit/types"
+import { ContainerRegistrationKeys, defineLink, Modules } from "@acmekit/utils"
 import { createAdminUser } from "../../..//helpers/create-admin-user"
 import { adminHeaders } from "../../../helpers/create-admin-user"
 

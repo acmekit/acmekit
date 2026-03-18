@@ -1,12 +1,12 @@
 import {
   AuthenticatedMedusaRequest,
   AcmeKitResponse,
-} from "/framework/http"
-import { HttpTypes } from "/framework/types"
+} from "@acmekit/framework/http"
+import { HttpTypes } from "@acmekit/framework/types"
 import {
   ContainerRegistrationKeys,
   remoteQueryObjectFromString,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<HttpTypes.AdminUserListParams>,

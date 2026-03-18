@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useMemo } from "react"
-import { Tabs as UiTabs } from "/ui"
+import { Tabs as UiTabs } from "@acmekit/ui"
 import { ComponentProps } from "react"
 import clsx from "clsx"
-import { EllipseMiniSolid } from "/icons"
+import { EllipseMiniSolid } from "@acmekit/icons"
 import { useMobile } from "@/providers/Mobile"
 
 type TabsProps = ComponentProps<typeof UiTabs> & {

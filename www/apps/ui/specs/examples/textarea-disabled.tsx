@@ -1,4 +1,4 @@
-import { Textarea } from "/ui"
+import { Textarea } from "@acmekit/ui"
 
 export default function TextareaDisabled() {
   return (

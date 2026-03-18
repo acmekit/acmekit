@@ -1,6 +1,6 @@
-import { medusaIntegrationTestRunner } from "/test-utils"
-import { MedusaContainer } from "/types"
-import { Modules } from "/utils"
+import { medusaIntegrationTestRunner } from "@acmekit/test-utils"
+import { MedusaContainer } from "@acmekit/types"
+import { Modules } from "@acmekit/utils"
 import {
   adminHeaders,
   createAdminUser,

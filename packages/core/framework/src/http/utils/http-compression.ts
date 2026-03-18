@@ -1,6 +1,6 @@
 import compression from "compression"
-import type { ConfigModule } from "/types"
-import { ContainerRegistrationKeys } from "/utils"
+import type { ConfigModule } from "@acmekit/types"
+import { ContainerRegistrationKeys } from "@acmekit/utils"
 
 import { HttpCompressionOptions, ProjectConfigOptions } from "../../config"
 import type { AcmeKitRequest, AcmeKitResponse } from "../types"

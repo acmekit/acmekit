@@ -1,5 +1,5 @@
-import type { AdminOptions, ConfigModule, Logger } from "/types"
-import { FileSystem, getConfigFile, getResolvedPlugins } from "/utils"
+import type { AdminOptions, ConfigModule, Logger } from "@acmekit/types"
+import { FileSystem, getConfigFile, getResolvedPlugins } from "@acmekit/utils"
 import chokidar from "chokidar"
 import { access, constants, copyFile, mkdir, rm } from "fs/promises"
 import path from "path"

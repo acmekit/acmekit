@@ -13,11 +13,11 @@ import {
   FileTypes,
   Logger,
   S3FileServiceOptions,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   AbstractFileProviderService,
   AcmeKitError,
-} from "/framework/utils"
+} from "@acmekit/framework/utils"
 import path from "path"
 import { PassThrough, Readable, Writable } from "stream"
 import { ulid } from "ulid"

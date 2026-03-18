@@ -1,6 +1,6 @@
-import AuthModule from "/auth"
+import AuthModule from "@acmekit/auth"
 
-export * from "/auth"
+export * from "@acmekit/auth"
 
 export default AuthModule
 export const discoveryPath = require.resolve("/auth")

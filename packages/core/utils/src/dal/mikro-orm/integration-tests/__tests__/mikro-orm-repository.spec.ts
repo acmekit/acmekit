@@ -1,4 +1,4 @@
-import { BigNumberRawValue } from "/types"
+import { BigNumberRawValue } from "@acmekit/types"
 import {
   BeforeCreate,
   Collection,
@@ -13,8 +13,8 @@ import {
   Property,
   Unique,
   wrap,
-} from "/deps/mikro-orm/core"
-import { defineConfig } from "/deps/mikro-orm/postgresql"
+} from "@acmekit/deps/mikro-orm/core"
+import { defineConfig } from "@acmekit/deps/mikro-orm/postgresql"
 import BigNumber from "bignumber.js"
 import { dropDatabase } from "pg-god"
 import { MikroOrmBigNumberProperty } from "../../big-number-field"

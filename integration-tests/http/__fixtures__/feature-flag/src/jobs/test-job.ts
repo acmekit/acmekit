@@ -1,5 +1,5 @@
-import { MedusaContainer } from "/framework/types"
-import { defineFileConfig, FeatureFlag } from "/framework/utils"
+import { MedusaContainer } from "@acmekit/framework/types"
+import { defineFileConfig, FeatureFlag } from "@acmekit/framework/utils"
 
 export const testJobHandler = jest.fn()
 

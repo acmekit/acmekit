@@ -1,4 +1,4 @@
-import { InformationCircleSolid } from "/icons"
+import { InformationCircleSolid } from "@acmekit/icons"
 
 import {
   HookData,

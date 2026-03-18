@@ -4,7 +4,7 @@ import {
   LinkDefinition,
   LoadedModule,
   ModuleJoinerRelationship,
-} from "/types"
+} from "@acmekit/types"
 
 import {
   isObject,
@@ -14,7 +14,7 @@ import {
   Modules,
   promiseAll,
   toPascalCase,
-} from "/utils"
+} from "@acmekit/utils"
 import { AcmeKitModule } from "./medusa-module"
 import { convertRecordsToLinkDefinition } from "./utils/convert-data-to-link-definition"
 import { linkingErrorMessage } from "./utils/linking-error"

@@ -3,9 +3,9 @@ import * as QueryConfig from "./query-config"
 import {
   validateAndTransformBody,
   validateAndTransformQuery,
-} from "/framework"
-import { MiddlewareRoute } from "/framework/http"
-import { PolicyOperation } from "/framework/utils"
+} from "@acmekit/framework"
+import { MiddlewareRoute } from "@acmekit/framework/http"
+import { PolicyOperation } from "@acmekit/framework/utils"
 
 import { Entities } from "./query-config"
 import {

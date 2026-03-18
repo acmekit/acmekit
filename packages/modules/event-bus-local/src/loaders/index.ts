@@ -1,4 +1,4 @@
-import { LoaderOptions } from "/framework/types"
+import { LoaderOptions } from "@acmekit/framework/types"
 
 export default async ({ logger }: LoaderOptions): Promise<void> => {
   logger?.warn(

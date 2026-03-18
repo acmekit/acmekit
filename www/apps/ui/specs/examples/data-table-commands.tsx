@@ -1,4 +1,4 @@
-import { DataTable, DataTableRowSelectionState, Heading, createDataTableColumnHelper, createDataTableCommandHelper, useDataTable } from "/ui"
+import { DataTable, DataTableRowSelectionState, Heading, createDataTableColumnHelper, createDataTableCommandHelper, useDataTable } from "@acmekit/ui"
 import { useState } from "react"
 
 let products = [

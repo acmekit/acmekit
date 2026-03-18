@@ -1,7 +1,7 @@
-import { DeleteEntityInput, Link } from "/framework/modules-sdk"
-import { createStep, StepResponse } from "/framework/workflows-sdk"
+import { DeleteEntityInput, Link } from "@acmekit/framework/modules-sdk"
+import { createStep, StepResponse } from "@acmekit/framework/workflows-sdk"
 
-import { ContainerRegistrationKeys } from "/framework/utils"
+import { ContainerRegistrationKeys } from "@acmekit/framework/utils"
 
 type RemoveRemoteLinksStepInput = DeleteEntityInput | DeleteEntityInput[]
 

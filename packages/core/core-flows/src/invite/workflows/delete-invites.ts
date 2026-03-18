@@ -1,10 +1,10 @@
-import type { InviteWorkflow } from "/framework/types"
-import { InviteWorkflowEvents } from "/framework/utils"
+import type { InviteWorkflow } from "@acmekit/framework/types"
+import { InviteWorkflowEvents } from "@acmekit/framework/utils"
 import {
   WorkflowData,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { deleteInvitesStep } from "../steps"
 

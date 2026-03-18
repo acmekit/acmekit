@@ -1,4 +1,4 @@
-import { Drawer, clx } from "/ui"
+import { Drawer, clx } from "@acmekit/ui"
 import {
   ComponentPropsWithoutRef,
   PropsWithChildren,

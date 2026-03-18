@@ -1,6 +1,6 @@
 "use client"
 
-import { Check, TrianglesMini } from "/icons"
+import { Check, TrianglesMini } from "@acmekit/icons"
 import { cva } from "cva"
 import { Select as RadixSelect } from "radix-ui"
 import * as React from "react"

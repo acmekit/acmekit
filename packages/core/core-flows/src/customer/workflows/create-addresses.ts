@@ -1,7 +1,7 @@
 import {
   AdditionalData,
   CreateCustomerAddressDTO,
-} from "/framework/types"
+} from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
@@ -9,7 +9,7 @@ import {
   createWorkflow,
   parallelize,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import {
   createCustomerAddressesStep,
   maybeUnsetDefaultBillingAddressesStep,

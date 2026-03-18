@@ -3,15 +3,15 @@ import {
   SchedulerOptions,
   WorkflowManager,
   WorkflowScheduler,
-} from "/orchestration"
-import { IEventBusModuleService } from "/types"
+} from "@acmekit/orchestration"
+import { IEventBusModuleService } from "@acmekit/types"
 import {
   composeMessage,
   createMedusaContainer,
   Modules,
   promiseAll,
-} from "/utils"
-import { asValue } from "/deps/awilix"
+} from "@acmekit/utils"
+import { asValue } from "@acmekit/deps/awilix"
 import { setTimeout } from "timers/promises"
 import {
   createStep,

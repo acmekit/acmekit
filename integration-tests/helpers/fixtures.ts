@@ -1,4 +1,4 @@
-import { HttpTypes } from "/framework/types"
+import { HttpTypes } from "@acmekit/framework/types"
 
 export const getProductFixture = (
   overrides: Partial<HttpTypes.AdminCreateProduct>

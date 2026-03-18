@@ -1,6 +1,6 @@
-import { IAuthModuleService } from "/framework/types"
-import { Modules } from "/framework/utils"
-import { moduleIntegrationTestRunner } from "/test-utils"
+import { IAuthModuleService } from "@acmekit/framework/types"
+import { Modules } from "@acmekit/framework/utils"
+import { moduleIntegrationTestRunner } from "@acmekit/test-utils"
 import { createAuthIdentities } from "../../__fixtures__/auth-identity"
 
 jest.setTimeout(30000)

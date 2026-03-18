@@ -1,10 +1,10 @@
-import { AcmeKitModule } from "/framework/modules-sdk"
+import { AcmeKitModule } from "@acmekit/framework/modules-sdk"
 import type {
   ICachingModuleService,
   ICachingStrategy,
   Logger,
-} from "/framework/types"
-import { GraphQLUtils, AcmeKitError } from "/framework/utils"
+} from "@acmekit/framework/types"
+import { GraphQLUtils, AcmeKitError } from "@acmekit/framework/utils"
 import { CachingDefaultProvider, InjectedDependencies } from "@types"
 import CacheProviderService from "./cache-provider"
 

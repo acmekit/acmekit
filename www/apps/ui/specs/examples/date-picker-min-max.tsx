@@ -1,6 +1,6 @@
 "use client"
 
-import { DatePicker } from "/ui"
+import { DatePicker } from "@acmekit/ui"
 
 export default function DatePickerMinMax() {
   const today = new Date()

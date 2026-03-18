@@ -1,4 +1,4 @@
-import { PropertyType } from "/types"
+import { PropertyType } from "@acmekit/types"
 import { ComputedProperty } from "./computed"
 
 const IsNullableModifier = Symbol.for("isNullableModifier")

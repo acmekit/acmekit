@@ -1,9 +1,9 @@
 import {
   TrackAnalyticsEventDTO,
   IdentifyAnalyticsEventDTO,
-} from "/types"
+} from "@acmekit/types"
 import AnalyticsProviderService from "./provider-service"
-import { AcmeKitError } from "/framework/utils"
+import { AcmeKitError } from "@acmekit/framework/utils"
 
 type InjectedDependencies = {
   analyticsProviderService: AnalyticsProviderService

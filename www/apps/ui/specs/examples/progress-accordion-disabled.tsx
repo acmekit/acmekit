@@ -1,4 +1,4 @@
-import { ProgressAccordion, Text } from "/ui"
+import { ProgressAccordion, Text } from "@acmekit/ui"
 
 export default function ProgressAccordionDisabled() {
   return (

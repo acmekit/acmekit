@@ -1,4 +1,4 @@
-import { OperatorMap } from "/types"
+import { OperatorMap } from "@acmekit/types"
 
 export const FilterOperatorMap: { [K in keyof OperatorMap<string>]: string } = {
   $and: "$and",

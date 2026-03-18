@@ -6,7 +6,7 @@ import {
   ExclamationCircleSolid,
   InformationCircleSolid,
   XCircleSolid,
-} from "/icons"
+} from "@acmekit/icons"
 import { Button } from "@/components/Button"
 
 export type NotificationItemLayoutDefaultProps = NotificationItemProps & {

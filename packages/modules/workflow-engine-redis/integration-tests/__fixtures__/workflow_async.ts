@@ -4,7 +4,7 @@ import {
   parallelize,
   StepResponse,
   WorkflowResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 
 const step_1_background = createStep(
   {

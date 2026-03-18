@@ -1,5 +1,5 @@
-import { Compiler } from "/framework/build-tools"
-import { logger } from "/framework/logger"
+import { Compiler } from "@acmekit/framework/build-tools"
+import { logger } from "@acmekit/framework/logger"
 import * as swcCore from "@swc/core"
 import { execFile } from "child_process"
 import path from "path"

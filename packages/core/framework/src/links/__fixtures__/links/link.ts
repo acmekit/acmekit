@@ -1,4 +1,4 @@
-import { defineLink, AcmeKitService, model, Module } from "/utils"
+import { defineLink, AcmeKitService, model, Module } from "@acmekit/utils"
 
 const model1 = model.define("model-1", {
   id: model.id().primaryKey(),

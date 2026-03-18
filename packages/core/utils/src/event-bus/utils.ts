@@ -1,4 +1,4 @@
-import { KebabCase, SnakeCase } from "/types"
+import { KebabCase, SnakeCase } from "@acmekit/types"
 import { camelToSnakeCase, kebabCase, lowerCaseFirst } from "../common"
 import { CommonEvents } from "./common-events"
 

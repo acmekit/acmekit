@@ -3,7 +3,7 @@ import {
   ItemTaxLineDTO,
   AcmeKitContainer,
   ShippingTaxLineDTO,
-} from "/types"
+} from "@acmekit/types"
 
 /**
  * Applies translations to tax lines. If you are using a tax provider that doesn't have TaxRates defined in the database,

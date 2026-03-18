@@ -1,4 +1,4 @@
-import { InternalModuleDeclaration, LoaderOptions } from "/types"
+import { InternalModuleDeclaration, LoaderOptions } from "@acmekit/types"
 import { mikroOrmConnectionLoader } from "./mikro-orm-connection-loader"
 
 /**

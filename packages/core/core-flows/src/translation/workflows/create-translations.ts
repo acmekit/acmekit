@@ -1,13 +1,13 @@
-import { CreateTranslationDTO, TranslationDTO } from "/framework/types"
+import { CreateTranslationDTO, TranslationDTO } from "@acmekit/framework/types"
 import {
   WorkflowData,
   WorkflowResponse,
   createWorkflow,
   transform,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 import { emitEventStep } from "../../common/steps/emit-event"
 import { createTranslationsStep } from "../steps"
-import { TranslationWorkflowEvents } from "/framework/utils"
+import { TranslationWorkflowEvents } from "@acmekit/framework/utils"
 
 /**
  * The translations to create.

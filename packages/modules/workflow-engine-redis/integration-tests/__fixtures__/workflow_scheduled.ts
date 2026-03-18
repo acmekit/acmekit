@@ -1,9 +1,9 @@
-import { SchedulerOptions } from "/framework/orchestration"
+import { SchedulerOptions } from "@acmekit/framework/orchestration"
 import {
   createStep,
   createWorkflow,
   StepResponse,
-} from "/framework/workflows-sdk"
+} from "@acmekit/framework/workflows-sdk"
 
 export const createScheduled = (
   name: string,

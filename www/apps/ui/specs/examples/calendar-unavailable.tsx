@@ -1,4 +1,4 @@
-import { Calendar } from "/ui"
+import { Calendar } from "@acmekit/ui"
 
 function isUnavailable(date: Date) {
   // Disable all Sundays

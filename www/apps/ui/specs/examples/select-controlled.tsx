@@ -1,4 +1,4 @@
-import { Select } from "/ui"
+import { Select } from "@acmekit/ui"
 import * as React from "react"
 
 export default function SelectDemo() {
