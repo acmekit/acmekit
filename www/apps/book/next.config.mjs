@@ -26,9 +26,6 @@ const withMDX = mdx({
         brokenLinkCheckerPlugin,
         {
           crossProjects: {
-            bloom: {
-              projectPath: path.resolve("..", "bloom"),
-            },
             resources: {
               projectPath: path.resolve("..", "resources"),
               hasGeneratedSlugs: true,
@@ -36,15 +33,9 @@ const withMDX = mdx({
             ui: {
               projectPath: path.resolve("..", "ui"),
             },
-            "user-guide": {
-              projectPath: path.resolve("..", "user-guide"),
-            },
             api: {
               projectPath: path.resolve("..", "api-reference"),
               skipSlugValidation: true,
-            },
-            cloud: {
-              projectPath: path.resolve("..", "cloud"),
             },
           },
         },
@@ -54,23 +45,14 @@ const withMDX = mdx({
         {
           baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
           projectUrls: {
-            bloom: {
-              url: process.env.NEXT_PUBLIC_BLOOM_URL,
-            },
             resources: {
               url: process.env.NEXT_PUBLIC_RESOURCES_URL,
-            },
-            "user-guide": {
-              url: process.env.NEXT_PUBLIC_USER_GUIDE_URL,
             },
             ui: {
               url: process.env.NEXT_PUBLIC_UI_URL,
             },
             api: {
               url: process.env.NEXT_PUBLIC_API_URL,
-            },
-            cloud: {
-              url: process.env.NEXT_PUBLIC_CLOUD_URL,
             },
           },
           useBaseUrl:
@@ -125,12 +107,11 @@ const nextConfig = {
     return {
       beforeFiles: [
         {
-          source:
-            "/:path((?!resources|api|ui|user-guide|cloud).*)index.html.md",
+          source: "/:path((?!resources|api|ui).*)index.html.md",
           destination: "/md-content/:path*",
         },
         {
-          source: "/:path((?!resources|api|ui|user-guide|cloud).*)*",
+          source: "/:path((?!resources|api|ui).*)*",
           has: [
             {
               type: "header",
@@ -196,26 +177,6 @@ const nextConfig = {
           destination: `${
             process.env.NEXT_PUBLIC_DOCS_V1_URL || "https://localhost:3001"
           }/v1/:path*`,
-          basePath: false,
-        },
-        {
-          source: "/user-guide",
-          destination: `${process.env.NEXT_PUBLIC_USER_GUIDE_URL || "https://localhost:3001"}/user-guide`,
-          basePath: false,
-        },
-        {
-          source: "/user-guide/:path*",
-          destination: `${process.env.NEXT_PUBLIC_USER_GUIDE_URL || "https://localhost:3001"}/user-guide/:path*`,
-          basePath: false,
-        },
-        {
-          source: "/cloud",
-          destination: `${process.env.NEXT_PUBLIC_CLOUD_URL || "https://localhost:3001"}/cloud`,
-          basePath: false,
-        },
-        {
-          source: "/cloud/:path*",
-          destination: `${process.env.NEXT_PUBLIC_CLOUD_URL || "https://localhost:3001"}/cloud/:path*`,
           basePath: false,
         },
         {

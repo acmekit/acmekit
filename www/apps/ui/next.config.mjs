@@ -28,14 +28,8 @@ const withMDX = mdx({
         brokenLinkCheckerPlugin,
         {
           crossProjects: {
-            bloom: {
-              projectPath: path.resolve("..", "bloom"),
-            },
             docs: {
               projectPath: path.resolve("..", "book"),
-            },
-            cloud: {
-              projectPath: path.resolve("..", "cloud"),
             },
             resources: {
               projectPath: path.resolve("..", "resources"),
@@ -45,9 +39,6 @@ const withMDX = mdx({
               projectPath: path.resolve("..", "api-reference"),
               skipSlugValidation: true,
             },
-            "user-guide": {
-              projectPath: path.resolve("..", "user-guide"),
-            },
           },
         },
       ],
@@ -56,9 +47,6 @@ const withMDX = mdx({
         {
           baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
           projectUrls: {
-            bloom: {
-              url: process.env.NEXT_PUBLIC_BLOOM_URL,
-            },
             docs: {
               url: process.env.NEXT_PUBLIC_DOCS_URL,
               path: "",
@@ -66,14 +54,8 @@ const withMDX = mdx({
             resources: {
               url: process.env.NEXT_PUBLIC_RESOURCES_URL,
             },
-            cloud: {
-              url: process.env.NEXT_PUBLIC_CLOUD_URL,
-            },
             api: {
               url: process.env.NEXT_PUBLIC_API_URL,
-            },
-            "user-guide": {
-              url: process.env.NEXT_PUBLIC_USER_GUIDE_URL,
             },
           },
           useBaseUrl:

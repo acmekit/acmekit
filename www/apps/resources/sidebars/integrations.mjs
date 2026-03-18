@@ -31,16 +31,6 @@ export const integrationsSidebar = [
     initialOpen: true,
     children: [
       {
-        type: "ref",
-        path: "/commerce-modules/auth/auth-providers/google",
-        title: "Google",
-      },
-      {
-        type: "ref",
-        path: "/commerce-modules/auth/auth-providers/github",
-        title: "GitHub",
-      },
-      {
         type: "link",
         path: "/integrations/guides/okta",
         title: "Okta",
@@ -71,18 +61,6 @@ export const integrationsSidebar = [
         type: "link",
         path: "/integrations/guides/strapi",
         title: "Strapi",
-      },
-    ],
-  },
-  {
-    type: "category",
-    title: "ERP",
-    initialOpen: true,
-    children: [
-      {
-        type: "ref",
-        path: "/recipes/erp/odoo",
-        title: "Odoo",
       },
     ],
   },
@@ -172,8 +150,8 @@ export const integrationsSidebar = [
     initialOpen: true,
     children: [
       {
-        type: "ref",
-        path: "/commerce-modules/payment/payment-provider/stripe",
+        type: "link",
+        path: "/integrations/guides/stripe",
         title: "Stripe",
       },
       {

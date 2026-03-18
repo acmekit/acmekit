@@ -193,43 +193,4 @@ export const troubleshootingSidebar = [
       },
     ],
   },
-  {
-    type: "category",
-    title: "Storefront",
-    initialOpen: true,
-    children: [
-      {
-        type: "sub-category",
-        title: "Next.js Starter",
-        children: [
-          {
-            type: "link",
-            path: "/troubleshooting/nextjs-node-25",
-            title: "Errors with Node v25+",
-          },
-          {
-            type: "link",
-            path: "/troubleshooting/nextjs-starter-rewrites",
-            title: "Google Cloud Run Error",
-          },
-        ],
-      },
-      {
-        type: "sub-category",
-        title: "Publishable API Key Errors",
-        children: [
-          {
-            type: "link",
-            path: "/troubleshooting/storefront-missing-pak",
-            title: "Missing Publishable API Key",
-          },
-          {
-            type: "link",
-            path: "/troubleshooting/storefront-pak-sc",
-            title: "Sales Channels Error",
-          },
-        ],
-      },
-    ],
-  },
 ]

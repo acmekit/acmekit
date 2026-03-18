@@ -46,7 +46,7 @@ export const toolsSidebar = [
     title: "SDKs",
     initialOpen: true,
     description:
-      "SDKs help you build client applications, such as storefronts or admin dashboards, with Medusa. They're also useful when extending the Medusa Admin with widgets and UI routes.",
+      "SDKs help you build client applications, such as admin dashboards, with AcmeKit. They're also useful when extending the AcmeKit Admin with widgets and UI routes.",
     children: [
       {
         type: "sidebar",
@@ -81,63 +81,6 @@ export const toolsSidebar = [
             type: "category",
             title: "admin Methods",
             autogenerate_path: "/references/js_sdk/admin/Admin/properties",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    type: "category",
-    title: "Storefront Starters",
-    initialOpen: true,
-    description:
-      "A storefront starter is a storefront with the basic commerce features that you can use with your Medusa application. You can use it as-is or build on top of it. Learn more about building a storefront in the [Storefront Development](/storefront-development) documentation.",
-    children: [
-      {
-        type: "sidebar",
-        sidebar_id: "nextjs-starter",
-        title: "Next.js Starter Storefront",
-        children: [
-          {
-            type: "link",
-            path: "/nextjs-starter",
-            title: "Overview",
-          },
-          {
-            type: "category",
-            title: "How-to Guides",
-            initialOpen: true,
-            children: [
-              {
-                type: "link",
-                path: "/nextjs-starter/guides/revalidate-cache",
-                title: "Revalidate Cache",
-              },
-              {
-                type: "link",
-                path: "/nextjs-starter/guides/remove-country-code",
-                title: "Remove Country Code from URLs",
-              },
-            ],
-          },
-          {
-            type: "category",
-            title: "Tutorials",
-            autogenerate_tags: "nextjs+tutorial",
-            autogenerate_as_ref: true,
-            sort_sidebar: "alphabetize",
-            children: [
-              {
-                type: "link",
-                path: "/nextjs-starter/guides/customize-stripe",
-                title: "Use Stripe's Payment Element",
-              },
-              {
-                type: "link",
-                path: "/nextjs-starter/guides/storefront-returns",
-                title: "Create Order Returns",
-              },
-            ],
           },
         ],
       },
